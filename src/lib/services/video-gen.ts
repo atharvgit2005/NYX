@@ -1,12 +1,22 @@
 import axios from 'axios';
+import fs from 'fs';
+import path from 'path';
 
-const HEYGEN_API_KEY = process.env.HEYGEN_API_KEY;
-const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
+const LOG_FILE = path.join(process.cwd(), 'debug_log.txt');
+
+function logToFile(message: string) {
+    const timestamp = new Date().toISOString();
+    const logMessage = `[${timestamp}] ${message}\n`;
+    fs.appendFileSync(LOG_FILE, logMessage);
+}
 
 export async function generateVideo(script: string, avatarId: string, voiceId: string) {
+    const HEYGEN_API_KEY = process.env.HEYGEN_API_KEY;
+    const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
+
     // 1. Check for API Keys
-    if (!HEYGEN_API_KEY || !ELEVENLABS_API_KEY) {
-        console.warn("Missing API Keys. Returning mock data.");
+    if (!HEYGEN_API_KEY) {
+        console.warn("Missing HeyGen API Key. Returning mock data.");
         await new Promise((resolve) => setTimeout(resolve, 3000)); // Simulate processing
         return {
             videoId: 'mock-video-id',
@@ -41,8 +51,8 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
     }
 
     try {
-        console.log("Generating video with HeyGen...");
-        console.log(`Using Avatar ID: ${avatarId}`);
+        logToFile("Generating video with HeyGen...");
+        logToFile(`Using Avatar ID: ${avatarId}`);
 
         const heyGenPayload = {
             video_inputs: [
@@ -55,8 +65,8 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
                     voice: {
                         type: 'text',
                         input_text: script,
-                        // Use a valid default voice ID found in verification
-                        voice_id: '2b76e0cd15dd47279b43a8bfd438b4a9',
+                        // Use provided voiceId or a default public voice (English Male)
+                        voice_id: (voiceId && voiceId !== 'mock-voice') ? voiceId : '1bd001e7e50f421d891986aad5158bc8',
                     },
                     background: {
                         type: 'color',
@@ -70,7 +80,7 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
             },
         };
 
-        console.log("HeyGen Payload:", JSON.stringify(heyGenPayload, null, 2));
+        logToFile(`HeyGen Payload: ${JSON.stringify(heyGenPayload, null, 2)}`);
 
         const videoResponse = await axios.post(
             'https://api.heygen.com/v2/video/generate',
@@ -83,7 +93,7 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
             }
         );
 
-        console.log("HeyGen Response:", videoResponse.data);
+        logToFile(`HeyGen Response: ${JSON.stringify(videoResponse.data)}`);
 
         return {
             videoId: videoResponse.data.data.video_id,
@@ -92,12 +102,15 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
         };
 
     } catch (error: any) {
+        logToFile(`HeyGen Generation Error: ${JSON.stringify(error.response?.data || error.message, null, 2)}`);
         console.error("HeyGen Generation Error:", JSON.stringify(error.response?.data || error.message, null, 2));
         throw new Error(`HeyGen Failed: ${error.response?.data?.message || error.message}`);
     }
 }
 
 export async function checkVideoStatus(videoId: string) {
+    const HEYGEN_API_KEY = process.env.HEYGEN_API_KEY;
+
     if (videoId === 'mock-video-id') {
         return {
             status: 'completed',
@@ -120,16 +133,46 @@ export async function checkVideoStatus(videoId: string) {
             }
         );
 
-        const status = response.data.data.status;
-        const url = response.data.data.video_url;
+        const data = response.data.data || {};
+        const status = data.status;
+        const url = data.video_url || data.url; // Check both fields just in case
+        const error = data.error;
+
+        logToFile(`[HeyGen Status Check] ID: ${videoId}`);
+        logToFile(`[HeyGen Response] Status: ${status}, URL: ${url}, Error: ${JSON.stringify(error)}`);
+        logToFile(`[HeyGen Full Response] ${JSON.stringify(response.data, null, 2)}`);
+
+        if (status === 'failed' || status === 'error') {
+            return {
+                status: 'failed',
+                progress: 0,
+                url: null,
+                error: error || 'Video generation failed'
+            };
+        }
+
+        if (status === 'completed') {
+            if (!url) {
+                logToFile(`[HeyGen Warning] Status is completed but URL is missing for ID: ${videoId}`);
+                console.warn(`[HeyGen Warning] Status is completed but URL is missing for ID: ${videoId}`);
+                // Still return completed, but maybe frontend needs to handle null URL or we retry?
+                // For now, let's return it as is so we can see the log.
+            }
+            return {
+                status: 'completed',
+                progress: 100,
+                url: url,
+            };
+        }
 
         return {
-            status: status === 'completed' ? 'completed' : 'processing',
-            progress: status === 'completed' ? 100 : 50, // Simplified progress
-            url: url,
+            status: 'processing',
+            progress: 50, // We could maybe map other statuses like 'waiting' to different progress
+            url: null,
         };
     } catch (error: any) {
+        logToFile(`Status Check Error: ${JSON.stringify(error.response?.data || error.message)}`);
         console.error("Status Check Error:", error.response?.data || error.message);
-        return { status: 'error', progress: 0, url: null };
+        return { status: 'error', progress: 0, url: null, error: error.message };
     }
 }
