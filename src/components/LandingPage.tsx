@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Navbar from './Navbar';
 import ThreeBackground from './ThreeBackground';
 import gsap from 'gsap';
 import { Zap, Bot, Rocket, Check, Users, Linkedin, Twitter } from 'lucide-react';
@@ -26,7 +25,6 @@ export default function LandingPage() {
     return (
         <div className="min-h-screen text-white overflow-hidden relative">
             <ThreeBackground />
-            <Navbar />
 
             {/* Hero Section */}
             <section ref={heroRef} className="relative flex flex-col items-center justify-center text-center z-10 min-h-screen px-6 sm:px-8 lg:px-12">
