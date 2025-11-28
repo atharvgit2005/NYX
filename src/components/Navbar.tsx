@@ -1,13 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { Sparkles, Rocket, User, LogOut } from 'lucide-react';
+import { Sparkles, Rocket, User, LogOut, Menu, X } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
 import { useState } from 'react';
 
 export default function Navbar() {
   const { data: session } = useSession();
   const [showDropdown, setShowDropdown] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-xl border-b border-white/5 transition-all duration-300">
@@ -42,7 +43,7 @@ export default function Navbar() {
           </div>
 
           {/* CTA Button or User Menu - Pushed to Right */}
-          <div className="ml-auto">
+          <div className="ml-auto hidden md:block">
             {session ? (
               <div className="relative">
                 <button
@@ -80,8 +81,70 @@ export default function Navbar() {
               </Link>
             )}
           </div>
+
+          {/* Mobile Menu Button */}
+          <div className="ml-auto md:hidden">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-lg bg-white/5 text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="md:hidden absolute top-20 left-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/10 shadow-2xl animate-fade-in">
+          <div className="px-6 py-8 space-y-6">
+            <div className="flex flex-col space-y-4">
+              {['Features', 'How it Works', 'Pricing'].map((item) => (
+                <Link
+                  key={item}
+                  href={`#${item.toLowerCase().replace(/\s+/g, '-')}`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-lg font-medium text-gray-300 hover:text-white transition-colors"
+                >
+                  {item}
+                </Link>
+              ))}
+            </div>
+
+            <div className="pt-6 border-t border-white/10">
+              {session ? (
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 text-gray-300">
+                    <User className="w-5 h-5" />
+                    <span className="font-medium">{session.user?.name || 'User'}</span>
+                  </div>
+                  <Link
+                    href="/dashboard"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block w-full text-center py-3 rounded-xl bg-purple-600/20 text-purple-300 font-bold border border-purple-500/30 hover:bg-purple-600/30 transition-colors"
+                  >
+                    Go to Dashboard
+                  </Link>
+                  <button
+                    onClick={() => signOut()}
+                    className="block w-full text-center py-3 rounded-xl bg-white/5 text-gray-400 font-medium hover:bg-white/10 transition-colors"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  href="/signin"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full text-center py-3 rounded-xl bg-white text-black font-bold hover:bg-gray-100 transition-colors"
+                >
+                  Get Started
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }

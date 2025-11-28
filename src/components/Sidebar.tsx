@@ -14,7 +14,7 @@ import {
     MoreHorizontal
 } from 'lucide-react';
 
-const navigation = [
+export const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { name: 'Connect Socials', href: '/dashboard/connect', icon: LinkIcon },
     { name: 'Brand Analysis', href: '/dashboard/analysis', icon: BrainCircuit },
