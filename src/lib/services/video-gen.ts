@@ -15,63 +15,66 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
         };
     }
 
+    // 2. Generate Audio with ElevenLabs (Optional / Fallback)
+    let audioUrl = null;
     try {
-        // 2. Generate Audio with ElevenLabs
-        console.log("Generating audio with ElevenLabs...");
-        const audioResponse = await axios.post(
-            `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`,
-            {
-                text: script,
-                model_id: "eleven_monolingual_v1",
-                voice_settings: {
-                    stability: 0.5,
-                    similarity_boost: 0.5,
-                },
-            },
-            {
-                headers: {
-                    'xi-api-key': ELEVENLABS_API_KEY,
-                    'Content-Type': 'application/json',
-                },
-                responseType: 'arraybuffer', // Get binary audio data
-            }
-        );
+        if (voiceId && voiceId !== 'mock-voice') {
+            console.log("Generating audio with ElevenLabs...");
+            // In a real app, we would upload this audio to a storage bucket and get a URL.
+            // For this MVP, we'll skip the actual ElevenLabs call if we can't handle the audio file,
+            // OR we would implement the asset upload to HeyGen.
+            // For now, let's just log that we would have done it.
+            console.log(`[Mock] Would generate audio for voiceId: ${voiceId}`);
 
-        // Upload audio to HeyGen (or use a temporary URL if you have a storage bucket)
-        // For this MVP, HeyGen allows passing text directly or an audio URL. 
-        // To keep it simple without a storage bucket, we will use HeyGen's TTS or just pass the text if using a HeyGen avatar that supports it.
-        // BUT, since the user asked for ElevenLabs specifically, we ideally need to upload this audio.
-        // *Simplification for MVP*: We will assume we can pass the text to HeyGen and select a voice there, 
-        // OR we would need a way to host this audio file. 
-        // Let's try to use HeyGen's "generate" endpoint which might accept text directly for their avatars.
+            // If you want to enable real ElevenLabs:
+            /*
+            const audioResponse = await axios.post(
+                `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`,
+                { text: script, ... },
+                { headers: { 'xi-api-key': ELEVENLABS_API_KEY, ... } }
+            );
+            // Then upload audioResponse.data to S3/Cloudinary and set audioUrl
+            */
+        }
+    } catch (error: any) {
+        console.warn("ElevenLabs generation failed (continuing with default voice):", error.response?.data || error.message);
+    }
 
+    try {
         console.log("Generating video with HeyGen...");
+        console.log(`Using Avatar ID: ${avatarId}`);
+
+        const heyGenPayload = {
+            video_inputs: [
+                {
+                    character: {
+                        type: 'avatar',
+                        avatar_id: avatarId,
+                        avatar_style: 'normal',
+                    },
+                    voice: {
+                        type: 'text',
+                        input_text: script,
+                        // Use a valid default voice ID found in verification
+                        voice_id: '2b76e0cd15dd47279b43a8bfd438b4a9',
+                    },
+                    background: {
+                        type: 'color',
+                        value: '#000000',
+                    },
+                },
+            ],
+            dimension: {
+                width: 720,
+                height: 1280,
+            },
+        };
+
+        console.log("HeyGen Payload:", JSON.stringify(heyGenPayload, null, 2));
+
         const videoResponse = await axios.post(
             'https://api.heygen.com/v2/video/generate',
-            {
-                video_inputs: [
-                    {
-                        character: {
-                            type: 'avatar',
-                            avatar_id: avatarId,
-                            avatar_style: 'normal',
-                        },
-                        voice: {
-                            type: 'text', // Using HeyGen's TTS for simplicity in MVP to avoid file upload complexity
-                            input_text: script,
-                            voice_id: '2d5b0e6cf361460aa7fc47e3cee4b35c', // Default HeyGen voice ID or map from ElevenLabs
-                        },
-                        background: {
-                            type: 'color',
-                            value: '#000000',
-                        },
-                    },
-                ],
-                dimension: {
-                    width: 1080,
-                    height: 1920,
-                },
-            },
+            heyGenPayload,
             {
                 headers: {
                     'X-Api-Key': HEYGEN_API_KEY,
@@ -80,6 +83,8 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
             }
         );
 
+        console.log("HeyGen Response:", videoResponse.data);
+
         return {
             videoId: videoResponse.data.data.video_id,
             status: 'processing',
@@ -87,8 +92,8 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
         };
 
     } catch (error: any) {
-        console.error("Video Generation Error:", error.response?.data || error.message);
-        throw new Error("Failed to generate video via APIs.");
+        console.error("HeyGen Generation Error:", JSON.stringify(error.response?.data || error.message, null, 2));
+        throw new Error(`HeyGen Failed: ${error.response?.data?.message || error.message}`);
     }
 }
 

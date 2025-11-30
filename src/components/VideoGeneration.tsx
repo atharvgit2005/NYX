@@ -6,6 +6,9 @@ export default function VideoGeneration() {
     const [status, setStatus] = useState<'idle' | 'processing' | 'completed'>('idle');
     const [progress, setProgress] = useState(0);
     const [script, setScript] = useState<string>('');
+    const [error, setError] = useState<string | null>(null);
+    const [videoId, setVideoId] = useState<string | null>(null);
+    const [videoUrl, setVideoUrl] = useState<string | null>(null);
 
     useEffect(() => {
         const savedScript = localStorage.getItem('current_video_script');
@@ -14,14 +17,47 @@ export default function VideoGeneration() {
         }
     }, []);
 
+    const pollStatus = async (id: string) => {
+        try {
+            const response = await fetch(`/api/video/status?videoId=${id}`);
+            const data = await response.json();
+
+            if (data.success) {
+                const { status: videoStatus, url } = data.data;
+
+                if (videoStatus === 'completed' && url) {
+                    setVideoUrl(url);
+                    setStatus('completed');
+                    setProgress(100);
+                    return true; // Stop polling
+                } else if (videoStatus === 'failed' || videoStatus === 'error') {
+                    throw new Error('Video generation failed on server.');
+                }
+            }
+        } catch (err) {
+            console.error('Polling error:', err);
+            // Don't stop polling immediately on network error, but maybe after max retries
+        }
+        return false; // Continue polling
+    };
+
     const startGeneration = async () => {
+        console.log('Starting video generation...');
         setStatus('processing');
         setProgress(0);
+        setError(null);
+        setVideoUrl(null);
 
         try {
             // Get custom IDs from localStorage
             const customAvatarId = localStorage.getItem('custom_avatar_id');
             const customVoiceId = localStorage.getItem('custom_voice_id');
+            console.log('Using Avatar ID:', customAvatarId);
+            console.log('Using Voice ID:', customVoiceId);
+
+            if (!customAvatarId) {
+                throw new Error("Avatar ID not found. Please set it in the Avatar & Voice page.");
+            }
 
             // Start generation request
             const response = await fetch('/api/video/generate', {
@@ -29,25 +65,44 @@ export default function VideoGeneration() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     script: script || 'Mock script content', // Use real script
-                    avatarId: customAvatarId || 'mock-avatar',
+                    avatarId: customAvatarId,
                     voiceId: customVoiceId || 'mock-voice',
                 }),
             });
 
-            // Simulate progress polling
-            const interval = setInterval(() => {
-                setProgress((prev) => {
-                    if (prev >= 100) {
-                        clearInterval(interval);
-                        setStatus('completed');
-                        return 100;
-                    }
-                    return prev + 10;
-                });
-            }, 500);
+            const data = await response.json();
+            console.log('Generation response:', data);
 
-        } catch (error) {
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to generate video');
+            }
+
+            const newVideoId = data.data.videoId;
+            setVideoId(newVideoId);
+
+            // Start polling
+            let pollCount = 0;
+            const maxPolls = 300; // 10 minutes (if 2s interval)
+
+            const interval = setInterval(async () => {
+                pollCount++;
+                // Fake progress while waiting
+                setProgress((prev) => Math.min(prev + 1, 90));
+
+                const isComplete = await pollStatus(newVideoId);
+
+                if (isComplete) {
+                    clearInterval(interval);
+                } else if (pollCount >= maxPolls) {
+                    clearInterval(interval);
+                    setError('Video generation timed out. Please check back later.');
+                    setStatus('idle');
+                }
+            }, 2000);
+
+        } catch (error: any) {
             console.error('Video generation failed:', error);
+            setError(error.message || 'An unexpected error occurred');
             setStatus('idle');
         }
     };
@@ -70,6 +125,16 @@ export default function VideoGeneration() {
                     </button>
                 )}
             </div>
+
+            {error && (
+                <div className="bg-red-500/10 border border-red-500/50 rounded-xl p-4 mb-8 text-red-200 flex items-center animate-fade-in">
+                    <span className="text-2xl mr-3">⚠️</span>
+                    <div>
+                        <p className="font-bold">Generation Failed</p>
+                        <p className="text-sm opacity-80">{error}</p>
+                    </div>
+                </div>
+            )}
 
             {status === 'idle' && (
                 <div className="bg-white/5 rounded-2xl border border-white/10 p-12 text-center">
@@ -102,25 +167,21 @@ export default function VideoGeneration() {
                     </div>
                     <p className="text-gray-400">
                         {progress < 30 && 'Synthesizing voice...'}
-                        {progress >= 30 && progress < 70 && 'Animating avatar...'}
-                        {progress >= 70 && 'Finalizing render...'}
+                        {progress >= 30 && progress < 90 && 'Animating avatar...'}
+                        {progress >= 90 && 'Finalizing render...'}
                     </p>
                 </div>
             )}
 
-            {status === 'completed' && (
+            {status === 'completed' && videoUrl && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in">
                     <div className="bg-black rounded-2xl overflow-hidden border border-white/10 aspect-[9/16] relative group">
-                        {/* Placeholder for video player */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
-                            <span className="text-6xl">▶️</span>
-                        </div>
-                        <div className="absolute bottom-4 left-4 right-4">
-                            <div className="bg-black/50 backdrop-blur-md p-3 rounded-lg">
-                                <p className="text-white text-sm font-medium">Final_Video_v1.mp4</p>
-                                <p className="text-gray-400 text-xs">00:45 • 1080x1920</p>
-                            </div>
-                        </div>
+                        <video
+                            src={videoUrl}
+                            controls
+                            className="w-full h-full object-cover"
+                            autoPlay
+                        />
                     </div>
 
                     <div className="space-y-6">
@@ -130,9 +191,15 @@ export default function VideoGeneration() {
                                 Your video has been successfully generated and is ready for publishing.
                             </p>
                             <div className="space-y-3">
-                                <button className="w-full py-3 bg-white text-black rounded-lg font-bold hover:bg-gray-200 transition-colors">
+                                <a
+                                    href={videoUrl}
+                                    download="generated_video.mp4"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block w-full py-3 bg-white text-black rounded-lg font-bold hover:bg-gray-200 transition-colors text-center"
+                                >
                                     Download Video ⬇️
-                                </button>
+                                </a>
                                 <button className="w-full py-3 bg-purple-600 text-white rounded-lg font-bold hover:bg-purple-700 transition-colors">
                                     Schedule Post 📅
                                 </button>

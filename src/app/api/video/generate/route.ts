@@ -6,9 +6,9 @@ export async function POST(request: Request) {
         const { script, avatarId, voiceId } = await request.json();
         const video = await generateVideo(script, avatarId, voiceId);
         return NextResponse.json({ success: true, data: video });
-    } catch (error) {
+    } catch (error: any) {
         return NextResponse.json(
-            { error: 'Failed to generate video' },
+            { error: error.message || 'Failed to generate video' },
             { status: 500 }
         );
     }
