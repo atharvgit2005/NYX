@@ -10,8 +10,8 @@ function logToFile(message: string) {
     fs.appendFileSync(LOG_FILE, logMessage);
 }
 
-export async function generateVideo(script: string, avatarId: string, voiceId: string) {
-    const HEYGEN_API_KEY = process.env.HEYGEN_API_KEY;
+export async function generateVideo(script: string, avatarId: string, voiceId: string, apiKey?: string) {
+    const HEYGEN_API_KEY = apiKey || process.env.HEYGEN_API_KEY;
     const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
 
     // 1. Check for API Keys
@@ -108,8 +108,8 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
     }
 }
 
-export async function checkVideoStatus(videoId: string) {
-    const HEYGEN_API_KEY = process.env.HEYGEN_API_KEY;
+export async function checkVideoStatus(videoId: string, apiKey?: string) {
+    const HEYGEN_API_KEY = apiKey || process.env.HEYGEN_API_KEY;
 
     if (videoId === 'mock-video-id') {
         return {

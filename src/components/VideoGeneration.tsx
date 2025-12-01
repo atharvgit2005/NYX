@@ -10,17 +10,36 @@ export default function VideoGeneration() {
     const [videoId, setVideoId] = useState<string | null>(null);
     const [videoUrl, setVideoUrl] = useState<string | null>(null);
 
+    const [apiKey, setApiKey] = useState('');
+
     useEffect(() => {
         const savedScript = localStorage.getItem('current_video_script');
         if (savedScript) {
             setScript(savedScript);
         }
+        const savedApiKey = localStorage.getItem('heygen_api_key');
+        if (savedApiKey) {
+            setApiKey(savedApiKey);
+        }
     }, []);
+
+    const handleApiKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const key = e.target.value;
+        setApiKey(key);
+        localStorage.setItem('heygen_api_key', key);
+    };
 
     const pollStatus = async (id: string) => {
         try {
             console.log(`Polling status for video ID: ${id}`);
-            const response = await fetch(`/api/video/status?videoId=${id}`);
+            const headers: Record<string, string> = {};
+            if (apiKey) {
+                headers['x-api-key'] = apiKey;
+            }
+
+            const response = await fetch(`/api/video/status?videoId=${id}`, {
+                headers
+            });
             const data = await response.json();
             console.log('Poll response:', data);
 
@@ -77,10 +96,15 @@ export default function VideoGeneration() {
                 throw new Error("Avatar ID not found. Please set it in the Avatar & Voice page.");
             }
 
+            const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+            if (apiKey) {
+                headers['x-api-key'] = apiKey;
+            }
+
             // Start generation request
             const response = await fetch('/api/video/generate', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: headers,
                 body: JSON.stringify({
                     script: script || 'Mock script content', // Use real script
                     avatarId: customAvatarId,
@@ -142,6 +166,21 @@ export default function VideoGeneration() {
                         Generate Video
                     </button>
                 )}
+            </div>
+
+            {/* API Key Input */}
+            <div className="mb-8 p-4 bg-white/5 border border-white/10 rounded-xl">
+                <label className="block text-xs font-bold text-gray-500 uppercase mb-2">HeyGen API Key (Optional)</label>
+                <input
+                    type="password"
+                    value={apiKey}
+                    onChange={handleApiKeyChange}
+                    placeholder="Enter your HeyGen API Key to override default"
+                    className="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500 transition-colors font-mono text-sm"
+                />
+                <p className="text-xs text-gray-500 mt-2">
+                    Leave blank to use the server-configured API key.
+                </p>
             </div>
 
             {error && (

@@ -13,7 +13,10 @@ export async function GET(request: Request) {
     }
 
     try {
-        const status = await checkVideoStatus(videoId);
+        const apiKey = request.headers.get('x-api-key') || undefined;
+        console.log(`Checking status for ${videoId}, Custom Key: ${!!apiKey}`);
+
+        const status = await checkVideoStatus(videoId, apiKey);
         console.log(`Checking status for ${videoId}:`, status);
         return NextResponse.json({ success: true, data: status });
     } catch (error: any) {
