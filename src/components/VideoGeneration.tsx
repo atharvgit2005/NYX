@@ -19,19 +19,37 @@ export default function VideoGeneration() {
 
     const pollStatus = async (id: string) => {
         try {
+            console.log(`Polling status for video ID: ${id}`);
             const response = await fetch(`/api/video/status?videoId=${id}`);
             const data = await response.json();
+            console.log('Poll response:', data);
 
             if (data.success) {
-                const { status: videoStatus, url } = data.data;
+                const { status: videoStatus, url, error: videoError } = data.data;
+                console.log(`Current status: ${videoStatus}, URL: ${url}`);
 
-                if (videoStatus === 'completed' && url) {
-                    setVideoUrl(url);
-                    setStatus('completed');
-                    setProgress(100);
-                    return true; // Stop polling
+                if (videoStatus === 'completed') {
+                    if (url) {
+                        setVideoUrl(url);
+                        setStatus('completed');
+                        setProgress(100);
+                        return true; // Stop polling
+                    } else {
+                        console.warn('Video status is completed but URL is missing. Continuing to poll...');
+                        // Optionally update UI to show "Finalizing..."
+                        return false; // Continue polling
+                    }
                 } else if (videoStatus === 'failed' || videoStatus === 'error') {
-                    throw new Error('Video generation failed on server.');
+                    console.error('Video generation failed:', videoError);
+                    let errorMessage = 'Video generation failed on server.';
+                    if (videoError) {
+                        errorMessage = typeof videoError === 'string'
+                            ? videoError
+                            : JSON.stringify(videoError);
+                    }
+                    setError(errorMessage);
+                    setStatus('idle');
+                    return true; // Stop polling
                 }
             }
         } catch (err) {
@@ -141,8 +159,19 @@ export default function VideoGeneration() {
                     <div className="text-6xl mb-6">🎬</div>
                     <h3 className="text-2xl font-bold text-white mb-2">Ready to Produce</h3>
                     <p className="text-gray-400 max-w-md mx-auto mb-8">
-                        Your script is approved and your avatar is ready. Click the button above to start rendering your video.
+                        Your script is approved. Click the button above to start rendering.
                     </p>
+
+                    {/* Avatar ID Check */}
+                    <div className="mb-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl max-w-md mx-auto text-left">
+                        <p className="text-xs text-blue-300 uppercase font-bold mb-1">Using Avatar ID</p>
+                        <p className="text-white font-mono text-sm break-all">
+                            {localStorage.getItem('custom_avatar_id') || 'Not Set'}
+                        </p>
+                        <a href="/dashboard/avatar" className="text-xs text-blue-400 hover:text-blue-300 underline mt-2 block">
+                            Change Avatar ID &rarr;
+                        </a>
+                    </div>
 
                     {script && (
                         <div className="bg-black/30 p-6 rounded-xl border border-white/5 text-left max-w-2xl mx-auto">
