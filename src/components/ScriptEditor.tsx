@@ -54,8 +54,31 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                     >
                         {generating ? 'Regenerating...' : 'Regenerate'}
                     </button>
-                    <button className="px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg font-bold text-white transition-colors">
-                        Approve & Create Video →
+                    <button
+                        onClick={async () => {
+                            try {
+                                const res = await fetch('/api/scripts', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({
+                                        title: 'Generated Script', // Could add title input
+                                        content: script
+                                    })
+                                });
+                                if (res.ok) {
+                                    alert('Script saved!');
+                                    // Optional: Redirect or update UI
+                                } else {
+                                    alert('Failed to save script.');
+                                }
+                            } catch (e) {
+                                console.error(e);
+                                alert('Error saving script.');
+                            }
+                        }}
+                        className="px-6 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg font-bold text-white transition-colors"
+                    >
+                        Save & Create Video →
                     </button>
                 </div>
             </div>

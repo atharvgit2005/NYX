@@ -52,6 +52,43 @@ export default function LandingPage() {
                 </div>
             </section>
 
+            {/* How It Works Section */}
+            <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 relative z-10 bg-black/30 backdrop-blur-sm">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16">From Idea to Viral Video in 3 Steps</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                        {/* Connecting Line (Desktop) */}
+                        <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-purple-500/0 via-purple-500/50 to-purple-500/0 z-0"></div>
+
+                        {[
+                            {
+                                step: '01',
+                                title: 'Connect',
+                                desc: 'Link your social accounts and define your niche.',
+                            },
+                            {
+                                step: '02',
+                                title: 'Customize',
+                                desc: 'Keep your own voice or choose a premium AI avatar.',
+                            },
+                            {
+                                step: '03',
+                                title: 'Automate',
+                                desc: 'Set your schedule and watch the content flow.',
+                            },
+                        ].map((item, i) => (
+                            <div key={i} className="relative z-10 flex flex-col items-center text-center group">
+                                <div className="w-24 h-24 mb-6 rounded-2xl bg-gradient-to-br from-purple-900/50 to-pink-900/50 border border-purple-500/30 flex items-center justify-center text-3xl font-bold shadow-[0_0_30px_rgba(168,85,247,0.2)] group-hover:scale-110 transition-transform duration-300 group-hover:shadow-[0_0_50px_rgba(168,85,247,0.4)] group-hover:border-purple-500/60 backdrop-blur-xl">
+                                    <span className="bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent">{item.step}</span>
+                                </div>
+                                <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                                <p className="text-gray-400 max-w-xs">{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* Features Grid */}
             <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="max-w-7xl mx-auto">
@@ -118,28 +155,40 @@ export default function LandingPage() {
             <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="text-3xl sm:text-4xl font-bold text-center mb-16">Simple, Transparent Pricing</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {[
-                            { name: 'Starter', price: '$0', features: ['5 Scripts/mo', 'Basic Analysis', '1 Avatar'] },
-                            { name: 'Pro', price: '$29', features: ['Unlimited Scripts', 'Deep Analysis', 'Custom Avatar', 'Priority Support'], popular: true },
-                            { name: 'Agency', price: '$99', features: ['Multiple Brands', 'API Access', 'White Label', 'Dedicated Manager'] },
-                        ].map((plan, i) => (
-                            <div key={i} className={`relative p-8 rounded-2xl border backdrop-blur-md transition-all ${plan.popular ? 'bg-purple-900/20 border-purple-500 shadow-[0_0_30px_rgba(168,85,247,0.2)] scale-105' : 'bg-white/5 border-white/10 hover:border-white/20'}`}>
-                                {plan.popular && <span className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-purple-600 rounded-full text-sm font-bold">Most Popular</span>}
-                                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                                <div className="text-4xl font-bold mb-6">{plan.price}<span className="text-lg text-gray-400 font-normal">/mo</span></div>
-                                <ul className="space-y-4 mb-8">
-                                    {plan.features.map((f, j) => (
-                                        <li key={j} className="flex items-center text-gray-300">
-                                            <Check className="w-5 h-5 mr-3 text-green-400" /> {f}
-                                        </li>
-                                    ))}
-                                </ul>
-                                <button className={`w-full py-3 rounded-xl font-bold transition-all ${plan.popular ? 'bg-purple-600 hover:bg-purple-700' : 'bg-white/10 hover:bg-white/20'}`}>
-                                    Choose {plan.name}
-                                </button>
-                            </div>
-                        ))}
+                    {/* Infinite Marquee Container */}
+                    <div className="w-full overflow-hidden relative fade-mask">
+                        <div className="animate-marquee flex items-center gap-8 py-10">
+                            {[
+                                { name: 'Starter', price: '₹0', features: ['5 Scripts/mo', 'Basic Analysis', '1 Avatar'] },
+                                { name: 'Pro', price: '₹2,499', features: ['Unlimited Scripts', 'Deep Analysis', 'Custom Avatar', 'Priority Support'], popular: true },
+                                { name: 'Agency', price: '₹7,999', features: ['Multiple Brands', 'API Access', 'White Label', 'Dedicated Manager'] },
+                                { name: 'Starter', price: '₹0', features: ['5 Scripts/mo', 'Basic Analysis', '1 Avatar'] },
+                                { name: 'Pro', price: '₹2,499', features: ['Unlimited Scripts', 'Deep Analysis', 'Custom Avatar', 'Priority Support'], popular: true },
+                                { name: 'Agency', price: '₹7,999', features: ['Multiple Brands', 'API Access', 'White Label', 'Dedicated Manager'] },
+                                { name: 'Starter', price: '₹0', features: ['5 Scripts/mo', 'Basic Analysis', '1 Avatar'] },
+                                { name: 'Pro', price: '₹2,499', features: ['Unlimited Scripts', 'Deep Analysis', 'Custom Avatar', 'Priority Support'], popular: true },
+                                { name: 'Agency', price: '₹7,999', features: ['Multiple Brands', 'API Access', 'White Label', 'Dedicated Manager'] },
+                                { name: 'Starter', price: '₹0', features: ['5 Scripts/mo', 'Basic Analysis', '1 Avatar'] },
+                                { name: 'Pro', price: '₹2,499', features: ['Unlimited Scripts', 'Deep Analysis', 'Custom Avatar', 'Priority Support'], popular: true },
+                                { name: 'Agency', price: '₹7,999', features: ['Multiple Brands', 'API Access', 'White Label', 'Dedicated Manager'] },
+                            ].map((plan, i) => (
+                                <Link href="/signup" key={i} className={`relative flex-shrink-0 w-80 p-8 rounded-2xl border backdrop-blur-md transition-all duration-300 group hover:-translate-y-2 ${plan.popular ? 'bg-purple-900/20 border-purple-500 shadow-[0_0_30px_rgba(168,85,247,0.2)]' : 'bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/10'}`}>
+                                    {plan.popular && <span className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-purple-600 rounded-full text-sm font-bold shadow-lg">Most Popular</span>}
+                                    <h3 className="text-2xl font-bold mb-2 group-hover:text-purple-400 transition-colors">{plan.name}</h3>
+                                    <div className="text-4xl font-bold mb-6">{plan.price}<span className="text-lg text-gray-400 font-normal">/mo</span></div>
+                                    <ul className="space-y-4 mb-8">
+                                        {plan.features.map((f, j) => (
+                                            <li key={j} className="flex items-center text-gray-300">
+                                                <Check className="w-5 h-5 mr-3 text-green-400" /> {f}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <div className={`w-full py-3 rounded-xl font-bold text-center transition-all ${plan.popular ? 'bg-purple-600 group-hover:bg-purple-700 shadow-lg group-hover:shadow-purple-500/50' : 'bg-white/10 group-hover:bg-white/20'}`}>
+                                        Choose {plan.name}
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>

@@ -1,4 +1,5 @@
 import UserProfile3D from '@/components/UserProfile3D';
+import ProfileCard from '@/components/ProfileCard';
 
 export default function ProfilePage() {
     return (
@@ -11,6 +12,8 @@ export default function ProfilePage() {
             <UserProfile3D />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <ProfileCard />
+
                 <div className="bg-white/5 p-8 rounded-3xl border border-white/10">
                     <h3 className="text-xl font-bold text-white mb-4">Subscription</h3>
                     <div className="flex items-center justify-between p-4 bg-purple-900/20 rounded-xl border border-purple-500/20 mb-4">

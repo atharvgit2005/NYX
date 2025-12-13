@@ -224,20 +224,37 @@ export default function VideoGeneration() {
             )}
 
             {status === 'processing' && (
-                <div className="bg-white/5 rounded-2xl border border-white/10 p-12 text-center">
-                    <div className="w-24 h-24 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-8"></div>
-                    <h3 className="text-2xl font-bold text-white mb-4">Rendering Your Video...</h3>
-                    <div className="w-full max-w-md mx-auto bg-gray-700 rounded-full h-2.5 mb-4">
-                        <div
-                            className="bg-purple-600 h-2.5 rounded-full transition-all duration-500"
-                            style={{ width: `${progress}%` }}
-                        ></div>
+                <div className="relative bg-white/5 rounded-2xl border border-white/10 p-12 text-center overflow-hidden aspect-video w-full flex flex-col justify-center items-center">
+                    {/* Background Video */}
+                    <div className="absolute inset-0 z-0">
+                        <video
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-full object-cover opacity-60"
+                        >
+                            <source src="/videos/loading-background.mp4" type="video/mp4" />
+                        </video>
+                        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
                     </div>
-                    <p className="text-gray-400">
-                        {progress < 30 && 'Synthesizing voice...'}
-                        {progress >= 30 && progress < 90 && 'Animating avatar...'}
-                        {progress >= 90 && 'Finalizing render...'}
-                    </p>
+
+                    {/* Content */}
+                    <div className="relative z-10 w-full max-w-lg mx-auto">
+                        <div className="w-24 h-24 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-8 shadow-[0_0_30px_rgba(168,85,247,0.5)]"></div>
+                        <h3 className="text-3xl font-bold text-white mb-4 drop-shadow-lg">Rendering Your Video...</h3>
+                        <div className="w-full bg-gray-700/50 rounded-full h-3 mb-4 backdrop-blur-md border border-white/10 overflow-hidden">
+                            <div
+                                className="bg-gradient-to-r from-purple-600 to-pink-600 h-full rounded-full transition-all duration-500 shadow-[0_0_15px_rgba(168,85,247,0.5)]"
+                                style={{ width: `${progress}%` }}
+                            ></div>
+                        </div>
+                        <p className="text-gray-200 text-lg font-medium drop-shadow-md">
+                            {progress < 30 && 'Synthesizing voice...'}
+                            {progress >= 30 && progress < 90 && 'Animating avatar...'}
+                            {progress >= 90 && 'Finalizing render...'}
+                        </p>
+                    </div>
                 </div>
             )}
 
@@ -290,6 +307,63 @@ export default function VideoGeneration() {
                     </div>
                 </div>
             )}
+
+            {/* Video History Section */}
+            <div className="mt-16 pt-8 border-t border-white/10">
+                <h3 className="text-2xl font-bold text-white mb-6">Recent Videos</h3>
+                <VideoHistoryList />
+            </div>
+        </div>
+    );
+}
+
+function VideoHistoryList() {
+    const [videos, setVideos] = useState<any[]>([]);
+
+    useEffect(() => {
+        fetch('/api/video/history')
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) setVideos(data.data);
+            })
+            .catch(err => console.error("Failed to load history", err));
+    }, []);
+
+    if (videos.length === 0) {
+        return <p className="text-gray-500">No recent videos found.</p>;
+    }
+
+    return (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {videos.map((video) => (
+                <div key={video.id} className="bg-white/5 rounded-xl overflow-hidden border border-white/10">
+                    <div className="aspect-video bg-black flex items-center justify-center relative">
+                        {video.url ? (
+                            <video src={video.url} className="w-full h-full object-cover" controls />
+                        ) : (
+                            <div className="text-gray-500 text-sm">
+                                {video.status === 'processing' ? 'Processing...' : 'Processing Failed'}
+                            </div>
+                        )}
+                        {video.status === 'processing' && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                                <div className="w-8 h-8 border-2 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
+                            </div>
+                        )}
+                    </div>
+                    <div className="p-4">
+                        <p className="text-xs text-gray-400 mb-1">ID: {video.id.substring(0, 8)}...</p>
+                        <p className={`text-sm font-bold capitalize ${video.status === 'completed' ? 'text-green-400' :
+                            video.status === 'processing' ? 'text-yellow-400' : 'text-red-400'
+                            }`}>
+                            {video.status}
+                        </p>
+                        <p className="text-xs text-gray-500 mt-2">
+                            {new Date(video.createdAt).toLocaleDateString()}
+                        </p>
+                    </div>
+                </div>
+            ))}
         </div>
     );
 }

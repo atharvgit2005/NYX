@@ -3,18 +3,34 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { signIn } from 'next-auth/react';
 
 export default function Login() {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
-    const handleLogin = (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        // Mock login delay
-        setTimeout(() => {
+        setError('');
+
+        const form = e.target as HTMLFormElement;
+        const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+        const password = (form.elements.namedItem('password') as HTMLInputElement).value;
+
+        const result = await signIn('credentials', {
+            redirect: false,
+            email,
+            password,
+        });
+
+        if (result?.error) {
+            setError('Invalid credentials');
+            setLoading(false);
+        } else {
             router.push('/dashboard');
-        }, 1000);
+        }
     };
 
     return (

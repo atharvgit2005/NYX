@@ -6678,3 +6678,324 @@
   },
   "message": "Success"
 }
+[2025-12-12T16:20:20.236Z] Generating video with HeyGen...
+[2025-12-12T16:20:20.238Z] Using Avatar ID: a781abc38cbb44b9ab287c22a23c4637
+[2025-12-12T16:20:20.238Z] HeyGen Payload: {
+  "video_inputs": [
+    {
+      "character": {
+        "type": "avatar",
+        "avatar_id": "a781abc38cbb44b9ab287c22a23c4637",
+        "avatar_style": "normal"
+      },
+      "voice": {
+        "type": "text",
+        "input_text": "Okay, here's a short-form video script for Ronaldo's Secret Training Tech REVEALED!, optimized for retention:\n\n**[HOOK] (0-5 seconds)**\n\n*   **Visual:** Close up on Ronaldo sweating intensely, wearing a high-tech vest. Intense workout footage flashing.\n*   **Audio:** Ronaldo (voiceover, intense): \"This is how I defy age!\"\n\n**[BODY] (5-45 seconds)**\n\n*   **Visual:** Fast cuts showing Ronaldo using various training equipment. Graphics showing data readouts from the vest.\n*   **Audio:** Narrator (energetic, upbeat): \"Ever wondered how Ronaldo stays on top? It's not just talent! He's using cutting-edge tech! This vest tracks EVERYTHING! Muscle fatigue! Heart rate! Power output! Real-time data for peak performance! He's pushing his limits...scientifically! It's the ultimate advantage!\" Show a split screen, Ronaldo on one side, showing stats of someone on the other, who isn't him. \"While you're guessing, Ronaldo's ANALYZING.\"\n\n**[CTA] (45-60 seconds)**\n\n*   **Visual:** Text overlay: \"Unlock YOUR Potential!\" Show the vest, the company who makes the vest logo and URL.\n*   **Audio:** Narrator: \"Want to train like Ronaldo? Click the link in bio to learn more! Level up your game NOW! Don't just play...DOMINATE!\" (Sound of a goal being scored) #Ronaldo #Training #Fitness #Tech #CristianoRonaldo #Soccer #Football #Athlete #Performance #UnlockYourPotential\n",
+        "voice_id": "1bd001e7e50f421d891986aad5158bc8"
+      },
+      "background": {
+        "type": "color",
+        "value": "#000000"
+      }
+    }
+  ],
+  "dimension": {
+    "width": 720,
+    "height": 1280
+  }
+}
+[2025-12-12T16:20:22.112Z] HeyGen Response: {"error":null,"data":{"video_id":"31c568705b0842fba3a649f823254405"}}
+[2025-12-12T16:20:24.737Z] [HeyGen Status Check] ID: 31c568705b0842fba3a649f823254405
+[2025-12-12T16:20:24.738Z] [HeyGen Response] Status: processing, URL: undefined, Error: null
+[2025-12-12T16:20:24.738Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1765556421,
+    "duration": null,
+    "error": null,
+    "gif_url": null,
+    "id": "31c568705b0842fba3a649f823254405",
+    "status": "processing",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2025-12-12T16:20:26.495Z] [HeyGen Status Check] ID: 31c568705b0842fba3a649f823254405
+[2025-12-12T16:20:26.496Z] [HeyGen Response] Status: processing, URL: undefined, Error: null
+[2025-12-12T16:20:26.496Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1765556421,
+    "duration": null,
+    "error": null,
+    "gif_url": null,
+    "id": "31c568705b0842fba3a649f823254405",
+    "status": "processing",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2025-12-12T16:20:28.528Z] [HeyGen Status Check] ID: 31c568705b0842fba3a649f823254405
+[2025-12-12T16:20:28.528Z] [HeyGen Response] Status: processing, URL: undefined, Error: null
+[2025-12-12T16:20:28.528Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1765556421,
+    "duration": null,
+    "error": null,
+    "gif_url": null,
+    "id": "31c568705b0842fba3a649f823254405",
+    "status": "processing",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2025-12-12T16:20:30.508Z] [HeyGen Status Check] ID: 31c568705b0842fba3a649f823254405
+[2025-12-12T16:20:30.509Z] [HeyGen Response] Status: processing, URL: undefined, Error: null
+[2025-12-12T16:20:30.509Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1765556421,
+    "duration": null,
+    "error": null,
+    "gif_url": null,
+    "id": "31c568705b0842fba3a649f823254405",
+    "status": "processing",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2025-12-12T16:20:32.560Z] [HeyGen Status Check] ID: 31c568705b0842fba3a649f823254405
+[2025-12-12T16:20:32.560Z] [HeyGen Response] Status: processing, URL: undefined, Error: null
+[2025-12-12T16:20:32.560Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1765556421,
+    "duration": null,
+    "error": null,
+    "gif_url": null,
+    "id": "31c568705b0842fba3a649f823254405",
+    "status": "processing",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2025-12-12T16:20:34.653Z] [HeyGen Status Check] ID: 31c568705b0842fba3a649f823254405
+[2025-12-12T16:20:34.653Z] [HeyGen Response] Status: processing, URL: undefined, Error: null
+[2025-12-12T16:20:34.653Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1765556421,
+    "duration": null,
+    "error": null,
+    "gif_url": null,
+    "id": "31c568705b0842fba3a649f823254405",
+    "status": "processing",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2025-12-12T16:20:36.490Z] [HeyGen Status Check] ID: 31c568705b0842fba3a649f823254405
+[2025-12-12T16:20:36.490Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit.","message":"Insufficient credit."}
+[2025-12-12T16:20:36.491Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1765556421,
+    "duration": null,
+    "error": {
+      "code": "MOVIO_PAYMENT_INSUFFICIENT_CREDIT",
+      "detail": "Insufficient credit.",
+      "message": "Insufficient credit."
+    },
+    "gif_url": null,
+    "id": "31c568705b0842fba3a649f823254405",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2025-12-12T18:52:55.997Z] Generating video with HeyGen...
+[2025-12-12T18:52:55.998Z] Using Avatar ID: a781abc38cbb44b9ab287c22a23c4637
+[2025-12-12T18:52:55.999Z] HeyGen Payload: {
+  "video_inputs": [
+    {
+      "character": {
+        "type": "avatar",
+        "avatar_id": "a781abc38cbb44b9ab287c22a23c4637",
+        "avatar_style": "normal"
+      },
+      "voice": {
+        "type": "text",
+        "input_text": "Okay, here's a short-form video script for Ronaldo's Secret Training Tech REVEALED!, optimized for retention:\n\n**[HOOK] (0-5 seconds)**\n\n*   **Visual:** Close up on Ronaldo sweating intensely, wearing a high-tech vest. Intense workout footage flashing.\n*   **Audio:** Ronaldo (voiceover, intense): \"This is how I defy age!\"\n\n**[BODY] (5-45 seconds)**\n\n*   **Visual:** Fast cuts showing Ronaldo using various training equipment. Graphics showing data readouts from the vest.\n*   **Audio:** Narrator (energetic, upbeat): \"Ever wondered how Ronaldo stays on top? It's not just talent! He's using cutting-edge tech! This vest tracks EVERYTHING! Muscle fatigue! Heart rate! Power output! Real-time data for peak performance! He's pushing his limits...scientifically! It's the ultimate advantage!\" Show a split screen, Ronaldo on one side, showing stats of someone on the other, who isn't him. \"While you're guessing, Ronaldo's ANALYZING.\"\n\n**[CTA] (45-60 seconds)**\n\n*   **Visual:** Text overlay: \"Unlock YOUR Potential!\" Show the vest, the company who makes the vest logo and URL.\n*   **Audio:** Narrator: \"Want to train like Ronaldo? Click the link in bio to learn more! Level up your game NOW! Don't just play...DOMINATE!\" (Sound of a goal being scored) #Ronaldo #Training #Fitness #Tech #CristianoRonaldo #Soccer #Football #Athlete #Performance #UnlockYourPotential\n",
+        "voice_id": "1bd001e7e50f421d891986aad5158bc8"
+      },
+      "background": {
+        "type": "color",
+        "value": "#000000"
+      }
+    }
+  ],
+  "dimension": {
+    "width": 720,
+    "height": 1280
+  }
+}
+[2025-12-12T18:52:57.751Z] HeyGen Response: {"error":null,"data":{"video_id":"44362e03dbf04b02b61e542195a16be0"}}
+[2025-12-12T18:53:00.174Z] [HeyGen Status Check] ID: 44362e03dbf04b02b61e542195a16be0
+[2025-12-12T18:53:00.175Z] [HeyGen Response] Status: processing, URL: undefined, Error: null
+[2025-12-12T18:53:00.175Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1765565577,
+    "duration": null,
+    "error": null,
+    "gif_url": null,
+    "id": "44362e03dbf04b02b61e542195a16be0",
+    "status": "processing",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2025-12-12T18:53:02.121Z] [HeyGen Status Check] ID: 44362e03dbf04b02b61e542195a16be0
+[2025-12-12T18:53:02.122Z] [HeyGen Response] Status: processing, URL: undefined, Error: null
+[2025-12-12T18:53:02.123Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1765565577,
+    "duration": null,
+    "error": null,
+    "gif_url": null,
+    "id": "44362e03dbf04b02b61e542195a16be0",
+    "status": "processing",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2025-12-12T18:53:04.158Z] [HeyGen Status Check] ID: 44362e03dbf04b02b61e542195a16be0
+[2025-12-12T18:53:04.158Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit.","message":"Insufficient credit."}
+[2025-12-12T18:53:04.158Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1765565577,
+    "duration": null,
+    "error": {
+      "code": "MOVIO_PAYMENT_INSUFFICIENT_CREDIT",
+      "detail": "Insufficient credit.",
+      "message": "Insufficient credit."
+    },
+    "gif_url": null,
+    "id": "44362e03dbf04b02b61e542195a16be0",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2025-12-12T18:55:08.792Z] Generating video with HeyGen...
+[2025-12-12T18:55:08.793Z] Using Avatar ID: a781abc38cbb44b9ab287c22a23c4637
+[2025-12-12T18:55:08.793Z] HeyGen Payload: {
+  "video_inputs": [
+    {
+      "character": {
+        "type": "avatar",
+        "avatar_id": "a781abc38cbb44b9ab287c22a23c4637",
+        "avatar_style": "normal"
+      },
+      "voice": {
+        "type": "text",
+        "input_text": "Okay, here's a short-form video script for Ronaldo's Secret Training Tech REVEALED!, optimized for retention:\n\n**[HOOK] (0-5 seconds)**\n\n*   **Visual:** Close up on Ronaldo sweating intensely, wearing a high-tech vest. Intense workout footage flashing.\n*   **Audio:** Ronaldo (voiceover, intense): \"This is how I defy age!\"\n\n**[BODY] (5-45 seconds)**\n\n*   **Visual:** Fast cuts showing Ronaldo using various training equipment. Graphics showing data readouts from the vest.\n*   **Audio:** Narrator (energetic, upbeat): \"Ever wondered how Ronaldo stays on top? It's not just talent! He's using cutting-edge tech! This vest tracks EVERYTHING! Muscle fatigue! Heart rate! Power output! Real-time data for peak performance! He's pushing his limits...scientifically! It's the ultimate advantage!\" Show a split screen, Ronaldo on one side, showing stats of someone on the other, who isn't him. \"While you're guessing, Ronaldo's ANALYZING.\"\n\n**[CTA] (45-60 seconds)**\n\n*   **Visual:** Text overlay: \"Unlock YOUR Potential!\" Show the vest, the company who makes the vest logo and URL.\n*   **Audio:** Narrator: \"Want to train like Ronaldo? Click the link in bio to learn more! Level up your game NOW! Don't just play...DOMINATE!\" (Sound of a goal being scored) #Ronaldo #Training #Fitness #Tech #CristianoRonaldo #Soccer #Football #Athlete #Performance #UnlockYourPotential\n",
+        "voice_id": "1bd001e7e50f421d891986aad5158bc8"
+      },
+      "background": {
+        "type": "color",
+        "value": "#000000"
+      }
+    }
+  ],
+  "dimension": {
+    "width": 720,
+    "height": 1280
+  }
+}
+[2025-12-12T18:55:10.635Z] HeyGen Response: {"error":null,"data":{"video_id":"2dbf545dd8e14af099b35fd371d1e4cc"}}
+[2025-12-12T18:55:13.095Z] [HeyGen Status Check] ID: 2dbf545dd8e14af099b35fd371d1e4cc
+[2025-12-12T18:55:13.095Z] [HeyGen Response] Status: processing, URL: undefined, Error: null
+[2025-12-12T18:55:13.095Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1765565710,
+    "duration": null,
+    "error": null,
+    "gif_url": null,
+    "id": "2dbf545dd8e14af099b35fd371d1e4cc",
+    "status": "processing",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2025-12-12T18:55:15.010Z] [HeyGen Status Check] ID: 2dbf545dd8e14af099b35fd371d1e4cc
+[2025-12-12T18:55:15.010Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit.","message":"Insufficient credit."}
+[2025-12-12T18:55:15.010Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1765565710,
+    "duration": null,
+    "error": {
+      "code": "MOVIO_PAYMENT_INSUFFICIENT_CREDIT",
+      "detail": "Insufficient credit.",
+      "message": "Insufficient credit."
+    },
+    "gif_url": null,
+    "id": "2dbf545dd8e14af099b35fd371d1e4cc",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}

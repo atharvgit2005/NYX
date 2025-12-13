@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSidebar } from '@/context/SidebarContext';
 import {
     LayoutDashboard,
     Link as LinkIcon,
@@ -10,7 +11,6 @@ import {
     FileText,
     User,
     Video,
-    LogOut,
     MoreHorizontal
 } from 'lucide-react';
 
@@ -26,49 +26,57 @@ export const navigation = [
 
 export default function Sidebar() {
     const pathname = usePathname();
+    const { collapsed } = useSidebar();
 
     return (
-        <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 bg-black/90 backdrop-blur-xl border-r border-white/10 z-50">
-            <div className="flex-1 flex flex-col min-h-0">
-                <div className="flex items-center h-20 flex-shrink-0 px-6 border-b border-white/10">
-                    <Link href="/" className="text-3xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent tracking-tight">
-                        NYX
-                    </Link>
-                </div>
-                <div className="flex-1 flex flex-col overflow-y-auto py-6">
-                    <nav className="flex-1 px-4 space-y-2">
-                        {navigation.map((item) => {
-                            const isActive = pathname === item.href;
-                            const Icon = item.icon;
-                            return (
-                                <Link
-                                    key={item.name}
-                                    href={item.href}
-                                    className={`group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${isActive
-                                        ? 'bg-purple-600/20 text-purple-400 shadow-[0_0_15px_rgba(168,85,247,0.15)]'
-                                        : 'text-gray-400 hover:bg-white/5 hover:text-white hover:translate-x-1'
-                                        }`}
-                                >
-                                    <Icon className={`mr-3 h-5 w-5 transition-colors ${isActive ? 'text-purple-400' : 'text-gray-500 group-hover:text-white'}`} />
-                                    {item.name}
-                                </Link>
-                            );
-                        })}
-                    </nav>
-                </div>
+        <div
+            className={`hidden md:flex md:flex-col md:fixed md:left-0 md:bottom-0 md:top-20 bg-black/95 backdrop-blur-xl z-40 transition-all duration-300 ${collapsed ? 'md:w-20' : 'md:w-64'
+                }`}
+        >
+            <div className="flex-1 flex flex-col overflow-y-auto pb-[150px]">
 
-                {/* User Tab */}
+                <nav className="flex-1 px-4 space-y-2 mt-8" style={{ paddingTop: '35px' }}>
+
+                    {navigation.map((item) => {
+                        const isActive = pathname === item.href;
+                        const Icon = item.icon;
+                        return (
+                            <Link
+                                key={item.name}
+                                href={item.href}
+                                title={collapsed ? item.name : ''}
+                                className={`group flex items-center px-3 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${isActive
+                                    ? 'bg-purple-600/20 text-purple-400 shadow-[0_0_15px_rgba(168,85,247,0.15)]'
+                                    : 'text-gray-400 hover:bg-white/5 hover:text-white hover:translate-x-1'
+                                    } ${collapsed ? 'justify-center' : ''}`}
+                            >
+                                <Icon className={`h-6 w-6 transition-colors ${isActive ? 'text-purple-400' : 'text-gray-500 group-hover:text-white'} ${collapsed ? '' : 'mr-3'}`} />
+                                {!collapsed && (
+                                    <span className="truncate">{item.name}</span>
+                                )}
+                            </Link>
+                        );
+                    })}
+                </nav>
+            </div>
+
+            {/* User Tab */}
+            <div className="mt-auto px-4 pb-6">
                 <Link href="/dashboard/profile">
-                    <div className="flex-shrink-0 border-t border-white/10 p-4 m-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-colors cursor-pointer group relative">
+                    <div className={`flex-shrink-0 p-3 bg-white/5 rounded-2xl hover:bg-white/10 transition-colors cursor-pointer group relative ${collapsed ? 'flex justify-center' : ''}`}>
                         <div className="flex items-center">
-                            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold shadow-lg">
+                            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold shadow-lg flex-shrink-0">
                                 AP
                             </div>
-                            <div className="ml-3 flex-1 overflow-hidden">
-                                <p className="text-sm font-bold text-white truncate group-hover:text-purple-300 transition-colors">Atharv Paharia</p>
-                                <p className="text-xs text-gray-500 truncate">Pro Plan</p>
-                            </div>
-                            <MoreHorizontal className="h-5 w-5 text-gray-500 group-hover:text-white transition-colors" />
+                            {!collapsed && (
+                                <>
+                                    <div className="ml-3 flex-1 overflow-hidden">
+                                        <p className="text-sm font-bold text-white truncate group-hover:text-purple-300 transition-colors">Atharv Paharia</p>
+                                        <p className="text-xs text-gray-500 truncate">Pro Plan</p>
+                                    </div>
+                                    <MoreHorizontal className="h-5 w-5 text-gray-500 group-hover:text-white transition-colors ml-2" />
+                                </>
+                            )}
                         </div>
                     </div>
                 </Link>
