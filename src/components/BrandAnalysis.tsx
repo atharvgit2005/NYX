@@ -110,60 +110,142 @@ export default function BrandAnalysis() {
             )}
 
             {analysis && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
-                    {/* Niche Card */}
-                    <div className="p-8 rounded-3xl bg-gradient-to-br from-purple-900/20 to-black border border-purple-500/30 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:scale-110 transition-transform"><Target className="w-24 h-24" /></div>
-                        <div className="relative z-10">
-                            <h3 className="text-purple-400 font-bold mb-2 flex items-center"><Target className="w-5 h-5 mr-2" /> Your Niche</h3>
-                            <p className="text-2xl font-bold text-white leading-tight">{analysis.niche}</p>
-                        </div>
-                    </div>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 animate-fade-in">
 
-                    {/* Tone Card */}
-                    <div className="p-8 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden group hover:border-pink-500/30 transition-colors">
-                        <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-110 transition-transform"><MessageCircle className="w-24 h-24" /></div>
-                        <div className="relative z-10">
-                            <h3 className="text-pink-400 font-bold mb-2 flex items-center"><MessageCircle className="w-5 h-5 mr-2" /> Tone of Voice</h3>
-                            <p className="text-xl text-white">{analysis.tone}</p>
-                        </div>
-                    </div>
-
-                    {/* Audience Card */}
-                    <div className="p-8 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden group hover:border-blue-500/30 transition-colors">
-                        <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-110 transition-transform"><Users className="w-24 h-24" /></div>
-                        <div className="relative z-10">
-                            <h3 className="text-blue-400 font-bold mb-2 flex items-center"><Users className="w-5 h-5 mr-2" /> Target Audience</h3>
-                            <p className="text-xl text-white">{analysis.audience}</p>
-                        </div>
-                    </div>
-
-                    {/* Pillars Card */}
-                    <div className="p-8 rounded-3xl bg-white/5 border border-white/10 lg:col-span-2 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 p-6 opacity-5"><Layers className="w-32 h-32" /></div>
-                        <h3 className="text-green-400 font-bold mb-6 flex items-center"><Layers className="w-5 h-5 mr-2" /> Content Pillars</h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            {analysis.pillars.map((pillar: string, i: number) => (
-                                <div key={i} className="flex items-center bg-white/5 p-4 rounded-xl border border-white/5">
-                                    <div className="w-2 h-2 bg-green-500 rounded-full mr-3 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
-                                    <span className="text-gray-200 font-medium">{pillar}</span>
+                    {/* Left Column: Analysis (Span 2) */}
+                    <div className="lg:col-span-2 space-y-6">
+                        {/* Niche & Tone Row */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="p-8 rounded-3xl bg-gradient-to-br from-purple-900/20 to-black border border-purple-500/30 relative overflow-hidden group">
+                                <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:scale-110 transition-transform"><Target className="w-24 h-24" /></div>
+                                <div className="relative z-10">
+                                    <h3 className="text-purple-400 font-bold mb-2 flex items-center"><Target className="w-5 h-5 mr-2" /> Your Niche</h3>
+                                    <p className="text-2xl font-bold text-white leading-tight">{analysis.niche}</p>
                                 </div>
-                            ))}
+                            </div>
+                            <div className="p-8 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden group hover:border-pink-500/30 transition-colors">
+                                <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-110 transition-transform"><MessageCircle className="w-24 h-24" /></div>
+                                <div className="relative z-10">
+                                    <h3 className="text-pink-400 font-bold mb-2 flex items-center"><MessageCircle className="w-5 h-5 mr-2" /> Tone of Voice</h3>
+                                    <p className="text-xl text-white">{analysis.tone}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Audience */}
+                        <div className="p-8 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden group hover:border-blue-500/30 transition-colors">
+                            <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-110 transition-transform"><Users className="w-24 h-24" /></div>
+                            <div className="relative z-10">
+                                <h3 className="text-blue-400 font-bold mb-2 flex items-center"><Users className="w-5 h-5 mr-2" /> Target Audience</h3>
+                                <p className="text-xl text-white">{analysis.audience}</p>
+                            </div>
+                        </div>
+
+                        {/* Pillars */}
+                        <div className="p-8 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden">
+                            <div className="absolute top-0 right-0 p-6 opacity-5"><Layers className="w-32 h-32" /></div>
+                            <h3 className="text-green-400 font-bold mb-6 flex items-center"><Layers className="w-5 h-5 mr-2" /> Content Pillars</h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                {analysis.pillars.map((pillar: string, i: number) => (
+                                    <div key={i} className="flex items-center bg-white/5 p-4 rounded-xl border border-white/5">
+                                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+                                        <span className="text-gray-200 font-medium">{pillar}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Competitors */}
+                        <div className="p-8 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden">
+                            <div className="absolute top-0 right-0 p-6 opacity-5"><TrendingUp className="w-32 h-32" /></div>
+                            <h3 className="text-yellow-400 font-bold mb-6 flex items-center"><TrendingUp className="w-5 h-5 mr-2" /> Competitors</h3>
+                            <ul className="space-y-3">
+                                {analysis.competitors.map((comp: string, i: number) => (
+                                    <li key={i} className="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer group">
+                                        <span className="text-gray-300 font-medium group-hover:text-white transition-colors">{comp}</span>
+                                        <ArrowRight className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors" />
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     </div>
 
-                    {/* Competitors Card */}
-                    <div className="p-8 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 p-6 opacity-5"><TrendingUp className="w-32 h-32" /></div>
-                        <h3 className="text-yellow-400 font-bold mb-6 flex items-center"><TrendingUp className="w-5 h-5 mr-2" /> Competitors</h3>
-                        <ul className="space-y-3">
-                            {analysis.competitors.map((comp: string, i: number) => (
-                                <li key={i} className="flex items-center justify-between p-3 rounded-xl hover:bg-white/5 transition-colors cursor-pointer group">
-                                    <span className="text-gray-300 font-medium group-hover:text-white transition-colors">{comp}</span>
-                                    <ArrowRight className="w-4 h-4 text-gray-600 group-hover:text-white transition-colors" />
-                                </li>
-                            ))}
-                        </ul>
+                    {/* Right Column: Instagram Profile Preview */}
+                    <div className="space-y-6">
+                        <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-6 sticky top-24">
+                            <div className="flex items-center space-x-4 mb-6">
+                                <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 p-[2px]">
+                                    <div className="w-full h-full rounded-full bg-black overflow-hidden relative">
+                                        {/* Avatar Fallback */}
+                                        <img
+                                            src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${analysis.scrapedData?.fullName || username}`}
+                                            alt={username || 'Profile'}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-white text-lg">{analysis.scrapedData?.fullName || username}</h3>
+                                    <p className="text-gray-400 text-sm">@{username}</p>
+                                </div>
+                            </div>
+
+                            <div className="flex justify-between text-center mb-6 py-4 border-y border-white/5">
+                                <div>
+                                    <p className="font-bold text-white">{analysis.scrapedData?.posts?.length || 0}</p>
+                                    <p className="text-xs text-gray-500">Posts</p>
+                                </div>
+                                <div>
+                                    <p className="font-bold text-white">{analysis.scrapedData?.followers || 'N/A'}</p>
+                                    <p className="text-xs text-gray-500">Followers</p>
+                                </div>
+                                <div>
+                                    <p className="font-bold text-white">N/A</p>
+                                    <p className="text-xs text-gray-500">Following</p>
+                                </div>
+                            </div>
+
+                            <div className="mb-6">
+                                <p className="text-sm text-gray-300 whitespace-pre-wrap">{analysis.scrapedData?.bio || 'No biography available.'}</p>
+                            </div>
+
+                            {/* Recent Posts Grid */}
+                            <h4 className="text-xs font-bold text-gray-500 uppercase mb-3">Recent Posts</h4>
+                            <div className="grid grid-cols-3 gap-2">
+                                {analysis.scrapedData?.posts?.map((post: any, i: number) => (
+                                    <div key={i} className="aspect-square bg-white/5 rounded-lg overflow-hidden relative group cursor-pointer border border-white/5">
+                                        {post.imageUrl ? (
+                                            <img src={post.imageUrl} alt="Post" className="w-full h-full object-cover" />
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center text-gray-700 bg-gray-900">
+                                                <AlertCircle className="w-4 h-4" />
+                                            </div>
+                                        )}
+                                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                            <div className="flex items-center text-white text-xs font-bold">
+                                                <TrendingUp className="w-3 h-3 mr-1" />
+                                                {post.likes}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <a
+                                href={`https://instagram.com/${username}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-6 block w-full py-3 bg-white/10 hover:bg-white/20 text-white text-center rounded-xl font-bold text-sm transition-colors"
+                            >
+                                View on Instagram ↗
+                            </a>
+
+                            {analysis.scrapedData?.isMockData && (
+                                <p className="text-[10px] text-yellow-500/50 text-center mt-4">
+                                    *Showing mock data (Scraper restricted)
+                                </p>
+                            )}
+                        </div>
                     </div>
                 </div>
             )}

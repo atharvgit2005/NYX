@@ -55,6 +55,7 @@ export async function POST(request: Request) {
                     fullName: scrapedProfile.fullName,
                     followers: scrapedProfile.followersCount,
                     bio: scrapedProfile.biography,
+                    posts: scrapedProfile.posts, // Pass posts to frontend
                     isMockData // Inform the frontend/user that this is mock data
                 }
             }

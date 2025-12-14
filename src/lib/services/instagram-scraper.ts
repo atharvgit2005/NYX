@@ -31,7 +31,7 @@ export async function scrapeInstagramProfile(username: string): Promise<ScrapedP
         console.log(`Fetching info for @${username} via local scraper...`);
 
         const scraper = new InstagramScraper();
-        const response = await scraper.getPosts(username, 1);
+        const response = await scraper.getPosts(username, 6);
 
         const rawPosts = response.posts || [];
 
