@@ -13,20 +13,24 @@ export default function VideoGeneration() {
     const [apiKey, setApiKey] = useState('');
 
     useEffect(() => {
-        const savedScript = localStorage.getItem('current_video_script');
-        if (savedScript) {
-            setScript(savedScript);
-        }
-        const savedApiKey = localStorage.getItem('heygen_api_key');
-        if (savedApiKey) {
-            setApiKey(savedApiKey);
+        if (typeof window !== 'undefined') {
+            const savedScript = localStorage.getItem('current_video_script');
+            if (savedScript) {
+                setScript(savedScript);
+            }
+            const savedApiKey = localStorage.getItem('heygen_api_key');
+            if (savedApiKey) {
+                setApiKey(savedApiKey);
+            }
         }
     }, []);
 
     const handleApiKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const key = e.target.value;
         setApiKey(key);
-        localStorage.setItem('heygen_api_key', key);
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('heygen_api_key', key);
+        }
     };
 
     const pollStatus = async (id: string) => {
@@ -87,8 +91,8 @@ export default function VideoGeneration() {
 
         try {
             // Get custom IDs from localStorage
-            const customAvatarId = localStorage.getItem('custom_avatar_id');
-            const customVoiceId = localStorage.getItem('custom_voice_id');
+            const customAvatarId = typeof window !== 'undefined' ? localStorage.getItem('custom_avatar_id') : null;
+            const customVoiceId = typeof window !== 'undefined' ? localStorage.getItem('custom_voice_id') : null;
             console.log('Using Avatar ID:', customAvatarId);
             console.log('Using Voice ID:', customVoiceId);
 
@@ -205,7 +209,7 @@ export default function VideoGeneration() {
                     <div className="mb-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl max-w-md mx-auto text-left">
                         <p className="text-xs text-blue-300 uppercase font-bold mb-1">Using Avatar ID</p>
                         <p className="text-white font-mono text-sm break-all">
-                            {localStorage.getItem('custom_avatar_id') || 'Not Set'}
+                            {typeof window !== 'undefined' ? (localStorage.getItem('custom_avatar_id') || 'Not Set') : 'Loading...'}
                         </p>
                         <a href="/dashboard/avatar" className="text-xs text-blue-400 hover:text-blue-300 underline mt-2 block">
                             Change Avatar ID &rarr;
