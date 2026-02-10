@@ -26,8 +26,14 @@ export default function Login() {
         });
 
         if (result?.error) {
-            setError('Invalid credentials');
+            console.error("Login Result Error:", result.error);
+            setError(result.error);
             setLoading(false);
+
+            // Helpful alerts for debugging
+            if (result.error === "CredentialsSignin") {
+                setError("Invalid email or password");
+            }
         } else {
             router.push('/dashboard');
         }
@@ -47,6 +53,11 @@ export default function Login() {
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="bg-white/5 py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-white/10">
                     <form className="space-y-6" onSubmit={handleLogin}>
+                        {error && (
+                            <div className="bg-red-500/10 border border-red-500 text-red-500 px-4 py-2 rounded text-sm text-center">
+                                {error}
+                            </div>
+                        )}
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-300">
                                 Email address
@@ -113,6 +124,6 @@ export default function Login() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
