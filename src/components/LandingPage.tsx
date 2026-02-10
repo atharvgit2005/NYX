@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import ThreeBackground from './ThreeBackground';
+import VideoCarousel from './VideoCarousel';
 import gsap from 'gsap';
 import { Zap, Bot, Rocket, Check, Users, Linkedin, Twitter, Menu, X, LogOut } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
@@ -150,6 +151,9 @@ export default function LandingPage() {
                     </div>
                 </div>
             </section>
+
+            {/* Video Carousel Showcase */}
+            <VideoCarousel />
 
             {/* How It Works Section */}
             <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 relative z-10 bg-black/30 backdrop-blur-sm">

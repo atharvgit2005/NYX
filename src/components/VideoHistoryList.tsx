@@ -118,13 +118,16 @@ export default function VideoHistoryList() {
     );
 }
 
+
 function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete: () => void }) {
     const [video, setVideo] = useState(initialVideo);
     const [progress, setProgress] = useState(0);
+    const [playError, setPlayError] = useState(false);
 
     // Sync initialVideo if updated (e.g. from parent refresh)
     useEffect(() => {
         setVideo(initialVideo);
+        setPlayError(false); // Reset error on new video
     }, [initialVideo]);
 
     useEffect(() => {
@@ -166,7 +169,7 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
             {/* Delete Button (Always Visible) */}
             <button
                 onClick={(e) => { e.stopPropagation(); onDelete(); }}
-                className="absolute top-2 right-2 z-20 bg-red-500/80 hover:bg-red-600 text-white p-2 rounded-full shadow-lg"
+                className="absolute top-2 right-2 z-20 bg-red-500/80 hover:bg-red-600 text-white p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
                 title="Delete Video"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -188,6 +191,12 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
                                 <span className="bg-black/80 px-3 py-1 rounded text-xs text-gray-400">Mock Preview (Not Playable)</span>
                             </div>
                         </>
+                    ) : playError ? (
+                        <div className="flex flex-col items-center justify-center text-center p-4">
+                            <div className="text-4xl mb-2">⚠️</div>
+                            <p className="text-xs text-red-400 font-bold">Video File Not Found</p>
+                            <p className="text-[10px] text-gray-500 mt-1">This demo video might only be available locally.</p>
+                        </div>
                     ) : (
                         <video
                             src={video.url}
@@ -195,6 +204,7 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
                             controls
                             preload="metadata"
                             playsInline
+                            onError={() => setPlayError(true)}
                         />
                     )
                 ) : (
@@ -232,7 +242,7 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
                     {new Date(video.createdAt).toLocaleDateString()} {new Date(video.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </p>
                 {/* Download Button for Completed */}
-                {video.status === 'completed' && !video.url?.includes('placeholder') && (
+                {video.status === 'completed' && !video.url?.includes('placeholder') && !playError && (
                     <a
                         href={video.url}
                         download
