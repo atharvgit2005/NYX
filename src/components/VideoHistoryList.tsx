@@ -145,7 +145,7 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
 
                         // Update if status changed
                         if (status !== 'processing') {
-                            setVideo(prev => ({ ...prev, status, url }));
+                            setVideo((prev: any) => ({ ...prev, status, url }));
                             setProgress(100);
                         }
                     }
