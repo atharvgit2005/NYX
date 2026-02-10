@@ -231,8 +231,6 @@ export default function LandingPage() {
                         {[
                             { name: 'Atharv Paharia', role: 'Co-Founder & Tech Lead' },
                             { name: 'Bhavya Jain', role: 'Co-Founder & Product' },
-                            { name: 'Khyati Kapil', role: 'Co-Founder & Design' },
-                            { name: 'Abhey Dua', role: 'Co-Founder & Operations' },
                         ].map((founder, i) => (
                             <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/50 transition-all text-center group">
                                 <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-3xl font-bold shadow-lg group-hover:scale-105 transition-transform">
