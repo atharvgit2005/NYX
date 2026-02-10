@@ -12,6 +12,7 @@ export default function Signup() {
     const handleSignup = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
+        // Clear previous errors if any
 
         const form = e.target as HTMLFormElement;
         const name = (form.elements.namedItem('name') as HTMLInputElement).value;
@@ -26,12 +27,12 @@ export default function Signup() {
                 body: JSON.stringify({ name, email, password })
             });
 
-            if (!response.ok) {
-                const errorData = await response.text();
-                console.error("Signup failed:", errorData);
+            const data = await response.json();
+
+            if (!response.ok || data.error) {
+                console.error("Signup failed:", data.error);
                 setLoading(false);
-                // In a real app, show error to user (e.g. toast or alert)
-                alert(`Signup failed: ${errorData}`);
+                alert(`Signup failed: ${data.error}`);
                 return;
             }
 
@@ -46,12 +47,13 @@ export default function Signup() {
             if (result?.error) {
                 console.error("Auto-login failed:", result.error);
                 setLoading(false);
+                alert(`Auto-login failed: ${result.error}`);
             }
 
-        } catch (error) {
+        } catch (error: any) {
             console.error("Signup error:", error);
             setLoading(false);
-            alert("Something went wrong during signup.");
+            alert(`Something went wrong: ${error.message}`);
         }
     };
 

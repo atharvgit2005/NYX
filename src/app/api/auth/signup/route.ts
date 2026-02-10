@@ -9,7 +9,7 @@ export async function POST(request: Request) {
         const { name, email, password } = body;
 
         if (!email || !password) {
-            return new NextResponse('Missing required fields', { status: 400 });
+            return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
         }
 
         const existingUser = await prisma.user.findUnique({
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
         });
 
         if (existingUser) {
-            return new NextResponse('Email already exists', { status: 400 });
+            return NextResponse.json({ error: 'Email already registered' }, { status: 400 });
         }
 
         const hashedPassword = await bcrypt.hash(password, 12);
@@ -29,7 +29,7 @@ export async function POST(request: Request) {
                 name,
                 email,
                 password: hashedPassword,
-                image: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`, // Auto generate avatar
+                image: `https://api.dicebear.com/7.x/avataaars/svg?seed=${email}`,
             }
         });
 
@@ -41,10 +41,8 @@ export async function POST(request: Request) {
                 email: user.email,
             }
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('REGISTRATION_ERROR_FULL:', error);
-        // @ts-ignore
-        if (error.message) console.error('ERROR_MSG:', error.message);
-        return new NextResponse(`Internal Error: ${error}`, { status: 500 });
+        return NextResponse.json({ error: error.message || "Internal Server Error" }, { status: 500 });
     }
 }
