@@ -11,7 +11,8 @@ import {
     FileText,
     User,
     Video,
-    MoreHorizontal
+    MoreHorizontal,
+    Home
 } from 'lucide-react';
 
 export const navigation = [
@@ -22,6 +23,7 @@ export const navigation = [
     { name: 'Script Editor', href: '/dashboard/scripts', icon: FileText },
     { name: 'Avatar & Voice', href: '/dashboard/avatar', icon: User },
     { name: 'Video Generation', href: '/dashboard/video', icon: Video },
+    { name: 'Back to Home', href: '/', icon: Home },
 ];
 
 export default function Sidebar() {
