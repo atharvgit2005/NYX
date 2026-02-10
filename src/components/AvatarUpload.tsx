@@ -97,9 +97,23 @@ export default function AvatarUpload() {
                                 type="text"
                                 value={avatarId}
                                 onChange={(e) => setAvatarId(e.target.value)}
-                                placeholder="e.g., 2d5b0e6cf361460aa7fc47e3cee4b35c"
+                                placeholder="e.g., Tyler-insuit-20220721"
                                 className="w-full bg-black/50 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors font-mono text-sm"
                             />
+                            <div className="flex gap-2 mt-2">
+                                <button
+                                    onClick={() => setAvatarId('Tyler-insuit-20220721')}
+                                    className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full text-gray-300 transition-colors"
+                                >
+                                    Use Demo (Tyler)
+                                </button>
+                                <button
+                                    onClick={() => setAvatarId('Daisy-insuit-20220818')}
+                                    className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full text-gray-300 transition-colors"
+                                >
+                                    Use Demo (Daisy)
+                                </button>
+                            </div>
                         </div>
 
                         {showAvatarHelp && (
@@ -123,82 +137,83 @@ export default function AvatarUpload() {
                     </div>
                 </div>
 
-                {/* Voice Cloning */}
+                {/* Voice Configuration */}
                 <div className="bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-pink-500/50 transition-colors">
                     <div className="text-center mb-8">
                         <div className="w-16 h-16 bg-pink-900/30 rounded-full flex items-center justify-center mx-auto mb-4 border border-pink-500/30">
                             <Mic className="w-8 h-8 text-pink-400" />
                         </div>
-                        <h3 className="text-2xl font-bold text-white mb-2">Instant Voice Clone</h3>
+                        <h3 className="text-2xl font-bold text-white mb-2">Voice Configuration</h3>
                         <p className="text-sm text-gray-400">
-                            Upload a 1-minute audio sample to clone your voice instantly.
+                            Enter your <strong>HeyGen Voice ID</strong> or clone a new one.
                         </p>
                     </div>
 
-                    {voiceId ? (
-                        <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-6 text-center">
-                            <div className="w-12 h-12 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <Check className="w-6 h-6 text-green-400" />
-                            </div>
-                            <h4 className="text-lg font-bold text-white mb-1">Voice Ready!</h4>
-                            <p className="text-sm text-gray-400 mb-4 break-all font-mono">{voiceId}</p>
-                            <button
-                                onClick={() => { setVoiceId(null); localStorage.removeItem('custom_voice_id'); }}
-                                className="text-xs text-red-400 hover:text-red-300 underline"
-                            >
-                                Remove & Clone New Voice
-                            </button>
+                    <div className="space-y-6">
+                        {/* Manual Voice ID Input */}
+                        <div>
+                            <label className="block text-xs font-bold text-gray-500 uppercase mb-2">HeyGen Voice ID</label>
+                            <input
+                                type="text"
+                                value={voiceId || ''}
+                                onChange={(e) => setVoiceId(e.target.value)}
+                                placeholder="e.g., 2d5b0e6cf361460aa7fc47e3cee4b35c"
+                                className="w-full bg-black/50 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors font-mono text-sm"
+                            />
+                            <p className="text-xs text-gray-500 mt-2">
+                                Enter the ID of your custom voice from HeyGen.
+                            </p>
                         </div>
-                    ) : (
-                        <div className="space-y-6">
-                            <div className="bg-pink-900/10 p-4 rounded-xl border border-pink-500/10">
-                                <h4 className="text-xs font-bold text-pink-400 uppercase mb-2 flex items-center">
-                                    <Info className="w-3 h-3 mr-1" /> Recording Best Practices
-                                </h4>
-                                <ul className="text-xs text-gray-400 space-y-1 list-disc list-inside">
-                                    <li>Record <strong>1-2 minutes</strong> of clear speech.</li>
-                                    <li>Avoid background noise or echo.</li>
-                                    <li>Speak naturally as you would in a video.</li>
-                                </ul>
-                            </div>
 
-                            <div className="border-2 border-dashed border-white/20 rounded-xl p-8 text-center hover:bg-white/5 transition-colors cursor-pointer relative group">
+                        <div className="relative flex py-2 items-center">
+                            <div className="flex-grow border-t border-white/10"></div>
+                            <span className="flex-shrink-0 mx-4 text-gray-500 text-xs uppercase">OR Clone with ElevenLabs</span>
+                            <div className="flex-grow border-t border-white/10"></div>
+                        </div>
+
+                        {/* ElevenLabs Cloning Section (Existing) */}
+                        <div className="bg-black/20 p-4 rounded-xl border border-white/5">
+                            <h4 className="text-sm font-bold text-white mb-2">Instant Voice Clone</h4>
+                            <div className="border-2 border-dashed border-white/20 rounded-lg p-6 text-center hover:bg-white/5 transition-colors cursor-pointer relative group">
                                 <input
                                     type="file"
                                     accept="audio/*"
                                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                                     onChange={(e) => setVoiceFile(e.target.files?.[0] || null)}
                                 />
-                                <Upload className="w-8 h-8 text-gray-500 mx-auto mb-3 group-hover:text-pink-400 transition-colors" />
+                                <Upload className="w-6 h-6 text-gray-500 mx-auto mb-2 group-hover:text-pink-400 transition-colors" />
                                 {voiceFile ? (
-                                    <div className="text-green-400 font-medium truncate px-4">
+                                    <div className="text-green-400 text-xs font-medium truncate px-2">
                                         {voiceFile.name}
                                     </div>
                                 ) : (
-                                    <div className="text-gray-400">
-                                        <span className="text-pink-400 font-medium">Click to upload</span> audio
-                                        <br />
-                                        <span className="text-xs text-gray-500">MP3, WAV (Max 10MB)</span>
+                                    <div className="text-gray-400 text-xs">
+                                        <span className="text-pink-400 font-medium">Click to upload</span> audio sample
                                     </div>
                                 )}
                             </div>
 
-                            {error && (
-                                <div className="flex items-start text-red-400 text-sm bg-red-500/10 p-3 rounded-lg">
-                                    <AlertCircle className="w-4 h-4 mr-2 flex-shrink-0 mt-0.5" />
-                                    <span>{error}</span>
-                                </div>
-                            )}
-
                             <button
                                 onClick={handleCloneVoice}
                                 disabled={!voiceFile || cloningVoice}
-                                className="w-full py-3 bg-gradient-to-r from-pink-600 to-purple-600 rounded-xl font-bold text-white hover:opacity-90 transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                                className="w-full mt-3 py-2 bg-white/10 hover:bg-white/20 rounded-lg font-bold text-white text-xs transition-all disabled:opacity-50 flex items-center justify-center gap-2"
                             >
-                                {cloningVoice ? <><Loader2 className="w-5 h-5 animate-spin" /> Cloning...</> : 'Clone Voice Now'}
+                                {cloningVoice ? <><Loader2 className="w-4 h-4 animate-spin" /> Cloning...</> : 'Clone & Use this Voice'}
                             </button>
                         </div>
-                    )}
+
+                        <button
+                            onClick={() => {
+                                if (voiceId) {
+                                    localStorage.setItem('custom_voice_id', voiceId);
+                                    alert('Voice ID saved!');
+                                }
+                            }}
+                            className="w-full py-3 bg-white/10 hover:bg-white/20 rounded-xl font-bold text-white transition-colors flex items-center justify-center gap-2"
+                        >
+                            <Check className="w-4 h-4" /> Save Voice ID
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

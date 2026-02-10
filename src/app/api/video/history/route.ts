@@ -23,7 +23,7 @@ export async function GET(req: Request) {
         const videos = await prisma.video.findMany({
             where: { userId: user.id },
             orderBy: { createdAt: 'desc' },
-            take: 10 // Limit to recent 10 for now
+            // take: 10 // Removed limit to show all history
         });
 
         return NextResponse.json({ success: true, data: videos });

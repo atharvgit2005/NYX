@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import VideoHistoryList from './VideoHistoryList';
 
 export default function VideoGeneration() {
     const [status, setStatus] = useState<'idle' | 'processing' | 'completed'>('idle');
@@ -19,6 +20,21 @@ export default function VideoGeneration() {
         const savedScript = localStorage.getItem('current_video_script');
         if (savedScript) {
             setScript(savedScript);
+        } else {
+            setScript(`Arijit Singh's SHOCKING Exit from Playback Singing REVEALED!
+[HOOK] (0-5 seconds)
+Visual: Close-up of Arijit Singh at a mic, eyes closed, mid-performance. Flash to an empty recording studio. Screen glitches.
+Audio: Arijit (voiceover, emotional): "I can't do this anymore..."
+
+[BODY] (5-45 seconds)
+Visual: Fast cuts of Arijit's iconic performances. Awards. Sold-out concerts. Then transition to him walking away from a studio. Graphics showing headlines and social media buzz. Show contrast: packed concert halls vs. empty studio booth.
+Audio: Narrator (dramatic, urgent): "The voice behind your FAVORITE songs...is stepping away! After dominating Bollywood for over a DECADE! Why now? The pressure? The politics? Creative burnout? He's choosing LIVE concerts over playback! Freedom over formulas! Raw emotion over studio perfection!" Show split screen: Arijit performing live vs. a faceless playback session. "While others lip-sync, Arijit wants to CONNECT. This changes EVERYTHING!"
+
+[CTA] (45-60 seconds)
+Visual: Text overlay: "The End of an Era?" Footage of emotional fans. Cut to Arijit smiling at a live show.
+Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below! Follow for more Bollywood bombshells! The voice remains...but the game has CHANGED!" (Sound of crowd cheering)
+
+#ArijitSingh #Bollywood #PlaybackSinging #Music #BollywoodNews #Singer #BollywoodGossip #MusicIndustry #IndianMusic #Breaking`);
         }
         const savedApiKey = localStorage.getItem('heygen_api_key');
         if (savedApiKey) {
@@ -217,14 +233,20 @@ export default function VideoGeneration() {
                         </a>
                     </div>
 
-                    {script && (
-                        <div className="bg-black/30 p-6 rounded-xl border border-white/5 text-left max-w-2xl mx-auto">
-                            <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Script Preview</h4>
-                            <p className="text-gray-300 font-mono text-sm whitespace-pre-wrap line-clamp-6">
-                                {script}
-                            </p>
-                        </div>
-                    )}
+                    <div className="bg-black/30 p-6 rounded-xl border border-white/5 text-left max-w-2xl mx-auto">
+                        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Script (Editable)</h4>
+                        <textarea
+                            value={script}
+                            onChange={(e) => {
+                                setScript(e.target.value);
+                                if (typeof window !== 'undefined') {
+                                    localStorage.setItem('current_video_script', e.target.value);
+                                }
+                            }}
+                            className="w-full bg-transparent text-gray-300 font-mono text-sm whitespace-pre-wrap focus:outline-none focus:ring-1 focus:ring-purple-500 rounded p-2 min-h-[200px]"
+                            placeholder="Paste your script here..."
+                        />
+                    </div>
                 </div>
             )}
 
@@ -322,53 +344,4 @@ export default function VideoGeneration() {
     );
 }
 
-function VideoHistoryList() {
-    const [videos, setVideos] = useState<any[]>([]);
 
-    useEffect(() => {
-        fetch('/api/video/history')
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) setVideos(data.data);
-            })
-            .catch(err => console.error("Failed to load history", err));
-    }, []);
-
-    if (videos.length === 0) {
-        return <p className="text-gray-500">No recent videos found.</p>;
-    }
-
-    return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {videos.map((video) => (
-                <div key={video.id} className="bg-white/5 rounded-xl overflow-hidden border border-white/10">
-                    <div className="aspect-video bg-black flex items-center justify-center relative">
-                        {video.url ? (
-                            <video src={video.url} className="w-full h-full object-cover" controls />
-                        ) : (
-                            <div className="text-gray-500 text-sm">
-                                {video.status === 'processing' ? 'Processing...' : 'Processing Failed'}
-                            </div>
-                        )}
-                        {video.status === 'processing' && (
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                                <div className="w-8 h-8 border-2 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
-                            </div>
-                        )}
-                    </div>
-                    <div className="p-4">
-                        <p className="text-xs text-gray-400 mb-1">ID: {video.id.substring(0, 8)}...</p>
-                        <p className={`text-sm font-bold capitalize ${video.status === 'completed' ? 'text-green-400' :
-                            video.status === 'processing' ? 'text-yellow-400' : 'text-red-400'
-                            }`}>
-                            {video.status}
-                        </p>
-                        <p className="text-xs text-gray-500 mt-2">
-                            {new Date(video.createdAt).toLocaleDateString()}
-                        </p>
-                    </div>
-                </div>
-            ))}
-        </div>
-    );
-}

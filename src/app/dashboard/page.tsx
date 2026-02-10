@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import VideoHistoryList from '@/components/VideoHistoryList';
 
 export default function Dashboard() {
     const [stats, setStats] = useState({
@@ -59,6 +60,11 @@ export default function Dashboard() {
                         </dd>
                     </div>
                 </div>
+            </div>
+
+            <div className="mt-12">
+                <h2 className="text-xl font-bold text-white mb-6">Video History</h2>
+                <VideoHistoryList />
             </div>
         </div>
     );

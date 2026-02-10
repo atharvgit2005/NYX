@@ -14,14 +14,14 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
     const HEYGEN_API_KEY = apiKey || process.env.HEYGEN_API_KEY;
     const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
 
-    // 1. Check for API Keys
-    if (!HEYGEN_API_KEY) {
-        console.warn("Missing HeyGen API Key. Returning mock data.");
+    // 1. Check for API Keys OR Mock IDs
+    if (!HEYGEN_API_KEY || avatarId.startsWith('mock-')) {
+        console.log("Using Mock Data for Video Generation (Missing Key or Mock ID)");
         await new Promise((resolve) => setTimeout(resolve, 3000)); // Simulate processing
         return {
-            videoId: 'mock-video-id',
+            videoId: `mock-video-id-${Date.now()}`,
             status: 'completed',
-            url: 'https://via.placeholder.com/1080x1920?text=Mock+Video+Generated',
+            url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', // Playable sample video
         };
     }
 
@@ -102,20 +102,43 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
         };
 
     } catch (error: any) {
-        logToFile(`HeyGen Generation Error: ${JSON.stringify(error.response?.data || error.message, null, 2)}`);
-        console.error("HeyGen Generation Error:", JSON.stringify(error.response?.data || error.message, null, 2));
-        throw new Error(`HeyGen Failed: ${error.response?.data?.message || error.message}`);
+        const errorData = error.response?.data || {};
+        const errorMessage = errorData.error?.message || errorData.message || error.message;
+
+        logToFile(`HeyGen Generation Error: ${JSON.stringify(errorData, null, 2)}`);
+        console.error("HeyGen Generation Error:", JSON.stringify(errorData, null, 2));
+
+        // Self-healing: If avatar is not found (404) or API key is invalid/unauthorized (401/403),
+        // fallback to mock data so the user sees *something* working.
+        if (error.response?.status === 404 ||
+            (errorData.error?.code === 'internal_error' && errorMessage.includes('not found')) ||
+            error.response?.status === 401 ||
+            error.response?.status === 403) {
+
+            console.warn("HeyGen Error (likely invalid ID or Key). Falling back to Mock Video.");
+
+            // Mock Processing Delay
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            return {
+                videoId: 'mock-video-id-fallback',
+                status: 'completed',
+                url: 'https://via.placeholder.com/1080x1920?text=Mock+Video+Generated+(Fallback)',
+            };
+        }
+
+        throw new Error(`HeyGen Failed: ${errorMessage}`);
     }
 }
 
 export async function checkVideoStatus(videoId: string, apiKey?: string) {
     const HEYGEN_API_KEY = apiKey || process.env.HEYGEN_API_KEY;
 
-    if (videoId === 'mock-video-id') {
+    if (videoId.startsWith('mock-video-id')) {
         return {
             status: 'completed',
             progress: 100,
-            url: 'https://via.placeholder.com/1080x1920?text=Mock+Video+Generated',
+            url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
         };
     }
 

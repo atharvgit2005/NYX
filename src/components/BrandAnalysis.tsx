@@ -117,14 +117,14 @@ export default function BrandAnalysis() {
                         {/* Niche & Tone Row */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="p-8 rounded-3xl bg-gradient-to-br from-purple-900/20 to-black border border-purple-500/30 relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 p-6 opacity-20 group-hover:scale-110 transition-transform"><Target className="w-24 h-24" /></div>
+                                <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-110 transition-transform"><Target className="w-20 h-20" /></div>
                                 <div className="relative z-10">
                                     <h3 className="text-purple-400 font-bold mb-2 flex items-center"><Target className="w-5 h-5 mr-2" /> Your Niche</h3>
                                     <p className="text-2xl font-bold text-white leading-tight">{analysis.niche}</p>
                                 </div>
                             </div>
                             <div className="p-8 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden group hover:border-pink-500/30 transition-colors">
-                                <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-110 transition-transform"><MessageCircle className="w-24 h-24" /></div>
+                                <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:scale-110 transition-transform"><MessageCircle className="w-20 h-20" /></div>
                                 <div className="relative z-10">
                                     <h3 className="text-pink-400 font-bold mb-2 flex items-center"><MessageCircle className="w-5 h-5 mr-2" /> Tone of Voice</h3>
                                     <p className="text-xl text-white">{analysis.tone}</p>
@@ -134,7 +134,7 @@ export default function BrandAnalysis() {
 
                         {/* Audience */}
                         <div className="p-8 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden group hover:border-blue-500/30 transition-colors">
-                            <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-110 transition-transform"><Users className="w-24 h-24" /></div>
+                            <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:scale-110 transition-transform"><Users className="w-20 h-20" /></div>
                             <div className="relative z-10">
                                 <h3 className="text-blue-400 font-bold mb-2 flex items-center"><Users className="w-5 h-5 mr-2" /> Target Audience</h3>
                                 <p className="text-xl text-white">{analysis.audience}</p>
@@ -143,9 +143,9 @@ export default function BrandAnalysis() {
 
                         {/* Pillars */}
                         <div className="p-8 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-6 opacity-5"><Layers className="w-32 h-32" /></div>
-                            <h3 className="text-green-400 font-bold mb-6 flex items-center"><Layers className="w-5 h-5 mr-2" /> Content Pillars</h3>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="absolute top-0 right-0 p-6 opacity-5"><Layers className="w-24 h-24" /></div>
+                            <h3 className="text-green-400 font-bold mb-6 flex items-center relative z-10"><Layers className="w-5 h-5 mr-2" /> Content Pillars</h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
                                 {analysis.pillars.map((pillar: string, i: number) => (
                                     <div key={i} className="flex items-center bg-white/5 p-4 rounded-xl border border-white/5">
                                         <div className="w-2 h-2 bg-green-500 rounded-full mr-3 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
@@ -157,7 +157,7 @@ export default function BrandAnalysis() {
 
                         {/* Competitors */}
                         <div className="p-8 rounded-3xl bg-white/5 border border-white/10 relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-6 opacity-5"><TrendingUp className="w-32 h-32" /></div>
+                            <div className="absolute top-0 right-0 p-6 opacity-5"><TrendingUp className="w-24 h-24" /></div>
                             <h3 className="text-yellow-400 font-bold mb-6 flex items-center"><TrendingUp className="w-5 h-5 mr-2" /> Competitors</h3>
                             <ul className="space-y-3">
                                 {analysis.competitors.map((comp: string, i: number) => (

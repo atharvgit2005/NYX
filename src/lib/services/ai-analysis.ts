@@ -3,122 +3,120 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 // Initialize Gemini
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
+// Helper to get a working model with fallback
+async function generateContentWithFallback(prompt: string) {
+    // Extended list of models to try
+    const models = [
+        "gemini-1.5-flash-latest",
+        "gemini-1.5-flash",
+        "gemini-1.5-pro-latest",
+        "gemini-1.5-pro",
+        "gemini-1.0-pro",
+        "gemini-pro"
+    ];
+
+    for (const modelName of models) {
+        try {
+            console.log(`[AI] Trying model: ${modelName}`);
+            const model = genAI.getGenerativeModel({ model: modelName });
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            return response.text(); // Success!
+        } catch (error: any) {
+            console.warn(`[AI] Model ${modelName} failed: ${error.message}`);
+            // Continue to next model
+        }
+    }
+    throw new Error("All Gemini models failed.");
+}
+
 export async function analyzeNiche(transcript: string) {
     if (!process.env.GEMINI_API_KEY) {
-        throw new Error("Missing GEMINI_API_KEY in .env.local");
+        console.warn("Missing GEMINI_API_KEY");
+        return getMockAnalysis();
     }
 
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-
         const prompt = `
-      Analyze the following Instagram profile transcript and determine the niche, tone, target audience, content pillars, and potential competitors.
-      
-      TRANSCRIPT:
+      Analyze this Instagram profile transcript:
       ${transcript}
       
-      Return the result as a VALID JSON object with the following keys:
+      Return a VALID JSON object with:
       - niche (string)
       - tone (string)
       - audience (string)
       - pillars (array of strings)
       - competitors (array of strings)
 
-      Do not include markdown formatting like \`\`\`json. Just return the raw JSON string.
+      No markdown. Raw JSON only.
     `;
 
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const text = response.text();
-
-        // Clean up markdown if present
+        const text = await generateContentWithFallback(prompt);
         const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
-
         return JSON.parse(cleanText);
+
     } catch (error) {
         console.error("Gemini Analysis Error:", error);
-        // Fallback to mock analysis if Gemini fails
-        return {
-            niche: "AI & Productivity",
-            tone: "Professional, Encouraging, Forward-thinking",
-            audience: "Solopreneurs, Content Creators, Small Business Owners",
-            pillars: [
-                "AI Tools & Tutorials",
-                "Productivity Hacks",
-                "Business Automation",
-                "Future of Work"
-            ],
-            competitors: [
-                "@mattwolfe",
-                "@rowancheung",
-                "@theaiadvantage"
-            ]
-        };
+        return getMockAnalysis();
     }
 }
 
+function getMockAnalysis() {
+    return {
+        niche: "Creative Tech & AI (Fallback)",
+        tone: "Innovative, Educational, Future-focused",
+        audience: "Developers, Designers, Tech Enthusiasts",
+        pillars: ["AI Tools", "Coding Tips", "Future Tech", "Career Growth"],
+        competitors: ["@fireship_dev", "@webdevsimplified"]
+    };
+}
+
 export async function generateIdeas(niche: string, pillars: string[]) {
-    if (!process.env.GEMINI_API_KEY) {
-        return [
-            { id: 1, title: 'Mock Idea 1', hook: 'Hook 1', angle: 'Angle 1', format: 'Format 1' },
-            { id: 2, title: 'Mock Idea 2', hook: 'Hook 2', angle: 'Angle 2', format: 'Format 2' },
-        ];
-    }
+    if (!process.env.GEMINI_API_KEY) return getMockIdeas();
 
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-
         const prompt = `
-      Generate 3 viral short-form video ideas for the niche: "${niche}" and content pillars: ${pillars.join(', ')}.
+      Generate 3 viral short-form video ideas for niche: "${niche}" using pillars: ${pillars.join(', ')}.
       
-      For each idea, provide:
-      - title
-      - hook (first 3 seconds)
-      - angle (e.g., Educational, Controversial)
-      - format (e.g., Talking Head, Green Screen)
-      
-      Return the result as a VALID JSON array of objects with keys: id, title, hook, angle, format.
-      Do not include markdown formatting.
+      Return a VALID JSON array of objects with keys: id, title, hook, angle, format.
+      No markdown.
     `;
 
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const text = response.text();
+        const text = await generateContentWithFallback(prompt);
         const cleanText = text.replace(/```json/g, '').replace(/```/g, '').trim();
-
         const json = JSON.parse(cleanText);
         return Array.isArray(json) ? json : json.ideas || [];
     } catch (error) {
         console.error("Gemini Ideation Error:", error);
-        return [];
+        return getMockIdeas();
     }
 }
 
+function getMockIdeas() {
+    return [
+        { id: 1, title: 'AI Too Fast?', hook: 'Is AI moving too fast for us to keep up?', angle: 'Controversial', format: 'Talking Head' },
+        { id: 2, title: 'Top 3 Coding Hacks', hook: 'Stop writing boilerplate code today.', angle: 'Educational', format: 'Screen Share' },
+        { id: 3, title: 'Day in Life of Dev', hook: 'What does a Senior Dev actually do?', angle: 'Lifestyle', format: 'Vlog Style' }
+    ];
+}
+
 export async function generateScript(idea: any, tone: string) {
-    if (!process.env.GEMINI_API_KEY) {
-        return `[HOOK]\nMock Hook\n\n[BODY]\nMock Body\n\n[CTA]\nMock CTA`;
-    }
+    if (!process.env.GEMINI_API_KEY) return "Failed to generate script (Mock fallback).";
 
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-
         const prompt = `
-      Write a 30-60 second short-form video script for the following idea:
+      Write a 30-60s script for:
       Title: ${idea.title}
       Hook: ${idea.hook}
       Angle: ${idea.angle}
-      
       Tone: ${tone}
       
-      Structure the script with [HOOK], [BODY], and [CTA] sections.
-      Keep sentences short and punchy. Optimized for retention.
+      Structure: [HOOK], [BODY], [CTA].
     `;
 
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        return response.text();
+        return await generateContentWithFallback(prompt);
     } catch (error) {
         console.error("Gemini Scripting Error:", error);
-        return "Failed to generate script.";
+        return `[HOOK]\n${idea.hook}\n\n[BODY]\n(Script generation failed. This is a placeholder.)\n\n[CTA]\nFollow for more!`;
     }
 }

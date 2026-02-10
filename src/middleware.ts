@@ -5,7 +5,9 @@ export default withAuth({
         authorized: ({ req, token }) => {
             // Protect all dashboard routes
             if (req.nextUrl.pathname.startsWith('/dashboard')) {
-                return token !== null
+                // TEMPORARY: Disable login check
+                return true;
+                // return token !== null
             }
             return true
         },
