@@ -8,6 +8,9 @@ import prisma from "@/lib/prismadb"
 export const authOptions: AuthOptions = {
     debug: true,
     adapter: PrismaAdapter(prisma),
+    session: {
+        strategy: "jwt",
+    },
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID || "",
@@ -66,12 +69,12 @@ export const authOptions: AuthOptions = {
     pages: {
         signIn: '/login', // Corrected path from /signin to /login based on file structure
     },
-    session: {
-        strategy: "jwt",
-    },
-
     callbacks: {
-        async jwt({ token, user }: any) {
+        async signIn({ user, account, profile }) {
+            console.log("AUTH_SignIn_Callback:", { userEmail: user.email, provider: account?.provider });
+            return true;
+        },
+        async jwt({ token, user, account }: any) {
             if (user) {
                 token.id = user.id;
                 token.name = user.name;
@@ -90,7 +93,7 @@ export const authOptions: AuthOptions = {
             return session;
         },
     },
-    secret: process.env.NEXTAUTH_SECRET || "supersecretmockkey", // Fallback secret for dev
+    secret: process.env.NEXTAUTH_SECRET || "supersecretmockkey",
 }
 
 const handler = NextAuth(authOptions)
