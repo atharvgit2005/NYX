@@ -121,6 +121,15 @@ export default function Login() {
                                 Instagram
                             </button>
                         </div>
+
+                        <div className="mt-6 text-center text-sm">
+                            <p className="text-gray-400">
+                                Don't have an account?{' '}
+                                <Link href="/signup" className="font-medium text-purple-400 hover:text-purple-300 transition-colors">
+                                    Sign up
+                                </Link>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
