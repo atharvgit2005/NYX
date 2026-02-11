@@ -14,6 +14,34 @@ Most people think AI is just ChatGPT. But the real pros are using tools that aut
 Comment "AI" below and I'll send you the full list of tools I use.`
     );
     const [showToast, setShowToast] = useState(false);
+    const [generating, setGenerating] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const handleRegenerate = async () => {
+        setGenerating(true);
+        setError(null);
+        try {
+            const response = await fetch('/api/scripts', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    idea: { title: 'Mock Idea', hook: 'Mock Hook', angle: 'Mock Angle' },
+                    tone: 'Professional',
+                }),
+            });
+            const data = await response.json();
+            if (data.success) {
+                setScript(data.data);
+            } else {
+                setError(data.error || 'Failed to regenerate script');
+            }
+        } catch (error) {
+            console.error('Script generation failed:', error);
+            setError('Network error during generation');
+        } finally {
+            setGenerating(false);
+        }
+    };
 
     const handleSave = async () => {
         try {
@@ -65,6 +93,12 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                     </button>
                 </div>
             </div>
+
+            {error && (
+                <div className="bg-red-500/10 border border-red-500/50 rounded-xl p-4 mb-8 text-red-200 flex items-center justify-center animate-fade-in">
+                    <span className="mr-2">⚠️</span> {error}
+                </div>
+            )}
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2">

@@ -29,8 +29,11 @@ export default function IdeaGenerator() {
         }
     }, []);
 
+    const [error, setError] = useState<string | null>(null);
+
     const handleGenerate = async () => {
         setGenerating(true);
+        setError(null);
 
         // Default values if no analysis found
         const niche = analysisData?.niche || 'Productivity & AI Tools';
@@ -48,9 +51,12 @@ export default function IdeaGenerator() {
             const data = await response.json();
             if (data.success) {
                 setIdeas(data.data);
+            } else {
+                setError(data.error || 'Failed to generate ideas');
             }
         } catch (error) {
             console.error('Idea generation failed:', error);
+            setError('Network error. Please try again.');
         } finally {
             setGenerating(false);
         }
@@ -108,6 +114,12 @@ export default function IdeaGenerator() {
                 <div className="flex flex-col items-center justify-center py-20">
                     <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mb-4"></div>
                     <p className="text-gray-400 animate-pulse">Scanning trends & brainstorming...</p>
+                </div>
+            )}
+
+            {error && (
+                <div className="bg-red-500/10 border border-red-500/50 rounded-xl p-4 mb-8 text-red-200 text-center animate-fade-in">
+                    <p className="font-bold">⚠️ {error}</p>
                 </div>
             )}
 
