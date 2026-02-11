@@ -91,12 +91,12 @@ export default function ConnectSocials() {
                 {platforms.map((platform) => (
                     <div
                         key={platform.id}
-                        className={`relative group rounded-2xl p-8 border transition-all duration-300 flex flex-col ${connected[platform.id]
-                                ? 'bg-purple-900/10 border-purple-500/50 shadow-[0_0_30px_rgba(168,85,247,0.1)]'
-                                : 'bg-white/5 border-white/10 hover:border-white/30 hover:-translate-y-1'
+                        className={`relative group rounded-3xl p-8 border transition-all duration-500 ease-out flex flex-col ${connected[platform.id]
+                            ? 'bg-purple-900/20 border-purple-500/50 shadow-[0_0_40px_rgba(168,85,247,0.15)]'
+                            : 'bg-white/5 border-white/5 hover:border-purple-500/30 hover:bg-white/10 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(168,85,247,0.1)]'
                             }`}
                     >
-                        <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 bg-gradient-to-br ${platform.color} shadow-lg`}>
+                        <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-8 bg-gradient-to-br ${platform.color} shadow-lg group-hover:scale-110 transition-transform duration-500`}>
                             <div className="text-white">{platform.icon}</div>
                         </div>
 

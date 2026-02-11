@@ -112,36 +112,44 @@ export default function IdeaGenerator() {
             )}
 
             <div className="grid grid-cols-1 gap-6">
-                {ideas.map((idea) => (
-                    <div key={idea.id} className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:border-purple-500/50 transition-colors animate-fade-in">
-                        <div className="flex justify-between items-start mb-4">
-                            <h3 className="text-xl font-bold text-white">{idea.title}</h3>
-                            <span className="px-3 py-1 bg-purple-900/30 text-purple-400 rounded-full text-xs font-medium border border-purple-500/20">
+                {ideas.map((idea, index) => (
+                    <div
+                        key={idea.id}
+                        className="bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-purple-500/40 transition-all duration-500 hover:shadow-[0_0_30px_rgba(168,85,247,0.1)] hover:-translate-y-1 animate-fade-in group"
+                        style={{ animationDelay: `${index * 100}ms` }}
+                    >
+                        <div className="flex justify-between items-start mb-6">
+                            <h3 className="text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">{idea.title}</h3>
+                            <span className="px-4 py-1.5 bg-purple-900/30 text-purple-300 rounded-full text-xs font-bold uppercase tracking-wide border border-purple-500/30 shadow-[0_0_10px_rgba(168,85,247,0.2)]">
                                 {idea.angle}
                             </span>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                            <div className="bg-black/30 p-4 rounded-lg">
-                                <p className="text-xs text-gray-500 uppercase mb-1">Hook</p>
-                                <p className="text-gray-300 italic">"{idea.hook}"</p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <div className="bg-gradient-to-br from-white/5 to-transparent p-6 rounded-2xl border border-white/5 hover:border-white/10 transition-colors">
+                                <p className="text-xs text-purple-400 font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span> Hook
+                                </p>
+                                <p className="text-gray-200 text-lg font-medium italic leading-relaxed">"{idea.hook}"</p>
                             </div>
-                            <div className="bg-black/30 p-4 rounded-lg">
-                                <p className="text-xs text-gray-500 uppercase mb-1">Format</p>
-                                <p className="text-gray-300">{idea.format}</p>
+                            <div className="bg-gradient-to-br from-white/5 to-transparent p-6 rounded-2xl border border-white/5 hover:border-white/10 transition-colors">
+                                <p className="text-xs text-blue-400 font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-blue-500"></span> Format
+                                </p>
+                                <p className="text-gray-200 text-base leading-relaxed">{idea.format}</p>
                             </div>
                         </div>
 
-                        <div className="flex justify-end space-x-3">
-                            <button className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-sm font-medium transition-colors">
+                        <div className="flex justify-end space-x-4 border-t border-white/5 pt-6">
+                            <button className="px-6 py-3 bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white rounded-xl text-sm font-bold transition-all hover:scale-105">
                                 Save for Later
                             </button>
                             <button
                                 onClick={() => handleGenerateScript(idea)}
                                 disabled={scriptGenerating === idea.id}
-                                className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-sm font-medium transition-colors flex items-center disabled:opacity-50"
+                                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white rounded-xl text-sm font-bold transition-all flex items-center shadow-lg hover:shadow-purple-500/30 hover:scale-105 disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed"
                             >
-                                {scriptGenerating === idea.id ? <Loader2 className="w-4 h-4 animate-spin" /> : <><FileText className="w-4 h-4 mr-2" /> Generate Script</>}
+                                {scriptGenerating === idea.id ? <Loader2 className="w-5 h-5 animate-spin" /> : <><FileText className="w-5 h-5 mr-2" /> Generate Script</>}
                             </button>
                         </div>
                     </div>
