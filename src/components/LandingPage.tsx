@@ -138,7 +138,7 @@ export default function LandingPage() {
                         The all-in-one engine for modern creators.
                     </p>
                     <div ref={ctaRef} className="flex flex-col sm:flex-row gap-5 justify-center items-center">
-                        <Link href="/signup" className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-lg font-bold text-white shadow-[0_0_40px_rgba(168,85,247,0.4)] hover:shadow-[0_0_60px_rgba(168,85,247,0.6)] hover:scale-105 transition-all duration-300 flex items-center gap-3 overflow-hidden ring-1 ring-white/20">
+                        <Link href={session ? "/dashboard" : "/signup"} className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-lg font-bold text-white shadow-[0_0_40px_rgba(168,85,247,0.4)] hover:shadow-[0_0_60px_rgba(168,85,247,0.6)] hover:scale-105 transition-all duration-300 flex items-center gap-3 overflow-hidden ring-1 ring-white/20">
                             <span className="relative z-10 flex items-center gap-2">
                                 Start Free <Rocket className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </span>
@@ -273,7 +273,7 @@ export default function LandingPage() {
                                 { name: 'Pro', price: '₹2,499', features: ['Unlimited Scripts', 'Deep Analysis', 'Custom Avatar', 'Priority Support'], popular: true },
                                 { name: 'Agency', price: '₹7,999', features: ['Multiple Brands', 'API Access', 'White Label', 'Dedicated Manager'] },
                             ].map((plan, i) => (
-                                <Link href="/signup" key={i} className={`relative flex-shrink-0 w-80 p-8 rounded-2xl border backdrop-blur-md transition-all duration-300 group hover:-translate-y-2 ${plan.popular ? 'bg-purple-900/20 border-purple-500 shadow-[0_0_30px_rgba(168,85,247,0.2)]' : 'bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/10'}`}>
+                                <Link href={session ? "/dashboard" : "/signup"} key={i} className={`relative flex-shrink-0 w-80 p-8 rounded-2xl border backdrop-blur-md transition-all duration-300 group hover:-translate-y-2 ${plan.popular ? 'bg-purple-900/20 border-purple-500 shadow-[0_0_30px_rgba(168,85,247,0.2)]' : 'bg-white/5 border-white/10 hover:border-white/20 hover:bg-white/10'}`}>
                                     {plan.popular && <span className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-purple-600 rounded-full text-sm font-bold shadow-lg">Most Popular</span>}
                                     <h3 className="text-2xl font-bold mb-2 group-hover:text-purple-400 transition-colors">{plan.name}</h3>
                                     <div className="text-4xl font-bold mb-6">{plan.price}<span className="text-lg text-gray-400 font-normal">/mo</span></div>

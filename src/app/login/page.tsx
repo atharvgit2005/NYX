@@ -1,14 +1,41 @@
 'use client';
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 
 export default function Login() {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const { data: session } = useSession();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
+
+    useEffect(() => {
+        if (session) {
+            router.push('/dashboard');
+        }
+
+        // Check for error in URL
+        const errorParam = searchParams.get('error');
+        if (errorParam) {
+            setError(AuthErrorMessages[errorParam] || errorParam);
+        }
+    }, [session, router, searchParams]);
+
+    const AuthErrorMessages: Record<string, string> = {
+        "Signin": "Try signing with a different account.",
+        "OAuthSignin": "Sign in failed. Check if your Google account is valid.",
+        "OAuthCallback": "Google denied access or network failed.",
+        "OAuthCreateAccount": "Could not create user in database.",
+        "EmailCreateAccount": "Could not create user in database.",
+        "Callback": "Error during authentication callback.",
+        "OAuthAccountNotLinked": "Email already used with another provider.",
+        "EmailSignin": "Check your email for a verification link.",
+        "CredentialsSignin": "Sign in failed. Check the details you provided.",
+        "default": "Unable to sign in."
+    };
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
