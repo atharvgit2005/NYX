@@ -74,7 +74,7 @@ export default function VideoHistoryList() {
     return (
         <div>
             {/* Debug Info */}
-            <div className="mb-4 text-xs text-gray-500 font-mono text-right">
+            <div className="mb-4 text-xs text-theme-secondary font-mono text-right">
                 Logged in as: <span className="text-purple-400 font-bold">{session?.user?.email || "Not Logged In"}</span>
             </div>
 
@@ -106,7 +106,7 @@ export default function VideoHistoryList() {
             </div>
 
             {videos.length === 0 ? (
-                <p className="text-gray-500 text-center py-10">No videos found. Upload one to get started!</p>
+                <p className="text-theme-secondary text-center py-10">No videos found. Upload one to get started!</p>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     {videos.map((video) => (
@@ -164,7 +164,7 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
     }, [video.status, video.id]);
 
     return (
-        <div className="bg-white/5 rounded-xl overflow-hidden border border-white/10 hover:border-purple-500/30 transition-colors relative group">
+        <div className="bg-card-theme rounded-xl overflow-hidden border border-theme hover:border-purple-500/30 transition-colors relative group">
 
             {/* Delete Button (Always Visible) */}
             <button
@@ -188,14 +188,14 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
                                 className="w-full h-full object-cover opacity-50"
                             />
                             <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="bg-black/80 px-3 py-1 rounded text-xs text-gray-400">Mock Preview (Not Playable)</span>
+                                <span className="bg-page px-3 py-1 rounded text-xs text-theme-secondary">Mock Preview (Not Playable)</span>
                             </div>
                         </>
                     ) : playError ? (
                         <div className="flex flex-col items-center justify-center text-center p-4">
                             <div className="text-4xl mb-2">⚠️</div>
                             <p className="text-xs text-red-400 font-bold">Video File Not Found</p>
-                            <p className="text-[10px] text-gray-500 mt-1">This demo video might only be available locally.</p>
+                            <p className="text-[10px] text-theme-secondary mt-1">This demo video might only be available locally.</p>
                         </div>
                     ) : (
                         <video
@@ -208,7 +208,7 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
                         />
                     )
                 ) : (
-                    <div className="text-gray-500 text-sm flex flex-col items-center w-full px-6">
+                    <div className="text-theme-secondary text-sm flex flex-col items-center w-full px-6">
                         {video.status === 'processing' ? (
                             <div className="w-full">
                                 <div className="flex justify-between text-xs text-purple-400 mb-2">
@@ -231,14 +231,14 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
 
             <div className="p-4">
                 <div className="flex justify-between items-start mb-2">
-                    <p className="text-xs text-gray-400 font-mono" title={video.id}>ID: {video.id.substring(0, 8)}...</p>
+                    <p className="text-xs text-theme-secondary font-mono" title={video.id}>ID: {video.id.substring(0, 8)}...</p>
                     <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${video.status === 'completed' ? 'bg-green-500/20 text-green-400' :
                         video.status === 'processing' ? 'bg-purple-500/20 text-purple-400' : 'bg-red-500/20 text-red-400'
                         }`}>
                         {video.status}
                     </span>
                 </div>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-theme-secondary">
                     {new Date(video.createdAt).toLocaleDateString()} {new Date(video.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </p>
                 {/* Download Button for Completed */}
@@ -247,7 +247,7 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
                         href={video.url}
                         download
                         target="_blank"
-                        className="mt-3 block w-full py-2 bg-white/5 hover:bg-white/10 rounded text-center text-xs font-bold text-gray-300 transition-colors"
+                        className="mt-3 block w-full py-2 bg-card-hover hover:bg-card-theme border border-theme rounded text-center text-xs font-bold text-theme-secondary hover:text-theme-primary transition-colors"
                     >
                         Download Video
                     </a>

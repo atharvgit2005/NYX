@@ -81,8 +81,8 @@ export default function ConnectSocials() {
     return (
         <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-white mb-4">Connect Your Socials</h2>
-                <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+                <h2 className="text-4xl font-bold text-theme-primary mb-4">Connect Your Socials</h2>
+                <p className="text-theme-secondary max-w-2xl mx-auto text-lg">
                     Link your accounts to enable AI analysis and auto-publishing. We analyze your content to match your brand voice.
                 </p>
             </div>
@@ -93,15 +93,15 @@ export default function ConnectSocials() {
                         key={platform.id}
                         className={`relative group rounded-3xl p-8 border transition-all duration-500 ease-out flex flex-col ${connected[platform.id]
                             ? 'bg-purple-900/20 border-purple-500/50 shadow-[0_0_40px_rgba(168,85,247,0.15)]'
-                            : 'bg-white/5 border-white/5 hover:border-purple-500/30 hover:bg-white/10 hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(168,85,247,0.1)]'
+                            : 'bg-card-theme border-theme hover:border-purple-500/30 hover:bg-card-hover hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(168,85,247,0.1)]'
                             }`}
                     >
                         <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-8 bg-gradient-to-br ${platform.color} shadow-lg group-hover:scale-110 transition-transform duration-500`}>
                             <div className="text-white">{platform.icon}</div>
                         </div>
 
-                        <h3 className="text-2xl font-bold text-white mb-2">{platform.name}</h3>
-                        <p className="text-gray-400 mb-8 flex-grow leading-relaxed">{platform.description}</p>
+                        <h3 className="text-2xl font-bold text-theme-primary mb-2">{platform.name}</h3>
+                        <p className="text-theme-secondary mb-8 flex-grow leading-relaxed">{platform.description}</p>
 
                         {connected[platform.id] ? (
                             <div className="mt-auto">
@@ -112,7 +112,7 @@ export default function ConnectSocials() {
                                 </div>
                                 <button
                                     onClick={() => handleDisconnect(platform.id)}
-                                    className="w-full py-3 rounded-xl font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-colors text-sm"
+                                    className="w-full py-3 rounded-xl font-medium text-theme-secondary hover:text-theme-primary hover:bg-card-hover transition-colors text-sm"
                                 >
                                     Disconnect
                                 </button>
@@ -124,20 +124,20 @@ export default function ConnectSocials() {
                                     placeholder={platform.placeholder}
                                     value={usernameInput}
                                     onChange={(e) => setUsernameInput(e.target.value)}
-                                    className="w-full bg-black/50 border border-white/20 rounded-xl px-4 py-3 text-white mb-3 focus:outline-none focus:border-purple-500 transition-colors"
+                                    className="w-full bg-page border border-theme rounded-xl px-4 py-3 text-theme-primary mb-3 focus:outline-none focus:border-purple-500 transition-colors"
                                     autoFocus
                                 />
                                 <div className="flex gap-2">
                                     <button
                                         onClick={() => handleConnect(platform.id)}
                                         disabled={!usernameInput || loading === platform.id}
-                                        className="flex-1 py-3 bg-white text-black rounded-xl font-bold hover:bg-gray-200 transition-colors disabled:opacity-50 flex items-center justify-center"
+                                        className="flex-1 py-3 bg-white dark:bg-white bg-gray-900 text-white dark:text-black rounded-xl font-bold hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center"
                                     >
                                         {loading === platform.id ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Confirm'}
                                     </button>
                                     <button
                                         onClick={() => { setActivePlatform(null); setUsernameInput(''); }}
-                                        className="px-4 py-3 bg-white/10 rounded-xl hover:bg-white/20 transition-colors"
+                                        className="px-4 py-3 bg-card-hover rounded-xl hover:bg-theme-secondary/10 transition-colors text-theme-secondary"
                                     >
                                         ✕
                                     </button>
@@ -146,7 +146,7 @@ export default function ConnectSocials() {
                         ) : (
                             <button
                                 onClick={() => setActivePlatform(platform.id)}
-                                className="mt-auto w-full py-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl font-bold text-white transition-all flex items-center justify-center gap-2 group-hover:bg-white group-hover:text-black"
+                                className="mt-auto w-full py-3 bg-card-hover hover:bg-card-theme border border-theme rounded-xl font-bold text-theme-primary transition-all flex items-center justify-center gap-2 group-hover:bg-purple-600 group-hover:text-white group-hover:border-purple-500"
                             >
                                 <LinkIcon className="w-4 h-4" /> Connect
                             </button>
@@ -155,9 +155,9 @@ export default function ConnectSocials() {
                 ))}
             </div>
 
-            <div className="mt-16 p-8 bg-gradient-to-r from-purple-900/20 to-pink-900/20 rounded-3xl border border-white/10 backdrop-blur-md">
-                <h3 className="text-xl font-bold text-white mb-6 flex items-center">
-                    <span className="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center mr-3 text-sm">AI</span>
+            <div className="mt-16 p-8 bg-gradient-to-r from-purple-900/20 to-pink-900/20 rounded-3xl border border-theme backdrop-blur-md">
+                <h3 className="text-xl font-bold text-theme-primary mb-6 flex items-center">
+                    <span className="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center mr-3 text-sm text-white">AI</span>
                     Why connect your accounts?
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -169,8 +169,8 @@ export default function ConnectSocials() {
                         <div key={i} className="flex items-start">
                             <div className="mt-1 mr-4 text-green-400"><Check className="w-5 h-5" /></div>
                             <div>
-                                <h4 className="font-bold text-white mb-1">{item.title}</h4>
-                                <p className="text-sm text-gray-400">{item.desc}</p>
+                                <h4 className="font-bold text-theme-primary mb-1">{item.title}</h4>
+                                <p className="text-sm text-theme-secondary">{item.desc}</p>
                             </div>
                         </div>
                     ))}

@@ -174,8 +174,8 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
         <div className="max-w-4xl mx-auto">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h2 className="text-3xl font-bold text-white">Video Generation</h2>
-                    <p className="text-gray-400 mt-2">
+                    <h2 className="text-3xl font-bold text-theme-primary">Video Generation</h2>
+                    <p className="text-theme-secondary mt-2">
                         Create your final video with AI avatar and voice.
                     </p>
                 </div>
@@ -190,16 +190,16 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
             </div>
 
             {/* API Key Input */}
-            <div className="mb-8 p-4 bg-white/5 border border-white/10 rounded-xl">
-                <label className="block text-xs font-bold text-gray-500 uppercase mb-2">HeyGen API Key (Optional)</label>
+            <div className="mb-8 p-4 bg-card-theme border border-theme rounded-xl">
+                <label className="block text-xs font-bold text-theme-secondary uppercase mb-2">HeyGen API Key (Optional)</label>
                 <input
                     type="password"
                     value={apiKey}
                     onChange={handleApiKeyChange}
                     placeholder="Enter your HeyGen API Key to override default"
-                    className="w-full bg-black/50 border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-500 transition-colors font-mono text-sm"
+                    className="w-full bg-page border border-theme rounded-lg px-4 py-2 text-theme-primary focus:outline-none focus:border-purple-500 transition-colors font-mono text-sm"
                 />
-                <p className="text-xs text-gray-500 mt-2">
+                <p className="text-xs text-theme-secondary mt-2">
                     Leave blank to use the server-configured API key.
                 </p>
             </div>
@@ -215,17 +215,17 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
             )}
 
             {status === 'idle' && (
-                <div className="bg-white/5 rounded-2xl border border-white/10 p-12 text-center">
+                <div className="bg-card-theme rounded-2xl border border-theme p-12 text-center">
                     <div className="text-6xl mb-6">🎬</div>
-                    <h3 className="text-2xl font-bold text-white mb-2">Ready to Produce</h3>
-                    <p className="text-gray-400 max-w-md mx-auto mb-8">
+                    <h3 className="text-2xl font-bold text-theme-primary mb-2">Ready to Produce</h3>
+                    <p className="text-theme-secondary max-w-md mx-auto mb-8">
                         Your script is approved. Click the button above to start rendering.
                     </p>
 
                     {/* Avatar ID Check */}
                     <div className="mb-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl max-w-md mx-auto text-left">
                         <p className="text-xs text-blue-300 uppercase font-bold mb-1">Using Avatar ID</p>
-                        <p className="text-white font-mono text-sm break-all">
+                        <p className="text-theme-primary font-mono text-sm break-all">
                             {mounted ? (localStorage.getItem('custom_avatar_id') || 'Not Set') : 'Loading...'}
                         </p>
                         <a href="/dashboard/avatar" className="text-xs text-blue-400 hover:text-blue-300 underline mt-2 block">
@@ -233,8 +233,8 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
                         </a>
                     </div>
 
-                    <div className="bg-black/30 p-6 rounded-xl border border-white/5 text-left max-w-2xl mx-auto">
-                        <h4 className="text-xs font-bold text-gray-500 uppercase mb-2">Script (Editable)</h4>
+                    <div className="bg-page p-6 rounded-xl border border-theme text-left max-w-2xl mx-auto">
+                        <h4 className="text-xs font-bold text-theme-secondary uppercase mb-2">Script (Editable)</h4>
                         <textarea
                             value={script}
                             onChange={(e) => {
@@ -243,7 +243,7 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
                                     localStorage.setItem('current_video_script', e.target.value);
                                 }
                             }}
-                            className="w-full bg-transparent text-gray-300 font-mono text-sm whitespace-pre-wrap focus:outline-none focus:ring-1 focus:ring-purple-500 rounded p-2 min-h-[200px]"
+                            className="w-full bg-transparent text-theme-secondary font-mono text-sm whitespace-pre-wrap focus:outline-none focus:ring-1 focus:ring-purple-500 rounded p-2 min-h-[200px]"
                             placeholder="Paste your script here..."
                         />
                     </div>
@@ -251,7 +251,7 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
             )}
 
             {status === 'processing' && (
-                <div className="relative bg-white/5 rounded-2xl border border-white/10 p-12 text-center overflow-hidden aspect-video w-full flex flex-col justify-center items-center">
+                <div className="relative bg-card-theme rounded-2xl border border-theme p-12 text-center overflow-hidden aspect-video w-full flex flex-col justify-center items-center">
                     {/* Background Video */}
                     <div className="absolute inset-0 z-0">
                         <video
@@ -287,7 +287,7 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
 
             {status === 'completed' && videoUrl && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in">
-                    <div className="bg-black rounded-2xl overflow-hidden border border-white/10 aspect-[9/16] relative group">
+                    <div className="bg-card-theme rounded-2xl overflow-hidden border border-theme aspect-[9/16] relative group">
                         <video
                             src={videoUrl}
                             controls
@@ -297,9 +297,9 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
                     </div>
 
                     <div className="space-y-6">
-                        <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
+                        <div className="bg-card-theme p-6 rounded-2xl border border-theme">
                             <h3 className="text-xl font-bold text-green-400 mb-4">✅ Render Complete</h3>
-                            <p className="text-gray-300 mb-6">
+                            <p className="text-theme-secondary mb-6">
                                 Your video has been successfully generated and is ready for publishing.
                             </p>
                             <div className="space-y-3">
@@ -308,7 +308,7 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
                                     download="generated_video.mp4"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="block w-full py-3 bg-white text-black rounded-lg font-bold hover:bg-gray-200 transition-colors text-center"
+                                    className="block w-full py-3 bg-page text-theme-primary border border-theme rounded-lg font-bold hover:bg-card-hover transition-colors text-center"
                                 >
                                     Download Video ⬇️
                                 </a>
@@ -318,16 +318,16 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
                             </div>
                         </div>
 
-                        <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
-                            <h3 className="text-lg font-bold text-white mb-4">Performance Prediction</h3>
+                        <div className="bg-card-theme p-6 rounded-2xl border border-theme">
+                            <h3 className="text-lg font-bold text-theme-primary mb-4">Performance Prediction</h3>
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="bg-black/30 p-4 rounded-lg text-center">
+                                <div className="bg-page p-4 rounded-lg text-center">
                                     <p className="text-2xl font-bold text-green-400">8.5/10</p>
-                                    <p className="text-xs text-gray-500 uppercase mt-1">Viral Score</p>
+                                    <p className="text-xs text-theme-secondary uppercase mt-1">Viral Score</p>
                                 </div>
-                                <div className="bg-black/30 p-4 rounded-lg text-center">
+                                <div className="bg-page p-4 rounded-lg text-center">
                                     <p className="text-2xl font-bold text-blue-400">High</p>
-                                    <p className="text-xs text-gray-500 uppercase mt-1">Retention</p>
+                                    <p className="text-xs text-theme-secondary uppercase mt-1">Retention</p>
                                 </div>
                             </div>
                         </div>
@@ -336,8 +336,8 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
             )}
 
             {/* Video History Section */}
-            <div className="mt-16 pt-8 border-t border-white/10">
-                <h3 className="text-2xl font-bold text-white mb-6">Recent Videos</h3>
+            <div className="mt-16 pt-8 border-t border-theme">
+                <h3 className="text-2xl font-bold text-theme-primary mb-6">Recent Videos</h3>
                 <VideoHistoryList />
             </div>
         </div>

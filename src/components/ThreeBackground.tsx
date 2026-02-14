@@ -3,8 +3,11 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
+import { useTheme } from './ThemeProvider';
+
 export default function ThreeBackground() {
     const mountRef = useRef<HTMLDivElement>(null);
+    const { theme } = useTheme();
 
     useEffect(() => {
         if (!mountRef.current) return;
@@ -29,15 +32,20 @@ export default function ThreeBackground() {
 
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
+        // Dynamic Color based on theme
+        const particleColor = theme === 'light' ? 0x9333ea : 0xffffff; // Purple in light mode, White in dark mode (or adjust as needed)
+
         const material = new THREE.PointsMaterial({
             size: 0.005,
-            color: 0x9333ea, // Purple
+            color: particleColor,
             transparent: true,
             opacity: 0.8,
         });
 
         const particlesMesh = new THREE.Points(particlesGeometry, material);
         scene.add(particlesMesh);
+
+        // ... (rest of animation logic remains same)
 
         // Camera position
         camera.position.z = 3;
@@ -62,10 +70,6 @@ export default function ThreeBackground() {
             particlesMesh.rotation.y = elapsedTime * 0.05;
             particlesMesh.rotation.x = elapsedTime * 0.02;
 
-            if (mouseX > 0) {
-                particlesMesh.rotation.x += (mouseY * 0.00001);
-                particlesMesh.rotation.y += (mouseX * 0.00001);
-            }
 
             renderer.render(scene, camera);
             requestAnimationFrame(animate);
@@ -92,13 +96,18 @@ export default function ThreeBackground() {
             particlesGeometry.dispose();
             material.dispose();
         };
-    }, []);
+    }, [theme]); // Re-run effect when theme changes to update colors
+
+    // Dynamic Background Gradient
+    const backgroundStyle = theme === 'light'
+        ? 'radial-gradient(circle at center, #fdf4ff 0%, #ffffff 100%)' // Light mode gradient
+        : 'radial-gradient(circle at center, #1a0b2e 0%, #000000 100%)'; // Dark mode gradient (Purple-Black)
 
     return (
         <div
             ref={mountRef}
-            className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"
-            style={{ background: 'radial-gradient(circle at center, #1a0b2e 0%, #000000 100%)' }}
+            className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none transition-all duration-500"
+            style={{ background: backgroundStyle }}
         />
     );
 }

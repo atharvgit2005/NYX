@@ -12,7 +12,7 @@ export default function DashboardShell({
     const { collapsed } = useSidebar();
 
     return (
-        <div className="min-h-screen bg-black text-white">
+        <div className="min-h-screen bg-page text-theme-primary transition-colors duration-300">
             <Header />
             <Sidebar />
             <div className={`flex flex-col flex-1 min-h-screen transition-all duration-300 pt-20 ${collapsed ? 'md:pl-20' : 'md:pl-64'}`}>

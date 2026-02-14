@@ -72,8 +72,8 @@ Comment "AI" below and I'll send you the full list of tools I use.`
 
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
                 <div>
-                    <h2 className="text-4xl font-bold text-white tracking-tight">Script Editor</h2>
-                    <p className="text-gray-400 mt-2 text-lg">
+                    <h2 className="text-4xl font-bold text-theme-primary tracking-tight">Script Editor</h2>
+                    <p className="text-theme-secondary mt-2 text-lg">
                         Refine your masterpiece before production.
                     </p>
                 </div>
@@ -81,7 +81,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                     <button
                         onClick={handleRegenerate}
                         disabled={generating}
-                        className="flex-1 md:flex-none px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/30 rounded-xl font-medium text-gray-300 hover:text-white transition-all disabled:opacity-50"
+                        className="flex-1 md:flex-none px-6 py-3 bg-card-theme hover:bg-card-hover border border-theme hover:border-white/30 rounded-xl font-medium text-theme-secondary hover:text-theme-primary transition-all disabled:opacity-50"
                     >
                         {generating ? 'Regenerating...' : 'Regenerate AI'}
                     </button>
@@ -102,23 +102,23 @@ Comment "AI" below and I'll send you the full list of tools I use.`
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2">
-                    <div className="bg-[#1a1a1a] rounded-3xl border border-white/10 overflow-hidden shadow-2xl h-[600px] flex flex-col focus-within:border-purple-500/50 transition-colors">
-                        <div className="bg-black/20 px-6 py-4 border-b border-white/5 flex justify-between items-center backdrop-blur-sm">
+                    <div className="bg-card-theme rounded-3xl border border-theme overflow-hidden shadow-2xl h-[600px] flex flex-col focus-within:border-purple-500/50 transition-colors">
+                        <div className="bg-page px-6 py-4 border-b border-theme flex justify-between items-center backdrop-blur-sm">
                             <div className="flex items-center space-x-2">
                                 <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
                                 <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
                                 <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
                             </div>
-                            <span className="text-xs font-mono text-gray-500 uppercase tracking-wider">Editor Mode</span>
+                            <span className="text-xs font-mono text-theme-secondary uppercase tracking-wider">Editor Mode</span>
                         </div>
                         <textarea
                             value={script}
                             onChange={(e) => setScript(e.target.value)}
-                            className="w-full h-full bg-transparent p-8 text-lg md:text-xl text-gray-200 placeholder-gray-600 focus:outline-none resize-none font-serif leading-loose selection:bg-purple-500/30"
+                            className="w-full h-full bg-transparent p-8 text-lg md:text-xl text-theme-primary placeholder-gray-500 focus:outline-none resize-none font-serif leading-loose selection:bg-purple-500/30"
                             placeholder="Start writing your script..."
                             spellCheck="false"
                         />
-                        <div className="px-6 py-3 bg-black/20 border-t border-white/5 text-xs text-gray-500 flex justify-between">
+                        <div className="px-6 py-3 bg-page border-t border-theme text-xs text-theme-secondary flex justify-between">
                             <span>{script.split(/\s+/).filter(Boolean).length} words</span>
                             <span>~{Math.ceil(script.split(/\s+/).filter(Boolean).length / 3)} sec</span>
                         </div>
@@ -127,16 +127,16 @@ Comment "AI" below and I'll send you the full list of tools I use.`
 
                 <div className="space-y-6">
                     <div className="bg-gradient-to-br from-purple-900/10 to-transparent p-6 rounded-3xl border border-purple-500/20">
-                        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                        <h3 className="text-lg font-bold text-theme-primary mb-4 flex items-center gap-2">
                             <span className="text-purple-400">✨</span> AI Suggestions
                         </h3>
-                        <ul className="space-y-4 text-sm text-gray-300">
+                        <ul className="space-y-4 text-sm text-theme-secondary">
                             {[
                                 "Start with a controversial hook to stop the scroll.",
                                 "Keep sentences short (under 15 words) for readability.",
                                 "Add a clear Call to Action (CTA) in the last 5 seconds."
                             ].map((tip, i) => (
-                                <li key={i} className="flex items-start bg-black/20 p-3 rounded-xl border border-white/5">
+                                <li key={i} className="flex items-start bg-page p-3 rounded-xl border border-theme">
                                     <span className="text-yellow-400 mr-3 mt-0.5">💡</span>
                                     {tip}
                                 </li>
@@ -144,18 +144,18 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                         </ul>
                     </div>
 
-                    <div className="bg-white/5 p-6 rounded-3xl border border-white/10">
-                        <h3 className="text-lg font-bold text-white mb-6">Tone Adjustments</h3>
+                    <div className="bg-card-theme p-6 rounded-3xl border border-theme">
+                        <h3 className="text-lg font-bold text-theme-primary mb-6">Tone Adjustments</h3>
                         <div className="space-y-6">
                             <div>
-                                <div className="flex justify-between text-xs text-gray-400 mb-2">
+                                <div className="flex justify-between text-xs text-theme-secondary mb-2">
                                     <span>Calm</span>
                                     <span>Energetic</span>
                                 </div>
                                 <input type="range" className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-purple-500" defaultValue="75" />
                             </div>
                             <div>
-                                <div className="flex justify-between text-xs text-gray-400 mb-2">
+                                <div className="flex justify-between text-xs text-theme-secondary mb-2">
                                     <span>Slow</span>
                                     <span>Fast</span>
                                 </div>

@@ -44,7 +44,7 @@ export default function GlobalAnimations() {
         });
 
         // Card Stagger Animations (targeting common card classes)
-        const cards = gsap.utils.toArray('.bg-white\\/5, .rounded-2xl, .rounded-3xl') as Element[];
+        const cards = gsap.utils.toArray('.bg-white\\/5, .bg-card-theme, .rounded-2xl, .rounded-3xl') as Element[];
         if (cards.length > 0) {
             ScrollTrigger.batch(cards, {
                 onEnter: (batch) => {

@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Quicksand } from "next/font/google";
 import "./globals.css";
 import GlobalAnimations from "@/components/GlobalAnimations";
 import AuthProvider from '@/components/AuthProvider'
+
+const quicksand = Quicksand({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "NYX - AI Content Automation",
   description: "Automate Your Content Empire",
 };
+
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export default function RootLayout({
   children,
@@ -16,10 +20,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={quicksand.className}>
         <AuthProvider>
-          <GlobalAnimations />
-          {children}
+          <ThemeProvider>
+            <GlobalAnimations />
+            {children}
+          </ThemeProvider>
         </AuthProvider>
       </body>
     </html>

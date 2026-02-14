@@ -96,8 +96,8 @@ export default function IdeaGenerator() {
         <div className="max-w-4xl mx-auto relative">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h2 className="text-3xl font-bold text-white">Idea Generator</h2>
-                    <p className="text-gray-400 mt-2">
+                    <h2 className="text-3xl font-bold text-theme-primary">Idea Generator</h2>
+                    <p className="text-theme-secondary mt-2">
                         Get viral-ready video ideas tailored to your niche.
                     </p>
                 </div>
@@ -113,7 +113,7 @@ export default function IdeaGenerator() {
             {generating && (
                 <div className="flex flex-col items-center justify-center py-20">
                     <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-                    <p className="text-gray-400 animate-pulse">Scanning trends & brainstorming...</p>
+                    <p className="text-theme-secondary animate-pulse">Scanning trends & brainstorming...</p>
                 </div>
             )}
 
@@ -127,33 +127,33 @@ export default function IdeaGenerator() {
                 {ideas.map((idea, index) => (
                     <div
                         key={idea.id}
-                        className="bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-purple-500/40 transition-all duration-500 hover:shadow-[0_0_30px_rgba(168,85,247,0.1)] hover:-translate-y-1 animate-fade-in group"
+                        className="bg-card-theme p-8 rounded-3xl border border-theme hover:border-purple-500/40 transition-all duration-500 hover:shadow-[0_0_30px_rgba(168,85,247,0.1)] hover:-translate-y-1 animate-fade-in group"
                         style={{ animationDelay: `${index * 100}ms` }}
                     >
                         <div className="flex justify-between items-start mb-6">
-                            <h3 className="text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">{idea.title}</h3>
+                            <h3 className="text-2xl font-bold text-theme-primary group-hover:text-purple-300 transition-colors">{idea.title}</h3>
                             <span className="px-4 py-1.5 bg-purple-900/30 text-purple-300 rounded-full text-xs font-bold uppercase tracking-wide border border-purple-500/30 shadow-[0_0_10px_rgba(168,85,247,0.2)]">
                                 {idea.angle}
                             </span>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                            <div className="bg-gradient-to-br from-white/5 to-transparent p-6 rounded-2xl border border-white/5 hover:border-white/10 transition-colors">
+                            <div className="bg-card-hover p-6 rounded-2xl border border-theme hover:border-purple-500/20 transition-colors">
                                 <p className="text-xs text-purple-400 font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span> Hook
                                 </p>
-                                <p className="text-gray-200 text-lg font-medium italic leading-relaxed">"{idea.hook}"</p>
+                                <p className="text-theme-secondary text-lg font-medium italic leading-relaxed">"{idea.hook}"</p>
                             </div>
-                            <div className="bg-gradient-to-br from-white/5 to-transparent p-6 rounded-2xl border border-white/5 hover:border-white/10 transition-colors">
+                            <div className="bg-card-hover p-6 rounded-2xl border border-theme hover:border-purple-500/20 transition-colors">
                                 <p className="text-xs text-blue-400 font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-blue-500"></span> Format
                                 </p>
-                                <p className="text-gray-200 text-base leading-relaxed">{idea.format}</p>
+                                <p className="text-theme-secondary text-base leading-relaxed">{idea.format}</p>
                             </div>
                         </div>
 
-                        <div className="flex justify-end space-x-4 border-t border-white/5 pt-6">
-                            <button className="px-6 py-3 bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white rounded-xl text-sm font-bold transition-all hover:scale-105">
+                        <div className="flex justify-end space-x-4 border-t border-theme pt-6">
+                            <button className="px-6 py-3 bg-card-theme hover:bg-card-hover text-theme-secondary hover:text-theme-primary rounded-xl text-sm font-bold transition-all hover:scale-105 border border-transparent hover:border-theme">
                                 Save for Later
                             </button>
                             <button
@@ -169,23 +169,23 @@ export default function IdeaGenerator() {
             </div>
 
             {!generating && ideas.length === 0 && (
-                <div className="text-center py-20 bg-white/5 rounded-2xl border border-white/10 border-dashed">
-                    <p className="text-gray-400">No ideas generated yet. Click the button above to start.</p>
+                <div className="text-center py-20 bg-card-theme rounded-2xl border border-theme border-dashed">
+                    <p className="text-theme-secondary">No ideas generated yet. Click the button above to start.</p>
                 </div>
             )}
 
             {/* Script Modal */}
             {generatedScript && (
                 <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-                    <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl w-full max-w-5xl h-[90vh] flex flex-col shadow-2xl animate-fade-in">
-                        <div className="flex justify-between items-center p-6 border-b border-white/10">
-                            <h3 className="text-xl font-bold text-white flex items-center">
+                    <div className="bg-card-theme border border-theme rounded-2xl w-full max-w-5xl h-[90vh] flex flex-col shadow-2xl animate-fade-in">
+                        <div className="flex justify-between items-center p-6 border-b border-theme">
+                            <h3 className="text-xl font-bold text-theme-primary flex items-center">
                                 <FileText className="w-5 h-5 mr-2 text-purple-400" />
                                 Generated Script
                             </h3>
                             <button
                                 onClick={() => setGeneratedScript(null)}
-                                className="text-gray-400 hover:text-white transition-colors"
+                                className="text-theme-secondary hover:text-theme-primary transition-colors"
                             >
                                 <X className="w-6 h-6" />
                             </button>
@@ -195,21 +195,21 @@ export default function IdeaGenerator() {
                             <textarea
                                 value={generatedScript.content}
                                 onChange={(e) => setGeneratedScript({ ...generatedScript, content: e.target.value })}
-                                className="w-full h-full bg-black/30 p-6 rounded-xl border border-white/5 font-mono text-sm text-gray-300 focus:outline-none focus:border-purple-500/50 resize-none leading-relaxed"
+                                className="w-full h-full bg-page p-6 rounded-xl border border-theme font-mono text-sm text-theme-primary focus:outline-none focus:border-purple-500/50 resize-none leading-relaxed"
                                 placeholder="Write your script here..."
                             />
                         </div>
 
-                        <div className="p-6 border-t border-white/10 flex justify-end space-x-3">
+                        <div className="p-6 border-t border-theme flex justify-end space-x-3">
                             <button
                                 onClick={() => setGeneratedScript(null)}
-                                className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-sm font-medium transition-colors"
+                                className="px-4 py-2 bg-card-hover hover:bg-theme-secondary/20 text-theme-primary rounded-lg text-sm font-medium transition-colors"
                             >
                                 Close
                             </button>
                             <button
                                 onClick={copyToClipboard}
-                                className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg text-sm font-medium transition-colors flex items-center"
+                                className="px-4 py-2 bg-card-hover hover:bg-theme-secondary/20 text-theme-primary rounded-lg text-sm font-medium transition-colors flex items-center"
                             >
                                 {copied ? <><Check className="w-4 h-4 mr-2" /> Copied!</> : <><Copy className="w-4 h-4 mr-2" /> Copy Script</>}
                             </button>

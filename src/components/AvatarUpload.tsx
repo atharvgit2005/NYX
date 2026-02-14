@@ -63,21 +63,21 @@ export default function AvatarUpload() {
     return (
         <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-white mb-4">Configure Your Digital Twin</h2>
-                <p className="text-gray-400 max-w-2xl mx-auto">
+                <h2 className="text-4xl font-bold text-theme-primary mb-4">Configure Your Digital Twin</h2>
+                <p className="text-theme-secondary max-w-2xl mx-auto">
                     Connect your HeyGen Avatar and clone your voice with ElevenLabs to generate personalized videos.
                 </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Avatar Configuration */}
-                <div className="bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-purple-500/50 transition-colors">
+                <div className="bg-card-theme p-8 rounded-3xl border border-theme hover:border-purple-500/50 transition-colors">
                     <div className="text-center mb-8">
                         <div className="w-16 h-16 bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4 border border-purple-500/30">
                             <Video className="w-8 h-8 text-purple-400" />
                         </div>
-                        <h3 className="text-2xl font-bold text-white mb-2">HeyGen Avatar</h3>
-                        <p className="text-sm text-gray-400">
+                        <h3 className="text-2xl font-bold text-theme-primary mb-2">HeyGen Avatar</h3>
+                        <p className="text-sm text-theme-secondary">
                             Enter the <strong>Avatar ID</strong> from your HeyGen account.
                         </p>
                     </div>
@@ -85,7 +85,7 @@ export default function AvatarUpload() {
                     <div className="space-y-4">
                         <div>
                             <div className="flex justify-between items-center mb-2">
-                                <label className="block text-xs font-bold text-gray-500 uppercase">Avatar ID</label>
+                                <label className="block text-xs font-bold text-theme-secondary uppercase">Avatar ID</label>
                                 <button
                                     onClick={() => setShowAvatarHelp(!showAvatarHelp)}
                                     className="text-xs text-purple-400 hover:text-purple-300 flex items-center"
@@ -98,18 +98,18 @@ export default function AvatarUpload() {
                                 value={avatarId}
                                 onChange={(e) => setAvatarId(e.target.value)}
                                 placeholder="e.g., Tyler-insuit-20220721"
-                                className="w-full bg-black/50 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-purple-500 transition-colors font-mono text-sm"
+                                className="w-full bg-page border border-theme rounded-xl px-4 py-3 text-theme-primary focus:outline-none focus:border-purple-500 transition-colors font-mono text-sm"
                             />
                             <div className="flex gap-2 mt-2">
                                 <button
                                     onClick={() => setAvatarId('Tyler-insuit-20220721')}
-                                    className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full text-gray-300 transition-colors"
+                                    className="text-xs bg-card-hover hover:bg-theme-secondary/20 px-3 py-1 rounded-full text-theme-secondary transition-colors"
                                 >
                                     Use Demo (Tyler)
                                 </button>
                                 <button
                                     onClick={() => setAvatarId('Daisy-insuit-20220818')}
-                                    className="text-xs bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full text-gray-300 transition-colors"
+                                    className="text-xs bg-card-hover hover:bg-theme-secondary/20 px-3 py-1 rounded-full text-theme-secondary transition-colors"
                                 >
                                     Use Demo (Daisy)
                                 </button>
@@ -130,7 +130,7 @@ export default function AvatarUpload() {
                         <button
                             onClick={handleSaveAvatarId}
                             disabled={!avatarId}
-                            className="w-full py-3 bg-white/10 hover:bg-white/20 rounded-xl font-bold text-white transition-colors flex items-center justify-center gap-2"
+                            className="w-full py-3 bg-card-hover hover:bg-card-theme border border-theme rounded-xl font-bold text-theme-primary transition-colors flex items-center justify-center gap-2"
                         >
                             <Check className="w-4 h-4" /> Save Avatar ID
                         </button>
@@ -138,13 +138,13 @@ export default function AvatarUpload() {
                 </div>
 
                 {/* Voice Configuration */}
-                <div className="bg-white/5 p-8 rounded-3xl border border-white/10 hover:border-pink-500/50 transition-colors">
+                <div className="bg-card-theme p-8 rounded-3xl border border-theme hover:border-pink-500/50 transition-colors">
                     <div className="text-center mb-8">
                         <div className="w-16 h-16 bg-pink-900/30 rounded-full flex items-center justify-center mx-auto mb-4 border border-pink-500/30">
                             <Mic className="w-8 h-8 text-pink-400" />
                         </div>
-                        <h3 className="text-2xl font-bold text-white mb-2">Voice Configuration</h3>
-                        <p className="text-sm text-gray-400">
+                        <h3 className="text-2xl font-bold text-theme-primary mb-2">Voice Configuration</h3>
+                        <p className="text-sm text-theme-secondary">
                             Enter your <strong>HeyGen Voice ID</strong> or clone a new one.
                         </p>
                     </div>
@@ -152,42 +152,42 @@ export default function AvatarUpload() {
                     <div className="space-y-6">
                         {/* Manual Voice ID Input */}
                         <div>
-                            <label className="block text-xs font-bold text-gray-500 uppercase mb-2">HeyGen Voice ID</label>
+                            <label className="block text-xs font-bold text-theme-secondary uppercase mb-2">HeyGen Voice ID</label>
                             <input
                                 type="text"
                                 value={voiceId || ''}
                                 onChange={(e) => setVoiceId(e.target.value)}
                                 placeholder="e.g., 2d5b0e6cf361460aa7fc47e3cee4b35c"
-                                className="w-full bg-black/50 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-pink-500 transition-colors font-mono text-sm"
+                                className="w-full bg-page border border-theme rounded-xl px-4 py-3 text-theme-primary focus:outline-none focus:border-pink-500 transition-colors font-mono text-sm"
                             />
-                            <p className="text-xs text-gray-500 mt-2">
+                            <p className="text-xs text-theme-secondary mt-2">
                                 Enter the ID of your custom voice from HeyGen.
                             </p>
                         </div>
 
                         <div className="relative flex py-2 items-center">
-                            <div className="flex-grow border-t border-white/10"></div>
-                            <span className="flex-shrink-0 mx-4 text-gray-500 text-xs uppercase">OR Clone with ElevenLabs</span>
-                            <div className="flex-grow border-t border-white/10"></div>
+                            <div className="flex-grow border-t border-theme"></div>
+                            <span className="flex-shrink-0 mx-4 text-theme-secondary text-xs uppercase">OR Clone with ElevenLabs</span>
+                            <div className="flex-grow border-t border-theme"></div>
                         </div>
 
                         {/* ElevenLabs Cloning Section (Existing) */}
-                        <div className="bg-black/20 p-4 rounded-xl border border-white/5">
-                            <h4 className="text-sm font-bold text-white mb-2">Instant Voice Clone</h4>
-                            <div className="border-2 border-dashed border-white/20 rounded-lg p-6 text-center hover:bg-white/5 transition-colors cursor-pointer relative group">
+                        <div className="bg-card-hover p-4 rounded-xl border border-theme">
+                            <h4 className="text-sm font-bold text-theme-primary mb-2">Instant Voice Clone</h4>
+                            <div className="border-2 border-dashed border-theme rounded-lg p-6 text-center hover:bg-card-theme transition-colors cursor-pointer relative group">
                                 <input
                                     type="file"
                                     accept="audio/*"
                                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                                     onChange={(e) => setVoiceFile(e.target.files?.[0] || null)}
                                 />
-                                <Upload className="w-6 h-6 text-gray-500 mx-auto mb-2 group-hover:text-pink-400 transition-colors" />
+                                <Upload className="w-6 h-6 text-theme-secondary mx-auto mb-2 group-hover:text-pink-400 transition-colors" />
                                 {voiceFile ? (
                                     <div className="text-green-400 text-xs font-medium truncate px-2">
                                         {voiceFile.name}
                                     </div>
                                 ) : (
-                                    <div className="text-gray-400 text-xs">
+                                    <div className="text-theme-secondary text-xs">
                                         <span className="text-pink-400 font-medium">Click to upload</span> audio sample
                                     </div>
                                 )}
@@ -196,7 +196,7 @@ export default function AvatarUpload() {
                             <button
                                 onClick={handleCloneVoice}
                                 disabled={!voiceFile || cloningVoice}
-                                className="w-full mt-3 py-2 bg-white/10 hover:bg-white/20 rounded-lg font-bold text-white text-xs transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                                className="w-full mt-3 py-2 bg-theme-primary text-theme-inverse hover:opacity-90 rounded-lg font-bold text-xs transition-all disabled:opacity-50 flex items-center justify-center gap-2"
                             >
                                 {cloningVoice ? <><Loader2 className="w-4 h-4 animate-spin" /> Cloning...</> : 'Clone & Use this Voice'}
                             </button>
@@ -209,7 +209,7 @@ export default function AvatarUpload() {
                                     alert('Voice ID saved!');
                                 }
                             }}
-                            className="w-full py-3 bg-white/10 hover:bg-white/20 rounded-xl font-bold text-white transition-colors flex items-center justify-center gap-2"
+                            className="w-full py-3 bg-card-hover hover:bg-card-theme rounded-xl font-bold text-theme-primary transition-colors flex items-center justify-center gap-2"
                         >
                             <Check className="w-4 h-4" /> Save Voice ID
                         </button>
