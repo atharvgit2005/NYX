@@ -32,12 +32,12 @@ export default function Sidebar() {
 
     return (
         <div
-            className={`hidden md:flex md:flex-col md:fixed md:left-0 md:bottom-0 md:top-20 header-bg-theme backdrop-blur-xl z-40 transition-all duration-300 border-r border-theme ${collapsed ? 'md:w-20' : 'md:w-64'
+            className={`hidden md:flex md:flex-col md:fixed md:left-0 md:bottom-0 md:top-20 header-bg-theme backdrop-blur-xl z-40 transition-all duration-300 border-r border-theme rounded-r-3xl ${collapsed ? 'md:w-20' : 'md:w-56'
                 }`}
         >
-            <div className="flex-1 flex flex-col overflow-y-auto pb-[150px]">
+            <div className="flex-1 flex flex-col overflow-y-auto py-8">
 
-                <nav className="flex-1 px-4 space-y-2 mt-8" style={{ paddingTop: '35px' }}>
+                <nav className="flex-1 px-4 space-y-6 mt-8">
 
                     {navigation.map((item) => {
                         const isActive = pathname === item.href;
@@ -48,11 +48,11 @@ export default function Sidebar() {
                                 href={item.href}
                                 title={collapsed ? item.name : ''}
                                 className={`group flex items-center px-3 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${isActive
-                                    ? 'bg-purple-600/20 text-purple-400 shadow-[0_0_15px_rgba(168,85,247,0.15)]'
+                                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/30'
                                     : 'text-theme-secondary hover:bg-card-hover hover:text-theme-primary hover:translate-x-1'
                                     } ${collapsed ? 'justify-center' : ''}`}
                             >
-                                <Icon className={`h-6 w-6 transition-colors ${isActive ? 'text-purple-400' : 'text-theme-secondary group-hover:text-theme-primary'} ${collapsed ? '' : 'mr-3'}`} />
+                                <Icon className={`h-6 w-6 transition-colors ${isActive ? 'text-white' : 'text-theme-secondary group-hover:text-theme-primary'} ${collapsed ? '' : 'mr-3'}`} />
                                 {!collapsed && (
                                     <span className="truncate">{item.name}</span>
                                 )}

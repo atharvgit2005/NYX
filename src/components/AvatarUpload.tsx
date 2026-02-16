@@ -49,8 +49,10 @@ export default function AvatarUpload() {
                 setVoiceId(data.voiceId);
                 localStorage.setItem('custom_voice_id', data.voiceId);
                 setVoiceFile(null); // Clear file input
+                alert(`Voice cloned successfully! ID: ${data.voiceId}`);
             } else {
                 setError(data.error || 'Failed to clone voice');
+                console.error('Clone error details:', data.details);
             }
         } catch (err) {
             console.error(err);
@@ -61,11 +63,11 @@ export default function AvatarUpload() {
     };
 
     return (
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto mt-8">
             <div className="text-center mb-12">
                 <h2 className="text-4xl font-bold text-theme-primary mb-4">Configure Your Digital Twin</h2>
                 <p className="text-theme-secondary max-w-2xl mx-auto">
-                    Connect your HeyGen Avatar and clone your voice with ElevenLabs to generate personalized videos.
+                    Connect your HeyGen Avatar and clone your voice with Inworld AI to generate personalized videos.
                 </p>
             </div>
 
@@ -117,12 +119,12 @@ export default function AvatarUpload() {
                         </div>
 
                         {showAvatarHelp && (
-                            <div className="bg-purple-900/20 p-4 rounded-xl border border-purple-500/20 text-sm text-gray-300 animate-fade-in">
-                                <h4 className="font-bold text-white mb-2 flex items-center"><Info className="w-4 h-4 mr-2" /> How to find your ID:</h4>
+                            <div className="bg-purple-500/10 p-4 rounded-xl border border-purple-500/20 text-sm text-theme-secondary animate-fade-in">
+                                <h4 className="font-bold text-theme-primary mb-2 flex items-center"><Info className="w-4 h-4 mr-2" /> How to find your ID:</h4>
                                 <ol className="list-decimal list-inside space-y-1 text-xs">
                                     <li>Log in to <a href="https://app.heygen.com" target="_blank" className="text-purple-400 underline">HeyGen</a>.</li>
                                     <li>Click on your Avatar.</li>
-                                    <li>Copy the ID from the URL: <br /><span className="font-mono text-purple-300 bg-black/30 px-1 rounded">.../avatars/YOUR_ID</span></li>
+                                    <li>Copy the ID from the URL: <br /><span className="font-mono text-purple-400 bg-black/5 dark:bg-black/30 px-1 rounded">.../avatars/YOUR_ID</span></li>
                                 </ol>
                             </div>
                         )}
@@ -140,7 +142,7 @@ export default function AvatarUpload() {
                 {/* Voice Configuration */}
                 <div className="bg-card-theme p-8 rounded-3xl border border-theme hover:border-pink-500/50 transition-colors">
                     <div className="text-center mb-8">
-                        <div className="w-16 h-16 bg-pink-900/30 rounded-full flex items-center justify-center mx-auto mb-4 border border-pink-500/30">
+                        <div className="w-16 h-16 bg-pink-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-pink-500/30">
                             <Mic className="w-8 h-8 text-pink-400" />
                         </div>
                         <h3 className="text-2xl font-bold text-theme-primary mb-2">Voice Configuration</h3>
@@ -167,11 +169,11 @@ export default function AvatarUpload() {
 
                         <div className="relative flex py-2 items-center">
                             <div className="flex-grow border-t border-theme"></div>
-                            <span className="flex-shrink-0 mx-4 text-theme-secondary text-xs uppercase">OR Clone with ElevenLabs</span>
+                            <span className="flex-shrink-0 mx-4 text-theme-secondary text-xs uppercase">OR Clone with Inworld</span>
                             <div className="flex-grow border-t border-theme"></div>
                         </div>
 
-                        {/* ElevenLabs Cloning Section (Existing) */}
+                        {/* Inworld Cloning Section */}
                         <div className="bg-card-hover p-4 rounded-xl border border-theme">
                             <h4 className="text-sm font-bold text-theme-primary mb-2">Instant Voice Clone</h4>
                             <div className="border-2 border-dashed border-theme rounded-lg p-6 text-center hover:bg-card-theme transition-colors cursor-pointer relative group">
@@ -183,7 +185,7 @@ export default function AvatarUpload() {
                                 />
                                 <Upload className="w-6 h-6 text-theme-secondary mx-auto mb-2 group-hover:text-pink-400 transition-colors" />
                                 {voiceFile ? (
-                                    <div className="text-green-400 text-xs font-medium truncate px-2">
+                                    <div className="text-green-500 text-xs font-medium truncate px-2">
                                         {voiceFile.name}
                                     </div>
                                 ) : (
@@ -196,7 +198,7 @@ export default function AvatarUpload() {
                             <button
                                 onClick={handleCloneVoice}
                                 disabled={!voiceFile || cloningVoice}
-                                className="w-full mt-3 py-2 bg-theme-primary text-theme-inverse hover:opacity-90 rounded-lg font-bold text-xs transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                                className="w-full mt-3 py-2 bg-theme-primary text-white hover:opacity-90 rounded-lg font-bold text-xs transition-all disabled:opacity-50 flex items-center justify-center gap-2"
                             >
                                 {cloningVoice ? <><Loader2 className="w-4 h-4 animate-spin" /> Cloning...</> : 'Clone & Use this Voice'}
                             </button>

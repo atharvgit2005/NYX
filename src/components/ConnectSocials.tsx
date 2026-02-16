@@ -79,101 +79,144 @@ export default function ConnectSocials() {
     ];
 
     return (
-        <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12">
-                <h2 className="text-4xl font-bold text-theme-primary mb-4">Connect Your Socials</h2>
-                <p className="text-theme-secondary max-w-2xl mx-auto text-lg">
-                    Link your accounts to enable AI analysis and auto-publishing. We analyze your content to match your brand voice.
+        <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-16 space-y-4">
+                <h2 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-theme-primary via-purple-500 to-pink-500 pb-2">
+                    Connect Your Socials
+                </h2>
+                <p className="text-theme-secondary max-w-2xl mx-auto text-lg leading-relaxed">
+                    Link your accounts to unlock AI-powered analysis and auto-publishing.
+                    We study your content to perfectly match your unique brand voice.
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {platforms.map((platform) => (
-                    <div
-                        key={platform.id}
-                        className={`relative group rounded-3xl p-8 border transition-all duration-500 ease-out flex flex-col ${connected[platform.id]
-                            ? 'bg-purple-900/20 border-purple-500/50 shadow-[0_0_40px_rgba(168,85,247,0.15)]'
-                            : 'bg-card-theme border-theme hover:border-purple-500/30 hover:bg-card-hover hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(168,85,247,0.1)]'
-                            }`}
-                    >
-                        <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-8 bg-gradient-to-br ${platform.color} shadow-lg group-hover:scale-110 transition-transform duration-500`}>
-                            <div className="text-white">{platform.icon}</div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                {platforms.map((platform) => {
+                    const isConnected = connected[platform.id];
+                    const isActive = activePlatform === platform.id;
+                    const isLoading = loading === platform.id;
+
+                    return (
+                        <div
+                            key={platform.id}
+                            className={`relative group rounded-[2rem] transition-all duration-500 overflow-hidden ${isConnected
+                                ? 'bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/30 shadow-[0_0_30px_rgba(168,85,247,0.15)] dark:shadow-[0_0_30px_rgba(168,85,247,0.3)]'
+                                : 'bg-card-theme border border-theme hover:border-purple-500/50 hover:shadow-xl hover:-translate-y-1'
+                                }`}
+                        >
+                            {/* Inner content wrapper */}
+                            <div className="h-full p-8 flex flex-col relative z-10 backdrop-blur-sm">
+                                {/* Header */}
+                                <div className="flex items-start justify-between mb-8">
+                                    <div className={`p-4 rounded-2xl bg-gradient-to-br ${platform.color} shadow-lg ring-1 ring-white/20 group-hover:scale-110 transition-transform duration-500`}>
+                                        <div className="text-white">{platform.icon}</div>
+                                    </div>
+                                    {isConnected && (
+                                        <div className="bg-green-500/10 text-green-600 dark:text-green-400 px-3 py-1 rounded-full text-xs font-bold flex items-center border border-green-500/20 shadow-sm">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-green-500 mr-2 animate-pulse" />
+                                            Active
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="mb-8">
+                                    <h3 className="text-2xl font-bold text-theme-primary mb-2">{platform.name}</h3>
+                                    <p className="text-theme-secondary leading-relaxed text-sm">{platform.description}</p>
+                                </div>
+
+                                {/* Content */}
+                                <div className="mt-auto">
+                                    {isConnected ? (
+                                        <div className="space-y-3 animate-in fade-in slide-in-from-bottom-4">
+                                            <div className="flex items-center justify-between p-4 bg-white/50 dark:bg-white/5 rounded-xl border border-purple-500/20 shadow-sm">
+                                                <span className="font-semibold text-theme-primary flex items-center gap-2 truncate">
+                                                    @{connected[platform.id]}
+                                                </span>
+                                                <Check className="w-5 h-5 text-purple-500 bg-purple-100 dark:bg-purple-900/50 rounded-full p-0.5" />
+                                            </div>
+                                            <button
+                                                onClick={() => handleDisconnect(platform.id)}
+                                                className="w-full py-3 text-xs font-medium text-gray-500 dark:text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-xl transition-all"
+                                            >
+                                                Disconnect Account
+                                            </button>
+                                        </div>
+                                    ) : isActive ? (
+                                        <div className="space-y-3 animate-in fade-in zoom-in duration-300">
+                                            <div className="relative">
+                                                <input
+                                                    type="text"
+                                                    placeholder={platform.placeholder}
+                                                    value={usernameInput}
+                                                    onChange={(e) => setUsernameInput(e.target.value)}
+                                                    className="w-full bg-gray-50 dark:bg-black/40 border border-purple-500 rounded-xl px-4 py-4 text-theme-primary focus:outline-none focus:ring-4 focus:ring-purple-500/10 transition-all placeholder:text-gray-400"
+                                                    autoFocus
+                                                />
+                                            </div>
+                                            <div className="flex gap-2">
+                                                <button
+                                                    onClick={() => handleConnect(platform.id)}
+                                                    disabled={!usernameInput || isLoading}
+                                                    className="flex-1 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl font-bold transition-all shadow-lg shadow-purple-500/25 disabled:opacity-50 flex items-center justify-center transform active:scale-95"
+                                                >
+                                                    {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Confirm'}
+                                                </button>
+                                                <button
+                                                    onClick={() => { setActivePlatform(null); setUsernameInput(''); }}
+                                                    className="px-4 py-3 bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 rounded-xl transition-colors text-theme-secondary hover:text-theme-primary"
+                                                >
+                                                    ✕
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        <button
+                                            onClick={() => setActivePlatform(platform.id)}
+                                            className="w-full py-4 bg-gray-50 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 border border-theme hover:border-purple-300 dark:hover:border-purple-500/50 rounded-xl font-bold text-theme-primary transition-all flex items-center justify-center gap-2 group-hover:shadow-md"
+                                        >
+                                            <LinkIcon className="w-4 h-4 text-purple-500" />
+                                            Connect Account
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
                         </div>
-
-                        <h3 className="text-2xl font-bold text-theme-primary mb-2">{platform.name}</h3>
-                        <p className="text-theme-secondary mb-8 flex-grow leading-relaxed">{platform.description}</p>
-
-                        {connected[platform.id] ? (
-                            <div className="mt-auto">
-                                <div className="flex items-center justify-between bg-green-500/10 border border-green-500/20 rounded-xl p-3 mb-3">
-                                    <span className="font-medium text-green-400 flex items-center">
-                                        <Check className="w-4 h-4 mr-2" /> {connected[platform.id]}
-                                    </span>
-                                </div>
-                                <button
-                                    onClick={() => handleDisconnect(platform.id)}
-                                    className="w-full py-3 rounded-xl font-medium text-theme-secondary hover:text-theme-primary hover:bg-card-hover transition-colors text-sm"
-                                >
-                                    Disconnect
-                                </button>
-                            </div>
-                        ) : activePlatform === platform.id ? (
-                            <div className="mt-auto animate-fade-in">
-                                <input
-                                    type="text"
-                                    placeholder={platform.placeholder}
-                                    value={usernameInput}
-                                    onChange={(e) => setUsernameInput(e.target.value)}
-                                    className="w-full bg-page border border-theme rounded-xl px-4 py-3 text-theme-primary mb-3 focus:outline-none focus:border-purple-500 transition-colors"
-                                    autoFocus
-                                />
-                                <div className="flex gap-2">
-                                    <button
-                                        onClick={() => handleConnect(platform.id)}
-                                        disabled={!usernameInput || loading === platform.id}
-                                        className="flex-1 py-3 bg-white dark:bg-white bg-gray-900 text-white dark:text-black rounded-xl font-bold hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center"
-                                    >
-                                        {loading === platform.id ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Confirm'}
-                                    </button>
-                                    <button
-                                        onClick={() => { setActivePlatform(null); setUsernameInput(''); }}
-                                        className="px-4 py-3 bg-card-hover rounded-xl hover:bg-theme-secondary/10 transition-colors text-theme-secondary"
-                                    >
-                                        ✕
-                                    </button>
-                                </div>
-                            </div>
-                        ) : (
-                            <button
-                                onClick={() => setActivePlatform(platform.id)}
-                                className="mt-auto w-full py-3 bg-card-hover hover:bg-card-theme border border-theme rounded-xl font-bold text-theme-primary transition-all flex items-center justify-center gap-2 group-hover:bg-purple-600 group-hover:text-white group-hover:border-purple-500"
-                            >
-                                <LinkIcon className="w-4 h-4" /> Connect
-                            </button>
-                        )}
-                    </div>
-                ))}
+                    );
+                })}
             </div>
 
-            <div className="mt-16 p-8 bg-gradient-to-r from-purple-900/20 to-pink-900/20 rounded-3xl border border-theme backdrop-blur-md">
-                <h3 className="text-xl font-bold text-theme-primary mb-6 flex items-center">
-                    <span className="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center mr-3 text-sm text-white">AI</span>
-                    Why connect your accounts?
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {[
-                        { title: 'Brand Voice Match', desc: 'AI analyzes your past captions to mimic your unique tone.' },
-                        { title: 'Performance Data', desc: 'We identify your highest-performing hooks and topics.' },
-                        { title: 'One-Click Posting', desc: 'Publish generated videos directly without downloading.' }
-                    ].map((item, i) => (
-                        <div key={i} className="flex items-start">
-                            <div className="mt-1 mr-4 text-green-400"><Check className="w-5 h-5" /></div>
-                            <div>
-                                <h4 className="font-bold text-theme-primary mb-1">{item.title}</h4>
-                                <p className="text-sm text-theme-secondary">{item.desc}</p>
+            {/* Features Section */}
+            <div className="relative rounded-[2.5rem] p-1 bg-gradient-to-br from-theme-primary/10 to-transparent border border-theme overflow-hidden">
+                <div className="absolute inset-0 bg-page/80 backdrop-blur-xl" />
+                <div className="relative px-6 py-8 md:px-8 md:py-10 flex flex-col md:flex-row items-start gap-10">
+                    <div className="md:w-1/3">
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-600 dark:text-purple-300 text-xs font-bold border border-purple-500/30">
+                                AI POWERED
                             </div>
                         </div>
-                    ))}
+                        <h3 className="text-3xl font-bold text-theme-primary mb-4">Why connect?</h3>
+                        <p className="text-theme-secondary">Unlock the full potential of our engine. We analyze your past performance to predict future virality.</p>
+                    </div>
+
+                    <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+                        {[
+                            { title: 'Voice Match', desc: 'Mimics your unique tone' },
+                            { title: 'Viral Hooks', desc: 'Identifies high-performing patterns' },
+                            { title: 'Auto-Publish', desc: 'One-click direct upload' },
+                            { title: 'Trend Sync', desc: 'Real-time trend adaptation' }
+                        ].map((item, i) => (
+                            <div key={i} className="flex items-start bg-card-theme p-4 rounded-xl border border-theme hover:border-purple-500/20 transition-colors shadow-sm">
+                                <div className="mt-1 mr-3 w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                                    <Check className="w-3 h-3 text-green-500" />
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-theme-primary text-sm mb-1">{item.title}</h4>
+                                    <p className="text-xs text-theme-secondary">{item.desc}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

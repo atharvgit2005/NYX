@@ -93,7 +93,7 @@ export default function IdeaGenerator() {
     };
 
     return (
-        <div className="max-w-4xl mx-auto relative">
+        <div className="max-w-4xl mx-auto relative mt-8">
             <div className="flex justify-between items-center mb-8">
                 <div>
                     <h2 className="text-3xl font-bold text-theme-primary">Idea Generator</h2>

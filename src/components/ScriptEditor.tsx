@@ -62,7 +62,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
     };
 
     return (
-        <div className="max-w-6xl mx-auto relative">
+        <div className="max-w-6xl mx-auto relative mt-8">
             {/* Toast Notification */}
             {showToast && (
                 <div className="fixed top-24 right-8 bg-green-500 text-white px-6 py-3 rounded-xl shadow-2xl flex items-center animate-fade-in z-50">

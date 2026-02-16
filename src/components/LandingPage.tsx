@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import ThreeBackground from './ThreeBackground';
 import VideoCarousel from './VideoCarousel';
+
 import gsap from 'gsap';
 import { Zap, Bot, Rocket, Check, Linkedin, Twitter, Menu, X, LogOut, ArrowRight, Globe } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
@@ -154,6 +155,8 @@ export default function LandingPage() {
             {/* Video Carousel Showcase */}
             <VideoCarousel />
 
+
+
             {/* How It Works Section */}
             <section id="how-it-works" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10 bg-page">
                 <div className="max-w-7xl mx-auto">
@@ -204,7 +207,7 @@ export default function LandingPage() {
                             },
                             {
                                 title: 'AI Avatar & Voice',
-                                desc: 'Clone yourself or use premium avatars to present your content.',
+                                desc: 'Clone yourself or use premium AI avatars to present your content.',
                                 icon: <Bot className="w-6 h-6 text-purple-400" />,
                             },
                             {
@@ -224,7 +227,7 @@ export default function LandingPage() {
             </section>
 
             {/* About Us Section */}
-            {/* About Us Section */}
+
             <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="max-w-7xl mx-auto">
                     <h2 className="text-3xl font-bold text-center mb-6 tracking-tight">Meet the Founders</h2>

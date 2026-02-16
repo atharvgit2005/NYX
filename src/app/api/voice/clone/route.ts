@@ -1,49 +1,54 @@
-import { NextResponse } from 'next/server';
-import axios from 'axios';
 
-export async function POST(request: Request) {
+import { NextResponse } from 'next/server';
+import { InworldService, CloneVoiceRequest } from '@/lib/inworld';
+
+export async function POST(req: Request) {
     try {
-        const formData = await request.formData();
+        // Since we are uploading a file (likely multipart/form-data), we need to read it.
+        // Wait, the client sends FormData. Let's parse it.
+        const formData = await req.formData();
         const file = formData.get('file') as File;
-        const name = formData.get('name') as string || 'My Cloned Voice';
-        const description = formData.get('description') as string || 'Cloned via NYX Engine';
+        const displayName = formData.get('name') as string || 'My Cloned Voice';
 
         if (!file) {
-            return NextResponse.json({ error: 'No audio file provided' }, { status: 400 });
+            return NextResponse.json(
+                { error: 'No audio file provided' },
+                { status: 400 }
+            );
         }
 
-        if (!process.env.ELEVENLABS_API_KEY) {
-            return NextResponse.json({ error: 'Missing ElevenLabs API Key' }, { status: 500 });
-        }
+        // Read file content as ArrayBuffer
+        const arrayBuffer = await file.arrayBuffer();
+        // Convert to Base64 string
+        const buffer = Buffer.from(arrayBuffer);
+        const base64Audio = buffer.toString('base64');
 
-        // Prepare data for ElevenLabs
-        const elevenLabsData = new FormData();
-        elevenLabsData.append('name', name);
-        elevenLabsData.append('description', description);
-        elevenLabsData.append('files', file);
+        const payload: CloneVoiceRequest = {
+            displayName,
+            langCode: 'EN_US', // Default for now
+            audioBase64: base64Audio,
+            description: `Cloned from uploaded file: ${file.name}`,
+            tags: ['custom-clone']
+        };
 
-        console.log('Uploading voice to ElevenLabs...');
+        const result = await InworldService.cloneVoice(payload);
 
-        const response = await axios.post('https://api.elevenlabs.io/v1/voices/add', elevenLabsData, {
-            headers: {
-                'xi-api-key': process.env.ELEVENLABS_API_KEY,
-                // axios automatically sets Content-Type for FormData
-            },
-        });
+        // The response contains the voice object: { voice: { voiceId: '...', ... } } (or top level depending on service)
+        // InworldService returns response.data directly.
+        // API documentation says: { voice: { ... } }
 
-        const voiceId = response.data.voice_id;
-        console.log('Voice created successfully:', voiceId);
+        const clonedVoice = result.voice;
 
         return NextResponse.json({
             success: true,
-            voiceId: voiceId,
-            message: 'Voice cloned successfully!'
+            voiceId: clonedVoice.voiceId,
+            voice: clonedVoice
         });
 
     } catch (error: any) {
-        console.error('Voice Cloning Error:', error.response?.data || error.message);
+        console.error('Error cloning voice:', error.response?.data || error.message);
         return NextResponse.json(
-            { error: error.response?.data?.detail?.message || 'Failed to clone voice' },
+            { error: 'Failed to clone voice', details: error.response?.data },
             { status: 500 }
         );
     }

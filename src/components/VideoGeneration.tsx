@@ -171,7 +171,7 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
     };
 
     return (
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto mt-8">
             <div className="flex justify-between items-center mb-8">
                 <div>
                     <h2 className="text-3xl font-bold text-theme-primary">Video Generation</h2>

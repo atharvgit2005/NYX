@@ -96,11 +96,11 @@ export default function Header() {
                                     href={item.href}
                                     onClick={() => setMobileMenuOpen(false)}
                                     className={`group flex items-center px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${isActive
-                                        ? 'bg-purple-600/20 text-purple-400 shadow-[0_0_15px_rgba(168,85,247,0.15)]'
+                                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/30'
                                         : 'text-theme-secondary hover:bg-card-hover hover:text-theme-primary'
                                         }`}
                                 >
-                                    <Icon className={`mr-3 h-5 w-5 transition-colors ${isActive ? 'text-purple-400' : 'text-theme-secondary group-hover:text-theme-primary'}`} />
+                                    <Icon className={`mr-3 h-5 w-5 transition-colors ${isActive ? 'text-white' : 'text-theme-secondary group-hover:text-theme-primary'}`} />
                                     {item.name}
                                 </Link>
                             );

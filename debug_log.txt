@@ -46377,3 +46377,1479 @@
   },
   "message": "Success"
 }
+[2026-02-16T05:09:12.853Z] [HeyGen Status Check] ID: 37deb4b1118b4ca0ab6dddc87fa90b20
+[2026-02-16T05:09:12.855Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T05:09:12.855Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770634449,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "37deb4b1118b4ca0ab6dddc87fa90b20",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:13.057Z] [HeyGen Status Check] ID: 1a2f2410ca8947a38c4278c39bee4b35
+[2026-02-16T05:09:13.058Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T05:09:13.058Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770633148,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "1a2f2410ca8947a38c4278c39bee4b35",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:13.067Z] [HeyGen Status Check] ID: 94787b5dbb00431ead061c5173c2dc89
+[2026-02-16T05:09:13.068Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:13.068Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770586701,
+    "duration": 105.509,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/94787b5dbb00431ead061c5173c2dc89/gif.gif",
+    "id": "94787b5dbb00431ead061c5173c2dc89",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.jpeg?Expires=1771823352&Signature=GhCnZ6jmW3VYwBaAg~7FEq5oVvIA5bYS8wIttH2Vg3MjMbic4AMz50FAD947YH8SbiQna3c-nDQcq40HubHCAEGHK3Nb3ZVWsyM0Sr2teyHfW0WqPyfBUMR73Efq8tTieldEzlvFfmt8zXQUOc7vx203Nne9cdsa5mKxhhSHu1QwKNikF6~X1B33QqqbWtsiEHMHwRO-m4~zDkJiFSHZDmt8Z9DfpVkt3gkybXQLAUbUnGZDqn~~VdzP5f~40f4YntfHMLbWFKeZtrFTeU~nGE~Fon72YgF6yfTUPUHza1XrCnCiaLmJRMBmuwsIf0B9XHy16fyvK6RnpoexmafW~w__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:13.073Z] [HeyGen Status Check] ID: 90c46bd8d1b34585a2804ec8bcf96016
+[2026-02-16T05:09:13.073Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:13.074Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770637607,
+    "duration": 26.5927,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/90c46bd8d1b34585a2804ec8bcf96016/gif.gif",
+    "id": "90c46bd8d1b34585a2804ec8bcf96016",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.jpeg?Expires=1771823352&Signature=NcReomgUk~WxaWXdIV6FGuJApR4hbU6462rvduT0lylhbTAMtnnYh2o-tXuuuEyyj5NUiZ9wy05k4myxRFbvwSYNtFuf1x8hMnbbOVIHY7Ls5PBpZEkeiZopJovU~PqWaEKiSjoZsJBs~8OsaV3IQJGKvZFr-TSyM~v5ed0AOQ6I76lpgprT4t8F9KCys8sBuO8bAqM0TUwKar-d8PFBWjQjO-Z~gcrtBvYlpyE3o~un-ISuLg0RdkI79gtRaVybvFDthD7Z80ummTOhhzg8bh8kjJMukEl23WiR00biMMa4tqrlp200DcIE1GXAcnNWFRupX0F2ubEStQB8Q9sCHQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:13.078Z] [HeyGen Status Check] ID: e2d29b39765947e78f73d139cdf18c57
+[2026-02-16T05:09:13.078Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:13.078Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770587733,
+    "duration": 35.2914,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/e2d29b39765947e78f73d139cdf18c57/gif.gif",
+    "id": "e2d29b39765947e78f73d139cdf18c57",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.jpeg?Expires=1771823352&Signature=S8TZQcEcVP6lMdcFqoMr7NsI2jfX4L~GcC3cu1yadjbcurpqHK5JCZ9gZDvli1VwMSGc33qOu4YmV9utiU1WwyBFLJ~b1DZ8~Hr3FIKT5X1hfBzpkQ~vPeHqJeHOK~ugPVi4UDyRsbnEXY6M5erpszdLha9~ro5C2jmZzV7zXi0AybcIC5wbrA5a-1h~Bhffr5DV86GRWXlWmlGp-oN0H~Vea5Mwb4WxITFlJql8xcoIhIcS7209UWiy6NRs1tHO8QzRLZqyKP9DoLZOp3yah88kY6iehgUEpXHxiiw7YfaqHfXdLpIyO0ESN0tPKckt0RNUaqltOywPa7trQBZw~Q__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:13.082Z] [HeyGen Status Check] ID: 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-02-16T05:09:13.082Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:13.082Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770585254,
+    "duration": 121.584,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/12bcf38cae1c4466ae4f55ae6d41898b/gif.gif",
+    "id": "12bcf38cae1c4466ae4f55ae6d41898b",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.jpeg?Expires=1771823352&Signature=IJ82LEG3whTr12-eY5Z-OfLwvR8aI~fAvjPVXNXwxyCcZBqxlxi2YjtL3C9QkMHi3zCL9GjMdbBQ5wP3oyzF86MP5bu49Ri1JN0qE0vwUmkFLZi4ND3fRUZ~19-8ZZ-kIpOsnIA8ZO5JOJSVI6xjLm6Gxsi10VbAQBZR8Vo6cybykW4HG3wD0fpN-KiESsMVpU18ehePjR0wPBg~oOYJjM1kPKcOSdJuwFTB56XsptIzreqghY0bw1GpjjRNzhHTIYyQ9diXBqlMfmzuWk6AFrpik8zhYUbkozDZ1~5tRwDUk~VxKhOiwjG8vMBR5WIr3g6pLHumqJ17v43MgfBRow__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:13.316Z] Status Check Error: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for 8011e2ad786140b5a925b21d75aa2c82 in space 8011e2ad786140b5a925b21d75aa2c82"}
+[2026-02-16T05:09:13.631Z] [HeyGen Status Check] ID: 37deb4b1118b4ca0ab6dddc87fa90b20
+[2026-02-16T05:09:13.632Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T05:09:13.633Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770634449,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "37deb4b1118b4ca0ab6dddc87fa90b20",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:13.647Z] [HeyGen Status Check] ID: 94787b5dbb00431ead061c5173c2dc89
+[2026-02-16T05:09:13.647Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:13.648Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770586701,
+    "duration": 105.509,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/94787b5dbb00431ead061c5173c2dc89/gif.gif",
+    "id": "94787b5dbb00431ead061c5173c2dc89",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.jpeg?Expires=1771823353&Signature=BCaRMx--we4vtayO6NcNXvt0gfvhEf4GL7qadJBP6KwSgXuJdIeWUAbXy0ZHz~G7qCZBAtfDnpdOa0pNaEPBYMPqUfZGC3FrptfblGtISMT~6teXi3nctppfEMAv1MobXWe8GNeARnoufX7Fg1aJL5hrmKJVuNHzWfLUKKJULCYWmsJqaQTM8xewbCTvkeNlw77zaW6nGpH~JoCfUCHV2RxDGVErb3OSnDGg9HnFgxT7dRMnYAf3hIoZ4JvvxAr9sONJoGYoxVCWTplHRJhXairnGr6Iv3iar0tBoCdcCWrfgty2FOlUKbGlrKW5jTBZ0r9o32a5-SkH7wqeE87vUw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:13.653Z] [HeyGen Status Check] ID: e2d29b39765947e78f73d139cdf18c57
+[2026-02-16T05:09:13.654Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:13.654Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770587733,
+    "duration": 35.2914,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/e2d29b39765947e78f73d139cdf18c57/gif.gif",
+    "id": "e2d29b39765947e78f73d139cdf18c57",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.jpeg?Expires=1771823353&Signature=IK93ZQOuXGhWErzA~VNg8La-AcLIb4985CzircG0bD7NpQBfVsYK0y3oz9knq1t8Xof7Qql2KFF8zTDCM1WaxOEYLAQBGJwVkBEPfhAJFtQAwpYqDfmf5SM1QU64dBI-VKropojeKF1xpaWyXY54-fXytsfrLy5d~RJL82Cm1yTe~uGIuxqOfbxWSBebDNRlDYWu9AHdO5CW-InRsKIvem48mLNQO-1vUULzkXjtFMLW~HOzFplS3C2KtPCk3uJHVhMBbZAZaY1nwoZ75lAAwqEyhZf517Cupbtqan8MSejtEHS16xuQHtv7L3kOqPcvZbz083PYFaQda4gHV5Drjw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:13.658Z] [HeyGen Status Check] ID: 90c46bd8d1b34585a2804ec8bcf96016
+[2026-02-16T05:09:13.658Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:13.658Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770637607,
+    "duration": 26.5927,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/90c46bd8d1b34585a2804ec8bcf96016/gif.gif",
+    "id": "90c46bd8d1b34585a2804ec8bcf96016",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.jpeg?Expires=1771823353&Signature=Vye8~wyOmujJbUd6Wic6EhGlRECIWYoTRc22NXCm8fYbR9eF3cYl1V5eZKhp592-KnBARp7EPyABVG04tyiW-8Aqh9oxnYXrfmXGiqA-B9aLjI1MhMOhzkBcHCxRh2SZQRse-TGyPgl~ww7ApyfqiIspaISaBHjB9wweAws-Ts3cgEMMKpfOQj7sJTO9ohE5WPgXIzkOUrMDvduDp0569JlEPRa8nHzFJeSrTUBx2U5YNGr1qo8fxfiAOswVz78zCIQxMy7bDsYh1mNWfH~OVhzGJ57PEB-Y3hSROui2BZwl3S7wZ9t60yO1kEo30o3KDE606zsdMvfJLSZL4iZK5g__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:13.660Z] [HeyGen Status Check] ID: 1a2f2410ca8947a38c4278c39bee4b35
+[2026-02-16T05:09:13.660Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T05:09:13.660Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770633148,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "1a2f2410ca8947a38c4278c39bee4b35",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:13.662Z] [HeyGen Status Check] ID: 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-02-16T05:09:13.662Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:13.662Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770585254,
+    "duration": 121.584,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/12bcf38cae1c4466ae4f55ae6d41898b/gif.gif",
+    "id": "12bcf38cae1c4466ae4f55ae6d41898b",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.jpeg?Expires=1771823353&Signature=KNBco51Yzw0c~48cNOlrtowq77557pY-Nv5KJTdyptBhhxhTxT9n8nyBmOrwxycu89H7Z7RCTwkG29o1SDR4Zg2kyJFsbeRxOc86lAGEqu0H78j5bE4-V0pPZs2eG3TGVdwSdqu~ax7KfwAND57V9c7tDzIAMTfuugSVvINsdfrt-laTiHHLP~fMbR8Ok9rBLJsxaHit1QFGQIZ2nnSkxiepL3YNLB7Y~0p7CRkmwshiJxppI7HPzc1-heYwZkBgcWFPY~uerFaZLDx-ttbmTpHdY0OPNh8Qv4C-qvmNn0GpJShSpLaZJJVpVdhr1UVGn0KyXYftXdYzEWrK3efG3w__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:14.062Z] Status Check Error: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for 8011e2ad786140b5a925b21d75aa2c82 in space 8011e2ad786140b5a925b21d75aa2c82"}
+[2026-02-16T05:09:14.067Z] [HeyGen Status Check] ID: 37deb4b1118b4ca0ab6dddc87fa90b20
+[2026-02-16T05:09:14.067Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T05:09:14.067Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770634449,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "37deb4b1118b4ca0ab6dddc87fa90b20",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:14.069Z] [HeyGen Status Check] ID: 1a2f2410ca8947a38c4278c39bee4b35
+[2026-02-16T05:09:14.069Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T05:09:14.069Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770633148,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "1a2f2410ca8947a38c4278c39bee4b35",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:14.071Z] [HeyGen Status Check] ID: e2d29b39765947e78f73d139cdf18c57
+[2026-02-16T05:09:14.071Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:14.071Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770587733,
+    "duration": 35.2914,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/e2d29b39765947e78f73d139cdf18c57/gif.gif",
+    "id": "e2d29b39765947e78f73d139cdf18c57",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.jpeg?Expires=1771823353&Signature=IK93ZQOuXGhWErzA~VNg8La-AcLIb4985CzircG0bD7NpQBfVsYK0y3oz9knq1t8Xof7Qql2KFF8zTDCM1WaxOEYLAQBGJwVkBEPfhAJFtQAwpYqDfmf5SM1QU64dBI-VKropojeKF1xpaWyXY54-fXytsfrLy5d~RJL82Cm1yTe~uGIuxqOfbxWSBebDNRlDYWu9AHdO5CW-InRsKIvem48mLNQO-1vUULzkXjtFMLW~HOzFplS3C2KtPCk3uJHVhMBbZAZaY1nwoZ75lAAwqEyhZf517Cupbtqan8MSejtEHS16xuQHtv7L3kOqPcvZbz083PYFaQda4gHV5Drjw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:14.072Z] [HeyGen Status Check] ID: 90c46bd8d1b34585a2804ec8bcf96016
+[2026-02-16T05:09:14.072Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:14.072Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770637607,
+    "duration": 26.5927,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/90c46bd8d1b34585a2804ec8bcf96016/gif.gif",
+    "id": "90c46bd8d1b34585a2804ec8bcf96016",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.jpeg?Expires=1771823353&Signature=Vye8~wyOmujJbUd6Wic6EhGlRECIWYoTRc22NXCm8fYbR9eF3cYl1V5eZKhp592-KnBARp7EPyABVG04tyiW-8Aqh9oxnYXrfmXGiqA-B9aLjI1MhMOhzkBcHCxRh2SZQRse-TGyPgl~ww7ApyfqiIspaISaBHjB9wweAws-Ts3cgEMMKpfOQj7sJTO9ohE5WPgXIzkOUrMDvduDp0569JlEPRa8nHzFJeSrTUBx2U5YNGr1qo8fxfiAOswVz78zCIQxMy7bDsYh1mNWfH~OVhzGJ57PEB-Y3hSROui2BZwl3S7wZ9t60yO1kEo30o3KDE606zsdMvfJLSZL4iZK5g__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:14.073Z] [HeyGen Status Check] ID: 94787b5dbb00431ead061c5173c2dc89
+[2026-02-16T05:09:14.073Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:14.074Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770586701,
+    "duration": 105.509,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/94787b5dbb00431ead061c5173c2dc89/gif.gif",
+    "id": "94787b5dbb00431ead061c5173c2dc89",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.jpeg?Expires=1771823353&Signature=BCaRMx--we4vtayO6NcNXvt0gfvhEf4GL7qadJBP6KwSgXuJdIeWUAbXy0ZHz~G7qCZBAtfDnpdOa0pNaEPBYMPqUfZGC3FrptfblGtISMT~6teXi3nctppfEMAv1MobXWe8GNeARnoufX7Fg1aJL5hrmKJVuNHzWfLUKKJULCYWmsJqaQTM8xewbCTvkeNlw77zaW6nGpH~JoCfUCHV2RxDGVErb3OSnDGg9HnFgxT7dRMnYAf3hIoZ4JvvxAr9sONJoGYoxVCWTplHRJhXairnGr6Iv3iar0tBoCdcCWrfgty2FOlUKbGlrKW5jTBZ0r9o32a5-SkH7wqeE87vUw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:14.399Z] [HeyGen Status Check] ID: 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-02-16T05:09:14.399Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:14.400Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770585254,
+    "duration": 121.584,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/12bcf38cae1c4466ae4f55ae6d41898b/gif.gif",
+    "id": "12bcf38cae1c4466ae4f55ae6d41898b",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.jpeg?Expires=1771823354&Signature=IpoeHSvV~3uTY2HbAapQf9AznI1ZDDyW1Ao28erSaNUkm8Hkvhq4Sk5R4tdHQk7aRPkjAL5tcaFvrFcj1uuHB-T2W1uaSd1lqVVdSax~rMvXx3kf9nD8QeYNG6yARuooCa1nmFz2bPI32KUpl4H9aHIYGG9EjGFpfrN95c6ptBh6RJLQDU8V2EsnYhlljv2ms-aKqrVR98BevkFZKsnIkPTaChlTT0FODcnpzHQwdkPCReJZDHVjI6izM7H74FXchzc9wvQ6SM1imeJJDaVgOpJZnZSKvISVEFQ7wRkgLCsZuyVJPd~fCRhQN1Nd28CQMxbir63RFRnE487x1Xd6hA__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:14.410Z] Status Check Error: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for 8011e2ad786140b5a925b21d75aa2c82 in space 8011e2ad786140b5a925b21d75aa2c82"}
+[2026-02-16T05:09:14.661Z] [HeyGen Status Check] ID: 90c46bd8d1b34585a2804ec8bcf96016
+[2026-02-16T05:09:14.663Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:14.664Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770637607,
+    "duration": 26.5927,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/90c46bd8d1b34585a2804ec8bcf96016/gif.gif",
+    "id": "90c46bd8d1b34585a2804ec8bcf96016",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.jpeg?Expires=1771823354&Signature=omdZW0h-FyNvDD8SoQrPYiXXMhfmmCpO9K3AwIJdYMlAQYuJYaowBiVQw-f6GpadtmbKu1EJZnYWvsPxCiW5MCQRc2OlE8-FmHFAuGDUV6fPfhtF2lwfbnpLxsU2NmERFierI2XQn93b4J3SDcUt7ut94QUyRmLo9BRPSHGY8FqlCpQlFrSZ~P7ve0z9BY~2SmzSJiicg-oEivVpkRARrjSYohHa-PzFb0ZXoe8-tdcQ0Eq3BdvFtTj6mkmU9Zl45Bo1AmF16Tmmn3TAiYDCo8sHuxTipvE8IKk6vjkhr7~gNvMeRO9FnYEUYCh4~-NeNB2XWPZApAynLwN1-1isDA__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:14.670Z] [HeyGen Status Check] ID: 37deb4b1118b4ca0ab6dddc87fa90b20
+[2026-02-16T05:09:14.671Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T05:09:14.672Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770634449,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "37deb4b1118b4ca0ab6dddc87fa90b20",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:14.678Z] [HeyGen Status Check] ID: 1a2f2410ca8947a38c4278c39bee4b35
+[2026-02-16T05:09:14.680Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T05:09:14.680Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770633148,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "1a2f2410ca8947a38c4278c39bee4b35",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:14.684Z] [HeyGen Status Check] ID: e2d29b39765947e78f73d139cdf18c57
+[2026-02-16T05:09:14.684Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:14.684Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770587733,
+    "duration": 35.2914,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/e2d29b39765947e78f73d139cdf18c57/gif.gif",
+    "id": "e2d29b39765947e78f73d139cdf18c57",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.jpeg?Expires=1771823354&Signature=YbVwnNzMRtaiduspmAU58fySLaRLxB60ySJSaN8-ZYzDjK32z1kdbYkId7GMaNIjSQQ4boXrGjhY1Zz-86ZmmomQA24BpVP~Fl37VKrjqo7cl9oXrSv9w1SnlzXNWWTG7EFtBolEYxdqxWewir~Vu4DHlFxbjvoZGBwKRh~ljygTVGHzHdi4ObfoqoaXL1RljCF8thgI0Z5D4sWJVLczuSUQgv8HX6i8ei5lXVGKwm4K0P5bJ0M00xBIe463f5omsuBXD7eKAQwxU0iq40BuuWWXF~uO9E8UzwWo39h76ZSzu77uqRIPzPB87uYvfdWOeOSP95vwUwbo~n7-cPONsg__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:14.938Z] [HeyGen Status Check] ID: 94787b5dbb00431ead061c5173c2dc89
+[2026-02-16T05:09:14.938Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:14.938Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770586701,
+    "duration": 105.509,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/94787b5dbb00431ead061c5173c2dc89/gif.gif",
+    "id": "94787b5dbb00431ead061c5173c2dc89",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.jpeg?Expires=1771823354&Signature=BBcTlB-vsHLkf0FcFZi2sv7Ai11Zb1fHjMVWUDgz06CnBfyA1Z44H5YW1dl69H1VLwb4Ki9q~6LZLVpaUgrt5oVE2UuOkKODnKsfMQI6qvRABXW1SOOC-2rDyYiq0667IbtEcEJf0385WhUBnwbO3sTxtdKsXxjdJsDFZ5ueH6LR8uTHU8fgJ4N5eVJJmXJUhkn9YWehpCSWPAawg~WWt8RWLZD0tbr-vCd3qApNxzvsytBrUfTahIblUq9PfU597hA5QjJisIm9yf65X9HeFnCxBxcSWSHBvDK6PgI1QwLKhOl6UEXVQvHhagn0IwygXwNEyaKJy2euzY5KOEIgdA__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:14.942Z] [HeyGen Status Check] ID: 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-02-16T05:09:14.942Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:09:14.942Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770585254,
+    "duration": 121.584,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/12bcf38cae1c4466ae4f55ae6d41898b/gif.gif",
+    "id": "12bcf38cae1c4466ae4f55ae6d41898b",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.jpeg?Expires=1771823354&Signature=IpoeHSvV~3uTY2HbAapQf9AznI1ZDDyW1Ao28erSaNUkm8Hkvhq4Sk5R4tdHQk7aRPkjAL5tcaFvrFcj1uuHB-T2W1uaSd1lqVVdSax~rMvXx3kf9nD8QeYNG6yARuooCa1nmFz2bPI32KUpl4H9aHIYGG9EjGFpfrN95c6ptBh6RJLQDU8V2EsnYhlljv2ms-aKqrVR98BevkFZKsnIkPTaChlTT0FODcnpzHQwdkPCReJZDHVjI6izM7H74FXchzc9wvQ6SM1imeJJDaVgOpJZnZSKvISVEFQ7wRkgLCsZuyVJPd~fCRhQN1Nd28CQMxbir63RFRnE487x1Xd6hA__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:09:15.107Z] Status Check Error: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for 8011e2ad786140b5a925b21d75aa2c82 in space 8011e2ad786140b5a925b21d75aa2c82"}
+[2026-02-16T05:23:41.276Z] [HeyGen Status Check] ID: 94787b5dbb00431ead061c5173c2dc89
+[2026-02-16T05:23:41.277Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:23:41.277Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770586701,
+    "duration": 105.509,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/94787b5dbb00431ead061c5173c2dc89/gif.gif",
+    "id": "94787b5dbb00431ead061c5173c2dc89",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.jpeg?Expires=1771824221&Signature=L~3vhDWBdNWetXlf~hxMK02q2wcyAWWUZuhG9nML6M-s-ys62An92yH4vqrRkn4IzCASbQg15NivqpApwRIoP5n9mFrux10Tc2p1-a9BP54wAAc0QEmxVD2XJve8kXuayniy0MXMgn9FEbJ8Z~oOzT1~rVKnnc4RoMGzb6wYnF9-oDZl6nYxqoAYjDhHfFG~JHzsTGP-SFkORHe3HFK26NOJ8yffbFGhOtwqtUdW3ZxMam89fhynX6ftC4drQm-Pi9FWurrPD9RFn-j6K~udjzh3Cn3XlA-pDb28rdBCiE6nM4RS~QnRaqVDu~U0qK~BBaUMgGCHYIbriRtWE4KQ1A__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:23:41.285Z] [HeyGen Status Check] ID: 90c46bd8d1b34585a2804ec8bcf96016
+[2026-02-16T05:23:41.285Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:23:41.285Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770637607,
+    "duration": 26.5927,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/90c46bd8d1b34585a2804ec8bcf96016/gif.gif",
+    "id": "90c46bd8d1b34585a2804ec8bcf96016",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.jpeg?Expires=1771824221&Signature=IRXpHGyv8CENHkDcxLDVF1mimnBwCOL~q9qBUrppZKrXmdyX~b15NgdvIOmJ7Zq6pTu5PPxLMDQ1UuqVwcmWM2pWhtE2F7hLAkySPl-wnWrahTYxvjdgHDdLBwkvqy8jZfoU9Xb6YgKFY-B0Ri76Z2YL0f8SMtBMZLyKQljKEAOM7P2Lz-60Pz8J1gZsfqTMVt6crVYBuw00kSR3aGSRe4s1-gex18cscimS9uK40Ld-Fo5d33a6RMFf5FjCSDpjB82vTHzEQUF13Yf9HBp6w0iGhx9C~pdDWW-ZXeVBmnKi7ghgNllsKm3cZ5ZUTHQYNgkiA2u3olLMmOwz6lYphQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:23:41.329Z] [HeyGen Status Check] ID: 37deb4b1118b4ca0ab6dddc87fa90b20
+[2026-02-16T05:23:41.329Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T05:23:41.329Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770634449,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "37deb4b1118b4ca0ab6dddc87fa90b20",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:23:41.340Z] [HeyGen Status Check] ID: 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-02-16T05:23:41.341Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:23:41.341Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770585254,
+    "duration": 121.584,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/12bcf38cae1c4466ae4f55ae6d41898b/gif.gif",
+    "id": "12bcf38cae1c4466ae4f55ae6d41898b",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.jpeg?Expires=1771824221&Signature=lHIPwQBlJez-JPnKdRNsdEwWqbClz8pBfwvTnvRCkOloOgXZl52x53YytNMBu4824xPQQwK8c01P5amEODSYPjSfq7LrajLxJBZ~1GVMbzg-luL5RGyRfp0h5GQ3vBNbYgbqcxGjtURADHKYuGhQf8H9oESyfKvs~RsKjEvoESOKrn-AsBjLP1zX7mNGejP3u7BG-HfNs9d-cEhTHl~APpoaSHFy4vA5QhKSy~bIgDXSkSVRn06b52BJwxetZlMfJ9KdCj8HVKN~e~LpQUgQI01GICG1MYYp-cK~sTgLd8n-YsZeduJcbveqeMuvk5C0rybUknOsbFlPORNTAkuomQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:23:41.364Z] [HeyGen Status Check] ID: 1a2f2410ca8947a38c4278c39bee4b35
+[2026-02-16T05:23:41.364Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T05:23:41.364Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770633148,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "1a2f2410ca8947a38c4278c39bee4b35",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:23:41.367Z] [HeyGen Status Check] ID: e2d29b39765947e78f73d139cdf18c57
+[2026-02-16T05:23:41.367Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:23:41.367Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770587733,
+    "duration": 35.2914,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/e2d29b39765947e78f73d139cdf18c57/gif.gif",
+    "id": "e2d29b39765947e78f73d139cdf18c57",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.jpeg?Expires=1771824221&Signature=IpIiGSmNpd5PfQuQgKDLNNhKLM-CFjxxHlgbywDDlzkQdHYnus3n2fAqgLtjWrnM5m0-6yjdQ5oJOBuNhfoyVpMmpfP4vjIpnZC9lxYVUIIUcdccYqTZjH01ciKEi-uQkwdWQWmWvjgMkUGERiYx6GJrhd544YhDG3sZVyxRXXTpcDVmIKPD6vs8zCAFVjL5Kd2LcUqaYj0FQLvDyInVlIDkNOUwnpJcYAqwoRF7mLPxsdLA6BeIQFbkqxOmc2Mi~Xp20hJEHwKQEetvtakgKuO1dHHzvea2-YfkEaa~zy~f-avFATH~JRoAQ0S-jBn29lcue0UOqYXX7A6MC282~w__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:23:41.797Z] Status Check Error: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for 8011e2ad786140b5a925b21d75aa2c82 in space 8011e2ad786140b5a925b21d75aa2c82"}
+[2026-02-16T05:26:31.350Z] [HeyGen Status Check] ID: 90c46bd8d1b34585a2804ec8bcf96016
+[2026-02-16T05:26:31.352Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:26:31.353Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770637607,
+    "duration": 26.5927,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/90c46bd8d1b34585a2804ec8bcf96016/gif.gif",
+    "id": "90c46bd8d1b34585a2804ec8bcf96016",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.jpeg?Expires=1771824391&Signature=CfCQ6uKLqzY0uMsh6YKN8WZEyzSnKivwjzD70Mf0cYauE6-6gR8h49jvaeLBr5nsE6rb98YZ8MC6p0mzAUslN8j6GVFUMT-cxvOEivb4cUToaFXbnv8jY7A79rEbe0FyY9LUpS1U6t~M2Y3nTI4Ym2MjcxcPS1cMziUKC3ubxmr6~YkchScAMv64tyKdaa~DL0DuASgXWkJ204S9IEIY6HWch94kvQdRnEKqkowFC28D6T8Sdz~00HnzEYvloLnsDOdnbdTwx-ngXwg-BKhFfhuHqaIp3ads-TwG6SLjIEEpjF5IhntwYd86Ev9HBRAyQaZt3bx4EsbFs6VDAJQS9A__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:26:31.366Z] [HeyGen Status Check] ID: e2d29b39765947e78f73d139cdf18c57
+[2026-02-16T05:26:31.367Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:26:31.367Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770587733,
+    "duration": 35.2914,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/e2d29b39765947e78f73d139cdf18c57/gif.gif",
+    "id": "e2d29b39765947e78f73d139cdf18c57",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.jpeg?Expires=1771824391&Signature=iswiZUy996nr5Yqp3Xi8OgPZPHlOUxtgBafmyJQ5gyzTSF6XJufmKdiRBEzUsdUu47imvuKdjuuWrGZGxJacF-1isN60UimU0dQfjlhJ-iyRsDd0jh-tN02Ck8fNnhUie9zBHJjYJ8GfgKtCBWHeBrvVddyyibrHli4WUgwc0Pmoy0Vdi2-1lGpMnkPaMWARGS337Wec54Y2WTIJ-SirjPnV08cyduXzKV7o3lg8ORO-040s0dUq-EvIN-AX9IkMlAKkrxNPrejJhlGTlx60RmzR-S5qP7NpYlRPnaG3Xu105T6x-X5bI9VxXpAMnJJj6l523mUdonjmCnHak6U-Hg__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:26:31.369Z] [HeyGen Status Check] ID: 37deb4b1118b4ca0ab6dddc87fa90b20
+[2026-02-16T05:26:31.370Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T05:26:31.370Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770634449,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "37deb4b1118b4ca0ab6dddc87fa90b20",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:26:31.374Z] [HeyGen Status Check] ID: 94787b5dbb00431ead061c5173c2dc89
+[2026-02-16T05:26:31.375Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:26:31.375Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770586701,
+    "duration": 105.509,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/94787b5dbb00431ead061c5173c2dc89/gif.gif",
+    "id": "94787b5dbb00431ead061c5173c2dc89",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.jpeg?Expires=1771824391&Signature=o3aTYOayOV3KAhkHP2Au8frFvUFv~9SxZYcQB6eB2zV9H4cVvepRRccABi8nuzBd8QBcXS1X3R3fK6~ilCEB7N5ie9SRBLSEJzB1Lp84rt72iPap3898SenR1uR-Icnkb2Sdj1LCQ5YgyZ4Tx5N0EWEqnPqNuKKAdSNkuHx-lhxGbEp4zLLiLfr1xCLVOXiYzTe832x6DALWdSG5WPUpC7OqcrUc00NDc2X5zCkQQlVj5e6KRsJX2mmnNhlvQMZBz4b0FKPhSaPWQYTrpw-TezLcyFFZU-tPg2OWCdLDFiiTyFRJAfg9F65nESTW6ZY02-yH8ikYsN4tXB5IrI4I3Q__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:26:31.379Z] [HeyGen Status Check] ID: 1a2f2410ca8947a38c4278c39bee4b35
+[2026-02-16T05:26:31.379Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T05:26:31.379Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770633148,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "1a2f2410ca8947a38c4278c39bee4b35",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:26:31.389Z] [HeyGen Status Check] ID: 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-02-16T05:26:31.389Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:26:31.389Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770585254,
+    "duration": 121.584,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/12bcf38cae1c4466ae4f55ae6d41898b/gif.gif",
+    "id": "12bcf38cae1c4466ae4f55ae6d41898b",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.jpeg?Expires=1771824391&Signature=pf9zEePi~ZuXb9b4I3g3HnjHVSGPp8ksKvpe3FSJTVb-2CgOgpJISgrO4sgjh3SeLw8pkNn--2xg22wUfuoUodyZqLCauvMop6XrN2imyPjmfuZ7doaqAN0nLoV~ep3Dv2lbC1gGnkSCXqZPrgYAKSJnLsi0ZTn2x-LiN7zkmf4PorbmjNjfV22np390AIzSMDx0j7jDjjx7ZCTAd67b~wyLXfC~GPpaVPDEwkI4djZItM16B7l1Iz5-YN-k8sY76xGP91MItrAMpAcUQqLq6GDVBgkljthyT~L9usw7~dtFoIcAb-LGyAMl0dO6E74nu2FCaYYWtvMe167ziDBYYA__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:26:31.694Z] Status Check Error: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for 8011e2ad786140b5a925b21d75aa2c82 in space 8011e2ad786140b5a925b21d75aa2c82"}
+[2026-02-16T05:39:23.369Z] [HeyGen Status Check] ID: e2d29b39765947e78f73d139cdf18c57
+[2026-02-16T05:39:23.371Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:39:23.372Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770587733,
+    "duration": 35.2914,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/e2d29b39765947e78f73d139cdf18c57/gif.gif",
+    "id": "e2d29b39765947e78f73d139cdf18c57",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.jpeg?Expires=1771825163&Signature=TjjI2tP0VwhWBSvtFplpbqhrRk7vIYvUbA924dj~PpNBO4~hMHctgC3pECEEDv1LUwiGlow5y52wzB2ONH~NgGd4K4R76dJF5NvpF3soUNtT0rmRZ1kTJyHDH6MpAr~wkI2CMv6adywIkEgY7BzMGvU7Lkt19-~S6guCjtPSFNZJ4htY4smYWLb9PegQGks5VsuV9kZw7t4hEKjuWJry0R5DPnLRt3QTxce3AJ8orLAszt~leP0ktO~cQKdj0OBmIqoO~7fh1k2EBThCdkI-I8WppwNw24fcpVuBXPGzt-~WUIXmZqDkob~1pNuZKJPB9SAv836b8NDTVbYmop6hZg__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:39:23.386Z] [HeyGen Status Check] ID: 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-02-16T05:39:23.387Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:39:23.387Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770585254,
+    "duration": 121.584,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/12bcf38cae1c4466ae4f55ae6d41898b/gif.gif",
+    "id": "12bcf38cae1c4466ae4f55ae6d41898b",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.jpeg?Expires=1771825163&Signature=Nb0iPHcpMC39Z72G~IE62HnTMAhBuQbmDh1i-dKTdlIz5~qbTDg1GyHQqCIDifK7G0zDe~FnluUFtgZe1HNGQmEABIJpVPGUY6VbFzN2-nCN-kbZf1Ce6ZFHr6XpkvNw7D4quXpchS9hIgA1YAy~6sGNI7DAKzbibfymoqtf82yXLBMWRdyy5zJcDjc-iZGwURiJ8iOfYu4nCvasUlac6ubFxJo1V6OFK5yVReaj3UzaYo653tMuF4dqkn8BhM12SA2BEwDb7w770fs5XJNdoOKkRBABcmShqLCaPTiuA19-EpwwQQU4Ou6yE~h20Qi9rcmTEBZEu-Lq~97BF0nKaw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:39:23.391Z] [HeyGen Status Check] ID: 94787b5dbb00431ead061c5173c2dc89
+[2026-02-16T05:39:23.391Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:39:23.391Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770586701,
+    "duration": 105.509,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/94787b5dbb00431ead061c5173c2dc89/gif.gif",
+    "id": "94787b5dbb00431ead061c5173c2dc89",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.jpeg?Expires=1771825163&Signature=i1ouxLA89o6ENJ5kHmAs3NUH~OzdWLylYiGXg6IJ2N2IEyTuzJAp0dxMoSMUCwpmFgJRce1r4R0FOkxz2pZAZZpYiHEMV9VKfEDMQFHKpDQIWA8BazE45gE~WNovz1bVV8fUfTxgRLo7Dk~joJi7VJpWJt3n~xa9oHnC5UkIZWG-1geA4mll4fZr5PQqIitEvQpaC7fjF0s-FKGYeBKJzVbchb1mZRIeUlvcMplV5GQC-Ow508whCpq0y5YhUo9hFjgR8YJOs4PlukJTJkJ8W52ryO6prKYKgIg3uASFue3UiGa~KEoXNb~8~ZaHCZCNTHTNAAkIMY0Immsi7g0Itw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:39:23.395Z] [HeyGen Status Check] ID: 90c46bd8d1b34585a2804ec8bcf96016
+[2026-02-16T05:39:23.395Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T05:39:23.395Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770637607,
+    "duration": 26.5927,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/90c46bd8d1b34585a2804ec8bcf96016/gif.gif",
+    "id": "90c46bd8d1b34585a2804ec8bcf96016",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.jpeg?Expires=1771825163&Signature=cT4Q8vG~Jn0MVJ94Cl49eHLzlVtAZO9nnEGVF39BX58ozV8JKFRATAcldpSBffebDLm0gWdhJcfdVHsGgGmuSTmIOkx2WpuaD5YrneXGpdVPqgz3607Eo-wubRu1IyQ5RStY88g~WkRDjXsw9f7Clhrj6z6i2fYl57OefCCkyVVvMe~vZ0ltuFBfJj9KO8iG5yQI-Vq9ggFIC9cjJO05LbDQ10Sq-Yxj80MSdo0pVAcSbb71BVDOOcmrr7MyghKkGESySK6Qn~Z0RrqAghPyLGdOxm1~jk9R8Umxbx0W~6sJdKwJWw09-x68M8CipAHS4tPUE5s6CZL7vaEcl-hSqg__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:39:23.402Z] [HeyGen Status Check] ID: 37deb4b1118b4ca0ab6dddc87fa90b20
+[2026-02-16T05:39:23.402Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T05:39:23.403Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770634449,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "37deb4b1118b4ca0ab6dddc87fa90b20",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:39:23.418Z] [HeyGen Status Check] ID: 1a2f2410ca8947a38c4278c39bee4b35
+[2026-02-16T05:39:23.419Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T05:39:23.419Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770633148,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "1a2f2410ca8947a38c4278c39bee4b35",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T05:39:23.825Z] Status Check Error: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for 8011e2ad786140b5a925b21d75aa2c82 in space 8011e2ad786140b5a925b21d75aa2c82"}
+[2026-02-16T07:44:45.690Z] [HeyGen Status Check] ID: 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-02-16T07:44:45.694Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T07:44:45.695Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770585254,
+    "duration": 121.584,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/12bcf38cae1c4466ae4f55ae6d41898b/gif.gif",
+    "id": "12bcf38cae1c4466ae4f55ae6d41898b",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.jpeg?Expires=1771832685&Signature=WF0TlG0YTTYZrzTMsfq7kNYol1GgRXcturzYbYJ6GjUZaWjjryUbVmlCwNjRL~kWiRwALn6-uYznRxqf4xDtR0iP~U8SDTNFSCVCmYnsijLSWy4qyuAVgDqfA~FEfJKQOiBG3u~As2f4wE4r3l14atYlfWiEjy6SK42Y6cjt7Lc4FYkZM8qgfnbn2JJuiN~iSM2cokF51EXRZ0OpzuWax1Vgb0gYYOt~oMIcXnGoJtBAoD3glPte75aiRPeGAFQa-Pp0OCvjQyhDpZeaUtSEDvNAg84ar8s9zoxINEtPUtzxgEKm4FW~ETSqLFTWH7erWC54WbOqf8RWO~Ty0Pt7BA__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T07:44:45.706Z] [HeyGen Status Check] ID: e2d29b39765947e78f73d139cdf18c57
+[2026-02-16T07:44:45.706Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T07:44:45.706Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770587733,
+    "duration": 35.2914,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/e2d29b39765947e78f73d139cdf18c57/gif.gif",
+    "id": "e2d29b39765947e78f73d139cdf18c57",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.jpeg?Expires=1771832685&Signature=D3v1y5t03YSnlUTv9tHpqVROtTfq0l1ynd7VC1Ku9RaAykWNjiRb~uHHoerzBJHwSDIZHu~HJPDEs93XQ41FoKGSmcOxR6KaDHCTXD8TzgDWS90RkaRSwbhLDxwsG0pSF5A1JNEL2KLf7Z0VVqT4wGAjhBqTN-GjevKecHy8ER4G1LpAJEQQSpnQkFLUXO6gazZ6EvkLJtzDIRiYyjlLkR13-09rL~0LIA9b5xmOIesWvkaC4tnrtcpgKmpLcNaQEfdOds1ujYLWq7-p6Y5HMlvYqEhwKh3CZMkRrIA~L~l4KAVeXtrR1hwKcXtr7G97rlxTEUfaozPOC~cBL3-Now__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T07:44:45.710Z] [HeyGen Status Check] ID: 1a2f2410ca8947a38c4278c39bee4b35
+[2026-02-16T07:44:45.711Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T07:44:45.711Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770633148,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "1a2f2410ca8947a38c4278c39bee4b35",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T07:44:45.713Z] [HeyGen Status Check] ID: 37deb4b1118b4ca0ab6dddc87fa90b20
+[2026-02-16T07:44:45.713Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T07:44:45.714Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770634449,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "37deb4b1118b4ca0ab6dddc87fa90b20",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T07:44:45.749Z] [HeyGen Status Check] ID: 90c46bd8d1b34585a2804ec8bcf96016
+[2026-02-16T07:44:45.749Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T07:44:45.750Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770637607,
+    "duration": 26.5927,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/90c46bd8d1b34585a2804ec8bcf96016/gif.gif",
+    "id": "90c46bd8d1b34585a2804ec8bcf96016",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.jpeg?Expires=1771832685&Signature=hU6Gi9X0O4OQ2pRwgnNBcvrXSH7a4bjyqTC7IfUOIULGBZl~xxfN7vZtxV8yKdefBHrq1Bs7ArIfK8a8THqy~lhKcyihaMkkdUFoiVP7qoUREidvKSpUEbar3EbCwaTgvx8eMqWjD8F5ODrwgTrXK7T8OVrOq5uNMif0r-X7guL59l7~Kb7hTFV0tG~4DmSF7b4sa48k1gy680lyUCQX2Qa59HGFzvFbS2yFqKIhSdXAf~rJSz47Ca1BWG1olExLp0qloXFAbwYhCdAhvI-3b1nUBEhZbRNvdY-FvydtRMulJO~pFKJqAq9f6gs0pLNGt1Z7SBUIjtUjilvPdAwD-w__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T07:44:45.998Z] [HeyGen Status Check] ID: 94787b5dbb00431ead061c5173c2dc89
+[2026-02-16T07:44:45.999Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T07:44:45.999Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770586701,
+    "duration": 105.509,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/94787b5dbb00431ead061c5173c2dc89/gif.gif",
+    "id": "94787b5dbb00431ead061c5173c2dc89",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.jpeg?Expires=1771832685&Signature=ToEl-yfws6OLuroV1FE97679zM2wrT5Wbu2NfAjEZqoobwr9pT9bLFOZsCVXEBDR7D7aEu9KEdg27PqdcKFLoNKjdLSxYGkt9~pWbrC1hMsQxswyrfQddDrZ~BPexDkXI5VfrjRaSRhbR~7Boi~pJ2jIQpDxPgdeCsJQpcbpGpAxfDh8jagtSztsuwr0YCV7p6gYDXlYsfDgAArNzTvZVMpur8T4sH9nqZpDdDZfQsDHA6GQ1CFnM-n4G46gpwm69-1XDajZFvuFaaedFGvEgCiplXXotRTDhq~KNpz0wQ63aQRbKoCCAFPttvr9McN9bPsd3WqF4vwJCoLi2KLIRA__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T07:44:46.002Z] Status Check Error: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for 8011e2ad786140b5a925b21d75aa2c82 in space 8011e2ad786140b5a925b21d75aa2c82"}
+[2026-02-16T09:37:38.325Z] [HeyGen Status Check] ID: 37deb4b1118b4ca0ab6dddc87fa90b20
+[2026-02-16T09:37:38.332Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T09:37:38.332Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770634449,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "37deb4b1118b4ca0ab6dddc87fa90b20",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T09:37:38.391Z] [HeyGen Status Check] ID: 90c46bd8d1b34585a2804ec8bcf96016
+[2026-02-16T09:37:38.391Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T09:37:38.391Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770637607,
+    "duration": 26.5927,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/90c46bd8d1b34585a2804ec8bcf96016/gif.gif",
+    "id": "90c46bd8d1b34585a2804ec8bcf96016",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.jpeg?Expires=1771839458&Signature=UlyY90wPQa6R0t9bWKVImJa7SAJobgPbx7nTuCi~uuhSiQUuf1VVPpVmShn9Vip1yI5R~S7eW6cZiPyY7agNIiZ-RdxWU1AX3t4VpA7Ufxs6UijCXosbCQeQlLk6AERLqPjeJ6un0MiYFslUh-mHg81tMKLx868JxD1c~R-QGthh~Vq81eU4dAhuvGa5eup6pLbZ21XtsSh4zs-dqprRZoMN7bgsy~67~DGVk9WuwNZ9oSb2BpT0XRHV0-uAkZ2LY61vXOob29DwvaYfCjhL0wB5251lm9ofuiOXY52V6ehvlEZII05BgSF5tfAYP8-SINKueN4g0992uzsU6~5c4A__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T09:37:38.400Z] [HeyGen Status Check] ID: 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-02-16T09:37:38.400Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T09:37:38.400Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770585254,
+    "duration": 121.584,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/12bcf38cae1c4466ae4f55ae6d41898b/gif.gif",
+    "id": "12bcf38cae1c4466ae4f55ae6d41898b",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.jpeg?Expires=1771839458&Signature=dH1o2TRcRE36eubo71CiAzcoVXKQ6Ow-VnkRsO-CrFbbUld-6b0pjm6G4q0PSUX1pbuQkBPPBuVtDJf2dQ6OXN8GeTgTd--sB5w0yGi44qtAAJj9s9FkVRTSlZ7e8UCSsgLTluPAgb-jY3XiNKJASPr-OZWpoBNO-kVrsP-gMXKfBrmdkTMA~UJ51EqH2tp4xg2d7EY~AlC1t6-PRqvdtrjF4SYLtqCLmidlB9yDCyrk1faDa6eVd2Yc80pzLchRwWpC4cvZNHe8588ogqUrW5-6d7O1QteUmB7nElnyg5G-2LLTMA9bAZXI5XOw8W~gMxngSCPeOfwJBDj2IiHTAA__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T09:37:38.417Z] [HeyGen Status Check] ID: e2d29b39765947e78f73d139cdf18c57
+[2026-02-16T09:37:38.417Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T09:37:38.418Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770587733,
+    "duration": 35.2914,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/e2d29b39765947e78f73d139cdf18c57/gif.gif",
+    "id": "e2d29b39765947e78f73d139cdf18c57",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.jpeg?Expires=1771839458&Signature=XJkg42WFzfKknSwR5TN175m-aPQCQ3Vq3kkJQoGrBakLn4KYR4XwA7WYU3Z2VkG7YNbc7XXVHUAFau4zMCB1l8wesKz51xbeiPkd647bQ~jGG7NmUnlE-vhDrY656RDWmc6bfERwhxAUiyfuEnf48V2VYi6oPMmhrYRts5x9Dn80RMQra~YBgsEHWvutjjx7nuL8-LmhOlsjn~L7QhdKXkuSLYPZxaefkUa8PcDsz8uQQKrAR7Hahc5KHqs-wtE28ylunKoQNsV~~aFsY4hRHGzZKG52xwbcNawWv-HDdUkc0HkoiA9972Msg7Hyl~QQgFlzt1sc0Bgj3cgIGk~rTA__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T09:37:38.470Z] [HeyGen Status Check] ID: 94787b5dbb00431ead061c5173c2dc89
+[2026-02-16T09:37:38.470Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T09:37:38.470Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770586701,
+    "duration": 105.509,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/94787b5dbb00431ead061c5173c2dc89/gif.gif",
+    "id": "94787b5dbb00431ead061c5173c2dc89",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.jpeg?Expires=1771839458&Signature=IF-3US0XEwApy~wEcY-I9JdBZcBNaQPtz9y5HpdzePSEgPrJAlRjh0xHB9BKLbov3kD7jRBWVN5rn2Lptgl9hLStuKgxJWi0R41hwe30i25v8GiFw3UTAjQ8qwvmzTjYtCkUuu0PcYfTau3NuV0NBB9y1GZk2CMP3BTvII-tRW~0MkxGnoP6gYFwiIWcV28~8-VbFYS8pTyUoO2IBBu78r-Z~Q3Gvy~rxPdr8IPEZBKLEAqgBMLfwRAPSWNjXN70JaCsXKAkgqhjSy6nBAHfMORJdLK2~2INa8TxzSiQEUNUfdO~6UVzPP7dY1FaFFHSKBYyqzyCk6P1PfKQIwogSg__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T09:37:38.633Z] [HeyGen Status Check] ID: 1a2f2410ca8947a38c4278c39bee4b35
+[2026-02-16T09:37:38.795Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T09:37:38.795Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770633148,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "1a2f2410ca8947a38c4278c39bee4b35",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T09:37:38.902Z] Status Check Error: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for 8011e2ad786140b5a925b21d75aa2c82 in space 8011e2ad786140b5a925b21d75aa2c82"}
+[2026-02-16T11:25:42.682Z] [HeyGen Status Check] ID: 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-02-16T11:25:42.684Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T11:25:42.684Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770585254,
+    "duration": 121.584,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/12bcf38cae1c4466ae4f55ae6d41898b/gif.gif",
+    "id": "12bcf38cae1c4466ae4f55ae6d41898b",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.jpeg?Expires=1771845942&Signature=buaOLlzX0dTNgDA-CfLz1PREbxCaTXeKARygK160KfhH1kBbL29X-3zdSvR6Qj7tTAvxgNurFzWdcmVuSL7t3OOhd3ioYt-K2V7aN7DGPHYHj1eC8gB-yEiWwiMbU0IDxhbZWML1yMi-Ljyur3-hLx9Ilk1nACEZvMwNT3TDaa6HKzGbH6Q9y~Wyf1sHTtJaWDl03~OHhC4Rkb8Zs5zac0Z1hunPmgjZvaZrxaquu2jX9xwVCHhUi8ZRkMtrlviCDZeQRW1dWfXMTynfORbg30H~VZJjoUycZUBunRP3obip4DiwVBExrRhfRGNEnjcHAfVz7KNFH-nwBzOWWp3TwA__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:25:42.695Z] [HeyGen Status Check] ID: 1a2f2410ca8947a38c4278c39bee4b35
+[2026-02-16T11:25:42.695Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T11:25:42.695Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770633148,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "1a2f2410ca8947a38c4278c39bee4b35",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:25:42.700Z] [HeyGen Status Check] ID: 94787b5dbb00431ead061c5173c2dc89
+[2026-02-16T11:25:42.700Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T11:25:42.700Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770586701,
+    "duration": 105.509,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/94787b5dbb00431ead061c5173c2dc89/gif.gif",
+    "id": "94787b5dbb00431ead061c5173c2dc89",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.jpeg?Expires=1771845942&Signature=WZJPI2Q2BaWYlDFfGhcAwRL~N6TFytA1br1KmRgPC7r9oYHoYf1DK24FpNCiECYR0nQXR-bS~-upFfOXhgMntpM-AxQPK4LpnVVFxdXhpzpv~KdtqHNfNJ8JpW~HNJpXDIQW3VXXd1GVRZGF5qjC4mdiiF7uAWjLakZVI4M1ZKLFuivN-t00KnybeuBp3QX~879GINi94m-7hfGrBaJZyIF4QhsOrxFg02j9SY3h3Gtuhojc2dRHonstzasAfsgR~Qb3KG3ATawlaTV1ZZNB3ooHBlWLK-e-2t3j8LWITiugBWmt3qRxt4-rEpKojAYa4zNGFNcnKoiISg33gQKS4Q__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:25:42.707Z] [HeyGen Status Check] ID: 90c46bd8d1b34585a2804ec8bcf96016
+[2026-02-16T11:25:42.708Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T11:25:42.708Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770637607,
+    "duration": 26.5927,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/90c46bd8d1b34585a2804ec8bcf96016/gif.gif",
+    "id": "90c46bd8d1b34585a2804ec8bcf96016",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.jpeg?Expires=1771845942&Signature=oOxvquBLulqXTy8kjhsVaJznzBM5Nb10ggSfOj9fxLfM8QSGCiI10hwn3g7lqiSjbknqjEVW0otd1wOO3Q6sVMIurZhXYAGzM1Su61DVZ1AArI5KCTfnTPp-WnXa6GlFavN7XochUq3-xgW-9qdaHWzdverc-xKy72w1FubXX7c6CHBfMRU9LMhG-NpckkM~8ktuXgklC6M26U6XbPrBiD-pbW69JrYw6UyXkkJIaFJzcJoSfAiN7tB5NwkLl4tfXzo~P5OJpCSXil-u2XnmVb9OYU5BSr~F5QLg2HJvPLuCotXmT2XYoO~Hymcc5G6b2KrjS6dUBEJrs72LDgTI3g__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:25:42.717Z] [HeyGen Status Check] ID: 37deb4b1118b4ca0ab6dddc87fa90b20
+[2026-02-16T11:25:42.717Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T11:25:42.717Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770634449,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "37deb4b1118b4ca0ab6dddc87fa90b20",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:25:42.721Z] [HeyGen Status Check] ID: e2d29b39765947e78f73d139cdf18c57
+[2026-02-16T11:25:42.721Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T11:25:42.721Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770587733,
+    "duration": 35.2914,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/e2d29b39765947e78f73d139cdf18c57/gif.gif",
+    "id": "e2d29b39765947e78f73d139cdf18c57",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.jpeg?Expires=1771845942&Signature=pRQkf8mWe4-BRwxX6Us1TPVGndzhF32SFgl03EjdJgJCWic-4dB4pUCCnXlKUmLfuBG3qqMILFeo75Mum5pOmv4OUGn7xuBjvPamaMHzdT3ghAyvQ~dP4LI1Oz6Mg-Bn5hhN5Qf33WJU06VzWQ15GjYRjRtg7QQnqFdv7rgF2bwmBcNZzcmYa6V7vqnGrk6BMSRYm5T5Jaey83WKTZmE1LfiTNdQ29hShveFS8uBnCDIONnge0~naBdTTO4lm6x~tbGmsVNfi9vReMRiUnmq3tnWYTRjHBwb7GDQvcs-CK7M9iUSmzOY6YXf~0-C-0Qo8LvGFFSpaSXisVsB7bP~og__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:25:43.020Z] Status Check Error: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for 8011e2ad786140b5a925b21d75aa2c82 in space 8011e2ad786140b5a925b21d75aa2c82"}
+[2026-02-16T11:25:47.293Z] [HeyGen Status Check] ID: 1a2f2410ca8947a38c4278c39bee4b35
+[2026-02-16T11:25:47.293Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T11:25:47.294Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770633148,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "1a2f2410ca8947a38c4278c39bee4b35",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:25:47.307Z] [HeyGen Status Check] ID: 94787b5dbb00431ead061c5173c2dc89
+[2026-02-16T11:25:47.307Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T11:25:47.307Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770586701,
+    "duration": 105.509,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/94787b5dbb00431ead061c5173c2dc89/gif.gif",
+    "id": "94787b5dbb00431ead061c5173c2dc89",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.jpeg?Expires=1771845947&Signature=hH0bP1zIJVE1Th9WxcAQconVYfbNMq0CDNR8rw7GuZ0mDo9Iz~w4UzgqhhCDb3UPZYQf6zZxSrZkwuleD3F3dp0hu7L8AfTddam0mnva4l7jpaT7K2KzMmQ9DBbMx2uczC836YUJ3xjLrnaW-6Wi6DvmGlUR7h1rc4Kb6V14kOzhzwsorRoTuVgRkrkKnqX0YHr-vCqyHaZzXpWUwQQJzSnQqOO6WttagPcvLAZttC2APAW6kzIdibyhWdQ7IsSmZAlauYHdUX4sSz780d4vXwZH7S3l8DF3v5p8u3VYqidZ2rW1OXYWc4sr~I2XEb7PMiZTFeYXjohQzoXN2~y9wQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:25:47.407Z] [HeyGen Status Check] ID: e2d29b39765947e78f73d139cdf18c57
+[2026-02-16T11:25:47.408Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T11:25:47.408Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770587733,
+    "duration": 35.2914,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/e2d29b39765947e78f73d139cdf18c57/gif.gif",
+    "id": "e2d29b39765947e78f73d139cdf18c57",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.jpeg?Expires=1771845947&Signature=b7MWrRfmRESGFy6kEYsVU0r28-sEuDkL95jp9OPBSq2JgKs1KueFZPsh-FC0Fp1oX5JRICCp-MG2v3pzUqdWBEP5XrUS2b5MEsIXlF0pAmK6bjTEiq6RZyDi1cuiX5FhTKr4EhfVaGRUF3buH1jgBefD8qRXneNgoGPV2Ng2mcgRBkqDvS6hryl1rIWGe1UZNAClvP3QRekD8FVHI35auWb3vx-MXOGhliLpuswwfJC5H9mFIi1I6RbVMTB7Zy0FRkI-IBjha5sNj9~GifHhCoG2jLdhKKAXjrJVrJ5LJ-ZeEwXQv5LoTSMBQ5Nmiq6U-dLRQhxR~26jNLmio2yOjw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:25:47.425Z] [HeyGen Status Check] ID: 90c46bd8d1b34585a2804ec8bcf96016
+[2026-02-16T11:25:47.425Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T11:25:47.426Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770637607,
+    "duration": 26.5927,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/90c46bd8d1b34585a2804ec8bcf96016/gif.gif",
+    "id": "90c46bd8d1b34585a2804ec8bcf96016",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.jpeg?Expires=1771845947&Signature=pB2pGTl1YA7q5t4F2gRX9oshuK5dqaF0jXRq-83QXXpDwfaUEXXTTPhgPvupLn-reqnYW9Pet2EYy~C-QH6hLsB4EQxqB80i6HsdNalhr8rEeet2hiV0eGOy~gwUuf86RIIrqkcU0PkMLqm6uib6Q12nGd0u7cif6YdbFJmPxMWk40Ivl-TBF1S3nNDtDtUjifFIEcaK4rVqH4zZZpohR2j0a0IW2-Ufr4Pp~HZa2itQHJ4NGrIQrzzdnaElGl-CF4jmlgizqLNG2pnW2Utix1Q5IkjlOUTL3Tejqb9A1~PaXt52ZC3NDe0Q13rX1sFlLfaNdmSDLctZgfH750r4kw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:25:47.446Z] [HeyGen Status Check] ID: 37deb4b1118b4ca0ab6dddc87fa90b20
+[2026-02-16T11:25:47.447Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T11:25:47.449Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770634449,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "37deb4b1118b4ca0ab6dddc87fa90b20",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:25:47.496Z] [HeyGen Status Check] ID: 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-02-16T11:25:47.497Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T11:25:47.500Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770585254,
+    "duration": 121.584,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/12bcf38cae1c4466ae4f55ae6d41898b/gif.gif",
+    "id": "12bcf38cae1c4466ae4f55ae6d41898b",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.jpeg?Expires=1771845947&Signature=OhFncDkK0Gu149yE~isofcqFN1MfF63aNo1tUzbrJ9C~HLSehj5W3t-F0aOgk8Q13R-s-B~Dn~ywn38VrlG2A7JTVQYC15wcEI3kZjJWqicyNBWM94PtHTKhXaP9QOzYhXHPOvYZ2Y1lBSxqrNOwlrsR0ktOZIltYN7mj0B4gm8NZ5xkm0mW2DoNrMIcgduHLXPd6VlwHp86S9H6G847L4dcc-6dJWaf90nvrxcszuWdxnwC~uoUo3Zf1GuR-1fCDitKOkyKgP3SLr6u0DKNjMpj61G7TUPRLlFvseqJUOaywsut4JLLfuw-xk3-VvWUo3uBIETaSMLWelN5FBuXwA__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:25:47.634Z] Status Check Error: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for 8011e2ad786140b5a925b21d75aa2c82 in space 8011e2ad786140b5a925b21d75aa2c82"}
+[2026-02-16T11:29:17.429Z] [HeyGen Status Check] ID: 90c46bd8d1b34585a2804ec8bcf96016
+[2026-02-16T11:29:17.431Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T11:29:17.431Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770637607,
+    "duration": 26.5927,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/90c46bd8d1b34585a2804ec8bcf96016/gif.gif",
+    "id": "90c46bd8d1b34585a2804ec8bcf96016",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.jpeg?Expires=1771846157&Signature=VHg65qNICROxOVktT5RXa8Z141nisC-HY6VjeokkoV6vNXmu14CJ4ujqKl0d5ncrs9weq6EiedDNGL-BigHqgQEEQhkPb415diiieCUCYnKmCAp7dioLVUnMr9wiyytKfLftWZfb88YPEsikp7EyQFewxSfQqUma0Uq8nWdYl0etIewuBLAqRZKCKD5X60YrM97wI7yA5HqhXWF7dw7mtfh-V3GZxdeP1JvqypTeU-qFJ3h-oPHnlhipu08rgY-CW1dO1TFeexty8i~VsXp9pR6LGXDtVBURba-Og4De~usEkN1JLmcMHtpt5Ix6A0epHNvPlYuync1CbN2ATlR5pQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/90c46bd8d1b34585a2804ec8bcf96016.mp4?Expires=1771823352&Signature=cP7va5DJpOiqk~iirqWI9zNBsBYjCgdtJHcp7232U6hS97~lt3qHI793GPDJEthE-wO5umIjZX5MzKGiHWpyrhG8yxMGJus175H-13-0Cn48CWpIZC3~OyCoQTd53ydq0oh~YKQU~b0a36z5uycoFjXCfkAGUnYcf~sFZcg5FeOvRskf7Wsa6MrvhHJkGtMPwF3CisxGkQFKzN7A2LxNRiDT~Ydyc36NePSx2dHdJtrAzkAjkbU~h2Cfpj40He8Ei82tYrjaxXzcrM8lCTrbBFwEfnnbewcVEuevag5hyc7iBJUZ8HxsjOaBONKYKZSDqH3Z9ocqowLZHfeCnOUOkQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:29:17.450Z] [HeyGen Status Check] ID: e2d29b39765947e78f73d139cdf18c57
+[2026-02-16T11:29:17.451Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T11:29:17.451Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770587733,
+    "duration": 35.2914,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/e2d29b39765947e78f73d139cdf18c57/gif.gif",
+    "id": "e2d29b39765947e78f73d139cdf18c57",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.jpeg?Expires=1771846157&Signature=cNaoVv5CwGnInuRnG5lsgi58twBC~1i1H~PntGR~6NTi4h0aqZ1i2NKFZY~l6lfU5SmfdNTGDkZ79vv9j~o-cHnCxhd7MyHVT0-crvpTPWkOalD~F5DYIN8YAwW-AUqXJ~34QBdC7~G3WaalT~OIe2vCNXbr~qir~hBLmJ1vzcYCgMaTUSSjPGBP6An0VSks1FtM7GI8ZDVhrMMO4T5dcqWM49Tyh5Ym~s940a-ySCeULfAoTm4Kp9VVyTkXZPjmPJjxqfUBmdyHOEg72TXJDeXx5dX6PmJtrVKF7rQ4u7PuIoJDalXbN1C3SS7wKEtQKDG8UkpB8X~h2y8nADVo2g__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/e2d29b39765947e78f73d139cdf18c57.mp4?Expires=1771653126&Signature=dF15yhIuQiR16qyE6FNxPPPUENXVEbtnv4py2G2pKGzSbaLfUZ5lYnQi-bpTzytztICSrnQTVnHBwST5yF4iqbKLLnkpPDJsKiXzGGFyKRh3Edq-CJpr9LUqrOnblXc2IHuiH8bJIossuzW7QRbWm3B1kogBham33029rsefBBpJCpAPT2WPL1uy-SZd9oZroste9AsKI21xRnyEd8QNmnK~3AdNmz3pM7iScjnkdMF8jFooUPo2D1tOnCmMkzHs-lLDNmGDkJQPwj00waz~Y2izRFT8kCrrX-L3my5Qplq3Vw3NiV8S8xa7uVwQNfq4Uom6WngnkN-ZjsGGJX3Qgw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:29:17.458Z] [HeyGen Status Check] ID: 94787b5dbb00431ead061c5173c2dc89
+[2026-02-16T11:29:17.459Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T11:29:17.459Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770586701,
+    "duration": 105.509,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/94787b5dbb00431ead061c5173c2dc89/gif.gif",
+    "id": "94787b5dbb00431ead061c5173c2dc89",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.jpeg?Expires=1771846157&Signature=UWh40p4PFEFsSZDiEGQ--jOGO8S~I8vW34MCDDklTtDUePwrDQQZU~xqqm4zc306OTJwxYmTLgtLrxqPhpuiiadO0~kaHbRCTJNt-rtqwtkNABZNWkKl9Wn5fRnX29613F5lsffuPEpWHFE-Gdv4hP9DyB-z9v2MnfeSwg0oQWqLK57~9WFcm59LWvYvyVrV~kp-p8686qybFnlfHrwMm3cQdjADXJnAMBGbYF1bGTvYDZNlQ45xjhSsXmLMZIZsTEIHkTcEcrj9fkUy3UcwsMlK~01iDG8C9vjGpYw6fcURzW6Yy5sYB8oQ2-6F4XJiH5WaG4SwcRMk2mvsSzM~VA__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/94787b5dbb00431ead061c5173c2dc89.mp4?Expires=1771653126&Signature=ZjlFPED1Zd4CHLiwbhi0amERsBi0jWcw7qtrk0KxfB21UOfMSX7AjfRAt0eeUtrVVrotp6aVnfaatCRshWlLPxVFph3eXP64SjRZN26Jic~~e4-hnqYjDL2rw1WRopgjs4VHmyZg6ylJOQXjF6F4owG0defRliB5rKwPkVkhCBLOLRAV9KWWqAFrrza2iimOz1hSH6gDvJM-g~3nWC5DjE~n8RoRxvknBVaUcdXEvm-WJe6LDpuIF4GU6gru~w3qYsuuoCMfSCbnaeadUwqCA1KT7g~5UzvlhrUfn5XXAdFrXHMhJ-oIYTsSwfwdN0qLE0PpOhpdsqoqLZziqtA2JQ__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:29:17.472Z] [HeyGen Status Check] ID: 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-02-16T11:29:17.472Z] [HeyGen Response] Status: completed, URL: https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H, Error: null
+[2026-02-16T11:29:17.472Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": "",
+    "created_at": 1770585254,
+    "duration": 121.584,
+    "error": null,
+    "gif_url": "https://resource2.heygen.ai/video/12bcf38cae1c4466ae4f55ae6d41898b/gif.gif",
+    "id": "12bcf38cae1c4466ae4f55ae6d41898b",
+    "status": "completed",
+    "thumbnail_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.jpeg?Expires=1771846157&Signature=kAjPhw7druvX1zs4nF3IGf5pBRyId0vqOcLtjSnESFRa4UempwfFYuddoZCgFU7cxnyVskvFo170OfREgriZdrhCsHXPcXbqA7GPVKQGaziQSNQKnpGXNJy1K3mJP5a2wqr3zMptE2X0DJpXTOX4YuJlz0FsnBo-2bSl47m~oqyO6YfHcBlfMZJvBNd3hla2VVMo28FtryzDkZeQCF5sam6vrQ0bP6YiP8aswi8gdXyWMcpl9~y6UcKKZojeLaQFeh2~pTOy7UVnMQA6vEvVgeoR48jSb1xBSGRTrTkO5LAtSWLsYbp5pB3iLFUm2Rt4iuXYGJZrrmjUt~4P9XdULg__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url": "https://files2.heygen.ai/aws_pacific/avatar_tmp/8011e2ad786140b5a925b21d75aa2c82/12bcf38cae1c4466ae4f55ae6d41898b.mp4?Expires=1771653126&Signature=Jy9EZAYT86wxLNs~8ukVkmp0ZB2XZGBhRzn5GQv1JmWEMKWS5pXQ2Z2MH3ANWVnhrqOGKYiKaUl5XZXTEkY8Hax-fFvxajWSpzwDCu8reLSLMoqw6qzXT35eXAmjHfLiB-JwKf31NhXyfd8TwuS1YMUysm~WGu8gjo8t1RIgpaYD-a~OKv7QH1HzliXK3GxQ8G1-hptS2nQBx3Jh46BMVyMZV7g~QKLrAuIqCImzimqEZZ7~qwluHLfyHHsy9xLonvga0zEuoNubtpZNm4rkeOg7iSDR3qAPtYivgYjQL~o3cmos~hSdJ5zEshWxPIm4LFRTwK11JwmBCut9PuyiNw__&Key-Pair-Id=K38HBHX5LX3X2H",
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:29:17.494Z] [HeyGen Status Check] ID: 37deb4b1118b4ca0ab6dddc87fa90b20
+[2026-02-16T11:29:17.495Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T11:29:17.495Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770634449,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "37deb4b1118b4ca0ab6dddc87fa90b20",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:29:17.504Z] [HeyGen Status Check] ID: 1a2f2410ca8947a38c4278c39bee4b35
+[2026-02-16T11:29:17.505Z] [HeyGen Response] Status: failed, URL: undefined, Error: {"code":404126,"detail":"Cancelled by user","message":"Cancelled by user"}
+[2026-02-16T11:29:17.505Z] [HeyGen Full Response] {
+  "code": 100,
+  "data": {
+    "callback_id": null,
+    "caption_url": null,
+    "created_at": 1770633148,
+    "duration": null,
+    "error": {
+      "code": 404126,
+      "detail": "Cancelled by user",
+      "message": "Cancelled by user"
+    },
+    "gif_url": null,
+    "id": "1a2f2410ca8947a38c4278c39bee4b35",
+    "status": "failed",
+    "thumbnail_url": null,
+    "video_url": null,
+    "video_url_caption": null
+  },
+  "message": "Success"
+}
+[2026-02-16T11:29:17.947Z] Status Check Error: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for 8011e2ad786140b5a925b21d75aa2c82 in space 8011e2ad786140b5a925b21d75aa2c82"}
