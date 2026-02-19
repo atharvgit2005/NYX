@@ -92,7 +92,7 @@ export default function AvatarUpload() {
                                     onClick={() => setShowAvatarHelp(!showAvatarHelp)}
                                     className="text-xs text-purple-400 hover:text-purple-300 flex items-center"
                                 >
-                                    <HelpCircle className="w-3 h-3 mr-1" /> Where do I find this?
+                                    <HelpCircle className="w-4 h-4 mr-1" /> Where do I find this?
                                 </button>
                             </div>
                             <input

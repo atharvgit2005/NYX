@@ -29,7 +29,7 @@ export default function LandingPage() {
     }, []);
 
     return (
-        <div className="min-h-screen text-theme-primary overflow-hidden relative bg-page transition-colors duration-300">
+        <div className="min-h-screen text-theme-primary overflow-hidden relative bg-transparent transition-colors duration-300">
             <ThreeBackground />
 
             {/* Floating Navbar */}
@@ -162,8 +162,8 @@ export default function LandingPage() {
                 <div className="max-w-7xl mx-auto">
                     <h2 className="text-3xl font-bold text-center mb-16 tracking-tight">From Idea to Viral in 3 Steps</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-                        {/* Connecting Line (Desktop) */}
-                        <div className="hidden md:block absolute top-10 left-[16%] right-[16%] h-px bg-gradient-to-r from-transparent via-gray-400 to-transparent z-0 opacity-50"></div>
+                        {/* Connecting Line (Desktop) - Centered & Responsive */}
+                        <div className="hidden md:block absolute top-10 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-gray-400/30 to-transparent z-0"></div>
 
                         {[
                             {
@@ -234,12 +234,12 @@ export default function LandingPage() {
                     <p className="text-theme-secondary text-center mb-16 max-w-2xl mx-auto text-sm">
                         Building the future of content automation.
                     </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="flex flex-wrap justify-center gap-8">
                         {[
                             { name: 'Atharv Paharia', role: 'Co-Founder & Tech Lead' },
                             { name: 'Bhavya Jain', role: 'Co-Founder & Product' },
                         ].map((founder, i) => (
-                            <div key={i} className="p-6 rounded-xl bg-card-theme border-theme hover:bg-card-hover transition-colors text-center">
+                            <div key={i} className="flex-1 min-w-[280px] max-w-sm p-8 rounded-2xl bg-card-theme border border-white/5 hover:border-purple-500/30 hover:bg-card-hover transition-all duration-300 text-center hover:-translate-y-1">
                                 <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-page flex items-center justify-center text-xl font-bold text-theme-primary border-theme">
                                     {founder.name[0]}
                                 </div>

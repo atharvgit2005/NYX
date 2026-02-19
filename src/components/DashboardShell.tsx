@@ -15,7 +15,7 @@ export default function DashboardShell({
         <div className="min-h-screen bg-page text-theme-primary transition-colors duration-300">
             <Header />
             <Sidebar />
-            <div className={`flex flex-col flex-1 min-h-screen transition-all duration-300 pt-28 ${collapsed ? 'md:pl-24' : 'md:pl-64'}`}>
+            <div className={`flex flex-col flex-1 min-h-screen transition-all duration-300 pt-36 ${collapsed ? 'md:pl-24' : 'md:pl-64'}`}>
                 <main className="flex-1">
                     <div className="py-10">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">

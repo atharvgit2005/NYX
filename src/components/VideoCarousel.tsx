@@ -101,7 +101,7 @@ function VideoCard({ video, onSelect }: { video: typeof DEMO_VIDEOS[0], onSelect
             onMouseLeave={handleMouseLeave}
             onClick={() => onSelect(video)}
         >
-            <div className="relative aspect-9-16 bg-black w-full h-full">
+            <div className="relative aspect-9-16 bg-gray-900 w-full h-full">
                 <video
                     ref={videoRef}
                     src={video.src}

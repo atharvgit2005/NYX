@@ -78,7 +78,10 @@ export default function VoiceTester() {
     return (
         <div className="w-full max-w-4xl mx-auto p-6 bg-card-theme rounded-2xl border border-theme">
             <div className="flex items-center justify-between mb-8">
-                <h2 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-purple-600">
+                <h2
+                    className="text-2xl font-bold bg-clip-text text-transparent"
+                    style={{ backgroundImage: 'linear-gradient(to right, #c084fc, #f472b6, #9333ea)' }}
+                >
                     Inworld Voice Tester
                 </h2>
                 <button
@@ -104,12 +107,12 @@ export default function VoiceTester() {
                             <select
                                 value={selectedVoice}
                                 onChange={(e) => setSelectedVoice(e.target.value)}
-                                className="w-full bg-gray-100 dark:bg-black/30 border border-theme rounded-xl px-4 py-3 text-theme-primary appearance-none focus:outline-none focus:ring-2 focus:ring-purple-600/50"
+                                className="w-full bg-card-hover border border-theme rounded-xl px-4 py-3 text-theme-primary appearance-none focus:outline-none focus:ring-2 focus:ring-purple-600/50"
                                 disabled={loadingVoices}
                             >
                                 {voices.length === 0 && <option>Loading voices...</option>}
                                 {voices.map((voice) => (
-                                    <option key={voice.id} value={voice.id}>
+                                    <option key={voice.id} value={voice.id} className="bg-gray-900 text-white">
                                         {voice.name} ({voice.gender}, {voice.language}) {voice.isCustom ? '- CLONED' : ''}
                                     </option>
                                 ))}
@@ -126,7 +129,7 @@ export default function VoiceTester() {
                             value={text}
                             onChange={(e) => setText(e.target.value)}
                             rows={5}
-                            className="w-full bg-gray-100 dark:bg-black/30 border border-theme rounded-xl p-4 text-theme-primary focus:outline-none focus:ring-2 focus:ring-purple-600/50 resize-none"
+                            className="w-full bg-card-hover border border-theme rounded-xl p-4 text-theme-primary focus:outline-none focus:ring-2 focus:ring-purple-600/50 resize-none"
                             placeholder="Enter text here..."
                         />
                     </div>
@@ -152,7 +155,7 @@ export default function VoiceTester() {
                     </div>
                 </div>
 
-                <div className="flex flex-col items-center justify-center p-8 bg-gray-100 dark:bg-black/30 rounded-2xl border border-theme/50 min-h-[300px]">
+                <div className="flex flex-col items-center justify-center p-8 bg-card-hover rounded-2xl border border-theme/50 min-h-[300px]">
                     {audioSrc ? (
                         <div className="flex flex-col items-center gap-6 w-full animate-in fade-in zoom-in duration-300">
                             <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/30 animate-pulse">
@@ -166,8 +169,8 @@ export default function VoiceTester() {
                         </div>
                     ) : (
                         <div className="text-center space-y-3 text-theme-secondary/50">
-                            <div className="w-20 h-20 mx-auto rounded-full bg-gray-200 dark:bg-white/5 flex items-center justify-center">
-                                <Play className="w-8 h-8 ml-1 text-gray-400 dark:text-gray-500" />
+                            <div className="w-20 h-20 mx-auto rounded-full bg-white/5 flex items-center justify-center">
+                                <Play className="w-8 h-8 ml-1 text-gray-400" />
                             </div>
                             <p>Select a voice and enter text to generate audio</p>
                         </div>
