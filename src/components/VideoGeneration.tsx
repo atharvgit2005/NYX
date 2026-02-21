@@ -15,6 +15,11 @@ export default function VideoGeneration() {
 
     const [mounted, setMounted] = useState(false);
 
+    // Voice Selection States
+    const [availableVoices, setAvailableVoices] = useState<any[]>([]);
+    const [selectedVoiceId, setSelectedVoiceId] = useState<string>('mock-voice');
+    const [loadingVoices, setLoadingVoices] = useState(false);
+
     useEffect(() => {
         setMounted(true);
         const savedScript = localStorage.getItem('current_video_script');
@@ -40,6 +45,27 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
         if (savedApiKey) {
             setApiKey(savedApiKey);
         }
+
+        const savedVoiceId = localStorage.getItem('custom_voice_id');
+        if (savedVoiceId) {
+            setSelectedVoiceId(savedVoiceId);
+        }
+        const fetchVoices = async () => {
+            setLoadingVoices(true);
+            try {
+                const res = await fetch('/api/tts/voices');
+                const data = await res.json();
+                if (data.voices) {
+                    setAvailableVoices(data.voices);
+                }
+            } catch (err) {
+                console.error('Failed to fetch voices for dropdown', err);
+            } finally {
+                setLoadingVoices(false);
+            }
+        };
+        fetchVoices();
+
     }, []);
 
     const handleApiKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -107,11 +133,11 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
         setVideoUrl(null);
 
         try {
-            // Get custom IDs from localStorage
+            // Get custom IDs
             const customAvatarId = typeof window !== 'undefined' ? localStorage.getItem('custom_avatar_id') : null;
-            const customVoiceId = typeof window !== 'undefined' ? localStorage.getItem('custom_voice_id') : null;
+            // Use the locally selected voice id instead of strictly local storage
             console.log('Using Avatar ID:', customAvatarId);
-            console.log('Using Voice ID:', customVoiceId);
+            console.log('Using Voice ID:', selectedVoiceId);
 
             if (!customAvatarId) {
                 throw new Error("Avatar ID not found. Please set it in the Avatar & Voice page.");
@@ -129,7 +155,7 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
                 body: JSON.stringify({
                     script: script || 'Mock script content', // Use real script
                     avatarId: customAvatarId,
-                    voiceId: customVoiceId || 'mock-voice',
+                    voiceId: selectedVoiceId || 'mock-voice',
                 }),
             });
 
@@ -162,7 +188,6 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
                     setStatus('idle');
                 }
             }, 2000);
-
         } catch (error: any) {
             console.error('Video generation failed:', error);
             setError(error.message || 'An unexpected error occurred');
@@ -222,15 +247,52 @@ Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below
                         Your script is approved. Click the button above to start rendering.
                     </p>
 
-                    {/* Avatar ID Check */}
-                    <div className="mb-8 p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl max-w-md mx-auto text-left">
-                        <p className="text-xs text-blue-300 uppercase font-bold mb-1">Using Avatar ID</p>
-                        <p className="text-theme-primary font-mono text-sm break-all">
-                            {mounted ? (localStorage.getItem('custom_avatar_id') || 'Not Set') : 'Loading...'}
-                        </p>
-                        <a href="/dashboard/avatar" className="text-xs text-blue-400 hover:text-blue-300 underline mt-2 block">
-                            Change Avatar ID &rarr;
-                        </a>
+                    {/* Avatar & Voice Check */}
+                    <div className="mb-8 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+                        <div className="p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl text-left">
+                            <p className="text-xs text-blue-300 uppercase font-bold mb-1">Using Avatar ID</p>
+                            <p className="text-theme-primary font-mono text-sm break-all">
+                                {mounted ? (localStorage.getItem('custom_avatar_id') || 'Not Set') : 'Loading...'}
+                            </p>
+                            <a href="/dashboard/avatar" className="text-xs text-blue-400 hover:text-blue-300 underline mt-2 block">
+                                Change Avatar ID &rarr;
+                            </a>
+                        </div>
+
+                        <div className="p-4 bg-pink-500/10 border border-pink-500/30 rounded-xl text-left">
+                            <div className="flex justify-between items-center mb-1">
+                                <p className="text-xs text-pink-300 uppercase font-bold">Select Voice</p>
+                                {loadingVoices && <div className="w-3 h-3 border-2 border-pink-400 border-t-transparent rounded-full animate-spin"></div>}
+                            </div>
+                            <div className="relative mt-2">
+                                <select
+                                    value={selectedVoiceId}
+                                    onChange={(e) => {
+                                        setSelectedVoiceId(e.target.value);
+                                        localStorage.setItem('custom_voice_id', e.target.value);
+                                    }}
+                                    className="w-full bg-card-theme border border-theme rounded-lg px-3 py-2 text-theme-primary text-sm focus:outline-none focus:border-pink-500 appearance-none shadow-sm"
+                                    disabled={loadingVoices}
+                                >
+                                    <optgroup label="System Defaults">
+                                        <option value="mock-voice">Mock Voice (Testing)</option>
+                                    </optgroup>
+
+                                    {availableVoices.length > 0 && (
+                                        <optgroup label="Available Voices">
+                                            {availableVoices.map(v => (
+                                                <option key={v.id} value={v.id}>
+                                                    {v.name} {v.isCustom ? '(Cloned)' : ''}
+                                                </option>
+                                            ))}
+                                        </optgroup>
+                                    )}
+                                </select>
+                                <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-theme-secondary">
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div className="bg-page p-6 rounded-xl border border-theme text-left max-w-2xl mx-auto">

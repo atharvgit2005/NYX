@@ -1,6 +1,8 @@
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
+import https from 'https';
+import { InworldService } from '../inworld';
 
 const LOG_FILE = path.join(process.cwd(), 'debug_log.txt');
 
@@ -25,34 +27,93 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
         };
     }
 
-    // 2. Generate Audio with ElevenLabs (Optional / Fallback)
-    let audioUrl = null;
-    try {
-        if (voiceId && voiceId !== 'mock-voice') {
-            console.log("Generating audio with ElevenLabs...");
-            // In a real app, we would upload this audio to a storage bucket and get a URL.
-            // For this MVP, we'll skip the actual ElevenLabs call if we can't handle the audio file,
-            // OR we would implement the asset upload to HeyGen.
-            // For now, let's just log that we would have done it.
-            console.log(`[Mock] Would generate audio for voiceId: ${voiceId}`);
+    // 2. Generate Audio with Inworld & Upload to HeyGen
+    let audioAssetId: string | null = null;
 
-            // If you want to enable real ElevenLabs:
-            /*
-            const audioResponse = await axios.post(
-                `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`,
-                { text: script, ... },
-                { headers: { 'xi-api-key': ELEVENLABS_API_KEY, ... } }
-            );
-            // Then upload audioResponse.data to S3/Cloudinary and set audioUrl
-            */
+    // Check if voiceId is likely an Inworld voice (e.g. not our mock and not HeyGen's default)
+    if (voiceId && voiceId !== 'mock-voice' && voiceId !== '1bd001e7e50f421d891986aad5158bc8') {
+        try {
+            logToFile(`Generating audio with Inworld for voiceId: ${voiceId}`);
+            console.log(`Generating audio with Inworld for voiceId: ${voiceId}`);
+
+            // 2a. Generate Audio from Inworld
+            const audioBase64 = await InworldService.synthesizeSpeech({
+                text: script,
+                voiceId: voiceId,
+                modelId: 'inworld-tts-1.5-max'
+            });
+
+            // Convert base64 to Buffer
+            const audioBuffer = Buffer.from(audioBase64, 'base64');
+
+            logToFile(`Audio generated from Inworld, buffer size: ${audioBuffer.byteLength} bytes. Uploading to HeyGen...`);
+
+            // 2b. Upload to HeyGen Asset API natively (avoids form-data package issues)
+            const boundary = `--------------------------HeyGenAudioUploadBoundary${Date.now()}`;
+            let postData = '';
+
+            postData += `--${boundary}\r\n`;
+            postData += `Content-Disposition: form-data; name="file"; filename="inworld_audio.mp3"\r\n`;
+            postData += `Content-Type: audio/mpeg\r\n\r\n`;
+
+            const headerBuffer = Buffer.from(postData, 'utf-8');
+            const footerBuffer = Buffer.from(`\r\n--${boundary}--\r\n`, 'utf-8');
+            const finalPayload = Buffer.concat([headerBuffer, audioBuffer, footerBuffer]);
+
+            const options = {
+                hostname: 'api.heygen.com',
+                path: '/v1/asset',
+                method: 'POST',
+                headers: {
+                    'X-Api-Key': HEYGEN_API_KEY,
+                    'Content-Type': `multipart/form-data; boundary=${boundary}`,
+                    'Content-Length': finalPayload.length
+                }
+            };
+
+            const assetResponse: any = await new Promise((resolve, reject) => {
+                const req = https.request(options, (res) => {
+                    let data = '';
+                    res.on('data', (chunk) => data += chunk);
+                    res.on('end', () => resolve({ status: res.statusCode, data }));
+                });
+
+                req.on('error', (e) => reject(e));
+                req.write(finalPayload);
+                req.end();
+            });
+
+            const parsedData = JSON.parse(assetResponse.data);
+            if (assetResponse.status === 200 && parsedData?.data?.id) {
+                audioAssetId = parsedData.data.id;
+                logToFile(`HeyGen Asset Upload Success. Asset ID: ${audioAssetId}`);
+                console.log(`HeyGen Asset Upload Success. Asset ID: ${audioAssetId}`);
+            } else {
+                throw new Error(`Upload Failed: ${assetResponse.data}`);
+            }
+
+        } catch (error: any) {
+            logToFile(`Inworld generation or HeyGen upload failed: ${error.message || error}`);
+            console.warn("Inworld generation or HeyGen upload failed (continuing with HeyGen default voice):", error.message || error);
         }
-    } catch (error: any) {
-        console.warn("ElevenLabs generation failed (continuing with default voice):", error.response?.data || error.message);
     }
 
     try {
         logToFile("Generating video with HeyGen...");
         logToFile(`Using Avatar ID: ${avatarId}`);
+
+        // Construct the voice/audio payload based on whether we successfully uploaded audio
+        const voiceOrAudioPayload = audioAssetId
+            ? {
+                type: 'audio',
+                audio_asset_id: audioAssetId
+            }
+            : {
+                type: 'text',
+                input_text: script,
+                // Use provided voiceId (if it's a native HeyGen ID somehow) or a default public HeyGen voice
+                voice_id: (voiceId && voiceId !== 'mock-voice' && typeof voiceId === 'string' && voiceId.length === 32) ? voiceId : '1bd001e7e50f421d891986aad5158bc8',
+            };
 
         const heyGenPayload = {
             video_inputs: [
@@ -62,12 +123,7 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
                         avatar_id: avatarId,
                         avatar_style: 'normal',
                     },
-                    voice: {
-                        type: 'text',
-                        input_text: script,
-                        // Use provided voiceId or a default public voice (English Male)
-                        voice_id: (voiceId && voiceId !== 'mock-voice') ? voiceId : '1bd001e7e50f421d891986aad5158bc8',
-                    },
+                    voice: voiceOrAudioPayload,
                     background: {
                         type: 'color',
                         value: '#000000',

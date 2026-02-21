@@ -44,7 +44,7 @@ export async function POST(request: Request) {
         }
 
         // 3. Analyze the transcript with Gemini
-        console.log(`Analyzing transcript with Gemini...`);
+        console.log(`Analyzing transcript with Gemini... (Key exists? ${!!process.env.GEMINI_API_KEY})`);
         const analysis = await analyzeNiche(scrapedProfile.transcript);
 
         return NextResponse.json({

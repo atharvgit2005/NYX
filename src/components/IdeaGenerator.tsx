@@ -65,7 +65,7 @@ export default function IdeaGenerator() {
     const handleGenerateScript = async (idea: any) => {
         setScriptGenerating(idea.id);
         try {
-            const response = await fetch('/api/scripts', {
+            const response = await fetch('/api/scripts/generate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

@@ -215,7 +215,7 @@ export default function BrandAnalysis() {
                                 {analysis.scrapedData?.posts?.map((post: any, i: number) => (
                                     <div key={i} className="aspect-square bg-card-theme rounded-lg overflow-hidden relative group cursor-pointer border border-theme">
                                         {post.imageUrl ? (
-                                            <img src={post.imageUrl} alt="Post" className="w-full h-full object-cover" />
+                                            <img src={post.imageUrl} alt="Post" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                                         ) : (
                                             <div className="w-full h-full flex items-center justify-center text-gray-700 bg-gray-900">
                                                 <AlertCircle className="w-4 h-4" />
