@@ -37,9 +37,9 @@ export default function Sidebar() {
         >
             <div className="flex-1 flex flex-col overflow-y-auto py-8">
 
-                <nav className="flex-1 px-4 space-y-6 mt-8">
+                <nav className="flex-1 px-4 space-y-4 mt-4">
 
-                    {navigation.map((item) => {
+                    {navigation.filter(item => item.name !== 'Back to Home').map((item) => {
                         const isActive = pathname === item.href;
                         const Icon = item.icon;
                         return (
@@ -47,12 +47,12 @@ export default function Sidebar() {
                                 key={item.name}
                                 href={item.href}
                                 title={collapsed ? item.name : ''}
-                                className={`group flex items-center px-3 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${isActive
+                                className={`group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${isActive
                                     ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/30'
                                     : 'text-theme-secondary hover:bg-card-hover hover:text-theme-primary hover:translate-x-1'
                                     } ${collapsed ? 'justify-center' : ''}`}
                             >
-                                <Icon className={`h-6 w-6 transition-colors ${isActive ? 'text-white' : 'text-theme-secondary group-hover:text-theme-primary'} ${collapsed ? '' : 'mr-3'}`} />
+                                <Icon className={`h-5 w-5 transition-colors ${isActive ? 'text-white' : 'text-theme-secondary group-hover:text-theme-primary'} ${collapsed ? '' : 'mr-3'}`} />
                                 {!collapsed && (
                                     <span className="truncate">{item.name}</span>
                                 )}
@@ -62,8 +62,22 @@ export default function Sidebar() {
                 </nav>
             </div>
 
+            {/* Bottom Links */}
+            <div className="px-4 pb-2">
+                <Link
+                    href="/"
+                    title={collapsed ? 'Back to Home' : ''}
+                    className={`group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 text-theme-secondary hover:bg-card-hover hover:text-theme-primary hover:translate-x-1 ${collapsed ? 'justify-center' : ''}`}
+                >
+                    <Home className={`h-5 w-5 transition-colors text-theme-secondary group-hover:text-theme-primary ${collapsed ? '' : 'mr-3'}`} />
+                    {!collapsed && (
+                        <span className="truncate">Back to Home</span>
+                    )}
+                </Link>
+            </div>
+
             {/* User Tab */}
-            <div className="mt-auto px-4 pb-6">
+            <div className="px-4 pb-6">
                 <Link href="/dashboard/profile">
                     <div className={`flex-shrink-0 p-3 bg-card-theme rounded-2xl hover:bg-card-hover transition-colors cursor-pointer group relative ${collapsed ? 'flex justify-center' : ''}`}>
                         <div className="flex items-center">

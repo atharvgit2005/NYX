@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
+import { Upload } from 'lucide-react';
 
 export default function VideoHistoryList() {
     const { data: session } = useSession();
@@ -90,7 +91,7 @@ export default function VideoHistoryList() {
                 />
                 <label
                     htmlFor="video-upload"
-                    className={`cursor-pointer px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg text-white text-sm font-bold flex items-center gap-2 transition-colors ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    className={`cursor-pointer px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:shadow-lg hover:shadow-purple-500/30 rounded-xl text-white text-sm font-bold flex items-center gap-2 transition-all hover:scale-105 ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
                     {uploading ? (
                         <>
@@ -99,7 +100,8 @@ export default function VideoHistoryList() {
                         </>
                     ) : (
                         <>
-                            <span>⬆️ Upload Video</span>
+                            <Upload className="w-4 h-4" />
+                            <span>Upload Video</span>
                         </>
                     )}
                 </label>

@@ -63,7 +63,7 @@ export default function AvatarUpload() {
     };
 
     return (
-        <div className="max-w-5xl mx-auto mt-8">
+        <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
                 <h2 className="text-4xl font-bold text-theme-primary mb-4">Configure Your Digital Twin</h2>
                 <p className="text-theme-secondary max-w-2xl mx-auto">

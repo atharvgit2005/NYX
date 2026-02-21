@@ -176,31 +176,33 @@ export default function VideoCarousel() {
     const [selectedVideo, setSelectedVideo] = useState<typeof DEMO_VIDEOS[0] | null>(null);
 
     return (
-        <section className="py-20 relative z-10 overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center">
-                <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-theme-primary">Made with NYX</h2>
-                <p className="text-theme-secondary">See what creators are generating right now.</p>
-            </div>
-
-            {/* Carousel Container */}
-            <div className="w-full overflow-hidden relative">
-                <div className="flex gap-6 animate-marquee hover:[animation-play-state:paused]">
-                    {[
-                        ...Array(4).fill(DEMO_VIDEOS).flat()
-                    ].map((video, index) => (
-                        <VideoCard
-                            key={`${video.id}-${index}`}
-                            video={video}
-                            onSelect={setSelectedVideo}
-                        />
-                    ))}
+        <>
+            <section className="py-20 relative z-10 overflow-hidden">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center">
+                    <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-theme-primary">Made with NYX</h2>
+                    <p className="text-theme-secondary">See what creators are generating right now.</p>
                 </div>
-            </div>
+
+                {/* Carousel Container */}
+                <div className="w-full overflow-hidden relative">
+                    <div className="flex gap-6 animate-marquee hover:[animation-play-state:paused]">
+                        {[
+                            ...Array(4).fill(DEMO_VIDEOS).flat()
+                        ].map((video, index) => (
+                            <VideoCard
+                                key={`${video.id}-${index}`}
+                                video={video}
+                                onSelect={setSelectedVideo}
+                            />
+                        ))}
+                    </div>
+                </div>
+            </section>
 
             {/* Video Modal */}
             {selectedVideo && (
                 <VideoModal video={selectedVideo} onClose={() => setSelectedVideo(null)} />
             )}
-        </section>
+        </>
     );
 }

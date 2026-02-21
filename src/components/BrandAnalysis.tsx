@@ -66,7 +66,7 @@ export default function BrandAnalysis() {
     }
 
     return (
-        <div className="max-w-6xl mx-auto mt-8">
+        <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div>
                     <h2 className="text-4xl font-bold text-theme-primary mb-2">Brand Analysis</h2>

@@ -262,10 +262,10 @@ export default function LandingPage() {
                     {/* Infinite Marquee Container */}
                     <div className="w-full overflow-hidden relative">
                         {/* Gradient Masks */}
-                        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-black/80 to-transparent z-10 pointer-events-none fade-mask-theme-left" />
-                        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-black/80 to-transparent z-10 pointer-events-none fade-mask-theme-right" />
+                        <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[var(--bg-page)] to-transparent z-10 pointer-events-none" />
+                        <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[var(--bg-page)] to-transparent z-10 pointer-events-none" />
 
-                        <div className="flex items-center gap-6 animate-marquee">
+                        <div className="flex items-center gap-6 animate-marquee py-12">
                             {[
                                 ...Array(4).fill([
                                     { name: 'Starter', price: '₹0', features: ['5 Scripts/mo', 'Basic Analysis', '1 Avatar'] },
@@ -274,7 +274,7 @@ export default function LandingPage() {
                                 ]).flat()
                             ].map((plan: any, i: number) => (
                                 <Link href={session ? "/dashboard" : "/signup"} key={i} className={`relative flex-shrink-0 w-80 p-8 rounded-2xl border transition-all duration-300 group hover:-translate-y-2 ${plan.popular ? 'bg-page border-purple-500/50 shadow-[0_0_30px_rgba(168,85,247,0.15)]' : 'bg-card-theme border-theme hover:bg-card-hover'}`}>
-                                    {plan.popular && <span className="absolute -top-3 left-8 px-3 py-1 bg-purple-600 text-white rounded-full text-xs font-bold border border-purple-400">Most Popular</span>}
+                                    {plan.popular && <span className="absolute -top-4 left-8 px-4 py-1.5 bg-purple-600 text-white rounded-full text-sm font-bold border border-purple-400 shadow-lg">Most Popular</span>}
                                     <h3 className="text-xl font-bold mb-2 text-theme-primary">{plan.name}</h3>
                                     <div className="text-4xl font-bold mb-6 text-theme-primary">{plan.price}<span className="text-sm text-theme-secondary font-normal">/mo</span></div>
                                     <ul className="space-y-4 mb-8">
