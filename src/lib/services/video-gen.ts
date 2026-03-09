@@ -48,26 +48,16 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
 
             logToFile(`Audio generated from Inworld, buffer size: ${audioBuffer.byteLength} bytes. Uploading to HeyGen...`);
 
-            // 2b. Upload to HeyGen Asset API natively (avoids form-data package issues)
-            const boundary = `--------------------------HeyGenAudioUploadBoundary${Date.now()}`;
-            let postData = '';
-
-            postData += `--${boundary}\r\n`;
-            postData += `Content-Disposition: form-data; name="file"; filename="inworld_audio.mp3"\r\n`;
-            postData += `Content-Type: audio/mpeg\r\n\r\n`;
-
-            const headerBuffer = Buffer.from(postData, 'utf-8');
-            const footerBuffer = Buffer.from(`\r\n--${boundary}--\r\n`, 'utf-8');
-            const finalPayload = Buffer.concat([headerBuffer, audioBuffer, footerBuffer]);
-
+            // 2b. Upload to HeyGen Asset API (direct binary upload)
             const options = {
-                hostname: 'api.heygen.com',
+                hostname: 'upload.heygen.com',
                 path: '/v1/asset',
                 method: 'POST',
                 headers: {
                     'X-Api-Key': HEYGEN_API_KEY,
-                    'Content-Type': `multipart/form-data; boundary=${boundary}`,
-                    'Content-Length': finalPayload.length
+                    'Content-Type': 'audio/mpeg',
+                    'Content-Length': audioBuffer.length,
+                    'Accept': 'application/json'
                 }
             };
 
@@ -79,7 +69,7 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
                 });
 
                 req.on('error', (e) => reject(e));
-                req.write(finalPayload);
+                req.write(audioBuffer);
                 req.end();
             });
 

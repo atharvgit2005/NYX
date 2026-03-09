@@ -142,7 +142,7 @@ export default function IdeaGenerator() {
                                 <p className="text-xs text-purple-400 font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
                                     <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span> Hook
                                 </p>
-                                <p className="text-theme-secondary text-lg font-medium italic leading-relaxed">"{idea.hook}"</p>
+                                <p className="text-theme-secondary text-lg font-medium italic leading-relaxed">&quot;{idea.hook}&quot;</p>
                             </div>
                             <div className="bg-card-hover p-6 rounded-2xl border border-theme hover:border-purple-500/20 transition-colors">
                                 <p className="text-xs text-blue-400 font-bold uppercase tracking-wider mb-2 flex items-center gap-2">

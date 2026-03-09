@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Upload, Mic, Video, Check, Loader2, AlertCircle, HelpCircle, Info, ChevronDown, ChevronUp } from 'lucide-react';
+import { Upload, Mic, Video, Check, Loader2, HelpCircle, Info } from 'lucide-react';
 
 export default function AvatarUpload() {
     const [voiceFile, setVoiceFile] = useState<File | null>(null);
@@ -69,6 +69,11 @@ export default function AvatarUpload() {
                 <p className="text-theme-secondary max-w-2xl mx-auto">
                     Connect your HeyGen Avatar and clone your voice with Inworld AI to generate personalized videos.
                 </p>
+                {error && (
+                    <div className="mt-4 p-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-400 text-sm">
+                        {error}
+                    </div>
+                )}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
