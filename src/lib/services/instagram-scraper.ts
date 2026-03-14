@@ -32,7 +32,10 @@ async function scrapeWithIGApi(username: string): Promise<ScrapedProfile | null>
     console.log(`[Strategy: IG API] Fetching info for @${username}...`);
     try {
         const url = `https://www.instagram.com/api/v1/users/web_profile_info/?username=${username}`;
-        // Note: Using native fetch to easily send correct headers
+        
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 4000); // 4s timeout
+
         const res = await fetch(url, {
             headers: {
                 'User-Agent': 'Instagram 219.0.0.12.117 Android',
@@ -41,8 +44,11 @@ async function scrapeWithIGApi(username: string): Promise<ScrapedProfile | null>
                 'Sec-Fetch-Mode': 'cors',
                 'Sec-Fetch-Dest': 'empty',
                 'X-Requested-With': 'XMLHttpRequest'
-            }
+            },
+            signal: controller.signal
         });
+        
+        clearTimeout(timeoutId);
 
         if (res.status !== 200) {
             console.warn(`[Strategy: IG API] Failed with status ${res.status}`);
@@ -117,7 +123,7 @@ async function scrapeWithPicuki(username: string): Promise<ScrapedProfile | null
                 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36',
                 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
             },
-            timeout: 15000 // 15s timeout
+            timeout: 5000 // 5s timeout
         });
 
         const $ = cheerio.load(data);
@@ -176,7 +182,7 @@ async function scrapeWithDumpoir(username: string): Promise<ScrapedProfile | nul
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
             },
-            timeout: 10000
+            timeout: 5000 // 5s timeout
         });
 
         const $ = cheerio.load(data);
@@ -211,17 +217,24 @@ async function scrapeWithDumpoir(username: string): Promise<ScrapedProfile | nul
 
 
 export async function scrapeInstagramProfile(username: string): Promise<ScrapedProfile> {
-    // 1. Try Direct IG API (Most reliable right now)
-    const igResult = await scrapeWithIGApi(username);
-    if (igResult) return igResult;
-
-    // 2. Try Picuki (Backup reliable public viewer)
-    const picukiResult = await scrapeWithPicuki(username);
-    if (picukiResult) return picukiResult;
-
-    // 3. Try Dumpoir (Backup viewer)
-    const dumpoirResult = await scrapeWithDumpoir(username);
-    if (dumpoirResult) return dumpoirResult;
+    // Run strategies concurrently to save time, since Vercel has a strict 10s limit
+    console.log(`[Scraper] Starting parallel scrape scraping for @${username}`);
+    
+    try {
+        const results = await Promise.all([
+            scrapeWithIGApi(username),
+            scrapeWithPicuki(username),
+            scrapeWithDumpoir(username)
+        ]);
+        
+        // Find the first successful result
+        const validResult = results.find(r => r !== null);
+        if (validResult) {
+            return validResult;
+        }
+    } catch (error) {
+        console.error('[Scraper] Parallel execution failed:', error);
+    }
 
     console.warn('[Scraper] All mirror strategies failed. Returning Fallback Mock Data.');
     return getMockProfile(username);
