@@ -18,8 +18,8 @@ export async function GET(request: Request) {
         });
 
         if (!response.ok) {
-            console.error(`Failed to fetch image: ${response.status} ${response.statusText}`);
-            return new NextResponse('Failed to fetch image', { status: response.status });
+            console.warn(`[Proxy] Blocked by IG CDN (${response.status}): Redirecting to fallback placeholder`);
+            return NextResponse.redirect('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=400&fit=crop', 307);
         }
 
         const arrayBuffer = await response.arrayBuffer();
@@ -35,7 +35,7 @@ export async function GET(request: Request) {
             },
         });
     } catch (error) {
-        console.error('Proxy image error:', error);
-        return new NextResponse('Failed to proxy image', { status: 500 });
+        console.error('[Proxy] Image proxy error:', error);
+        return NextResponse.redirect('https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=400&fit=crop', 307);
     }
 }
