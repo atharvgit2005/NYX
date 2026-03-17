@@ -1,12 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Loader2, X, Copy, Check, Play, FileText } from 'lucide-react';
+import { Loader2, X, Copy, Check, Play, FileText, BrainCircuit, AlertCircle } from 'lucide-react';
+import Link from 'next/link';
 
 export default function IdeaGenerator() {
     const [generating, setGenerating] = useState(false);
     const [ideas, setIdeas] = useState<any[]>([]);
-    const [analysisData, setAnalysisData] = useState<{ niche: string; pillars: string[]; tone: string } | null>(null);
+    const [analysisData, setAnalysisData] = useState<{ niche: string; pillars: string[]; tone: string; platform: string } | null>(null);
 
     // Script Generation State
     const [scriptGenerating, setScriptGenerating] = useState<number | null>(null);
@@ -14,23 +15,67 @@ export default function IdeaGenerator() {
     const [copied, setCopied] = useState(false);
 
     useEffect(() => {
-        const savedUsername = localStorage.getItem('primary_username');
-        if (savedUsername) {
-            const savedAnalysis = localStorage.getItem(`brand_analysis_results_${savedUsername}`);
-            if (savedAnalysis) {
+        // Check connected accounts and find the latest analysis across platforms
+        const savedSocials = localStorage.getItem('connected_socials');
+        const primaryUsername = localStorage.getItem('primary_username');
+
+        let foundAnalysis = false;
+
+        if (savedSocials) {
+            try {
+                const socials = JSON.parse(savedSocials);
+                // Check each platform for cached analysis (prefer instagram first, then youtube)
+                const platforms: Array<{ key: 'instagram' | 'youtube' | 'tiktok'; label: string }> = [
+                    { key: 'instagram', label: 'Instagram' },
+                    { key: 'youtube', label: 'YouTube' },
+                    { key: 'tiktok', label: 'TikTok' },
+                ];
+
+                for (const platform of platforms) {
+                    const user = socials[platform.key];
+                    if (!user) continue;
+
+                    const cached = localStorage.getItem(`brand_analysis_results_${platform.key}_${user}`);
+                    if (cached) {
+                        try {
+                            const parsed = JSON.parse(cached);
+                            setAnalysisData({
+                                niche: parsed.niche,
+                                pillars: parsed.pillars,
+                                tone: parsed.tone || 'Professional & Engaging',
+                                platform: platform.label,
+                            });
+                            foundAnalysis = true;
+                            break; // Use the first analysis found
+                        } catch (e) {
+                            console.error(`Failed to parse ${platform.label} analysis`, e);
+                        }
+                    }
+                }
+            } catch (e) {
+                console.error('Failed to parse connected_socials', e);
+            }
+        }
+
+        // Fallback: check legacy key format with primary_username
+        if (!foundAnalysis && primaryUsername) {
+            const legacyCache = localStorage.getItem(`brand_analysis_results_instagram_${primaryUsername}`);
+            if (legacyCache) {
                 try {
-                    const parsed = JSON.parse(savedAnalysis);
+                    const parsed = JSON.parse(legacyCache);
                     setAnalysisData({
                         niche: parsed.niche,
                         pillars: parsed.pillars,
-                        tone: parsed.tone || 'Professional & Engaging' // Fallback tone
+                        tone: parsed.tone || 'Professional & Engaging',
+                        platform: 'Instagram',
                     });
-                } catch (e) {
-                    console.error('Failed to parse analysis data', e);
-                }
-            } else {
-                setAnalysisData(null);
+                    foundAnalysis = true;
+                } catch (e) { }
             }
+        }
+
+        if (!foundAnalysis) {
+            setAnalysisData(null);
         }
     }, []);
 
@@ -99,7 +144,7 @@ export default function IdeaGenerator() {
 
     return (
         <div className="max-w-4xl mx-auto relative">
-            <div className="flex justify-between items-center mb-8">
+            <div className="flex justify-between items-start mb-8">
                 <div>
                     <h2 className="text-3xl font-bold text-theme-primary">Idea Generator</h2>
                     <p className="text-theme-secondary mt-2">
@@ -114,6 +159,49 @@ export default function IdeaGenerator() {
                     {generating ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Generating...</> : 'Generate Ideas'}
                 </button>
             </div>
+
+            {/* Analysis Context Banner */}
+            {analysisData ? (
+                <div className="mb-8 p-4 rounded-2xl bg-card-theme border border-theme flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+                            <BrainCircuit className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                            <p className="text-sm font-bold text-theme-primary">
+                                Powered by {analysisData.platform} Analysis
+                            </p>
+                            <p className="text-xs text-theme-secondary">
+                                Niche: <span className="text-purple-400 font-medium">{analysisData.niche}</span> · {analysisData.pillars.length} pillars · Tone: {analysisData.tone}
+                            </p>
+                        </div>
+                    </div>
+                    <Link
+                        href="/dashboard/analysis"
+                        className="text-xs font-bold text-purple-400 hover:text-purple-300 transition-colors px-3 py-1.5 rounded-lg hover:bg-card-hover"
+                    >
+                        Re-analyze →
+                    </Link>
+                </div>
+            ) : (
+                <div className="mb-8 p-6 rounded-2xl bg-yellow-500/5 border border-yellow-500/20 flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center flex-shrink-0">
+                        <AlertCircle className="w-5 h-5 text-yellow-500" />
+                    </div>
+                    <div className="flex-1">
+                        <p className="text-sm font-bold text-theme-primary">No Brand Analysis Found</p>
+                        <p className="text-xs text-theme-secondary">
+                            Ideas will use generic defaults. Run a Brand Analysis first for personalized results.
+                        </p>
+                    </div>
+                    <Link
+                        href="/dashboard/analysis"
+                        className="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white text-xs font-bold hover:opacity-90 transition-opacity flex-shrink-0"
+                    >
+                        Run Analysis
+                    </Link>
+                </div>
+            )}
 
             {generating && (
                 <div className="flex flex-col items-center justify-center py-20">
