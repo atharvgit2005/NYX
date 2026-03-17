@@ -14,17 +14,22 @@ export default function IdeaGenerator() {
     const [copied, setCopied] = useState(false);
 
     useEffect(() => {
-        const savedAnalysis = localStorage.getItem('brand_analysis_results');
-        if (savedAnalysis) {
-            try {
-                const parsed = JSON.parse(savedAnalysis);
-                setAnalysisData({
-                    niche: parsed.niche,
-                    pillars: parsed.pillars,
-                    tone: parsed.tone || 'Professional & Engaging' // Fallback tone
-                });
-            } catch (e) {
-                console.error('Failed to parse analysis data', e);
+        const savedUsername = localStorage.getItem('primary_username');
+        if (savedUsername) {
+            const savedAnalysis = localStorage.getItem(`brand_analysis_results_${savedUsername}`);
+            if (savedAnalysis) {
+                try {
+                    const parsed = JSON.parse(savedAnalysis);
+                    setAnalysisData({
+                        niche: parsed.niche,
+                        pillars: parsed.pillars,
+                        tone: parsed.tone || 'Professional & Engaging' // Fallback tone
+                    });
+                } catch (e) {
+                    console.error('Failed to parse analysis data', e);
+                }
+            } else {
+                setAnalysisData(null);
             }
         }
     }, []);

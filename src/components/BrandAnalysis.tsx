@@ -17,12 +17,16 @@ export default function BrandAnalysis() {
         setUsername(savedUsername);
 
         // Check for existing analysis cache
-        const savedAnalysis = localStorage.getItem('brand_analysis_results');
-        if (savedAnalysis) {
-            try {
-                setAnalysis(JSON.parse(savedAnalysis));
-            } catch (e) {
-                console.error("Failed to parse saved analysis", e);
+        if (savedUsername) {
+            const savedAnalysis = localStorage.getItem(`brand_analysis_results_${savedUsername}`);
+            if (savedAnalysis) {
+                try {
+                    setAnalysis(JSON.parse(savedAnalysis));
+                } catch (e) {
+                    console.error("Failed to parse saved analysis", e);
+                }
+            } else {
+                setAnalysis(null); // Ensure we don't display stale data
             }
         }
     }, []);
@@ -42,8 +46,8 @@ export default function BrandAnalysis() {
 
             if (data.success) {
                 setAnalysis(data.data);
-                // Save to localStorage for Idea Generator
-                localStorage.setItem('brand_analysis_results', JSON.stringify(data.data));
+                // Save to localStorage partitioned by username
+                localStorage.setItem(`brand_analysis_results_${username}`, JSON.stringify(data.data));
             } else {
                 setError(data.error || 'Analysis failed');
             }
