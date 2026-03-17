@@ -26,6 +26,10 @@ export default function ScriptEditor() {
     const chatEndRef = useRef<HTMLDivElement>(null);
     const chatInputRef = useRef<HTMLTextAreaElement>(null);
 
+    // Typewriter state
+    const [isTyping, setIsTyping] = useState(false);
+    const typewriterRef = useRef<NodeJS.Timeout | null>(null);
+
     // Load script from localStorage on mount
     useEffect(() => {
         const savedScript = localStorage.getItem('current_video_script');
@@ -86,9 +90,57 @@ Comment "AI" below and I'll send you the full list of tools I use.`
         chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [chatMessages, chatLoading]);
 
+    // Cleanup typewriter on unmount
+    useEffect(() => {
+        return () => {
+            if (typewriterRef.current) clearInterval(typewriterRef.current);
+        };
+    }, []);
+
     const handleScriptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        if (isTyping) return; // Block manual edits during typewriter
         setScript(e.target.value);
         setHasUnsavedChanges(true);
+    };
+
+    /** Extract script content from AI response using [SCRIPT_START]/[SCRIPT_END] markers */
+    const parseScriptFromResponse = (text: string): { explanation: string; scriptContent: string | null } => {
+        const startMarker = '[SCRIPT_START]';
+        const endMarker = '[SCRIPT_END]';
+        const startIdx = text.indexOf(startMarker);
+        const endIdx = text.indexOf(endMarker);
+
+        if (startIdx !== -1 && endIdx !== -1 && endIdx > startIdx) {
+            const scriptContent = text.slice(startIdx + startMarker.length, endIdx).trim();
+            const explanation = (text.slice(0, startIdx) + text.slice(endIdx + endMarker.length)).trim();
+            return { explanation, scriptContent };
+        }
+
+        return { explanation: text, scriptContent: null };
+    };
+
+    /** Typewriter effect: writes script char-by-char into the editor */
+    const typewriteScript = (newScript: string) => {
+        // Cancel any previous typewriter
+        if (typewriterRef.current) clearInterval(typewriterRef.current);
+
+        setIsTyping(true);
+        setScript(''); // Clear editor first
+
+        let charIndex = 0;
+        const speed = 18; // ms per character
+
+        typewriterRef.current = setInterval(() => {
+            charIndex++;
+            setScript(newScript.slice(0, charIndex));
+
+            if (charIndex >= newScript.length) {
+                if (typewriterRef.current) clearInterval(typewriterRef.current);
+                typewriterRef.current = null;
+                setIsTyping(false);
+                setHasUnsavedChanges(true);
+            }
+        }, speed);
     };
 
     const handleSendMessage = async () => {
@@ -124,15 +176,29 @@ Comment "AI" below and I'll send you the full list of tools I use.`
             });
 
             const data = await response.json();
+            const rawResponse = data.success ? data.data : (data.error || 'Something went wrong. Please try again.');
+
+            // Parse for script markers
+            const { explanation, scriptContent } = parseScriptFromResponse(rawResponse);
+
+            // Build the chat message (show explanation only, not the raw script block)
+            const displayContent = scriptContent
+                ? (explanation || 'Here\'s your updated script!') + '\n\n✨ Script applied to editor'
+                : rawResponse;
 
             const aiMsg: ChatMessage = {
                 id: (Date.now() + 1).toString(),
                 role: 'assistant',
-                content: data.success ? data.data : (data.error || 'Something went wrong. Please try again.'),
+                content: displayContent,
                 timestamp: Date.now(),
             };
 
             setChatMessages(prev => [...prev, aiMsg]);
+
+            // If script content was found, typewrite it into the editor
+            if (scriptContent) {
+                typewriteScript(scriptContent);
+            }
         } catch (err) {
             const errMsg: ChatMessage = {
                 id: (Date.now() + 1).toString(),
@@ -332,15 +398,27 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                                 <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
                                 <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
                             </div>
-                            <span className="text-xs font-mono text-theme-secondary uppercase tracking-wider">Editor Mode</span>
+                            {isTyping ? (
+                                <span className="text-xs font-mono text-purple-400 uppercase tracking-wider flex items-center gap-2 animate-pulse">
+                                    <Sparkles className="w-3 h-3" /> AI Writing...
+                                </span>
+                            ) : (
+                                <span className="text-xs font-mono text-theme-secondary uppercase tracking-wider">Editor Mode</span>
+                            )}
                         </div>
-                        <textarea
-                            value={script}
-                            onChange={handleScriptChange}
-                            className="w-full h-full bg-transparent p-8 text-lg md:text-xl text-theme-primary placeholder-gray-500 focus:outline-none resize-none font-serif leading-loose selection:bg-purple-500/30"
-                            placeholder="Start writing your script..."
-                            spellCheck="false"
-                        />
+                        <div className="relative flex-1 min-h-0">
+                            <textarea
+                                value={script}
+                                onChange={handleScriptChange}
+                                readOnly={isTyping}
+                                className={`w-full h-full bg-transparent p-8 text-lg md:text-xl text-theme-primary placeholder-gray-500 focus:outline-none resize-none font-serif leading-loose selection:bg-purple-500/30 ${isTyping ? 'cursor-default' : ''}`}
+                                placeholder="Start writing your script..."
+                                spellCheck="false"
+                            />
+                            {isTyping && (
+                                <span className="absolute animate-blink text-purple-400 text-2xl font-light" style={{ left: 'auto', bottom: '1rem', right: '2rem' }}>▎</span>
+                            )}
+                        </div>
                         <div className="px-6 py-3 bg-page border-t border-theme text-xs text-theme-secondary flex justify-between">
                             <span>{script.split(/\s+/).filter(Boolean).length} words</span>
                             <span>~{Math.ceil(script.split(/\s+/).filter(Boolean).length / 3)} sec</span>

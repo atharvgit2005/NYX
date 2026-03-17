@@ -57,12 +57,13 @@ User's request: ${message}
 
 Guidelines:
 - Be concise and actionable. Keep responses under 150 words unless the user asks for a full rewrite.
-- If the user asks for a rewrite or improvement, provide the improved text directly.
-- If they ask a question, answer it briefly and practically.
+- If the user asks for a rewrite, improvement, new script, or any change that produces a full or partial script, you MUST wrap the script text inside [SCRIPT_START] and [SCRIPT_END] markers. Only the spoken script goes inside these markers — not your commentary.
+- Outside the markers, include a brief explanation (1-2 sentences) of what you changed and why.
+- If they ask a question or feedback without requesting new script text, respond normally without the markers.
 - Focus on hooks, pacing, CTAs, and engagement.
 - Use a friendly, collaborative tone — like a creative partner, not a teacher.
-- If suggesting script changes, clearly mark the new text so they can easily copy it.
 - Do NOT use markdown formatting like ## or **. Use plain text with line breaks.
+- The script inside the markers should be ready to paste directly — include [HOOK], [BODY], and [CTA] section labels.
 
 Respond now:`;
 
