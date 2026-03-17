@@ -1,8 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Lightbulb, Loader2, ArrowRight } from 'lucide-react';
+import { Lightbulb, Loader2, ArrowRight, Send, Bot, User, Sparkles, Trash2 } from 'lucide-react';
+
+interface ChatMessage {
+    id: string;
+    role: 'user' | 'assistant';
+    content: string;
+    timestamp: number;
+}
 
 export default function ScriptEditor() {
     const [script, setScript] = useState<string>('');
@@ -11,6 +18,13 @@ export default function ScriptEditor() {
     const [generating, setGenerating] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+
+    // Chat state
+    const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+    const [chatInput, setChatInput] = useState('');
+    const [chatLoading, setChatLoading] = useState(false);
+    const chatEndRef = useRef<HTMLDivElement>(null);
+    const chatInputRef = useRef<HTMLTextAreaElement>(null);
 
     // Load script from localStorage on mount
     useEffect(() => {
@@ -35,6 +49,22 @@ Comment "AI" below and I'll send you the full list of tools I use.`
         if (savedIdea) {
             setIdeaTitle(savedIdea);
         }
+
+        // Load chat history
+        const savedChat = localStorage.getItem('script_chat_history');
+        if (savedChat) {
+            try {
+                setChatMessages(JSON.parse(savedChat));
+            } catch (e) { }
+        } else {
+            // Welcome message
+            setChatMessages([{
+                id: 'welcome',
+                role: 'assistant',
+                content: "Hey! I'm your script assistant. Ask me anything — improve your hook, rewrite a section, adjust tone, or get feedback on your script. Just type below!",
+                timestamp: Date.now(),
+            }]);
+        }
     }, []);
 
     // Auto-save script to localStorage on changes
@@ -44,16 +74,101 @@ Comment "AI" below and I'll send you the full list of tools I use.`
         }
     }, [script]);
 
+    // Save chat history
+    useEffect(() => {
+        if (chatMessages.length > 0) {
+            localStorage.setItem('script_chat_history', JSON.stringify(chatMessages));
+        }
+    }, [chatMessages]);
+
+    // Auto-scroll chat
+    useEffect(() => {
+        chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [chatMessages, chatLoading]);
+
     const handleScriptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setScript(e.target.value);
         setHasUnsavedChanges(true);
+    };
+
+    const handleSendMessage = async () => {
+        const message = chatInput.trim();
+        if (!message || chatLoading) return;
+
+        const userMsg: ChatMessage = {
+            id: Date.now().toString(),
+            role: 'user',
+            content: message,
+            timestamp: Date.now(),
+        };
+
+        setChatMessages(prev => [...prev, userMsg]);
+        setChatInput('');
+        setChatLoading(true);
+
+        try {
+            // Send only last 6 messages as context to avoid token overflow
+            const recentHistory = chatMessages.slice(-6).map(m => ({
+                role: m.role,
+                content: m.content,
+            }));
+
+            const response = await fetch('/api/scripts/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message,
+                    script,
+                    chatHistory: recentHistory,
+                }),
+            });
+
+            const data = await response.json();
+
+            const aiMsg: ChatMessage = {
+                id: (Date.now() + 1).toString(),
+                role: 'assistant',
+                content: data.success ? data.data : (data.error || 'Something went wrong. Please try again.'),
+                timestamp: Date.now(),
+            };
+
+            setChatMessages(prev => [...prev, aiMsg]);
+        } catch (err) {
+            const errMsg: ChatMessage = {
+                id: (Date.now() + 1).toString(),
+                role: 'assistant',
+                content: 'Network error. Please check your connection and try again.',
+                timestamp: Date.now(),
+            };
+            setChatMessages(prev => [...prev, errMsg]);
+        } finally {
+            setChatLoading(false);
+            chatInputRef.current?.focus();
+        }
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSendMessage();
+        }
+    };
+
+    const clearChat = () => {
+        const welcomeMsg: ChatMessage = {
+            id: 'welcome',
+            role: 'assistant',
+            content: "Chat cleared! I'm ready to help with your script. What would you like to improve?",
+            timestamp: Date.now(),
+        };
+        setChatMessages([welcomeMsg]);
+        localStorage.removeItem('script_chat_history');
     };
 
     const handleRegenerate = async () => {
         setGenerating(true);
         setError(null);
 
-        // Pull analysis data for tone
         let tone = 'Professional';
         const savedSocials = localStorage.getItem('connected_socials');
         if (savedSocials) {
@@ -74,7 +189,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
         }
 
         try {
-            const response = await fetch('/api/scripts', {
+            const response = await fetch('/api/scripts/generate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -114,6 +229,14 @@ Comment "AI" below and I'll send you the full list of tools I use.`
             console.error(e);
         }
     };
+
+    // Quick suggestion chips
+    const quickPrompts = [
+        "Make the hook more viral",
+        "Shorten this script",
+        "Add a stronger CTA",
+        "Make it more casual",
+    ];
 
     return (
         <div className="max-w-6xl mx-auto relative">
@@ -200,6 +323,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
             )}
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Script Editor Panel */}
                 <div className="lg:col-span-2">
                     <div className="bg-card-theme rounded-3xl border border-theme overflow-hidden shadow-2xl h-[600px] flex flex-col focus-within:border-purple-500/50 transition-colors">
                         <div className="bg-page px-6 py-4 border-b border-theme flex justify-between items-center backdrop-blur-sm">
@@ -224,42 +348,112 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                     </div>
                 </div>
 
-                <div className="space-y-6">
-                    <div className="bg-gradient-to-br from-purple-900/10 to-transparent p-6 rounded-3xl border border-purple-500/20">
-                        <h3 className="text-lg font-bold text-theme-primary mb-4 flex items-center gap-2">
-                            <span className="text-purple-400">✨</span> AI Suggestions
-                        </h3>
-                        <ul className="space-y-4 text-sm text-theme-secondary">
-                            {[
-                                "Start with a controversial hook to stop the scroll.",
-                                "Keep sentences short (under 15 words) for readability.",
-                                "Add a clear Call to Action (CTA) in the last 5 seconds."
-                            ].map((tip, i) => (
-                                <li key={i} className="flex items-start bg-page p-3 rounded-xl border border-theme">
-                                    <span className="text-yellow-400 mr-3 mt-0.5">💡</span>
-                                    {tip}
-                                </li>
-                            ))}
-                        </ul>
+                {/* AI Chat Panel */}
+                <div className="h-[600px] flex flex-col bg-card-theme rounded-3xl border border-theme overflow-hidden shadow-2xl">
+                    {/* Chat Header */}
+                    <div className="px-5 py-4 border-b border-theme flex items-center justify-between bg-gradient-to-r from-purple-900/20 to-pink-900/20">
+                        <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                                <Sparkles className="w-4 h-4 text-white" />
+                            </div>
+                            <div>
+                                <p className="text-sm font-bold text-theme-primary">Script AI</p>
+                                <p className="text-[10px] text-theme-secondary">Your creative co-pilot</p>
+                            </div>
+                        </div>
+                        <button
+                            onClick={clearChat}
+                            className="p-2 rounded-lg hover:bg-card-hover text-theme-secondary hover:text-theme-primary transition-colors"
+                            title="Clear chat"
+                        >
+                            <Trash2 className="w-4 h-4" />
+                        </button>
                     </div>
 
-                    <div className="bg-card-theme p-6 rounded-3xl border border-theme">
-                        <h3 className="text-lg font-bold text-theme-primary mb-6">Tone Adjustments</h3>
-                        <div className="space-y-6">
-                            <div>
-                                <div className="flex justify-between text-xs text-theme-secondary mb-2">
-                                    <span>Calm</span>
-                                    <span>Energetic</span>
+                    {/* Chat Messages */}
+                    <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 scrollbar-thin">
+                        {chatMessages.map((msg) => (
+                            <div
+                                key={msg.id}
+                                className={`flex gap-2.5 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
+                            >
+                                <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-1 ${
+                                    msg.role === 'user'
+                                        ? 'bg-gradient-to-br from-blue-500 to-cyan-500'
+                                        : 'bg-gradient-to-br from-purple-500 to-pink-500'
+                                }`}>
+                                    {msg.role === 'user'
+                                        ? <User className="w-3.5 h-3.5 text-white" />
+                                        : <Bot className="w-3.5 h-3.5 text-white" />
+                                    }
                                 </div>
-                                <input type="range" className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-purple-500" defaultValue="75" />
-                            </div>
-                            <div>
-                                <div className="flex justify-between text-xs text-theme-secondary mb-2">
-                                    <span>Slow</span>
-                                    <span>Fast</span>
+                                <div className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${
+                                    msg.role === 'user'
+                                        ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-tr-sm'
+                                        : 'bg-card-hover text-theme-primary border border-theme rounded-tl-sm'
+                                }`}>
+                                    <p className="whitespace-pre-wrap">{msg.content}</p>
                                 </div>
-                                <input type="range" className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-pink-500" defaultValue="60" />
                             </div>
+                        ))}
+
+                        {/* Loading indicator */}
+                        {chatLoading && (
+                            <div className="flex gap-2.5">
+                                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <Bot className="w-3.5 h-3.5 text-white" />
+                                </div>
+                                <div className="bg-card-hover border border-theme px-4 py-3 rounded-2xl rounded-tl-sm">
+                                    <div className="flex items-center gap-1.5">
+                                        <div className="w-2 h-2 rounded-full bg-purple-400 animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                                        <div className="w-2 h-2 rounded-full bg-purple-400 animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                                        <div className="w-2 h-2 rounded-full bg-purple-400 animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        <div ref={chatEndRef} />
+                    </div>
+
+                    {/* Quick Prompts */}
+                    {chatMessages.length <= 2 && (
+                        <div className="px-4 py-2 flex flex-wrap gap-2 border-t border-theme/50">
+                            {quickPrompts.map((prompt, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => {
+                                        setChatInput(prompt);
+                                        chatInputRef.current?.focus();
+                                    }}
+                                    className="px-3 py-1.5 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/20 hover:border-purple-500/40 rounded-full text-xs text-purple-300 hover:text-purple-200 transition-all"
+                                >
+                                    {prompt}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Chat Input */}
+                    <div className="px-4 py-3 border-t border-theme bg-page">
+                        <div className="flex items-end gap-2">
+                            <textarea
+                                ref={chatInputRef}
+                                value={chatInput}
+                                onChange={(e) => setChatInput(e.target.value)}
+                                onKeyDown={handleKeyDown}
+                                placeholder="Ask AI to improve your script..."
+                                rows={1}
+                                className="flex-1 bg-card-theme border border-theme rounded-xl px-4 py-3 text-sm text-theme-primary placeholder-gray-500 focus:outline-none focus:border-purple-500/50 resize-none max-h-24 leading-relaxed"
+                                style={{ minHeight: '44px' }}
+                            />
+                            <button
+                                onClick={handleSendMessage}
+                                disabled={!chatInput.trim() || chatLoading}
+                                className="p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white hover:opacity-90 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex-shrink-0 hover:shadow-lg hover:shadow-purple-500/25"
+                            >
+                                <Send className="w-4 h-4" />
+                            </button>
                         </div>
                     </div>
                 </div>
