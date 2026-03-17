@@ -8,17 +8,41 @@ export default function BrandAnalysis() {
     const [analyzing, setAnalyzing] = useState(false);
     const [analysis, setAnalysis] = useState<any>(null);
     const [username, setUsername] = useState<string | null>(null);
+    const [activePlatform, setActivePlatform] = useState<'instagram' | 'youtube'>('instagram');
 
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        // Check for connected account
-        const savedUsername = localStorage.getItem('primary_username');
-        setUsername(savedUsername);
+        // Check for connected accounts
+        const savedSocials = localStorage.getItem('connected_socials');
+        let initialPlatform: 'instagram' | 'youtube' = 'instagram';
+
+        if (savedSocials) {
+            try {
+                const parsed = JSON.parse(savedSocials);
+                // Prefer instagram, fallback to youtube
+                if (parsed.youtube && !parsed.instagram && !parsed.tiktok) {
+                    initialPlatform = 'youtube';
+                    setUsername(parsed.youtube);
+                } else {
+                    setUsername(parsed.instagram || parsed.tiktok || localStorage.getItem('primary_username'));
+                }
+            } catch (e) {
+                setUsername(localStorage.getItem('primary_username'));
+            }
+        } else {
+            setUsername(localStorage.getItem('primary_username'));
+        }
+
+        setActivePlatform(initialPlatform);
 
         // Check for existing analysis cache
-        if (savedUsername) {
-            const savedAnalysis = localStorage.getItem(`brand_analysis_results_${savedUsername}`);
+        handleCacheLoad(username, initialPlatform);
+    }, [username]);
+
+    const handleCacheLoad = (user: string | null, platform: 'instagram' | 'youtube') => {
+        if (user) {
+            const savedAnalysis = localStorage.getItem(`brand_analysis_results_${platform}_${user}`);
             if (savedAnalysis) {
                 try {
                     setAnalysis(JSON.parse(savedAnalysis));
@@ -29,7 +53,20 @@ export default function BrandAnalysis() {
                 setAnalysis(null); // Ensure we don't display stale data
             }
         }
-    }, []);
+    };
+
+    const switchPlatform = (platform: 'instagram' | 'youtube') => {
+        const savedSocials = localStorage.getItem('connected_socials');
+        if (savedSocials) {
+            try {
+                const parsed = JSON.parse(savedSocials);
+                const newUser = parsed[platform];
+                setUsername(newUser || null);
+                setActivePlatform(platform);
+                handleCacheLoad(newUser, platform);
+            } catch (e) { }
+        }
+    };
 
     const handleAnalyze = async () => {
         if (!username) return;
@@ -37,17 +74,25 @@ export default function BrandAnalysis() {
         setAnalyzing(true);
         setError(null);
         try {
-            const response = await fetch('/api/analyze', {
+            const endpoint = activePlatform === 'youtube' ? '/api/analyze-youtube' : '/api/analyze';
+            const payload = activePlatform === 'youtube'
+                ? { profileData: { channelHandle: username } }
+                : { profileData: { username: username } };
+
+            const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ profileData: { username: username } }),
+                body: JSON.stringify(payload),
             });
             const data = await response.json();
 
             if (data.success) {
                 setAnalysis(data.data);
-                // Save to localStorage partitioned by username
-                localStorage.setItem(`brand_analysis_results_${username}`, JSON.stringify(data.data));
+                // Save to localStorage partitioned by username and platform
+                localStorage.setItem(`brand_analysis_results_${activePlatform}_${username}`, JSON.stringify(data.data));
+
+                // Also update the IdeaGenerator main cache pointer
+                localStorage.setItem('primary_username', username);
             } else {
                 setError(data.error || 'Analysis failed');
             }
@@ -67,7 +112,7 @@ export default function BrandAnalysis() {
                 </div>
                 <h2 className="text-3xl font-bold text-white mb-4">No Account Connected</h2>
                 <p className="text-gray-400 mb-8 max-w-md mx-auto">
-                    Please connect your Instagram or TikTok account to enable AI brand analysis.
+                    Please connect an Instagram or YouTube account to enable AI brand analysis.
                 </p>
                 <Link
                     href="/dashboard/connect"
@@ -81,6 +126,23 @@ export default function BrandAnalysis() {
 
     return (
         <div className="max-w-6xl mx-auto">
+            <div className="flex flex-col md:flex-row items-center justify-center mb-10 gap-4">
+                <div className="bg-card-theme p-1 rounded-full flex border border-theme">
+                    <button
+                        onClick={() => switchPlatform('instagram')}
+                        className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${activePlatform === 'instagram' ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md' : 'text-theme-secondary hover:text-theme-primary'}`}
+                    >
+                        Instagram
+                    </button>
+                    <button
+                        onClick={() => switchPlatform('youtube')}
+                        className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${activePlatform === 'youtube' ? 'bg-red-600 text-white shadow-md' : 'text-theme-secondary hover:text-theme-primary'}`}
+                    >
+                        YouTube Shorts
+                    </button>
+                </div>
+            </div>
+
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                 <div>
                     <h2 className="text-4xl font-bold text-theme-primary mb-2">Brand Analysis</h2>
@@ -188,11 +250,11 @@ export default function BrandAnalysis() {
                         </div>
                     </div>
 
-                    {/* Right Column: Instagram Profile Preview */}
+                    {/* Right Column: Profile Preview */}
                     <div className="space-y-6">
                         <div className="bg-card-theme backdrop-blur-xl border border-theme rounded-3xl p-6 sticky top-24">
                             <div className="flex items-center space-x-4 mb-6">
-                                <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 p-[2px]">
+                                <div className={`w-16 h-16 rounded-full p-[2px] ${activePlatform === 'youtube' ? 'bg-gradient-to-tr from-red-600 to-red-400' : 'bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500'}`}>
                                     <div className="w-full h-full rounded-full bg-black overflow-hidden relative">
                                         {/* Avatar Fallback */}
                                         <img
@@ -211,11 +273,11 @@ export default function BrandAnalysis() {
                             <div className="flex justify-between text-center mb-6 py-4 border-y border-theme">
                                 <div>
                                     <p className="font-bold text-theme-primary">{analysis.scrapedData?.posts?.length || 0}</p>
-                                    <p className="text-xs text-theme-secondary">Posts</p>
+                                    <p className="text-xs text-theme-secondary">{activePlatform === 'youtube' ? 'Shorts' : 'Posts'}</p>
                                 </div>
                                 <div>
                                     <p className="font-bold text-theme-primary">{analysis.scrapedData?.followers || 'N/A'}</p>
-                                    <p className="text-xs text-theme-secondary">Followers</p>
+                                    <p className="text-xs text-theme-secondary">{activePlatform === 'youtube' ? 'Subscribers' : 'Followers'}</p>
                                 </div>
                                 <div>
                                     <p className="font-bold text-theme-primary">N/A</p>
@@ -228,10 +290,10 @@ export default function BrandAnalysis() {
                             </div>
 
                             {/* Recent Posts Grid */}
-                            <h4 className="text-xs font-bold text-theme-secondary uppercase mb-3">Recent Posts</h4>
-                            <div className="grid grid-cols-3 gap-2">
-                                {analysis.scrapedData?.posts?.map((post: any, i: number) => (
-                                    <div key={i} className="aspect-square bg-card-theme rounded-lg overflow-hidden relative group cursor-pointer border border-theme">
+                            <h4 className="text-xs font-bold text-theme-secondary uppercase mb-3 text-center md:text-left">Recent Content</h4>
+                            <div className={`grid gap-2 ${activePlatform === 'youtube' ? 'grid-cols-2' : 'grid-cols-3'}`}>
+                                {analysis.scrapedData?.posts?.slice(0, 6).map((post: any, i: number) => (
+                                    <div key={i} className={`${activePlatform === 'youtube' ? 'aspect-[9/16]' : 'aspect-square'} bg-card-theme rounded-lg overflow-hidden relative group cursor-pointer border border-theme`}>
                                         {post.imageUrl ? (
                                             <img src={`/api/proxy-image?url=${encodeURIComponent(post.imageUrl)}`} alt="Post" className="w-full h-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
                                         ) : (
@@ -250,12 +312,12 @@ export default function BrandAnalysis() {
                             </div>
 
                             <a
-                                href={`https://instagram.com/${username}`}
+                                href={activePlatform === 'youtube' ? `https://youtube.com/@${username}` : `https://instagram.com/${username}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="mt-6 block w-full py-3 bg-card-hover hover:bg-card-theme text-theme-primary text-center rounded-xl font-bold text-sm transition-colors border border-theme"
                             >
-                                View on Instagram ↗
+                                View on {activePlatform === 'youtube' ? 'YouTube' : 'Instagram'} ↗
                             </a>
 
                             {analysis.scrapedData?.isMockData && (
