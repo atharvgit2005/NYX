@@ -226,45 +226,6 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* About Us Section */}
-
-            <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl font-bold text-center mb-6 tracking-tight">Meet the Founders</h2>
-                    <p className="text-theme-secondary text-center mb-16 max-w-2xl mx-auto text-sm">
-                        Building the future of content automation.
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-8">
-                        {[
-                            { 
-                                name: 'Atharv Paharia', 
-                                role: 'Co-Founder & Tech Lead',
-                                linkedin: 'https://www.linkedin.com/in/atharv-paharia-468276272/',
-                                instagram: 'https://www.instagram.com/i___am__atharv/'
-                            },
-                            { 
-                                name: 'Bhavya Jain', 
-                                role: 'Co-Founder & Product',
-                                linkedin: 'https://www.linkedin.com/in/bhavya-jain-10963b33a/',
-                                instagram: 'https://www.instagram.com/bhavyakun_/'
-                            },
-                        ].map((founder, i) => (
-                            <div key={i} className="flex-1 min-w-[280px] max-w-sm p-8 rounded-2xl bg-card-theme border border-white/5 hover:border-purple-500/30 hover:bg-card-hover transition-all duration-300 text-center hover:-translate-y-1">
-                                <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-page flex items-center justify-center text-xl font-bold text-theme-primary border-theme">
-                                    {founder.name[0]}
-                                </div>
-                                <h3 className="text-lg font-bold mb-1 text-theme-primary">{founder.name}</h3>
-                                <p className="text-theme-secondary text-xs mb-4">{founder.role}</p>
-                                <div className="flex justify-center gap-3">
-                                    <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 text-theme-secondary hover:text-theme-primary transition-colors"><Linkedin className="w-4 h-4" /></a>
-                                    <a href={founder.instagram} target="_blank" rel="noopener noreferrer" className="p-2 text-theme-secondary hover:text-theme-primary transition-colors"><Instagram className="w-4 h-4" /></a>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
             {/* Pricing Section */}
             <section id="pricing" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="max-w-7xl mx-auto">
@@ -303,6 +264,109 @@ export default function LandingPage() {
                     </div>
                 </div>
             </section>
+
+            {/* About Us Section */}
+            <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-3xl font-bold text-center mb-6 tracking-tight">Meet the Founders</h2>
+                    <p className="text-theme-secondary text-center mb-16 max-w-2xl mx-auto text-sm">
+                        Building the future of content automation.
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-8">
+                        {[
+                            { 
+                                name: 'Atharv Paharia', 
+                                role: 'Co-Founder & Tech Lead',
+                                linkedin: 'https://www.linkedin.com/in/atharv-paharia-468276272/',
+                                instagram: 'https://www.instagram.com/i___am__atharv/'
+                            },
+                            { 
+                                name: 'Bhavya Jain', 
+                                role: 'Co-Founder & Product',
+                                linkedin: 'https://www.linkedin.com/in/bhavya-jain-10963b33a/',
+                                instagram: 'https://www.instagram.com/bhavyakun_/'
+                            },
+                        ].map((founder, i) => (
+                            <div key={i} className="flex-1 min-w-[280px] max-w-sm p-8 rounded-2xl bg-card-theme border border-white/5 hover:border-purple-500/30 hover:bg-card-hover transition-all duration-300 text-center hover:-translate-y-1">
+                                <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-page flex items-center justify-center text-xl font-bold text-theme-primary border-theme">
+                                    {founder.name[0]}
+                                </div>
+                                <h3 className="text-lg font-bold mb-1 text-theme-primary">{founder.name}</h3>
+                                <p className="text-theme-secondary text-xs mb-4">{founder.role}</p>
+                                <div className="flex justify-center gap-3">
+                                    <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 text-theme-secondary hover:text-theme-primary transition-colors"><Linkedin className="w-4 h-4" /></a>
+                                    <a href={founder.instagram} target="_blank" rel="noopener noreferrer" className="p-2 text-theme-secondary hover:text-theme-primary transition-colors"><Instagram className="w-4 h-4" /></a>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        {/* Footer */}
+            <footer className="relative z-10 border-t border-theme bg-page mt-24">
+                <div className="w-full px-6 md:px-12 lg:px-20 py-16">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+                        {/* Brand & Mission */}
+                        <div className="md:col-span-1">
+                            <Link href="/" className="flex items-center gap-3 mb-6 group hover:opacity-80 transition-opacity">
+                                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center shadow-md shadow-glow-white-small">
+                                    <span className="text-white font-extrabold text-sm">N</span>
+                                </div>
+                                <span className="text-xl font-bold tracking-tight text-theme-primary">NYX</span>
+                            </Link>
+                            <p className="text-theme-secondary text-sm leading-relaxed mb-6">
+                                Automating the future of content creation. Generate viral ideas, write scripts, and produce AI-narrated videos effortlessly.
+                            </p>
+                            <div className="flex gap-4">
+                                <a href="https://www.instagram.com/nyx.studios.ai/" target="_blank" rel="noopener noreferrer" className="p-2 -ml-2 text-theme-secondary hover:text-purple-500 transition-colors rounded-full hover:bg-card-hover">
+                                    <Instagram className="w-5 h-5" />
+                                </a>
+                                <a href="#" className="p-2 text-theme-secondary hover:text-purple-500 transition-colors rounded-full hover:bg-card-hover">
+                                    <Linkedin className="w-5 h-5" />
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* Quick Links */}
+                        <div>
+                            <h4 className="text-theme-primary font-bold mb-6">Product</h4>
+                            <ul className="space-y-4">
+                                <li><Link href="#features" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Features</Link></li>
+                                <li><Link href="#how-it-works" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">How it Works</Link></li>
+                                <li><Link href="#pricing" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Pricing</Link></li>
+                                <li><Link href="#about" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">About Us</Link></li>
+                            </ul>
+                        </div>
+
+                        {/* Resources */}
+                        <div>
+                            <h4 className="text-theme-primary font-bold mb-6">Resources</h4>
+                            <ul className="space-y-4">
+                                <li><a href="#" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Blog</a></li>
+                                <li><a href="#" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Help Center</a></li>
+                                <li><a href="#" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">API Documentation</a></li>
+                                <li><a href="#" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Community</a></li>
+                            </ul>
+                        </div>
+
+                        {/* Legal & Contact */}
+                        <div>
+                            <h4 className="text-theme-primary font-bold mb-6">Company</h4>
+                            <ul className="space-y-4">
+                                <li><a href="#" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Privacy Policy</a></li>
+                                <li><a href="#" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Terms of Service</a></li>
+                                <li><Link href="/contact" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Contact Us</Link></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="mt-16 pt-8 border-t border-theme flex flex-col md:flex-row items-center justify-center gap-4">
+                        <p className="text-theme-secondary text-sm">
+                            © {new Date().getFullYear()} NYX. All rights reserved.
+                        </p>
+                    </div>
+                </div>
+            </footer>
         </div>
     );
 }
