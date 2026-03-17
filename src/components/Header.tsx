@@ -75,8 +75,8 @@ export default function Header() {
 
                 <div className="flex items-center gap-4">
                     <ThemeToggle />
-                    <button className="relative p-2 text-theme-secondary hover:text-theme-primary transition-colors group">
-                        <span className="sr-only"></span>
+                    <button className="relative p-2 text-theme-secondary hover:text-theme-primary hover:bg-card-hover rounded-full transition-colors group">
+                        <span className="sr-only">Notifications</span>
                         <Bell className="h-6 w-6" />
                         <span className="absolute top-2 right-2.5 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-black animate-pulse"></span>
                     </button>
