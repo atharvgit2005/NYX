@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import ThreeBackground from './ThreeBackground';
 import VideoCarousel from './VideoCarousel';
 
@@ -278,18 +279,33 @@ export default function LandingPage() {
                                 name: 'Atharv Paharia', 
                                 role: 'Co-Founder & Tech Lead',
                                 linkedin: 'https://www.linkedin.com/in/atharv-paharia-468276272/',
-                                instagram: 'https://www.instagram.com/i___am__atharv/'
+                                instagram: 'https://www.instagram.com/i___am__atharv/',
+                                image: '/founders/atharv.jpg'
                             },
                             { 
                                 name: 'Bhavya Jain', 
                                 role: 'Co-Founder & Product',
                                 linkedin: 'https://www.linkedin.com/in/bhavya-jain-10963b33a/',
-                                instagram: 'https://www.instagram.com/bhavyakun_/'
+                                instagram: 'https://www.instagram.com/bhavyakun_/',
+                                image: '/founders/bhavya.jpg'
                             },
                         ].map((founder, i) => (
                             <div key={i} className="flex-1 min-w-[280px] max-w-sm p-8 rounded-2xl bg-card-theme border border-white/5 hover:border-purple-500/30 hover:bg-card-hover transition-all duration-300 text-center hover:-translate-y-1">
-                                <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-page flex items-center justify-center text-xl font-bold text-theme-primary border-theme">
-                                    {founder.name[0]}
+                                <div className="w-24 h-24 mx-auto mb-5 rounded-full bg-page flex items-center justify-center text-2xl font-bold text-theme-primary border-theme overflow-hidden relative shadow-lg">
+                                    {founder.image ? (
+                                        <Image 
+                                            src={founder.image} 
+                                            alt={founder.name} 
+                                            fill 
+                                            className="object-cover"
+                                            onError={(e) => {
+                                                // Fallback if image fails to load
+                                                e.currentTarget.style.display = 'none';
+                                                e.currentTarget.parentElement?.classList.add('flex', 'items-center', 'justify-center');
+                                            }}
+                                        />
+                                    ) : null}
+                                    <span className="absolute z-[-1]">{founder.name[0]}</span>
                                 </div>
                                 <h3 className="text-lg font-bold mb-1 text-theme-primary">{founder.name}</h3>
                                 <p className="text-theme-secondary text-xs mb-4">{founder.role}</p>
