@@ -11,58 +11,39 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Channel handle is required' }, { status: 400 });
         }
 
-        let scrapedProfile;
-        let isMockData = false;
+        console.log(`[YouTube Route] Starting analysis for @${channelHandle}...`);
 
-        try {
-            console.log(`Scraping YouTube profile for @${channelHandle}...`);
-            // Attempt to scrape the YouTube profile
-            scrapedProfile = await scrapeYoutubeProfile(channelHandle);
+        // 1. Fetch YouTube channel data (API v3 with mock fallback)
+        const ytProfile = await scrapeYoutubeProfile(channelHandle);
 
-            // Convert to the transcript format expected by analyzeNiche
-            const transcript = `
-            Profile: ${scrapedProfile.channelName} (@${scrapedProfile.channelHandle})
-            Bio: ${scrapedProfile.description}
-            Subscribers: ${scrapedProfile.subscriberCount}
-            
-            Recent Content (Shorts Titles):
-            ${scrapedProfile.shorts.map((s, i) => `[Short ${i + 1}] ${s.title}`).join('\n\n')}
-            `;
+        // Detect if mock data was returned (channel name contains "Mock")
+        const isMockData = ytProfile.channelName.includes('(Mock)');
 
-            scrapedProfile = {
-                ...scrapedProfile,
-                transcript
-            };
-            isMockData = true; // In our current mock implementation, this is true
-        } catch (scrapeError) {
-            console.warn(`Live YouTube scraping failed for @${channelHandle}.`);
-            throw scrapeError;
-        }
+        // 2. Analyze the transcript with Gemini
+        console.log(`[YouTube Route] Analyzing transcript with Gemini... (Key exists? ${!!process.env.GEMINI_API_KEY})`);
+        const analysis = await analyzeNiche(ytProfile.transcript);
 
-        // Analyze the transcript with Gemini
-        console.log(`Analyzing YouTube transcript with Gemini...`);
-        const analysis = await analyzeNiche(scrapedProfile.transcript);
-
+        // 3. Return in the same shape the frontend expects
         return NextResponse.json({
             success: true,
             data: {
                 ...analysis,
-                platform: 'youtube', // Explicitly marked
+                platform: 'youtube',
                 scrapedData: {
-                    fullName: scrapedProfile.channelName, // Mapped for frontend compatibility
-                    followers: scrapedProfile.subscriberCount, // Mapped for frontend compatibility
-                    bio: scrapedProfile.description, // Mapped for frontend compatibility
-                    posts: scrapedProfile.shorts.map((s) => ({
+                    fullName: ytProfile.channelName,
+                    followers: ytProfile.subscriberCount,
+                    bio: ytProfile.description,
+                    posts: ytProfile.shorts.map((s) => ({
                         imageUrl: s.thumbnailUrl,
-                        likes: s.views, // Re-purpose likes for views for frontend display continuity
-                    })), 
-                    rawShortsData: scrapedProfile.shorts, // Kept for exact stats
+                        likes: s.views, // Frontend displays views in the likes slot
+                    })),
+                    rawShortsData: ytProfile.shorts,
                     isMockData
                 }
             }
         });
     } catch (error: any) {
-        console.error("YouTube Analysis API Error:", error);
+        console.error("[YouTube Route] Error:", error);
         return NextResponse.json(
             { error: error.message || 'Failed to analyze YouTube channel' },
             { status: 500 }
