@@ -11,8 +11,9 @@ export default function IdeaGenerator() {
 
     // Script Generation State
     const [scriptGenerating, setScriptGenerating] = useState<number | null>(null);
-    const [generatedScript, setGeneratedScript] = useState<{ id: number; content: string } | null>(null);
+    const [generatedScript, setGeneratedScript] = useState<{ id: number; content: string; ideaTitle: string } | null>(null);
     const [copied, setCopied] = useState(false);
+    const [scriptSaved, setScriptSaved] = useState(false);
 
     useEffect(() => {
         // Check connected accounts and find the latest analysis across platforms
@@ -77,6 +78,16 @@ export default function IdeaGenerator() {
         if (!foundAnalysis) {
             setAnalysisData(null);
         }
+
+        // Load cached ideas from localStorage
+        const savedIdeas = localStorage.getItem('generated_ideas');
+        if (savedIdeas) {
+            try {
+                setIdeas(JSON.parse(savedIdeas));
+            } catch (e) {
+                console.error('Failed to parse saved ideas', e);
+            }
+        }
     }, []);
 
     const [error, setError] = useState<string | null>(null);
@@ -101,6 +112,8 @@ export default function IdeaGenerator() {
             const data = await response.json();
             if (data.success) {
                 setIdeas(data.data);
+                // Persist ideas to localStorage
+                localStorage.setItem('generated_ideas', JSON.stringify(data.data));
             } else {
                 setError(data.error || 'Failed to generate ideas');
             }
@@ -125,7 +138,8 @@ export default function IdeaGenerator() {
             });
             const data = await response.json();
             if (data.success) {
-                setGeneratedScript({ id: idea.id, content: data.data });
+                setGeneratedScript({ id: idea.id, content: data.data, ideaTitle: idea.title });
+                setScriptSaved(false);
             }
         } catch (error) {
             console.error('Script generation failed:', error);
@@ -156,7 +170,7 @@ export default function IdeaGenerator() {
                     disabled={generating}
                     className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-bold text-white hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center"
                 >
-                    {generating ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Generating...</> : 'Generate Ideas'}
+                    {generating ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Generating...</> : ideas.length > 0 ? 'Regenerate Ideas' : 'Generate Ideas'}
                 </button>
             </div>
 
@@ -310,6 +324,20 @@ export default function IdeaGenerator() {
                                 onClick={() => {
                                     if (generatedScript) {
                                         localStorage.setItem('current_video_script', generatedScript.content);
+                                        localStorage.setItem('current_script_idea', generatedScript.ideaTitle);
+                                        setScriptSaved(true);
+                                        window.location.href = '/dashboard/scripts';
+                                    }
+                                }}
+                                className="px-4 py-2 bg-card-hover hover:bg-theme-secondary/20 text-theme-primary rounded-lg text-sm font-medium transition-colors flex items-center"
+                            >
+                                <FileText className="w-4 h-4 mr-2" /> {scriptSaved ? 'Saved ✓' : 'Edit in Script Editor'}
+                            </button>
+                            <button
+                                onClick={() => {
+                                    if (generatedScript) {
+                                        localStorage.setItem('current_video_script', generatedScript.content);
+                                        localStorage.setItem('current_script_idea', generatedScript.ideaTitle);
                                         window.location.href = '/dashboard/video';
                                     }
                                 }}
