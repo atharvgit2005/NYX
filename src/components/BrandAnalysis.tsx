@@ -15,6 +15,16 @@ export default function BrandAnalysis() {
         // Check for connected account
         const savedUsername = localStorage.getItem('primary_username');
         setUsername(savedUsername);
+
+        // Check for existing analysis cache
+        const savedAnalysis = localStorage.getItem('brand_analysis_results');
+        if (savedAnalysis) {
+            try {
+                setAnalysis(JSON.parse(savedAnalysis));
+            } catch (e) {
+                console.error("Failed to parse saved analysis", e);
+            }
+        }
     }, []);
 
     const handleAnalyze = async () => {
@@ -74,15 +84,19 @@ export default function BrandAnalysis() {
                         AI insights for <span className="text-purple-400 font-bold">@{username}</span>
                     </p>
                 </div>
-                {!analysis && (
-                    <button
-                        onClick={handleAnalyze}
-                        disabled={analyzing}
-                        className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl font-bold text-white hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
-                    >
-                        {analyzing ? <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Analyzing...</> : <><Target className="w-5 h-5 mr-2" /> Start Analysis</>}
-                    </button>
-                )}
+                <button
+                    onClick={handleAnalyze}
+                    disabled={analyzing}
+                    className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl font-bold text-white hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+                >
+                    {analyzing ? (
+                        <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Analyzing...</>
+                    ) : analysis ? (
+                        <><Target className="w-5 h-5 mr-2" /> Regenerate Analysis</>
+                    ) : (
+                        <><Target className="w-5 h-5 mr-2" /> Start Analysis</>
+                    )}
+                </button>
             </div>
 
             {analyzing && (
