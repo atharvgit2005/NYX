@@ -6,7 +6,7 @@ import ThreeBackground from './ThreeBackground';
 import VideoCarousel from './VideoCarousel';
 
 import gsap from 'gsap';
-import { Zap, Bot, Rocket, Check, Linkedin, Twitter, Menu, X, LogOut, ArrowRight, Globe } from 'lucide-react';
+import { Zap, Bot, Rocket, Check, Linkedin, Instagram, Menu, X, LogOut, ArrowRight, Globe } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
 import ThemeToggle from './ThemeToggle';
 
@@ -236,8 +236,18 @@ export default function LandingPage() {
                     </p>
                     <div className="flex flex-wrap justify-center gap-8">
                         {[
-                            { name: 'Atharv Paharia', role: 'Co-Founder & Tech Lead' },
-                            { name: 'Bhavya Jain', role: 'Co-Founder & Product' },
+                            { 
+                                name: 'Atharv Paharia', 
+                                role: 'Co-Founder & Tech Lead',
+                                linkedin: 'https://www.linkedin.com/in/atharv-paharia-468276272/',
+                                instagram: 'https://www.instagram.com/i___am__atharv/'
+                            },
+                            { 
+                                name: 'Bhavya Jain', 
+                                role: 'Co-Founder & Product',
+                                linkedin: 'https://www.linkedin.com/in/bhavya-jain-10963b33a/',
+                                instagram: 'https://www.instagram.com/bhavyakun_/'
+                            },
                         ].map((founder, i) => (
                             <div key={i} className="flex-1 min-w-[280px] max-w-sm p-8 rounded-2xl bg-card-theme border border-white/5 hover:border-purple-500/30 hover:bg-card-hover transition-all duration-300 text-center hover:-translate-y-1">
                                 <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-page flex items-center justify-center text-xl font-bold text-theme-primary border-theme">
@@ -246,8 +256,8 @@ export default function LandingPage() {
                                 <h3 className="text-lg font-bold mb-1 text-theme-primary">{founder.name}</h3>
                                 <p className="text-theme-secondary text-xs mb-4">{founder.role}</p>
                                 <div className="flex justify-center gap-3">
-                                    <button className="p-2 text-theme-secondary hover:text-theme-primary transition-colors"><Linkedin className="w-4 h-4" /></button>
-                                    <button className="p-2 text-theme-secondary hover:text-theme-primary transition-colors"><Twitter className="w-4 h-4" /></button>
+                                    <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 text-theme-secondary hover:text-theme-primary transition-colors"><Linkedin className="w-4 h-4" /></a>
+                                    <a href={founder.instagram} target="_blank" rel="noopener noreferrer" className="p-2 text-theme-secondary hover:text-theme-primary transition-colors"><Instagram className="w-4 h-4" /></a>
                                 </div>
                             </div>
                         ))}
