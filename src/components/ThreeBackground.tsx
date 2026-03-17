@@ -98,16 +98,16 @@ export default function ThreeBackground() {
         };
     }, [theme]); // Re-run effect when theme changes to update colors
 
-    // Dynamic Background Element
-    const backgroundStyle: React.CSSProperties = theme === 'light'
-        ? { background: 'radial-gradient(circle at center, #fdf4ff 0%, #ffffff 100%)' }
-        : { backgroundImage: 'url(/premium_hero_bg.png)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundColor: '#0a0c0f' }; // Dark mode image
+    // Dynamic Background Gradient
+    const backgroundStyle = theme === 'light'
+        ? 'radial-gradient(circle at center, #fdf4ff 0%, #ffffff 100%)' // Light mode gradient
+        : 'radial-gradient(circle at center, #1a0b2e 0%, #000000 100%)'; // Dark mode gradient (Purple-Black)
 
     return (
         <div
             ref={mountRef}
             className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none transition-all duration-500"
-            style={backgroundStyle}
+            style={{ background: backgroundStyle }}
         />
     );
 }
