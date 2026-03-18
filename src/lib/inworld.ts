@@ -136,9 +136,7 @@ export class InworldService {
                     tags: payload.tags || ['custom'],
                     voiceSamples: [
                         {
-                            content: payload.audioBase64
-                            // If this fails, we might need to check if it expects a filename too?
-                            // Or maybe the field is `audioData`? But usually `content` for input.
+                            audioData: payload.audioBase64
                         }
                     ]
                 },
