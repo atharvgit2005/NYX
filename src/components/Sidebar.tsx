@@ -2,7 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { useSidebar } from '@/context/SidebarContext';
+import Image from 'next/image';
 import {
     LayoutDashboard,
     Link as LinkIcon,
@@ -29,6 +31,18 @@ export const navigation = [
 export default function Sidebar() {
     const pathname = usePathname();
     const { collapsed } = useSidebar();
+    const { data: session } = useSession();
+
+    // Derive initials from name
+    const name = session?.user?.name || 'User';
+    const email = session?.user?.email || '';
+    const avatar = session?.user?.image || null;
+    const initials = name
+        .split(' ')
+        .map((n) => n[0])
+        .slice(0, 2)
+        .join('')
+        .toUpperCase();
 
     return (
         <div
@@ -81,14 +95,19 @@ export default function Sidebar() {
                 <Link href="/dashboard/profile">
                     <div className={`flex-shrink-0 p-3 bg-card-theme rounded-2xl hover:bg-card-hover transition-colors cursor-pointer group relative ${collapsed ? 'flex justify-center' : ''}`}>
                         <div className="flex items-center">
-                            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold shadow-lg flex-shrink-0">
-                                AP
+                            {/* Avatar: image or initials */}
+                            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold shadow-lg flex-shrink-0 overflow-hidden relative">
+                                {avatar ? (
+                                    <Image src={avatar} alt={name} fill className="object-cover" />
+                                ) : (
+                                    <span className="text-sm">{initials}</span>
+                                )}
                             </div>
                             {!collapsed && (
                                 <>
                                     <div className="ml-3 flex-1 overflow-hidden">
-                                        <p className="text-sm font-bold text-theme-primary truncate group-hover:text-purple-400 transition-colors">Atharv Paharia</p>
-                                        <p className="text-xs text-theme-secondary truncate">Pro Plan</p>
+                                        <p className="text-sm font-bold text-theme-primary truncate group-hover:text-purple-400 transition-colors">{name}</p>
+                                        <p className="text-xs text-theme-secondary truncate">{email}</p>
                                     </div>
                                     <MoreHorizontal className="h-5 w-5 text-theme-secondary group-hover:text-theme-primary transition-colors ml-2" />
                                 </>
