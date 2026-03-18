@@ -22,6 +22,7 @@ model User {
   role          String         @default("user") // "user" | "admin"
   country       String?        @default("Unknown")
   avatarUrl     String?        // Avaturn 3D avatar GLB URL
+  avatarConfig  Json?          // Custom in-house avatar configuration
   accounts      Account[]
   sessions      Session[]
   createdAt     DateTime       @default(now())

@@ -2,12 +2,22 @@
 
 import { useSession, signOut } from 'next-auth/react';
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import {
     LogOut, Edit2, Check, X, Film, FileText,
-    Mic, Copy, CheckCheck, Sparkles,
+    Mic, Copy, CheckCheck, Sparkles, Loader2,
 } from 'lucide-react';
 import Image from 'next/image';
-import UserAvatar from '@/components/UserAvatar';
+
+// Dynamic import — Three.js cannot run on the server
+const AvatarBuilder = dynamic(() => import('@/components/AvatarBuilder'), {
+    ssr: false,
+    loading: () => (
+        <div className="flex items-center justify-center h-96 rounded-3xl border border-white/5" style={{ background: 'rgba(255,255,255,0.02)' }}>
+            <Loader2 className="w-8 h-8 text-purple-400 animate-spin" />
+        </div>
+    ),
+});
 
 function StatCard({ label, value, icon: Icon, color }: { label: string; value: number | string; icon: any; color: string }) {
     return (
@@ -136,10 +146,7 @@ export default function ProfilePage() {
                     <p className="text-xs text-gray-500 uppercase font-bold tracking-wider mb-3 flex items-center gap-2">
                         <Sparkles className="w-3.5 h-3.5 text-purple-400" /> 3D Avatar
                     </p>
-                    <UserAvatar
-                        userEmail={user.email || 'nyx-user'}
-                        userName={user.name}
-                    />
+                    <AvatarBuilder />
                 </div>
 
                 {/* ─── Stats ─── */}
