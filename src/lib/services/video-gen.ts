@@ -8,11 +8,24 @@ const LOG_FILE = path.join(process.cwd(), 'debug_log.txt');
 
 function logToFile(message: string) {
     const timestamp = new Date().toISOString();
-    const logMessage = `[${timestamp}] ${message}\n`;
-    fs.appendFileSync(LOG_FILE, logMessage);
+    fs.appendFileSync(LOG_FILE, `[${timestamp}] ${message}\n`);
 }
 
-export async function generateVideo(script: string, avatarId: string, voiceId: string, apiKey?: string) {
+export interface VoiceControls {
+    speed?: number;    // 0.5 – 2.0
+    pitch?: number;    // -10 – 10
+    emotion?: string;  // happy | sad | excited | calm | angry | fearful
+    style?: string;    // narration | conversational | newscast | documentary
+    model?: string;    // inworld-tts-1.5-max | inworld-tts-1.5 | inworld-tts-1
+}
+
+export async function generateVideo(
+    script: string,
+    avatarId: string,
+    voiceId: string,
+    apiKey?: string,
+    voiceControls: VoiceControls = {}
+) {
     const HEYGEN_API_KEY = apiKey || process.env.HEYGEN_API_KEY;
     const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
 
@@ -36,11 +49,15 @@ export async function generateVideo(script: string, avatarId: string, voiceId: s
             logToFile(`Generating audio with Inworld for voiceId: ${voiceId}`);
             console.log(`Generating audio with Inworld for voiceId: ${voiceId}`);
 
-            // 2a. Generate Audio from Inworld
+            // 2a. Generate Audio from Inworld with full voice controls
             const audioBase64 = await InworldService.synthesizeSpeech({
                 text: script,
                 voiceId: voiceId,
-                modelId: 'inworld-tts-1.5-max'
+                modelId: voiceControls.model || 'inworld-tts-1.5-max',
+                speed: voiceControls.speed,
+                pitch: voiceControls.pitch,
+                emotion: voiceControls.emotion,
+                style: voiceControls.style,
             });
 
             // Convert base64 to Buffer

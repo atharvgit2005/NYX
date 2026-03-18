@@ -2,408 +2,372 @@
 
 import { useState, useEffect } from 'react';
 import VideoHistoryList from './VideoHistoryList';
+import VoiceToVideo, { VoiceConfig } from './VoiceToVideo';
+import { Video, Sparkles, AlertTriangle } from 'lucide-react';
 
 export default function VideoGeneration() {
     const [status, setStatus] = useState<'idle' | 'processing' | 'completed'>('idle');
     const [progress, setProgress] = useState(0);
-    const [script, setScript] = useState<string>('');
+    const [progressLabel, setProgressLabel] = useState('');
+    const [script, setScript] = useState('');
     const [error, setError] = useState<string | null>(null);
     const [videoId, setVideoId] = useState<string | null>(null);
     const [videoUrl, setVideoUrl] = useState<string | null>(null);
-
     const [apiKey, setApiKey] = useState('');
-
     const [mounted, setMounted] = useState(false);
 
-    // Voice Selection States
-    const [availableVoices, setAvailableVoices] = useState<any[]>([]);
-    const [selectedVoiceId, setSelectedVoiceId] = useState<string>('mock-voice');
-    const [loadingVoices, setLoadingVoices] = useState(false);
+    // Voice config from VoiceToVideo bridge
+    const [voiceConfig, setVoiceConfig] = useState<VoiceConfig | null>(null);
 
     useEffect(() => {
         setMounted(true);
         const savedScript = localStorage.getItem('current_video_script');
-        if (savedScript) {
-            setScript(savedScript);
-        } else {
-            setScript(`Arijit Singh's SHOCKING Exit from Playback Singing REVEALED!
-[HOOK] (0-5 seconds)
-Visual: Close-up of Arijit Singh at a mic, eyes closed, mid-performance. Flash to an empty recording studio. Screen glitches.
-Audio: Arijit (voiceover, emotional): "I can't do this anymore..."
-
-[BODY] (5-45 seconds)
-Visual: Fast cuts of Arijit's iconic performances. Awards. Sold-out concerts. Then transition to him walking away from a studio. Graphics showing headlines and social media buzz. Show contrast: packed concert halls vs. empty studio booth.
-Audio: Narrator (dramatic, urgent): "The voice behind your FAVORITE songs...is stepping away! After dominating Bollywood for over a DECADE! Why now? The pressure? The politics? Creative burnout? He's choosing LIVE concerts over playback! Freedom over formulas! Raw emotion over studio perfection!" Show split screen: Arijit performing live vs. a faceless playback session. "While others lip-sync, Arijit wants to CONNECT. This changes EVERYTHING!"
-
-[CTA] (45-60 seconds)
-Visual: Text overlay: "The End of an Era?" Footage of emotional fans. Cut to Arijit smiling at a live show.
-Audio: Narrator: "Is this the end...or a NEW beginning? Drop your thoughts below! Follow for more Bollywood bombshells! The voice remains...but the game has CHANGED!" (Sound of crowd cheering)
-
-#ArijitSingh #Bollywood #PlaybackSinging #Music #BollywoodNews #Singer #BollywoodGossip #MusicIndustry #IndianMusic #Breaking`);
-        }
-        const savedApiKey = localStorage.getItem('heygen_api_key');
-        if (savedApiKey) {
-            setApiKey(savedApiKey);
-        }
-
-        const savedVoiceId = localStorage.getItem('custom_voice_id');
-        if (savedVoiceId) {
-            setSelectedVoiceId(savedVoiceId);
-        }
-        const fetchVoices = async () => {
-            setLoadingVoices(true);
-            try {
-                const res = await fetch('/api/tts/voices');
-                const data = await res.json();
-                if (data.voices) {
-                    setAvailableVoices(data.voices);
-                }
-            } catch (err) {
-                console.error('Failed to fetch voices for dropdown', err);
-            } finally {
-                setLoadingVoices(false);
-            }
-        };
-        fetchVoices();
-
+        setScript(savedScript || DEFAULT_SCRIPT);
+        const savedKey = localStorage.getItem('heygen_api_key');
+        if (savedKey) setApiKey(savedKey);
     }, []);
 
     const handleApiKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const key = e.target.value;
         setApiKey(key);
-        if (typeof window !== 'undefined') {
-            localStorage.setItem('heygen_api_key', key);
-        }
+        localStorage.setItem('heygen_api_key', key);
     };
 
-    const pollStatus = async (id: string) => {
-        try {
-            console.log(`Polling status for video ID: ${id}`);
-            const headers: Record<string, string> = {};
-            if (apiKey) {
-                headers['x-api-key'] = apiKey;
-            }
+    // ── Progress steps for the UI label ───────────────────────────────────────
+    const LABELS = [
+        { at: 0, text: 'Connecting to Inworld…' },
+        { at: 15, text: 'Synthesising voice with your tone settings…' },
+        { at: 35, text: 'Uploading audio to HeyGen…' },
+        { at: 55, text: 'Animating your avatar…' },
+        { at: 80, text: 'Rendering video at 4K…' },
+        { at: 92, text: 'Finalising and encoding…' },
+    ];
 
-            const response = await fetch(`/api/video/status?videoId=${id}`, {
-                headers
-            });
+    const updateProgress = (pct: number) => {
+        setProgress(pct);
+        const label = [...LABELS].reverse().find(l => pct >= l.at)?.text || 'Starting…';
+        setProgressLabel(label);
+    };
+
+    // ── Status polling ─────────────────────────────────────────────────────────
+    const pollStatus = async (id: string): Promise<boolean> => {
+        try {
+            const headers: Record<string, string> = {};
+            if (apiKey) headers['x-api-key'] = apiKey;
+
+            const response = await fetch(`/api/video/status?videoId=${id}`, { headers });
             const data = await response.json();
-            console.log('Poll response:', data);
 
             if (data.success) {
-                const { status: videoStatus, url, error: videoError } = data.data;
-                console.log(`Current status: ${videoStatus}, URL: ${url}`);
+                const { status: vs, url, error: ve } = data.data;
 
-                if (videoStatus === 'completed') {
-                    if (url) {
-                        setVideoUrl(url);
-                        setStatus('completed');
-                        setProgress(100);
-                        return true; // Stop polling
-                    } else {
-                        console.warn('Video status is completed but URL is missing. Continuing to poll...');
-                        // Optionally update UI to show "Finalizing..."
-                        return false; // Continue polling
-                    }
-                } else if (videoStatus === 'failed' || videoStatus === 'error') {
-                    console.error('Video generation failed:', videoError);
-                    let errorMessage = 'Video generation failed on server.';
-                    if (videoError) {
-                        errorMessage = typeof videoError === 'string'
-                            ? videoError
-                            : JSON.stringify(videoError);
-                    }
-                    setError(errorMessage);
+                if (vs === 'completed' && url) {
+                    setVideoUrl(url);
+                    setStatus('completed');
+                    updateProgress(100);
+                    return true;
+                } else if (vs === 'failed' || vs === 'error') {
+                    setError(typeof ve === 'string' ? ve : JSON.stringify(ve) || 'Video generation failed on server.');
                     setStatus('idle');
-                    return true; // Stop polling
+                    return true;
                 }
             }
-        } catch (err) {
-            console.error('Polling error:', err);
-            // Don't stop polling immediately on network error, but maybe after max retries
-        }
-        return false; // Continue polling
+        } catch (err) { console.error('Polling error:', err); }
+        return false;
     };
 
+    // ── Start generation ───────────────────────────────────────────────────────
     const startGeneration = async () => {
-        console.log('Starting video generation...');
+        const customAvatarId = localStorage.getItem('custom_avatar_id');
+        if (!customAvatarId) {
+            setError('Avatar ID not found. Please set it on the Avatar & Voice page.');
+            return;
+        }
+        if (!voiceConfig) {
+            setError('Please select a cloned voice and click Play to preview it before generating.');
+            return;
+        }
+
         setStatus('processing');
-        setProgress(0);
+        updateProgress(5);
         setError(null);
         setVideoUrl(null);
 
         try {
-            // Get custom IDs
-            const customAvatarId = typeof window !== 'undefined' ? localStorage.getItem('custom_avatar_id') : null;
-            // Use the locally selected voice id instead of strictly local storage
-            console.log('Using Avatar ID:', customAvatarId);
-            console.log('Using Voice ID:', selectedVoiceId);
-
-            if (!customAvatarId) {
-                throw new Error("Avatar ID not found. Please set it in the Avatar & Voice page.");
-            }
-
             const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-            if (apiKey) {
-                headers['x-api-key'] = apiKey;
-            }
+            if (apiKey) headers['x-api-key'] = apiKey;
 
-            // Start generation request
             const response = await fetch('/api/video/generate', {
                 method: 'POST',
-                headers: headers,
+                headers,
                 body: JSON.stringify({
-                    script: script || 'Mock script content', // Use real script
+                    script: script || 'Default script',
                     avatarId: customAvatarId,
-                    voiceId: selectedVoiceId || 'mock-voice',
+                    voiceId: voiceConfig.voiceId,
+                    voiceControls: {
+                        speed: voiceConfig.controls.speed,
+                        pitch: voiceConfig.controls.pitch,
+                        emotion: voiceConfig.controls.emotion || undefined,
+                        style: voiceConfig.controls.style || undefined,
+                        model: voiceConfig.controls.model,
+                    },
                 }),
             });
 
             const data = await response.json();
-            console.log('Generation response:', data);
-
-            if (!response.ok) {
-                throw new Error(data.error || 'Failed to generate video');
-            }
+            if (!response.ok) throw new Error(data.error || 'Failed to start generation');
 
             const newVideoId = data.data.videoId;
             setVideoId(newVideoId);
 
-            // Start polling
             let pollCount = 0;
-            const maxPolls = 300; // 10 minutes (if 2s interval)
+            const maxPolls = 300;
 
             const interval = setInterval(async () => {
                 pollCount++;
-                // Fake progress while waiting
-                setProgress((prev) => Math.min(prev + 1, 90));
+                updateProgress(Math.min(5 + pollCount * 0.4, 92));
 
-                const isComplete = await pollStatus(newVideoId);
-
-                if (isComplete) {
+                const done = await pollStatus(newVideoId);
+                if (done || pollCount >= maxPolls) {
                     clearInterval(interval);
-                } else if (pollCount >= maxPolls) {
-                    clearInterval(interval);
-                    setError('Video generation timed out. Please check back later.');
-                    setStatus('idle');
+                    if (pollCount >= maxPolls) {
+                        setError('Render timed out. Please try again.');
+                        setStatus('idle');
+                    }
                 }
             }, 2000);
-        } catch (error: any) {
-            console.error('Video generation failed:', error);
-            setError(error.message || 'An unexpected error occurred');
+        } catch (err: any) {
+            setError(err.message || 'Unexpected error');
             setStatus('idle');
         }
     };
 
+    const avatarId = mounted ? (localStorage.getItem('custom_avatar_id') || null) : null;
+    const canGenerate = !!avatarId && !!voiceConfig && status === 'idle';
+
     return (
-        <div className="max-w-4xl mx-auto mt-8">
-            <div className="flex justify-between items-center mb-8">
+        <div className="max-w-5xl mx-auto mt-8">
+            {/* ── Header ── */}
+            <div className="flex justify-between items-start mb-8">
                 <div>
-                    <h2 className="text-3xl font-bold text-theme-primary">Video Generation</h2>
-                    <p className="text-theme-secondary mt-2">
-                        Create your final video with AI avatar and voice.
+                    <h2 className="text-3xl font-bold text-theme-primary flex items-center gap-3">
+                        <Video className="w-7 h-7 text-purple-400" /> Video Generation
+                    </h2>
+                    <p className="text-theme-secondary mt-1.5">
+                        Your cloned Inworld voice drives your HeyGen avatar. Tweak tone, preview, then render.
                     </p>
                 </div>
                 {status === 'idle' && (
-                    <button
-                        onClick={startGeneration}
-                        className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-bold text-white hover:opacity-90 transition-opacity"
-                    >
-                        Generate Video
+                    <button onClick={startGeneration} disabled={!canGenerate}
+                        className="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90"
+                        style={{ background: canGenerate ? 'linear-gradient(135deg, #7c3aed, #a855f7, #ec4899)' : '#374151', boxShadow: canGenerate ? '0 4px 20px rgba(168,85,247,0.35)' : 'none' }}>
+                        <Sparkles className="w-4 h-4" /> Generate Video
                     </button>
                 )}
             </div>
 
-            {/* API Key Input */}
-            <div className="mb-8 p-4 bg-card-theme border border-theme rounded-xl">
-                <label className="block text-xs font-bold text-theme-secondary uppercase mb-2">HeyGen API Key (Optional)</label>
-                <input
-                    type="password"
-                    value={apiKey}
-                    onChange={handleApiKeyChange}
-                    placeholder="Enter your HeyGen API Key to override default"
-                    className="w-full bg-page border border-theme rounded-lg px-4 py-2 text-theme-primary focus:outline-none focus:border-purple-500 transition-colors font-mono text-sm"
-                />
-                <p className="text-xs text-theme-secondary mt-2">
-                    Leave blank to use the server-configured API key.
-                </p>
-            </div>
-
+            {/* ── Error ── */}
             {error && (
-                <div className="bg-red-500/10 border border-red-500/50 rounded-xl p-4 mb-8 text-red-200 flex items-center animate-fade-in">
-                    <span className="text-2xl mr-3">⚠️</span>
+                <div className="bg-red-500/10 border border-red-500/30 rounded-2xl p-4 mb-6 flex items-start gap-3">
+                    <AlertTriangle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
                     <div>
-                        <p className="font-bold">Generation Failed</p>
-                        <p className="text-sm opacity-80">{error}</p>
+                        <p className="font-bold text-red-300 text-sm">Error</p>
+                        <p className="text-sm text-red-200/70 mt-0.5">{error}</p>
                     </div>
+                    <button onClick={() => setError(null)} className="ml-auto text-red-500/60 hover:text-red-400 text-xs">Dismiss</button>
                 </div>
             )}
 
+            {/* ── Idle state ── */}
             {status === 'idle' && (
-                <div className="bg-card-theme rounded-2xl border border-theme p-12 text-center">
-                    <div className="text-6xl mb-6">🎬</div>
-                    <h3 className="text-2xl font-bold text-theme-primary mb-2">Ready to Produce</h3>
-                    <p className="text-theme-secondary max-w-md mx-auto mb-8">
-                        Your script is approved. Click the button above to start rendering.
-                    </p>
+                <div className="space-y-6">
+                    {/* Two-column main layout */}
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-                    {/* Avatar & Voice Check */}
-                    <div className="mb-8 grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-                        <div className="p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl text-left">
-                            <p className="text-xs text-blue-300 uppercase font-bold mb-1">Using Avatar ID</p>
-                            <p className="text-theme-primary font-mono text-sm break-all">
-                                {mounted ? (localStorage.getItem('custom_avatar_id') || 'Not Set') : 'Loading...'}
-                            </p>
-                            <a href="/dashboard/avatar" className="text-xs text-blue-400 hover:text-blue-300 underline mt-2 block">
-                                Change Avatar ID &rarr;
-                            </a>
+                        {/* ── Left: Avatar + Script ── */}
+                        <div className="space-y-5">
+                            {/* Avatar ID card */}
+                            <div className="p-5 rounded-3xl border border-theme bg-card-theme">
+                                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-3">HeyGen Avatar</p>
+                                <div className={`p-4 rounded-2xl border ${avatarId ? 'border-blue-500/25 bg-blue-500/5' : 'border-dashed border-white/10 bg-white/[0.02]'}`}>
+                                    {avatarId ? (
+                                        <>
+                                            <p className="text-xs text-blue-300 font-bold mb-1">✓ Avatar ID set</p>
+                                            <p className="text-theme-primary font-mono text-xs break-all">{avatarId}</p>
+                                        </>
+                                    ) : (
+                                        <p className="text-sm text-gray-500">No avatar set. <a href="/dashboard/avatar" className="text-purple-400 underline">Set Avatar ID →</a></p>
+                                    )}
+                                </div>
+                                {avatarId && (
+                                    <a href="/dashboard/avatar" className="text-[10px] text-gray-600 hover:text-gray-400 underline mt-2 block">Change Avatar ID</a>
+                                )}
+                            </div>
+
+                            {/* Script editor */}
+                            <div className="rounded-3xl border border-theme bg-card-theme overflow-hidden">
+                                <div className="px-5 py-4 border-b border-theme">
+                                    <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Script</p>
+                                </div>
+                                <textarea value={script}
+                                    onChange={e => { setScript(e.target.value); localStorage.setItem('current_video_script', e.target.value); }}
+                                    className="w-full bg-transparent text-theme-secondary font-mono text-xs p-5 focus:outline-none resize-none min-h-[280px]"
+                                    placeholder="Paste or write your script here…" />
+                            </div>
+
+                            {/* HeyGen API Key */}
+                            <div className="p-4 rounded-2xl border border-theme bg-card-theme">
+                                <label className="block text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-2">HeyGen API Key (optional override)</label>
+                                <input type="password" value={apiKey} onChange={handleApiKeyChange}
+                                    placeholder="Leave blank to use server key"
+                                    className="w-full bg-card-hover border border-theme rounded-xl px-4 py-2.5 text-theme-primary focus:outline-none focus:border-purple-500/50 font-mono text-xs" />
+                            </div>
                         </div>
 
-                        <div className="p-4 bg-pink-500/10 border border-pink-500/30 rounded-xl text-left">
-                            <div className="flex justify-between items-center mb-1">
-                                <p className="text-xs text-pink-300 uppercase font-bold">Select Voice</p>
-                                {loadingVoices && <div className="w-3 h-3 border-2 border-pink-400 border-t-transparent rounded-full animate-spin"></div>}
-                            </div>
-                            <div className="relative mt-2">
-                                <select
-                                    value={selectedVoiceId}
-                                    onChange={(e) => {
-                                        setSelectedVoiceId(e.target.value);
-                                        localStorage.setItem('custom_voice_id', e.target.value);
-                                    }}
-                                    className="w-full bg-card-theme border border-theme rounded-lg px-3 py-2 text-theme-primary text-sm focus:outline-none focus:border-pink-500 appearance-none shadow-sm"
-                                    disabled={loadingVoices}
-                                >
-                                    <optgroup label="System Defaults">
-                                        <option value="mock-voice">Mock Voice (Testing)</option>
-                                    </optgroup>
-
-                                    {availableVoices.length > 0 && (
-                                        <optgroup label="Available Voices">
-                                            {availableVoices.map(v => (
-                                                <option key={v.id} value={v.id}>
-                                                    {v.name} {v.isCustom ? '(Cloned)' : ''}
-                                                </option>
-                                            ))}
-                                        </optgroup>
-                                    )}
-                                </select>
-                                <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-theme-secondary">
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
-                                </div>
-                            </div>
+                        {/* ── Right: Voice Bridge ── */}
+                        <div>
+                            <VoiceToVideo script={script} onChange={setVoiceConfig} />
                         </div>
                     </div>
 
-                    <div className="bg-page p-6 rounded-xl border border-theme text-left max-w-2xl mx-auto">
-                        <h4 className="text-xs font-bold text-theme-secondary uppercase mb-2">Script (Editable)</h4>
-                        <textarea
-                            value={script}
-                            onChange={(e) => {
-                                setScript(e.target.value);
-                                if (typeof window !== 'undefined') {
-                                    localStorage.setItem('current_video_script', e.target.value);
-                                }
-                            }}
-                            className="w-full bg-transparent text-theme-secondary font-mono text-sm whitespace-pre-wrap focus:outline-none focus:ring-1 focus:ring-purple-500 rounded p-2 min-h-[200px]"
-                            placeholder="Paste your script here..."
-                        />
+                    {/* Generate CTA (also at bottom for convenience) */}
+                    <div className="flex items-center justify-between p-5 rounded-3xl border border-theme bg-card-theme">
+                        <div>
+                            <p className="text-sm font-bold text-theme-primary">
+                                {canGenerate ? '✅ Ready to render' : '⚠️ Not ready yet'}
+                            </p>
+                            <p className="text-xs text-gray-500 mt-0.5">
+                                {!avatarId && 'Missing avatar ID · '}
+                                {!voiceConfig && 'Select a cloned voice · '}
+                                {canGenerate && `${voiceConfig!.voiceName} → ${avatarId?.slice(0, 16)}…`}
+                            </p>
+                        </div>
+                        <button onClick={startGeneration} disabled={!canGenerate}
+                            className="flex items-center gap-2 px-8 py-3 rounded-2xl font-bold text-white text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                            style={{ background: canGenerate ? 'linear-gradient(135deg, #7c3aed, #a855f7, #ec4899)' : '#374151', boxShadow: canGenerate ? '0 4px 24px rgba(168,85,247,0.3)' : 'none' }}>
+                            <Sparkles className="w-4 h-4" /> Generate Video
+                        </button>
                     </div>
                 </div>
             )}
 
+            {/* ── Processing ── */}
             {status === 'processing' && (
-                <div className="relative bg-card-theme rounded-2xl border border-theme p-12 text-center overflow-hidden aspect-video w-full flex flex-col justify-center items-center">
-                    {/* Background Video */}
-                    <div className="absolute inset-0 z-0">
-                        <video
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            className="w-full h-full object-cover opacity-60"
-                        >
+                <div className="relative bg-card-theme rounded-3xl border border-purple-500/20 overflow-hidden" style={{ minHeight: 400 }}>
+                    {/* Animated bg */}
+                    <div className="absolute inset-0">
+                        <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-40">
                             <source src="/videos/loading-background.mp4" type="video/mp4" />
                         </video>
-                        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+                        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+                        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, rgba(168,85,247,0.12), transparent 70%)' }} />
                     </div>
 
-                    {/* Content */}
-                    <div className="relative z-10 w-full max-w-lg mx-auto">
-                        <div className="w-24 h-24 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-8 shadow-[0_0_30px_rgba(168,85,247,0.5)]"></div>
-                        <h3 className="text-3xl font-bold text-white mb-4 drop-shadow-lg">Rendering Your Video...</h3>
-                        <div className="w-full bg-gray-700/50 rounded-full h-3 mb-4 backdrop-blur-md border border-white/10 overflow-hidden">
-                            <div
-                                className="bg-gradient-to-r from-purple-600 to-pink-600 h-full rounded-full transition-all duration-500 shadow-[0_0_15px_rgba(168,85,247,0.5)]"
-                                style={{ width: `${progress}%` }}
-                            ></div>
+                    <div className="relative z-10 flex flex-col items-center justify-center p-12 text-center" style={{ minHeight: 400 }}>
+                        {/* Spinner */}
+                        <div className="w-20 h-20 border-3 border-purple-500 border-t-transparent rounded-full animate-spin mb-8"
+                            style={{ borderWidth: 3, boxShadow: '0 0 30px rgba(168,85,247,0.5)' }} />
+
+                        <h3 className="text-2xl font-black text-white mb-2">Rendering Your Video</h3>
+                        <p className="text-purple-300/80 text-sm mb-8">{progressLabel}</p>
+
+                        {/* Progress bar */}
+                        <div className="w-full max-w-md">
+                            <div className="w-full bg-white/10 rounded-full h-2 mb-2 overflow-hidden">
+                                <div className="h-full rounded-full transition-all duration-500"
+                                    style={{ width: `${progress}%`, background: 'linear-gradient(90deg, #7c3aed, #a855f7, #ec4899)', boxShadow: '0 0 12px rgba(168,85,247,0.6)' }} />
+                            </div>
+                            <p className="text-white/40 text-xs">{Math.round(progress)}%</p>
                         </div>
-                        <p className="text-gray-200 text-lg font-medium drop-shadow-md">
-                            {progress < 30 && 'Synthesizing voice...'}
-                            {progress >= 30 && progress < 90 && 'Animating avatar...'}
-                            {progress >= 90 && 'Finalizing render...'}
-                        </p>
+
+                        {/* Pipeline steps */}
+                        <div className="mt-8 flex flex-col gap-2 text-left w-full max-w-sm">
+                            {[
+                                { label: 'Inworld TTS synthesis', done: progress > 35 },
+                                { label: 'Audio upload to HeyGen', done: progress > 55 },
+                                { label: 'HeyGen avatar animation', done: progress > 80 },
+                                { label: 'Final video render', done: progress >= 100 },
+                            ].map(step => (
+                                <div key={step.label} className="flex items-center gap-2.5">
+                                    <div className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 transition-all ${step.done ? 'bg-green-500' : 'bg-white/10 border border-white/20'}`}>
+                                        {step.done && <span className="text-white text-[10px]">✓</span>}
+                                    </div>
+                                    <span className={`text-xs transition-colors ${step.done ? 'text-green-400' : 'text-white/40'}`}>{step.label}</span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             )}
 
+            {/* ── Completed ── */}
             {status === 'completed' && videoUrl && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-fade-in">
-                    <div className="bg-card-theme rounded-2xl overflow-hidden border border-theme aspect-[9/16] relative group">
-                        <video
-                            src={videoUrl}
-                            controls
-                            className="w-full h-full object-cover"
-                            autoPlay
-                        />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="bg-card-theme rounded-3xl overflow-hidden border border-green-500/20 aspect-[9/16] relative">
+                        <video src={videoUrl} controls className="w-full h-full object-cover" autoPlay />
                     </div>
 
-                    <div className="space-y-6">
-                        <div className="bg-card-theme p-6 rounded-2xl border border-theme">
-                            <h3 className="text-xl font-bold text-green-400 mb-4">✅ Render Complete</h3>
-                            <p className="text-theme-secondary mb-6">
-                                Your video has been successfully generated and is ready for publishing.
-                            </p>
+                    <div className="space-y-5">
+                        <div className="bg-card-theme p-6 rounded-3xl border border-theme">
+                            <h3 className="text-xl font-bold text-green-400 mb-1">✅ Render Complete</h3>
+                            {voiceConfig && (
+                                <p className="text-xs text-gray-500 mb-4">
+                                    Voice: <span className="text-purple-400">{voiceConfig.voiceName}</span>
+                                    {voiceConfig.controls.emotion && ` · ${voiceConfig.controls.emotion}`}
+                                    {voiceConfig.controls.style && ` · ${voiceConfig.controls.style}`}
+                                    {` · ${voiceConfig.controls.speed}× speed`}
+                                </p>
+                            )}
                             <div className="space-y-3">
-                                <a
-                                    href={videoUrl}
-                                    download="generated_video.mp4"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="block w-full py-3 bg-page text-theme-primary border border-theme rounded-lg font-bold hover:bg-card-hover transition-colors text-center"
-                                >
-                                    Download Video ⬇️
+                                <a href={videoUrl} download="nyx-video.mp4" target="_blank" rel="noopener noreferrer"
+                                    className="block w-full py-3 bg-card-hover text-theme-primary border border-theme rounded-2xl font-bold text-center hover:bg-card-theme transition">
+                                    ⬇️ Download Video
                                 </a>
-                                <button className="w-full py-3 bg-purple-600 text-white rounded-lg font-bold hover:bg-purple-700 transition-colors">
-                                    Schedule Post 📅
+                                <button onClick={() => { setStatus('idle'); setVideoUrl(null); setProgress(0); }}
+                                    className="w-full py-3 text-sm text-gray-500 hover:text-gray-300 transition">
+                                    Generate another →
                                 </button>
                             </div>
                         </div>
 
-                        <div className="bg-card-theme p-6 rounded-2xl border border-theme">
-                            <h3 className="text-lg font-bold text-theme-primary mb-4">Performance Prediction</h3>
-                            <div className="grid grid-cols-2 gap-4">
-                                <div className="bg-page p-4 rounded-lg text-center">
-                                    <p className="text-2xl font-bold text-green-400">8.5/10</p>
-                                    <p className="text-xs text-theme-secondary uppercase mt-1">Viral Score</p>
-                                </div>
-                                <div className="bg-page p-4 rounded-lg text-center">
-                                    <p className="text-2xl font-bold text-blue-400">High</p>
-                                    <p className="text-xs text-theme-secondary uppercase mt-1">Retention</p>
-                                </div>
+                        <div className="bg-card-theme p-6 rounded-3xl border border-theme">
+                            <h3 className="text-base font-bold text-theme-primary mb-4">Performance Prediction</h3>
+                            <div className="grid grid-cols-2 gap-3">
+                                {[
+                                    { label: 'Viral Score', val: '8.5 / 10', color: 'text-green-400' },
+                                    { label: 'Hook Strength', val: 'High', color: 'text-blue-400' },
+                                    { label: 'Watch Time', val: '78%+', color: 'text-purple-400' },
+                                    { label: 'Engagement', val: 'Very High', color: 'text-pink-400' },
+                                ].map(({ label, val, color }) => (
+                                    <div key={label} className="bg-card-hover p-4 rounded-2xl text-center border border-theme">
+                                        <p className={`text-xl font-black ${color}`}>{val}</p>
+                                        <p className="text-[10px] text-gray-500 mt-1 uppercase tracking-wide">{label}</p>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
                 </div>
             )}
 
-            {/* Video History Section */}
+            {/* ── History ── */}
             <div className="mt-16 pt-8 border-t border-theme">
-                <h3 className="text-2xl font-bold text-theme-primary mb-6">Recent Videos</h3>
+                <h3 className="text-xl font-bold text-theme-primary mb-6">Recent Videos</h3>
                 <VideoHistoryList />
             </div>
         </div>
     );
 }
 
+const DEFAULT_SCRIPT = `Arijit Singh's SHOCKING Exit from Playback Singing REVEALED!
 
+[HOOK] (0-5 seconds)
+Visual: Close-up of Arijit Singh at a mic, eyes closed, mid-performance.
+Audio: Arijit (voiceover, emotional): "I can't do this anymore..."
+
+[BODY] (5-45 seconds)
+The voice behind your FAVORITE songs is stepping away! After dominating Bollywood for over a DECADE — why now?
+The pressure? The politics? Creative burnout? He's choosing LIVE concerts over playback! Freedom over formulas!
+
+[CTA] (45-60 seconds)
+Is this the end...or a NEW beginning? Drop your thoughts below! Follow for more Bollywood bombshells!`;
