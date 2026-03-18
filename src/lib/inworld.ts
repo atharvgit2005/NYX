@@ -18,9 +18,11 @@ export interface InworldVoice {
 export interface TTSRequest {
     text: string;
     voiceId: string;
-    modelId?: string; // e.g. 'inworld-tts-1.5-max'
-    speed?: number; // 0.5 to 2.0
-    pitch?: number; // -20 to 20
+    modelId?: string;       // e.g. 'inworld-tts-1.5-max'
+    speed?: number;         // 0.5 to 2.0
+    pitch?: number;         // -20 to 20
+    emotion?: string;       // e.g. 'happy', 'sad', 'excited'
+    style?: string;         // e.g. 'narration', 'conversational'
 }
 
 export interface CloneVoiceRequest {
@@ -97,19 +99,25 @@ export class InworldService {
 
     static async synthesizeSpeech(payload: TTSRequest) {
         try {
+            const body: Record<string, any> = {
+                text: payload.text,
+                voiceId: payload.voiceId,
+                modelId: payload.modelId || 'inworld-tts-1.5-max',
+                audioConfig: {
+                    timestampType: 'TIMESTAMP_TYPE_UNSPECIFIED',
+                },
+            };
+
+            // Optional tone controls
+            if (payload.speed && payload.speed !== 1.0) body.speed = payload.speed;
+            if (payload.pitch && payload.pitch !== 0) body.pitch = payload.pitch;
+            if (payload.emotion) body.emotion = payload.emotion;
+            if (payload.style) body.style = payload.style;
+
             const response = await axios.post(
                 `${INWORLD_API_BASE_URL}/tts/v1/voice`,
-                {
-                    text: payload.text,
-                    voiceId: payload.voiceId,
-                    modelId: payload.modelId || 'inworld-tts-1.5-max',
-                    audioConfig: {
-                        timestampType: "TIMESTAMP_TYPE_UNSPECIFIED"
-                    }
-                },
-                {
-                    headers: this.getHeaders(),
-                }
+                body,
+                { headers: this.getHeaders() }
             );
 
             return response.data.audioContent;

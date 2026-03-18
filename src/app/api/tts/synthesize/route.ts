@@ -3,7 +3,7 @@ import { InworldService, TTSRequest } from '@/lib/inworld';
 
 export async function POST(req: Request) {
     try {
-        const { text, voiceId, modelId, audioConfig } = await req.json();
+        const { text, voiceId, modelId, speed, pitch, emotion, style } = await req.json();
 
         if (!text || !voiceId) {
             return NextResponse.json(
@@ -16,7 +16,10 @@ export async function POST(req: Request) {
             text,
             voiceId,
             modelId: modelId || 'inworld-tts-1.5-max',
-            // The Service handles audioConfig internally for now, or we can update service
+            speed: speed ?? 1.0,
+            pitch: pitch ?? 0,
+            emotion: emotion ?? '',
+            style: style ?? '',
         };
 
         const audioContent = await InworldService.synthesizeSpeech(payload);
