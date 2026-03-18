@@ -13,18 +13,52 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String         @id @default(cuid())
   name          String?
-  email         String    @unique
+  email         String         @unique
   emailVerified DateTime?
-  password      String? // Hashed password
+  password      String?
   image         String?
+  role          String         @default("user") // "user" | "admin"
+  country       String?        @default("Unknown")
   accounts      Account[]
   sessions      Session[]
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
   scripts       Script[]
   videos        Video[]
+  subscription  Subscription?
+}
+
+model Subscription {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tier          String   @default("Free")
+  status        String   @default("pending") // active | pending | paused | cancelled | restricted
+  paymentStatus String   @default("pending") // paid | pending | failed | refunded
+  features      Json     @default("{\"voice\":false,\"video\":false,\"api\":false,\"priority\":false}")
+  startDate     DateTime @default(now())
+  renewalDate   DateTime
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  admin     String
+  action    String
+  target    String
+  details   String
+  category  String   // subscription | user | tier | gate | alert
+  createdAt DateTime @default(now())
+}
+
+model FeatureGate {
+  id        String   @id @default(cuid())
+  key       String   @unique // voiceGlobal | videoGlobal | tierMatrix
+  value     Json
+  updatedAt DateTime @updatedAt
 }
 
 model Account {
