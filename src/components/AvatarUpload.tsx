@@ -1,7 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Upload, Mic, Video, Check, Loader2, HelpCircle, Info } from 'lucide-react';
+import { Upload, Mic, Video, Check, Loader2, HelpCircle, Info, AlertTriangle, ExternalLink } from 'lucide-react';
+
+// Known working public HeyGen avatar IDs (non-streaming, work with v2/video/generate)
+const PUBLIC_AVATARS = [
+    { id: 'Tyler-insuit-20220721', label: 'Tyler (Suit)' },
+    { id: 'Daisy-insuit-20220818', label: 'Daisy (Suit)' },
+    { id: 'Anna_public_3_20240108', label: 'Anna' },
+    { id: 'josh_lite3_20230714', label: 'Josh' },
+    { id: 'Vanessa-invest-20240722', label: 'Vanessa' },
+    { id: 'Eric_public_pro2_20230608', label: 'Eric' },
+];
 
 export default function AvatarUpload() {
     const [voiceFile, setVoiceFile] = useState<File | null>(null);
@@ -21,8 +31,14 @@ export default function AvatarUpload() {
         if (savedVoiceId) setVoiceId(savedVoiceId);
     }, []);
 
+    const isStreamingAvatar = avatarId.startsWith('sk_');
+
     const handleSaveAvatarId = () => {
         if (!avatarId) return;
+        if (isStreamingAvatar) {
+            setError('Streaming avatar IDs (starting with sk_) cannot be used for video generation. Please use a Talking Avatar ID from the HeyGen Avatars library instead.');
+            return;
+        }
         localStorage.setItem('custom_avatar_id', avatarId);
         alert('Avatar ID saved!');
     };
@@ -103,41 +119,60 @@ export default function AvatarUpload() {
                             <input
                                 type="text"
                                 value={avatarId}
-                                onChange={(e) => setAvatarId(e.target.value)}
+                                onChange={(e) => { setAvatarId(e.target.value); setError(null); }}
                                 placeholder="e.g., Tyler-insuit-20220721"
-                                className="w-full bg-page border border-theme rounded-xl px-4 py-3 text-theme-primary focus:outline-none focus:border-purple-500 transition-colors font-mono text-sm"
+                                className={`w-full bg-page border rounded-xl px-4 py-3 text-theme-primary focus:outline-none transition-colors font-mono text-sm ${
+                                    isStreamingAvatar ? 'border-red-500/60 focus:border-red-500' : 'border-theme focus:border-purple-500'
+                                }`}
                             />
-                            <div className="flex gap-2 mt-2">
-                                <button
-                                    onClick={() => setAvatarId('Tyler-insuit-20220721')}
-                                    className="text-xs bg-card-hover hover:bg-theme-secondary/20 px-3 py-1 rounded-full text-theme-secondary transition-colors"
-                                >
-                                    Use Demo (Tyler)
-                                </button>
-                                <button
-                                    onClick={() => setAvatarId('Daisy-insuit-20220818')}
-                                    className="text-xs bg-card-hover hover:bg-theme-secondary/20 px-3 py-1 rounded-full text-theme-secondary transition-colors"
-                                >
-                                    Use Demo (Daisy)
-                                </button>
+
+                            {/* sk_ streaming avatar warning */}
+                            {isStreamingAvatar && (
+                                <div className="mt-2 p-3 bg-red-500/10 border border-red-500/20 rounded-xl flex items-start gap-2">
+                                    <AlertTriangle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
+                                    <div className="text-xs text-red-300">
+                                        <p className="font-bold mb-1">⚠️ Wrong ID type — Streaming Avatar</p>
+                                        <p className="text-red-400/80">IDs starting with <code className="bg-red-500/20 px-1 rounded">sk_</code> are for HeyGen&apos;s <strong>Live Streaming</strong> feature — they do <strong>not</strong> work with video generation.</p>
+                                        <p className="mt-1 text-red-400/80">Go to <a href="https://app.heygen.com/avatars" target="_blank" rel="noopener noreferrer" className="underline text-red-300 font-medium inline-flex items-center gap-1">HeyGen Avatars <ExternalLink className="w-3 h-3" /></a> → select a <strong>Talking Avatar</strong> (not Streaming) → copy its ID.</p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Quick-pick public avatars */}
+                            <div className="mt-3">
+                                <p className="text-[10px] text-gray-600 font-bold uppercase tracking-wider mb-2">Quick Pick — Public Avatars</p>
+                                <div className="flex flex-wrap gap-2">
+                                    {PUBLIC_AVATARS.map(a => (
+                                        <button key={a.id}
+                                            onClick={() => { setAvatarId(a.id); setError(null); }}
+                                            className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                                                avatarId === a.id
+                                                    ? 'bg-purple-500/20 border-purple-500/50 text-purple-300'
+                                                    : 'bg-card-hover border-theme text-theme-secondary hover:border-purple-500/30 hover:text-theme-primary'
+                                            }`}>
+                                            {a.label}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 
                         {showAvatarHelp && (
                             <div className="bg-purple-500/10 p-4 rounded-xl border border-purple-500/20 text-sm text-theme-secondary animate-fade-in">
-                                <h4 className="font-bold text-theme-primary mb-2 flex items-center"><Info className="w-4 h-4 mr-2" /> How to find your ID:</h4>
+                                <h4 className="font-bold text-theme-primary mb-2 flex items-center"><Info className="w-4 h-4 mr-2" /> How to find your Avatar ID:</h4>
                                 <ol className="list-decimal list-inside space-y-1 text-xs">
-                                    <li>Log in to <a href="https://app.heygen.com" target="_blank" className="text-purple-400 underline">HeyGen</a>.</li>
-                                    <li>Click on your Avatar.</li>
-                                    <li>Copy the ID from the URL: <br /><span className="font-mono text-purple-400 bg-black/5 dark:bg-black/30 px-1 rounded">.../avatars/YOUR_ID</span></li>
+                                    <li>Log in to <a href="https://app.heygen.com/avatars" target="_blank" className="text-purple-400 underline">HeyGen Avatars</a>.</li>
+                                    <li>Click a <strong>Talking Avatar</strong> (NOT a Streaming Avatar — those start with sk_ and don&apos;t work here).</li>
+                                    <li>Copy the ID from the URL or avatar settings.</li>
+                                    <li>Or use the public ones above to test.</li>
                                 </ol>
                             </div>
                         )}
 
                         <button
                             onClick={handleSaveAvatarId}
-                            disabled={!avatarId}
-                            className="w-full py-3 bg-card-hover hover:bg-card-theme border border-theme rounded-xl font-bold text-theme-primary transition-colors flex items-center justify-center gap-2"
+                            disabled={!avatarId || isStreamingAvatar}
+                            className="w-full py-3 bg-card-hover hover:bg-card-theme border border-theme rounded-xl font-bold text-theme-primary transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             <Check className="w-4 h-4" /> Save Avatar ID
                         </button>

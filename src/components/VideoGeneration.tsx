@@ -83,8 +83,15 @@ export default function VideoGeneration() {
             setError('Avatar ID not found. Please set it on the Avatar & Voice page.');
             return;
         }
+        if (customAvatarId.startsWith('sk_')) {
+            setError(
+                'Your saved Avatar ID starts with "sk_" — that\'s a Streaming Avatar ID which only works for live video calls, not video generation. ' +
+                'Go to Avatar & Voice → enter a Talking Avatar ID (e.g. pick "Tyler" from the quick picks) → Save.'
+            );
+            return;
+        }
         if (!voiceConfig) {
-            setError('Please select a cloned voice and click Play to preview it before generating.');
+            setError('Please select a voice in the Voice → Avatar Bridge first.');
             return;
         }
 

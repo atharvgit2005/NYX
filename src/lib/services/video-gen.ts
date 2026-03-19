@@ -32,12 +32,20 @@ export async function generateVideo(
     // 1. Check for API Keys OR Mock IDs
     if (!HEYGEN_API_KEY || avatarId.startsWith('mock-')) {
         console.log("Using Mock Data for Video Generation (Missing Key or Mock ID)");
-        await new Promise((resolve) => setTimeout(resolve, 3000)); // Simulate processing
+        await new Promise((resolve) => setTimeout(resolve, 3000));
         return {
             videoId: `mock-video-id-${Date.now()}`,
             status: 'completed',
-            url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4', // Playable sample video
+            url: 'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
         };
+    }
+
+    // 1b. Reject streaming avatar IDs immediately with a clear error
+    if (avatarId.startsWith('sk_')) {
+        throw new Error(
+            `Invalid avatar ID: IDs starting with "sk_" are HeyGen Streaming Avatars and cannot be used for video generation. ` +
+            `Please go to Avatar & Voice → enter a Talking Avatar ID (e.g. Tyler-insuit-20220721) → Save.`
+        );
     }
 
     // 2. Generate Audio with Inworld & Upload to HeyGen
@@ -171,23 +179,17 @@ export async function generateVideo(
         logToFile(`HeyGen Generation Error: ${JSON.stringify(errorData, null, 2)}`);
         console.error("HeyGen Generation Error:", JSON.stringify(errorData, null, 2));
 
-        // Self-healing: If avatar is not found (404) or API key is invalid/unauthorized (401/403),
-        // fallback to mock data so the user sees *something* working.
+        // Surface meaningful errors rather than hiding them with mock fallbacks
+        if (error.response?.status === 401 || error.response?.status === 403) {
+            throw new Error('HeyGen API key is invalid or expired. Please check your HEYGEN_API_KEY.');
+        }
+
         if (error.response?.status === 404 ||
-            (errorData.error?.code === 'internal_error' && errorMessage.includes('not found')) ||
-            error.response?.status === 401 ||
-            error.response?.status === 403) {
-
-            console.warn("HeyGen Error (likely invalid ID or Key). Falling back to Mock Video.");
-
-            // Mock Processing Delay
-            await new Promise(resolve => setTimeout(resolve, 2000));
-
-            return {
-                videoId: 'mock-video-id-fallback',
-                status: 'completed',
-                url: 'https://via.placeholder.com/1080x1920?text=Mock+Video+Generated+(Fallback)',
-            };
+            (errorData.error?.code === 'internal_error' && errorMessage.includes('not found'))) {
+            throw new Error(
+                `Avatar not found in your HeyGen account: "${avatarId}". ` +
+                `Go to Avatar & Voice → use a Talking Avatar ID from your HeyGen library.`
+            );
         }
 
         throw new Error(`HeyGen Failed: ${errorMessage}`);
