@@ -70588,3 +70588,38 @@
     "message": "avatar look not found, look_id: sk_V2_hgu_k24DtCYaWgw_gyv5qQpYZf7H2jvTere2sPVML1DHA9H1, space_id: 8011e2ad786140b5a925b21d75aa2c82"
   }
 }
+[2026-03-19T06:54:26.669Z] Generating audio with Inworld for voiceId: default-skownhbintlx-lxltlcekg__ath
+[2026-03-19T06:54:35.528Z] Audio generated from Inworld, buffer size: 912813 bytes. Uploading to HeyGen...
+[2026-03-19T06:54:40.223Z] HeyGen Asset Upload Success. Asset ID: 97dae33ae8a74e43afbd29350ba4360c
+[2026-03-19T06:54:40.236Z] Generating video with HeyGen...
+[2026-03-19T06:54:40.236Z] Using Avatar ID: sk_V2_hgu_k24DtCYaWgw_gyv5qQpYZf7H2jvTere2sPVML1DHA9H1
+[2026-03-19T06:54:40.237Z] HeyGen Payload: {
+  "video_inputs": [
+    {
+      "character": {
+        "type": "avatar",
+        "avatar_id": "sk_V2_hgu_k24DtCYaWgw_gyv5qQpYZf7H2jvTere2sPVML1DHA9H1",
+        "avatar_style": "normal"
+      },
+      "voice": {
+        "type": "audio",
+        "audio_asset_id": "97dae33ae8a74e43afbd29350ba4360c"
+      },
+      "background": {
+        "type": "color",
+        "value": "#000000"
+      }
+    }
+  ],
+  "dimension": {
+    "width": 720,
+    "height": 1280
+  }
+}
+[2026-03-19T06:54:42.129Z] HeyGen Generation Error: {
+  "data": null,
+  "error": {
+    "code": "internal_error",
+    "message": "avatar look not found, look_id: sk_V2_hgu_k24DtCYaWgw_gyv5qQpYZf7H2jvTere2sPVML1DHA9H1, space_id: 8011e2ad786140b5a925b21d75aa2c82"
+  }
+}

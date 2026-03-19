@@ -24,18 +24,27 @@ export async function POST(request: Request) {
             const session = await getServerSession(authOptions);
 
             if (session?.user?.email) {
-                const user = await prisma.user.findUnique({
-                    where: { email: session.user.email }
-                });
-
-                if (user) {
-                    await prisma.video.create({
-                        data: {
-                            id: videoResponse.videoId,
-                            status: 'processing',
-                            userId: user.id
-                        }
+                try {
+                    const user = await prisma.user.findUnique({
+                        where: { email: session.user.email }
                     });
+
+                    if (user) {
+                        // upsert: if HeyGen returns the same videoId on a retry,
+                        // update the existing record instead of crashing on unique constraint
+                        await prisma.video.upsert({
+                            where: { id: videoResponse.videoId },
+                            update: { status: 'processing', updatedAt: new Date() },
+                            create: {
+                                id: videoResponse.videoId,
+                                status: 'processing',
+                                userId: user.id
+                            }
+                        });
+                    }
+                } catch (dbErr: any) {
+                    // DB save failure should NOT fail the video generation response
+                    console.error('DB save error (non-fatal):', dbErr.message);
                 }
             }
 
