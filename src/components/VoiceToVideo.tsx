@@ -103,14 +103,22 @@ export default function VoiceToVideo({ script, onChange }: Props) {
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
     // Load cloned voices from localStorage
-    useEffect(() => {
+    const loadVoices = () => {
         const raw = localStorage.getItem('cloned_voices');
         if (raw) {
-            try { setVoices(JSON.parse(raw)); } catch { }
+            try {
+                const list: ClonedVoice[] = JSON.parse(raw);
+                setVoices(list);
+                // Auto-select the first voice if none selected
+                if (list.length > 0 && !selected) setSelected(list[0]);
+            } catch { }
         }
-    }, []);
+    };
+
+    useEffect(() => { loadVoices(); }, []);
 
     // Notify parent whenever selection or controls change
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (!selected) { onChange(null); return; }
         onChange({
@@ -119,7 +127,7 @@ export default function VoiceToVideo({ script, onChange }: Props) {
             controls,
             previewAudioSrc: previewSrc ?? undefined,
         });
-    }, [selected, controls, previewSrc]);
+    }, [selected, controls, previewSrc]); // intentionally omitting onChange - stable callback
 
     const patch = useCallback(<K extends keyof VoiceControls>(k: K, v: VoiceControls[K]) => {
         setControls(c => ({ ...c, [k]: v }));
@@ -204,14 +212,20 @@ export default function VoiceToVideo({ script, onChange }: Props) {
             <div className="p-6 space-y-5">
                 {/* ── Voice picker ── */}
                 <div>
-                    <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-2">Select Cloned Voice</p>
+                    <div className="flex items-center justify-between mb-2">
+                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Select Cloned Voice</p>
+                        <button onClick={loadVoices} title="Refresh list from localStorage"
+                            className="flex items-center gap-1 text-[10px] text-gray-600 hover:text-gray-400 transition">
+                            <RefreshCw className="w-3 h-3" /> Refresh
+                        </button>
+                    </div>
                     {voices.length === 0 ? (
                         <div className="flex items-center gap-3 p-4 rounded-2xl border border-dashed border-white/10 bg-white/[0.02]">
                             <Mic className="w-8 h-8 text-gray-700 flex-shrink-0" />
                             <div>
                                 <p className="text-sm font-bold text-gray-400">No cloned voices yet</p>
                                 <p className="text-xs text-gray-600 mt-0.5">
-                                    Go to <a href="/dashboard/voice" className="text-purple-400 hover:text-purple-300 underline">Voice Studio</a> to clone your voice first.
+                                    Go to <a href="/dashboard/avatar" className="text-purple-400 hover:text-purple-300 underline">Avatar &amp; Voice</a> → scroll to &ldquo;Voice Studio&rdquo; to clone your voice first.
                                 </p>
                             </div>
                         </div>
