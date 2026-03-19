@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import {
-    Mic, Play, Pause, Loader2, Sparkles, ChevronDown, ChevronUp,
+    Mic, Play, Pause, Loader2, ChevronDown, ChevronUp,
     Sliders, RefreshCw, CheckCircle, AlertCircle, Wand2,
-    BookOpen, Zap, Flame, Wind, Heart, Moon, Volume2, Link2,
+    BookOpen, Zap, Flame, Wind, Heart, Moon, Volume2, Link2, Star,
 } from 'lucide-react';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -12,7 +12,16 @@ interface ClonedVoice {
     voiceId: string;
     displayName: string;
     description?: string;
+    langCode?: string;
     createdAt?: string;
+}
+
+interface InworldVoice {
+    id: string;
+    name: string;
+    gender?: string;
+    language?: string;
+    isCustom?: boolean;
 }
 
 interface VoiceControls {
@@ -23,12 +32,12 @@ interface VoiceControls {
     model: string;
 }
 
-// What we export upward to VideoGeneration
 export interface VoiceConfig {
     voiceId: string;
     voiceName: string;
     controls: VoiceControls;
     previewAudioSrc?: string;
+    isBuiltIn?: boolean;
 }
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -85,13 +94,24 @@ function RangeSlider({ label, value, min, max, step, format, onChange, color = '
 
 // ─── VoiceToVideo Component ───────────────────────────────────────────────────
 interface Props {
-    script: string;         // Current script text from VideoGeneration
-    onChange: (cfg: VoiceConfig | null) => void;  // Notify parent of selected voice+controls
+    script: string;
+    onChange: (cfg: VoiceConfig | null) => void;
 }
 
 export default function VoiceToVideo({ script, onChange }: Props) {
-    const [voices, setVoices] = useState<ClonedVoice[]>([]);
-    const [selected, setSelected] = useState<ClonedVoice | null>(null);
+    // Voice source tab: 'cloned' | 'builtin'
+    const [voiceTab, setVoiceTab] = useState<'cloned' | 'builtin'>('cloned');
+
+    // Cloned voices (localStorage)
+    const [clonedVoices, setClonedVoices] = useState<ClonedVoice[]>([]);
+
+    // Built-in Inworld voices
+    const [builtinVoices, setBuiltinVoices] = useState<InworldVoice[]>([]);
+    const [loadingBuiltin, setLoadingBuiltin] = useState(false);
+    const [builtinError, setBuiltinError] = useState<string | null>(null);
+
+    // Common
+    const [selected, setSelected] = useState<{ id: string; name: string; isBuiltIn: boolean } | null>(null);
     const [controls, setControls] = useState<VoiceControls>(DEFAULT_CONTROLS);
     const [showControls, setShowControls] = useState(false);
 
@@ -102,32 +122,61 @@ export default function VoiceToVideo({ script, onChange }: Props) {
     const [previewError, setPreviewError] = useState<string | null>(null);
     const audioRef = useRef<HTMLAudioElement | null>(null);
 
-    // Load cloned voices from localStorage
-    const loadVoices = () => {
+    // ── Load cloned voices ──────────────────────────────────────────────────
+    const loadClonedVoices = useCallback(() => {
         const raw = localStorage.getItem('cloned_voices');
         if (raw) {
             try {
                 const list: ClonedVoice[] = JSON.parse(raw);
-                setVoices(list);
-                // Auto-select the first voice if none selected
-                if (list.length > 0 && !selected) setSelected(list[0]);
+                setClonedVoices(list);
+                if (list.length > 0 && !selected) {
+                    setSelected({ id: list[0].voiceId, name: list[0].displayName, isBuiltIn: false });
+                }
             } catch { }
+        }
+    }, []);
+
+    useEffect(() => { loadClonedVoices(); }, []);
+
+    // ── Load built-in Inworld voices ────────────────────────────────────────
+    const loadBuiltinVoices = async () => {
+        if (builtinVoices.length > 0) return; // already loaded
+        setLoadingBuiltin(true);
+        setBuiltinError(null);
+        try {
+            const res = await fetch('/api/tts/voices');
+            const data = await res.json();
+            if (data.voices) {
+                // Filter to only built-in (non-custom)
+                const builtin = (data.voices as InworldVoice[]).filter(v => !v.isCustom);
+                setBuiltinVoices(builtin);
+            } else {
+                setBuiltinError('Failed to load voices. Check Inworld API key.');
+            }
+        } catch {
+            setBuiltinError('Failed to fetch Inworld voices.');
+        } finally {
+            setLoadingBuiltin(false);
         }
     };
 
-    useEffect(() => { loadVoices(); }, []);
+    // Auto-load when switching to built-in tab
+    useEffect(() => {
+        if (voiceTab === 'builtin') loadBuiltinVoices();
+    }, [voiceTab]);
 
-    // Notify parent whenever selection or controls change
+    // ── Notify parent ───────────────────────────────────────────────────────
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (!selected) { onChange(null); return; }
         onChange({
-            voiceId: selected.voiceId,
-            voiceName: selected.displayName,
+            voiceId: selected.id,
+            voiceName: selected.name,
             controls,
             previewAudioSrc: previewSrc ?? undefined,
+            isBuiltIn: selected.isBuiltIn,
         });
-    }, [selected, controls, previewSrc]); // intentionally omitting onChange - stable callback
+    }, [selected, controls, previewSrc]);
 
     const patch = useCallback(<K extends keyof VoiceControls>(k: K, v: VoiceControls[K]) => {
         setControls(c => ({ ...c, [k]: v }));
@@ -136,13 +185,12 @@ export default function VoiceToVideo({ script, onChange }: Props) {
 
     const isModified = controls.speed !== 1 || controls.pitch !== 0 || !!controls.emotion || !!controls.style;
 
-    // ── Preview: synthesise a short excerpt of the script ─────────────────
+    // ── Preview ─────────────────────────────────────────────────────────────
     const previewVoice = async () => {
         if (!selected || !script.trim()) return;
-
-        // Only send the first ~300 chars to keep preview fast
         const previewText = script.trim().slice(0, 300) + (script.trim().length > 300 ? '…' : '');
 
+        if (audioRef.current) { audioRef.current.pause(); }
         setPreviewing(true);
         setPreviewSrc(null);
         setIsPlaying(false);
@@ -154,7 +202,7 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     text: previewText,
-                    voiceId: selected.voiceId,
+                    voiceId: selected.id,
                     modelId: controls.model,
                     speed: controls.speed,
                     pitch: controls.pitch,
@@ -162,7 +210,6 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                     style: controls.style || undefined,
                 }),
             });
-
             const data = await res.json();
             if (data.audioContent) {
                 const src = `data:audio/wav;base64,${data.audioContent}`;
@@ -174,8 +221,8 @@ export default function VoiceToVideo({ script, onChange }: Props) {
             } else {
                 setPreviewError(data.error || 'No audio returned');
             }
-        } catch (e: any) {
-            setPreviewError('Synthesis failed — check your Inworld API key');
+        } catch {
+            setPreviewError('Synthesis failed — check Inworld API key');
         } finally {
             setPreviewing(false);
         }
@@ -187,10 +234,17 @@ export default function VoiceToVideo({ script, onChange }: Props) {
         else { audioRef.current.play(); setIsPlaying(true); }
     };
 
+    const selectVoice = (id: string, name: string, isBuiltIn: boolean) => {
+        setSelected({ id, name, isBuiltIn });
+        setPreviewSrc(null);
+        setIsPlaying(false);
+    };
+
     // ─── Render ───────────────────────────────────────────────────────────────
     return (
         <div className="rounded-3xl border border-theme bg-card-theme overflow-hidden">
-            {/* Header */}
+
+            {/* ── Header ── */}
             <div className="flex items-center gap-3 px-6 py-5 border-b border-theme"
                 style={{ background: 'linear-gradient(135deg, rgba(168,85,247,0.06) 0%, rgba(236,72,153,0.03) 100%)' }}>
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -199,7 +253,7 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                 </div>
                 <div>
                     <p className="text-sm font-black text-white">Voice → Avatar Bridge</p>
-                    <p className="text-xs text-gray-500">Pick your Inworld cloned voice · tweak tone · preview · then render</p>
+                    <p className="text-xs text-gray-500">Pick a voice · tweak tone · preview · then render</p>
                 </div>
                 {selected && (
                     <div className="ml-auto flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-green-400"
@@ -209,51 +263,123 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                 )}
             </div>
 
-            <div className="p-6 space-y-5">
-                {/* ── Voice picker ── */}
-                <div>
-                    <div className="flex items-center justify-between mb-2">
-                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Select Cloned Voice</p>
-                        <button onClick={loadVoices} title="Refresh list from localStorage"
-                            className="flex items-center gap-1 text-[10px] text-gray-600 hover:text-gray-400 transition">
-                            <RefreshCw className="w-3 h-3" /> Refresh
-                        </button>
-                    </div>
-                    {voices.length === 0 ? (
-                        <div className="flex items-center gap-3 p-4 rounded-2xl border border-dashed border-white/10 bg-white/[0.02]">
-                            <Mic className="w-8 h-8 text-gray-700 flex-shrink-0" />
-                            <div>
-                                <p className="text-sm font-bold text-gray-400">No cloned voices yet</p>
-                                <p className="text-xs text-gray-600 mt-0.5">
-                                    Go to <a href="/dashboard/avatar" className="text-purple-400 hover:text-purple-300 underline">Avatar &amp; Voice</a> → scroll to &ldquo;Voice Studio&rdquo; to clone your voice first.
-                                </p>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="grid grid-cols-1 gap-2">
-                            {voices.map(v => (
-                                <button key={v.voiceId} onClick={() => { setSelected(v); setPreviewSrc(null); setIsPlaying(false); }}
-                                    className={`flex items-center gap-3 p-4 rounded-2xl border text-left w-full transition-all ${selected?.voiceId === v.voiceId
-                                        ? 'border-purple-500/50 bg-purple-500/10'
-                                        : 'border-theme bg-card-hover hover:border-purple-500/25'}`}>
-                                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-all ${selected?.voiceId === v.voiceId ? 'bg-gradient-to-br from-purple-500 to-pink-500' : 'bg-white/5 border border-white/10'}`}>
-                                        <Mic className={`w-4 h-4 ${selected?.voiceId === v.voiceId ? 'text-white' : 'text-gray-500'}`} />
-                                    </div>
-                                    <div className="flex-1 min-w-0">
-                                        <p className={`text-sm font-bold truncate ${selected?.voiceId === v.voiceId ? 'text-white' : 'text-theme-primary'}`}>{v.displayName}</p>
-                                        {v.description && <p className="text-[10px] text-gray-600 truncate">{v.description}</p>}
-                                        <p className="text-[10px] text-gray-700 font-mono mt-0.5">{v.voiceId.slice(0, 24)}…</p>
-                                    </div>
-                                    {selected?.voiceId === v.voiceId && (
-                                        <CheckCircle className="w-4 h-4 text-purple-400 flex-shrink-0" />
-                                    )}
-                                </button>
-                            ))}
-                        </div>
-                    )}
-                </div>
+            {/* ── Voice Source Tabs ── */}
+            <div className="flex border-b border-theme">
+                <button
+                    onClick={() => setVoiceTab('cloned')}
+                    className={`flex-1 py-3 text-xs font-bold flex items-center justify-center gap-2 transition-colors ${voiceTab === 'cloned' ? 'text-purple-400 border-b-2 border-purple-500 bg-purple-500/5' : 'text-gray-500 hover:text-gray-300'}`}>
+                    <Mic className="w-3.5 h-3.5" /> My Cloned Voices
+                    {clonedVoices.length > 0 && <span className="ml-1 text-[10px] px-1.5 py-0.5 rounded-full bg-purple-500/20 text-purple-400">{clonedVoices.length}</span>}
+                </button>
+                <button
+                    onClick={() => setVoiceTab('builtin')}
+                    className={`flex-1 py-3 text-xs font-bold flex items-center justify-center gap-2 transition-colors ${voiceTab === 'builtin' ? 'text-amber-400 border-b-2 border-amber-500 bg-amber-500/5' : 'text-gray-500 hover:text-gray-300'}`}>
+                    <Star className="w-3.5 h-3.5" /> Inworld Built-In
+                    {builtinVoices.length > 0 && <span className="ml-1 text-[10px] px-1.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400">{builtinVoices.length}</span>}
+                </button>
+            </div>
 
-                {/* ── Controls (collapsible) ── */}
+            <div className="p-6 space-y-5">
+
+                {/* ── Cloned voices ── */}
+                {voiceTab === 'cloned' && (
+                    <div>
+                        <div className="flex items-center justify-between mb-2">
+                            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Select Cloned Voice</p>
+                            <button onClick={loadClonedVoices} className="flex items-center gap-1 text-[10px] text-gray-600 hover:text-gray-400 transition">
+                                <RefreshCw className="w-3 h-3" /> Refresh
+                            </button>
+                        </div>
+
+                        {clonedVoices.length === 0 ? (
+                            <div className="flex items-center gap-3 p-4 rounded-2xl border border-dashed border-white/10 bg-white/[0.02]">
+                                <Mic className="w-8 h-8 text-gray-700 flex-shrink-0" />
+                                <div>
+                                    <p className="text-sm font-bold text-gray-400">No cloned voices yet</p>
+                                    <p className="text-xs text-gray-600 mt-0.5">
+                                        Go to <a href="/dashboard/avatar" className="text-purple-400 hover:text-purple-300 underline">Avatar &amp; Voice</a> → scroll to Voice Studio.
+                                        Or switch to <button onClick={() => setVoiceTab('builtin')} className="text-amber-400 hover:text-amber-300 underline">Built-In Voices</button>.
+                                    </p>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="grid grid-cols-1 gap-2 max-h-[200px] overflow-y-auto pr-1">
+                                {clonedVoices.map(v => (
+                                    <button key={v.voiceId}
+                                        onClick={() => selectVoice(v.voiceId, v.displayName, false)}
+                                        className={`flex items-center gap-3 p-3.5 rounded-2xl border text-left w-full transition-all ${selected?.id === v.voiceId ? 'border-purple-500/50 bg-purple-500/10' : 'border-theme bg-card-hover hover:border-purple-500/25'}`}>
+                                        <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${selected?.id === v.voiceId ? 'bg-gradient-to-br from-purple-500 to-pink-500' : 'bg-white/5 border border-white/10'}`}>
+                                            <Mic className={`w-3.5 h-3.5 ${selected?.id === v.voiceId ? 'text-white' : 'text-gray-500'}`} />
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <p className={`text-sm font-bold truncate ${selected?.id === v.voiceId ? 'text-white' : 'text-theme-primary'}`}>{v.displayName}</p>
+                                            <div className="flex items-center gap-2">
+                                                {v.langCode && <span className="text-[10px] text-gray-600">{v.langCode}</span>}
+                                                {v.description && <span className="text-[10px] text-gray-600 truncate max-w-[100px]">{v.description}</span>}
+                                            </div>
+                                        </div>
+                                        {selected?.id === v.voiceId && <CheckCircle className="w-4 h-4 text-purple-400 flex-shrink-0" />}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                )}
+
+                {/* ── Built-in Inworld voices ── */}
+                {voiceTab === 'builtin' && (
+                    <div>
+                        <div className="flex items-center justify-between mb-2">
+                            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Inworld Predefined Voices</p>
+                            <button onClick={() => { setBuiltinVoices([]); loadBuiltinVoices(); }} className="flex items-center gap-1 text-[10px] text-gray-600 hover:text-gray-400 transition">
+                                <RefreshCw className={`w-3 h-3 ${loadingBuiltin ? 'animate-spin' : ''}`} /> Refresh
+                            </button>
+                        </div>
+
+                        {loadingBuiltin && (
+                            <div className="flex items-center justify-center gap-2 py-8 text-xs text-gray-500">
+                                <Loader2 className="w-4 h-4 animate-spin text-amber-400" /> Loading Inworld voices…
+                            </div>
+                        )}
+
+                        {builtinError && !loadingBuiltin && (
+                            <div className="flex items-center gap-2 p-3 rounded-xl text-xs text-red-400" style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.2)' }}>
+                                <AlertCircle className="w-4 h-4 flex-shrink-0" /> {builtinError}
+                            </div>
+                        )}
+
+                        {!loadingBuiltin && !builtinError && builtinVoices.length > 0 && (
+                            <div className="grid grid-cols-1 gap-2 max-h-[200px] overflow-y-auto pr-1">
+                                {builtinVoices.map(v => (
+                                    <button key={v.id}
+                                        onClick={() => selectVoice(v.id, v.name, true)}
+                                        className={`flex items-center gap-3 p-3.5 rounded-2xl border text-left w-full transition-all ${selected?.id === v.id ? 'border-amber-500/50 bg-amber-500/10' : 'border-theme bg-card-hover hover:border-amber-500/25'}`}>
+                                        <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${selected?.id === v.id ? 'bg-gradient-to-br from-amber-500 to-orange-500' : 'bg-white/5 border border-white/10'}`}>
+                                            <Star className={`w-3.5 h-3.5 ${selected?.id === v.id ? 'text-white fill-current' : 'text-gray-500'}`} />
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <p className={`text-sm font-bold truncate ${selected?.id === v.id ? 'text-white' : 'text-theme-primary'}`}>{v.name}</p>
+                                            <div className="flex items-center gap-2 mt-0.5">
+                                                {v.gender && <span className="text-[10px] text-gray-600">{v.gender}</span>}
+                                                {v.language && <span className="text-[10px] text-gray-600">· {v.language}</span>}
+                                                <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-500/70">Built-in</span>
+                                            </div>
+                                        </div>
+                                        {selected?.id === v.id && <CheckCircle className="w-4 h-4 text-amber-400 flex-shrink-0" />}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+
+                        {!loadingBuiltin && !builtinError && builtinVoices.length === 0 && (
+                            <div className="text-center py-6 text-xs text-gray-600">
+                                No built-in voices found. Check your INWORLD_API_KEY.
+                            </div>
+                        )}
+                    </div>
+                )}
+
+                {/* ── Controls (shared for both tabs) ── */}
                 {selected && (
                     <>
                         <div className="rounded-2xl border border-theme overflow-hidden">
@@ -262,16 +388,13 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                                 <div className="flex items-center gap-2 text-sm font-bold text-theme-primary">
                                     <Sliders className="w-4 h-4 text-purple-400" />
                                     Voice Controls
-                                    {isModified && (
-                                        <span className="px-2 py-0.5 text-[10px] rounded-full bg-purple-500/20 text-purple-400 font-bold border border-purple-500/20">Modified</span>
-                                    )}
+                                    {isModified && <span className="px-2 py-0.5 text-[10px] rounded-full bg-purple-500/20 text-purple-400 font-bold border border-purple-500/20">Modified</span>}
                                 </div>
                                 {showControls ? <ChevronUp className="w-4 h-4 text-gray-500" /> : <ChevronDown className="w-4 h-4 text-gray-500" />}
                             </button>
 
                             {showControls && (
                                 <div className="p-5 space-y-4 border-t border-theme">
-                                    {/* Sliders */}
                                     <div className="grid grid-cols-2 gap-5">
                                         <RangeSlider label="Speed" value={controls.speed} min={0.5} max={2.0} step={0.05}
                                             format={v => `${v.toFixed(2)}×`} onChange={v => patch('speed', v)} color="#a855f7" />
@@ -279,7 +402,6 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                                             format={v => v > 0 ? `+${v}` : `${v}`} onChange={v => patch('pitch', v)} color="#06b6d4" />
                                     </div>
 
-                                    {/* Emotion */}
                                     <div>
                                         <p className="text-[10px] text-gray-600 font-bold uppercase tracking-wide mb-1.5">Emotion</p>
                                         <div className="flex flex-wrap gap-1.5">
@@ -292,7 +414,6 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                                         </div>
                                     </div>
 
-                                    {/* Style */}
                                     <div>
                                         <p className="text-[10px] text-gray-600 font-bold uppercase tracking-wide mb-1.5">Style</p>
                                         <div className="flex flex-wrap gap-1.5">
@@ -305,7 +426,6 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                                         </div>
                                     </div>
 
-                                    {/* Model */}
                                     <div>
                                         <p className="text-[10px] text-gray-600 font-bold uppercase tracking-wide mb-1.5">Model</p>
                                         <div className="flex gap-2">
@@ -332,31 +452,24 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                             <div className="flex items-center gap-3 px-4 py-3 bg-card-hover">
                                 <Wand2 className="w-4 h-4 text-pink-400 flex-shrink-0" />
                                 <p className="text-xs font-bold text-theme-primary flex-1">Voice Preview</p>
-                                <p className="text-[10px] text-gray-600">Synthesises first ~300 chars of your script</p>
+                                <p className="text-[10px] text-gray-600">first ~300 chars of script</p>
                             </div>
-
                             <div className="px-4 py-4 flex items-center gap-3">
-                                {/* Preview / Play button */}
-                                <button
-                                    onClick={previewSrc ? togglePlay : previewVoice}
-                                    disabled={previewing}
+                                <button onClick={previewSrc ? togglePlay : previewVoice} disabled={previewing}
                                     className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold transition-all disabled:opacity-50"
                                     style={{ background: 'linear-gradient(135deg, #7c3aed, #ec4899)', boxShadow: '0 4px 15px rgba(168,85,247,0.3)' }}>
-                                    {previewing
-                                        ? <Loader2 className="w-4 h-4 animate-spin" />
+                                    {previewing ? <Loader2 className="w-4 h-4 animate-spin" />
                                         : previewSrc
                                             ? (isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current" />)
-                                            : <Play className="w-4 h-4 fill-current ml-0.5" />
-                                    }
+                                            : <Play className="w-4 h-4 fill-current ml-0.5" />}
                                 </button>
-
                                 <div className="flex-1 min-w-0">
-                                    {previewing && <p className="text-xs text-gray-400">Synthesising preview…</p>}
+                                    {previewing && <p className="text-xs text-gray-400">Synthesising…</p>}
                                     {!previewing && !previewSrc && !previewError && (
                                         <p className="text-xs text-gray-500">
-                                            {selected.displayName} · {controls.speed}× speed
+                                            {selected.name} · {controls.speed}× speed
                                             {controls.emotion && ` · ${controls.emotion}`}
-                                            {controls.style && ` · ${controls.style}`}
+                                            {selected.isBuiltIn && ' · ⭐ Built-in'}
                                         </p>
                                     )}
                                     {previewSrc && !previewing && (
@@ -372,16 +485,13 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                                                         }} />
                                                 ))}
                                             </div>
-                                            <p className="text-xs text-purple-400 font-medium">{isPlaying ? 'Playing…' : 'Ready'}</p>
+                                            <p className="text-xs text-purple-400">{isPlaying ? 'Playing…' : 'Ready'}</p>
                                         </div>
                                     )}
-                                    {previewError && (
-                                        <p className="text-xs text-red-400">{previewError}</p>
-                                    )}
+                                    {previewError && <p className="text-xs text-red-400">{previewError}</p>}
                                 </div>
-
                                 {previewSrc && (
-                                    <button onClick={previewVoice} title="Re-synthesise" disabled={previewing}
+                                    <button onClick={previewVoice} disabled={previewing} title="Re-synthesise"
                                         className="p-2 rounded-xl text-gray-500 hover:text-gray-300 hover:bg-white/5 transition flex-shrink-0">
                                         <RefreshCw className="w-3.5 h-3.5" />
                                     </button>
@@ -389,39 +499,22 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                             </div>
                         </div>
 
-                        {/* ── Config summary ── */}
-                        <div className="flex flex-wrap gap-2 items-center">
-                            <span className="text-[10px] text-gray-600 font-bold uppercase tracking-wider">Will render with:</span>
-                            <span className="text-[10px] px-2 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400">
-                                {selected.displayName}
+                        {/* ── Config summary pills ── */}
+                        <div className="flex flex-wrap gap-1.5 items-center">
+                            <span className="text-[10px] text-gray-600 font-bold uppercase tracking-wider">Render with:</span>
+                            <span className="text-[10px] px-2 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center gap-1">
+                                {selected.isBuiltIn ? <Star className="w-2.5 h-2.5 fill-current" /> : <Mic className="w-2.5 h-2.5" />}
+                                {selected.name}
                             </span>
-                            <span className="text-[10px] px-2 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400">
-                                {controls.speed}× speed
-                            </span>
-                            {controls.pitch !== 0 && (
-                                <span className="text-[10px] px-2 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400">
-                                    pitch {controls.pitch > 0 ? '+' : ''}{controls.pitch}
-                                </span>
-                            )}
-                            {controls.emotion && (
-                                <span className="text-[10px] px-2 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400">
-                                    {EMOTIONS.find(e => e.value === controls.emotion)?.emoji} {controls.emotion}
-                                </span>
-                            )}
-                            {controls.style && (
-                                <span className="text-[10px] px-2 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400">
-                                    {controls.style}
-                                </span>
-                            )}
-                            <span className="text-[10px] px-2 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400">
-                                {controls.model}
-                            </span>
+                            <span className="text-[10px] px-2 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400">{controls.speed}× speed</span>
+                            {controls.pitch !== 0 && <span className="text-[10px] px-2 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400">pitch {controls.pitch > 0 ? '+' : ''}{controls.pitch}</span>}
+                            {controls.emotion && <span className="text-[10px] px-2 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400">{EMOTIONS.find(e => e.value === controls.emotion)?.emoji} {controls.emotion}</span>}
+                            {controls.style && <span className="text-[10px] px-2 py-1 rounded-full bg-white/5 border border-white/10 text-gray-400">{controls.style}</span>}
+                            <span className="text-[10px] px-2 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400">{controls.model}</span>
                         </div>
 
-                        {/* Error */}
                         {previewError && (
-                            <div className="flex items-center gap-2 p-3 rounded-xl text-xs text-red-400"
-                                style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.15)' }}>
+                            <div className="flex items-center gap-2 p-3 rounded-xl text-xs text-red-400" style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.15)' }}>
                                 <AlertCircle className="w-4 h-4 flex-shrink-0" /> {previewError}
                             </div>
                         )}
@@ -429,11 +522,10 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                 )}
             </div>
 
-            {/* Footer info */}
-            {!selected && voices.length > 0 && (
+            {!selected && (
                 <div className="px-6 pb-5">
                     <p className="text-[10px] text-gray-600 text-center">
-                        Select a voice above → adjust tone controls → preview → then click Generate Video
+                        Choose a voice above → adjust controls → preview → Generate Video
                     </p>
                 </div>
             )}
