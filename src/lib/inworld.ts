@@ -45,54 +45,58 @@ export class InworldService {
         };
     }
 
+    /**
+     * List ALL voices (built-in library + custom clones).
+     * Primary source: /tts/v1/voices — returns the full built-in library with
+     * isCustom correctly set by Inworld for each voice.
+     * If that fails, falls back to /voices/v1/voices (workspace clones only).
+     */
     static async listVoices() {
         try {
-            console.log('Attempting to list voices from Inworld...');
-            // First, try the new v1 endpoint: GET /voices/v1/voices
-            // Why? The user specifically provided docs for it and it's less deprecated.
-            try {
-                const v1Url = `${INWORLD_API_BASE_URL}/voices/v1/voices`;
-                console.log(`Fetching v1 voices from: ${v1Url}`);
-                const response = await axios.get(v1Url, {
-                    headers: this.getHeaders(),
-                });
-                console.log('v1 Voices Response Status:', response.status);
-                console.log('v1 Voices Data (first 2 items):', response.data.voices?.slice(0, 2));
-                // Map v1 response structure to our common interface if needed, or just return as is
-                // v1 response: { voices: [{ voiceId, displayName, langCode, ... }] }
-                return response.data.voices.map((v: any) => ({
-                    id: v.voiceId,
-                    name: v.displayName,
-                    gender: 'Unknown', // v1 doesn't seem to return gender explicitly in the basic list
-                    language: v.langCode,
-                    isCustom: true // Assumed since it's from the workspace endpoint usually
-                }));
-            } catch (v1Error: any) {
-                console.warn('Failed to fetch from v1/voices, falling back to tts/v1/voices', v1Error.message);
-                // Fallback to the old endpoint if v1 fails (maybe permissions or different plan)
-                const fallbackUrl = `${INWORLD_API_BASE_URL}/tts/v1/voices`;
-                console.log(`Fetching fallback voices from: ${fallbackUrl}`);
-                const response = await axios.get(fallbackUrl, {
-                    headers: this.getHeaders(),
-                });
-                console.log('Fallback Voices Response Status:', response.status);
-                console.log('Fallback Voices Data keys:', Object.keys(response.data));
-                if (response.data.voices && response.data.voices.length > 0) {
-                    console.log('Fallback Voice Item sample:', response.data.voices[0]);
-                }
+            // PRIMARY: /tts/v1/voices returns the full catalog with correct isCustom flags
+            const primaryUrl = `${INWORLD_API_BASE_URL}/tts/v1/voices`;
+            console.log(`Fetching voices from: ${primaryUrl}`);
+            const response = await axios.get(primaryUrl, {
+                headers: this.getHeaders(),
+            });
+            console.log('Voices Response Status:', response.status);
 
-                // Map fallback response (which returns voiceId, displayName, languages=[])
-                return response.data.voices.map((v: any) => ({
-                    id: v.voiceId,
-                    name: v.displayName,
-                    gender: 'Unknown',
-                    // Fallback might have 'languages' array instead of 'langCode'
-                    language: v.langCode || (v.languages && v.languages[0]) || 'en',
-                    isCustom: v.isCustom || false
-                }));
+            const rawVoices: any[] = response.data.voices || [];
+            console.log(`Total voices returned: ${rawVoices.length}`);
+            if (rawVoices.length > 0) {
+                console.log('Sample voice item:', rawVoices[0]);
             }
+
+            return rawVoices.map((v: any) => ({
+                id: v.voiceId || v.id,
+                name: v.displayName || v.name,
+                gender: v.gender || 'Unknown',
+                language: v.langCode || (v.languages && v.languages[0]) || 'en',
+                isCustom: v.isCustom === true,   // only true if Inworld explicitly says so
+            }));
         } catch (error: any) {
             console.error('Error listing voices:', error.response?.data || error.message);
+            throw error;
+        }
+    }
+
+    /**
+     * List only voices cloned in your workspace (/voices/v1/voices).
+     */
+    static async listClonedVoices() {
+        try {
+            const url = `${INWORLD_API_BASE_URL}/voices/v1/voices`;
+            const response = await axios.get(url, { headers: this.getHeaders() });
+            const rawVoices: any[] = response.data.voices || [];
+            return rawVoices.map((v: any) => ({
+                id: v.voiceId || v.id,
+                name: v.displayName || v.name,
+                gender: v.gender || 'Unknown',
+                language: v.langCode || 'en',
+                isCustom: true,
+            }));
+        } catch (error: any) {
+            console.error('Error listing cloned voices:', error.response?.data || error.message);
             throw error;
         }
     }

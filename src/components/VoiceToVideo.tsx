@@ -146,12 +146,13 @@ export default function VoiceToVideo({ script, onChange }: Props) {
         try {
             const res = await fetch('/api/tts/voices');
             const data = await res.json();
-            if (data.voices) {
-                // Filter to only built-in (non-custom)
-                const builtin = (data.voices as InworldVoice[]).filter(v => !v.isCustom);
-                setBuiltinVoices(builtin);
+            if (data.voices && data.voices.length > 0) {
+                // Show ALL voices from the /tts/v1/voices catalog (built-in library)
+                setBuiltinVoices(data.voices as InworldVoice[]);
+            } else if (data.voices && data.voices.length === 0) {
+                setBuiltinError('No voices returned. Check your INWORLD_API_KEY.');
             } else {
-                setBuiltinError('Failed to load voices. Check Inworld API key.');
+                setBuiltinError(data.error || 'Failed to load voices. Check Inworld API key.');
             }
         } catch {
             setBuiltinError('Failed to fetch Inworld voices.');
