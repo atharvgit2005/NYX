@@ -212,8 +212,10 @@ export async function checkVideoStatus(videoId: string, apiKey?: string) {
     }
 
     try {
+        // ✅ New HeyGen API — GET /v2/video/{video_id}
+        // Old deprecated: GET /v1/video_status.get?video_id={id}
         const response = await axios.get(
-            `https://api.heygen.com/v1/video_status.get?video_id=${videoId}`,
+            `https://api.heygen.com/v2/video/${videoId}`,
             {
                 headers: {
                     'X-Api-Key': HEYGEN_API_KEY,
@@ -221,46 +223,51 @@ export async function checkVideoStatus(videoId: string, apiKey?: string) {
             }
         );
 
-        const data = response.data.data || {};
-        const status = data.status;
-        const url = data.video_url || data.url; // Check both fields just in case
-        const error = data.error;
+        // v2 response: { code: 100, data: { video_id, status, video_url, ... } }
+        // Some versions nest as data.video
+        const video = response.data?.data?.video || response.data?.data || {};
+        const status = video.status;
+        const url = video.video_url || video.url || null;
+        const error = video.error;
 
-        logToFile(`[HeyGen Status Check] ID: ${videoId}`);
-        logToFile(`[HeyGen Response] Status: ${status}, URL: ${url}, Error: ${JSON.stringify(error)}`);
-        logToFile(`[HeyGen Full Response] ${JSON.stringify(response.data, null, 2)}`);
+        logToFile(`[HeyGen v2 Status] ID: ${videoId} -> status: ${status}, url: ${url ? 'yes' : 'none'}`);
 
         if (status === 'failed' || status === 'error') {
-            return {
-                status: 'failed',
-                progress: 0,
-                url: null,
-                error: error || 'Video generation failed'
-            };
+            return { status: 'failed', progress: 0, url: null, error: error || 'Video generation failed' };
         }
 
         if (status === 'completed') {
-            if (!url) {
-                logToFile(`[HeyGen Warning] Status is completed but URL is missing for ID: ${videoId}`);
-                console.warn(`[HeyGen Warning] Status is completed but URL is missing for ID: ${videoId}`);
-                // Still return completed, but maybe frontend needs to handle null URL or we retry?
-                // For now, let's return it as is so we can see the log.
-            }
+            return { status: 'completed', progress: 100, url };
+        }
+
+        // Map all HeyGen in-progress states
+        if (status === 'pending')    return { status: 'processing', progress: 10, url: null };
+        if (status === 'waiting')    return { status: 'processing', progress: 20, url: null };
+        if (status === 'processing') return { status: 'processing', progress: 55, url: null };
+
+        return { status: 'processing', progress: 30, url: null };
+
+    } catch (error: any) {
+        const statusCode = error.response?.status;
+        const errData = error.response?.data;
+
+        logToFile(`Status Check Error [${statusCode}]: ${JSON.stringify(errData || error.message)}`);
+
+        // 404 or HeyGen code 400569 = video not in this account's space
+        // This happens with old video IDs from a previous API key — treat as expired
+        if (statusCode === 404 ||
+            errData?.code === 400569 ||
+            (typeof errData?.message === 'string' && errData.message.includes('not found'))) {
             return {
-                status: 'completed',
-                progress: 100,
-                url: url,
+                status: 'not_found',
+                progress: 0,
+                url: null,
+                error: 'Video not found — may belong to a previous API key or has expired'
             };
         }
 
-        return {
-            status: 'processing',
-            progress: 50, // We could maybe map other statuses like 'waiting' to different progress
-            url: null,
-        };
-    } catch (error: any) {
-        logToFile(`Status Check Error: ${JSON.stringify(error.response?.data || error.message)}`);
-        console.error("Status Check Error:", error.response?.data || error.message);
+        console.error("Status Check Error:", errData || error.message);
         return { status: 'error', progress: 0, url: null, error: error.message };
     }
 }
+
