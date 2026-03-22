@@ -78,13 +78,7 @@ export interface FeatureGates {
     perTier: Record<string, { voice: boolean; video: boolean; api: boolean; priority: boolean }>;
 }
 
-// ─── Default tiers (config-driven, not DB) ───────────────────────────────────
-
-const DEFAULT_TIERS: Tier[] = [
-    { id: 't1', name: 'Free', price: 0, billingCycle: 'monthly', trialDays: 0, maxUsers: 1000, features: { voice: true, video: false, api: false, priority: false }, quotas: { voiceCharsPerDay: 500, videoMinsPerMonth: 0, apiCallsPerDay: 0, storageMB: 100 }, approvalMode: 'auto', color: '#6b7280' },
-    { id: 't2', name: 'Pro', price: 29, billingCycle: 'monthly', trialDays: 14, maxUsers: 500, features: { voice: true, video: true, api: false, priority: true }, quotas: { voiceCharsPerDay: 10000, videoMinsPerMonth: 60, apiCallsPerDay: 0, storageMB: 5120 }, approvalMode: 'auto', color: '#9333ea' },
-    { id: 't3', name: 'Enterprise', price: 199, billingCycle: 'annual', trialDays: 30, maxUsers: 50, features: { voice: true, video: true, api: true, priority: true }, quotas: { voiceCharsPerDay: 100000, videoMinsPerMonth: 600, apiCallsPerDay: 10000, storageMB: 51200 }, approvalMode: 'manual', color: '#f59e0b' },
-];
+// ─── Default alert configs ──────────────────────────────────────────────────
 
 const DEFAULT_ALERT_CONFIGS: AlertConfig[] = [
     { id: 'al1', label: 'Service goes DOWN (Voice or Video)', enabled: true, channels: { email: true, slack: true, inApp: true } },
@@ -149,18 +143,71 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
     const [loadingSubscriptions, setLoadingSubscriptions] = useState(true);
 
     // Config-driven state
-    const [tiers, setTiers] = useState<Tier[]>(DEFAULT_TIERS);
+    const [tiers, setTiers] = useState<Tier[]>([]);
     const [alertConfigs, setAlertConfigs] = useState<AlertConfig[]>(DEFAULT_ALERT_CONFIGS);
     const [featureGates, setFeatureGatesState] = useState<FeatureGates>({
         voiceGlobal: true,
         videoGlobal: true,
-        perTier: {
-            't1': { voice: true, video: false, api: false, priority: false },
-            't2': { voice: true, video: true, api: false, priority: true },
-            't3': { voice: true, video: true, api: true, priority: true },
-        },
+        perTier: {},
     });
     const [notifications, setNotifications] = useState<{ id: string; message: string; type: 'info' | 'warning' | 'success' | 'error' }[]>([]);
+
+    // ─── Tiers (DB-driven) ──────────────────────────────────────────────────
+
+    const refreshTiers = useCallback(async () => {
+        try {
+            const res = await fetch('/api/admin/tiers');
+            if (res.ok) {
+                const { tiers: data } = await res.json();
+                setTiers(data || []);
+            }
+        } catch (e) {
+            console.error('Failed to fetch tiers', e);
+        }
+    }, []);
+
+    const addTier = useCallback(async (t: Omit<Tier, 'id'>) => {
+        try {
+            const res = await fetch('/api/admin/tiers', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(t),
+            });
+            if (res.ok) {
+                await refreshTiers();
+            }
+        } catch (e) {
+            console.error('Failed to add tier', e);
+        }
+    }, [refreshTiers]);
+
+    const updateTier = useCallback(async (id: string, patch: Partial<Tier>) => {
+        try {
+            const res = await fetch('/api/admin/tiers', {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id, ...patch }),
+            });
+            if (res.ok) {
+                await refreshTiers();
+            }
+        } catch (e) {
+            console.error('Failed to update tier', e);
+        }
+    }, [refreshTiers]);
+
+    const deleteTier = useCallback(async (id: string) => {
+        try {
+            const res = await fetch(`/api/admin/tiers?id=${id}`, {
+                method: 'DELETE',
+            });
+            if (res.ok) {
+                await refreshTiers();
+            }
+        } catch (e) {
+            console.error('Failed to delete tier', e);
+        }
+    }, [refreshTiers]);
 
     // ─── Notifications ──────────────────────────────────────────────────────
 
@@ -300,14 +347,11 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
         }
     }, [featureGates, setFeatureGates, addNotification, addAudit]);
 
-    // ─── Tiers (config-driven) ──────────────────────────────────────────────
-    const updateTier = useCallback((id: string, patch: Partial<Tier>) => setTiers(prev => prev.map(t => t.id === id ? { ...t, ...patch } : t)), []);
-    const addTier = useCallback((t: Tier) => setTiers(prev => [...prev, t]), []);
-    const deleteTier = useCallback((id: string) => setTiers(prev => prev.filter(t => t.id !== id)), []);
+    // ─── Alerts & Initial Load ──────────────────────────────────────────────
     const updateAlert = useCallback((id: string, patch: Partial<AlertConfig>) => setAlertConfigs(prev => prev.map(a => a.id === id ? { ...a, ...patch } : a)), []);
 
-    // ─── Load initial data ──────────────────────────────────────────────────
     useEffect(() => {
+        refreshTiers();
         refreshUsers();
         refreshSubscriptions();
         refreshAuditLog();
@@ -323,7 +367,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
             setVoiceServiceRaw(gates.voiceGlobal === false ? 'DOWN' : 'UP');
             setVideoServiceRaw(gates.videoGlobal === false ? 'DOWN' : 'UP');
         }).catch(() => {});
-    }, []);
+    }, [refreshTiers, refreshUsers, refreshSubscriptions, refreshAuditLog]);
 
     return (
         <AdminContext.Provider value={{

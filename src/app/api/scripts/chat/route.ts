@@ -63,7 +63,7 @@ Guidelines:
 - Focus on hooks, pacing, CTAs, and engagement.
 - Use a friendly, collaborative tone — like a creative partner, not a teacher.
 - Do NOT use markdown formatting like ## or **. Use plain text with line breaks.
-- The script inside the markers should be ready to paste directly — include [HOOK], [BODY], and [CTA] section labels.
+- The script inside the markers should be ready to paste directly — do NOT include section labels like [HOOK], [BODY], or [CTA].
 
 Respond now:`;
 

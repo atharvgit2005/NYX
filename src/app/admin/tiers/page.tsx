@@ -22,20 +22,27 @@ export default function TiersPage() {
     const openCreate = () => setModal({ mode: 'create', data: { ...defaultTier } });
     const openEdit = (tier: Tier) => setModal({ mode: 'edit', data: { ...tier } });
 
-    const save = () => {
+    const save = async () => {
         if (!modal) return;
         if (!modal.data.name.trim()) return;
-        if (modal.mode === 'create') {
-            const newTier: Tier = { ...modal.data, id: `t${Date.now()}` };
-            addTier(newTier);
-            addAudit({ admin: 'admin@nyx.ai', action: 'Tier created', target: modal.data.name, details: `Price: $${modal.data.price}/${modal.data.billingCycle}`, category: 'tier' });
-            addNotification(`✅ Tier "${modal.data.name}" created`, 'success');
-        } else if (modal.data.id) {
-            updateTier(modal.data.id, modal.data);
-            addAudit({ admin: 'admin@nyx.ai', action: 'Tier edited', target: modal.data.name, details: 'Configuration updated', category: 'tier' });
-            addNotification(`✅ Tier "${modal.data.name}" updated`, 'success');
+        
+        try {
+            if (modal.mode === 'create') {
+                const { id, ...newTierData } = modal.data;
+                await addTier(newTierData as any);
+                addAudit({ admin: 'admin@nyx.ai', action: 'Tier created', target: modal.data.name, details: `Price: $${modal.data.price}/${modal.data.billingCycle}`, category: 'tier' });
+                addNotification(`✅ Tier "${modal.data.name}" created`, 'success');
+            } else if (modal.data.id) {
+                const { id, ...patch } = modal.data;
+                await updateTier(id, patch);
+                addAudit({ admin: 'admin@nyx.ai', action: 'Tier edited', target: modal.data.name, details: 'Configuration updated', category: 'tier' });
+                addNotification(`✅ Tier "${modal.data.name}" updated`, 'success');
+            }
+            setModal(null);
+        } catch (error) {
+            console.error('Error saving tier:', error);
+            addNotification('❌ Failed to save tier', 'error');
         }
-        setModal(null);
     };
 
     const confirmDelete = (id: string) => {

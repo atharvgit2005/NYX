@@ -15,7 +15,7 @@ const PUBLIC_AVATARS = [
 
 export default function AvatarUpload() {
     const [voiceFile, setVoiceFile] = useState<File | null>(null);
-    const [avatarId, setAvatarId] = useState('ca6ee68148474ef1906e5fe06b4493e9');
+    const [avatarId, setAvatarId] = useState('2383be497820408080b5ce5efd5e11ea');
 
     const [showAvatarHelp, setShowAvatarHelp] = useState(false);
 

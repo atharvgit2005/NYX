@@ -39,13 +39,10 @@ export default function ScriptEditor() {
             setScript(savedScript);
         } else {
             setScript(
-`[HOOK]
-Stop working hard. Start working smart. Here is the unfair advantage you need in 2024.
+`Stop working hard. Start working smart. Here is the unfair advantage you need in 2024.
 
-[BODY]
 Most people think AI is just ChatGPT. But the real pros are using tools that automate the entire workflow. Imagine having a clone that does the work for you while you sleep.
 
-[CTA]
 Comment "AI" below and I'll send you the full list of tools I use.`
             );
         }

@@ -115,8 +115,7 @@ export async function generateScript(idea: any, tone: string) {
       Angle: ${idea.angle}
       Tone: ${tone}
       
-      Structure: [HOOK], [BODY], [CTA].
-      IMPORTANT: Return ONLY the exact words to be spoken. Do NOT include any stage directions, visual cues, speaker labels (like "Narrator:"), timestamps, or sound effect descriptions. Just the raw spoken text.
+      IMPORTANT: Return ONLY the exact words to be spoken. Do NOT include any section labels (like [HOOK] or [BODY]), stage directions, visual cues, speaker labels (like "Narrator:"), timestamps, or sound effect descriptions. Just the raw spoken text.
     `;
 
         return await generateContentWithFallback(prompt);

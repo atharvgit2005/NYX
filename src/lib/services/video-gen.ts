@@ -48,6 +48,22 @@ export async function generateVideo(
         );
     }
 
+    // Strip metadata labels like [HOOK], etc before passing to TTS and generation
+    const stripMetadataLabels = (text: string) => {
+        return text
+            .replace(/\[.*?\]/g, '') // remove brackets
+            .replace(/^(?:\*\*)?(Hook|Body|CTA|Intro|Outro|Title)(?:\*\*)?:?/gmi, '') // remove labels
+            .replace(/\n{2,}/g, '\n') // compress newlines
+            .trim();
+    };
+
+    const cleanScript = stripMetadataLabels(script);
+    
+    // Check if script is too short (HeyGen often fails for very short audio < 2s)
+    if (cleanScript.length < 5) {
+        throw new Error("Script is too short. Please provide at least a few words.");
+    }
+
     // 2. Generate Audio with Inworld & Upload to HeyGen
     let audioAssetId: string | null = null;
 
@@ -59,7 +75,7 @@ export async function generateVideo(
 
             // 2a. Generate Audio from Inworld with full voice controls
             const audioBase64 = await InworldService.synthesizeSpeech({
-                text: script,
+                text: cleanScript,
                 voiceId: voiceId,
                 modelId: voiceControls.model || 'inworld-tts-1.5-max',
                 speed: voiceControls.speed,
@@ -73,38 +89,32 @@ export async function generateVideo(
 
             logToFile(`Audio generated from Inworld, buffer size: ${audioBuffer.byteLength} bytes. Uploading to HeyGen...`);
 
-            // 2b. Upload to HeyGen Asset API (direct binary upload)
-            const options = {
-                hostname: 'upload.heygen.com',
-                path: '/v1/asset',
+            // 2b. Upload to HeyGen Asset API 
+            // We use 'fetch' with explicit Content-Length for the most reliable binary asset upload
+            logToFile(`Uploading ${audioBuffer.length} bytes to HeyGen Asset API...`);
+            
+            const assetRes = await fetch('https://upload.heygen.com/v1/asset', {
                 method: 'POST',
                 headers: {
                     'X-Api-Key': HEYGEN_API_KEY,
                     'Content-Type': 'audio/mpeg',
-                    'Content-Length': audioBuffer.length,
-                    'Accept': 'application/json'
-                }
-            };
-
-            const assetResponse: any = await new Promise((resolve, reject) => {
-                const req = https.request(options, (res) => {
-                    let data = '';
-                    res.on('data', (chunk) => data += chunk);
-                    res.on('end', () => resolve({ status: res.statusCode, data }));
-                });
-
-                req.on('error', (e) => reject(e));
-                req.write(audioBuffer);
-                req.end();
+                    'Content-Length': audioBuffer.length.toString(),
+                },
+                body: audioBuffer
             });
 
-            const parsedData = JSON.parse(assetResponse.data);
-            if (assetResponse.status === 200 && parsedData?.data?.id) {
+            if (!assetRes.ok) {
+                const errText = await assetRes.text();
+                throw new Error(`HeyGen Asset Upload Failed (${assetRes.status}): ${errText}`);
+            }
+
+            const parsedData = await assetRes.json();
+            if (parsedData?.data?.id) {
                 audioAssetId = parsedData.data.id;
                 logToFile(`HeyGen Asset Upload Success. Asset ID: ${audioAssetId}`);
                 console.log(`HeyGen Asset Upload Success. Asset ID: ${audioAssetId}`);
             } else {
-                throw new Error(`Upload Failed: ${assetResponse.data}`);
+                throw new Error(`Upload Failed - No ID in response: ${JSON.stringify(parsedData)}`);
             }
 
         } catch (error: any) {
@@ -125,7 +135,7 @@ export async function generateVideo(
             }
             : {
                 type: 'text',
-                input_text: script,
+                input_text: cleanScript,
                 // Use provided voiceId (if it's a native HeyGen ID somehow) or a default public HeyGen voice
                 voice_id: (voiceId && voiceId !== 'mock-voice' && typeof voiceId === 'string' && voiceId.length === 32) ? voiceId : '1bd001e7e50f421d891986aad5158bc8',
             };
@@ -212,31 +222,46 @@ export async function checkVideoStatus(videoId: string, apiKey?: string) {
     }
 
     try {
-        // ✅ New HeyGen API — GET /v2/video/{video_id}
-        // Old deprecated: GET /v1/video_status.get?video_id={id}
-        const response = await axios.get(
-            `https://api.heygen.com/v2/video/${videoId}`,
-            {
-                headers: {
-                    'X-Api-Key': HEYGEN_API_KEY,
-                },
-            }
-        );
+        // Log the check
+        logToFile(`Checking status for ${videoId}, Custom Key: ${!!apiKey}`);
 
-        // v2 response: { code: 100, data: { video_id, status, video_url, ... } }
-        // Some versions nest as data.video
-        const video = response.data?.data?.video || response.data?.data || {};
+        // ✅ Try V2 Status API first
+        let statusUrl = `https://api.heygen.com/v2/video/${videoId}`;
+        let response = await axios.get(statusUrl, {
+            headers: { 'X-Api-Key': HEYGEN_API_KEY },
+            validateStatus: () => true, // Don't throw on 404
+        });
+
+        let video = response.data?.data?.video || response.data?.data || {};
+        
+        // 🚨 Fallback to V1 Status API if V2 fails or is 404
+        if (response.status === 404 || !video.status) {
+            logToFile(`V2 check 404'd or no status, trying V1 fallback for ${videoId}`);
+            const v1Url = `https://api.heygen.com/v1/video_status.get?video_id=${videoId}`;
+            const v1Response = await axios.get(v1Url, {
+                headers: { 'X-Api-Key': HEYGEN_API_KEY }
+            });
+            video = v1Response.data?.data || {};
+        }
+
         const status = video.status;
         const url = video.video_url || video.url || null;
-        const error = video.error;
+        const error = video.error || video.message;
 
         logToFile(`[HeyGen v2 Status] ID: ${videoId} -> status: ${status}, url: ${url ? 'yes' : 'none'}`);
 
-        if (status === 'failed' || status === 'error') {
-            return { status: 'failed', progress: 0, url: null, error: error || 'Video generation failed' };
+        // Map all HeyGen in-progress states
+        if (status === 'failed' || status === 'error' || status === 'fail') {
+            logToFile(`[HeyGen v2 Status] FAILED for ${videoId}: ${JSON.stringify(video)}`);
+            return { 
+                status: 'failed', 
+                progress: 0, 
+                url: null, 
+                error: error || video.message || 'Video generation failed in HeyGen system' 
+            };
         }
 
-        if (status === 'completed') {
+        if (status === 'completed' || status === 'success') {
             return { status: 'completed', progress: 100, url };
         }
 

@@ -72061,3 +72061,814 @@
 [2026-03-21T05:49:49.411Z] Status Check Error: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for 52503e9377744d3fa0fb52ceb40e6144 in space 52503e9377744d3fa0fb52ceb40e6144"}
 [2026-03-21T05:49:49.421Z] Status Check Error: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for 52503e9377744d3fa0fb52ceb40e6144 in space 52503e9377744d3fa0fb52ceb40e6144"}
 [2026-03-21T05:49:49.478Z] Status Check Error: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for 52503e9377744d3fa0fb52ceb40e6144 in space 52503e9377744d3fa0fb52ceb40e6144"}
+[2026-03-21T06:22:24.830Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:22:24.841Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:22:24.850Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:22:24.861Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:22:24.866Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:22:24.869Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:22:25.138Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:22:25.163Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:22:25.171Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:22:25.182Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:22:25.196Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:22:25.201Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:24:21.746Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:24:21.757Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:24:21.765Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:24:21.771Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:24:21.776Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:24:21.780Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:24:22.040Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:24:22.044Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:24:22.046Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:24:22.047Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:24:22.049Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:24:22.078Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:24:34.677Z] Generating audio with Inworld for voiceId: default-skownhbintlx-lxltlcekg__pranav
+[2026-03-21T06:24:41.005Z] Audio generated from Inworld, buffer size: 891693 bytes. Uploading to HeyGen...
+[2026-03-21T06:24:44.148Z] HeyGen Asset Upload Success. Asset ID: 88e1862be475414abeb8bea96133d8b0
+[2026-03-21T06:24:44.150Z] Generating video with HeyGen...
+[2026-03-21T06:24:44.150Z] Using Avatar ID: 7dfd58f433d849fd96da06e2b84d3b96
+[2026-03-21T06:24:44.151Z] HeyGen Payload: {
+  "video_inputs": [
+    {
+      "character": {
+        "type": "avatar",
+        "avatar_id": "7dfd58f433d849fd96da06e2b84d3b96",
+        "avatar_style": "normal"
+      },
+      "voice": {
+        "type": "audio",
+        "audio_asset_id": "88e1862be475414abeb8bea96133d8b0"
+      },
+      "background": {
+        "type": "color",
+        "value": "#000000"
+      }
+    }
+  ],
+  "dimension": {
+    "width": 720,
+    "height": 1280
+  }
+}
+[2026-03-21T06:24:45.157Z] HeyGen Generation Error: {
+  "data": null,
+  "error": {
+    "code": "internal_error",
+    "message": "avatar look not found, look_id: 7dfd58f433d849fd96da06e2b84d3b96, space_id: 52503e9377744d3fa0fb52ceb40e6144"
+  }
+}
+[2026-03-21T06:44:20.015Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:44:20.023Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:44:20.030Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:44:20.038Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:44:20.255Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:44:20.286Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:44:20.297Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:44:20.302Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:44:20.304Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:44:20.306Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:44:20.517Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:44:20.575Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:16.279Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:16.337Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:16.489Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:16.902Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:16.918Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:16.931Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:17.204Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:17.230Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:17.321Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:17.323Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:17.325Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:17.328Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:17.529Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:17.531Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:17.660Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:17.662Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:17.819Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:17.823Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:17.825Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:17.860Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:18.073Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:18.115Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:18.120Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:18.123Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:28.059Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:28.077Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:28.340Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:28.345Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:28.357Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:28.369Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:28.440Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:28.702Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:28.705Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:28.711Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:28.716Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:50:28.837Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:07.149Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:07.155Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:07.163Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:07.170Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:07.174Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:07.212Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:07.513Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:07.519Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:07.523Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:07.529Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:07.533Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:08.343Z] Generating audio with Inworld for voiceId: default-skownhbintlx-lxltlcekg__ath
+[2026-03-21T06:51:10.942Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:11.338Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:14.180Z] Audio generated from Inworld, buffer size: 860973 bytes. Uploading to HeyGen...
+[2026-03-21T06:51:17.643Z] HeyGen Asset Upload Success. Asset ID: a13995d0cc944ad29fb4f62ecfc4a74d
+[2026-03-21T06:51:17.648Z] Generating video with HeyGen...
+[2026-03-21T06:51:17.648Z] Using Avatar ID: 2383be497820408080b5ce5efd5e11ea
+[2026-03-21T06:51:17.651Z] HeyGen Payload: {
+  "video_inputs": [
+    {
+      "character": {
+        "type": "avatar",
+        "avatar_id": "2383be497820408080b5ce5efd5e11ea",
+        "avatar_style": "normal"
+      },
+      "voice": {
+        "type": "audio",
+        "audio_asset_id": "a13995d0cc944ad29fb4f62ecfc4a74d"
+      },
+      "background": {
+        "type": "color",
+        "value": "#000000"
+      }
+    }
+  ],
+  "dimension": {
+    "width": 720,
+    "height": 1280
+  }
+}
+[2026-03-21T06:51:19.455Z] HeyGen Response: {"error":null,"data":{"video_id":"ada7a8f2c0fd4eb9af8e00633b481dfc"}}
+[2026-03-21T06:51:24.645Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:26.515Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:28.616Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:30.727Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:32.682Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:34.746Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:38.120Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:38.568Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:40.007Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:42.777Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:45.258Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:47.247Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:48.639Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:50.664Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:52.809Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:54.458Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:55.917Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:51:57.973Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:00.085Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:03.773Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:05.371Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:05.915Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:07.923Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:10.572Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:12.507Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:14.290Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:16.471Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:18.092Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:20.033Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:22.632Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:24.584Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:26.536Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:28.686Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:30.540Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:38.103Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:38.405Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:38.698Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:39.023Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:40.452Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:42.542Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:44.677Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:46.571Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:48.608Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:51.587Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:52.706Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:54.587Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:56.424Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:52:58.801Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:00.251Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:01.947Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:04.070Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:06.148Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:07.998Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:10.674Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:12.455Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:14.520Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:16.666Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:18.626Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:20.545Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:22.565Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:24.468Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:26.591Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:28.500Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:30.504Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:32.476Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:34.426Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:36.542Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:38.452Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:40.479Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:42.569Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:44.471Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:46.554Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:48.496Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:50.720Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:52.829Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:55.230Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:56.510Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:53:58.569Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:54:00.451Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:54:02.746Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:54:04.576Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:54:06.475Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:54:08.503Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:54:33.358Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:02.654Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:03.084Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:03.615Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:04.136Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:04.502Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:05.003Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:05.698Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:06.702Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:08.803Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:10.962Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:12.558Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:14.448Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:16.468Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:18.478Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:19.959Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:22.025Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:24.052Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:25.952Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:27.919Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:30.147Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:32.180Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:33.971Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:36.075Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:37.980Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:40.308Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:42.390Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:43.957Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:46.044Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:48.151Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:50.427Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:52.063Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:54.115Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:56.031Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:55:58.303Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:56:00.725Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:56:01.927Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:56:04.179Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:56:07.322Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:56:08.833Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:56:10.544Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:56:12.518Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:56:14.472Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:56:16.601Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:56:18.528Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:56:20.206Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:56:22.031Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:56:24.663Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:56:26.441Z] Status Check Error [404]: "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3.2 Final//EN\">\n<title>404 Not Found</title>\n<h1>Not Found</h1>\n<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>\n"
+[2026-03-21T06:56:28.604Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-21T06:56:29.038Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-21T06:56:29.639Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-21T06:56:29.640Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-21T07:13:11.035Z] Generating audio with Inworld for voiceId: default-skownhbintlx-lxltlcekg__ath
+[2026-03-21T07:13:16.777Z] Audio generated from Inworld, buffer size: 844845 bytes. Uploading to HeyGen...
+[2026-03-21T07:13:16.780Z] Uploading 844845 bytes to HeyGen Asset API...
+[2026-03-21T07:13:19.464Z] HeyGen Asset Upload Success. Asset ID: dfb5cfb97b5f483e9119ce4c26f43cba
+[2026-03-21T07:13:19.511Z] Generating video with HeyGen...
+[2026-03-21T07:13:19.511Z] Using Avatar ID: 2383be497820408080b5ce5efd5e11ea
+[2026-03-21T07:13:19.514Z] HeyGen Payload: {
+  "video_inputs": [
+    {
+      "character": {
+        "type": "avatar",
+        "avatar_id": "2383be497820408080b5ce5efd5e11ea",
+        "avatar_style": "normal"
+      },
+      "voice": {
+        "type": "audio",
+        "audio_asset_id": "dfb5cfb97b5f483e9119ce4c26f43cba"
+      },
+      "background": {
+        "type": "color",
+        "value": "#000000"
+      }
+    }
+  ],
+  "dimension": {
+    "width": 720,
+    "height": 1280
+  }
+}
+[2026-03-21T07:13:20.672Z] HeyGen Response: {"error":null,"data":{"video_id":"723819f25f1b407581da9ef158fca474"}}
+[2026-03-21T07:13:27.196Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-21T07:13:27.917Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-21T07:13:28.220Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: processing, url: none
+[2026-03-21T07:13:29.092Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-21T07:13:29.380Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-21T07:13:29.698Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: processing, url: none
+[2026-03-21T07:13:31.202Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-21T07:13:31.470Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-21T07:13:31.851Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-21T07:13:31.851Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-21T07:29:09.834Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-21T07:29:09.856Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-21T07:29:09.861Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-21T07:29:09.869Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-21T07:29:09.873Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-21T07:29:10.578Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-21T07:29:10.583Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-21T07:29:10.587Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-21T07:29:10.589Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-21T07:29:10.593Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-21T07:29:10.859Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-21T07:29:10.874Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-21T07:29:10.879Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-21T07:29:10.879Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-21T07:29:10.888Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-21T07:29:10.888Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-21T07:29:10.893Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-21T07:29:10.913Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-21T07:29:10.945Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-21T07:29:10.953Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-21T07:29:10.957Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-21T07:29:10.961Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-21T07:29:11.163Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-21T07:29:11.169Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-21T07:29:11.183Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-21T07:29:11.188Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-21T07:29:11.193Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-21T07:29:11.472Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-21T07:29:11.488Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-21T07:29:11.491Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-21T07:29:11.496Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-21T07:29:11.499Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-21T07:29:11.524Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-21T07:29:11.547Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-21T07:29:11.758Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-21T07:29:11.848Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-21T07:29:12.029Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-21T07:29:12.146Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:51.517Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-22T14:33:51.529Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-22T14:33:51.532Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T14:33:51.540Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T14:33:51.550Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T14:33:51.556Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-22T14:33:53.374Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-22T14:33:53.384Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T14:33:53.389Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T14:33:53.394Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-22T14:33:53.398Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-22T14:33:53.400Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T14:33:53.751Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:53.776Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:53.795Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:53.798Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T14:33:53.799Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T14:33:53.805Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-22T14:33:53.806Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T14:33:53.810Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:53.847Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-22T14:33:53.853Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-22T14:33:53.886Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T14:33:53.909Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-22T14:33:53.911Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-22T14:33:53.942Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T14:33:54.154Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-22T14:33:54.221Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T14:33:54.222Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-22T14:33:54.223Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-22T14:33:54.223Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-22T14:33:54.262Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T14:33:54.507Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:54.512Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-22T14:33:54.580Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:54.583Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:54.584Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:54.585Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:54.588Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-22T14:33:54.590Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-22T14:33:54.599Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T14:33:54.603Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-22T14:33:54.620Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:54.626Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T14:33:54.827Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-22T14:33:54.902Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-22T14:33:54.910Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-22T14:33:54.922Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-22T14:33:54.923Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T14:33:54.930Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T14:33:55.291Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:55.293Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:55.295Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:55.297Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:55.299Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T14:33:55.301Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:58:46.600Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T18:58:46.620Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T18:58:46.627Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T18:58:46.671Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-22T18:58:46.678Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-22T18:58:47.084Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-22T18:58:53.113Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-22T18:58:53.121Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-22T18:58:57.541Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-22T18:58:57.542Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T18:58:57.707Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-22T18:58:59.006Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-22T18:58:59.379Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:58:59.445Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-22T18:58:59.954Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-22T18:59:00.544Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:00.568Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T18:59:04.019Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:04.060Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-22T18:59:04.416Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-22T18:59:06.449Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:06.673Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-22T18:59:07.248Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-22T18:59:07.524Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T18:59:08.051Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:08.096Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T18:59:09.029Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-22T18:59:09.561Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:10.008Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:10.024Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-22T18:59:10.197Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T18:59:10.353Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-22T18:59:10.651Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:10.671Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-22T18:59:11.096Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-22T18:59:11.514Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-22T18:59:11.514Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T18:59:11.523Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-22T18:59:11.741Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:11.750Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-22T18:59:12.110Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-22T18:59:12.837Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-22T18:59:14.058Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-22T18:59:16.824Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-22T18:59:20.477Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:20.532Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T18:59:20.882Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T18:59:23.424Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:23.575Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T18:59:24.015Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:24.025Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T18:59:26.262Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T18:59:29.719Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T18:59:33.151Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:33.319Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T18:59:33.960Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T18:59:36.316Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:36.397Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-22T18:59:36.642Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-22T18:59:37.045Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:37.101Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-22T18:59:37.655Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-22T18:59:39.302Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T18:59:39.302Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T18:59:39.360Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T18:59:39.673Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T18:59:39.762Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:39.781Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-22T18:59:39.961Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:39.976Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-22T18:59:40.085Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-22T18:59:40.213Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-22T18:59:40.345Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:40.366Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T18:59:40.481Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:40.504Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-22T18:59:40.606Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T18:59:40.741Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-22T18:59:40.869Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:40.887Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-22T18:59:41.027Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-22T18:59:41.028Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T18:59:41.042Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T18:59:41.381Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-22T18:59:41.480Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T18:59:41.650Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:41.757Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T18:59:41.764Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:41.807Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T18:59:41.995Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T18:59:42.019Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T18:59:42.044Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T18:59:42.287Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:42.314Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-22T18:59:42.316Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T18:59:42.316Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T18:59:42.323Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:42.331Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-22T18:59:42.334Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T18:59:42.544Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-22T18:59:42.568Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-22T18:59:42.571Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T18:59:42.812Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:42.829Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-22T18:59:42.866Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:42.868Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:42.906Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-22T18:59:42.972Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T18:59:43.126Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-22T18:59:43.133Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T18:59:43.140Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-22T18:59:43.218Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T18:59:43.402Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:43.414Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T18:59:43.423Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-22T18:59:43.423Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T18:59:43.439Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T18:59:43.531Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T18:59:43.531Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T18:59:43.551Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-22T18:59:43.552Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T18:59:43.552Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T18:59:43.560Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-22T18:59:43.641Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T18:59:43.688Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T18:59:43.855Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-22T18:59:43.859Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-22T18:59:43.927Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:43.947Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-22T18:59:44.056Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:44.069Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-22T18:59:44.566Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:44.579Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:44.584Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-22T18:59:44.592Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T18:59:44.600Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-22T18:59:44.942Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-22T18:59:44.946Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T18:59:44.965Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:44.978Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-22T18:59:44.986Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-22T18:59:45.260Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:45.290Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T18:59:45.520Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T18:59:46.044Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-22T18:59:46.158Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:46.177Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T18:59:46.320Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:46.342Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T18:59:46.721Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T18:59:48.152Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T18:59:50.154Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:50.213Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T18:59:51.386Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:51.408Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-22T18:59:52.346Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-22T18:59:52.620Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:52.666Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-22T18:59:52.906Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-22T18:59:52.994Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T18:59:53.366Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:53.371Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:53.381Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-22T18:59:53.385Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-22T18:59:53.647Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-22T18:59:53.948Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:54.004Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T18:59:54.340Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-22T18:59:54.407Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T18:59:54.407Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T18:59:54.426Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-22T18:59:55.575Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:55.600Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-22T18:59:56.537Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-22T18:59:56.825Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T18:59:56.871Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T18:59:57.496Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-22T18:59:58.956Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T19:00:00.012Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:00.091Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T19:00:00.373Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T19:00:00.919Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:00.930Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T19:00:00.932Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T19:00:00.932Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T19:00:00.944Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T19:00:01.182Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T19:00:01.197Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T19:00:01.566Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:01.594Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-22T19:00:01.925Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-22T19:00:02.486Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:02.495Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:02.522Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-22T19:00:02.527Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T19:00:03.645Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T19:00:03.664Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-22T19:00:03.847Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T19:00:04.185Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:04.200Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:04.218Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-22T19:00:04.223Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-22T19:00:04.504Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:04.545Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T19:00:05.518Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-22T19:00:05.524Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-22T19:00:08.212Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T19:00:09.212Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:09.290Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T19:00:09.615Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:09.679Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-22T19:00:09.684Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T19:00:09.944Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-22T19:00:10.079Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:10.105Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T19:00:10.232Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:10.253Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T19:00:10.476Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T19:00:10.492Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T19:00:10.766Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T19:00:10.767Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T19:00:10.778Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T19:00:11.665Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:11.679Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-22T19:00:12.443Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T19:00:13.742Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-22T19:00:14.162Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:14.195Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-22T19:00:14.662Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-22T19:00:14.940Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:14.960Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T19:00:15.141Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:15.155Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T19:00:18.597Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T19:00:18.859Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T19:00:19.671Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T19:00:19.671Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T19:00:19.689Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:19.738Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T19:00:19.743Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T19:00:20.713Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T19:00:20.764Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T19:00:21.832Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:21.882Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-22T19:00:22.287Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:22.313Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T19:00:23.335Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T19:00:23.737Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:23.742Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-22T19:00:23.750Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-22T19:00:24.053Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-22T19:00:24.242Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:24.267Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T19:00:24.347Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:24.353Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T19:00:25.159Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T19:00:25.172Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T19:00:25.885Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:25.915Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T19:00:25.915Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T19:00:25.920Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T19:00:25.927Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T19:00:26.519Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T19:00:27.605Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T19:00:28.022Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:28.041Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T19:00:28.126Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:28.137Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T19:00:28.571Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T19:00:28.941Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T19:00:28.941Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T19:00:28.956Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T19:00:30.009Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T19:00:31.131Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T19:00:31.411Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:31.470Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T19:00:31.897Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T19:00:32.336Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:32.354Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T19:00:32.656Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:32.662Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T19:00:32.675Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T19:00:32.991Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T19:00:32.996Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T19:00:32.996Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T19:00:33.012Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T19:00:33.257Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T19:00:33.477Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:33.504Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T19:00:33.728Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:33.747Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T19:00:34.039Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T19:00:34.396Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:34.400Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:34.411Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T19:00:34.414Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T19:00:34.741Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T19:00:34.743Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T19:00:34.745Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:34.758Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T19:00:35.022Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T19:00:35.291Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T19:00:36.092Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T19:00:36.093Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T19:00:36.113Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T19:00:36.286Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:36.292Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:36.295Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T19:00:36.295Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T19:00:36.835Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T19:00:37.103Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T19:00:37.126Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T19:00:37.550Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T19:00:37.558Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T19:00:37.616Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T19:00:37.617Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T19:00:37.666Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T19:00:37.856Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:37.867Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:37.881Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T19:00:37.887Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T19:00:37.911Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T19:00:38.106Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T19:00:38.143Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T19:00:38.180Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:38.197Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T19:00:38.409Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:38.426Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T19:00:38.435Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T19:00:38.655Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T19:00:38.709Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:38.729Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T19:00:38.937Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T19:00:38.938Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T19:00:38.946Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T19:00:38.967Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T19:00:39.173Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T19:00:39.237Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:39.248Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T19:00:39.436Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:39.458Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T19:00:39.483Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T19:00:39.513Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T19:00:39.514Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T19:00:39.533Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T19:00:39.686Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T19:00:39.758Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T19:00:39.769Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T19:00:39.770Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T19:00:39.966Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:40.073Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T19:00:40.073Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T19:00:46.055Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:00:55.786Z] Status Check Error [undefined]: "read ECONNRESET"
+[2026-03-22T19:20:32.537Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-22T19:20:32.554Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-22T19:20:32.557Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T19:20:32.560Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T19:20:32.563Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T19:20:32.565Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-22T19:20:33.290Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-22T19:20:33.295Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-22T19:20:33.298Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-22T19:20:33.322Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T19:20:33.323Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T19:20:33.596Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-22T19:20:33.596Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T19:20:33.604Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:20:33.608Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T19:20:33.615Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-22T19:20:33.626Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T19:20:33.626Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T19:20:33.632Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-22T19:20:33.635Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T19:20:33.747Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:20:33.749Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:20:33.758Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-22T19:20:33.761Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-22T19:20:33.934Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-22T19:20:33.935Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:20:33.958Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T19:20:33.973Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T19:20:33.982Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-22T19:20:33.999Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-22T19:20:34.010Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-22T19:20:34.246Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T19:20:34.250Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:20:34.261Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:20:34.297Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:20:34.302Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:20:34.308Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T19:20:34.572Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
