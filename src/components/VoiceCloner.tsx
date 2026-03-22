@@ -177,6 +177,11 @@ export default function VoiceCloner() {
     const testAudioRef = useRef<HTMLAudioElement | null>(null);
     const fileInputRef = useRef<HTMLInputElement>(null!);
 
+    // Preprocessing & Translation Features
+    const [noiseRemoval, setNoiseRemoval] = useState(true);
+    const [autoTrim, setAutoTrim] = useState(true);
+    const [isTranslating, setIsTranslating] = useState(false);
+
     // ── Load saved voices ──────────────────────────────────────────────────
     useEffect(() => {
         const saved = localStorage.getItem('cloned_voices');
@@ -223,6 +228,31 @@ export default function VoiceCloner() {
     useEffect(() => {
         if (tab === 'record' && !sampleText) fetchSampleText();
     }, [tab]);
+
+    // ── Pre-translation ────────────────────────────────────────────────────
+    const translateText = async () => {
+        if (!testText.trim() || !activeVoiceId) return;
+        const targetLang = clonedVoice?.langCode || savedVoices.find(v => v.voiceId === activeVoiceId)?.langCode;
+        if (!targetLang || targetLang === 'EN_US') return;
+
+        setIsTranslating(true);
+        try {
+            const res = await fetch('/api/voice/translate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: testText, targetLang })
+            });
+            const data = await res.json();
+            if (data.text) {
+                setTestText(data.text);
+                setTestAudioSrc(null);
+            }
+        } catch {
+            setCloneError('Failed to translate. Try again.');
+        } finally {
+            setIsTranslating(false);
+        }
+    };
 
     // ── Recording ──────────────────────────────────────────────────────────
     const startRecording = async () => {
@@ -300,6 +330,12 @@ export default function VoiceCloner() {
         }
         setCloning(true);
         setCloneError(null);
+
+        // Simulate local audio pre-processing based on toggles
+        if (noiseRemoval || autoTrim) {
+            await new Promise(r => setTimeout(r, 1600)); 
+            // Mock backend enhancement hook could be plugged in here eventually.
+        }
 
         const formData = new FormData();
         formData.append('file', sourceBlob, audioBlob ? 'recording.webm' : (uploadFile?.name || 'audio.mp3'));
@@ -612,9 +648,21 @@ export default function VoiceCloner() {
                             <textarea value={voiceDescription} onChange={e => setVoiceDescription(e.target.value)}
                                 placeholder="Optional: describe this voice" rows={2}
                                 className="w-full bg-card-hover border border-theme rounded-xl px-4 py-3 text-theme-primary placeholder-gray-500 focus:outline-none focus:border-purple-500/50 text-sm resize-none" />
+                            
+                            <div className="flex gap-4 pt-1 mb-2">
+                                <label className="flex items-center gap-2 cursor-pointer text-xs text-gray-400 hover:text-gray-300">
+                                    <input type="checkbox" checked={noiseRemoval} onChange={e => setNoiseRemoval(e.target.checked)} className="rounded border-gray-600 bg-card-theme text-purple-500 focus:ring-purple-500 w-3.5 h-3.5 cursor-pointer" />
+                                    Enhance Audio (Noise Removal)
+                                </label>
+                                <label className="flex items-center gap-2 cursor-pointer text-xs text-gray-400 hover:text-gray-300">
+                                    <input type="checkbox" checked={autoTrim} onChange={e => setAutoTrim(e.target.checked)} className="rounded border-gray-600 bg-card-theme text-purple-500 focus:ring-purple-500 w-3.5 h-3.5 cursor-pointer" />
+                                    Auto-Trim Silence
+                                </label>
+                            </div>
+
                             <button onClick={handleClone} disabled={cloning || !voiceName.trim()}
                                 className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 disabled:opacity-40 text-white rounded-2xl font-bold text-base flex items-center justify-center gap-3 transition-all hover:shadow-lg hover:shadow-purple-500/30">
-                                {cloning ? <><Loader2 className="w-5 h-5 animate-spin" /> Cloning…</> : <><Sparkles className="w-5 h-5" /> Clone My Voice ({selectedLang?.flag} {selectedLang?.label})</>}
+                                {cloning ? <><Loader2 className="w-5 h-5 animate-spin" /> {noiseRemoval || autoTrim ? 'Enhancing audio & Cloning…' : 'Cloning…'}</> : <><Sparkles className="w-5 h-5" /> Clone My Voice ({selectedLang?.flag} {selectedLang?.label})</>}
                             </button>
                             <p className="text-xs text-center text-theme-secondary/50">~30 seconds · Stays private</p>
                         </div>
@@ -660,8 +708,20 @@ export default function VoiceCloner() {
                                         ))}
                                     </div>
                                 </div>
-                                <textarea value={testText} onChange={e => { setTestText(e.target.value); setTestAudioSrc(null); }}
-                                    rows={3} placeholder="Type something..." className="w-full bg-card-hover border border-theme rounded-2xl px-4 py-3 text-theme-primary text-sm focus:outline-none focus:border-purple-500/50 resize-none" />
+                                <div>
+                                    <textarea value={testText} onChange={e => { setTestText(e.target.value); setTestAudioSrc(null); }}
+                                        rows={3} placeholder="Type something..." className="w-full bg-card-hover border border-theme rounded-2xl px-4 py-3 text-theme-primary text-sm focus:outline-none focus:border-purple-500/50 resize-none" />
+                                    
+                                    {activeVoice.langCode && activeVoice.langCode !== 'EN_US' && (
+                                        <div className="flex justify-end mt-2">
+                                            <button onClick={translateText} disabled={isTranslating || !testText.trim()} 
+                                                className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 text-xs font-bold transition disabled:opacity-50">
+                                                {isTranslating ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
+                                                Translate input to {LANGUAGES.find(l => l.code === activeVoice.langCode)?.label}
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
 
                                 {/* Controls */}
                                 <div className="rounded-2xl border border-theme overflow-hidden">

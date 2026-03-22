@@ -103,18 +103,36 @@ export class InworldService {
 
     static async synthesizeSpeech(payload: TTSRequest) {
         try {
+            // Determine if we need SSML to enforce speed and pitch robustly
+            let isSsml = false;
+            let finalText = payload.text;
+
+            const hasSpeed = payload.speed !== undefined && payload.speed !== 1.0;
+            const hasPitch = payload.pitch !== undefined && payload.pitch !== 0;
+            const hasEmotion = Boolean(payload.emotion || payload.style);
+
+            // Convert pitch (-10 to +10) to semitones string like "+2.0st", speed (0.5 to 2.0) to percentage like "150%"
+            if (hasSpeed || hasPitch) {
+                isSsml = true;
+                const ratePct = hasSpeed ? `${Math.round(payload.speed! * 100)}%` : '100%';
+                const pitchSt = hasPitch ? `${payload.pitch! > 0 ? '+' : ''}${payload.pitch}st` : '0st';
+                
+                // Nest text inside SSML prosody tags to guarantee the TTS engine obeys
+                finalText = `<speak><prosody rate="${ratePct}" pitch="${pitchSt}">${payload.text}</prosody></speak>`;
+            }
+
             const body: Record<string, any> = {
-                text: payload.text,
+                [isSsml ? 'ssml' : 'text']: finalText,
                 voiceId: payload.voiceId,
                 modelId: payload.modelId || 'inworld-tts-1.5-max',
                 audioConfig: {
                     timestampType: 'TIMESTAMP_TYPE_UNSPECIFIED',
-                },
+                    speakingRate: payload.speed || 1.0,  // Include natively in audioConfig fallback
+                    pitch: payload.pitch || 0
+                }
             };
 
-            // Optional tone controls
-            if (payload.speed && payload.speed !== 1.0) body.speed = payload.speed;
-            if (payload.pitch && payload.pitch !== 0) body.pitch = payload.pitch;
+            // Inject emotion or stylistic tags directly if the model supports native JSON injection
             if (payload.emotion) body.emotion = payload.emotion;
             if (payload.style) body.style = payload.style;
 
