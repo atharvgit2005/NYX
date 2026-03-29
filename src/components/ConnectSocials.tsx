@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Instagram, Music, Youtube, Check, Loader2, Link as LinkIcon } from 'lucide-react';
+import { Instagram, Music, Youtube, Check, Loader2, Link as LinkIcon, Sparkles } from 'lucide-react';
+import NyxButton from './ui/NyxButton';
 
 export default function ConnectSocials() {
     const [connected, setConnected] = useState<{ [key: string]: string | null }>({
@@ -57,7 +58,7 @@ export default function ConnectSocials() {
             name: 'Instagram',
             icon: <Instagram className="w-8 h-8" />,
             description: 'Connect to analyze your niche and post Reels.',
-            color: 'from-purple-500 to-pink-500',
+            color: 'from-orange-500 to-amber-500',
             placeholder: '@username'
         },
         {
@@ -65,7 +66,7 @@ export default function ConnectSocials() {
             name: 'TikTok',
             icon: <Music className="w-8 h-8" />,
             description: 'Sync for trend analysis and auto-posting.',
-            color: 'from-black to-gray-800 border border-white/20',
+            color: 'from-black to-gray-800 border border-theme',
             placeholder: '@username'
         },
         {
@@ -81,7 +82,7 @@ export default function ConnectSocials() {
     return (
         <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-16 space-y-4">
-                <h2 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-theme-primary via-purple-500 to-pink-500 pb-2">
+                <h2 className="text-5xl font-bold text-white pb-2">
                     Connect Your Socials
                 </h2>
                 <p className="text-theme-secondary max-w-2xl mx-auto text-lg leading-relaxed">
@@ -100,15 +101,15 @@ export default function ConnectSocials() {
                         <div
                             key={platform.id}
                             className={`relative group rounded-[2rem] transition-all duration-500 overflow-hidden ${isConnected
-                                ? 'bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/30 shadow-[0_0_30px_rgba(168,85,247,0.15)] dark:shadow-[0_0_30px_rgba(168,85,247,0.3)]'
-                                : 'bg-card-theme border border-theme hover:border-purple-500/50 hover:shadow-xl hover:-translate-y-1'
+                                ? 'bg-zinc-900 border border-white/10 shadow-2xl'
+                                : 'bg-card-theme border border-theme hover:border-white/20 hover:shadow-xl hover:-translate-y-1'
                                 }`}
                         >
                             {/* Inner content wrapper */}
                             <div className="h-full p-8 flex flex-col relative z-10 backdrop-blur-sm">
                                 {/* Header */}
                                 <div className="flex items-start justify-between mb-8">
-                                    <div className={`p-4 rounded-2xl bg-gradient-to-br ${platform.color} shadow-lg ring-1 ring-white/20 group-hover:scale-110 transition-transform duration-500`}>
+                                    <div className={`p-4 rounded-2xl bg-zinc-900 border border-white/10 shadow-lg group-hover:scale-110 transition-transform duration-500`}>
                                         <div className="text-white">{platform.icon}</div>
                                     </div>
                                     {isConnected && (
@@ -128,15 +129,15 @@ export default function ConnectSocials() {
                                 <div className="mt-auto">
                                     {isConnected ? (
                                         <div className="space-y-3 animate-in fade-in slide-in-from-bottom-4">
-                                            <div className="flex items-center justify-between p-4 bg-white/50 dark:bg-white/5 rounded-xl border border-purple-500/20 shadow-sm">
+                                            <div className="flex items-center justify-between p-4 bg-white/50 dark:bg-card-theme rounded-xl border border-orange-500/20 shadow-sm">
                                                 <span className="font-semibold text-theme-primary flex items-center gap-2 truncate">
                                                     @{connected[platform.id]}
                                                 </span>
-                                                <Check className="w-5 h-5 text-purple-500 bg-purple-100 dark:bg-purple-900/50 rounded-full p-0.5" />
+                                                <Check className="w-5 h-5 text-orange-500 bg-orange-100 dark:bg-orange-900/50 rounded-full p-0.5" />
                                             </div>
                                             <button
                                                 onClick={() => handleDisconnect(platform.id)}
-                                                className="w-full py-3 text-xs font-medium text-gray-500 dark:text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-xl transition-all"
+                                                className="w-full py-3 text-xs font-medium text-gray-500 dark:text-theme-secondary hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-xl transition-all"
                                             >
                                                 Disconnect Account
                                             </button>
@@ -149,34 +150,34 @@ export default function ConnectSocials() {
                                                     placeholder={platform.placeholder}
                                                     value={usernameInput}
                                                     onChange={(e) => setUsernameInput(e.target.value)}
-                                                    className="w-full bg-gray-50 dark:bg-black/40 border border-purple-500 rounded-xl px-4 py-4 text-theme-primary focus:outline-none focus:ring-4 focus:ring-purple-500/10 transition-all placeholder:text-gray-400"
+                                                    className="w-full bg-gray-50 dark:bg-page/40 border border-orange-500 rounded-xl px-4 py-4 text-theme-primary focus:outline-none focus:ring-4 focus:ring-orange-500/10 transition-all placeholder:text-theme-secondary"
                                                     autoFocus
                                                 />
                                             </div>
                                             <div className="flex gap-2">
-                                                <button
+                                                <NyxButton
                                                     onClick={() => handleConnect(platform.id)}
                                                     disabled={!usernameInput || isLoading}
-                                                    className="flex-1 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-xl font-bold transition-all shadow-lg shadow-purple-500/25 disabled:opacity-50 flex items-center justify-center transform active:scale-95"
+                                                    className="flex-1 py-1 px-4"
                                                 >
-                                                    {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : 'Confirm'}
-                                                </button>
+                                                    {isLoading ? '...' : 'CONFIRM'}
+                                                </NyxButton>
                                                 <button
                                                     onClick={() => { setActivePlatform(null); setUsernameInput(''); }}
-                                                    className="px-4 py-3 bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 rounded-xl transition-colors text-theme-secondary hover:text-theme-primary"
+                                                    className="px-4 py-3 bg-gray-100 dark:bg-card-theme hover:bg-gray-200 dark:hover:bg-card-theme rounded-xl transition-colors text-theme-secondary hover:text-theme-primary"
                                                 >
                                                     ✕
                                                 </button>
                                             </div>
                                         </div>
                                     ) : (
-                                        <button
+                                        <NyxButton
                                             onClick={() => setActivePlatform(platform.id)}
-                                            className="w-full py-4 bg-gray-50 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 border border-theme hover:border-purple-300 dark:hover:border-purple-500/50 rounded-xl font-bold text-theme-primary transition-all flex items-center justify-center gap-2 group-hover:shadow-md"
+                                            icon={LinkIcon}
+                                            className="w-full justify-center"
                                         >
-                                            <LinkIcon className="w-4 h-4 text-purple-500" />
-                                            Connect Account
-                                        </button>
+                                            CONNECT ACCOUNT
+                                        </NyxButton>
                                     )}
                                 </div>
                             </div>
@@ -186,12 +187,12 @@ export default function ConnectSocials() {
             </div>
 
             {/* Features Section */}
-            <div className="relative rounded-[2.5rem] p-1 bg-gradient-to-br from-theme-primary/10 to-transparent border border-theme overflow-hidden">
+            <div className="relative rounded-[2.5rem] p-1 bg-zinc-900 border border-white/10 overflow-hidden shadow-2xl">
                 <div className="absolute inset-0 bg-page/80 backdrop-blur-xl" />
                 <div className="relative px-6 py-8 md:px-8 md:py-10 flex flex-col md:flex-row items-start gap-10">
                     <div className="md:w-1/3">
                         <div className="flex items-center gap-3 mb-4">
-                            <div className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-600 dark:text-purple-300 text-xs font-bold border border-purple-500/30">
+                            <div className="px-3 py-1 rounded-full bg-orange-500/20 text-orange-600 dark:text-orange-300 text-xs font-bold border border-orange-500/30">
                                 AI POWERED
                             </div>
                         </div>
@@ -206,7 +207,7 @@ export default function ConnectSocials() {
                             { title: 'Auto-Publish', desc: 'One-click direct upload' },
                             { title: 'Trend Sync', desc: 'Real-time trend adaptation' }
                         ].map((item, i) => (
-                            <div key={i} className="flex items-start bg-card-theme p-4 rounded-xl border border-theme hover:border-purple-500/20 transition-colors shadow-sm">
+                            <div key={i} className="flex items-start bg-card-theme p-4 rounded-xl border border-theme hover:border-orange-500/20 transition-colors shadow-sm">
                                 <div className="mt-1 mr-3 w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
                                     <Check className="w-3 h-3 text-green-500" />
                                 </div>

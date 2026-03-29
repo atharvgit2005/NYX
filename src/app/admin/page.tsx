@@ -39,11 +39,11 @@ export default function AdminDashboard() {
         <div className="space-y-8">
             <div className="flex items-start justify-between">
                 <div>
-                    <h1 className="text-3xl font-black text-white">Dashboard</h1>
+                    <h1 className="text-3xl font-black text-theme-primary">Dashboard</h1>
                     <p className="text-gray-500 mt-1">Platform health overview · {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
                 </div>
-                <Link href="/admin/subscriptions" className="text-xs px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition flex items-center gap-2">
-                    Pending Approvals {pendingCount > 0 && <span className="bg-orange-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">{pendingCount}</span>}
+                <Link href="/admin/subscriptions" className="text-xs px-4 py-2 rounded-lg bg-card-theme border border-theme text-theme-secondary hover:text-theme-primary hover:bg-card-theme transition flex items-center gap-2">
+                    Pending Approvals {pendingCount > 0 && <span className="bg-orange-500 text-theme-primary text-[10px] px-1.5 py-0.5 rounded-full font-bold">{pendingCount}</span>}
                 </Link>
             </div>
 
@@ -59,7 +59,7 @@ export default function AdminDashboard() {
                                 <Icon className={`w-5 h-5 ${status === 'UP' ? 'text-green-400' : 'text-red-400'}`} />
                             </div>
                             <div>
-                                <p className="text-sm font-bold text-white">{label}</p>
+                                <p className="text-sm font-bold text-theme-primary">{label}</p>
                                 <div className="flex items-center gap-1.5 mt-0.5">
                                     <span className={`w-2 h-2 rounded-full ${status === 'UP' ? 'bg-green-400' : 'bg-red-400 animate-pulse'}`} />
                                     <span className={`text-xs font-bold ${status === 'UP' ? 'text-green-400' : 'text-red-400'}`}>{status === 'UP' ? 'Operational' : 'Down'}</span>
@@ -76,30 +76,30 @@ export default function AdminDashboard() {
             {/* Stats */}
             <div className="grid grid-cols-4 gap-4">
                 {[
-                    { label: 'Total Users', value: loadingUsers ? '…' : totalUsers, icon: Users, color: '#a855f7' },
+                    { label: 'Total Users', value: loadingUsers ? '…' : totalUsers, icon: Users, color: '#f97316' },
                     { label: 'Active Subscriptions', value: loadingUsers ? '…' : activeSubscriptions, icon: CreditCard, color: '#06b6d4' },
                     { label: 'MRR', value: `$${mrr}`, icon: DollarSign, color: '#10b981' },
                     { label: 'Pending Approvals', value: loadingUsers ? '…' : pendingCount, icon: Clock, color: '#f59e0b' },
                 ].map(({ label, value, icon: Icon, color }) => (
-                    <div key={label} className="rounded-2xl border border-white/5 bg-white/[0.03] p-6">
+                    <div key={label} className="rounded-2xl border border-theme bg-card-theme p-6">
                         <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: `${color}22` }}>
                             <Icon className="w-5 h-5" style={{ color }} />
                         </div>
-                        <p className="text-3xl font-black text-white mb-1">{value}</p>
-                        <p className="text-sm text-gray-400">{label}</p>
+                        <p className="text-3xl font-black text-theme-primary mb-1">{value}</p>
+                        <p className="text-sm text-theme-secondary">{label}</p>
                     </div>
                 ))}
             </div>
 
             {/* Charts */}
             <div className="grid grid-cols-2 gap-6">
-                <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
-                    <p className="text-sm font-bold text-white mb-1">Subscription Growth</p>
+                <div className="rounded-2xl border border-theme bg-card-theme p-6">
+                    <p className="text-sm font-bold text-theme-primary mb-1">Subscription Growth</p>
                     <p className="text-xs text-gray-500 mb-4">Last 12 months (projected)</p>
-                    <MiniChart data={growthData} color="#a855f7" />
+                    <MiniChart data={growthData} color="#f97316" />
                 </div>
-                <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
-                    <p className="text-sm font-bold text-white mb-1">Feature Usage</p>
+                <div className="rounded-2xl border border-theme bg-card-theme p-6">
+                    <p className="text-sm font-bold text-theme-primary mb-1">Feature Usage</p>
                     <p className="text-xs text-gray-500 mb-4">Voice + Video this period</p>
                     <MiniChart data={usageData} color="#06b6d4" />
                 </div>
@@ -115,16 +115,16 @@ export default function AdminDashboard() {
                         { label: 'View Audit Log', href: '/admin/audit', badge: 0 },
                         { label: 'Configure Alerts', href: '/admin/alerts', badge: 0 },
                     ].map(({ label, href, badge }) => (
-                        <Link key={href} href={href} className="flex items-center justify-between p-3 rounded-xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.06] text-sm text-gray-300 hover:text-white group transition-all">
+                        <Link key={href} href={href} className="flex items-center justify-between p-3 rounded-xl bg-card-theme border border-theme hover:bg-card-theme text-sm text-theme-secondary hover:text-theme-primary group transition-all">
                             <span>{label}</span>
                             <div className="flex items-center gap-2">
-                                {badge > 0 && <span className="text-[10px] px-1.5 py-0.5 rounded-full font-bold text-white bg-orange-500">{badge}</span>}
-                                <ChevronRight className="w-3.5 h-3.5 text-gray-600 group-hover:text-gray-400" />
+                                {badge > 0 && <span className="text-[10px] px-1.5 py-0.5 rounded-full font-bold text-theme-primary bg-orange-500">{badge}</span>}
+                                <ChevronRight className="w-3.5 h-3.5 text-gray-600 group-hover:text-theme-secondary" />
                             </div>
                         </Link>
                     ))}
                 </div>
-                <div className="col-span-2 rounded-2xl border border-white/5 bg-white/[0.02] p-5">
+                <div className="col-span-2 rounded-2xl border border-theme bg-card-theme p-5">
                     <p className="text-xs text-gray-500 uppercase font-bold tracking-wider mb-4">Recent Audit Activity</p>
                     {auditLog.length === 0 ? (
                         <p className="text-sm text-gray-600">No audit entries yet. Actions will appear here.</p>
@@ -135,12 +135,12 @@ export default function AdminDashboard() {
                                     <span className="text-[10px] text-gray-600 font-mono mt-0.5 flex-shrink-0 w-20">
                                         {new Date(entry.createdAt).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
                                     </span>
-                                    <span className="text-gray-400 flex-1">{entry.action} · <span className="text-gray-500">{entry.target}</span></span>
+                                    <span className="text-theme-secondary flex-1">{entry.action} · <span className="text-gray-500">{entry.target}</span></span>
                                 </div>
                             ))}
                         </div>
                     )}
-                    <Link href="/admin/audit" className="mt-4 text-xs text-purple-400 hover:text-purple-300 flex items-center gap-1 transition">View full log <ChevronRight className="w-3 h-3" /></Link>
+                    <Link href="/admin/audit" className="mt-4 text-xs text-orange-500 hover:text-orange-300 flex items-center gap-1 transition">View full log <ChevronRight className="w-3 h-3" /></Link>
                 </div>
             </div>
         </div>

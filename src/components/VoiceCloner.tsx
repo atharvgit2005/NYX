@@ -8,6 +8,8 @@ import {
     Wand2, BookOpen, Zap, Wind, Heart, Flame, Moon, Globe,
     WifiOff, Volume, TriangleAlert, Info
 } from 'lucide-react';
+import { enhanceAudioBlob } from '@/lib/audioProcessing';
+import NyxButton from './ui/NyxButton';
 
 // ─── Types & Constants ────────────────────────────────────────────────────────
 interface ClonedVoice {
@@ -83,23 +85,23 @@ const SAMPLE_TEXTS = [
 // Recording environment tips
 const RECORDING_TIPS = [
     { icon: <WifiOff className="w-4 h-4" />, color: '#f59e0b', text: 'Go noise-free — close windows, turn off fans' },
-    { icon: <Volume className="w-4 h-4" />, color: '#a855f7', text: 'Keep mic 6–12 inches from your mouth' },
+    { icon: <Volume className="w-4 h-4" />, color: '#f97316', text: 'Keep mic 6–12 inches from your mouth' },
     { icon: <TriangleAlert className="w-4 h-4" />, color: '#06b6d4', text: 'Avoid rooms with echo — closets work great' },
-    { icon: <Info className="w-4 h-4" />, color: '#10b981', text: 'Speak naturally at a comfortable pace' },
+    { icon: <Info className="w-4 h-4" />, color: '#f97316', text: 'Speak naturally at a comfortable pace' },
 ];
 
 // ─── Sub Components ───────────────────────────────────────────────────────────
-function RangeSlider({ label, value, min, max, step, format, onChange, color = '#a855f7' }:
+function RangeSlider({ label, value, min, max, step, format, onChange, color = '#f97316' }:
     { label: string; value: number; min: number; max: number; step: number; format: (v: number) => string; onChange: (v: number) => void; color?: string }) {
     const pct = ((value - min) / (max - min)) * 100;
     return (
         <div className="space-y-2">
             <div className="flex justify-between">
-                <span className="text-xs text-gray-400 font-medium">{label}</span>
+                <span className="text-xs text-theme-secondary font-medium">{label}</span>
                 <span className="text-xs font-bold px-2 py-0.5 rounded-lg" style={{ color, background: `${color}18` }}>{format(value)}</span>
             </div>
             <div className="relative h-5 flex items-center">
-                <div className="absolute w-full h-1.5 rounded-full bg-white/5" />
+                <div className="absolute w-full h-1.5 rounded-full bg-card-theme" />
                 <div className="absolute h-1.5 rounded-full" style={{ width: `${pct}%`, background: `linear-gradient(90deg, ${color}88, ${color})` }} />
                 <input type="range" min={min} max={max} step={step} value={value}
                     onChange={e => onChange(parseFloat(e.target.value))}
@@ -113,7 +115,7 @@ function RangeSlider({ label, value, min, max, step, format, onChange, color = '
     );
 }
 
-function WaveformBars({ active, color = '#a855f7' }: { active: boolean; color?: string }) {
+function WaveformBars({ active, color = '#f97316' }: { active: boolean; color?: string }) {
     return (
         <div className="flex items-center gap-0.5 h-8">
             {[...Array(28)].map((_, i) => (
@@ -138,8 +140,9 @@ export default function VoiceCloner() {
 
     // Language
     const [langCode, setLangCode] = useState('EN_US');
-    const [sampleText, setSampleText] = useState<string | null>(null);
+    const [sampleText, setSampleText] = useState<string>('');
     const [loadingSample, setLoadingSample] = useState(false);
+    const [translatingScript, setTranslatingScript] = useState(false);
 
     // Recording
     const [isRecording, setIsRecording] = useState(false);
@@ -208,7 +211,7 @@ export default function VoiceCloner() {
     // ── Gemini Sample Text ─────────────────────────────────────────────────
     const fetchSampleText = async (code = langCode) => {
         setLoadingSample(true);
-        setSampleText(null);
+        // Do not clear the text right away to prevent blinking, just show loader
         try {
             const res = await fetch('/api/voice/sample-text', {
                 method: 'POST',
@@ -216,18 +219,40 @@ export default function VoiceCloner() {
                 body: JSON.stringify({ langCode: code }),
             });
             const data = await res.json();
-            setSampleText(data.text || null);
+            if (data.text) setSampleText(data.text);
         } catch {
-            setSampleText(null);
+            // keep existing text
         } finally {
             setLoadingSample(false);
         }
     };
 
-    // Auto-fetch when switching to Record tab
+    // Auto-fetch when switching to Record tab if empty
     useEffect(() => {
-        if (tab === 'record' && !sampleText) fetchSampleText();
+        if (tab === 'record' && !sampleText.trim()) fetchSampleText();
     }, [tab]);
+
+    // ── Pre-translation for Recording Script ──
+    const translateRecordingScript = async () => {
+        if (!sampleText.trim() || langCode === 'EN_US') return;
+
+        setTranslatingScript(true);
+        try {
+            const res = await fetch('/api/voice/translate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: sampleText, targetLang: langCode })
+            });
+            const data = await res.json();
+            if (data.text) {
+                setSampleText(data.text);
+            }
+        } catch {
+            setCloneError('Failed to translate script. Try again.');
+        } finally {
+            setTranslatingScript(false);
+        }
+    };
 
     // ── Pre-translation ────────────────────────────────────────────────────
     const translateText = async () => {
@@ -323,7 +348,7 @@ export default function VoiceCloner() {
 
     // ── Clone ──────────────────────────────────────────────────────────────
     const handleClone = async () => {
-        const sourceBlob = audioBlob || uploadFile;
+        let sourceBlob = audioBlob || uploadFile;
         if (!sourceBlob || !voiceName.trim()) {
             setCloneError('Add a voice name first.');
             return;
@@ -331,10 +356,14 @@ export default function VoiceCloner() {
         setCloning(true);
         setCloneError(null);
 
-        // Simulate local audio pre-processing based on toggles
+        // Natively process WebAudio buffer to alter literal Blob metadata
         if (noiseRemoval || autoTrim) {
-            await new Promise(r => setTimeout(r, 1600)); 
-            // Mock backend enhancement hook could be plugged in here eventually.
+            try {
+                sourceBlob = await enhanceAudioBlob(sourceBlob, autoTrim, noiseRemoval);
+            } catch (err: any) {
+                console.warn('Enhancement failed:', err);
+                // Fail gracefully, use unedited blob
+            }
         }
 
         const formData = new FormData();
@@ -423,7 +452,7 @@ export default function VoiceCloner() {
         setVoiceName(''); setVoiceDescription('');
         setCloneError(null); setClonedVoice(null);
         setTestAudioSrc(null); setRecordingTime(0);
-        setControls(DEFAULT_CONTROLS); setSampleText(null);
+        setControls(DEFAULT_CONTROLS); setSampleText('');
     };
 
     const hasAudio = !!(audioBlob || uploadFile || audioUrl);
@@ -438,7 +467,7 @@ export default function VoiceCloner() {
 
             <div className="mb-8">
                 <h2 className="text-4xl font-bold text-theme-primary tracking-tight flex items-center gap-3">
-                    <Wand2 className="w-8 h-8 text-purple-400" /> Voice Studio
+                    <Wand2 className="w-8 h-8 text-orange-500" /> Voice Studio
                 </h2>
                 <p className="text-theme-secondary mt-2">Clone your voice, sculpt it — control tone, emotion, speed, and style.</p>
             </div>
@@ -462,7 +491,7 @@ export default function VoiceCloner() {
                     {step === 'record' && (
                         <div className="bg-card-theme rounded-2xl border border-theme p-4 flex items-center gap-4 flex-wrap">
                             <div className="flex items-center gap-2">
-                                <Globe className="w-4 h-4 text-purple-400" />
+                                <Globe className="w-4 h-4 text-orange-500" />
                                 <span className="text-sm font-bold text-theme-primary">Clone Language</span>
                             </div>
                             <div className="flex-1 relative">
@@ -470,9 +499,9 @@ export default function VoiceCloner() {
                                     value={langCode}
                                     onChange={e => {
                                         setLangCode(e.target.value);
-                                        setSampleText(null);
+                                        // Do not aggressively wipe sampletext anymore so users can translate their custom input
                                     }}
-                                    className="w-full bg-card-hover border border-theme rounded-xl px-3 py-2 text-theme-primary text-sm focus:outline-none focus:border-purple-500/50 appearance-none"
+                                    className="w-full bg-card-hover border border-theme rounded-xl px-3 py-2 text-theme-primary text-sm focus:outline-none focus:border-orange-500/50 appearance-none"
                                 >
                                     {LANGUAGES.map(l => (
                                         <option key={l.code} value={l.code}>{l.flag} {l.label}</option>
@@ -480,14 +509,13 @@ export default function VoiceCloner() {
                                 </select>
                                 <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
                             </div>
-                            <button
+                            <NyxButton
                                 onClick={() => fetchSampleText(langCode)}
                                 disabled={loadingSample}
-                                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-bold hover:bg-purple-500/20 transition disabled:opacity-50"
+                                className="px-4 py-2"
                             >
-                                {loadingSample ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
-                                Get Sample Text
-                            </button>
+                                {loadingSample ? '...' : 'GET SAMPLE TEXT'}
+                            </NyxButton>
                         </div>
                     )}
 
@@ -497,7 +525,7 @@ export default function VoiceCloner() {
                             <div className="flex border-b border-theme">
                                 {(['record', 'upload'] as const).map(t => (
                                     <button key={t} onClick={() => { setTab(t); setAudioBlob(null); setAudioUrl(null); setUploadFile(null); }}
-                                        className={`flex-1 py-4 text-sm font-bold flex items-center justify-center gap-2 transition-colors ${tab === t ? 'text-purple-400 border-b-2 border-purple-500' : 'text-theme-secondary hover:text-theme-primary'}`}>
+                                        className={`flex-1 py-4 text-sm font-bold flex items-center justify-center gap-2 transition-colors ${tab === t ? 'text-orange-500 border-b-2 border-orange-500' : 'text-theme-secondary hover:text-theme-primary'}`}>
                                         {t === 'record' ? <><Mic className="w-4 h-4" /> Record Voice</> : <><Upload className="w-4 h-4" /> Upload File</>}
                                     </button>
                                 ))}
@@ -508,48 +536,63 @@ export default function VoiceCloner() {
                                     <div className="space-y-6">
                                         {/* ── Recording Tips Banner ── */}
                                         {showTips && !isRecording && !audioBlob && (
-                                            <div className="rounded-2xl border overflow-hidden" style={{ borderColor: 'rgba(168,85,247,0.2)', background: 'rgba(168,85,247,0.04)' }}>
-                                                <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: 'rgba(168,85,247,0.1)' }}>
-                                                    <p className="text-xs font-bold text-purple-300 uppercase tracking-wide">Before you record</p>
-                                                    <button onClick={() => setShowTips(false)} className="text-[10px] text-gray-600 hover:text-gray-400">Hide</button>
+                                            <div className="rounded-2xl border overflow-hidden" style={{ borderColor: 'rgba(249,115,22,0.2)', background: 'rgba(249,115,22,0.04)' }}>
+                                                <div className="flex items-center justify-between px-4 py-3 border-b" style={{ borderColor: 'rgba(249,115,22,0.1)' }}>
+                                                    <p className="text-xs font-bold text-orange-300 uppercase tracking-wide">Before you record</p>
+                                                    <button onClick={() => setShowTips(false)} className="text-[10px] text-gray-600 hover:text-theme-secondary">Hide</button>
                                                 </div>
-                                                <div className="grid grid-cols-2 gap-px p-0.5" style={{ background: 'rgba(168,85,247,0.08)' }}>
+                                                <div className="grid grid-cols-2 gap-px p-0.5" style={{ background: 'rgba(249,115,22,0.08)' }}>
                                                     {RECORDING_TIPS.map((tip, i) => (
                                                         <div key={i} className="flex items-start gap-2.5 p-3 bg-card-theme">
                                                             <span style={{ color: tip.color }} className="flex-shrink-0 mt-0.5">{tip.icon}</span>
-                                                            <p className="text-xs text-gray-400">{tip.text}</p>
+                                                            <p className="text-xs text-theme-secondary">{tip.text}</p>
                                                         </div>
                                                     ))}
                                                 </div>
                                             </div>
                                         )}
 
-                                        {/* ── Gemini Sample Text ── */}
+                                        {/* ── Custom Script / AI Sample Text ── */}
                                         {tab === 'record' && (
-                                            <div className="rounded-2xl border border-theme overflow-hidden">
+                                            <div className="rounded-2xl border border-theme overflow-hidden flex flex-col items-stretch">
                                                 <div className="flex items-center justify-between px-4 py-3 bg-card-hover border-b border-theme">
                                                     <div className="flex items-center gap-2">
-                                                        <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-                                                        <p className="text-xs font-bold text-theme-primary">Read This Aloud</p>
-                                                        <span className="text-[10px] text-gray-600">· AI-generated in {selectedLang?.label}</span>
+                                                        <Sparkles className="w-3.5 h-3.5 text-orange-500" />
+                                                        <p className="text-xs font-bold text-theme-primary">Recording Script</p>
+                                                        <span className="text-[10px] text-gray-600 hidden sm:inline">· Read this aloud</span>
                                                     </div>
                                                     <button onClick={() => fetchSampleText(langCode)} disabled={loadingSample}
-                                                        className="flex items-center gap-1 text-[10px] text-gray-500 hover:text-gray-300 transition">
-                                                        <RefreshCw className={`w-3 h-3 ${loadingSample ? 'animate-spin' : ''}`} /> Regenerate
+                                                        className="flex items-center gap-1 text-[10px] text-gray-500 hover:text-theme-secondary transition">
+                                                        <RefreshCw className={`w-3 h-3 ${loadingSample ? 'animate-spin' : ''}`} /> AI Generate Sample
                                                     </button>
                                                 </div>
-                                                <div className="p-4 min-h-[80px] flex items-start">
-                                                    {loadingSample ? (
-                                                        <div className="flex items-center gap-2 text-xs text-gray-500">
-                                                            <Loader2 className="w-4 h-4 animate-spin text-purple-400" />
-                                                            Gemini is writing a sample in {selectedLang?.label}…
+                                                <div className="p-4 relative">
+                                                    {loadingSample && (
+                                                        <div className="absolute inset-0 z-10 bg-card-theme/50 backdrop-blur-[2px] flex items-center justify-center gap-2 text-xs font-bold text-orange-500">
+                                                            <Loader2 className="w-4 h-4 animate-spin" /> Generating AI Script…
                                                         </div>
-                                                    ) : sampleText ? (
-                                                        <p className="text-sm text-theme-primary leading-relaxed font-medium">{sampleText}</p>
-                                                    ) : (
-                                                        <p className="text-xs text-gray-600 italic">Click "Get Sample Text" or it will auto-load when you start recording.</p>
                                                     )}
+                                                    <textarea 
+                                                        value={sampleText} 
+                                                        onChange={e => setSampleText(e.target.value)}
+                                                        placeholder="Type your own custom script to read, or click 'AI Generate Sample' to get a random text..."
+                                                        className="w-full min-h-[100px] bg-transparent text-sm text-theme-primary leading-relaxed font-medium focus:outline-none resize-none"
+                                                    />
                                                 </div>
+                                                
+                                                {langCode !== 'EN_US' && (
+                                                    <div className="flex justify-end p-3 border-t border-theme bg-card-hover/50">
+                                                        <NyxButton 
+                                                            onClick={translateRecordingScript} 
+                                                            disabled={translatingScript || !sampleText.trim()}
+                                                            variant="outline"
+                                                            showIconContainer={false}
+                                                            className="py-1.5 px-3"
+                                                        >
+                                                            AUTO-TRANSLATE SCRIPT TO {LANGUAGES.find(l => l.code === langCode)?.label}
+                                                        </NyxButton>
+                                                    </div>
+                                                )}
                                             </div>
                                         )}
 
@@ -558,13 +601,13 @@ export default function VoiceCloner() {
                                             <div className={`relative w-36 h-36 rounded-full flex items-center justify-center cursor-pointer transition-all duration-500
                                                 ${isRecording ? 'bg-red-500/10 ring-4 ring-red-500/30 ring-offset-4 ring-offset-transparent'
                                                     : audioBlob ? 'bg-green-500/10 ring-2 ring-green-500/30'
-                                                        : 'bg-card-hover ring-2 ring-theme hover:ring-purple-500/30'}`}
+                                                        : 'bg-card-hover ring-2 ring-theme hover:ring-orange-500/30'}`}
                                                 onClick={isRecording ? stopRecording : startRecording}>
                                                 {isRecording && <>
                                                     <div className="absolute inset-0 rounded-full bg-red-500/10 animate-ping" />
                                                     <div className="absolute inset-[-10px] rounded-full border border-red-500/15 animate-pulse" />
                                                 </>}
-                                                <span className={`relative z-10 transition-transform hover:scale-110 ${isRecording ? 'text-red-400' : audioBlob ? 'text-green-400' : 'text-purple-400'}`}>
+                                                <span className={`relative z-10 transition-transform hover:scale-110 ${isRecording ? 'text-red-400' : audioBlob ? 'text-green-400' : 'text-orange-500'}`}>
                                                     {isRecording ? <Square className="w-12 h-12 fill-current" /> : audioBlob ? <CheckCircle className="w-12 h-12" /> : <Mic className="w-12 h-12" />}
                                                 </span>
                                             </div>
@@ -579,7 +622,7 @@ export default function VoiceCloner() {
                                                 )}
                                             </div>
 
-                                            <WaveformBars active={isRecording} color="#a855f7" />
+                                            <WaveformBars active={isRecording} color="#f97316" />
                                         </div>
 
                                         {/* Playback bar */}
@@ -587,7 +630,7 @@ export default function VoiceCloner() {
                                             <div className="flex items-center justify-between p-4 bg-card-hover rounded-2xl border border-theme">
                                                 <div className="flex items-center gap-3">
                                                     <button onClick={togglePreview}
-                                                        className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white hover:opacity-90 transition">
+                                                        className="w-10 h-10 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center text-white hover:opacity-90 transition shadow-lg">
                                                         {isPlayingPreview ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current ml-0.5" />}
                                                     </button>
                                                     <div>
@@ -609,16 +652,16 @@ export default function VoiceCloner() {
                                         <p className="text-center text-sm text-theme-secondary">Upload an audio file of your voice. MP3, WAV, M4A up to 25MB.</p>
                                         <div onDragOver={e => e.preventDefault()} onDrop={handleDrop}
                                             onClick={() => fileInputRef.current?.click()}
-                                            className="border-2 border-dashed border-purple-500/30 hover:border-purple-500/60 rounded-2xl p-10 text-center cursor-pointer transition-all group hover:bg-purple-500/5">
-                                            <Upload className="w-10 h-10 text-purple-400/40 group-hover:text-purple-400 mx-auto mb-3 transition-colors" />
-                                            <p className="text-theme-secondary group-hover:text-theme-primary">Drop here or <span className="text-purple-400 font-bold">browse</span></p>
+                                            className="border-2 border-dashed border-orange-500/30 hover:border-orange-500/60 rounded-2xl p-10 text-center cursor-pointer transition-all group hover:bg-orange-500/5">
+                                            <Upload className="w-10 h-10 text-orange-500/40 group-hover:text-orange-500 mx-auto mb-3 transition-colors" />
+                                            <p className="text-theme-secondary group-hover:text-theme-primary">Drop here or <span className="text-orange-500 font-bold">browse</span></p>
                                             <p className="text-xs text-theme-secondary/40 mt-1.5">MP3 · WAV · M4A · WEBM · Max 25MB</p>
                                             <input ref={fileInputRef} type="file" accept="audio/*" onChange={handleFileChange} className="hidden" />
                                         </div>
                                         {uploadFile && (
                                             <div className="flex items-center justify-between p-4 bg-card-hover rounded-2xl border border-theme">
                                                 <div className="flex items-center gap-3">
-                                                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                                                    <div className="w-10 h-10 rounded-xl bg-zinc-900 border border-white/10 flex items-center justify-center">
                                                         <Volume2 className="w-5 h-5 text-white" />
                                                     </div>
                                                     <div>
@@ -644,26 +687,29 @@ export default function VoiceCloner() {
                             <h3 className="text-sm font-bold text-theme-primary">Name Your Clone</h3>
                             <input type="text" value={voiceName} onChange={e => setVoiceName(e.target.value)}
                                 placeholder="e.g. Atharv — Deep & Confident" maxLength={50}
-                                className="w-full bg-card-hover border border-theme rounded-xl px-4 py-3 text-theme-primary placeholder-gray-500 focus:outline-none focus:border-purple-500/50 text-sm" />
+                                className="w-full bg-card-hover border border-theme rounded-xl px-4 py-3 text-theme-primary placeholder-gray-500 focus:outline-none focus:border-orange-500/50 text-sm" />
                             <textarea value={voiceDescription} onChange={e => setVoiceDescription(e.target.value)}
                                 placeholder="Optional: describe this voice" rows={2}
-                                className="w-full bg-card-hover border border-theme rounded-xl px-4 py-3 text-theme-primary placeholder-gray-500 focus:outline-none focus:border-purple-500/50 text-sm resize-none" />
+                                className="w-full bg-card-hover border border-theme rounded-xl px-4 py-3 text-theme-primary placeholder-gray-500 focus:outline-none focus:border-orange-500/50 text-sm resize-none" />
                             
                             <div className="flex gap-4 pt-1 mb-2">
-                                <label className="flex items-center gap-2 cursor-pointer text-xs text-gray-400 hover:text-gray-300">
-                                    <input type="checkbox" checked={noiseRemoval} onChange={e => setNoiseRemoval(e.target.checked)} className="rounded border-gray-600 bg-card-theme text-purple-500 focus:ring-purple-500 w-3.5 h-3.5 cursor-pointer" />
+                                <label className="flex items-center gap-2 cursor-pointer text-xs text-theme-secondary hover:text-theme-secondary">
+                                    <input type="checkbox" checked={noiseRemoval} onChange={e => setNoiseRemoval(e.target.checked)} className="rounded border-gray-600 bg-card-theme text-orange-500 focus:ring-orange-500 w-3.5 h-3.5 cursor-pointer" />
                                     Enhance Audio (Noise Removal)
                                 </label>
-                                <label className="flex items-center gap-2 cursor-pointer text-xs text-gray-400 hover:text-gray-300">
-                                    <input type="checkbox" checked={autoTrim} onChange={e => setAutoTrim(e.target.checked)} className="rounded border-gray-600 bg-card-theme text-purple-500 focus:ring-purple-500 w-3.5 h-3.5 cursor-pointer" />
+                                <label className="flex items-center gap-2 cursor-pointer text-xs text-theme-secondary hover:text-theme-secondary">
+                                    <input type="checkbox" checked={autoTrim} onChange={e => setAutoTrim(e.target.checked)} className="rounded border-gray-600 bg-card-theme text-orange-500 focus:ring-orange-500 w-3.5 h-3.5 cursor-pointer" />
                                     Auto-Trim Silence
                                 </label>
                             </div>
 
-                            <button onClick={handleClone} disabled={cloning || !voiceName.trim()}
-                                className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 disabled:opacity-40 text-white rounded-2xl font-bold text-base flex items-center justify-center gap-3 transition-all hover:shadow-lg hover:shadow-purple-500/30">
-                                {cloning ? <><Loader2 className="w-5 h-5 animate-spin" /> {noiseRemoval || autoTrim ? 'Enhancing audio & Cloning…' : 'Cloning…'}</> : <><Sparkles className="w-5 h-5" /> Clone My Voice ({selectedLang?.flag} {selectedLang?.label})</>}
-                            </button>
+                            <NyxButton 
+                                onClick={handleClone} 
+                                disabled={cloning || !voiceName.trim()}
+                                className="w-full justify-center"
+                            >
+                                {cloning ? 'CLONING...' : `CLONE MY VOICE (${selectedLang?.flag})`}
+                            </NyxButton>
                             <p className="text-xs text-center text-theme-secondary/50">~30 seconds · Stays private</p>
                         </div>
                     )}
@@ -679,12 +725,12 @@ export default function VoiceCloner() {
                                     <h3 className="text-lg font-bold text-theme-primary">{activeVoice.displayName}</h3>
                                     <div className="flex items-center gap-2 mt-0.5">
                                         <p className="text-xs text-theme-secondary font-mono">{activeVoice.voiceId.slice(0, 20)}…</p>
-                                        <button onClick={() => copyId(activeVoice.voiceId)} className="p-1 rounded text-gray-600 hover:text-purple-400">
+                                        <button onClick={() => copyId(activeVoice.voiceId)} className="p-1 rounded text-gray-600 hover:text-orange-500">
                                             <Copy className="w-3 h-3" />
                                         </button>
                                         {copied === activeVoice.voiceId && <span className="text-[10px] text-green-400">Copied!</span>}
                                         {activeVoice.langCode && (
-                                            <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400">
+                                            <span className="text-[10px] px-2 py-0.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500">
                                                 {LANGUAGES.find(l => l.code === activeVoice.langCode)?.flag} {activeVoice.langCode}
                                             </span>
                                         )}
@@ -702,7 +748,7 @@ export default function VoiceCloner() {
                                         {SAMPLE_TEXTS.map((t, i) => (
                                             <button key={i} onClick={() => { setTestText(t); setTestAudioSrc(null); }}
                                                 title={t}
-                                                className={`w-6 h-6 rounded-full text-[10px] font-bold transition border ${testText === t ? 'bg-purple-500 border-purple-500 text-white' : 'bg-card-hover border-theme text-theme-secondary hover:border-purple-500/40'}`}>
+                                                className={`w-6 h-6 rounded-full text-[10px] font-bold transition border ${testText === t ? 'bg-orange-500 border-orange-500 text-white' : 'bg-card-hover border-theme text-theme-secondary hover:border-orange-500/40'}`}>
                                                 {i + 1}
                                             </button>
                                         ))}
@@ -710,15 +756,19 @@ export default function VoiceCloner() {
                                 </div>
                                 <div>
                                     <textarea value={testText} onChange={e => { setTestText(e.target.value); setTestAudioSrc(null); }}
-                                        rows={3} placeholder="Type something..." className="w-full bg-card-hover border border-theme rounded-2xl px-4 py-3 text-theme-primary text-sm focus:outline-none focus:border-purple-500/50 resize-none" />
+                                        rows={3} placeholder="Type something..." className="w-full bg-card-hover border border-theme rounded-2xl px-4 py-3 text-theme-primary text-sm focus:outline-none focus:border-orange-500/50 resize-none" />
                                     
                                     {activeVoice.langCode && activeVoice.langCode !== 'EN_US' && (
                                         <div className="flex justify-end mt-2">
-                                            <button onClick={translateText} disabled={isTranslating || !testText.trim()} 
-                                                className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-purple-500/30 bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 text-xs font-bold transition disabled:opacity-50">
-                                                {isTranslating ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Sparkles className="w-3.5 h-3.5" />}
-                                                Translate input to {LANGUAGES.find(l => l.code === activeVoice.langCode)?.label}
-                                            </button>
+                                            <NyxButton 
+                                                onClick={translateText} 
+                                                disabled={isTranslating || !testText.trim()} 
+                                                variant="outline"
+                                                showIconContainer={false}
+                                                className="py-1.5 px-3"
+                                            >
+                                                TRANSLATE INPUT TO {LANGUAGES.find(l => l.code === activeVoice.langCode)?.label}
+                                            </NyxButton>
                                         </div>
                                     )}
                                 </div>
@@ -727,9 +777,9 @@ export default function VoiceCloner() {
                                 <div className="rounded-2xl border border-theme overflow-hidden">
                                     <button onClick={() => setShowControls(s => !s)} className="w-full flex items-center justify-between px-5 py-3.5 bg-card-hover hover:bg-card-theme transition">
                                         <div className="flex items-center gap-2 text-sm font-bold text-theme-primary">
-                                            <Sliders className="w-4 h-4 text-purple-400" /> Voice Controls
+                                            <Sliders className="w-4 h-4 text-orange-500" /> Voice Controls
                                             {(controls.speed !== 1 || controls.pitch !== 0 || controls.emotion || controls.style) && (
-                                                <span className="px-2 py-0.5 text-[10px] rounded-full bg-purple-500/20 text-purple-400 font-bold border border-purple-500/20">Modified</span>
+                                                <span className="px-2 py-0.5 text-[10px] rounded-full bg-orange-500/20 text-orange-500 font-bold border border-orange-500/20">Modified</span>
                                             )}
                                         </div>
                                         {showControls ? <ChevronUp className="w-4 h-4 text-gray-500" /> : <ChevronDown className="w-4 h-4 text-gray-500" />}
@@ -737,22 +787,22 @@ export default function VoiceCloner() {
                                     {showControls && (
                                         <div className="p-5 space-y-5">
                                             <div className="grid grid-cols-2 gap-5">
-                                                <RangeSlider label="Speed" value={controls.speed} min={0.5} max={2.0} step={0.05} format={v => `${v.toFixed(2)}×`} onChange={v => patchControls('speed', v)} color="#a855f7" />
+                                                <RangeSlider label="Speed" value={controls.speed} min={0.5} max={2.0} step={0.05} format={v => `${v.toFixed(2)}×`} onChange={v => patchControls('speed', v)} color="#f97316" />
                                                 <RangeSlider label="Pitch" value={controls.pitch} min={-10} max={10} step={0.5} format={v => v > 0 ? `+${v}` : `${v}`} onChange={v => patchControls('pitch', v)} color="#06b6d4" />
                                             </div>
                                             <div>
-                                                <p className="text-xs text-gray-400 font-medium mb-2">Emotion</p>
+                                                <p className="text-xs text-theme-secondary font-medium mb-2">Emotion</p>
                                                 <div className="flex flex-wrap gap-2">
                                                     {EMOTIONS.map(e => (
                                                         <button key={e.value} onClick={() => patchControls('emotion', e.value)}
-                                                            className={`px-3 py-1.5 rounded-xl text-xs font-bold border flex items-center gap-1.5 transition ${controls.emotion === e.value ? 'bg-purple-500/20 border-purple-500/40 text-purple-300' : 'bg-card-hover border-theme text-theme-secondary hover:border-purple-500/30'}`}>
+                                                            className={`px-3 py-1.5 rounded-xl text-xs font-bold border flex items-center gap-1.5 transition ${controls.emotion === e.value ? 'bg-orange-500/20 border-orange-500/40 text-orange-300' : 'bg-card-hover border-theme text-theme-secondary hover:border-orange-500/30'}`}>
                                                             {e.icon} {e.label}
                                                         </button>
                                                     ))}
                                                 </div>
                                             </div>
                                             <div>
-                                                <p className="text-xs text-gray-400 font-medium mb-2">Style</p>
+                                                <p className="text-xs text-theme-secondary font-medium mb-2">Style</p>
                                                 <div className="flex flex-wrap gap-2">
                                                     {STYLES.map(s => (
                                                         <button key={s.value} onClick={() => patchControls('style', s.value)}
@@ -763,17 +813,17 @@ export default function VoiceCloner() {
                                                 </div>
                                             </div>
                                             <div>
-                                                <p className="text-xs text-gray-400 font-medium mb-2">Model</p>
+                                                <p className="text-xs text-theme-secondary font-medium mb-2">Model</p>
                                                 <div className="flex gap-2">
                                                     {MODELS.map(m => (
                                                         <button key={m.value} onClick={() => patchControls('model', m.value)}
                                                             className={`px-3 py-1.5 rounded-xl text-xs font-bold border flex items-center gap-2 transition ${controls.model === m.value ? 'bg-amber-500/20 border-amber-500/40 text-amber-300' : 'bg-card-hover border-theme text-theme-secondary hover:border-amber-500/30'}`}>
-                                                            {m.label} <span className={`text-[9px] px-1.5 py-0.5 rounded font-black ${controls.model === m.value ? 'bg-amber-500/30 text-amber-200' : 'bg-white/5 text-gray-500'}`}>{m.badge}</span>
+                                                            {m.label} <span className={`text-[9px] px-1.5 py-0.5 rounded font-black ${controls.model === m.value ? 'bg-amber-500/30 text-amber-200' : 'bg-card-theme text-gray-500'}`}>{m.badge}</span>
                                                         </button>
                                                     ))}
                                                 </div>
                                             </div>
-                                            <button onClick={() => { setControls(DEFAULT_CONTROLS); setTestAudioSrc(null); }} className="text-xs text-gray-600 hover:text-gray-400 flex items-center gap-1 transition">
+                                            <button onClick={() => { setControls(DEFAULT_CONTROLS); setTestAudioSrc(null); }} className="text-xs text-gray-600 hover:text-theme-secondary flex items-center gap-1 transition">
                                                 <RefreshCw className="w-3 h-3" /> Reset defaults
                                             </button>
                                         </div>
@@ -782,8 +832,8 @@ export default function VoiceCloner() {
 
                                 <div className="flex gap-3">
                                     <button onClick={() => testAudioSrc ? toggleTestAudio() : handleTestVoice(activeVoice.voiceId)} disabled={synthesizing}
-                                        className="flex-1 py-3.5 font-bold text-sm text-white rounded-2xl flex items-center justify-center gap-2.5 transition-all hover:opacity-90 disabled:opacity-50"
-                                        style={{ background: 'linear-gradient(135deg, #7c3aed, #a855f7, #ec4899)', boxShadow: '0 4px 20px rgba(168,85,247,0.3)' }}>
+                                        className="flex-1 py-3.5 font-bold text-sm text-theme-primary rounded-2xl flex items-center justify-center gap-2.5 transition-all hover:opacity-90 disabled:opacity-50"
+                                        style={{ background: 'linear-gradient(135deg, #ea580c, #f97316, #fb923c)', boxShadow: '0 4px 20px rgba(249,115,22,0.3)' }}>
                                         {synthesizing ? <><Loader2 className="w-4 h-4 animate-spin" /> Generating…</>
                                             : testAudioSrc
                                                 ? (isPlayingTest ? <><Pause className="w-4 h-4 fill-current" /> Pause</> : <><Play className="w-4 h-4 fill-current" /> Play</>)
@@ -804,7 +854,7 @@ export default function VoiceCloner() {
                                 </div>
                                 {isPlayingTest && (
                                     <div className="flex justify-center py-1">
-                                        <WaveformBars active={true} color="#a855f7" />
+                                        <WaveformBars active={true} color="#f97316" />
                                     </div>
                                 )}
                             </div>
@@ -820,7 +870,7 @@ export default function VoiceCloner() {
                                 <h3 className="text-sm font-bold text-theme-primary">Voice Library</h3>
                                 <p className="text-xs text-theme-secondary mt-0.5">{savedVoices.length} voice{savedVoices.length !== 1 ? 's' : ''}</p>
                             </div>
-                            <Mic className="w-4 h-4 text-purple-400/50" />
+                            <Mic className="w-4 h-4 text-orange-500/50" />
                         </div>
                         <div className="p-3 space-y-2 max-h-[460px] overflow-y-auto">
                             {savedVoices.length === 0 ? (
@@ -830,12 +880,12 @@ export default function VoiceCloner() {
                                 </div>
                             ) : savedVoices.map(voice => (
                                 <div key={voice.voiceId}
-                                    className={`p-4 rounded-2xl border group cursor-pointer transition-all ${activeVoiceId === voice.voiceId ? 'border-purple-500/40 bg-purple-500/10' : 'border-theme bg-card-hover hover:border-purple-500/20'}`}
+                                    className={`p-4 rounded-2xl border group cursor-pointer transition-all ${activeVoiceId === voice.voiceId ? 'border-orange-500/40 bg-orange-500/10' : 'border-theme bg-card-hover hover:border-orange-500/20'}`}
                                     onClick={() => { setActiveVoiceId(voice.voiceId); setClonedVoice(voice); setStep('done'); setTestAudioSrc(null); }}>
                                     <div className="flex items-start justify-between gap-2">
                                         <div className="flex items-center gap-3 min-w-0">
-                                            <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${activeVoiceId === voice.voiceId ? 'bg-gradient-to-br from-purple-500 to-pink-500' : 'bg-card-theme border border-theme'}`}>
-                                                <Mic className={`w-4 h-4 ${activeVoiceId === voice.voiceId ? 'text-white' : 'text-purple-400/60'}`} />
+                                            <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${activeVoiceId === voice.voiceId ? 'bg-gradient-to-br from-orange-500 to-amber-500' : 'bg-card-theme border border-theme'}`}>
+                                                <Mic className={`w-4 h-4 ${activeVoiceId === voice.voiceId ? 'text-white' : 'text-orange-500/60'}`} />
                                             </div>
                                             <div className="min-w-0">
                                                 <p className="text-sm font-bold text-theme-primary truncate">{voice.displayName}</p>
@@ -851,7 +901,7 @@ export default function VoiceCloner() {
                                         </div>
                                         <div className="flex gap-1 flex-shrink-0">
                                             <button onClick={e => { e.stopPropagation(); copyId(voice.voiceId); }}
-                                                className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-white/10 text-gray-600 hover:text-gray-300 transition">
+                                                className="p-1.5 rounded-lg opacity-0 group-hover:opacity-100 hover:bg-card-theme text-gray-600 hover:text-theme-secondary transition">
                                                 <Copy className={`w-3 h-3 ${copied === voice.voiceId ? 'text-green-400' : ''}`} />
                                             </button>
                                             <button onClick={e => { e.stopPropagation(); removeVoice(voice.voiceId); }}
@@ -872,8 +922,8 @@ export default function VoiceCloner() {
                     </div>
 
                     {/* Tips */}
-                    <div className="bg-gradient-to-br from-purple-900/10 to-pink-900/5 rounded-3xl border border-purple-500/10 p-5 space-y-3">
-                        <h3 className="text-sm font-bold text-purple-300 flex items-center gap-2">
+                    <div className="bg-gradient-to-br from-orange-900/10 to-amber-900/5 rounded-3xl border border-orange-500/10 p-5 space-y-3">
+                        <h3 className="text-sm font-bold text-orange-300 flex items-center gap-2">
                             <Sparkles className="w-4 h-4" /> Recording Tips
                         </h3>
                         <ul className="space-y-2 text-xs text-theme-secondary">
@@ -885,7 +935,7 @@ export default function VoiceCloner() {
                                 'Use the AI sample text for varied vocal range',
                             ].map((tip, i) => (
                                 <li key={i} className="flex items-start gap-2">
-                                    <span className="text-purple-400 mt-0.5 flex-shrink-0">✦</span> {tip}
+                                    <span className="text-orange-500 mt-0.5 flex-shrink-0">✦</span> {tip}
                                 </li>
                             ))}
                         </ul>

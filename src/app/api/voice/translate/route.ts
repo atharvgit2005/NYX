@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const LANG_NAMES: Record<string, string> = {
     EN_US: 'English (US)',
@@ -20,10 +19,6 @@ const LANG_NAMES: Record<string, string> = {
 };
 
 export async function POST(req: Request) {
-    if (!process.env.GEMINI_API_KEY) {
-        return NextResponse.json({ error: 'GEMINI_API_KEY is not set' }, { status: 400 });
-    }
-
     try {
         const { text, targetLang } = await req.json();
 
@@ -31,28 +26,33 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Missing text or targetLang' }, { status: 400 });
         }
 
-        const langName = LANG_NAMES[targetLang] || targetLang;
+        // Convert targetLang like "ES_ES" or "HI_IN" into just "es" or "hi" for Google Translate
+        const tl = targetLang.split('_')[0].toLowerCase();
+        
+        // Free Google Translate unofficial web endpoint
+        const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${tl}&dt=t&q=${encodeURIComponent(text)}`;
+        
+        const res = await fetch(url);
+        if (!res.ok) {
+            throw new Error(`Google Translate HTTP error ${res.status}`);
+        }
+        
+        const data = await res.json();
+        
+        // The API returns an array where data[0] is an array of segments: [["translated text segment 1", "original text"], ["segment 2", "original 2"], ...]
+        let translatedText = '';
+        if (data && data[0] && Array.isArray(data[0])) {
+            for (const segment of data[0]) {
+                if (segment[0]) translatedText += segment[0];
+            }
+        }
+        
+        if (!translatedText) throw new Error('Empty response from Google Translate');
 
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-lite' });
-
-        const prompt = `Translate the following text into ${langName} (${targetLang}).
-Rules:
-- Translate accurately but keep the exact tone and conversational nuance.
-- Output ONLY the translated text, no quotation marks, no headers, no explanations.
-
-Text:
-"${text}"`;
-
-        const result = await model.generateContent(prompt);
-        const translatedText = result.response.text().trim();
-
-        if (!translatedText) throw new Error('Empty response from Gemini');
-
-        return NextResponse.json({ text: translatedText });
+        return NextResponse.json({ text: translatedText.trim() });
 
     } catch (error: any) {
         console.error('Translation error:', error.message);
-        return NextResponse.json({ error: 'Failed to translate' }, { status: 500 });
+        return NextResponse.json({ error: error.message || 'Failed to translate' }, { status: 500 });
     }
 }

@@ -49,9 +49,9 @@ export default function Sidebar() {
             className={`hidden md:flex md:flex-col md:fixed md:left-0 md:bottom-0 md:top-20 header-bg-theme backdrop-blur-xl z-40 transition-all duration-300 border-r border-theme rounded-r-3xl ${collapsed ? 'md:w-20' : 'md:w-56'
                 }`}
         >
-            <div className="flex-1 flex flex-col overflow-y-auto py-8">
+            <div className={`flex-1 flex flex-col overflow-y-auto ${collapsed ? 'py-4' : 'py-8'}`}>
 
-                <nav className="flex-1 px-4 space-y-4 mt-4">
+                <nav className={`flex-1 px-4 mt-4 ${collapsed ? 'space-y-6' : 'space-y-4'}`}>
 
                     {navigation.filter(item => item.name !== 'Back to Home').map((item) => {
                         const isActive = pathname === item.href;
@@ -61,14 +61,20 @@ export default function Sidebar() {
                                 key={item.name}
                                 href={item.href}
                                 title={collapsed ? item.name : ''}
-                                className={`group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${isActive
-                                    ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/30'
-                                    : 'text-theme-secondary hover:bg-card-hover hover:text-theme-primary hover:translate-x-1'
-                                    } ${collapsed ? 'justify-center' : ''}`}
+                                className={`group flex items-center transition-all duration-300 relative overflow-hidden ${collapsed
+                                    ? 'w-12 h-12 justify-center mx-auto rounded-xl'
+                                    : 'px-4 py-3.5 mx-2 rounded-2xl'
+                                    } ${isActive
+                                        ? 'bg-gradient-to-br from-orange-500 to-orange-600 text-white shadow-lg shadow-orange-500/25 border border-orange-400/20'
+                                        : 'text-theme-secondary hover:bg-orange-500/5 hover:text-orange-500 border border-transparent hover:border-orange-500/20'
+                                    }`}
                             >
-                                <Icon className={`h-5 w-5 transition-colors ${isActive ? 'text-white' : 'text-theme-secondary group-hover:text-theme-primary'} ${collapsed ? '' : 'mr-3'}`} />
+                                <Icon className={`transition-all duration-300 ${collapsed ? 'h-6 w-6' : 'h-5 w-5 mr-4'} ${isActive ? 'text-white scale-110' : 'text-theme-secondary group-hover:text-orange-500 group-hover:scale-110'}`} />
                                 {!collapsed && (
-                                    <span className="truncate">{item.name}</span>
+                                    <span className="truncate font-bold tracking-wide">{item.name}</span>
+                                )}
+                                {isActive && !collapsed && (
+                                    <div className="absolute inset-y-0 right-0 w-1 bg-white/20 rounded-full" />
                                 )}
                             </Link>
                         );
@@ -77,13 +83,16 @@ export default function Sidebar() {
             </div>
 
             {/* Bottom Links */}
-            <div className="px-4 pb-2">
+            <div className={`px-4 pb-4 ${collapsed ? 'mt-auto' : ''}`}>
                 <Link
                     href="/"
                     title={collapsed ? 'Back to Home' : ''}
-                    className={`group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 text-theme-secondary hover:bg-card-hover hover:text-theme-primary hover:translate-x-1 ${collapsed ? 'justify-center' : ''}`}
+                    className={`group flex items-center transition-all duration-300 text-theme-secondary hover:bg-orange-500/10 hover:text-orange-500 border border-transparent hover:border-orange-500/20 hover:scale-[1.02] ${collapsed
+                        ? 'w-12 h-12 justify-center mx-auto rounded-xl'
+                        : 'px-4 py-3.5 mx-2 rounded-2xl font-semibold'
+                        }`}
                 >
-                    <Home className={`h-5 w-5 transition-colors text-theme-secondary group-hover:text-theme-primary ${collapsed ? '' : 'mr-3'}`} />
+                    <Home className={`transition-all duration-300 text-theme-secondary group-hover:text-orange-500 group-hover:scale-110 ${collapsed ? 'h-6 w-6' : 'h-5 w-5 mr-4'}`} />
                     {!collapsed && (
                         <span className="truncate">Back to Home</span>
                     )}
@@ -91,28 +100,29 @@ export default function Sidebar() {
             </div>
 
             {/* User Tab */}
-            <div className="px-4 pb-6">
+            <div className={`px-4 ${collapsed ? 'pb-4' : 'pb-8'}`}>
                 <Link href="/dashboard/profile">
-                    <div className={`flex-shrink-0 p-3 bg-card-theme rounded-2xl hover:bg-card-hover transition-colors cursor-pointer group relative ${collapsed ? 'flex justify-center' : ''}`}>
-                        <div className="flex items-center">
-                            {/* Avatar: image or initials */}
-                            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold shadow-lg flex-shrink-0 overflow-hidden relative">
-                                {avatar ? (
-                                    <Image src={avatar} alt={name} fill className="object-cover" />
-                                ) : (
-                                    <span className="text-sm">{initials}</span>
-                                )}
-                            </div>
-                            {!collapsed && (
-                                <>
-                                    <div className="ml-3 flex-1 overflow-hidden">
-                                        <p className="text-sm font-bold text-theme-primary truncate group-hover:text-purple-400 transition-colors">{name}</p>
-                                        <p className="text-xs text-theme-secondary truncate">{email}</p>
-                                    </div>
-                                    <MoreHorizontal className="h-5 w-5 text-theme-secondary group-hover:text-theme-primary transition-colors ml-2" />
-                                </>
+                    <div className={`flex items-center transition-all duration-300 cursor-pointer group relative ${collapsed
+                        ? 'w-12 h-12 justify-center mx-auto rounded-xl bg-secondary/30'
+                        : 'p-3 mx-2 bg-secondary/50 backdrop-blur-md rounded-3xl border border-theme hover:border-orange-500/30 shadow-inner'
+                        }`}>
+                        {/* Avatar: image or initials */}
+                        <div className={`rounded-full bg-gradient-to-br from-orange-400 to-orange-600 border border-white/10 flex items-center justify-center text-white font-bold shadow-lg flex-shrink-0 overflow-hidden relative group-hover:scale-105 transition-transform duration-300 ${collapsed ? 'h-8 w-8' : 'h-10 w-10'}`}>
+                            {avatar ? (
+                                <Image src={avatar} alt={name} fill className="object-cover" />
+                            ) : (
+                                <span className={collapsed ? 'text-[10px]' : 'text-sm shadow-sm'}>{initials}</span>
                             )}
                         </div>
+                        {!collapsed && (
+                            <>
+                                <div className="ml-3 flex-1 overflow-hidden">
+                                    <p className="text-sm font-bold text-theme-primary truncate group-hover:text-orange-500 transition-colors">{name}</p>
+                                    <p className="text-[10px] text-theme-secondary truncate uppercase tracking-tighter opacity-70 group-hover:opacity-100 transition-opacity">NYX MEMBER</p>
+                                </div>
+                                <MoreHorizontal className="h-5 w-5 text-theme-secondary group-hover:text-theme-primary transition-colors ml-2" />
+                            </>
+                        )}
                     </div>
                 </Link>
             </div>

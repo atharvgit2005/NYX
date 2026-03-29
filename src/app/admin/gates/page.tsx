@@ -4,7 +4,7 @@ import { useAdmin } from '@/context/AdminContext';
 import { Mic, Video, Code2, Zap, AlertTriangle, Info, Shield } from 'lucide-react';
 
 const FEATURE_DEFS = [
-    { key: 'voice', label: 'Voice Generation', icon: Mic, color: '#a855f7' },
+    { key: 'voice', label: 'Voice Generation', icon: Mic, color: '#f97316' },
     { key: 'video', label: 'Video Generation', icon: Video, color: '#06b6d4' },
     { key: 'api', label: 'API Access', icon: Code2, color: '#10b981' },
     { key: 'priority', label: 'Priority Queue', icon: Zap, color: '#f59e0b' },
@@ -37,7 +37,7 @@ export default function GatesPage() {
     return (
         <div className="space-y-8">
             <div>
-                <h1 className="text-3xl font-black text-white">Feature Gate Control</h1>
+                <h1 className="text-3xl font-black text-theme-primary">Feature Gate Control</h1>
                 <p className="text-gray-500 mt-1">Global service switches and per-tier feature permissions</p>
             </div>
 
@@ -66,20 +66,20 @@ export default function GatesPage() {
 
             {/* Global Toggles */}
             <div>
-                <h2 className="text-sm font-black text-gray-400 uppercase tracking-wider mb-4">Global Service Toggles</h2>
+                <h2 className="text-sm font-black text-theme-secondary uppercase tracking-wider mb-4">Global Service Toggles</h2>
                 <div className="grid grid-cols-2 gap-4">
                     {[
-                        { key: 'voice', label: 'Voice Generation', desc: 'Controls voice synthesis for ALL users globally', status: voiceService, icon: Mic, affected: affectedVoice, color: '#a855f7' },
+                        { key: 'voice', label: 'Voice Generation', desc: 'Controls voice synthesis for ALL users globally', status: voiceService, icon: Mic, affected: affectedVoice, color: '#f97316' },
                         { key: 'video', label: 'Video Generation', desc: 'Controls video creation for ALL users globally', status: videoService, icon: Video, affected: affectedVideo, color: '#06b6d4' },
                     ].map(({ key, label, desc, status, icon: Icon, affected, color }) => (
-                        <div key={key} className={`rounded-2xl border p-6 ${status === 'UP' ? 'border-white/5 bg-white/[0.02]' : 'border-red-500/20 bg-red-500/5'}`}>
+                        <div key={key} className={`rounded-2xl border p-6 ${status === 'UP' ? 'border-theme bg-card-theme' : 'border-red-500/20 bg-red-500/5'}`}>
                             <div className="flex items-start justify-between mb-4">
                                 <div className="flex items-center gap-3">
                                     <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ background: `${color}22` }}>
                                         <Icon className="w-5 h-5" style={{ color }} />
                                     </div>
                                     <div>
-                                        <p className="text-sm font-black text-white">{label}</p>
+                                        <p className="text-sm font-black text-theme-primary">{label}</p>
                                         <div className="flex items-center gap-1.5 mt-0.5">
                                             <span className={`w-2 h-2 rounded-full ${status === 'UP' ? 'bg-green-400' : 'bg-red-400 animate-pulse'}`} />
                                             <span className={`text-xs font-bold ${status === 'UP' ? 'text-green-400' : 'text-red-400'}`}>{status}</span>
@@ -92,7 +92,7 @@ export default function GatesPage() {
                                 </button>
                             </div>
                             <p className="text-xs text-gray-500 mb-3">{desc}</p>
-                            <div className="flex items-center gap-2 text-xs text-gray-500 bg-white/[0.03] rounded-lg px-3 py-2">
+                            <div className="flex items-center gap-2 text-xs text-gray-500 bg-card-theme rounded-lg px-3 py-2">
                                 <Shield className="w-3.5 h-3.5" />
                                 <span>{affected} subscriptions {status === 'DOWN' ? 'currently restricted' : 'would be affected if toggled OFF'}</span>
                             </div>
@@ -103,13 +103,13 @@ export default function GatesPage() {
 
             {/* Per-Tier Feature Matrix */}
             <div>
-                <h2 className="text-sm font-black text-gray-400 uppercase tracking-wider mb-4">Per-Tier Feature Matrix</h2>
+                <h2 className="text-sm font-black text-theme-secondary uppercase tracking-wider mb-4">Per-Tier Feature Matrix</h2>
                 <p className="text-xs text-gray-600 mb-4">Global toggles above override this matrix. Even if a tier has a feature enabled here, if the global toggle is OFF, users won't have access.</p>
 
-                <div className="rounded-2xl border border-white/5 overflow-hidden">
+                <div className="rounded-2xl border border-theme overflow-hidden">
                     <table className="w-full">
                         <thead>
-                            <tr className="border-b border-white/5 bg-white/[0.02]">
+                            <tr className="border-b border-theme bg-card-theme">
                                 <th className="text-left p-4 pl-6 text-xs font-bold text-gray-500 uppercase tracking-wider">Tier</th>
                                 {FEATURE_DEFS.map(f => (
                                     <th key={f.key} className="text-center p-4 text-xs font-bold text-gray-500 uppercase tracking-wider">
@@ -125,14 +125,14 @@ export default function GatesPage() {
                             {tiers.map(tier => {
                                 const gates = featureGates.perTier[tier.id] || { voice: false, video: false, api: false, priority: false };
                                 return (
-                                    <tr key={tier.id} className="border-b border-white/[0.03] hover:bg-white/[0.01] transition-colors">
+                                    <tr key={tier.id} className="border-b border-theme hover:bg-card-theme transition-colors">
                                         <td className="p-4 pl-6">
                                             <div className="flex items-center gap-3">
-                                                <div className="w-8 h-8 rounded-xl flex items-center justify-center text-sm font-black text-white" style={{ background: `${tier.color}33` }}>
+                                                <div className="w-8 h-8 rounded-xl flex items-center justify-center text-sm font-black text-theme-primary" style={{ background: `${tier.color}33` }}>
                                                     {tier.name[0]}
                                                 </div>
                                                 <div>
-                                                    <p className="text-sm font-bold text-white">{tier.name}</p>
+                                                    <p className="text-sm font-bold text-theme-primary">{tier.name}</p>
                                                     <p className="text-xs text-gray-600">${tier.price}/{tier.billingCycle}</p>
                                                 </div>
                                             </div>

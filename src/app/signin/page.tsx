@@ -6,13 +6,13 @@ import { Sparkles } from 'lucide-react';
 
 export default function SignInPage() {
     return (
-        <div className="min-h-screen bg-black text-white flex items-center justify-center px-4">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-black to-pink-900/20" />
+        <div className="min-h-screen bg-page text-theme-primary flex items-center justify-center px-4">
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-900/20 via-black to-amber-900/20" />
 
             <div className="relative z-10 max-w-md w-full">
                 {/* Logo */}
                 <div className="flex items-center justify-center gap-3 mb-8">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center shadow-lg shadow-orange-500/20">
                         <Sparkles className="w-6 h-6 text-white" />
                     </div>
                     <span className="text-3xl font-extrabold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent tracking-tight">
@@ -21,9 +21,9 @@ export default function SignInPage() {
                 </div>
 
                 {/* Sign In Card */}
-                <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 shadow-2xl">
+                <div className="bg-card-theme backdrop-blur-xl border border-theme rounded-2xl p-8 shadow-2xl">
                     <h1 className="text-3xl font-bold text-center mb-2">Welcome Back</h1>
-                    <p className="text-gray-400 text-center mb-8">Sign in to continue to your dashboard</p>
+                    <p className="text-theme-secondary text-center mb-8">Sign in to continue to your dashboard</p>
 
                     {/* Google Sign In Button */}
                     <button
@@ -39,9 +39,9 @@ export default function SignInPage() {
                         Continue with Google
                     </button>
 
-                    <div className="mt-6 text-center text-sm text-gray-400">
+                    <div className="mt-6 text-center text-sm text-theme-secondary">
                         Don't have an account?{' '}
-                        <Link href="/signup" className="text-purple-400 hover:text-purple-300 font-medium">
+                        <Link href="/signup" className="text-orange-500 hover:text-orange-400 font-medium">
                             Sign up
                         </Link>
                     </div>

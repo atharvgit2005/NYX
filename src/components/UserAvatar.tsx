@@ -35,10 +35,10 @@ const AVATURN_URL = 'https://hub.avaturn.me';
 // ─── Fallback rotating orb if no avatar created yet ──────────────────────────
 function AvatarOrb({ seed }: { seed: string }) {
     const colors = [
-        ['#a855f7', '#ec4899'],
-        ['#06b6d4', '#a855f7'],
-        ['#f59e0b', '#ef4444'],
-        ['#10b981', '#06b6d4'],
+        ['#ffffff', '#333333'],
+        ['#eeeeee', '#666666'],
+        ['#dddddd', '#999999'],
+        ['#cccccc', '#bbbbbb'],
     ];
     const idx = Math.abs(seed.split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % colors.length;
     const [c1, c2] = colors[idx];
@@ -46,7 +46,7 @@ function AvatarOrb({ seed }: { seed: string }) {
         <div className="w-full h-full flex items-center justify-center"
             style={{ background: `radial-gradient(ellipse at 30% 30%, ${c1}55, transparent 60%), radial-gradient(ellipse at 70% 70%, ${c2}44, transparent 60%)` }}>
             <div className="text-6xl opacity-30">
-                <User className="w-20 h-20 text-white" />
+                <User className="w-20 h-20 text-theme-primary" />
             </div>
             <div className="absolute inset-0 rounded-2xl"
                 style={{ background: `radial-gradient(circle at 30% 25%, ${c1}33 0%, transparent 45%)`, pointerEvents: 'none' }} />
@@ -165,7 +165,7 @@ export default function UserAvatar({ userEmail, userName, compact = false }: Use
                         />
                     </>
                 ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white text-xs font-bold">
+                    <div className="w-full h-full bg-zinc-900 border border-white/10 flex items-center justify-center text-xs font-bold text-white">
                         {(userName || userEmail || 'U')[0].toUpperCase()}
                     </div>
                 )}
@@ -186,23 +186,14 @@ export default function UserAvatar({ userEmail, userName, compact = false }: Use
 
             <div className="w-full space-y-4">
                 {/* ─── Glassmorphism Avatar Container ─── */}
-                <div className="relative rounded-3xl overflow-hidden group"
-                    style={{
-                        background: 'rgba(255,255,255,0.03)',
-                        backdropFilter: 'blur(20px)',
-                        border: '1px solid rgba(168,85,247,0.2)',
-                        boxShadow: glbUrl
-                            ? '0 0 60px rgba(168,85,247,0.2), 0 0 120px rgba(236,72,153,0.08), inset 0 1px 0 rgba(255,255,255,0.06)'
-                            : '0 0 40px rgba(168,85,247,0.1), inset 0 1px 0 rgba(255,255,255,0.04)',
-                    }}>
+                <div className="relative rounded-3xl overflow-hidden group border border-white/10 bg-zinc-950/50 backdrop-blur-2xl shadow-2xl">
 
                     {/* Neon glow accent bar */}
-                    <div className="absolute top-0 left-0 right-0 h-[1px]"
-                        style={{ background: 'linear-gradient(90deg, transparent, rgba(168,85,247,0.6), rgba(236,72,153,0.4), transparent)' }} />
+                    <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
                     {/* Background ambient orbs */}
                     <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full blur-3xl pointer-events-none"
-                        style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.15), transparent)' }} />
+                        style={{ background: 'radial-gradient(circle, rgba(255,255,255,0.05), transparent)' }} />
                     <div className="absolute -bottom-16 -left-16 w-48 h-48 rounded-full blur-3xl pointer-events-none"
                         style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.1), transparent)' }} />
 
@@ -210,15 +201,15 @@ export default function UserAvatar({ userEmail, userName, compact = false }: Use
                     <div className="relative" style={{ height: 360 }}>
                         {loading ? (
                             <div className="absolute inset-0 flex items-center justify-center">
-                                <Loader2 className="w-8 h-8 text-purple-400 animate-spin" />
+                                <Loader2 className="w-8 h-8 text-white animate-spin" />
                             </div>
                         ) : glbUrl ? (
                             <>
                                 {!modelReady && (
                                     <div className="absolute inset-0 flex items-center justify-center z-10">
                                         <div className="flex flex-col items-center gap-3">
-                                            <Loader2 className="w-8 h-8 text-purple-400 animate-spin" />
-                                            <p className="text-xs text-gray-500">Loading your 3D avatar…</p>
+                                            <Loader2 className="w-8 h-8 text-white animate-spin" />
+                                            <p className="text-xs text-zinc-500">Loading your 3D avatar…</p>
                                         </div>
                                     </div>
                                 )}
@@ -248,16 +239,15 @@ export default function UserAvatar({ userEmail, userName, compact = false }: Use
                         {/* Saving overlay */}
                         {saving && (
                             <div className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-3"
-                                style={{ background: 'rgba(7,7,15,0.8)', backdropFilter: 'blur(8px)' }}>
-                                <Loader2 className="w-8 h-8 text-purple-400 animate-spin" />
-                                <p className="text-sm text-purple-300 font-medium">Saving your avatar…</p>
+                                style={{ background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(8px)' }}>
+                                <Loader2 className="w-8 h-8 text-white animate-spin" />
+                                <p className="text-sm text-white font-black">Saving your avatar…</p>
                             </div>
                         )}
 
                         {/* Avatar created badge */}
                         {glbUrl && modelReady && (
-                            <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-green-400"
-                                style={{ background: 'rgba(16,185,129,0.1)', border: '1px solid rgba(16,185,129,0.2)', backdropFilter: 'blur(8px)' }}>
+                            <div className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-green-400 border border-green-400/20 bg-green-400/5 backdrop-blur-md">
                                 <CheckCircle className="w-3.5 h-3.5" /> 3D Avatar Active
                             </div>
                         )}
@@ -267,15 +257,14 @@ export default function UserAvatar({ userEmail, userName, compact = false }: Use
                             <button
                                 onClick={() => setShowIframe(true)}
                                 title={glbUrl ? 'Recreate avatar' : 'Create avatar'}
-                                className="p-2.5 rounded-xl transition-all group/btn"
-                                style={{ background: 'rgba(168,85,247,0.15)', border: '1px solid rgba(168,85,247,0.3)', backdropFilter: 'blur(8px)' }}>
-                                <Wand2 className="w-4 h-4 text-purple-400 group-hover/btn:text-purple-300 transition" />
+                                className="p-2.5 rounded-xl transition-all group/btn bg-white/10 border border-white/10 hover:bg-white/20 backdrop-blur-md"
+                            >
+                                <Wand2 className="w-4 h-4 text-white" />
                             </button>
                             {glbUrl && (
                                 <button onClick={deleteAvatar} title="Remove avatar"
-                                    className="p-2.5 rounded-xl transition-all group/btn"
-                                    style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.15)', backdropFilter: 'blur(8px)' }}>
-                                    <Trash2 className="w-4 h-4 text-red-500/60 group-hover/btn:text-red-400 transition" />
+                                    className="p-2.5 rounded-xl transition-all group/btn bg-red-500/10 border border-red-500/10 hover:bg-red-500/20 backdrop-blur-md">
+                                    <Trash2 className="w-4 h-4 text-red-500/60" />
                                 </button>
                             )}
                         </div>
@@ -286,24 +275,22 @@ export default function UserAvatar({ userEmail, userName, compact = false }: Use
                         {glbUrl ? (
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-xs font-bold text-white">Your 3D Avatar</p>
+                                    <p className="text-xs font-bold text-theme-primary">Your 3D Avatar</p>
                                     <p className="text-[10px] text-gray-600 mt-0.5">Drag to rotate · Scroll to zoom</p>
                                 </div>
                                 <button onClick={() => setShowIframe(true)}
-                                    className="flex items-center gap-1.5 text-xs text-purple-400 hover:text-purple-300 transition py-1.5 px-3 rounded-lg"
-                                    style={{ background: 'rgba(168,85,247,0.08)' }}>
+                                    className="flex items-center gap-1.5 text-xs text-white hover:text-white/70 transition py-1.5 px-3 rounded-lg bg-white/5 border border-white/10">
                                     <RefreshCw className="w-3 h-3" /> Recreate
                                 </button>
                             </div>
                         ) : (
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-xs font-bold text-white">No 3D Avatar Yet</p>
+                                    <p className="text-xs font-bold text-theme-primary">No 3D Avatar Yet</p>
                                     <p className="text-[10px] text-gray-600 mt-0.5">Create your unique avatar with Avaturn</p>
                                 </div>
                                 <button onClick={() => setShowIframe(true)}
-                                    className="flex items-center gap-1.5 text-xs text-white font-bold py-2 px-4 rounded-xl transition-all"
-                                    style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)', boxShadow: '0 4px 15px rgba(168,85,247,0.3)' }}>
+                                    className="flex items-center gap-1.5 text-xs text-black font-black py-2 px-6 rounded-xl transition-all bg-white hover:bg-white/90 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                                     <Wand2 className="w-3.5 h-3.5" /> Create Avatar
                                 </button>
                             </div>
@@ -335,28 +322,25 @@ export default function UserAvatar({ userEmail, userName, compact = false }: Use
                         }}>
 
                         {/* Modal header */}
-                        <div className="flex items-center justify-between px-5 py-4 border-b"
-                            style={{ borderColor: 'rgba(168,85,247,0.15)', background: 'rgba(168,85,247,0.05)' }}>
+                        <div className="flex items-center justify-between px-5 py-4 border-b border-white/5 bg-white/5">
                             <div className="flex items-center gap-3">
-                                <div className="w-8 h-8 rounded-lg flex items-center justify-center"
-                                    style={{ background: 'linear-gradient(135deg, #a855f7, #ec4899)' }}>
-                                    <Wand2 className="w-4 h-4 text-white" />
+                                <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-white">
+                                    <Wand2 className="w-4 h-4 text-black" />
                                 </div>
                                 <div>
-                                    <p className="text-sm font-black text-white">Create Your 3D Avatar</p>
+                                    <p className="text-sm font-black text-theme-primary">Create Your 3D Avatar</p>
                                     <p className="text-xs text-gray-500">Powered by Avaturn · Customize then click Export</p>
                                 </div>
                             </div>
                             <button onClick={() => setShowIframe(false)}
-                                className="p-2 rounded-xl text-gray-500 hover:text-white transition"
+                                className="p-2 rounded-xl text-gray-500 hover:text-theme-primary transition"
                                 style={{ background: 'rgba(255,255,255,0.05)' }}>
                                 <X className="w-5 h-5" />
                             </button>
                         </div>
 
-                        {/* Neon top accent */}
-                        <div className="h-[1px]"
-                            style={{ background: 'linear-gradient(90deg, transparent, #a855f7, #ec4899, transparent)' }} />
+                        {/* Top accent */}
+                        <div className="h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
                         {/* Avaturn iFrame */}
                         <iframe
@@ -372,7 +356,7 @@ export default function UserAvatar({ userEmail, userName, compact = false }: Use
                         <div className="px-5 py-3 text-center border-t"
                             style={{ borderColor: 'rgba(255,255,255,0.05)', background: 'rgba(0,0,0,0.3)' }}>
                             <p className="text-xs text-gray-600">
-                                Customize your avatar → click <span className="text-purple-400 font-bold">Export</span> inside Avaturn → your avatar saves automatically
+                                Customize your avatar → click <span className="text-white font-bold underline">Export</span> inside Avaturn → your avatar saves automatically
                             </p>
                         </div>
                     </div>

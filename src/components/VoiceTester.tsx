@@ -78,15 +78,12 @@ export default function VoiceTester() {
     return (
         <div className="w-full max-w-4xl mx-auto p-6 bg-card-theme rounded-2xl border border-theme">
             <div className="flex items-center justify-between mb-8">
-                <h2
-                    className="text-2xl font-bold bg-clip-text text-transparent"
-                    style={{ backgroundImage: 'linear-gradient(to right, #c084fc, #f472b6, #9333ea)' }}
-                >
-                    Inworld Voice Tester
+                <h2 className="text-2xl font-black text-white tracking-tight flex items-center gap-3">
+                    <Volume2 className="w-6 h-6 text-white" /> Voice Tester
                 </h2>
                 <button
                     onClick={fetchVoices}
-                    className="p-2 rounded-full hover:bg-white/10 transition-colors text-theme-secondary"
+                    className="p-2 rounded-full hover:bg-card-theme transition-colors text-theme-secondary"
                     title="Refresh Voices"
                 >
                     <RefreshCw className={`w-5 h-5 ${loadingVoices ? 'animate-spin' : ''}`} />
@@ -107,12 +104,12 @@ export default function VoiceTester() {
                             <select
                                 value={selectedVoice}
                                 onChange={(e) => setSelectedVoice(e.target.value)}
-                                className="w-full bg-card-hover border border-theme rounded-xl px-4 py-3 text-theme-primary appearance-none focus:outline-none focus:ring-2 focus:ring-purple-600/50"
+                                className="w-full bg-zinc-950/40 border border-white/10 rounded-xl px-4 py-3 text-theme-primary appearance-none focus:outline-none focus:border-white/40 transition-colors"
                                 disabled={loadingVoices}
                             >
                                 {voices.length === 0 && <option>Loading voices...</option>}
                                 {voices.map((voice) => (
-                                    <option key={voice.id} value={voice.id} className="bg-gray-900 text-white">
+                                    <option key={voice.id} value={voice.id} className="bg-gray-900 ">
                                         {voice.name} ({voice.gender}, {voice.language}) {voice.isCustom ? '- CLONED' : ''}
                                     </option>
                                 ))}
@@ -129,7 +126,7 @@ export default function VoiceTester() {
                             value={text}
                             onChange={(e) => setText(e.target.value)}
                             rows={5}
-                            className="w-full bg-card-hover border border-theme rounded-xl p-4 text-theme-primary focus:outline-none focus:ring-2 focus:ring-purple-600/50 resize-none"
+                            className="w-full bg-zinc-950/40 border border-white/10 rounded-xl p-4 text-theme-primary focus:outline-none focus:border-white/40 resize-none transition-colors"
                             placeholder="Enter text here..."
                         />
                     </div>
@@ -138,7 +135,7 @@ export default function VoiceTester() {
                         <button
                             onClick={handleSynthesize}
                             disabled={synthesizing || !selectedVoice || !text}
-                            className="flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl font-medium transition-all shadow-lg hover:shadow-purple-500/25"
+                            className="flex items-center gap-2 px-8 py-3 bg-white hover:bg-white/90 text-black rounded-xl font-black text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(255,255,255,0.1)]"
                         >
                             {synthesizing ? (
                                 <>
@@ -158,8 +155,8 @@ export default function VoiceTester() {
                 <div className="flex flex-col items-center justify-center p-8 bg-card-hover rounded-2xl border border-theme/50 min-h-[300px]">
                     {audioSrc ? (
                         <div className="flex flex-col items-center gap-6 w-full animate-in fade-in zoom-in duration-300">
-                            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/30 animate-pulse">
-                                <Volume2 className="w-10 h-10 text-white" />
+                            <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-lg shadow-white/10 animate-pulse">
+                                <Volume2 className="w-10 h-10 text-black" />
                             </div>
                             <audio controls src={audioSrc} className="w-full" autoPlay />
                             <div className="text-center space-y-1">
@@ -169,8 +166,8 @@ export default function VoiceTester() {
                         </div>
                     ) : (
                         <div className="text-center space-y-3 text-theme-secondary/50">
-                            <div className="w-20 h-20 mx-auto rounded-full bg-white/5 flex items-center justify-center">
-                                <Play className="w-8 h-8 ml-1 text-gray-400" />
+                            <div className="w-20 h-20 mx-auto rounded-full bg-card-theme flex items-center justify-center">
+                                <Play className="w-8 h-8 ml-1 text-theme-secondary" />
                             </div>
                             <p>Select a voice and enter text to generate audio</p>
                         </div>

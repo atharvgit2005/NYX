@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import VideoHistoryList from './VideoHistoryList';
 import VoiceToVideo, { VoiceConfig } from './VoiceToVideo';
-import { Video, Sparkles, AlertTriangle } from 'lucide-react';
+import { Video, Sparkles, AlertTriangle, Play } from 'lucide-react';
+import NyxButton from './ui/NyxButton';
 
 export default function VideoGeneration() {
     const [status, setStatus] = useState<'idle' | 'processing' | 'completed'>('idle');
@@ -158,18 +159,20 @@ export default function VideoGeneration() {
             <div className="flex justify-between items-start mb-8">
                 <div>
                     <h2 className="text-3xl font-bold text-theme-primary flex items-center gap-3">
-                        <Video className="w-7 h-7 text-purple-400" /> Video Generation
+                        <Video className="w-7 h-7 text-theme-primary" /> Video Generation
                     </h2>
                     <p className="text-theme-secondary mt-1.5">
                         Your cloned Inworld voice drives your HeyGen avatar. Tweak tone, preview, then render.
                     </p>
                 </div>
                 {status === 'idle' && (
-                    <button onClick={startGeneration} disabled={!canGenerate}
-                        className="flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:opacity-90"
-                        style={{ background: canGenerate ? 'linear-gradient(135deg, #7c3aed, #a855f7, #ec4899)' : '#374151', boxShadow: canGenerate ? '0 4px 20px rgba(168,85,247,0.35)' : 'none' }}>
-                        <Sparkles className="w-4 h-4" /> Generate Video
-                    </button>
+                    <NyxButton 
+                        onClick={startGeneration} 
+                        icon={Sparkles}
+                        className="px-6 py-2.5"
+                    >
+                        GENERATE VIDEO
+                    </NyxButton>
                 )}
             </div>
 
@@ -196,18 +199,18 @@ export default function VideoGeneration() {
                             {/* Avatar ID card */}
                             <div className="p-5 rounded-3xl border border-theme bg-card-theme">
                                 <p className="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-3">HeyGen Avatar</p>
-                                <div className={`p-4 rounded-2xl border ${avatarId ? 'border-blue-500/25 bg-blue-500/5' : 'border-dashed border-white/10 bg-white/[0.02]'}`}>
+                                <div className={`p-4 rounded-2xl border ${avatarId ? 'border-blue-500/25 bg-blue-500/5' : 'border-dashed border-theme bg-card-theme'}`}>
                                     {avatarId ? (
                                         <>
-                                            <p className="text-xs text-blue-300 font-bold mb-1">✓ Avatar ID set</p>
+                                            <p className="text-xs text-orange-500 font-bold mb-1">✓ Avatar ID set</p>
                                             <p className="text-theme-primary font-mono text-xs break-all">{avatarId}</p>
                                         </>
                                     ) : (
-                                        <p className="text-sm text-gray-500">No avatar set. <a href="/dashboard/avatar" className="text-purple-400 underline">Set Avatar ID →</a></p>
+                                        <p className="text-sm text-theme-secondary">No avatar set. <a href="/dashboard/avatar" className="text-theme-primary underline font-bold">Set Avatar ID →</a></p>
                                     )}
                                 </div>
                                 {avatarId && (
-                                    <a href="/dashboard/avatar" className="text-[10px] text-gray-600 hover:text-gray-400 underline mt-2 block">Change Avatar ID</a>
+                                    <a href="/dashboard/avatar" className="text-[10px] text-gray-600 hover:text-theme-secondary underline mt-2 block">Change Avatar ID</a>
                                 )}
                             </div>
 
@@ -224,10 +227,10 @@ export default function VideoGeneration() {
 
                             {/* HeyGen API Key */}
                             <div className="p-4 rounded-2xl border border-theme bg-card-theme">
-                                <label className="block text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-2">HeyGen API Key (optional override)</label>
+                                <label className="block text-[10px] text-theme-secondary font-bold uppercase tracking-wider mb-2">HeyGen API Key (optional override)</label>
                                 <input type="password" value={apiKey} onChange={handleApiKeyChange}
                                     placeholder="Leave blank to use server key"
-                                    className="w-full bg-card-hover border border-theme rounded-xl px-4 py-2.5 text-theme-primary focus:outline-none focus:border-purple-500/50 font-mono text-xs" />
+                                    className="w-full bg-accent border border-theme rounded-xl px-4 py-2.5 text-theme-primary focus:outline-none focus:border-orange-500/50 placeholder-theme-secondary/40 font-mono text-xs transition-colors" />
                             </div>
                         </div>
 
@@ -249,42 +252,44 @@ export default function VideoGeneration() {
                                 {canGenerate && `${voiceConfig!.voiceName} → ${avatarId?.slice(0, 16)}…`}
                             </p>
                         </div>
-                        <button onClick={startGeneration} disabled={!canGenerate}
-                            className="flex items-center gap-2 px-8 py-3 rounded-2xl font-bold text-white text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-                            style={{ background: canGenerate ? 'linear-gradient(135deg, #7c3aed, #a855f7, #ec4899)' : '#374151', boxShadow: canGenerate ? '0 4px 24px rgba(168,85,247,0.3)' : 'none' }}>
-                            <Sparkles className="w-4 h-4" /> Generate Video
-                        </button>
+                        <NyxButton 
+                            onClick={startGeneration} 
+                            icon={Sparkles}
+                            className="px-8 py-3"
+                        >
+                            GENERATE VIDEO
+                        </NyxButton>
                     </div>
                 </div>
             )}
 
             {/* ── Processing ── */}
             {status === 'processing' && (
-                <div className="relative bg-card-theme rounded-3xl border border-purple-500/20 overflow-hidden" style={{ minHeight: 400 }}>
+                <div className="relative bg-card-theme rounded-3xl border border-orange-500/20 overflow-hidden" style={{ minHeight: 400 }}>
                     {/* Animated bg */}
                     <div className="absolute inset-0">
                         <video autoPlay loop muted playsInline className="w-full h-full object-cover opacity-40">
                             <source src="/videos/loading-background.mp4" type="video/mp4" />
                         </video>
-                        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-                        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, rgba(168,85,247,0.12), transparent 70%)' }} />
+                        <div className="absolute inset-0 bg-page/60 backdrop-blur-sm" />
+                        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at center, rgba(249,115,22,0.12), transparent 70%)' }} />
                     </div>
 
                     <div className="relative z-10 flex flex-col items-center justify-center p-12 text-center" style={{ minHeight: 400 }}>
                         {/* Spinner */}
-                        <div className="w-20 h-20 border-3 border-purple-500 border-t-transparent rounded-full animate-spin mb-8"
-                            style={{ borderWidth: 3, boxShadow: '0 0 30px rgba(168,85,247,0.5)' }} />
+                        <div className="w-20 h-20 border-3 border-theme border-t-orange-500 rounded-full animate-spin mb-8"
+                            style={{ borderWidth: 3 }} />
 
-                        <h3 className="text-2xl font-black text-white mb-2">Rendering Your Video</h3>
-                        <p className="text-purple-300/80 text-sm mb-8">{progressLabel}</p>
+                        <h3 className="text-2xl font-black text-theme-primary mb-2">Rendering Your Video</h3>
+                        <p className="text-zinc-400 text-sm mb-8">{progressLabel}</p>
 
                         {/* Progress bar */}
                         <div className="w-full max-w-md">
-                            <div className="w-full bg-white/10 rounded-full h-2 mb-2 overflow-hidden">
-                                <div className="h-full rounded-full transition-all duration-500"
-                                    style={{ width: `${progress}%`, background: 'linear-gradient(90deg, #7c3aed, #a855f7, #ec4899)', boxShadow: '0 0 12px rgba(168,85,247,0.6)' }} />
+                            <div className="w-full bg-secondary border border-theme rounded-full h-2 mb-2 overflow-hidden">
+                                <div className="h-full rounded-full transition-all duration-500 bg-theme"
+                                    style={{ width: `${progress}%` }} />
                             </div>
-                            <p className="text-white/40 text-xs">{Math.round(progress)}%</p>
+                            <p className="text-theme-secondary text-xs">{Math.round(progress)}%</p>
                         </div>
 
                         {/* Pipeline steps */}
@@ -296,10 +301,10 @@ export default function VideoGeneration() {
                                 { label: 'Final video render', done: progress >= 100 },
                             ].map(step => (
                                 <div key={step.label} className="flex items-center gap-2.5">
-                                    <div className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 transition-all ${step.done ? 'bg-green-500' : 'bg-white/10 border border-white/20'}`}>
-                                        {step.done && <span className="text-white text-[10px]">✓</span>}
+                                    <div className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 transition-all ${step.done ? 'bg-theme' : 'bg-transparent border border-theme/40'}`}>
+                                        {step.done && <span className="text-inverse text-[10px] font-bold">✓</span>}
                                     </div>
-                                    <span className={`text-xs transition-colors ${step.done ? 'text-green-400' : 'text-white/40'}`}>{step.label}</span>
+                                    <span className={`text-xs transition-colors ${step.done ? 'text-green-600 dark:text-green-400 font-bold' : 'text-theme-secondary/60'}`}>{step.label}</span>
                                 </div>
                             ))}
                         </div>
@@ -316,22 +321,25 @@ export default function VideoGeneration() {
 
                     <div className="space-y-5">
                         <div className="bg-card-theme p-6 rounded-3xl border border-theme">
-                            <h3 className="text-xl font-bold text-green-400 mb-1">✅ Render Complete</h3>
+                            <h3 className="text-xl font-bold text-green-500 mb-1">✅ Render Complete</h3>
                             {voiceConfig && (
-                                <p className="text-xs text-gray-500 mb-4">
-                                    Voice: <span className="text-purple-400">{voiceConfig.voiceName}</span>
+                                <p className="text-xs text-theme-secondary mb-4">
+                                    Voice: <span className="text-theme-primary font-bold">{voiceConfig.voiceName}</span>
                                     {voiceConfig.controls.emotion && ` · ${voiceConfig.controls.emotion}`}
                                     {voiceConfig.controls.style && ` · ${voiceConfig.controls.style}`}
                                     {` · ${voiceConfig.controls.speed}× speed`}
                                 </p>
                             )}
                             <div className="space-y-3">
-                                <a href={videoUrl} download="nyx-video.mp4" target="_blank" rel="noopener noreferrer"
-                                    className="block w-full py-3 bg-card-hover text-theme-primary border border-theme rounded-2xl font-bold text-center hover:bg-card-theme transition">
-                                    ⬇️ Download Video
-                                </a>
+                                <NyxButton
+                                    href={videoUrl}
+                                    icon={Play}
+                                    className="w-full justify-center"
+                                >
+                                    DOWNLOAD VIDEO
+                                </NyxButton>
                                 <button onClick={() => { setStatus('idle'); setVideoUrl(null); setProgress(0); }}
-                                    className="w-full py-3 text-sm text-gray-500 hover:text-gray-300 transition">
+                                    className="w-full py-3 text-sm text-gray-500 hover:text-theme-secondary transition">
                                     Generate another →
                                 </button>
                             </div>
@@ -341,14 +349,14 @@ export default function VideoGeneration() {
                             <h3 className="text-base font-bold text-theme-primary mb-4">Performance Prediction</h3>
                             <div className="grid grid-cols-2 gap-3">
                                 {[
-                                    { label: 'Viral Score', val: '8.5 / 10', color: 'text-green-400' },
-                                    { label: 'Hook Strength', val: 'High', color: 'text-blue-400' },
-                                    { label: 'Watch Time', val: '78%+', color: 'text-purple-400' },
-                                    { label: 'Engagement', val: 'Very High', color: 'text-pink-400' },
+                                    { label: 'Viral Score', val: '8.5 / 10', color: 'text-orange-500' },
+                                    { label: 'Hook Strength', val: 'High', color: 'text-theme-primary' },
+                                    { label: 'Watch Time', val: '78%+', color: 'text-theme-primary' },
+                                    { label: 'Engagement', val: 'Very High', color: 'text-theme-primary' },
                                 ].map(({ label, val, color }) => (
-                                    <div key={label} className="bg-card-hover p-4 rounded-2xl text-center border border-theme">
+                                    <div key={label} className="bg-secondary p-4 rounded-2xl text-center border border-theme shadow-sm hover:border-theme/80 transition-all">
                                         <p className={`text-xl font-black ${color}`}>{val}</p>
-                                        <p className="text-[10px] text-gray-500 mt-1 uppercase tracking-wide">{label}</p>
+                                        <p className="text-[10px] text-theme-secondary mt-1 uppercase tracking-wide font-bold">{label}</p>
                                     </div>
                                 ))}
                             </div>

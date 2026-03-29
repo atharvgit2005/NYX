@@ -11,7 +11,7 @@ const defaultTier: Omit<Tier, 'id'> = {
     name: '', price: 0, billingCycle: 'monthly', trialDays: 0, maxUsers: 100,
     features: { voice: false, video: false, api: false, priority: false },
     quotas: { voiceCharsPerDay: 0, videoMinsPerMonth: 0, apiCallsPerDay: 0, storageMB: 0 },
-    approvalMode: 'auto', color: '#a855f7',
+    approvalMode: 'auto', color: '#f97316',
 };
 
 export default function TiersPage() {
@@ -70,10 +70,10 @@ export default function TiersPage() {
         <div className="space-y-6">
             <div className="flex items-start justify-between">
                 <div>
-                    <h1 className="text-3xl font-black text-white">Subscription Tiers</h1>
+                    <h1 className="text-3xl font-black text-theme-primary">Subscription Tiers</h1>
                     <p className="text-gray-500 mt-1">{tiers.length} tiers configured</p>
                 </div>
-                <button onClick={openCreate} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-bold hover:opacity-90 transition shadow-lg">
+                <button onClick={openCreate} className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-600 text-white hover:scale-105 transition-all  text-sm font-bold hover:opacity-90 transition shadow-lg">
                     <Plus className="w-4 h-4" /> New Tier
                 </button>
             </div>
@@ -82,14 +82,14 @@ export default function TiersPage() {
                 {tiers.map(tier => {
                     const userCount = users.filter(u => u.tier === tier.name).length;
                     return (
-                        <div key={tier.id} className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
+                        <div key={tier.id} className="rounded-2xl border border-theme bg-card-theme p-6">
                             <div className="flex items-start justify-between mb-6">
                                 <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg text-white" style={{ background: `${tier.color}33`, border: `1px solid ${tier.color}44` }}>
+                                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg text-theme-primary" style={{ background: `${tier.color}33`, border: `1px solid ${tier.color}44` }}>
                                         {tier.name[0]}
                                     </div>
                                     <div>
-                                        <h2 className="text-xl font-black text-white">{tier.name}</h2>
+                                        <h2 className="text-xl font-black text-theme-primary">{tier.name}</h2>
                                         <p className="text-sm" style={{ color: tier.color }}>
                                             {tier.price === 0 ? 'Free' : `$${tier.price}/${tier.billingCycle}`}
                                             {tier.trialDays > 0 && <span className="text-gray-500 ml-2">· {tier.trialDays} day trial</span>}
@@ -97,13 +97,13 @@ export default function TiersPage() {
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <div className="flex items-center gap-2 text-xs text-gray-500 bg-white/5 px-3 py-1.5 rounded-lg">
+                                    <div className="flex items-center gap-2 text-xs text-gray-500 bg-card-theme px-3 py-1.5 rounded-lg">
                                         <Users className="w-3.5 h-3.5" /> {userCount} users
                                     </div>
                                     <span className={`text-xs px-2.5 py-1 rounded-full border font-bold capitalize ${tier.approvalMode === 'auto' ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-orange-500/10 text-orange-400 border-orange-500/20'}`}>
                                         {tier.approvalMode} approve
                                     </span>
-                                    <button onClick={() => openEdit(tier)} className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition"><Edit2 className="w-4 h-4" /></button>
+                                    <button onClick={() => openEdit(tier)} className="p-2 rounded-lg bg-card-theme hover:bg-card-theme text-theme-secondary hover:text-theme-primary transition"><Edit2 className="w-4 h-4" /></button>
                                     <button onClick={() => setDeleteConfirm(tier.id)} className="p-2 rounded-lg bg-red-500/5 hover:bg-red-500/15 text-red-500/50 hover:text-red-400 transition"><Trash2 className="w-4 h-4" /></button>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@ export default function TiersPage() {
                                         {Object.entries(tier.features).map(([f, v]) => {
                                             const Icon = FEATURE_ICONS[f] || Zap;
                                             return (
-                                                <div key={f} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold capitalize border ${v ? 'bg-purple-500/10 text-purple-300 border-purple-500/20' : 'bg-white/3 text-gray-600 border-white/5'}`}>
+                                                <div key={f} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold capitalize border ${v ? 'bg-orange-500/10 text-orange-300 border-orange-500/20' : 'bg-white/3 text-gray-600 border-theme'}`}>
                                                     <Icon className="w-3 h-3" /> {f}
                                                 </div>
                                             );
@@ -133,7 +133,7 @@ export default function TiersPage() {
                                         ].map(([label, val]) => (
                                             <div key={label as string} className="flex flex-col gap-0.5">
                                                 <span className="text-gray-600">{label}</span>
-                                                <span className="text-white font-bold">{val}</span>
+                                                <span className="text-theme-primary font-bold">{val}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -146,10 +146,10 @@ export default function TiersPage() {
 
             {/* Create/Edit Modal */}
             {modal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm overflow-y-auto py-8">
-                    <div className="w-full max-w-2xl bg-gray-900 border border-white/10 rounded-2xl p-7 shadow-2xl mx-4">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-page/70 backdrop-blur-sm overflow-y-auto py-8">
+                    <div className="w-full max-w-2xl bg-gray-900 border border-theme rounded-2xl p-7 shadow-2xl mx-4">
                         <div className="flex items-center justify-between mb-6">
-                            <h2 className="text-xl font-black text-white">{modal.mode === 'create' ? 'Create New Tier' : 'Edit Tier'}</h2>
+                            <h2 className="text-xl font-black text-theme-primary">{modal.mode === 'create' ? 'Create New Tier' : 'Edit Tier'}</h2>
                             <button onClick={() => setModal(null)}><X className="w-5 h-5 text-gray-500" /></button>
                         </div>
 
@@ -157,13 +157,13 @@ export default function TiersPage() {
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className="text-xs text-gray-500 font-bold mb-1.5 block">Tier Name</label>
-                                    <input value={modal.data.name} onChange={e => patch(['name'], e.target.value)} placeholder="e.g. Pro" className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-purple-500/50" />
+                                    <input value={modal.data.name} onChange={e => patch(['name'], e.target.value)} placeholder="e.g. Pro" className="w-full bg-page/30 border border-theme rounded-xl px-4 py-2.5 text-sm text-theme-primary focus:outline-none focus:border-orange-500/50" />
                                 </div>
                                 <div>
                                     <label className="text-xs text-gray-500 font-bold mb-1.5 block">Color</label>
                                     <div className="flex gap-2">
-                                        <input type="color" value={modal.data.color} onChange={e => patch(['color'], e.target.value)} className="w-12 h-10 rounded-lg border border-white/10 bg-transparent cursor-pointer" />
-                                        <input value={modal.data.color} onChange={e => patch(['color'], e.target.value)} className="flex-1 bg-black/30 border border-white/10 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none" />
+                                        <input type="color" value={modal.data.color} onChange={e => patch(['color'], e.target.value)} className="w-12 h-10 rounded-lg border border-theme bg-transparent cursor-pointer" />
+                                        <input value={modal.data.color} onChange={e => patch(['color'], e.target.value)} className="flex-1 bg-page/30 border border-theme rounded-xl px-3 py-2.5 text-sm text-theme-primary focus:outline-none" />
                                     </div>
                                 </div>
                             </div>
@@ -171,18 +171,18 @@ export default function TiersPage() {
                             <div className="grid grid-cols-3 gap-4">
                                 <div>
                                     <label className="text-xs text-gray-500 font-bold mb-1.5 block">Price ($)</label>
-                                    <input type="number" value={modal.data.price} onChange={e => patch(['price'], +e.target.value)} min={0} className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none" />
+                                    <input type="number" value={modal.data.price} onChange={e => patch(['price'], +e.target.value)} min={0} className="w-full bg-page/30 border border-theme rounded-xl px-4 py-2.5 text-sm text-theme-primary focus:outline-none" />
                                 </div>
                                 <div>
                                     <label className="text-xs text-gray-500 font-bold mb-1.5 block">Billing Cycle</label>
-                                    <select value={modal.data.billingCycle} onChange={e => patch(['billingCycle'], e.target.value)} className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-gray-300 focus:outline-none">
+                                    <select value={modal.data.billingCycle} onChange={e => patch(['billingCycle'], e.target.value)} className="w-full bg-page/30 border border-theme rounded-xl px-4 py-2.5 text-sm text-theme-secondary focus:outline-none">
                                         <option value="monthly" className="bg-gray-900">Monthly</option>
                                         <option value="annual" className="bg-gray-900">Annual</option>
                                     </select>
                                 </div>
                                 <div>
                                     <label className="text-xs text-gray-500 font-bold mb-1.5 block">Trial Days</label>
-                                    <input type="number" value={modal.data.trialDays} onChange={e => patch(['trialDays'], +e.target.value)} min={0} className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none" />
+                                    <input type="number" value={modal.data.trialDays} onChange={e => patch(['trialDays'], +e.target.value)} min={0} className="w-full bg-page/30 border border-theme rounded-xl px-4 py-2.5 text-sm text-theme-primary focus:outline-none" />
                                 </div>
                             </div>
 
@@ -194,7 +194,7 @@ export default function TiersPage() {
                                         const enabled = modal.data.features[f as keyof typeof modal.data.features];
                                         return (
                                             <button key={f} onClick={() => patch(['features', f], !enabled)}
-                                                className={`flex items-center gap-2 px-4 py-2 rounded-xl border text-sm font-bold capitalize transition ${enabled ? 'bg-purple-500/20 border-purple-500/40 text-purple-300' : 'bg-white/5 border-white/10 text-gray-500 hover:text-gray-300'}`}>
+                                                className={`flex items-center gap-2 px-4 py-2 rounded-xl border text-sm font-bold capitalize transition ${enabled ? 'bg-orange-500/20 border-orange-500/40 text-orange-300' : 'bg-card-theme border-theme text-gray-500 hover:text-theme-secondary'}`}>
                                                 <Icon className="w-3.5 h-3.5" /> {f}
                                             </button>
                                         );
@@ -207,7 +207,7 @@ export default function TiersPage() {
                                 <div className="flex gap-3">
                                     {(['auto', 'manual'] as const).map(m => (
                                         <button key={m} onClick={() => patch(['approvalMode'], m)}
-                                            className={`flex-1 py-2 rounded-xl border text-sm font-bold capitalize transition ${modal.data.approvalMode === m ? 'bg-purple-500/20 border-purple-500/40 text-purple-300' : 'bg-white/5 border-white/10 text-gray-500'}`}>
+                                            className={`flex-1 py-2 rounded-xl border text-sm font-bold capitalize transition ${modal.data.approvalMode === m ? 'bg-orange-500/20 border-orange-500/40 text-orange-300' : 'bg-card-theme border-theme text-gray-500'}`}>
                                             {m}
                                         </button>
                                     ))}
@@ -224,28 +224,28 @@ export default function TiersPage() {
                                     <div key={label}>
                                         <label className="text-xs text-gray-500 font-bold mb-1.5 block">{label}</label>
                                         <input type="number" value={(modal.data as any)[path[0]][path[1]]} onChange={e => patch(path, +e.target.value)} min={0}
-                                            className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none" />
+                                            className="w-full bg-page/30 border border-theme rounded-xl px-4 py-2.5 text-sm text-theme-primary focus:outline-none" />
                                     </div>
                                 ))}
                             </div>
                         </div>
 
-                        <div className="flex gap-3 mt-6 pt-5 border-t border-white/5">
-                            <button onClick={() => setModal(null)} className="flex-1 py-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-400 text-sm font-bold hover:text-white transition">Cancel</button>
-                            <button onClick={save} className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-black hover:opacity-90 transition">Save Tier</button>
+                        <div className="flex gap-3 mt-6 pt-5 border-t border-theme">
+                            <button onClick={() => setModal(null)} className="flex-1 py-2.5 rounded-xl bg-card-theme border border-theme text-theme-secondary text-sm font-bold hover:text-theme-primary transition">Cancel</button>
+                            <button onClick={save} className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-600 text-white hover:scale-105 transition-all  text-sm font-black hover:opacity-90 transition">Save Tier</button>
                         </div>
                     </div>
                 </div>
             )}
 
             {deleteConfirm && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-page/70 backdrop-blur-sm">
                     <div className="w-full max-w-sm bg-gray-900 border border-red-500/20 rounded-2xl p-6 shadow-2xl">
-                        <h2 className="text-lg font-black text-white mb-2">Delete Tier?</h2>
-                        <p className="text-sm text-gray-400 mb-6">This action cannot be undone. All users on this tier must be migrated first.</p>
+                        <h2 className="text-lg font-black text-theme-primary mb-2">Delete Tier?</h2>
+                        <p className="text-sm text-theme-secondary mb-6">This action cannot be undone. All users on this tier must be migrated first.</p>
                         <div className="flex gap-3">
-                            <button onClick={() => setDeleteConfirm(null)} className="flex-1 py-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-400 text-sm font-bold">Cancel</button>
-                            <button onClick={() => confirmDelete(deleteConfirm)} className="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white text-sm font-black transition">Delete</button>
+                            <button onClick={() => setDeleteConfirm(null)} className="flex-1 py-2.5 rounded-xl bg-card-theme border border-theme text-theme-secondary text-sm font-bold">Cancel</button>
+                            <button onClick={() => confirmDelete(deleteConfirm)} className="flex-1 py-2.5 rounded-xl bg-red-600 hover:bg-red-500  text-sm font-black transition">Delete</button>
                         </div>
                     </div>
                 </div>

@@ -39,20 +39,20 @@ function ProfileCard({ name, role }: { name: string; role: string }) {
                 {/* Border Glow */}
                 <mesh position={[0, 0, -0.1]}>
                     <boxGeometry args={[4.1, 5.1, 0.1]} />
-                    <meshBasicMaterial color={hovered ? "#a855f7" : "#581c87"} />
+                    <meshBasicMaterial color={hovered ? "#ffffff" : "#333333"} />
                 </mesh>
 
                 {/* Avatar Placeholder (Sphere) */}
                 <mesh position={[0, 1, 0.2]}>
                     <sphereGeometry args={[0.8, 32, 32]} />
-                    <meshStandardMaterial color="#c084fc" metalness={0.6} roughness={0.2} />
+                    <meshStandardMaterial color="#ffffff" metalness={0.6} roughness={0.2} />
                 </mesh>
 
                 {/* Text Info */}
                 <Text position={[0, -0.5, 0.2]} fontSize={0.3} color="white" anchorX="center" anchorY="middle" font="/fonts/Inter-Bold.ttf">
                     {name}
                 </Text>
-                <Text position={[0, -1, 0.2]} fontSize={0.15} color="#a855f7" anchorX="center" anchorY="middle" font="/fonts/Inter-Bold.ttf">
+                <Text position={[0, -1, 0.2]} fontSize={0.15} color="#cccccc" anchorX="center" anchorY="middle" font="/fonts/Inter-Bold.ttf">
                     {role}
                 </Text>
 
@@ -71,20 +71,20 @@ function ProfileCard({ name, role }: { name: string; role: string }) {
 
 export default function UserProfile3D() {
     return (
-        <div className="w-full h-[600px] rounded-3xl overflow-hidden border border-white/10 bg-black/50 relative">
-            <div className="absolute top-4 left-4 z-10 bg-black/50 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
-                <span className="text-xs font-bold text-purple-400">INTERACTIVE 3D PROFILE</span>
+        <div className="w-full h-[600px] rounded-3xl overflow-hidden border border-theme bg-page/50 relative">
+            <div className="absolute top-4 left-4 z-10 bg-page/50 backdrop-blur-md px-4 py-2 rounded-full border border-theme">
+                <span className="text-xs font-bold text-white">INTERACTIVE 3D PROFILE</span>
             </div>
             <Canvas>
                 <PerspectiveCamera makeDefault position={[0, 0, 8]} />
                 <OrbitControls enableZoom={false} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} />
 
                 <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={1} color="#a855f7" />
-                <pointLight position={[-10, -10, -10]} intensity={0.5} color="#ec4899" />
+                <pointLight position={[10, 10, 10]} intensity={1} color="#ffffff" />
+                <pointLight position={[-10, -10, -10]} intensity={0.5} color="#333333" />
 
                 <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
-                <Sparkles count={50} scale={5} size={2} speed={0.4} opacity={0.5} color="#c084fc" />
+                <Sparkles count={50} scale={5} size={2} speed={0.4} opacity={0.5} color="#ffffff" />
 
                 <ProfileCard name="Atharv Paharia" role="PRO CREATOR" />
             </Canvas>

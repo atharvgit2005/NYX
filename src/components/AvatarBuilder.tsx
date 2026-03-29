@@ -20,18 +20,18 @@ export interface AvatarConfig {
 
 const DEFAULT_CONFIG: AvatarConfig = {
     skinColor: '#c8a882',
-    eyeColor: '#a855f7',
+    eyeColor: '#f97316',
     hairStyle: 'short',
     hairColor: '#1a0e05',
     outfitColor: '#1e1040',
-    accentColor: '#a855f7',
+    accentColor: '#f97316',
     accessory: 'none',
 };
 
 // ─── Preset themes ────────────────────────────────────────────────────────────
 
 const PRESETS: { label: string; config: AvatarConfig }[] = [
-    { label: 'Neon', config: { skinColor: '#c8a882', eyeColor: '#a855f7', hairStyle: 'spiky', hairColor: '#7c3aed', outfitColor: '#0f0720', accentColor: '#a855f7', accessory: 'none' } },
+    { label: 'Neon', config: { skinColor: '#c8a882', eyeColor: '#f97316', hairStyle: 'spiky', hairColor: '#ea580c', outfitColor: '#0f0720', accentColor: '#f97316', accessory: 'none' } },
     { label: 'Cyber', config: { skinColor: '#b5ccd8', eyeColor: '#00fff7', hairStyle: 'bun', hairColor: '#334155', outfitColor: '#0c1a2e', accentColor: '#06b6d4', accessory: 'headset' } },
     { label: 'Gold', config: { skinColor: '#d4a96a', eyeColor: '#f59e0b', hairStyle: 'short', hairColor: '#78350f', outfitColor: '#1c1008', accentColor: '#f59e0b', accessory: 'crown' } },
     { label: 'Reaper', config: { skinColor: '#8c9eb5', eyeColor: '#ef4444', hairStyle: 'none', hairColor: '#1c1c1c', outfitColor: '#0a0a0a', accentColor: '#ef4444', accessory: 'glasses' } },
@@ -286,10 +286,10 @@ function ColorSwatch({ color, selected, onClick }: { color: string; selected: bo
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 const SKIN_TONES = ['#fde8d0', '#f2d0a9', '#c8a882', '#a07850', '#7a4f28', '#4a2912'];
-const EYE_COLORS = ['#a855f7', '#06b6d4', '#10b981', '#f59e0b', '#ef4444', '#3b82f6', '#ffffff'];
+const EYE_COLORS = ['#f97316', '#06b6d4', '#10b981', '#f59e0b', '#ef4444', '#3b82f6', '#ffffff'];
 const HAIR_COLORS = ['#1a0e05', '#3d2b1f', '#5c3317', '#8b6914', '#c4a35a', '#d4d4d4', '#e879f9', '#1e40af'];
 const OUTFIT_COLORS = ['#1e1040', '#0c1a2e', '#0a0a0a', '#0f2b1a', '#1a0a0a', '#0a1a2a', '#1a1a00', '#200a20'];
-const ACCENT_COLORS = ['#a855f7', '#06b6d4', '#10b981', '#f59e0b', '#ef4444', '#ec4899', '#3b82f6', '#ffffff'];
+const ACCENT_COLORS = ['#f97316', '#06b6d4', '#10b981', '#f59e0b', '#ef4444', '#fb923c', '#3b82f6', '#ffffff'];
 
 export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConfig) => void }) {
     const [config, setConfig] = useState<AvatarConfig>(DEFAULT_CONFIG);
@@ -343,24 +343,17 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center h-96 rounded-3xl border border-white/5"
-                style={{ background: 'rgba(255,255,255,0.02)' }}>
-                <Loader2 className="w-8 h-8 text-purple-400 animate-spin" />
+            <div className="flex items-center justify-center h-96 rounded-3xl border border-theme bg-white/5">
+                <Loader2 className="w-8 h-8 text-white animate-spin" />
             </div>
         );
     }
 
     return (
-        <div className="w-full rounded-3xl overflow-hidden border"
-            style={{
-                background: 'rgba(8,8,20,0.85)',
-                backdropFilter: 'blur(24px)',
-                borderColor: 'rgba(168,85,247,0.2)',
-                boxShadow: '0 0 80px rgba(168,85,247,0.12), inset 0 1px 0 rgba(255,255,255,0.05)',
-            }}>
+        <div className="w-full rounded-3xl overflow-hidden border border-white/10 bg-zinc-950/50 backdrop-blur-2xl shadow-2xl">
 
             {/* Top neon accent */}
-            <div className="h-[1px]" style={{ background: 'linear-gradient(90deg, transparent, #a855f7 40%, #ec4899 60%, transparent)' }} />
+            <div className="h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
 
             <div className="flex flex-col lg:flex-row">
 
@@ -404,7 +397,7 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
                     </Canvas>
 
                     {/* Hint */}
-                    <p className="absolute bottom-3 left-0 right-0 text-center text-[10px] text-white/20 pointer-events-none">
+                    <p className="absolute bottom-3 left-0 right-0 text-center text-[10px] text-theme-primary/20 pointer-events-none">
                         Drag to rotate · Scroll to zoom
                     </p>
                 </div>
@@ -415,10 +408,10 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
                     {/* Header */}
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                            <Sparkles className="w-4 h-4 text-purple-400" />
-                            <span className="text-sm font-black text-white">Customise Avatar</span>
+                            <Sparkles className="w-4 h-4 text-white" />
+                            <span className="text-sm font-black text-theme-primary">Customise Avatar</span>
                         </div>
-                        <button onClick={resetToDefault} className="flex items-center gap-1 text-[10px] text-gray-600 hover:text-gray-300 transition px-2 py-1 rounded-lg hover:bg-white/5">
+                        <button onClick={resetToDefault} className="flex items-center gap-1 text-[10px] text-gray-600 hover:text-theme-secondary transition px-2 py-1 rounded-lg hover:bg-card-theme">
                             <RotateCcw className="w-3 h-3" /> Reset
                         </button>
                     </div>
@@ -431,9 +424,9 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
                                 <button key={p.label} onClick={() => applyPreset(p.config)}
                                     className="px-3 py-1.5 rounded-full text-xs font-bold border transition-all hover:scale-105"
                                     style={{
-                                        background: `${p.config.accentColor}15`,
-                                        borderColor: `${p.config.accentColor}40`,
-                                        color: p.config.accentColor,
+                                        background: 'rgba(255,255,255,0.05)',
+                                        borderColor: 'rgba(255,255,255,0.1)',
+                                        color: '#ffffff',
                                     }}>
                                     {p.label}
                                 </button>
@@ -447,7 +440,7 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
                         <div className="flex gap-2 flex-wrap">
                             {SKIN_TONES.map(c => <ColorSwatch key={c} color={c} selected={config.skinColor === c} onClick={() => patch('skinColor', c)} />)}
                             <input type="color" value={config.skinColor} onChange={e => patch('skinColor', e.target.value)}
-                                className="w-7 h-7 rounded-full border border-white/10 bg-transparent cursor-pointer" title="Custom" />
+                                className="w-7 h-7 rounded-full border border-theme bg-transparent cursor-pointer" title="Custom" />
                         </div>
                     </div>
 
@@ -457,7 +450,7 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
                         <div className="flex gap-2 flex-wrap">
                             {EYE_COLORS.map(c => <ColorSwatch key={c} color={c} selected={config.eyeColor === c} onClick={() => patch('eyeColor', c)} />)}
                             <input type="color" value={config.eyeColor} onChange={e => patch('eyeColor', e.target.value)}
-                                className="w-7 h-7 rounded-full border border-white/10 bg-transparent cursor-pointer" title="Custom" />
+                                className="w-7 h-7 rounded-full border border-theme bg-transparent cursor-pointer" title="Custom" />
                         </div>
                     </div>
 
@@ -469,9 +462,9 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
                                 <button key={s} onClick={() => patch('hairStyle', s)}
                                     className="px-3 py-1.5 rounded-lg text-xs font-bold border capitalize transition-all"
                                     style={{
-                                        background: config.hairStyle === s ? 'rgba(168,85,247,0.2)' : 'rgba(255,255,255,0.03)',
-                                        borderColor: config.hairStyle === s ? 'rgba(168,85,247,0.5)' : 'rgba(255,255,255,0.08)',
-                                        color: config.hairStyle === s ? '#c084fc' : '#6b7280',
+                                        background: config.hairStyle === s ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.03)',
+                                        borderColor: config.hairStyle === s ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.08)',
+                                        color: config.hairStyle === s ? '#ffffff' : '#6b7280',
                                     }}>
                                     {s === 'none' ? 'Bald' : s}
                                 </button>
@@ -486,7 +479,7 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
                             <div className="flex gap-2 flex-wrap">
                                 {HAIR_COLORS.map(c => <ColorSwatch key={c} color={c} selected={config.hairColor === c} onClick={() => patch('hairColor', c)} />)}
                                 <input type="color" value={config.hairColor} onChange={e => patch('hairColor', e.target.value)}
-                                    className="w-7 h-7 rounded-full border border-white/10 bg-transparent cursor-pointer" title="Custom" />
+                                    className="w-7 h-7 rounded-full border border-theme bg-transparent cursor-pointer" title="Custom" />
                             </div>
                         </div>
                     )}
@@ -497,7 +490,7 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
                         <div className="flex gap-2 flex-wrap">
                             {OUTFIT_COLORS.map(c => <ColorSwatch key={c} color={c} selected={config.outfitColor === c} onClick={() => patch('outfitColor', c)} />)}
                             <input type="color" value={config.outfitColor} onChange={e => patch('outfitColor', e.target.value)}
-                                className="w-7 h-7 rounded-full border border-white/10 bg-transparent cursor-pointer" title="Custom" />
+                                className="w-7 h-7 rounded-full border border-theme bg-transparent cursor-pointer" title="Custom" />
                         </div>
                     </div>
 
@@ -507,7 +500,7 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
                         <div className="flex gap-2 flex-wrap">
                             {ACCENT_COLORS.map(c => <ColorSwatch key={c} color={c} selected={config.accentColor === c} onClick={() => patch('accentColor', c)} />)}
                             <input type="color" value={config.accentColor} onChange={e => patch('accentColor', e.target.value)}
-                                className="w-7 h-7 rounded-full border border-white/10 bg-transparent cursor-pointer" title="Custom" />
+                                className="w-7 h-7 rounded-full border border-theme bg-transparent cursor-pointer" title="Custom" />
                         </div>
                     </div>
 
@@ -524,9 +517,9 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
                                 <button key={val} onClick={() => patch('accessory', val)}
                                     className="px-3 py-1.5 rounded-lg text-xs font-bold border transition-all"
                                     style={{
-                                        background: config.accessory === val ? 'rgba(168,85,247,0.2)' : 'rgba(255,255,255,0.03)',
-                                        borderColor: config.accessory === val ? 'rgba(168,85,247,0.5)' : 'rgba(255,255,255,0.08)',
-                                        color: config.accessory === val ? '#c084fc' : '#6b7280',
+                                        background: config.accessory === val ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.03)',
+                                        borderColor: config.accessory === val ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.08)',
+                                        color: config.accessory === val ? '#ffffff' : '#6b7280',
                                     }}>
                                     {label}
                                 </button>
@@ -536,11 +529,12 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
 
                     {/* Save */}
                     <button onClick={saveConfig} disabled={saving}
-                        className="w-full py-3 rounded-2xl text-sm font-black text-white transition-all flex items-center justify-center gap-2 mt-2"
+                        className="w-full py-3 rounded-2xl text-sm font-black transition-all flex items-center justify-center gap-2 mt-2"
                         style={{
-                            background: saved ? 'rgba(16,185,129,0.2)' : 'linear-gradient(135deg, #7c3aed, #a855f7, #ec4899)',
-                            border: saved ? '1px solid rgba(16,185,129,0.4)' : '1px solid rgba(168,85,247,0.3)',
-                            boxShadow: saved ? '0 0 20px rgba(16,185,129,0.2)' : '0 4px 24px rgba(168,85,247,0.3)',
+                            background: saved ? 'rgba(16,185,129,0.1)' : 'white',
+                            border: saved ? '1px solid rgba(16,185,129,0.3)' : '1px solid white',
+                            color: saved ? '#4ade80' : 'black',
+                            boxShadow: saved ? 'none' : '0 4px 15px rgba(255,255,255,0.1)',
                         }}>
                         {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : saved ? <Check className="w-4 h-4 text-green-400" /> : <Sparkles className="w-4 h-4" />}
                         {saving ? 'Saving…' : saved ? 'Avatar Saved!' : 'Save Avatar'}
@@ -549,7 +543,7 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
             </div>
 
             {/* Bottom neon accent */}
-            <div className="h-[1px]" style={{ background: 'linear-gradient(90deg, transparent, #ec4899 40%, #a855f7 60%, transparent)' }} />
+            <div className="h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         </div>
     );
 }

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ThreeBackground from './ThreeBackground';
 import VideoCarousel from './VideoCarousel';
-
 import gsap from 'gsap';
 import { Zap, Bot, Rocket, Check, Linkedin, Instagram, Menu, X, LogOut, ArrowRight, Globe } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
@@ -39,7 +38,7 @@ export default function LandingPage() {
 
                     {/* Left Section: Logo */}
                     <Link href="/" className="flex items-center gap-3 pl-4 group hover:opacity-80 transition-opacity">
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center shadow-md shadow-glow-white-small">
+                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md shadow-glow-white-small">
                             <span className="text-white font-extrabold text-sm">N</span>
                         </div>
                         <span className="text-lg font-bold tracking-tight text-theme-primary hidden sm:block">NYX</span>
@@ -69,7 +68,7 @@ export default function LandingPage() {
                         <div className="hidden md:block w-px h-5 bg-card-theme" />
 
                         {session ? (
-                            <Link href="/dashboard" className="hidden md:flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-glow-purple hover:scale-105 transition-all shadow-md group">
+                            <Link href="/dashboard" className="hidden md:flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-md hover:scale-105 transition-all group">
                                 Dashboard
                                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </Link>
@@ -78,7 +77,7 @@ export default function LandingPage() {
                                 <Link href="/login" className="hidden md:block text-sm font-bold text-theme-secondary hover:text-theme-primary px-3 transition-colors">
                                     Log In
                                 </Link>
-                                <Link href="/signup" className="hidden md:flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-glow-purple hover:scale-105 transition-all shadow-md group">
+                                <Link href="/signup" className="hidden md:flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-md hover:scale-105 transition-all group">
                                     Sign Up
                                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                 </Link>
@@ -106,7 +105,7 @@ export default function LandingPage() {
                             <div className="h-px bg-card-theme my-2 mx-4" />
                             {session ? (
                                 <>
-                                    <Link href="/dashboard" className="flex items-center justify-center gap-2 w-full px-4 py-3.5 bg-purple-600 text-white rounded-full font-bold hover:bg-purple-700 transition-colors shadow-lg">
+                                    <Link href="/dashboard" className="flex items-center justify-center gap-2 w-full px-4 py-3.5 bg-orange-600 text-white rounded-full font-bold hover:bg-orange-700 transition-colors shadow-lg">
                                         Dashboard <ArrowRight className="w-4 h-4" />
                                     </Link>
                                     <button
@@ -121,7 +120,7 @@ export default function LandingPage() {
                                     <Link href="/login" className="text-center w-full px-4 py-3 text-theme-secondary font-bold hover:bg-card-hover rounded-xl transition-colors border border-transparent hover:border-theme">
                                         Log In
                                     </Link>
-                                    <Link href="/signup" className="flex items-center justify-center gap-2 w-full px-4 py-3.5 bg-purple-600 text-white rounded-full font-bold hover:bg-purple-700 transition-colors shadow-lg">
+                                    <Link href="/signup" className="flex items-center justify-center gap-2 w-full px-4 py-3.5 bg-orange-600 text-white rounded-full font-bold hover:bg-orange-700 transition-colors shadow-lg">
                                         Sign Up Free <ArrowRight className="w-4 h-4" />
                                     </Link>
                                 </div>
@@ -136,14 +135,14 @@ export default function LandingPage() {
                 <div className="max-w-4xl mx-auto">
                     <h1 ref={titleRef} className="text-5xl sm:text-7xl font-bold tracking-tighter mb-8 text-theme-primary leading-tight">
                         Automate Your <br />
-                        <span className="text-gradient-hero filter drop-shadow-[0_0_20px_rgba(168,85,247,0.3)]">Content Empire</span>
+                        <span className="text-gradient-hero filter drop-shadow-[0_0_20px_rgba(249,115,22,0.3)]">Content Empire</span>
                     </h1>
                     <p ref={subtitleRef} className="text-lg sm:text-xl text-theme-secondary mb-10 max-w-2xl mx-auto leading-relaxed">
                         Generate viral ideas, write scripts, and produce <span className="text-theme-primary font-bold">AI-narrated videos</span> in minutes.
                         The engine for modern creators.
                     </p>
                     <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <Link href={session ? "/dashboard" : "/signup"} className="px-8 py-3 bg-purple-600 text-white rounded-full text-base font-medium hover:bg-purple-700 transition-colors flex items-center gap-2 shadow-glow-white-strong">
+                        <Link href={session ? "/dashboard" : "/signup"} className="px-8 py-3 bg-orange-600 text-white rounded-full text-base font-medium hover:bg-orange-700 transition-colors flex items-center gap-2 shadow-lg shadow-orange-500/20">
                             Start Free <Rocket className="w-4 h-4" />
                         </Link>
                         <Link href="#how-it-works" className="px-8 py-3 bg-card-theme border-theme rounded-full text-base font-medium hover:bg-card-hover transition-all flex items-center gap-2 text-theme-primary">
@@ -155,8 +154,6 @@ export default function LandingPage() {
 
             {/* Video Carousel Showcase */}
             <VideoCarousel />
-
-
 
             {/* How It Works Section */}
             <section id="how-it-works" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10 bg-page">
@@ -184,10 +181,10 @@ export default function LandingPage() {
                             },
                         ].map((item, i) => (
                             <div key={i} className="relative z-10 flex flex-col items-center text-center group">
-                                <div className="w-20 h-20 mb-8 rounded-2xl bg-card-theme border-theme flex items-center justify-center text-2xl font-bold text-theme-primary z-10 backdrop-blur-sm group-hover:scale-105 group-hover:border-purple-400/40 group-hover:bg-card-hover group-hover:shadow-[0_0_30px_rgba(168,85,247,0.1)] transition-all duration-300">
+                                <div className="w-20 h-20 mb-8 rounded-2xl bg-card-theme border-theme flex items-center justify-center text-2xl font-bold text-theme-primary z-10 backdrop-blur-sm group-hover:scale-105 group-hover:border-orange-400/40 group-hover:bg-card-hover transition-all duration-300">
                                     {item.step}
                                 </div>
-                                <h3 className="text-xl font-bold mb-3 text-theme-primary group-hover:text-purple-500 transition-colors">{item.title}</h3>
+                                <h3 className="text-xl font-bold mb-3 text-theme-primary group-hover:text-orange-500 transition-colors">{item.title}</h3>
                                 <p className="text-theme-secondary max-w-xs text-sm leading-relaxed transition-colors">{item.desc}</p>
                             </div>
                         ))}
@@ -209,12 +206,12 @@ export default function LandingPage() {
                             {
                                 title: 'AI Avatar & Voice',
                                 desc: 'Clone yourself or use premium AI avatars to present your content.',
-                                icon: <Bot className="w-6 h-6 text-purple-400" />,
+                                icon: <Bot className="w-6 h-6 text-orange-400" />,
                             },
                             {
                                 title: 'Auto-Publishing',
                                 desc: 'Schedule and post directly to Instagram, TikTok, and YouTube.',
-                                icon: <Rocket className="w-6 h-6 text-pink-500" />,
+                                icon: <Rocket className="w-6 h-6 text-orange-500" />,
                             },
                         ].map((feature, i) => (
                             <div key={i} className="p-8 rounded-2xl bg-card-theme border-theme hover:bg-card-hover transition-colors">
@@ -245,8 +242,8 @@ export default function LandingPage() {
                                     { name: 'Agency', price: '₹7,999', features: ['Multiple Brands', 'API Access', 'White Label', 'Dedicated Manager'] },
                                 ]).flat()
                             ].map((plan: any, i: number) => (
-                                <Link href={session ? "/dashboard" : "/signup"} key={i} className={`relative flex-shrink-0 w-80 p-8 rounded-2xl border transition-all duration-300 group hover:-translate-y-2 ${plan.popular ? 'bg-page border-purple-500/50 shadow-[0_0_30px_rgba(168,85,247,0.15)]' : 'bg-card-theme border-theme hover:bg-card-hover'}`}>
-                                    {plan.popular && <span className="absolute -top-4 left-8 px-4 py-1.5 bg-purple-600 text-white rounded-full text-sm font-bold border border-purple-400 shadow-lg">Most Popular</span>}
+                                <Link href={session ? "/dashboard" : "/signup"} key={i} className={`relative flex-shrink-0 w-80 p-8 rounded-2xl border transition-all duration-300 group hover:-translate-y-2 ${plan.popular ? 'bg-page border-orange-500/50 shadow-[0_0_30px_rgba(249,115,22,0.15)]' : 'bg-card-theme border-theme hover:bg-card-hover'}`}>
+                                    {plan.popular && <span className="absolute -top-4 left-8 px-4 py-1.5 bg-orange-600 text-white rounded-full text-xs font-bold border border-orange-400 shadow-lg">Most Popular</span>}
                                     <h3 className="text-xl font-bold mb-2 text-theme-primary">{plan.name}</h3>
                                     <div className="text-4xl font-bold mb-6 text-theme-primary">{plan.price}<span className="text-sm text-theme-secondary font-normal">/mo</span></div>
                                     <ul className="space-y-4 mb-8">
@@ -256,7 +253,7 @@ export default function LandingPage() {
                                             </li>
                                         ))}
                                     </ul>
-                                    <div className={`w-full py-3 rounded-lg font-bold text-center text-sm transition-all ${plan.popular ? 'bg-purple-600 text-white hover:bg-purple-700 shadow-lg shadow-purple-500/25' : 'bg-white/10 text-theme-primary hover:bg-white/20'}`}>
+                                    <div className={`w-full py-3 rounded-lg font-bold text-center text-sm transition-all ${plan.popular ? 'bg-orange-600 text-white hover:bg-orange-700 shadow-lg shadow-orange-500/25' : 'bg-white/10 text-theme-primary hover:bg-white/20'}`}>
                                         Choose {plan.name}
                                     </div>
                                 </Link>
@@ -290,7 +287,7 @@ export default function LandingPage() {
                                 image: '/founders/bhavya.jpg'
                             },
                         ].map((founder, i) => (
-                            <div key={i} className="flex-1 min-w-[280px] max-w-sm p-8 rounded-2xl bg-card-theme border border-white/5 hover:border-purple-500/30 hover:bg-card-hover transition-all duration-300 text-center hover:-translate-y-1">
+                            <div key={i} className="flex-1 min-w-[280px] max-w-sm p-8 rounded-2xl bg-card-theme border border-white/5 hover:border-orange-500/30 hover:bg-card-hover transition-all duration-300 text-center hover:-translate-y-1">
                                 <div className="w-24 h-24 mx-auto mb-5 rounded-full bg-page flex items-center justify-center text-2xl font-bold text-theme-primary border-theme overflow-hidden relative shadow-lg">
                                     {founder.image ? (
                                         <Image 
@@ -310,22 +307,23 @@ export default function LandingPage() {
                                 <h3 className="text-lg font-bold mb-1 text-theme-primary">{founder.name}</h3>
                                 <p className="text-theme-secondary text-xs mb-4">{founder.role}</p>
                                 <div className="flex justify-center gap-3">
-                                    <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 text-theme-secondary hover:text-theme-primary transition-colors"><Linkedin className="w-4 h-4" /></a>
-                                    <a href={founder.instagram} target="_blank" rel="noopener noreferrer" className="p-2 text-theme-secondary hover:text-theme-primary transition-colors"><Instagram className="w-4 h-4" /></a>
+                                    <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 text-theme-secondary hover:text-orange-500 transition-colors"><Linkedin className="w-4 h-4" /></a>
+                                    <a href={founder.instagram} target="_blank" rel="noopener noreferrer" className="p-2 text-theme-secondary hover:text-orange-500 transition-colors"><Instagram className="w-4 h-4" /></a>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
-        {/* Footer */}
+
+            {/* Footer */}
             <footer className="relative z-10 border-t border-theme bg-page mt-24">
                 <div className="w-full px-6 md:px-12 lg:px-20 py-16">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
                         {/* Brand & Mission */}
                         <div className="md:col-span-1">
                             <Link href="/" className="flex items-center gap-3 mb-6 group hover:opacity-80 transition-opacity">
-                                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center shadow-md shadow-glow-white-small">
+                                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md shadow-glow-white-small">
                                     <span className="text-white font-extrabold text-sm">N</span>
                                 </div>
                                 <span className="text-xl font-bold tracking-tight text-theme-primary">NYX</span>
@@ -334,10 +332,10 @@ export default function LandingPage() {
                                 Automating the future of content creation. Generate viral ideas, write scripts, and produce AI-narrated videos effortlessly.
                             </p>
                             <div className="flex gap-4">
-                                <a href="https://www.instagram.com/nyx.studios.ai/" target="_blank" rel="noopener noreferrer" className="p-2 -ml-2 text-theme-secondary hover:text-purple-500 transition-colors rounded-full hover:bg-card-hover">
+                                <a href="https://www.instagram.com/nyx.studios.ai/" target="_blank" rel="noopener noreferrer" className="p-2 -ml-2 text-theme-secondary hover:text-orange-500 transition-colors rounded-full hover:bg-card-hover">
                                     <Instagram className="w-5 h-5" />
                                 </a>
-                                <a href="#" className="p-2 text-theme-secondary hover:text-purple-500 transition-colors rounded-full hover:bg-card-hover">
+                                <a href="#" className="p-2 text-theme-secondary hover:text-orange-500 transition-colors rounded-full hover:bg-card-hover">
                                     <Linkedin className="w-5 h-5" />
                                 </a>
                             </div>

@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Loader2, X, Copy, Check, Play, FileText, BrainCircuit, AlertCircle } from 'lucide-react';
+import { Loader2, X, Copy, Check, Play, FileText, BrainCircuit, AlertCircle, Sparkles } from 'lucide-react';
 import Link from 'next/link';
+import NyxButton from './ui/NyxButton';
 
 export default function IdeaGenerator() {
     const [generating, setGenerating] = useState(false);
@@ -165,34 +166,33 @@ export default function IdeaGenerator() {
                         Get viral-ready video ideas tailored to your niche.
                     </p>
                 </div>
-                <button
+                <NyxButton
                     onClick={handleGenerate}
-                    disabled={generating}
-                    className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full font-bold text-white hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center"
+                    className="shrink-0"
                 >
-                    {generating ? <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Generating...</> : ideas.length > 0 ? 'Regenerate Ideas' : 'Generate Ideas'}
-                </button>
+                    {generating ? 'GENERATING...' : ideas.length > 1 ? 'REGENERATE IDEAS' : 'GENERATE IDEAS'}
+                </NyxButton>
             </div>
 
             {/* Analysis Context Banner */}
             {analysisData ? (
                 <div className="mb-8 p-4 rounded-2xl bg-card-theme border border-theme flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
-                            <BrainCircuit className="w-5 h-5 text-white" />
+                        <div className="w-10 h-10 rounded-xl bg-secondary border border-theme flex items-center justify-center">
+                            <BrainCircuit className="w-5 h-5 text-theme-primary" />
                         </div>
                         <div>
                             <p className="text-sm font-bold text-theme-primary">
                                 Powered by {analysisData.platform} Analysis
                             </p>
                             <p className="text-xs text-theme-secondary">
-                                Niche: <span className="text-purple-400 font-medium">{analysisData.niche}</span> · {analysisData.pillars.length} pillars · Tone: {analysisData.tone}
+                                Niche: <span className="text-primary font-bold">{analysisData.niche}</span> · {analysisData.pillars.length} pillars · Tone: {analysisData.tone}
                             </p>
                         </div>
                     </div>
                     <Link
                         href="/dashboard/analysis"
-                        className="text-xs font-bold text-purple-400 hover:text-purple-300 transition-colors px-3 py-1.5 rounded-lg hover:bg-card-hover"
+                        className="text-xs font-bold text-theme-primary hover:text-theme-primary/80 transition-colors px-3 py-1.5 rounded-lg bg-secondary border border-theme"
                     >
                         Re-analyze →
                     </Link>
@@ -208,19 +208,19 @@ export default function IdeaGenerator() {
                             Ideas will use generic defaults. Run a Brand Analysis first for personalized results.
                         </p>
                     </div>
-                    <Link
+                    <NyxButton
                         href="/dashboard/analysis"
-                        className="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white text-xs font-bold hover:opacity-90 transition-opacity flex-shrink-0"
+                        className="flex-shrink-0"
                     >
-                        Run Analysis
-                    </Link>
+                        RUN ANALYSIS
+                    </NyxButton>
                 </div>
             )}
 
             {generating && (
                 <div className="flex flex-col items-center justify-center py-20">
-                    <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-                    <p className="text-theme-secondary animate-pulse">Scanning trends & brainstorming...</p>
+                    <div className="w-16 h-16 border-4 border-theme border-t-primary rounded-full animate-spin mb-4"></div>
+                    <p className="text-theme-secondary animate-pulse">Brainstorming viral concepts...</p>
                 </div>
             )}
 
@@ -234,42 +234,45 @@ export default function IdeaGenerator() {
                 {ideas.map((idea, index) => (
                     <div
                         key={idea.id}
-                        className="bg-card-theme p-8 rounded-3xl border border-theme hover:border-purple-500/40 transition-all duration-500 hover:shadow-[0_0_30px_rgba(168,85,247,0.1)] hover:-translate-y-1 animate-fade-in group"
+                        className="bg-card-theme p-8 rounded-3xl border border-theme hover:border-primary/40 transition-all duration-500 hover:shadow-[0_0_30px_rgba(249,115,22,0.1)] hover:-translate-y-1 animate-fade-in group"
                         style={{ animationDelay: `${index * 100}ms` }}
                     >
                         <div className="flex justify-between items-start mb-6">
-                            <h3 className="text-2xl font-bold text-theme-primary group-hover:text-purple-300 transition-colors">{idea.title}</h3>
-                            <span className="px-4 py-1.5 bg-purple-900/30 text-purple-300 rounded-full text-xs font-bold uppercase tracking-wide border border-purple-500/30 shadow-[0_0_10px_rgba(168,85,247,0.2)]">
+                            <h3 className="text-2xl font-bold text-theme-primary group-hover:opacity-90 transition-opacity">{idea.title}</h3>
+                            <span className="px-4 py-1.5 bg-accent text-theme-primary rounded-full text-xs font-bold uppercase tracking-wide border border-theme shadow-lg">
                                 {idea.angle}
                             </span>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                            <div className="bg-card-hover p-6 rounded-2xl border border-theme hover:border-purple-500/20 transition-colors">
-                                <p className="text-xs text-purple-400 font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
-                                    <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span> Hook
+                            <div className="bg-secondary p-6 rounded-2xl border border-theme hover:border-theme/80 transition-colors shadow-inner">
+                                <p className="text-xs text-theme-secondary font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-primary"></span> Hook
                                 </p>
                                 <p className="text-theme-secondary text-lg font-medium italic leading-relaxed">&quot;{idea.hook}&quot;</p>
                             </div>
-                            <div className="bg-card-hover p-6 rounded-2xl border border-theme hover:border-purple-500/20 transition-colors">
-                                <p className="text-xs text-blue-400 font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
-                                    <span className="w-2 h-2 rounded-full bg-blue-500"></span> Format
+                            <div className="bg-secondary p-6 rounded-2xl border border-theme hover:border-theme/80 transition-colors shadow-inner">
+                                <p className="text-xs text-theme-secondary font-bold uppercase tracking-wider mb-2 flex items-center gap-2">
+                                    <span className="w-2 h-2 rounded-full bg-primary/60"></span> Format
                                 </p>
                                 <p className="text-theme-secondary text-base leading-relaxed">{idea.format}</p>
                             </div>
                         </div>
 
                         <div className="flex justify-end space-x-4 border-t border-theme pt-6">
-                            <button className="px-6 py-3 bg-card-theme hover:bg-card-hover text-theme-secondary hover:text-theme-primary rounded-xl text-sm font-bold transition-all hover:scale-105 border border-transparent hover:border-theme">
-                                Save for Later
-                            </button>
-                            <button
-                                onClick={() => handleGenerateScript(idea)}
-                                disabled={scriptGenerating === idea.id}
-                                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white rounded-xl text-sm font-bold transition-all flex items-center shadow-lg hover:shadow-purple-500/30 hover:scale-105 disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed"
+                            <NyxButton 
+                                variant="outline" 
+                                showIconContainer={false}
+                                className="px-6 py-2.5"
                             >
-                                {scriptGenerating === idea.id ? <Loader2 className="w-5 h-5 animate-spin" /> : <><FileText className="w-5 h-5 mr-2" /> Generate Script</>}
-                            </button>
+                                SAVE FOR LATER
+                            </NyxButton>
+                            <NyxButton
+                                onClick={() => handleGenerateScript(idea)}
+                                className="px-6 py-2.5"
+                            >
+                                {scriptGenerating === idea.id ? 'GENERATING...' : 'GENERATE SCRIPT'}
+                            </NyxButton>
                         </div>
                     </div>
                 ))}
@@ -283,11 +286,11 @@ export default function IdeaGenerator() {
 
             {/* Script Modal */}
             {generatedScript && (
-                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                <div className="fixed inset-0 bg-page/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
                     <div className="bg-card-theme border border-theme rounded-2xl w-full max-w-5xl h-[90vh] flex flex-col shadow-2xl animate-fade-in">
                         <div className="flex justify-between items-center p-6 border-b border-theme">
                             <h3 className="text-xl font-bold text-theme-primary flex items-center">
-                                <FileText className="w-5 h-5 mr-2 text-purple-400" />
+                                <FileText className="w-5 h-5 mr-2 text-primary" />
                                 Generated Script
                             </h3>
                             <button
@@ -302,7 +305,7 @@ export default function IdeaGenerator() {
                             <textarea
                                 value={generatedScript.content}
                                 onChange={(e) => setGeneratedScript({ ...generatedScript, content: e.target.value })}
-                                className="w-full h-full bg-page p-6 rounded-xl border border-theme font-mono text-sm text-theme-primary focus:outline-none focus:border-purple-500/50 resize-none leading-relaxed"
+                                className="w-full h-full bg-page p-6 rounded-xl border border-theme font-mono text-sm text-theme-primary focus:outline-none focus:border-primary/50 resize-none leading-relaxed"
                                 placeholder="Write your script here..."
                             />
                         </div>
@@ -316,7 +319,7 @@ export default function IdeaGenerator() {
                             </button>
                             <button
                                 onClick={copyToClipboard}
-                                className="px-4 py-2 bg-card-hover hover:bg-theme-secondary/20 text-theme-primary rounded-lg text-sm font-medium transition-colors flex items-center"
+                                className="px-4 py-2 bg-accent hover:bg-theme-secondary/20 text-theme-primary rounded-lg text-sm font-medium transition-colors flex items-center border border-theme"
                             >
                                 {copied ? <><Check className="w-4 h-4 mr-2" /> Copied!</> : <><Copy className="w-4 h-4 mr-2" /> Copy Script</>}
                             </button>
@@ -329,11 +332,11 @@ export default function IdeaGenerator() {
                                         window.location.href = '/dashboard/scripts';
                                     }
                                 }}
-                                className="px-4 py-2 bg-card-hover hover:bg-theme-secondary/20 text-theme-primary rounded-lg text-sm font-medium transition-colors flex items-center"
+                                className="px-4 py-2 bg-accent hover:bg-theme-secondary/20 text-theme-primary rounded-lg text-sm font-medium transition-colors flex items-center border border-theme"
                             >
                                 <FileText className="w-4 h-4 mr-2" /> {scriptSaved ? 'Saved ✓' : 'Edit in Script Editor'}
                             </button>
-                            <button
+                            <NyxButton
                                 onClick={() => {
                                     if (generatedScript) {
                                         localStorage.setItem('current_video_script', generatedScript.content);
@@ -341,10 +344,10 @@ export default function IdeaGenerator() {
                                         window.location.href = '/dashboard/video';
                                     }
                                 }}
-                                className="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:opacity-90 text-white rounded-lg text-sm font-bold transition-all flex items-center shadow-lg hover:shadow-purple-500/25"
+                                className="px-6 py-2.5"
                             >
-                                <Play className="w-4 h-4 mr-2 fill-current" /> Create Video
-                            </button>
+                                CREATE VIDEO
+                            </NyxButton>
                         </div>
                     </div>
                 </div>

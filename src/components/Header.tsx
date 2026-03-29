@@ -35,8 +35,11 @@ export default function Header() {
                     <Menu className="w-6 h-6" />
                 </button>
 
-                <Link href="/dashboard" className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
-                    NYX
+                <Link href="/dashboard" className="flex items-center gap-3 active:scale-95 transition-transform group">
+                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md shadow-orange-500/20 group-hover:shadow-orange-500/40 transition-shadow">
+                        <span className="text-white font-extrabold text-sm">N</span>
+                    </div>
+                    <span className="text-xl font-bold tracking-tight text-theme-primary">NYX</span>
                 </Link>
             </div>
 
@@ -44,7 +47,7 @@ export default function Header() {
                 {/* Search bar - Expandable */}
                 <div className={`group hidden md:block transition-all duration-300 ease-out ${mobileMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
                     <div
-                        className={`flex items-center rounded-full h-10 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] relative overflow-hidden ${isSearchOpen ? 'w-64 bg-page border border-purple-500/50 shadow-[0_0_20px_rgba(168,85,247,0.2)]' : 'w-10 bg-transparent border border-transparent hover:bg-card-hover cursor-pointer'}`}
+                        className={`flex items-center rounded-full h-10 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] relative overflow-hidden ${isSearchOpen ? 'w-64 bg-accent border border-theme shadow-2xl' : 'w-10 bg-transparent border border-transparent hover:bg-card-hover cursor-pointer'}`}
                         onClick={() => {
                             if (!isSearchOpen) {
                                 setIsSearchOpen(true);
@@ -54,7 +57,7 @@ export default function Header() {
                     >
                         {/* Icon - moves left with container expansion */}
                         <div className="absolute left-0 top-0 h-10 w-10 flex items-center justify-center z-10">
-                            <Search className={`h-5 w-5 transition-colors duration-300 ${isSearchOpen ? 'text-purple-400' : 'text-theme-secondary group-hover:text-theme-primary'}`} />
+                            <Search className={`h-5 w-5 transition-colors duration-300 ${isSearchOpen ? 'text-orange-500' : 'text-theme-secondary group-hover:text-theme-primary'}`} />
                         </div>
 
                         {/* Input Field - fades in */}
@@ -78,7 +81,7 @@ export default function Header() {
                     <button className="relative p-2 text-theme-secondary hover:text-theme-primary hover:bg-card-hover rounded-full transition-colors group">
                         <span className="sr-only">Notifications</span>
                         <Bell className="h-6 w-6" />
-                        <span className="absolute top-2 right-2.5 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-black animate-pulse"></span>
+                        <span className="absolute top-2 right-2.5 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-[var(--bg-page)] animate-pulse"></span>
                     </button>
                 </div>
             </div>
@@ -95,12 +98,12 @@ export default function Header() {
                                     key={item.name}
                                     href={item.href}
                                     onClick={() => setMobileMenuOpen(false)}
-                                    className={`group flex items-center px-4 py-3 text-base font-medium rounded-xl transition-all duration-200 ${isActive
-                                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/30'
-                                        : 'text-theme-secondary hover:bg-card-hover hover:text-theme-primary'
+                                    className={`group flex items-center px-4 py-3.5 text-base font-bold rounded-2xl transition-all duration-300 ${isActive
+                                        ? 'bg-gradient-to-r from-orange-500 to-orange-600 text-white shadow-xl shadow-orange-500/30'
+                                        : 'text-theme-secondary hover:bg-orange-500/10 hover:text-orange-500'
                                         }`}
                                 >
-                                    <Icon className={`mr-3 h-5 w-5 transition-colors ${isActive ? 'text-white' : 'text-theme-secondary group-hover:text-theme-primary'}`} />
+                                    <Icon className={`mr-4 h-5 w-5 transition-all duration-300 ${isActive ? 'text-white scale-110' : 'text-theme-secondary group-hover:text-orange-500'}`} />
                                     {item.name}
                                 </Link>
                             );

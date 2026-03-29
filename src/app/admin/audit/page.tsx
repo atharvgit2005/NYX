@@ -6,7 +6,7 @@ import { Search, ChevronDown, Download, Filter } from 'lucide-react';
 import type { AuditEntry } from '@/context/AdminContext';
 
 const CATEGORY_STYLES: Record<string, string> = {
-    subscription: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
+    subscription: 'bg-orange-500/10 text-orange-500 border-orange-500/20',
     user: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
     tier: 'bg-amber-500/10 text-amber-400 border-amber-500/20',
     gate: 'bg-red-500/10 text-red-400 border-red-500/20',
@@ -58,10 +58,10 @@ export default function AuditPage() {
         <div className="space-y-6">
             <div className="flex items-start justify-between">
                 <div>
-                    <h1 className="text-3xl font-black text-white">Audit Log</h1>
+                    <h1 className="text-3xl font-black text-theme-primary">Audit Log</h1>
                     <p className="text-gray-500 mt-1">{filtered.length} entries · tamper-evident record of all admin actions</p>
                 </div>
-                <button onClick={exportCSV} className="flex items-center gap-2 text-xs px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white transition">
+                <button onClick={exportCSV} className="flex items-center gap-2 text-xs px-4 py-2.5 rounded-xl bg-card-theme border border-theme text-theme-secondary hover:text-theme-primary transition">
                     <Download className="w-3.5 h-3.5" /> Export Log
                 </button>
             </div>
@@ -70,16 +70,16 @@ export default function AuditPage() {
             <div className="flex gap-3 flex-wrap">
                 <div className="relative flex-1 min-w-60">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                    <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search actions, targets..." className="w-full bg-white/[0.03] border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-purple-500/50" />
+                    <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search actions, targets..." className="w-full bg-card-theme border border-theme rounded-xl pl-10 pr-4 py-2.5 text-sm text-theme-primary placeholder-gray-600 focus:outline-none focus:border-orange-500/50" />
                 </div>
                 <div className="relative">
-                    <select value={catFilter} onChange={e => setCatFilter(e.target.value)} className="appearance-none bg-white/[0.03] border border-white/10 rounded-xl px-4 py-2.5 pr-9 text-sm text-gray-300 focus:outline-none cursor-pointer">
+                    <select value={catFilter} onChange={e => setCatFilter(e.target.value)} className="appearance-none bg-card-theme border border-theme rounded-xl px-4 py-2.5 pr-9 text-sm text-theme-secondary focus:outline-none cursor-pointer">
                         {['all', 'subscription', 'user', 'tier', 'gate', 'alert'].map(o => <option key={o} value={o} className="bg-gray-900">{o === 'all' ? 'All Categories' : o}</option>)}
                     </select>
                     <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500 pointer-events-none" />
                 </div>
                 <div className="relative">
-                    <select value={adminFilter} onChange={e => setAdminFilter(e.target.value)} className="appearance-none bg-white/[0.03] border border-white/10 rounded-xl px-4 py-2.5 pr-9 text-sm text-gray-300 focus:outline-none cursor-pointer">
+                    <select value={adminFilter} onChange={e => setAdminFilter(e.target.value)} className="appearance-none bg-card-theme border border-theme rounded-xl px-4 py-2.5 pr-9 text-sm text-theme-secondary focus:outline-none cursor-pointer">
                         <option value="all" className="bg-gray-900">All Admins</option>
                         {admins.map(a => <option key={a} value={a} className="bg-gray-900">{a}</option>)}
                     </select>
@@ -94,22 +94,22 @@ export default function AuditPage() {
                         {/* Time + line */}
                         <div className="flex flex-col items-center flex-shrink-0 w-16">
                             <span className="text-[10px] text-gray-600 font-mono">{timeAgo(entry.timestamp)}</span>
-                            {idx < filtered.length - 1 && <div className="w-px flex-1 bg-white/5 mt-1" style={{ minHeight: 24 }} />}
+                            {idx < filtered.length - 1 && <div className="w-px flex-1 bg-card-theme mt-1" style={{ minHeight: 24 }} />}
                         </div>
 
                         {/* Icon */}
-                        <div className="w-8 h-8 rounded-lg bg-white/[0.03] border border-white/5 flex items-center justify-center text-sm flex-shrink-0 mt-0.5">
+                        <div className="w-8 h-8 rounded-lg bg-card-theme border border-theme flex items-center justify-center text-sm flex-shrink-0 mt-0.5">
                             {CATEGORY_ICONS[entry.category]}
                         </div>
 
                         {/* Content */}
                         <div className="flex-1 py-1">
                             <div className="flex items-start gap-3 flex-wrap">
-                                <p className="text-sm font-bold text-white">{entry.action}</p>
+                                <p className="text-sm font-bold text-theme-primary">{entry.action}</p>
                                 <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border capitalize ${CATEGORY_STYLES[entry.category]}`}>{entry.category}</span>
                             </div>
                             <p className="text-xs text-gray-500 mt-0.5">
-                                <span className="text-gray-400">Target:</span> {entry.target}
+                                <span className="text-theme-secondary">Target:</span> {entry.target}
                             </p>
                             <p className="text-xs text-gray-600 mt-0.5">{entry.details}</p>
                             <p className="text-[10px] text-gray-700 mt-1 font-mono">{entry.admin} · {new Date(entry.timestamp).toLocaleString()}</p>

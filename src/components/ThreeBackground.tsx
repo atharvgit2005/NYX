@@ -33,7 +33,7 @@ export default function ThreeBackground() {
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
         // Dynamic Color based on theme
-        const particleColor = theme === 'light' ? 0x9333ea : 0xffffff; // Purple in light mode, White in dark mode (or adjust as needed)
+        const particleColor = theme === 'light' ? 0xf97316 : 0xffffff; // Orange in light mode, White in dark mode
 
         const material = new THREE.PointsMaterial({
             size: 0.005,
@@ -100,8 +100,8 @@ export default function ThreeBackground() {
 
     // Dynamic Background Gradient
     const backgroundStyle = theme === 'light'
-        ? 'radial-gradient(circle at center, #fdf4ff 0%, #ffffff 100%)' // Light mode gradient
-        : 'radial-gradient(circle at center, #1a0b2e 0%, #000000 100%)'; // Dark mode gradient (Purple-Black)
+        ? 'radial-gradient(circle at center, #fff7ed 0%, #ffffff 100%)' // Light orange tint in light mode
+        : 'radial-gradient(circle at center, #2e0d00 0%, #000000 100%)'; // Dark orange-black in dark mode
 
     return (
         <div

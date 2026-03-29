@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Target, MessageCircle, Users, Layers, TrendingUp, ArrowRight, AlertCircle, Loader2 } from 'lucide-react';
+import { Target, MessageCircle, Users, Layers, TrendingUp, ArrowRight, AlertCircle, Loader2, Link as LinkIcon, Check } from 'lucide-react';
+import NyxButton from './ui/NyxButton';
 
 export default function BrandAnalysis() {
     const [analyzing, setAnalyzing] = useState(false);
@@ -107,19 +108,20 @@ export default function BrandAnalysis() {
     if (!username) {
         return (
             <div className="max-w-4xl mx-auto text-center py-20">
-                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/5 mb-6">
-                    <AlertCircle className="w-10 h-10 text-gray-400" />
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-secondary border border-theme mb-6">
+                    <AlertCircle className="w-10 h-10 text-theme-secondary" />
                 </div>
-                <h2 className="text-3xl font-bold text-white mb-4">No Account Connected</h2>
-                <p className="text-gray-400 mb-8 max-w-md mx-auto">
+                <h2 className="text-3xl font-bold text-theme-primary mb-4">No Account Connected</h2>
+                <p className="text-theme-secondary mb-8 max-w-md mx-auto">
                     Please connect an Instagram or YouTube account to enable AI brand analysis.
                 </p>
-                <Link
+                <NyxButton
                     href="/dashboard/connect"
-                    className="inline-flex items-center px-8 py-4 bg-purple-600 hover:bg-purple-700 rounded-full font-bold text-white transition-all hover:scale-105"
+                    icon={LinkIcon}
+                    className="px-8 py-4"
                 >
-                    Connect Account <ArrowRight className="ml-2 w-5 h-5" />
-                </Link>
+                    CONNECT ACCOUNT
+                </NyxButton>
             </div>
         );
     }
@@ -127,18 +129,18 @@ export default function BrandAnalysis() {
     return (
         <div className="max-w-6xl mx-auto">
             <div className="flex flex-col md:flex-row items-center justify-center mb-10 gap-4">
-                <div className="bg-card-theme p-1 rounded-full flex border border-theme">
+                <div className="bg-accent p-1.5 rounded-full flex border border-theme shadow-2xl">
                     <button
                         onClick={() => switchPlatform('instagram')}
-                        className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${activePlatform === 'instagram' ? 'bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md' : 'text-theme-secondary hover:text-theme-primary'}`}
+                        className={`px-8 py-2 rounded-full text-xs font-bold transition-all ${activePlatform === 'instagram' ? 'bg-inverse text-inverse shadow-lg' : 'text-theme-secondary hover:text-theme-primary'}`}
                     >
-                        Instagram
+                        INSTAGRAM
                     </button>
                     <button
                         onClick={() => switchPlatform('youtube')}
-                        className={`px-6 py-2 rounded-full text-sm font-bold transition-all ${activePlatform === 'youtube' ? 'bg-red-600 text-white shadow-md' : 'text-theme-secondary hover:text-theme-primary'}`}
+                        className={`px-8 py-2 rounded-full text-xs font-bold transition-all ${activePlatform === 'youtube' ? 'bg-inverse text-inverse shadow-lg' : 'text-theme-secondary hover:text-theme-primary'}`}
                     >
-                        YouTube Shorts
+                        YOUTUBE
                     </button>
                 </div>
             </div>
@@ -147,31 +149,24 @@ export default function BrandAnalysis() {
                 <div>
                     <h2 className="text-4xl font-bold text-theme-primary mb-2">Brand Analysis</h2>
                     <p className="text-theme-secondary text-lg">
-                        AI insights for <span className="text-purple-400 font-bold">@{username}</span>
+                        AI insights for <span className="text-theme-primary font-bold">@{username}</span>
                     </p>
                 </div>
-                <button
+                <NyxButton
                     onClick={handleAnalyze}
-                    disabled={analyzing}
-                    className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl font-bold text-white hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+                    className="px-8 py-4"
                 >
-                    {analyzing ? (
-                        <><Loader2 className="w-5 h-5 mr-2 animate-spin" /> Analyzing...</>
-                    ) : analysis ? (
-                        <><Target className="w-5 h-5 mr-2" /> Regenerate Analysis</>
-                    ) : (
-                        <><Target className="w-5 h-5 mr-2" /> Start Analysis</>
-                    )}
-                </button>
+                    {analyzing ? 'ANALYZING...' : analysis ? 'REGENERATE ANALYSIS' : 'START ANALYSIS'}
+                </NyxButton>
             </div>
 
             {analyzing && (
-                <div className="flex flex-col items-center justify-center py-32 bg-card-theme rounded-3xl border border-theme">
+                <div className="flex flex-col items-center justify-center py-32 bg-secondary rounded-3xl border border-theme">
                     <div className="relative w-24 h-24 mb-8">
-                        <div className="absolute inset-0 border-4 border-purple-500/30 rounded-full"></div>
-                        <div className="absolute inset-0 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
+                        <div className="absolute inset-0 border-4 border-theme/20 rounded-full"></div>
+                        <div className="absolute inset-0 border-4 border-theme border-t-orange-500 rounded-full animate-spin"></div>
                         <div className="absolute inset-0 flex items-center justify-center">
-                            <Target className="w-8 h-8 text-purple-400 animate-pulse" />
+                            <Target className="w-8 h-8 text-theme-primary animate-pulse" />
                         </div>
                     </div>
                     <h3 className="text-2xl font-bold text-theme-primary mb-2">Analyzing your content...</h3>
@@ -196,39 +191,39 @@ export default function BrandAnalysis() {
                     <div className="lg:col-span-2 space-y-6">
                         {/* Niche & Tone Row */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="p-8 rounded-3xl bg-gradient-to-br from-purple-900/20 to-transparent border border-purple-500/30 relative overflow-hidden group">
-                                <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:scale-110 transition-transform"><Target className="w-20 h-20" /></div>
+                            <div className="p-8 rounded-3xl bg-secondary border border-theme relative overflow-hidden group shadow-2xl">
+                                <div className="absolute -bottom-8 -right-8 opacity-[0.03] pointer-events-none group-hover:scale-110 transition-transform"><Target className="w-48 h-48" /></div>
                                 <div className="relative z-10">
-                                    <h3 className="text-purple-400 font-bold mb-2 flex items-center"><Target className="w-5 h-5 mr-2" /> Your Niche</h3>
+                                    <h3 className="text-theme-secondary font-bold mb-2 flex items-center"><Target className="w-5 h-5 mr-2" /> Your Niche</h3>
                                     <p className="text-2xl font-bold text-theme-primary leading-tight">{analysis.niche}</p>
                                 </div>
                             </div>
-                            <div className="p-8 rounded-3xl bg-card-theme border border-theme relative overflow-hidden group hover:border-pink-500/30 transition-colors">
-                                <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:scale-110 transition-transform"><MessageCircle className="w-20 h-20" /></div>
+                            <div className="p-8 rounded-3xl bg-secondary border border-theme relative overflow-hidden group hover:border-theme/80 transition-colors">
+                                <div className="absolute -bottom-8 -right-8 opacity-[0.02] pointer-events-none group-hover:scale-110 transition-transform"><MessageCircle className="w-48 h-48" /></div>
                                 <div className="relative z-10">
-                                    <h3 className="text-pink-400 font-bold mb-2 flex items-center"><MessageCircle className="w-5 h-5 mr-2" /> Tone of Voice</h3>
+                                    <h3 className="text-theme-secondary font-bold mb-2 flex items-center"><MessageCircle className="w-5 h-5 mr-2" /> Tone of Voice</h3>
                                     <p className="text-xl text-theme-primary">{analysis.tone}</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Audience */}
-                        <div className="p-8 rounded-3xl bg-card-theme border border-theme relative overflow-hidden group hover:border-blue-500/30 transition-colors">
-                            <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:scale-110 transition-transform"><Users className="w-20 h-20" /></div>
+                        <div className="p-8 rounded-3xl bg-secondary border border-theme relative overflow-hidden group hover:border-theme/80 transition-colors">
+                            <div className="absolute -bottom-10 -right-10 opacity-[0.02] pointer-events-none group-hover:scale-110 transition-transform"><Users className="w-56 h-56" /></div>
                             <div className="relative z-10">
-                                <h3 className="text-blue-400 font-bold mb-2 flex items-center"><Users className="w-5 h-5 mr-2" /> Target Audience</h3>
+                                <h3 className="text-theme-secondary font-bold mb-2 flex items-center"><Users className="w-5 h-5 mr-2" /> Target Audience</h3>
                                 <p className="text-xl text-theme-primary">{analysis.audience}</p>
                             </div>
                         </div>
 
                         {/* Pillars */}
-                        <div className="p-8 rounded-3xl bg-card-theme border border-theme relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-6 opacity-5"><Layers className="w-24 h-24" /></div>
-                            <h3 className="text-green-400 font-bold mb-6 flex items-center relative z-10"><Layers className="w-5 h-5 mr-2" /> Content Pillars</h3>
+                        <div className="p-8 rounded-3xl bg-secondary border border-theme relative overflow-hidden group">
+                            <div className="absolute -bottom-10 -right-10 opacity-[0.02] pointer-events-none group-hover:scale-110 transition-transform"><Layers className="w-56 h-56" /></div>
+                            <h3 className="text-theme-secondary font-bold mb-6 flex items-center relative z-10"><Layers className="w-5 h-5 mr-2" /> Content Pillars</h3>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
                                 {analysis.pillars.map((pillar: string, i: number) => (
-                                    <div key={i} className="flex items-center bg-card-theme p-4 rounded-xl border border-theme">
-                                        <div className="w-2 h-2 bg-green-500 rounded-full mr-3 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
+                                    <div key={i} className="flex items-center bg-accent p-4 rounded-xl border border-theme">
+                                        <div className="w-2 h-2 bg-orange-500 rounded-full mr-3 shadow-[0_0_10px_rgba(249,115,22,0.3)]"></div>
                                         <span className="text-theme-secondary font-medium">{pillar}</span>
                                     </div>
                                 ))}
@@ -236,12 +231,12 @@ export default function BrandAnalysis() {
                         </div>
 
                         {/* Competitors */}
-                        <div className="p-8 rounded-3xl bg-card-theme border border-theme relative overflow-hidden">
-                            <div className="absolute top-0 right-0 p-6 opacity-5"><TrendingUp className="w-24 h-24" /></div>
-                            <h3 className="text-yellow-400 font-bold mb-6 flex items-center"><TrendingUp className="w-5 h-5 mr-2" /> Competitors</h3>
+                        <div className="p-8 rounded-3xl bg-secondary border border-theme relative overflow-hidden group">
+                            <div className="absolute -bottom-10 -right-10 opacity-[0.02] pointer-events-none group-hover:scale-110 transition-transform"><TrendingUp className="w-56 h-56" /></div>
+                            <h3 className="text-theme-secondary font-bold mb-6 flex items-center"><TrendingUp className="w-5 h-5 mr-2" /> Competitors</h3>
                             <ul className="space-y-3">
                                 {analysis.competitors.map((comp: string, i: number) => (
-                                    <li key={i} className="flex items-center justify-between p-3 rounded-xl hover:bg-card-hover transition-colors cursor-pointer group">
+                                    <li key={i} className="flex items-center justify-between p-3 rounded-xl hover:bg-accent transition-colors cursor-pointer group">
                                         <span className="text-theme-secondary font-medium group-hover:text-theme-primary transition-colors">{comp}</span>
                                         <ArrowRight className="w-4 h-4 text-theme-secondary group-hover:text-theme-primary transition-colors" />
                                     </li>
@@ -252,11 +247,10 @@ export default function BrandAnalysis() {
 
                     {/* Right Column: Profile Preview */}
                     <div className="space-y-6">
-                        <div className="bg-card-theme backdrop-blur-xl border border-theme rounded-3xl p-6 sticky top-24">
+                        <div className="bg-secondary/60 backdrop-blur-xl border border-theme rounded-3xl p-6 sticky top-24 shadow-2xl">
                             <div className="flex items-center space-x-4 mb-6">
-                                <div className={`w-16 h-16 rounded-full p-[2px] ${activePlatform === 'youtube' ? 'bg-gradient-to-tr from-red-600 to-red-400' : 'bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500'}`}>
-                                    <div className="w-full h-full rounded-full bg-black overflow-hidden relative">
-                                        {/* Avatar Fallback */}
+                                <div className={`w-16 h-16 rounded-full p-[2px] bg-accent border-2 border-theme`}>
+                                    <div className="w-full h-full rounded-full bg-transparent overflow-hidden relative">
                                         <img
                                             src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${analysis.scrapedData?.fullName || username}`}
                                             alt={username || 'Profile'}
@@ -273,7 +267,7 @@ export default function BrandAnalysis() {
                             <div className="flex justify-between text-center mb-6 py-4 border-y border-theme">
                                 <div>
                                     <p className="font-bold text-theme-primary">{analysis.scrapedData?.posts?.length || 0}</p>
-                                    <p className="text-xs text-theme-secondary">{activePlatform === 'youtube' ? 'Shorts' : 'Posts'}</p>
+                                    <p className="text-xs text-theme-secondary">{activePlatform === 'youtube' ? 'Videos' : 'Posts'}</p>
                                 </div>
                                 <div>
                                     <p className="font-bold text-theme-primary">{analysis.scrapedData?.followers || 'N/A'}</p>
@@ -290,14 +284,13 @@ export default function BrandAnalysis() {
                             </div>
 
                             {/* Recent Posts Grid */}
-                            <h4 className="text-xs font-bold text-theme-secondary uppercase mb-3 text-center md:text-left">Recent Content</h4>
-                            <div className={`grid gap-2 ${activePlatform === 'youtube' ? 'grid-cols-2' : 'grid-cols-3'}`}>
-                                {analysis.scrapedData?.posts?.slice(0, 6).map((post: any, i: number) => (
-                                    <div key={i} className={`${activePlatform === 'youtube' ? 'aspect-[9/16]' : 'aspect-square'} bg-card-theme rounded-lg overflow-hidden relative group cursor-pointer border border-theme`}>
+                                <div className={`grid gap-2 ${activePlatform === 'youtube' ? 'grid-cols-2' : 'grid-cols-3'}`}>
+                                    {analysis.scrapedData?.posts?.slice(0, 6).map((post: any, i: number) => (
+                                        <div key={i} className={`${activePlatform === 'youtube' ? 'aspect-[9/16]' : 'aspect-square'} bg-accent rounded-lg overflow-hidden relative group cursor-pointer border border-theme/20`}>
                                         {post.imageUrl ? (
                                             <img src={`/api/proxy-image?url=${encodeURIComponent(post.imageUrl)}`} alt="Post" className="w-full h-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
                                         ) : (
-                                            <div className="w-full h-full flex items-center justify-center text-gray-700 bg-gray-900">
+                                            <div className="w-full h-full flex items-center justify-center text-theme-secondary bg-accent">
                                                 <AlertCircle className="w-4 h-4" />
                                             </div>
                                         )}
@@ -311,17 +304,16 @@ export default function BrandAnalysis() {
                                 ))}
                             </div>
 
-                            <a
+                            <NyxButton
                                 href={activePlatform === 'youtube' ? `https://youtube.com/@${username}` : `https://instagram.com/${username}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="mt-6 block w-full py-3 bg-card-hover hover:bg-card-theme text-theme-primary text-center rounded-xl font-bold text-sm transition-colors border border-theme"
+                                className="mt-6 w-full justify-center"
+                                variant="outline"
                             >
-                                View on {activePlatform === 'youtube' ? 'YouTube' : 'Instagram'} ↗
-                            </a>
+                                VIEW ON {activePlatform === 'youtube' ? 'YOUTUBE' : 'INSTAGRAM'}
+                            </NyxButton>
 
                             {analysis.scrapedData?.isMockData && (
-                                <p className="text-[10px] text-yellow-500/50 text-center mt-4">
+                                <p className="text-[10px] text-theme-secondary text-center mt-4 opacity-60">
                                     *Showing mock data (Scraper restricted)
                                 </p>
                             )}

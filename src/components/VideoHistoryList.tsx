@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { Upload } from 'lucide-react';
+import NyxButton from './ui/NyxButton';
 
 export default function VideoHistoryList() {
     const { data: session } = useSession();
@@ -76,7 +77,7 @@ export default function VideoHistoryList() {
         <div>
             {/* Debug Info */}
             <div className="mb-4 text-xs text-theme-secondary font-mono text-right">
-                Logged in as: <span className="text-purple-400 font-bold">{session?.user?.email || "Not Logged In"}</span>
+                Logged in as: <span className="text-orange-500 font-bold">{session?.user?.email || "Not Logged In"}</span>
             </div>
 
             {/* Admin Controls */}
@@ -89,22 +90,13 @@ export default function VideoHistoryList() {
                     onChange={handleUpload}
                     disabled={uploading}
                 />
-                <label
-                    htmlFor="video-upload"
-                    className={`cursor-pointer px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 hover:shadow-lg hover:shadow-purple-500/30 rounded-xl text-white text-sm font-bold flex items-center gap-2 transition-all hover:scale-105 ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                <NyxButton 
+                    variant="primary" 
+                    icon={Upload}
+                    onClick={() => document.getElementById('video-upload')?.click()}
                 >
-                    {uploading ? (
-                        <>
-                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                            Uploading...
-                        </>
-                    ) : (
-                        <>
-                            <Upload className="w-4 h-4" />
-                            <span>Upload Video</span>
-                        </>
-                    )}
-                </label>
+                    {uploading ? 'UPLOADING...' : 'UPLOAD VIDEO'}
+                </NyxButton>
             </div>
 
             {videos.length === 0 ? (
@@ -166,12 +158,12 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
     }, [video.status, video.id]);
 
     return (
-        <div className="bg-card-theme rounded-xl overflow-hidden border border-theme hover:border-purple-500/30 transition-colors relative group">
+        <div className="bg-card-theme rounded-xl overflow-hidden border border-theme hover:border-orange-500/30 transition-colors relative group">
 
             {/* Delete Button (Always Visible) */}
             <button
                 onClick={(e) => { e.stopPropagation(); onDelete(); }}
-                className="absolute top-2 right-2 z-20 bg-red-500/80 hover:bg-red-600 text-white p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute top-2 right-2 z-20 bg-red-500/80 hover:bg-red-600  p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity"
                 title="Delete Video"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -180,7 +172,7 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
                 </svg>
             </button>
 
-            <div className="aspect-[9/16] bg-black flex items-center justify-center relative">
+            <div className="aspect-[9/16] bg-page flex items-center justify-center relative">
                 {video.url ? (
                     video.url.includes('placeholder') ? (
                         <>
@@ -213,13 +205,13 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
                     <div className="text-theme-secondary text-sm flex flex-col items-center w-full px-6">
                         {video.status === 'processing' ? (
                             <div className="w-full">
-                                <div className="flex justify-between text-xs text-purple-400 mb-2">
+                                <div className="flex justify-between text-xs text-orange-500 mb-2">
                                     <span>Creating Video...</span>
                                     <span>{Math.round(progress)}%</span>
                                 </div>
                                 <div className="w-full bg-gray-700/50 rounded-full h-2 overflow-hidden">
                                     <div
-                                        className="bg-purple-500 h-full rounded-full transition-all duration-500"
+                                        className="bg-orange-500 h-full rounded-full transition-all duration-500"
                                         style={{ width: `${progress}%` }}
                                     />
                                 </div>
@@ -235,7 +227,7 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
                 <div className="flex justify-between items-start mb-2">
                     <p className="text-xs text-theme-secondary font-mono" title={video.id}>ID: {video.id.substring(0, 8)}...</p>
                     <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${video.status === 'completed' ? 'bg-green-500/20 text-green-400' :
-                        video.status === 'processing' ? 'bg-purple-500/20 text-purple-400' : 'bg-red-500/20 text-red-400'
+                        video.status === 'processing' ? 'bg-orange-500/20 text-orange-400' : 'bg-red-500/20 text-red-400'
                         }`}>
                         {video.status}
                     </span>
@@ -245,14 +237,16 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
                 </p>
                 {/* Download Button for Completed */}
                 {video.status === 'completed' && !video.url?.includes('placeholder') && !playError && (
-                    <a
+                    <NyxButton
                         href={video.url}
+                        variant="outline"
+                        showIconContainer={false}
+                        className="mt-3 w-full justify-center"
                         download
                         target="_blank"
-                        className="mt-3 block w-full py-2 bg-card-hover hover:bg-card-theme border border-theme rounded text-center text-xs font-bold text-theme-secondary hover:text-theme-primary transition-colors"
                     >
-                        Download Video
-                    </a>
+                        DOWNLOAD VIDEO
+                    </NyxButton>
                 )}
             </div>
         </div>

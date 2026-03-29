@@ -11,7 +11,7 @@ export default function ProfileCard() {
 
     return (
         <div className="bg-card-theme p-8 rounded-3xl border border-theme flex flex-col items-center text-center">
-            <div className="w-24 h-24 mb-4 rounded-full border-2 border-purple-500 p-1 relative overflow-hidden">
+            <div className="w-24 h-24 mb-4 rounded-full border-2 border-orange-500 p-1 relative overflow-hidden">
                 {session.user.image ? (
                     <Image
                         src={session.user.image}

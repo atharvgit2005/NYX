@@ -94,10 +94,10 @@ export default function AvatarUpload() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Avatar Configuration */}
-                <div className="bg-card-theme p-8 rounded-3xl border border-theme hover:border-purple-500/50 transition-colors">
+                <div className="bg-card-theme p-8 rounded-3xl border border-theme hover:border-white/20 transition-colors">
                     <div className="text-center mb-8">
-                        <div className="w-16 h-16 bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-4 border border-purple-500/30">
-                            <Video className="w-8 h-8 text-purple-400" />
+                        <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/10">
+                            <Video className="w-8 h-8 text-white" />
                         </div>
                         <h3 className="text-2xl font-bold text-theme-primary mb-2">HeyGen Avatar</h3>
                         <p className="text-sm text-theme-secondary">
@@ -111,7 +111,7 @@ export default function AvatarUpload() {
                                 <label className="block text-xs font-bold text-theme-secondary uppercase">Avatar ID</label>
                                 <button
                                     onClick={() => setShowAvatarHelp(!showAvatarHelp)}
-                                    className="text-xs text-purple-400 hover:text-purple-300 flex items-center"
+                                    className="text-xs text-white hover:text-white/70 flex items-center transition-colors"
                                 >
                                     <HelpCircle className="w-4 h-4 mr-1" /> Where do I find this?
                                 </button>
@@ -121,8 +121,8 @@ export default function AvatarUpload() {
                                 value={avatarId}
                                 onChange={(e) => { setAvatarId(e.target.value); setError(null); }}
                                 placeholder="e.g., Tyler-insuit-20220721"
-                                className={`w-full bg-page border rounded-xl px-4 py-3 text-theme-primary focus:outline-none transition-colors font-mono text-sm ${
-                                    isStreamingAvatar ? 'border-red-500/60 focus:border-red-500' : 'border-theme focus:border-purple-500'
+                                className={`w-full bg-zinc-950/40 border rounded-xl px-4 py-3 text-theme-primary focus:outline-none transition-colors font-mono text-sm ${
+                                    isStreamingAvatar ? 'border-red-500/60 focus:border-red-500' : 'border-white/10 focus:border-white/40'
                                 }`}
                             />
 
@@ -147,8 +147,8 @@ export default function AvatarUpload() {
                                             onClick={() => { setAvatarId(a.id); setError(null); }}
                                             className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
                                                 avatarId === a.id
-                                                    ? 'bg-purple-500/20 border-purple-500/50 text-purple-300'
-                                                    : 'bg-card-hover border-theme text-theme-secondary hover:border-purple-500/30 hover:text-theme-primary'
+                                                     ? 'bg-white text-black border-white'
+                                                    : 'bg-zinc-900 border-white/10 text-zinc-500 hover:border-white/20 hover:text-white'
                                             }`}>
                                             {a.label}
                                         </button>
@@ -158,10 +158,10 @@ export default function AvatarUpload() {
                         </div>
 
                         {showAvatarHelp && (
-                            <div className="bg-purple-500/10 p-4 rounded-xl border border-purple-500/20 text-sm text-theme-secondary animate-fade-in">
+                            <div className="bg-white/5 p-4 rounded-xl border border-white/10 text-sm text-theme-secondary animate-fade-in">
                                 <h4 className="font-bold text-theme-primary mb-2 flex items-center"><Info className="w-4 h-4 mr-2" /> How to find your Avatar ID:</h4>
                                 <ol className="list-decimal list-inside space-y-1 text-xs">
-                                    <li>Log in to <a href="https://app.heygen.com/avatars" target="_blank" className="text-purple-400 underline">HeyGen Avatars</a>.</li>
+                                    <li>Log in to <a href="https://app.heygen.com/avatars" target="_blank" className="text-white underline">HeyGen Avatars</a>.</li>
                                     <li>Click a <strong>Talking Avatar</strong> (NOT a Streaming Avatar — those start with sk_ and don&apos;t work here).</li>
                                     <li>Copy the ID from the URL or avatar settings.</li>
                                     <li>Or use the public ones above to test.</li>
@@ -172,7 +172,7 @@ export default function AvatarUpload() {
                         <button
                             onClick={handleSaveAvatarId}
                             disabled={!avatarId || isStreamingAvatar}
-                            className="w-full py-3 bg-card-hover hover:bg-card-theme border border-theme rounded-xl font-bold text-theme-primary transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-full py-3 bg-white text-black hover:bg-white/90 rounded-xl font-bold transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                         >
                             <Check className="w-4 h-4" /> Save Avatar ID
                         </button>
@@ -180,10 +180,10 @@ export default function AvatarUpload() {
                 </div>
 
                 {/* Voice Configuration */}
-                <div className="bg-card-theme p-8 rounded-3xl border border-theme hover:border-pink-500/50 transition-colors">
+                <div className="bg-card-theme p-8 rounded-3xl border border-theme hover:border-white/20 transition-colors">
                     <div className="text-center mb-8">
-                        <div className="w-16 h-16 bg-pink-500/10 rounded-full flex items-center justify-center mx-auto mb-4 border border-pink-500/30">
-                            <Mic className="w-8 h-8 text-pink-400" />
+                        <div className="w-16 h-16 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/10">
+                            <Mic className="w-8 h-8 text-white" />
                         </div>
                         <h3 className="text-2xl font-bold text-theme-primary mb-2">Voice Configuration</h3>
                         <p className="text-sm text-theme-secondary">
@@ -200,7 +200,7 @@ export default function AvatarUpload() {
                                 value={voiceId || ''}
                                 onChange={(e) => setVoiceId(e.target.value)}
                                 placeholder="e.g., 2d5b0e6cf361460aa7fc47e3cee4b35c"
-                                className="w-full bg-page border border-theme rounded-xl px-4 py-3 text-theme-primary focus:outline-none focus:border-pink-500 transition-colors font-mono text-sm"
+                                className="w-full bg-zinc-950/40 border border-white/10 rounded-xl px-4 py-3 text-theme-primary focus:outline-none focus:border-white/40 transition-colors font-mono text-sm"
                             />
                             <p className="text-xs text-theme-secondary mt-2">
                                 Enter the ID of your custom voice from HeyGen.
@@ -223,22 +223,22 @@ export default function AvatarUpload() {
                                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                                     onChange={(e) => setVoiceFile(e.target.files?.[0] || null)}
                                 />
-                                <Upload className="w-6 h-6 text-theme-secondary mx-auto mb-2 group-hover:text-pink-400 transition-colors" />
+                                <Upload className="w-6 h-6 text-theme-secondary mx-auto mb-2 group-hover:text-white transition-colors" />
                                 {voiceFile ? (
                                     <div className="text-green-500 text-xs font-medium truncate px-2">
                                         {voiceFile.name}
                                     </div>
                                 ) : (
                                     <div className="text-theme-secondary text-xs">
-                                        <span className="text-pink-400 font-medium">Click to upload</span> audio sample
+                                        <span className="text-white font-medium">Click to upload</span> audio sample
                                     </div>
                                 )}
                             </div>
 
-                            <button
+                             <button
                                 onClick={handleCloneVoice}
                                 disabled={!voiceFile || cloningVoice}
-                                className="w-full mt-3 py-2 bg-theme-primary text-white hover:opacity-90 rounded-lg font-bold text-xs transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                                className="w-full mt-3 py-2 bg-white text-black hover:bg-white/90 rounded-lg font-bold text-xs transition-all disabled:opacity-50 flex items-center justify-center gap-2"
                             >
                                 {cloningVoice ? <><Loader2 className="w-4 h-4 animate-spin" /> Cloning...</> : 'Clone & Use this Voice'}
                             </button>
@@ -251,7 +251,7 @@ export default function AvatarUpload() {
                                     alert('Voice ID saved!');
                                 }
                             }}
-                            className="w-full py-3 bg-card-hover hover:bg-card-theme rounded-xl font-bold text-theme-primary transition-colors flex items-center justify-center gap-2"
+                            className="w-full py-3 bg-zinc-900 border border-white/10 hover:bg-zinc-800 rounded-xl font-bold text-white transition-all flex items-center justify-center gap-2"
                         >
                             <Check className="w-4 h-4" /> Save Voice ID
                         </button>

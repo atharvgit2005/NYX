@@ -8,7 +8,7 @@ const STATUS_STYLES: Record<string, string> = {
     active: 'bg-green-500/10 text-green-400 border-green-500/20',
     pending: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
     paused: 'bg-blue-500/10 text-blue-400 border-blue-500/20',
-    cancelled: 'bg-gray-500/10 text-gray-400 border-gray-500/20',
+    cancelled: 'bg-gray-500/10 text-theme-secondary border-gray-500/20',
     restricted: 'bg-red-500/10 text-red-400 border-red-500/20',
 };
 
@@ -16,7 +16,7 @@ const PAY_STYLES: Record<string, string> = {
     paid: 'text-green-400',
     pending: 'text-yellow-400',
     failed: 'text-red-400',
-    refunded: 'text-gray-400',
+    refunded: 'text-theme-secondary',
 };
 
 export default function SubscriptionsPage() {
@@ -81,7 +81,7 @@ export default function SubscriptionsPage() {
         <div className="space-y-6">
             <div className="flex items-start justify-between">
                 <div>
-                    <h1 className="text-3xl font-black text-white">Subscriptions</h1>
+                    <h1 className="text-3xl font-black text-theme-primary">Subscriptions</h1>
                     <p className="text-gray-500 mt-1">{subscriptions.length} total · <span className="text-yellow-400 font-medium">{pendingCount} pending approval</span></p>
                 </div>
             </div>
@@ -90,10 +90,10 @@ export default function SubscriptionsPage() {
             <div className="flex gap-3">
                 <div className="relative flex-1">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                    <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search by user..." className="w-full bg-white/[0.03] border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-purple-500/50" />
+                    <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search by user..." className="w-full bg-card-theme border border-theme rounded-xl pl-10 pr-4 py-2.5 text-sm text-theme-primary placeholder-gray-600 focus:outline-none focus:border-orange-500/50" />
                 </div>
                 <div className="relative">
-                    <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="appearance-none bg-white/[0.03] border border-white/10 rounded-xl px-4 py-2.5 pr-9 text-sm text-gray-300 focus:outline-none focus:border-purple-500/50 cursor-pointer">
+                    <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="appearance-none bg-card-theme border border-theme rounded-xl px-4 py-2.5 pr-9 text-sm text-theme-secondary focus:outline-none focus:border-orange-500/50 cursor-pointer">
                         {['all', 'active', 'pending', 'paused', 'restricted', 'cancelled'].map(o => <option key={o} value={o} className="bg-gray-900">{o === 'all' ? 'All Statuses' : o}</option>)}
                     </select>
                     <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500 pointer-events-none" />
@@ -106,11 +106,11 @@ export default function SubscriptionsPage() {
                     const isExpanded = expanded === sub.id;
                     const tier = tiers.find(t => t.name === sub.tier);
                     return (
-                        <div key={sub.id} className="rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden">
+                        <div key={sub.id} className="rounded-2xl border border-theme bg-card-theme overflow-hidden">
                             <div className="p-5 flex items-center gap-4">
                                 <div className="flex-1 grid grid-cols-5 gap-4 items-center">
                                     <div>
-                                        <p className="text-sm font-bold text-white">{sub.userName}</p>
+                                        <p className="text-sm font-bold text-theme-primary">{sub.userName}</p>
                                         <p className="text-xs text-gray-500">{sub.userEmail}</p>
                                     </div>
                                     <div>
@@ -119,7 +119,7 @@ export default function SubscriptionsPage() {
                                     </div>
                                     <div>
                                         <p className="text-xs text-gray-600 mb-0.5">Renewal</p>
-                                        <p className="text-sm text-gray-300">{new Date(sub.renewalDate).toLocaleDateString()}</p>
+                                        <p className="text-sm text-theme-secondary">{new Date(sub.renewalDate).toLocaleDateString()}</p>
                                     </div>
                                     <div>
                                         <p className="text-xs text-gray-600 mb-0.5">Payment</p>
@@ -137,26 +137,26 @@ export default function SubscriptionsPage() {
                                     {sub.status === 'active' && (
                                         <>
                                             <button onClick={() => openModal(sub.id, 'pause')} className="text-xs px-3 py-1.5 rounded-lg bg-blue-500/10 border border-blue-500/20 text-blue-400 hover:bg-blue-500/20 transition">Pause</button>
-                                            <button onClick={() => openModal(sub.id, 'extend')} className="text-xs px-3 py-1.5 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 hover:bg-purple-500/20 transition">Extend</button>
+                                            <button onClick={() => openModal(sub.id, 'extend')} className="text-xs px-3 py-1.5 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-500 hover:bg-orange-500/20 transition">Extend</button>
                                         </>
                                     )}
                                     {(sub.status === 'paused' || sub.status === 'restricted') && (
                                         <button onClick={() => openModal(sub.id, 'approve')} className="text-xs px-3 py-1.5 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400 hover:bg-green-500/20 transition">Restore</button>
                                     )}
-                                    <button onClick={() => setExpanded(isExpanded ? null : sub.id)} className="p-1.5 rounded-lg hover:bg-white/10 text-gray-500 hover:text-white transition">
+                                    <button onClick={() => setExpanded(isExpanded ? null : sub.id)} className="p-1.5 rounded-lg hover:bg-card-theme text-gray-500 hover:text-theme-primary transition">
                                         <ChevronRight className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
                                     </button>
                                 </div>
                             </div>
 
                             {isExpanded && (
-                                <div className="border-t border-white/5 p-5 bg-white/[0.01]">
+                                <div className="border-t border-theme p-5 bg-card-theme">
                                     <div className="grid grid-cols-2 gap-6">
                                         <div>
                                             <p className="text-xs text-gray-500 font-bold uppercase tracking-wide mb-3">Features Included</p>
                                             <div className="flex flex-wrap gap-2">
                                                 {Object.entries(sub.features).map(([f, v]) => (
-                                                    <span key={f} className={`text-xs px-2.5 py-1 rounded-full border capitalize ${v ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-white/5 text-gray-600 border-white/5'}`}>
+                                                    <span key={f} className={`text-xs px-2.5 py-1 rounded-full border capitalize ${v ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-card-theme text-gray-600 border-theme'}`}>
                                                         {v ? '✓' : '✗'} {f}
                                                     </span>
                                                 ))}
@@ -168,7 +168,7 @@ export default function SubscriptionsPage() {
                                                 {sub.history.map((h, i) => (
                                                     <div key={i} className="flex items-start gap-2 text-xs">
                                                         <span className="text-gray-600 flex-shrink-0 w-20">{h.date}</span>
-                                                        <span className="text-gray-400">{h.action}</span>
+                                                        <span className="text-theme-secondary">{h.action}</span>
                                                         <span className="text-gray-600 ml-auto">by {h.by}</span>
                                                     </div>
                                                 ))}
@@ -188,28 +188,28 @@ export default function SubscriptionsPage() {
                 const needsReason = ['reject', 'pause', 'cancel'].includes(showModal.action);
                 const needsDays = showModal.action === 'extend';
                 return (
-                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
-                        <div className="w-full max-w-md bg-gray-900 border border-white/10 rounded-2xl p-6 shadow-2xl">
+                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-page/70 backdrop-blur-sm">
+                        <div className="w-full max-w-md bg-gray-900 border border-theme rounded-2xl p-6 shadow-2xl">
                             <div className="flex items-center justify-between mb-4">
-                                <h2 className="text-lg font-black text-white capitalize">{showModal.action} Subscription</h2>
-                                <button onClick={() => setShowModal(null)} className="text-gray-500 hover:text-white"><X className="w-5 h-5" /></button>
+                                <h2 className="text-lg font-black text-theme-primary capitalize">{showModal.action} Subscription</h2>
+                                <button onClick={() => setShowModal(null)} className="text-gray-500 hover:text-theme-primary"><X className="w-5 h-5" /></button>
                             </div>
-                            <p className="text-sm text-gray-400 mb-4">For <span className="text-white font-bold">{sub.userName}</span> ({sub.tier} plan)</p>
+                            <p className="text-sm text-theme-secondary mb-4">For <span className="text-theme-primary font-bold">{sub.userName}</span> ({sub.tier} plan)</p>
                             {needsReason && (
                                 <textarea value={reason} onChange={e => setReason(e.target.value)} placeholder="Reason (optional)" rows={3}
-                                    className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-purple-500/50 resize-none mb-4" />
+                                    className="w-full bg-page/30 border border-theme rounded-xl px-4 py-3 text-sm text-theme-primary placeholder-gray-600 focus:outline-none focus:border-orange-500/50 resize-none mb-4" />
                             )}
                             {needsDays && (
                                 <div className="mb-4">
                                     <label className="text-xs text-gray-500 font-bold mb-2 block">Extend by (days)</label>
                                     <input type="number" value={extendDays} onChange={e => setExtendDays(+e.target.value)} min={1} max={365}
-                                        className="w-full bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-purple-500/50" />
+                                        className="w-full bg-page/30 border border-theme rounded-xl px-4 py-3 text-sm text-theme-primary focus:outline-none focus:border-orange-500/50" />
                                 </div>
                             )}
                             <div className="flex gap-3">
-                                <button onClick={() => setShowModal(null)} className="flex-1 py-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white text-sm font-bold transition">Cancel</button>
+                                <button onClick={() => setShowModal(null)} className="flex-1 py-2.5 rounded-xl bg-card-theme border border-theme text-theme-secondary hover:text-theme-primary text-sm font-bold transition">Cancel</button>
                                 <button onClick={executeAction}
-                                    className={`flex-1 py-2.5 rounded-xl text-sm font-black text-white transition ${showModal.action === 'approve' ? 'bg-green-600 hover:bg-green-500' : showModal.action === 'reject' || showModal.action === 'cancel' ? 'bg-red-600 hover:bg-red-500' : 'bg-purple-600 hover:bg-purple-500'}`}>
+                                    className={`flex-1 py-2.5 rounded-xl text-sm font-black  transition ${showModal.action === 'approve' ? 'bg-green-600 hover:bg-green-500' : showModal.action === 'reject' || showModal.action === 'cancel' ? 'bg-red-600 hover:bg-red-500' : 'bg-orange-600 hover:bg-orange-500'}`}>
                                     Confirm
                                 </button>
                             </div>

@@ -43,25 +43,25 @@ export default function AlertsPage() {
     return (
         <div className="space-y-6">
             <div>
-                <h1 className="text-3xl font-black text-white">Alerts & Notifications</h1>
+                <h1 className="text-3xl font-black text-theme-primary">Alerts & Notifications</h1>
                 <p className="text-gray-500 mt-1">{enabledCount} of {alertConfigs.length} alert triggers active</p>
             </div>
 
             {/* Channel Legend */}
-            <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-5">
+            <div className="rounded-2xl border border-theme bg-card-theme p-5">
                 <p className="text-xs text-gray-500 uppercase font-bold tracking-wider mb-4">Notification Channels</p>
                 <div className="grid grid-cols-3 gap-4">
                     {[
-                        { key: 'email', label: 'Email', desc: 'Sends to admin@nyx.ai', color: '#a855f7', Icon: Mail },
+                        { key: 'email', label: 'Email', desc: 'Sends to admin@nyx.ai', color: '#f97316', Icon: Mail },
                         { key: 'slack', label: 'Slack Webhook', desc: 'Posts to #alerts channel', color: '#f59e0b', Icon: CHANNEL_ICONS.slack },
                         { key: 'inApp', label: 'In-App Bell', desc: 'Shows in admin panel notification bar', color: '#06b6d4', Icon: Monitor },
                     ].map(({ key, label, desc, color, Icon }) => (
-                        <div key={key} className="flex items-center gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/5">
+                        <div key={key} className="flex items-center gap-3 p-3 rounded-xl bg-card-theme border border-theme">
                             <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: `${color}22` }}>
                                 <Icon className="w-4 h-4 flex-shrink-0" style={{ color }} />
                             </div>
                             <div>
-                                <p className="text-xs font-bold text-white">{label}</p>
+                                <p className="text-xs font-bold text-theme-primary">{label}</p>
                                 <p className="text-[10px] text-gray-500">{desc}</p>
                             </div>
                         </div>
@@ -73,19 +73,19 @@ export default function AlertsPage() {
             <div className="space-y-3">
                 <p className="text-xs text-gray-500 uppercase font-bold tracking-wider">Trigger Rules</p>
                 {alertConfigs.map(alert => (
-                    <div key={alert.id} className={`rounded-2xl border p-5 transition-all ${alert.enabled ? 'border-white/5 bg-white/[0.02]' : 'border-white/[0.03] bg-white/[0.01] opacity-60'}`}>
+                    <div key={alert.id} className={`rounded-2xl border p-5 transition-all ${alert.enabled ? 'border-theme bg-card-theme' : 'border-theme bg-card-theme opacity-60'}`}>
                         <div className="flex items-start gap-4">
-                            <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center flex-shrink-0">
-                                <Bell className="w-5 h-5 text-purple-400" />
+                            <div className="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center flex-shrink-0">
+                                <Bell className="w-5 h-5 text-orange-500" />
                             </div>
                             <div className="flex-1 min-w-0">
                                 <div className="flex items-center justify-between gap-4 mb-2">
-                                    <p className="text-sm font-bold text-white">{alert.label}</p>
+                                    <p className="text-sm font-bold text-theme-primary">{alert.label}</p>
                                     <Toggle2 checked={alert.enabled} onChange={() => toggleAlert(alert.id, 'enabled', !alert.enabled)} />
                                 </div>
                                 <p className="text-xs text-gray-500 mb-3">{TRIGGER_DESCRIPTIONS[alert.id]}</p>
                                 {alert.threshold && (
-                                    <p className="text-xs text-purple-400/60 mb-3">Threshold: <span className="text-purple-400 font-bold">{alert.threshold}</span></p>
+                                    <p className="text-xs text-orange-500/60 mb-3">Threshold: <span className="text-orange-500 font-bold">{alert.threshold}</span></p>
                                 )}
                                 <div className="flex items-center gap-4">
                                     <p className="text-[10px] text-gray-600 uppercase font-bold tracking-wider">via:</p>
@@ -93,7 +93,7 @@ export default function AlertsPage() {
                                         const Icon = CHANNEL_ICONS[ch];
                                         return (
                                             <button key={ch} onClick={() => toggleAlert(alert.id, `channels.${ch}`, !val)} disabled={!alert.enabled}
-                                                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-bold capitalize transition ${val ? 'bg-green-500/10 border-green-500/20 text-green-400' : 'bg-white/5 border-white/5 text-gray-600'} disabled:cursor-not-allowed`}>
+                                                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-bold capitalize transition ${val ? 'bg-green-500/10 border-green-500/20 text-green-400' : 'bg-card-theme border-theme text-gray-600'} disabled:cursor-not-allowed`}>
                                                 <Icon className="w-3 h-3 flex-shrink-0" />
                                                 {ch}
                                             </button>

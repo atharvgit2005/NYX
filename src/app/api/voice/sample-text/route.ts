@@ -48,16 +48,13 @@ export async function POST(req: Request) {
 
     const langName = LANG_NAMES[langCode] || 'English (US)';
 
-    // If no Gemini key, return fallback immediately with 200
-    if (!process.env.GEMINI_API_KEY) {
+    // If no keys, return fallback immediately with 200
+    if (!process.env.OPENAI_API_KEY && !process.env.ANTHROPIC_API_KEY) {
         const text = FALLBACKS[langCode] || FALLBACKS['EN_US'];
-        return NextResponse.json({ text, langCode, source: 'fallback' });
+        return NextResponse.json({ text, langCode, source: 'fallback (no keys)' });
     }
 
     try {
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-lite' });
-
         const prompt = `Generate a natural voice recording sample in ${langName} (${langCode}) for AI voice cloning.
 
 Rules:
@@ -70,17 +67,89 @@ Rules:
 
 Output the text only.`;
 
-        const result = await model.generateContent(prompt);
-        const text = result.response.text().trim();
+        let generatedText = '';
+        let source = '';
+        let lastError = null;
 
-        if (!text) throw new Error('Empty response from Gemini');
+        // Try Anthropic first
+        if (process.env.ANTHROPIC_API_KEY) {
+            try {
+                const res = await fetch('https://api.anthropic.com/v1/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': process.env.ANTHROPIC_API_KEY,
+                        'anthropic-version': '2023-06-01'
+                    },
+                    body: JSON.stringify({
+                        model: 'claude-3-haiku-20240307',
+                        max_tokens: 300,
+                        messages: [{ role: 'user', content: prompt }]
+                    })
+                });
+                const data = await res.json();
+                if (data.error) throw new Error(data.error.message || 'Anthropic Error');
+                if (data.content?.[0]?.text) {
+                    generatedText = data.content[0].text.trim();
+                    source = 'anthropic (haiku)';
+                }
+            } catch (err: any) {
+                lastError = err;
+                console.warn('Anthropic failed, falling back to OpenAI:', err.message);
+            }
+        }
 
-        return NextResponse.json({ text, langCode, source: 'gemini' });
+        // Try OpenAI if Anthropic failed or wasn't set
+        if (!generatedText && process.env.OPENAI_API_KEY) {
+            try {
+                const res = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+                    },
+                    body: JSON.stringify({
+                        model: 'gpt-4o-mini',
+                        messages: [{ role: 'user', content: prompt }],
+                        temperature: 0.7
+                    })
+                });
+                const data = await res.json();
+                if (data.error) throw new Error(data.error.message || 'OpenAI Error');
+                if (data.choices?.[0]?.message?.content) {
+                    generatedText = data.choices[0].message.content.trim();
+                    source = 'openai (gpt-4o-mini)';
+                }
+            } catch (err: any) {
+                lastError = err;
+                console.warn('OpenAI failed, falling back to Gemini:', err.message);
+            }
+        }
+
+        // Try Gemini if Anthropic and OpenAI failed or weren't set
+        if (!generatedText && process.env.GEMINI_API_KEY) {
+            try {
+                const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+                const targetModel = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-lite' });
+                const result = await targetModel.generateContent(prompt);
+                const rawText = result.response.text().trim();
+                if (rawText) {
+                    generatedText = rawText;
+                    source = 'gemini';
+                }
+            } catch (err: any) {
+                lastError = err;
+                console.warn('Gemini failed:', err.message);
+            }
+        }
+
+        if (!generatedText) throw new Error(lastError?.message || 'No AI keys valid / working');
+
+        return NextResponse.json({ text: generatedText, langCode, source });
 
     } catch (error: any) {
         console.error('Sample text generation error:', error.message);
-        // Always return 200 with fallback — never 500 for this non-critical endpoint
         const text = FALLBACKS[langCode] || FALLBACKS['EN_US'];
-        return NextResponse.json({ text, langCode, source: 'fallback' });
+        return NextResponse.json({ text, langCode, source: 'fallback (error caught)' });
     }
 }

@@ -33,13 +33,13 @@ export default function AdminSidebar() {
             style={{ background: 'rgba(8, 8, 16, 0.97)', borderRight: '1px solid rgba(255,255,255,0.06)' }}>
 
             {/* Logo */}
-            <div className={`flex items-center gap-3 px-5 py-5 border-b border-white/5 ${collapsed ? 'justify-center px-0' : ''}`}>
-                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center flex-shrink-0 shadow-lg">
+            <div className={`flex items-center gap-3 px-5 py-5 border-b border-theme ${collapsed ? 'justify-center px-0' : ''}`}>
+                <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-white/10 flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform">
                     <Shield className="w-5 h-5 text-white" />
                 </div>
                 {!collapsed && (
                     <div>
-                        <p className="text-sm font-black text-white tracking-tight">NYX Admin</p>
+                        <p className="text-sm font-black text-theme-primary tracking-tight">NYX Admin</p>
                         <p className="text-[10px] text-gray-500 font-medium">Control Panel</p>
                     </div>
                 )}
@@ -47,7 +47,7 @@ export default function AdminSidebar() {
 
             {/* Service Status Bar */}
             {!collapsed && (
-                <div className="mx-3 my-3 p-3 rounded-xl bg-white/[0.03] border border-white/5">
+                <div className="mx-3 my-3 p-3 rounded-xl bg-card-theme border border-theme">
                     <p className="text-[10px] text-gray-500 uppercase tracking-wide font-bold mb-2">Service Health</p>
                     <div className="flex flex-col gap-1.5">
                         {[
@@ -55,7 +55,7 @@ export default function AdminSidebar() {
                             { label: 'Video', status: videoService },
                         ].map(({ label, status }) => (
                             <div key={label} className="flex items-center justify-between">
-                                <span className="text-xs text-gray-400">{label}</span>
+                                <span className="text-xs text-theme-secondary">{label}</span>
                                 <span className={`flex items-center gap-1.5 text-[10px] font-bold px-2 py-0.5 rounded-full ${status === 'UP' ? 'bg-green-500/10 text-green-400' : 'bg-red-500/10 text-red-400'}`}>
                                     <span className={`w-1.5 h-1.5 rounded-full ${status === 'UP' ? 'bg-green-400' : 'bg-red-400 animate-pulse'}`} />
                                     {status}
@@ -75,35 +75,35 @@ export default function AdminSidebar() {
                     return (
                         <Link key={href} href={href}
                             className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all group relative ${collapsed ? 'justify-center' : ''} ${isActive
-                                ? 'bg-gradient-to-r from-purple-600/20 to-pink-600/10 text-white border border-purple-500/20'
-                                : 'text-gray-400 hover:text-white hover:bg-white/5'}`}
+                                ? 'bg-white/10 text-white border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)]'
+                                : 'text-zinc-500 hover:text-white hover:bg-white/5'}`}
                             title={collapsed ? name : ''}
                         >
                             <div className="relative flex-shrink-0">
-                                <Icon className={`w-4.5 h-4.5 ${isActive ? 'text-purple-400' : 'text-gray-500 group-hover:text-gray-300'}`} style={{ width: '18px', height: '18px' }} />
+                                <Icon className={`w-4.5 h-4.5 ${isActive ? 'text-white' : 'text-zinc-600 group-hover:text-zinc-400'}`} style={{ width: '18px', height: '18px' }} />
                                 {isAlerts && unreadCount > 0 && (
-                                    <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-red-500 rounded-full text-[9px] text-white flex items-center justify-center font-bold">{unreadCount}</span>
+                                    <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-red-500 rounded-full text-[9px] text-theme-primary flex items-center justify-center font-bold">{unreadCount}</span>
                                 )}
                                 {isGates && hasIssue && (
                                     <span className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-orange-500 rounded-full animate-pulse" />
                                 )}
                             </div>
                             {!collapsed && <span>{name}</span>}
-                            {isActive && !collapsed && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-purple-400" />}
+                            {isActive && !collapsed && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-white" />}
                         </Link>
                     );
                 })}
             </nav>
 
             {/* Bottom */}
-            <div className="px-3 pb-4 space-y-2 border-t border-white/5 pt-3">
-                <Link href="/dashboard" className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-500 hover:text-white hover:bg-white/5 transition-all ${collapsed ? 'justify-center' : ''}`}>
+            <div className="px-3 pb-4 space-y-2 border-t border-theme pt-3">
+                <Link href="/dashboard" className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-500 hover:text-theme-primary hover:bg-card-theme transition-all ${collapsed ? 'justify-center' : ''}`}>
                     <LogOut className="w-4 h-4 flex-shrink-0" />
                     {!collapsed && <span>Back to App</span>}
                 </Link>
                 <button
                     onClick={() => setCollapsed(!collapsed)}
-                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs text-gray-600 hover:text-gray-400 hover:bg-white/3 transition-all ${collapsed ? 'justify-center' : ''}`}
+                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs text-gray-600 hover:text-theme-secondary hover:bg-white/3 transition-all ${collapsed ? 'justify-center' : ''}`}
                 >
                     {collapsed ? <ChevronRight className="w-4 h-4" /> : <><ChevronLeft className="w-4 h-4" /><span>Collapse</span></>}
                 </button>

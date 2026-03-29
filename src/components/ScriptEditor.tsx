@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Lightbulb, Loader2, ArrowRight, Send, Bot, User, Sparkles, Trash2 } from 'lucide-react';
+import { Lightbulb, Loader2, ArrowRight, Send, Bot, User, Sparkles, Trash2, Save, Rocket } from 'lucide-react';
+import NyxButton from './ui/NyxButton';
 
 interface ChatMessage {
     id: string;
@@ -305,7 +306,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
         <div className="max-w-6xl mx-auto relative">
             {/* Toast Notification */}
             {showToast && (
-                <div className="fixed top-24 right-8 bg-green-500 text-white px-6 py-3 rounded-xl shadow-2xl flex items-center animate-fade-in z-50">
+                <div className="fixed top-24 right-8 bg-green-500 text-theme-primary px-6 py-3 rounded-xl shadow-2xl flex items-center animate-fade-in z-50">
                     <span className="mr-2">✅</span> Script Saved! Redirecting...
                 </div>
             )}
@@ -318,19 +319,20 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                     </p>
                 </div>
                 <div className="flex space-x-4 w-full md:w-auto">
-                    <button
+                    <NyxButton
                         onClick={handleRegenerate}
-                        disabled={generating}
-                        className="flex-1 md:flex-none px-6 py-3 bg-card-theme hover:bg-card-hover border border-theme hover:border-white/30 rounded-xl font-medium text-theme-secondary hover:text-theme-primary transition-all disabled:opacity-50"
+                        variant="outline"
+                        showIconContainer={false}
+                        className="py-2.5 flex-1 md:flex-none"
                     >
-                        {generating ? <><Loader2 className="w-4 h-4 mr-2 inline animate-spin" /> Regenerating...</> : 'Regenerate AI'}
-                    </button>
-                    <button
+                        {generating ? 'REGENERATING...' : 'REGENERATE AI'}
+                    </NyxButton>
+                    <NyxButton
                         onClick={handleSave}
-                        className="flex-1 md:flex-none px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] rounded-xl font-bold text-white transition-all hover:scale-105 flex items-center justify-center group"
+                        className="py-2.5 flex-1 md:flex-none"
                     >
-                        Save & Create Video <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-                    </button>
+                        SAVE & CREATE VIDEO
+                    </NyxButton>
                 </div>
             </div>
 
@@ -338,8 +340,8 @@ Comment "AI" below and I'll send you the full list of tools I use.`
             {ideaTitle ? (
                 <div className="mb-8 p-4 rounded-2xl bg-card-theme border border-theme flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center">
-                            <Lightbulb className="w-5 h-5 text-white" />
+                        <div className="w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 flex items-center justify-center">
+                            <Lightbulb className="w-5 h-5 text-zinc-600 dark:text-white" />
                         </div>
                         <div>
                             <p className="text-sm font-bold text-theme-primary">
@@ -352,7 +354,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                     </div>
                     <Link
                         href="/dashboard/ideas"
-                        className="text-xs font-bold text-purple-400 hover:text-purple-300 transition-colors px-3 py-1.5 rounded-lg hover:bg-card-hover flex items-center gap-1"
+                        className="text-xs font-bold text-white hover:text-white/70 transition-colors px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 flex items-center gap-1"
                     >
                         Back to Ideas <ArrowRight className="w-3 h-3" />
                     </Link>
@@ -370,12 +372,12 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                             </p>
                         </div>
                     </div>
-                    <Link
+                    <NyxButton
                         href="/dashboard/ideas"
-                        className="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white text-xs font-bold hover:opacity-90 transition-opacity"
+                        className="py-1.5 px-4 text-xs"
                     >
-                        Generate Ideas
-                    </Link>
+                        GENERATE IDEAS
+                    </NyxButton>
                 </div>
             )}
 
@@ -388,7 +390,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Script Editor Panel */}
                 <div className="lg:col-span-2">
-                    <div className="bg-card-theme rounded-3xl border border-theme overflow-hidden shadow-2xl h-[600px] flex flex-col focus-within:border-purple-500/50 transition-colors">
+                    <div className="bg-card-theme rounded-3xl border border-theme overflow-hidden shadow-2xl h-[600px] flex flex-col focus-within:border-orange-500/50 transition-colors">
                         <div className="bg-page px-6 py-4 border-b border-theme flex justify-between items-center backdrop-blur-sm">
                             <div className="flex items-center space-x-2">
                                 <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50"></div>
@@ -396,7 +398,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                                 <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
                             </div>
                             {isTyping ? (
-                                <span className="text-xs font-mono text-purple-400 uppercase tracking-wider flex items-center gap-2 animate-pulse">
+                                <span className="text-xs font-mono text-white uppercase tracking-wider flex items-center gap-2 animate-pulse">
                                     <Sparkles className="w-3 h-3" /> AI Writing...
                                 </span>
                             ) : (
@@ -408,12 +410,12 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                                 value={script}
                                 onChange={handleScriptChange}
                                 readOnly={isTyping}
-                                className={`w-full h-full bg-transparent p-8 text-lg md:text-xl text-theme-primary placeholder-gray-500 focus:outline-none resize-none font-serif leading-loose selection:bg-purple-500/30 ${isTyping ? 'cursor-default' : ''}`}
+                                className={`w-full h-full bg-transparent p-8 text-lg md:text-xl text-theme-primary placeholder-zinc-400 dark:placeholder-zinc-700 focus:outline-none resize-none font-serif leading-loose selection:bg-zinc-500/20 ${isTyping ? 'cursor-default' : ''}`}
                                 placeholder="Start writing your script..."
                                 spellCheck="false"
                             />
                             {isTyping && (
-                                <span className="absolute animate-blink text-purple-400 text-2xl font-light" style={{ left: 'auto', bottom: '1rem', right: '2rem' }}>▎</span>
+                                <span className="absolute animate-blink text-white text-2xl font-light" style={{ left: 'auto', bottom: '1rem', right: '2rem' }}>▎</span>
                             )}
                         </div>
                         <div className="px-6 py-3 bg-page border-t border-theme text-xs text-theme-secondary flex justify-between">
@@ -426,10 +428,10 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                 {/* AI Chat Panel */}
                 <div className="h-[600px] flex flex-col bg-card-theme rounded-3xl border border-theme overflow-hidden shadow-2xl">
                     {/* Chat Header */}
-                    <div className="px-5 py-4 border-b border-theme flex items-center justify-between bg-gradient-to-r from-purple-900/20 to-pink-900/20">
+                    <div className="px-5 py-4 border-b border-theme flex items-center justify-between bg-zinc-50 dark:bg-zinc-900">
                         <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                                <Sparkles className="w-4 h-4 text-white" />
+                            <div className="w-8 h-8 rounded-lg bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 flex items-center justify-center">
+                                <Sparkles className="w-4 h-4 text-zinc-950 dark:text-white" />
                             </div>
                             <div>
                                 <p className="text-sm font-bold text-theme-primary">Script AI</p>
@@ -454,18 +456,18 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                             >
                                 <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-1 ${
                                     msg.role === 'user'
-                                        ? 'bg-gradient-to-br from-blue-500 to-cyan-500'
-                                        : 'bg-gradient-to-br from-purple-500 to-pink-500'
+                                        ? 'bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-white/10'
+                                        : 'bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10'
                                 }`}>
                                     {msg.role === 'user'
-                                        ? <User className="w-3.5 h-3.5 text-white" />
-                                        : <Bot className="w-3.5 h-3.5 text-white" />
+                                        ? <User className="w-3.5 h-3.5 text-zinc-600 dark:text-white" />
+                                        : <Bot className="w-3.5 h-3.5 text-zinc-600 dark:text-white" />
                                     }
                                 </div>
                                 <div className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${
                                     msg.role === 'user'
-                                        ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-tr-sm'
-                                        : 'bg-card-hover text-theme-primary border border-theme rounded-tl-sm'
+                                        ? 'bg-zinc-100 dark:bg-zinc-800 text-theme-primary border border-zinc-200 dark:border-white/5 rounded-tr-sm'
+                                        : 'bg-zinc-50 dark:bg-card-hover border border-theme rounded-tl-sm text-theme-primary'
                                 }`}>
                                     <p className="whitespace-pre-wrap">{msg.content}</p>
                                 </div>
@@ -475,14 +477,14 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                         {/* Loading indicator */}
                         {chatLoading && (
                             <div className="flex gap-2.5">
-                                <div className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0 mt-1">
+                                <div className="w-7 h-7 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center flex-shrink-0 mt-1">
                                     <Bot className="w-3.5 h-3.5 text-white" />
                                 </div>
                                 <div className="bg-card-hover border border-theme px-4 py-3 rounded-2xl rounded-tl-sm">
                                     <div className="flex items-center gap-1.5">
-                                        <div className="w-2 h-2 rounded-full bg-purple-400 animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                                        <div className="w-2 h-2 rounded-full bg-purple-400 animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                                        <div className="w-2 h-2 rounded-full bg-purple-400 animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                                        <div className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-white animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                                        <div className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-white animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                                        <div className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-white animate-bounce" style={{ animationDelay: '300ms' }}></div>
                                     </div>
                                 </div>
                             </div>
@@ -501,7 +503,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                                         setChatInput(prompt);
                                         chatInputRef.current?.focus();
                                     }}
-                                    className="px-3 py-1.5 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/20 hover:border-purple-500/40 rounded-full text-xs text-purple-300 hover:text-purple-200 transition-all"
+                                    className="px-3 py-1.5 bg-zinc-100 dark:bg-white/5 hover:bg-zinc-200 dark:hover:bg-white/10 border border-zinc-200 dark:border-white/10 hover:border-zinc-300 dark:hover:border-white/20 rounded-full text-xs text-zinc-600 dark:text-white/70 hover:text-zinc-900 dark:hover:text-white transition-all shadow-sm"
                                 >
                                     {prompt}
                                 </button>
@@ -519,13 +521,13 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                                 onKeyDown={handleKeyDown}
                                 placeholder="Ask AI to improve your script..."
                                 rows={1}
-                                className="flex-1 bg-card-theme border border-theme rounded-xl px-4 py-3 text-sm text-theme-primary placeholder-gray-500 focus:outline-none focus:border-purple-500/50 resize-none max-h-24 leading-relaxed"
+                                className="flex-1 bg-zinc-950/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-theme-primary placeholder-zinc-700 focus:outline-none focus:border-white/40 resize-none max-h-24 leading-relaxed transition-colors"
                                 style={{ minHeight: '44px' }}
                             />
                             <button
                                 onClick={handleSendMessage}
                                 disabled={!chatInput.trim() || chatLoading}
-                                className="p-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl text-white hover:opacity-90 transition-all disabled:opacity-30 disabled:cursor-not-allowed flex-shrink-0 hover:shadow-lg hover:shadow-purple-500/25"
+                                className="p-3 bg-zinc-950 dark:bg-zinc-900 border border-white/10 text-white hover:bg-zinc-800 dark:hover:bg-black transition-all rounded-xl disabled:opacity-30 disabled:cursor-not-allowed flex-shrink-0"
                             >
                                 <Send className="w-4 h-4" />
                             </button>

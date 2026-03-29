@@ -72913,3 +72913,786 @@
 [2026-03-22T20:04:44.292Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
 [2026-03-22T20:04:44.615Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
 [2026-03-22T20:04:44.974Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:25:07.782Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T20:25:07.790Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-22T20:25:07.804Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T20:25:07.811Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T20:25:07.822Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-22T20:25:09.550Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T20:25:09.556Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-22T20:25:09.559Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-22T20:25:09.561Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T20:25:09.566Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T20:25:09.894Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:25:09.911Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-22T20:25:09.919Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:25:09.930Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T20:25:09.930Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T20:25:09.944Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-22T20:25:09.947Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-22T20:25:09.950Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:25:09.956Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T20:25:09.975Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-22T20:25:09.975Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T20:25:09.980Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-22T20:25:10.210Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-22T20:25:10.260Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-22T20:25:10.265Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-22T20:25:10.274Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T20:25:10.306Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-22T20:25:10.620Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:25:10.628Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:25:10.637Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-22T20:25:10.638Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:25:10.649Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:25:10.672Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T20:25:10.731Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:25:10.769Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T20:25:10.779Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-22T20:25:10.960Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-22T20:25:10.998Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T20:25:11.084Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-22T20:25:11.101Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T20:25:11.393Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:25:11.401Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:25:11.417Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-22T20:25:11.421Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T20:25:11.438Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:25:11.469Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:25:11.765Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-22T20:25:11.767Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T20:25:12.130Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:25:12.135Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:51:00.777Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-22T20:51:00.786Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-22T20:51:00.791Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T20:51:00.796Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-22T20:51:00.801Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T20:51:00.804Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T20:51:02.408Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-22T20:51:02.415Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-22T20:51:02.424Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-22T20:51:02.428Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T20:51:02.432Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T20:51:02.434Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T20:51:02.771Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:51:02.785Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:51:02.794Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:51:02.807Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-22T20:51:02.813Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-22T20:51:02.817Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T20:51:02.818Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-22T20:51:02.818Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T20:51:02.825Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-22T20:51:02.835Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T20:51:02.835Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T20:51:02.842Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-22T20:51:02.852Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:51:02.872Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T20:51:03.125Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-22T20:51:03.131Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-22T20:51:03.136Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-22T20:51:03.166Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-22T20:51:03.188Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T20:51:03.226Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T20:51:03.570Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:51:03.577Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:51:03.585Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:51:03.590Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:51:03.594Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T20:51:03.599Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T21:22:59.779Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-22T21:22:59.784Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-22T21:22:59.788Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-22T21:22:59.792Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-22T21:22:59.794Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-22T21:22:59.796Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-22T21:23:01.539Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-22T21:23:01.549Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-22T21:23:01.554Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-22T21:23:01.556Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-22T21:23:01.557Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-22T21:23:01.582Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-22T21:23:01.894Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T21:23:01.905Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T21:23:01.919Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T21:23:01.923Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-22T21:23:01.923Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T21:23:01.930Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-22T21:23:01.930Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-22T21:23:01.942Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-22T21:23:01.946Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-22T21:23:01.952Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T21:23:01.956Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-22T21:23:01.959Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-22T21:23:01.960Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T21:23:01.976Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T21:23:02.275Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-22T21:23:02.278Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-22T21:23:02.280Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-22T21:23:02.282Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T21:23:02.284Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-22T21:23:02.316Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T21:23:02.641Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T21:23:02.652Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T21:23:02.677Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T21:23:02.682Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T21:23:02.688Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T21:23:02.693Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T21:23:02.700Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-22T21:23:02.706Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-22T21:23:02.709Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-22T21:23:02.713Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-22T21:23:02.716Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-22T21:23:03.028Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-22T21:23:03.056Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-22T21:23:03.063Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-22T21:23:03.067Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-22T21:23:03.070Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-22T21:23:03.480Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T21:23:03.503Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T21:23:03.510Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T21:23:03.517Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-22T21:23:03.520Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:57:53.880Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-23T16:57:53.896Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-23T16:57:53.904Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-23T16:57:53.911Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-23T16:57:53.933Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-23T16:57:53.943Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-23T16:57:55.274Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-23T16:57:55.297Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-23T16:57:55.310Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-23T16:57:55.313Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-23T16:57:55.323Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-23T16:57:55.327Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-23T16:57:55.597Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:57:55.624Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-23T16:57:55.626Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T16:57:55.659Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-23T16:57:55.659Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T16:57:55.683Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:57:55.692Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:57:55.709Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:57:55.793Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-23T16:57:55.823Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-23T16:57:55.838Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-23T16:57:55.856Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T16:57:55.885Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T16:57:55.975Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T16:57:56.078Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-23T16:57:56.099Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-23T16:57:56.106Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T16:57:56.111Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-23T16:57:56.180Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T16:57:56.369Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:57:56.482Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:57:56.496Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:57:56.510Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:57:56.535Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:57:56.782Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T16:57:57.123Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:57:57.175Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T16:57:57.409Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T16:57:57.679Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:58:03.786Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-23T16:58:03.799Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-23T16:58:03.823Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-23T16:58:03.831Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-23T16:58:03.836Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-23T16:58:04.078Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-23T16:58:04.618Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-23T16:58:04.621Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-23T16:58:04.624Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-23T16:58:04.628Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-23T16:58:04.912Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:58:04.924Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-23T16:58:04.924Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T16:58:04.940Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:58:04.960Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-23T16:58:04.978Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-23T16:58:04.978Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T16:58:04.998Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-23T16:58:05.006Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-23T16:58:05.015Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T16:58:05.123Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-23T16:58:05.212Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-23T16:58:05.253Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-23T16:58:05.267Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T16:58:05.415Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:58:05.442Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T16:58:05.534Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-23T16:58:05.544Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:58:05.562Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:58:05.600Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T16:58:05.696Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T16:58:05.919Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T16:58:05.920Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:58:05.984Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:58:06.244Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:58:06.262Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-23T16:58:06.278Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T16:58:06.525Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:23:23.568Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-23T17:23:23.593Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-23T17:23:23.692Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-23T17:23:23.695Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-23T17:23:23.698Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-23T17:23:23.712Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-23T17:23:24.492Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-23T17:23:24.502Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-23T17:23:24.510Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-23T17:23:24.789Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-23T17:23:24.789Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T17:23:24.842Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:23:24.847Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:23:24.896Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-23T17:23:24.899Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-23T17:23:24.902Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-23T17:23:25.305Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-23T17:23:25.309Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-23T17:23:25.314Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-23T17:23:25.317Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-23T17:23:25.319Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-23T17:23:25.319Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-23T17:23:25.589Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:23:25.598Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:23:25.602Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:23:25.608Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:23:25.613Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T17:23:25.614Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-23T17:23:25.614Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T17:23:25.618Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T17:23:25.622Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:23:25.631Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T17:23:25.847Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T17:23:25.855Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T17:23:25.880Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T17:23:26.128Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:23:26.136Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:23:26.146Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T17:23:26.150Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T17:23:26.164Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:23:26.172Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T17:23:26.384Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T17:23:26.396Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T17:23:26.446Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T17:23:26.665Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:23:26.693Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:23:26.725Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:29.539Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-23T17:27:29.546Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-23T17:27:29.548Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-23T17:27:29.550Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-23T17:27:29.555Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-23T17:27:29.557Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-23T17:27:31.100Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-23T17:27:31.196Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-23T17:27:31.477Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-23T17:27:31.478Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T17:27:31.514Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-23T17:27:31.552Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:31.560Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-23T17:27:31.790Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-23T17:27:31.826Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-23T17:27:32.045Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-23T17:27:32.268Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:32.271Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:32.285Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-23T17:27:32.288Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T17:27:32.530Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-23T17:27:32.533Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-23T17:27:32.535Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-23T17:27:32.541Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T17:27:32.559Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-23T17:27:32.821Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:32.832Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T17:27:32.834Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:32.840Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-23T17:27:32.840Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T17:27:32.862Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T17:27:32.865Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-23T17:27:32.866Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:32.874Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-23T17:27:32.991Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:33.005Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-23T17:27:33.035Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:33.056Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-23T17:27:33.072Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T17:27:33.108Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-23T17:27:33.112Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T17:27:33.127Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-23T17:27:33.289Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-23T17:27:33.291Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-23T17:27:33.355Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:33.363Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T17:27:33.383Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:33.390Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-23T17:27:33.418Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:33.426Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T17:27:33.560Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:33.577Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-23T17:27:33.578Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T17:27:33.612Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T17:27:33.628Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-23T17:27:33.838Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T17:27:33.841Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:33.861Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T17:27:33.899Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:33.915Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:34.171Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T17:27:34.198Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:27:34.590Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:28:44.926Z] Generating audio with Inworld for voiceId: default-skownhbintlx-lxltlcekg__atharv_paharia
+[2026-03-23T17:28:46.691Z] Audio generated from Inworld, buffer size: 60717 bytes. Uploading to HeyGen...
+[2026-03-23T17:28:46.691Z] Uploading 60717 bytes to HeyGen Asset API...
+[2026-03-23T17:28:50.458Z] HeyGen Asset Upload Success. Asset ID: af19a53f50f24c85bfaf27881a965b99
+[2026-03-23T17:28:50.461Z] Generating video with HeyGen...
+[2026-03-23T17:28:50.461Z] Using Avatar ID: 2383be497820408080b5ce5efd5e11ea
+[2026-03-23T17:28:50.461Z] HeyGen Payload: {
+  "video_inputs": [
+    {
+      "character": {
+        "type": "avatar",
+        "avatar_id": "2383be497820408080b5ce5efd5e11ea",
+        "avatar_style": "normal"
+      },
+      "voice": {
+        "type": "audio",
+        "audio_asset_id": "af19a53f50f24c85bfaf27881a965b99"
+      },
+      "background": {
+        "type": "color",
+        "value": "#000000"
+      }
+    }
+  ],
+  "dimension": {
+    "width": 720,
+    "height": 1280
+  }
+}
+[2026-03-23T17:28:52.238Z] HeyGen Response: {"error":null,"data":{"video_id":"bb890117202c4542bf06d781c0265a3f"}}
+[2026-03-23T17:29:01.527Z] Checking status for bb890117202c4542bf06d781c0265a3f, Custom Key: false
+[2026-03-23T17:29:01.558Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-23T17:29:01.593Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-23T17:29:01.626Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-23T17:29:01.664Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-23T17:29:01.698Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-23T17:29:02.425Z] V2 check 404'd or no status, trying V1 fallback for bb890117202c4542bf06d781c0265a3f
+[2026-03-23T17:29:02.661Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-23T17:29:02.769Z] [HeyGen v2 Status] ID: bb890117202c4542bf06d781c0265a3f -> status: failed, url: none
+[2026-03-23T17:29:02.769Z] [HeyGen v2 Status] FAILED for bb890117202c4542bf06d781c0265a3f: {"callback_id":null,"caption_url":null,"created_at":1774286932,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"bb890117202c4542bf06d781c0265a3f","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T17:29:02.807Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-23T17:29:02.947Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:29:02.954Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-23T17:29:02.955Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-23T17:29:02.975Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-23T17:29:03.056Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-23T17:29:03.105Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-23T17:29:03.224Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-23T17:29:03.248Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-23T17:29:03.249Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T17:29:03.277Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-23T17:29:03.279Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-23T17:29:03.279Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T17:29:03.293Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-23T17:29:03.308Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-23T17:29:03.338Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:29:03.347Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T17:29:03.467Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:29:03.486Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T17:29:03.508Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:29:03.537Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-23T17:29:03.546Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T17:29:03.583Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:29:03.587Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-23T17:29:03.736Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T17:29:03.795Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T17:29:04.103Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:29:04.116Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:29:04.152Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:29:04.240Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T17:29:05.352Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:29:05.367Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:29:05.383Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T17:29:05.387Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T17:29:05.621Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T17:29:05.636Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T17:29:05.896Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:29:05.918Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:51:37.976Z] Checking status for bb890117202c4542bf06d781c0265a3f, Custom Key: false
+[2026-03-23T17:51:37.994Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-23T17:51:37.997Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-23T17:51:38.000Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-23T17:51:38.004Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-23T17:51:38.006Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-23T17:51:39.136Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-23T17:51:39.241Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-23T17:51:39.410Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-23T17:51:39.414Z] V2 check 404'd or no status, trying V1 fallback for bb890117202c4542bf06d781c0265a3f
+[2026-03-23T17:51:39.427Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:51:39.437Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-23T17:51:39.438Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-23T17:51:39.442Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-23T17:51:39.601Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:51:39.627Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-23T17:51:39.685Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-23T17:51:39.744Z] [HeyGen v2 Status] ID: bb890117202c4542bf06d781c0265a3f -> status: failed, url: none
+[2026-03-23T17:51:39.745Z] [HeyGen v2 Status] FAILED for bb890117202c4542bf06d781c0265a3f: {"callback_id":null,"caption_url":null,"created_at":1774286932,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"bb890117202c4542bf06d781c0265a3f","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T17:51:39.754Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-23T17:51:39.756Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-23T17:51:39.756Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T17:51:39.763Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-23T17:51:39.784Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:51:39.789Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T17:51:39.797Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-23T17:51:39.797Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T17:51:39.801Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T17:51:39.934Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-23T17:51:39.978Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:51:39.999Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-23T17:51:40.003Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T17:51:40.005Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-23T17:51:40.048Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T17:51:40.056Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T17:51:40.249Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:51:40.265Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T17:51:40.296Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:51:40.298Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:51:40.335Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:51:40.360Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:51:40.645Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:52:17.317Z] Checking status for bb890117202c4542bf06d781c0265a3f, Custom Key: false
+[2026-03-23T17:52:17.328Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-23T17:52:17.334Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-23T17:52:17.342Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-23T17:52:17.347Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-23T17:52:18.084Z] V2 check 404'd or no status, trying V1 fallback for bb890117202c4542bf06d781c0265a3f
+[2026-03-23T17:52:18.101Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-23T17:52:18.168Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-23T17:52:18.416Z] [HeyGen v2 Status] ID: bb890117202c4542bf06d781c0265a3f -> status: failed, url: none
+[2026-03-23T17:52:18.416Z] [HeyGen v2 Status] FAILED for bb890117202c4542bf06d781c0265a3f: {"callback_id":null,"caption_url":null,"created_at":1774286932,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"bb890117202c4542bf06d781c0265a3f","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T17:52:18.443Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-23T17:52:18.516Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-23T17:52:18.516Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T17:52:18.536Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-23T17:52:18.731Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-23T17:52:18.734Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-23T17:52:18.784Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-23T17:52:18.795Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-23T17:52:18.798Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-23T17:52:19.154Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:52:19.171Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-23T17:52:19.263Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:52:19.267Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:52:19.276Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:52:19.286Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-23T17:52:19.288Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T17:52:19.293Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T17:52:19.294Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-23T17:52:19.294Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T17:52:19.312Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T17:52:19.488Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-23T17:52:19.534Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T17:52:19.537Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T17:52:19.540Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-23T17:52:19.542Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-23T17:52:19.570Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T17:52:19.777Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:52:19.843Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:52:19.850Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:52:19.860Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:52:19.871Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T17:52:19.883Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:14:57.059Z] Checking status for bb890117202c4542bf06d781c0265a3f, Custom Key: false
+[2026-03-23T18:14:57.095Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-23T18:14:57.101Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-23T18:14:57.107Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-23T18:14:57.113Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-23T18:14:57.116Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-23T18:15:00.315Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-23T18:15:00.327Z] V2 check 404'd or no status, trying V1 fallback for bb890117202c4542bf06d781c0265a3f
+[2026-03-23T18:15:00.328Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-23T18:15:00.328Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-23T18:15:00.331Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-23T18:15:00.360Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-23T18:15:01.147Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:01.160Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:01.174Z] [HeyGen v2 Status] ID: bb890117202c4542bf06d781c0265a3f -> status: failed, url: none
+[2026-03-23T18:15:01.174Z] [HeyGen v2 Status] FAILED for bb890117202c4542bf06d781c0265a3f: {"callback_id":null,"caption_url":null,"created_at":1774286932,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"bb890117202c4542bf06d781c0265a3f","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T18:15:01.178Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:01.202Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-23T18:15:01.210Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-23T18:15:01.210Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T18:15:01.218Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-23T18:15:01.224Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-23T18:15:01.227Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-23T18:15:01.230Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T18:15:01.360Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-23T18:15:01.360Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T18:15:01.366Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T18:15:02.029Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T18:15:02.039Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-23T18:15:02.042Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-23T18:15:02.044Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-23T18:15:02.046Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-23T18:15:02.247Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T18:15:02.936Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:02.943Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:02.998Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:03.013Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:03.021Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:03.054Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T18:15:03.062Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-23T18:15:03.069Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-23T18:15:03.078Z] Checking status for bb890117202c4542bf06d781c0265a3f, Custom Key: false
+[2026-03-23T18:15:03.183Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-23T18:15:03.200Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:03.211Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-23T18:15:03.975Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T18:15:04.004Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-23T18:15:04.006Z] V2 check 404'd or no status, trying V1 fallback for bb890117202c4542bf06d781c0265a3f
+[2026-03-23T18:15:04.013Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-23T18:15:04.133Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-23T18:15:04.145Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-23T18:15:04.901Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:04.922Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-23T18:15:05.024Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:05.030Z] [HeyGen v2 Status] ID: bb890117202c4542bf06d781c0265a3f -> status: failed, url: none
+[2026-03-23T18:15:05.030Z] [HeyGen v2 Status] FAILED for bb890117202c4542bf06d781c0265a3f: {"callback_id":null,"caption_url":null,"created_at":1774286932,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"bb890117202c4542bf06d781c0265a3f","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T18:15:05.035Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:05.045Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T18:15:05.048Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-23T18:15:05.054Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-23T18:15:05.054Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T18:15:05.067Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-23T18:15:05.074Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-23T18:15:05.118Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:05.124Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-23T18:15:05.959Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-23T18:15:06.144Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-23T18:15:06.149Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T18:15:06.189Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-23T18:15:06.220Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-23T18:15:07.270Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-23T18:15:07.342Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-23T18:15:08.177Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T18:15:08.233Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:08.263Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:08.267Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:08.280Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:08.284Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:08.338Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-23T18:15:08.345Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T18:15:08.354Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T18:15:08.388Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T18:15:08.393Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-23T18:15:08.478Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-23T18:15:09.452Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-23T18:15:09.456Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T18:15:09.465Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T18:15:09.526Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-23T18:15:09.531Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T18:15:09.603Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-23T18:15:10.305Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:10.326Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:10.335Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-23T18:15:10.337Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:10.344Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T18:15:10.349Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T18:15:10.359Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:10.361Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:10.373Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:10.651Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-23T18:15:10.654Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T18:15:10.662Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T18:15:11.031Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:11.039Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:15:11.048Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:32.114Z] Checking status for bb890117202c4542bf06d781c0265a3f, Custom Key: false
+[2026-03-23T18:26:32.137Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-23T18:26:32.142Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-23T18:26:32.145Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-23T18:26:32.148Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-23T18:26:32.152Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-23T18:26:33.941Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-23T18:26:33.946Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-23T18:26:33.948Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-23T18:26:33.951Z] V2 check 404'd or no status, trying V1 fallback for bb890117202c4542bf06d781c0265a3f
+[2026-03-23T18:26:33.953Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-23T18:26:33.955Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-23T18:26:34.309Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:34.329Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-23T18:26:34.359Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-23T18:26:34.359Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T18:26:34.364Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:34.368Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-23T18:26:34.368Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T18:26:34.371Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:34.376Z] [HeyGen v2 Status] ID: bb890117202c4542bf06d781c0265a3f -> status: failed, url: none
+[2026-03-23T18:26:34.376Z] [HeyGen v2 Status] FAILED for bb890117202c4542bf06d781c0265a3f: {"callback_id":null,"caption_url":null,"created_at":1774286932,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"bb890117202c4542bf06d781c0265a3f","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T18:26:34.408Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-23T18:26:34.420Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-23T18:26:34.427Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-23T18:26:34.438Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T18:26:34.449Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T18:26:34.654Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-23T18:26:34.777Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-23T18:26:34.780Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T18:26:34.782Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-23T18:26:34.789Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T18:26:34.792Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-23T18:26:34.998Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:35.022Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T18:26:35.121Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:35.131Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:35.146Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T18:26:35.172Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:35.174Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:35.185Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-23T18:26:35.189Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T18:26:35.194Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-23T18:26:35.338Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T18:26:35.357Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:35.385Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-23T18:26:35.511Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T18:26:35.514Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-23T18:26:35.515Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T18:26:35.555Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-23T18:26:35.702Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:35.708Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-23T18:26:35.719Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T18:26:35.866Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:35.922Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:36.035Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:36.041Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T18:26:36.044Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:36.057Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:36.434Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:42.586Z] Checking status for bb890117202c4542bf06d781c0265a3f, Custom Key: false
+[2026-03-23T18:26:42.599Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-23T18:26:42.643Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-23T18:26:42.651Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-23T18:26:42.659Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-23T18:26:42.668Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-23T18:26:44.048Z] V2 check 404'd or no status, trying V1 fallback for bb890117202c4542bf06d781c0265a3f
+[2026-03-23T18:26:44.084Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-23T18:26:44.085Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-23T18:26:44.100Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-23T18:26:44.225Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-23T18:26:44.229Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-23T18:26:44.423Z] [HeyGen v2 Status] ID: bb890117202c4542bf06d781c0265a3f -> status: failed, url: none
+[2026-03-23T18:26:44.423Z] [HeyGen v2 Status] FAILED for bb890117202c4542bf06d781c0265a3f: {"callback_id":null,"caption_url":null,"created_at":1774286932,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"bb890117202c4542bf06d781c0265a3f","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T18:26:44.458Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-23T18:26:44.459Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:44.483Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-23T18:26:44.497Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-23T18:26:44.497Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T18:26:44.499Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:44.505Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-23T18:26:44.509Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-23T18:26:44.594Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-23T18:26:44.594Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-23T18:26:44.601Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-23T18:26:44.617Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:44.625Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-23T18:26:44.768Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-23T18:26:44.805Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-23T18:26:44.817Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-23T18:26:44.835Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-23T18:26:44.949Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-23T18:26:44.951Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-23T18:26:45.166Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:45.213Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-23T18:26:45.214Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:45.217Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:45.381Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:45.498Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:45.500Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-23T18:26:45.551Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-23T18:26:46.005Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:40.540Z] Checking status for 88c0dd4aed7f496c87620fb149865b85, Custom Key: false
+[2026-03-25T10:38:40.549Z] Checking status for 7c8ad88edd18411a92300f3547ed5704, Custom Key: false
+[2026-03-25T10:38:40.552Z] Checking status for 5799676c6e4747ef9824dc5b061cb6db, Custom Key: false
+[2026-03-25T10:38:40.557Z] Checking status for 723819f25f1b407581da9ef158fca474, Custom Key: false
+[2026-03-25T10:38:40.561Z] Checking status for ada7a8f2c0fd4eb9af8e00633b481dfc, Custom Key: false
+[2026-03-25T10:38:40.565Z] Checking status for bb890117202c4542bf06d781c0265a3f, Custom Key: false
+[2026-03-25T10:38:42.342Z] V2 check 404'd or no status, trying V1 fallback for 7c8ad88edd18411a92300f3547ed5704
+[2026-03-25T10:38:42.350Z] V2 check 404'd or no status, trying V1 fallback for 88c0dd4aed7f496c87620fb149865b85
+[2026-03-25T10:38:42.351Z] V2 check 404'd or no status, trying V1 fallback for bb890117202c4542bf06d781c0265a3f
+[2026-03-25T10:38:42.353Z] V2 check 404'd or no status, trying V1 fallback for ada7a8f2c0fd4eb9af8e00633b481dfc
+[2026-03-25T10:38:42.353Z] V2 check 404'd or no status, trying V1 fallback for 723819f25f1b407581da9ef158fca474
+[2026-03-25T10:38:42.374Z] V2 check 404'd or no status, trying V1 fallback for 5799676c6e4747ef9824dc5b061cb6db
+[2026-03-25T10:38:42.749Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['7c8ad88edd18411a92300f3547ed5704'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:42.769Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['5799676c6e4747ef9824dc5b061cb6db'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:42.779Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['88c0dd4aed7f496c87620fb149865b85'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:42.801Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-25T10:38:42.808Z] [HeyGen v2 Status] ID: 723819f25f1b407581da9ef158fca474 -> status: failed, url: none
+[2026-03-25T10:38:42.808Z] [HeyGen v2 Status] FAILED for 723819f25f1b407581da9ef158fca474: {"callback_id":null,"caption_url":null,"created_at":1774077200,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"723819f25f1b407581da9ef158fca474","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-25T10:38:42.815Z] [HeyGen v2 Status] ID: bb890117202c4542bf06d781c0265a3f -> status: failed, url: none
+[2026-03-25T10:38:42.815Z] [HeyGen v2 Status] FAILED for bb890117202c4542bf06d781c0265a3f: {"callback_id":null,"caption_url":null,"created_at":1774286932,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"bb890117202c4542bf06d781c0265a3f","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-25T10:38:42.819Z] [HeyGen v2 Status] ID: ada7a8f2c0fd4eb9af8e00633b481dfc -> status: failed, url: none
+[2026-03-25T10:38:42.819Z] [HeyGen v2 Status] FAILED for ada7a8f2c0fd4eb9af8e00633b481dfc: {"callback_id":null,"caption_url":null,"created_at":1774075879,"duration":null,"error":{"activity_name":"TemporalCoreActivity.DEDUCT_QUOTA","code":"MOVIO_PAYMENT_INSUFFICIENT_CREDIT","detail":"Insufficient credit","exception_class":"MovioException","message":"Insufficient credit. This operation requires 'api' credits."},"gif_url":null,"id":"ada7a8f2c0fd4eb9af8e00633b481dfc","status":"failed","thumbnail_url":null,"video_url":null,"video_url_caption":null}
+[2026-03-25T10:38:42.825Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-25T10:38:42.834Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-25T10:38:42.836Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-25T10:38:42.838Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-25T10:38:42.840Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-25T10:38:43.152Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-25T10:38:43.160Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-25T10:38:43.174Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-25T10:38:43.177Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-25T10:38:43.189Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-25T10:38:43.190Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-25T10:38:43.529Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:43.549Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:43.562Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-25T10:38:43.565Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:43.572Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-25T10:38:43.594Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-25T10:38:43.596Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:43.601Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:43.617Z] Checking status for 83b3711eb5bf4aec862376b180fb29c0, Custom Key: false
+[2026-03-25T10:38:43.619Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-25T10:38:43.687Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:43.693Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-25T10:38:43.893Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-25T10:38:43.903Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-25T10:38:43.928Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-25T10:38:43.956Z] V2 check 404'd or no status, trying V1 fallback for 83b3711eb5bf4aec862376b180fb29c0
+[2026-03-25T10:38:43.958Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-25T10:38:44.051Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-25T10:38:44.292Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:44.303Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:44.315Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-25T10:38:44.321Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-25T10:38:44.345Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['83b3711eb5bf4aec862376b180fb29c0'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:44.367Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:44.396Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:44.436Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:44.652Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-25T10:38:44.670Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-25T10:38:45.053Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:38:45.063Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:48:19.161Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-25T10:48:19.190Z] Checking status for 90c46bd8d1b34585a2804ec8bcf96016, Custom Key: false
+[2026-03-25T10:48:19.195Z] Checking status for e2d29b39765947e78f73d139cdf18c57, Custom Key: false
+[2026-03-25T10:48:19.198Z] Checking status for 94787b5dbb00431ead061c5173c2dc89, Custom Key: false
+[2026-03-25T10:48:19.204Z] Checking status for 12bcf38cae1c4466ae4f55ae6d41898b, Custom Key: false
+[2026-03-25T10:48:19.214Z] Checking status for 188c3c159ac9413e94edff80f61d9196, Custom Key: false
+[2026-03-25T10:48:20.804Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-25T10:48:20.818Z] V2 check 404'd or no status, trying V1 fallback for 188c3c159ac9413e94edff80f61d9196
+[2026-03-25T10:48:20.831Z] V2 check 404'd or no status, trying V1 fallback for 12bcf38cae1c4466ae4f55ae6d41898b
+[2026-03-25T10:48:20.839Z] V2 check 404'd or no status, trying V1 fallback for 94787b5dbb00431ead061c5173c2dc89
+[2026-03-25T10:48:20.841Z] V2 check 404'd or no status, trying V1 fallback for e2d29b39765947e78f73d139cdf18c57
+[2026-03-25T10:48:20.844Z] V2 check 404'd or no status, trying V1 fallback for 90c46bd8d1b34585a2804ec8bcf96016
+[2026-03-25T10:48:21.218Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['188c3c159ac9413e94edff80f61d9196'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:48:21.228Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['90c46bd8d1b34585a2804ec8bcf96016'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:48:21.253Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['94787b5dbb00431ead061c5173c2dc89'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:48:21.259Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['e2d29b39765947e78f73d139cdf18c57'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:48:21.265Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['12bcf38cae1c4466ae4f55ae6d41898b'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:48:22.126Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}
+[2026-03-25T10:48:22.139Z] Checking status for 41feebbdaca7431e8db1d06c4da61dea, Custom Key: false
+[2026-03-25T10:48:22.468Z] V2 check 404'd or no status, trying V1 fallback for 41feebbdaca7431e8db1d06c4da61dea
+[2026-03-25T10:48:22.868Z] Status Check Error [404]: {"code":400569,"message":"ResourceType.PACIFIC_VIDEO: ['41feebbdaca7431e8db1d06c4da61dea'] not found for bb4ac5d4c8864157826c0bb33cf5ba06 in space bb4ac5d4c8864157826c0bb33cf5ba06"}

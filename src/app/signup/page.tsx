@@ -65,21 +65,21 @@ export default function Signup() {
     };
 
     return (
-        <div className="min-h-screen bg-black flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-page flex flex-col justify-center py-12 sm:px-6 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                <Link href="/" className="flex justify-center text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent">
+                <Link href="/" className="flex justify-center text-3xl font-bold text-theme-primary">
                     NYX
                 </Link>
-                <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
+                <h2 className="mt-6 text-center text-3xl font-extrabold text-theme-primary">
                     Create your account
                 </h2>
             </div>
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                <div className="bg-white/5 py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-white/10">
+                <div className="bg-card-theme py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-theme">
                     <form className="space-y-6" onSubmit={handleSignup}>
                         <div>
-                            <label htmlFor="name" className="block text-sm font-medium text-gray-300">
+                            <label htmlFor="name" className="block text-sm font-medium text-theme-secondary">
                                 Full Name
                             </label>
                             <div className="mt-1">
@@ -89,13 +89,13 @@ export default function Signup() {
                                     type="text"
                                     autoComplete="name"
                                     required
-                                    className="appearance-none block w-full px-3 py-2 border border-white/10 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-purple-500 focus:border-purple-500 bg-black/50 text-white sm:text-sm"
+                                    className="appearance-none block w-full px-3 py-2 border border-theme rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-page/50 text-theme-primary sm:text-sm"
                                 />
                             </div>
                         </div>
 
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+                            <label htmlFor="email" className="block text-sm font-medium text-theme-secondary">
                                 Email address
                             </label>
                             <div className="mt-1">
@@ -105,13 +105,13 @@ export default function Signup() {
                                     type="email"
                                     autoComplete="email"
                                     required
-                                    className="appearance-none block w-full px-3 py-2 border border-white/10 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-purple-500 focus:border-purple-500 bg-black/50 text-white sm:text-sm"
+                                    className="appearance-none block w-full px-3 py-2 border border-theme rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-page/50 text-theme-primary sm:text-sm"
                                 />
                             </div>
                         </div>
 
                         <div>
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-300">
+                            <label htmlFor="password" className="block text-sm font-medium text-theme-secondary">
                                 Password
                             </label>
                             <div className="mt-1">
@@ -121,7 +121,7 @@ export default function Signup() {
                                     type="password"
                                     autoComplete="new-password"
                                     required
-                                    className="appearance-none block w-full px-3 py-2 border border-white/10 rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-purple-500 focus:border-purple-500 bg-black/50 text-white sm:text-sm"
+                                    className="appearance-none block w-full px-3 py-2 border border-theme rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-page/50 text-theme-primary sm:text-sm"
                                 />
                             </div>
                         </div>
@@ -130,7 +130,7 @@ export default function Signup() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 {loading ? 'Creating account...' : 'Sign up'}
                             </button>
@@ -140,27 +140,27 @@ export default function Signup() {
                     <div className="mt-6">
                         <div className="relative">
                             <div className="absolute inset-0 flex items-center">
-                                <div className="w-full border-t border-white/10" />
+                                <div className="w-full border-t border-theme" />
                             </div>
                             <div className="relative flex justify-center text-sm">
-                                <span className="px-2 bg-black text-gray-400">
+                                <span className="px-2 bg-page text-theme-secondary">
                                     Or continue with
                                 </span>
                             </div>
                         </div>
 
                         <div className="mt-6 grid grid-cols-2 gap-3">
-                            <button onClick={() => signIn('google', { callbackUrl: '/dashboard' })} className="w-full inline-flex justify-center py-2 px-4 border border-white/10 rounded-md shadow-sm bg-white/5 text-sm font-medium text-gray-300 hover:bg-white/10 transition-colors">
+                            <button onClick={() => signIn('google', { callbackUrl: '/dashboard' })} className="w-full inline-flex justify-center py-2 px-4 border border-theme rounded-md shadow-sm bg-card-theme text-sm font-medium text-theme-secondary hover:bg-card-theme transition-colors">
                                 Google
                             </button>
-                            <button className="w-full inline-flex justify-center py-2 px-4 border border-white/10 rounded-md shadow-sm bg-white/5 text-sm font-medium text-gray-300 hover:bg-white/10 transition-colors">
+                            <button className="w-full inline-flex justify-center py-2 px-4 border border-theme rounded-md shadow-sm bg-card-theme text-sm font-medium text-theme-secondary hover:bg-card-theme transition-colors">
                                 Instagram
                             </button>
                         </div>
                         <div className="mt-6 text-center text-sm">
-                            <p className="text-gray-400">
+                            <p className="text-theme-secondary">
                                 Already have an account?{' '}
-                                <Link href="/login" className="font-medium text-purple-400 hover:text-purple-300 transition-colors">
+                                <Link href="/login" className="font-medium text-orange-500 hover:text-orange-400 transition-colors">
                                     Sign in
                                 </Link>
                             </p>
