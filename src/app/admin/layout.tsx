@@ -10,7 +10,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
     const downServices = [voiceService === 'DOWN' ? 'Voice' : '', videoService === 'DOWN' ? 'Video' : ''].filter(Boolean);
 
     return (
-        <div className="min-h-screen" style={{ background: '#07070f', color: '#e2e8f0' }}>
+        <div className="min-h-screen bg-page text-theme-primary">
             <AdminSidebar />
 
             <div className="ml-64 transition-all duration-300">
@@ -32,7 +32,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
                             className={`flex items-start gap-3 p-4 rounded-xl border text-sm shadow-2xl animate-fade-in backdrop-blur-sm ${n.type === 'warning' ? 'bg-orange-900/80 border-orange-500/30 text-orange-200' :
                                 n.type === 'error' ? 'bg-red-900/80 border-red-500/30 text-red-200' :
                                     n.type === 'success' ? 'bg-green-900/80 border-green-500/30 text-green-200' :
-                                        'bg-gray-900/80 border-gray-700/30 text-gray-200'
+                                        'bg-card-theme border-theme text-theme-primary'
                                 }`
                             }>
                             <p className="flex-1 leading-snug">{n.message}</p>

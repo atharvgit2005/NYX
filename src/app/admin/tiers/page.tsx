@@ -46,7 +46,7 @@ export default function TiersPage() {
     };
 
     const confirmDelete = (id: string) => {
-        const usersOnTier = users.filter(u => u.tier === tiers.find(t => t.id === id)?.name).length;
+        const usersOnTier = users.filter(u => u.subscription?.tier === tiers.find(t => t.id === id)?.name).length;
         if (usersOnTier > 0) {
             addNotification(`⚠️ Cannot delete — ${usersOnTier} users on this tier. Migrate them first.`, 'error');
             return;
@@ -80,7 +80,7 @@ export default function TiersPage() {
 
             <div className="grid grid-cols-1 gap-4">
                 {tiers.map(tier => {
-                    const userCount = users.filter(u => u.tier === tier.name).length;
+                    const userCount = users.filter(u => u.subscription?.tier === tier.name).length;
                     return (
                         <div key={tier.id} className="rounded-2xl border border-theme bg-card-theme p-6">
                             <div className="flex items-start justify-between mb-6">

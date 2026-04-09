@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import {
     LayoutDashboard, Users, CreditCard, Layers, Shield,
     BarChart3, ScrollText, Bell, ChevronLeft, ChevronRight,
-    Zap, LogOut, AlertTriangle
+    LogOut, AlertTriangle
 } from 'lucide-react';
 import { useAdmin } from '@/context/AdminContext';
 
@@ -29,26 +29,25 @@ export default function AdminSidebar() {
     const unreadCount = notifications.length;
 
     return (
-        <div className={`fixed left-0 top-0 bottom-0 z-50 flex flex-col transition-all duration-300 ${collapsed ? 'w-[72px]' : 'w-64'}`}
-            style={{ background: 'rgba(8, 8, 16, 0.97)', borderRight: '1px solid rgba(255,255,255,0.06)' }}>
+        <div className={`fixed left-0 top-0 bottom-0 z-50 flex flex-col transition-all duration-300 ${collapsed ? 'w-[72px]' : 'w-64'} bg-card-theme border-r border-theme`}>
 
             {/* Logo */}
             <div className={`flex items-center gap-3 px-5 py-5 border-b border-theme ${collapsed ? 'justify-center px-0' : ''}`}>
-                <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-white/10 flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform">
+                <div className="w-9 h-9 rounded-xl bg-orange-500 flex items-center justify-center flex-shrink-0 shadow-lg shadow-orange-500/20">
                     <Shield className="w-5 h-5 text-white" />
                 </div>
                 {!collapsed && (
                     <div>
                         <p className="text-sm font-black text-theme-primary tracking-tight">NYX Admin</p>
-                        <p className="text-[10px] text-gray-500 font-medium">Control Panel</p>
+                        <p className="text-[10px] text-theme-secondary font-medium">Control Panel</p>
                     </div>
                 )}
             </div>
 
             {/* Service Status Bar */}
             {!collapsed && (
-                <div className="mx-3 my-3 p-3 rounded-xl bg-card-theme border border-theme">
-                    <p className="text-[10px] text-gray-500 uppercase tracking-wide font-bold mb-2">Service Health</p>
+                <div className="mx-3 my-3 p-3 rounded-xl bg-accent border border-theme">
+                    <p className="text-[10px] text-theme-secondary uppercase tracking-wide font-bold mb-2">Service Health</p>
                     <div className="flex flex-col gap-1.5">
                         {[
                             { label: 'Voice', status: voiceService },
@@ -75,21 +74,21 @@ export default function AdminSidebar() {
                     return (
                         <Link key={href} href={href}
                             className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all group relative ${collapsed ? 'justify-center' : ''} ${isActive
-                                ? 'bg-white/10 text-white border border-white/10 shadow-[0_0_20px_rgba(255,255,255,0.05)]'
-                                : 'text-zinc-500 hover:text-white hover:bg-white/5'}`}
+                                ? 'bg-orange-500/10 text-orange-500 border border-orange-500/20'
+                                : 'text-theme-secondary hover:text-theme-primary hover:bg-accent'}`}
                             title={collapsed ? name : ''}
                         >
                             <div className="relative flex-shrink-0">
-                                <Icon className={`w-4.5 h-4.5 ${isActive ? 'text-white' : 'text-zinc-600 group-hover:text-zinc-400'}`} style={{ width: '18px', height: '18px' }} />
+                                <Icon className="w-[18px] h-[18px]" />
                                 {isAlerts && unreadCount > 0 && (
-                                    <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-red-500 rounded-full text-[9px] text-theme-primary flex items-center justify-center font-bold">{unreadCount}</span>
+                                    <span className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-red-500 rounded-full text-[9px] text-white flex items-center justify-center font-bold">{unreadCount}</span>
                                 )}
                                 {isGates && hasIssue && (
                                     <span className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-orange-500 rounded-full animate-pulse" />
                                 )}
                             </div>
                             {!collapsed && <span>{name}</span>}
-                            {isActive && !collapsed && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-white" />}
+                            {isActive && !collapsed && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-orange-500" />}
                         </Link>
                     );
                 })}
@@ -97,13 +96,13 @@ export default function AdminSidebar() {
 
             {/* Bottom */}
             <div className="px-3 pb-4 space-y-2 border-t border-theme pt-3">
-                <Link href="/dashboard" className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-500 hover:text-theme-primary hover:bg-card-theme transition-all ${collapsed ? 'justify-center' : ''}`}>
+                <Link href="/dashboard" className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-theme-secondary hover:text-theme-primary hover:bg-accent transition-all ${collapsed ? 'justify-center' : ''}`}>
                     <LogOut className="w-4 h-4 flex-shrink-0" />
                     {!collapsed && <span>Back to App</span>}
                 </Link>
                 <button
                     onClick={() => setCollapsed(!collapsed)}
-                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs text-gray-600 hover:text-theme-secondary hover:bg-white/3 transition-all ${collapsed ? 'justify-center' : ''}`}
+                    className={`w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs text-theme-secondary hover:text-theme-primary hover:bg-accent transition-all ${collapsed ? 'justify-center' : ''}`}
                 >
                     {collapsed ? <ChevronRight className="w-4 h-4" /> : <><ChevronLeft className="w-4 h-4" /><span>Collapse</span></>}
                 </button>

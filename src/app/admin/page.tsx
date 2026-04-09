@@ -1,7 +1,7 @@
 'use client';
 
 import { useAdmin } from '@/context/AdminContext';
-import { Users, CreditCard, DollarSign, Clock, AlertTriangle, Mic, Video, TrendingUp, ChevronRight, Loader2 } from 'lucide-react';
+import { Users, CreditCard, DollarSign, Clock, Mic, Video, ChevronRight, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
 function MiniChart({ data, color }: { data: number[]; color: string }) {
@@ -10,10 +10,17 @@ function MiniChart({ data, color }: { data: number[]; color: string }) {
     const range = max - min || 1;
     const W = 160; const H = 48;
     const pts = data.map((v, i) => `${(i / (data.length - 1)) * W},${H - ((v - min) / range) * H * 0.85}`).join(' ');
+    const gradId = `grad-${color.replace('#', '')}`;
     return (
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ height: 48 }}>
-            <polyline points={pts} fill="none" stroke={color} strokeWidth="2" strokeLinejoin="round" />
-            <polyline points={`0,${H} ${pts} ${W},${H}`} fill={`${color}18`} strokeWidth="0" />
+            <defs>
+                <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor={color} stopOpacity="0.3" />
+                    <stop offset="100%" stopColor={color} stopOpacity="0" />
+                </linearGradient>
+            </defs>
+            <polyline points={`0,${H} ${pts} ${W},${H}`} fill={`url(#${gradId})`} />
+            <polyline points={pts} fill="none" stroke={color} strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
         </svg>
     );
 }
@@ -22,7 +29,7 @@ const growthData = [4, 7, 6, 11, 14, 12, 17, 19, 23, 21, 28, 31];
 const usageData = [40, 55, 48, 60, 72, 65, 80, 78, 90, 85, 95, 100];
 
 export default function AdminDashboard() {
-    const { voiceService, videoService, users, subscriptions, tiers, auditLog, loadingUsers } = useAdmin();
+    const { voiceService, videoService, users, subscriptions, tiers, auditLog, loadingUsers, loadingSubscriptions } = useAdmin();
     const { setVoiceService, setVideoService } = useAdmin();
 
     const totalUsers = users.length;
@@ -35,15 +42,19 @@ export default function AdminDashboard() {
             return sum + (tier?.price || 0);
         }, 0);
 
+    const isLoading = loadingUsers || loadingSubscriptions;
+
     return (
         <div className="space-y-8">
             <div className="flex items-start justify-between">
                 <div>
                     <h1 className="text-3xl font-black text-theme-primary">Dashboard</h1>
-                    <p className="text-gray-500 mt-1">Platform health overview · {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    <p className="text-theme-secondary mt-1">
+                        Platform health overview · {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
+                    </p>
                 </div>
-                <Link href="/admin/subscriptions" className="text-xs px-4 py-2 rounded-lg bg-card-theme border border-theme text-theme-secondary hover:text-theme-primary hover:bg-card-theme transition flex items-center gap-2">
-                    Pending Approvals {pendingCount > 0 && <span className="bg-orange-500 text-theme-primary text-[10px] px-1.5 py-0.5 rounded-full font-bold">{pendingCount}</span>}
+                <Link href="/admin/subscriptions" className="text-xs px-4 py-2 rounded-lg bg-card-theme border border-theme text-theme-secondary hover:text-theme-primary hover:bg-accent transition flex items-center gap-2">
+                    Pending Approvals {pendingCount > 0 && <span className="bg-orange-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">{pendingCount}</span>}
                 </Link>
             </div>
 
@@ -53,7 +64,7 @@ export default function AdminDashboard() {
                     { label: 'Voice Generation', status: voiceService, icon: Mic, toggle: () => setVoiceService(voiceService === 'UP' ? 'DOWN' : 'UP') },
                     { label: 'Video Generation', status: videoService, icon: Video, toggle: () => setVideoService(videoService === 'UP' ? 'DOWN' : 'UP') },
                 ].map(({ label, status, icon: Icon, toggle }) => (
-                    <div key={label} className={`rounded-2xl border p-5 flex items-center justify-between ${status === 'UP' ? 'border-green-500/20 bg-green-500/5' : 'border-red-500/20 bg-red-500/5'}`}>
+                    <div key={label} className={`rounded-2xl border p-5 flex items-center justify-between transition-all ${status === 'UP' ? 'border-green-500/20 bg-green-500/5' : 'border-red-500/20 bg-red-500/5'}`}>
                         <div className="flex items-center gap-3">
                             <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${status === 'UP' ? 'bg-green-500/10' : 'bg-red-500/10'}`}>
                                 <Icon className={`w-5 h-5 ${status === 'UP' ? 'text-green-400' : 'text-red-400'}`} />
@@ -66,7 +77,7 @@ export default function AdminDashboard() {
                                 </div>
                             </div>
                         </div>
-                        <button onClick={toggle} className={`relative w-12 h-6 rounded-full transition-all duration-300 ${status === 'UP' ? 'bg-green-500' : 'bg-gray-700'}`}>
+                        <button onClick={toggle} className={`relative w-12 h-6 rounded-full transition-all duration-300 ${status === 'UP' ? 'bg-green-500' : 'bg-gray-600'}`}>
                             <span className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all duration-300 ${status === 'UP' ? 'left-6' : 'left-0.5'}`} />
                         </button>
                     </div>
@@ -76,12 +87,12 @@ export default function AdminDashboard() {
             {/* Stats */}
             <div className="grid grid-cols-4 gap-4">
                 {[
-                    { label: 'Total Users', value: loadingUsers ? '…' : totalUsers, icon: Users, color: '#f97316' },
-                    { label: 'Active Subscriptions', value: loadingUsers ? '…' : activeSubscriptions, icon: CreditCard, color: '#06b6d4' },
-                    { label: 'MRR', value: `$${mrr}`, icon: DollarSign, color: '#10b981' },
-                    { label: 'Pending Approvals', value: loadingUsers ? '…' : pendingCount, icon: Clock, color: '#f59e0b' },
+                    { label: 'Total Users', value: isLoading ? '…' : totalUsers, icon: Users, color: '#f97316' },
+                    { label: 'Active Subscriptions', value: isLoading ? '…' : activeSubscriptions, icon: CreditCard, color: '#06b6d4' },
+                    { label: 'MRR', value: isLoading ? '…' : `$${mrr}`, icon: DollarSign, color: '#10b981' },
+                    { label: 'Pending Approvals', value: isLoading ? '…' : pendingCount, icon: Clock, color: '#f59e0b' },
                 ].map(({ label, value, icon: Icon, color }) => (
-                    <div key={label} className="rounded-2xl border border-theme bg-card-theme p-6">
+                    <div key={label} className="rounded-2xl border border-theme bg-card-theme p-6 hover:border-orange-500/20 transition-all">
                         <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-4" style={{ background: `${color}22` }}>
                             <Icon className="w-5 h-5" style={{ color }} />
                         </div>
@@ -95,12 +106,12 @@ export default function AdminDashboard() {
             <div className="grid grid-cols-2 gap-6">
                 <div className="rounded-2xl border border-theme bg-card-theme p-6">
                     <p className="text-sm font-bold text-theme-primary mb-1">Subscription Growth</p>
-                    <p className="text-xs text-gray-500 mb-4">Last 12 months (projected)</p>
+                    <p className="text-xs text-theme-secondary mb-4">Last 12 months (projected)</p>
                     <MiniChart data={growthData} color="#f97316" />
                 </div>
                 <div className="rounded-2xl border border-theme bg-card-theme p-6">
                     <p className="text-sm font-bold text-theme-primary mb-1">Feature Usage</p>
-                    <p className="text-xs text-gray-500 mb-4">Voice + Video this period</p>
+                    <p className="text-xs text-theme-secondary mb-4">Voice + Video this period</p>
                     <MiniChart data={usageData} color="#06b6d4" />
                 </div>
             </div>
@@ -108,39 +119,42 @@ export default function AdminDashboard() {
             {/* Recent Audit + Quick Actions */}
             <div className="grid grid-cols-3 gap-6">
                 <div className="space-y-2">
-                    <p className="text-xs text-gray-500 uppercase font-bold tracking-wider mb-3">Quick Actions</p>
+                    <p className="text-xs text-theme-secondary uppercase font-bold tracking-wider mb-3">Quick Actions</p>
                     {[
                         { label: 'Review Pending Approvals', href: '/admin/subscriptions', badge: pendingCount },
                         { label: 'Feature Gate Control', href: '/admin/gates', badge: 0 },
                         { label: 'View Audit Log', href: '/admin/audit', badge: 0 },
                         { label: 'Configure Alerts', href: '/admin/alerts', badge: 0 },
                     ].map(({ label, href, badge }) => (
-                        <Link key={href} href={href} className="flex items-center justify-between p-3 rounded-xl bg-card-theme border border-theme hover:bg-card-theme text-sm text-theme-secondary hover:text-theme-primary group transition-all">
+                        <Link key={href} href={href} className="flex items-center justify-between p-3 rounded-xl bg-card-theme border border-theme hover:bg-accent text-sm text-theme-secondary hover:text-theme-primary group transition-all">
                             <span>{label}</span>
                             <div className="flex items-center gap-2">
-                                {badge > 0 && <span className="text-[10px] px-1.5 py-0.5 rounded-full font-bold text-theme-primary bg-orange-500">{badge}</span>}
-                                <ChevronRight className="w-3.5 h-3.5 text-gray-600 group-hover:text-theme-secondary" />
+                                {badge > 0 && <span className="text-[10px] px-1.5 py-0.5 rounded-full font-bold text-white bg-orange-500">{badge}</span>}
+                                <ChevronRight className="w-3.5 h-3.5 text-theme-secondary group-hover:text-theme-primary transition" />
                             </div>
                         </Link>
                     ))}
                 </div>
                 <div className="col-span-2 rounded-2xl border border-theme bg-card-theme p-5">
-                    <p className="text-xs text-gray-500 uppercase font-bold tracking-wider mb-4">Recent Audit Activity</p>
+                    <p className="text-xs text-theme-secondary uppercase font-bold tracking-wider mb-4">Recent Audit Activity</p>
                     {auditLog.length === 0 ? (
-                        <p className="text-sm text-gray-600">No audit entries yet. Actions will appear here.</p>
+                        <div className="text-center py-8">
+                            <p className="text-sm text-theme-secondary opacity-50">No audit entries yet.</p>
+                            <p className="text-xs text-theme-secondary opacity-30 mt-1">Actions you take will appear here.</p>
+                        </div>
                     ) : (
                         <div className="space-y-3">
                             {auditLog.slice(0, 5).map(entry => (
-                                <div key={entry.id} className="flex items-start gap-3 text-sm">
-                                    <span className="text-[10px] text-gray-600 font-mono mt-0.5 flex-shrink-0 w-20">
+                                <div key={entry.id} className="flex items-start gap-3 text-sm p-2 rounded-lg hover:bg-accent transition">
+                                    <span className="text-[10px] text-theme-secondary font-mono mt-0.5 flex-shrink-0 w-20">
                                         {new Date(entry.createdAt).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
                                     </span>
-                                    <span className="text-theme-secondary flex-1">{entry.action} · <span className="text-gray-500">{entry.target}</span></span>
+                                    <span className="text-theme-primary flex-1">{entry.action} · <span className="text-theme-secondary">{entry.target}</span></span>
                                 </div>
                             ))}
                         </div>
                     )}
-                    <Link href="/admin/audit" className="mt-4 text-xs text-orange-500 hover:text-orange-300 flex items-center gap-1 transition">View full log <ChevronRight className="w-3 h-3" /></Link>
+                    <Link href="/admin/audit" className="mt-4 text-xs text-orange-500 hover:text-orange-400 flex items-center gap-1 transition">View full log <ChevronRight className="w-3 h-3" /></Link>
                 </div>
             </div>
         </div>
