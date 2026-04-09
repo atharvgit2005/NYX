@@ -80,13 +80,13 @@ function RangeSlider({ label, value, min, max, step, format, onChange, color = '
                 <span className="text-[10px] font-black px-2 py-0.5 rounded-lg" style={{ color, background: `${color}18` }}>{format(value)}</span>
             </div>
             <div className="relative h-4 flex items-center">
-                <div className="absolute w-full h-1 rounded-full bg-zinc-800" />
-                <div className="absolute h-1 rounded-full bg-white" style={{ width: `${pct}%` }} />
+                <div className="absolute w-full h-1 rounded-full bg-card-hover border border-theme" />
+                <div className="absolute h-1 rounded-full bg-orange-500" style={{ width: `${pct}%` }} />
                 <input type="range" min={min} max={max} step={step} value={value}
                     onChange={e => onChange(parseFloat(e.target.value))}
                     className="absolute w-full opacity-0 cursor-pointer h-4" style={{ zIndex: 1 }} />
-                <div className="absolute w-3.5 h-3.5 rounded-full shadow border-2 border-white"
-                    style={{ left: `calc(${pct}% - 7px)`, background: color, transition: 'left 0.05s' }} />
+                <div className="absolute w-3.5 h-3.5 rounded-full shadow border-2 border-orange-500 bg-page"
+                    style={{ left: `calc(${pct}% - 7px)`, transition: 'left 0.05s' }} />
             </div>
         </div>
     );
@@ -246,9 +246,9 @@ export default function VoiceToVideo({ script, onChange }: Props) {
         <div className="rounded-3xl border border-theme bg-card-theme overflow-hidden">
 
             {/* ── Header ── */}
-            <div className="flex items-center gap-3 px-6 py-5 border-b border-theme bg-zinc-900">
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-white shadow-lg">
-                    <Link2 className="w-5 h-5 text-black" />
+            <div className="flex items-center gap-3 px-6 py-5 border-b border-theme bg-card-theme">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 bg-card-hover shadow-lg border border-theme">
+                    <Link2 className="w-5 h-5 text-theme-primary" />
                 </div>
                 <div>
                     <p className="text-sm font-black text-theme-primary">Voice → Avatar Bridge</p>
@@ -266,15 +266,15 @@ export default function VoiceToVideo({ script, onChange }: Props) {
             <div className="flex border-b border-theme">
                 <button
                     onClick={() => setVoiceTab('cloned')}
-                    className={`flex-1 py-3 text-xs font-bold flex items-center justify-center gap-2 transition-colors ${voiceTab === 'cloned' ? 'text-white border-b-2 border-white bg-white/5' : 'text-zinc-500 hover:text-white'}`}>
+                    className={`flex-1 py-3 text-xs font-bold flex items-center justify-center gap-2 transition-colors ${voiceTab === 'cloned' ? 'text-theme-primary border-b-2 border-orange-500 bg-orange-500/5' : 'text-theme-secondary hover:text-theme-primary'}`}>
                     <Mic className="w-3.5 h-3.5" /> My Cloned Voices
-                    {clonedVoices.length > 0 && <span className="ml-1 text-[10px] px-1.5 py-0.5 rounded-full bg-white text-black">{clonedVoices.length}</span>}
+                    {clonedVoices.length > 0 && <span className="ml-1 text-[10px] px-1.5 py-0.5 rounded-full bg-orange-500 text-white">{clonedVoices.length}</span>}
                 </button>
                 <button
                     onClick={() => setVoiceTab('builtin')}
-                    className={`flex-1 py-3 text-xs font-bold flex items-center justify-center gap-2 transition-colors ${voiceTab === 'builtin' ? 'text-white border-b-2 border-white bg-white/5' : 'text-zinc-500 hover:text-white'}`}>
+                    className={`flex-1 py-3 text-xs font-bold flex items-center justify-center gap-2 transition-colors ${voiceTab === 'builtin' ? 'text-theme-primary border-b-2 border-orange-500 bg-orange-500/5' : 'text-theme-secondary hover:text-theme-primary'}`}>
                     <Star className="w-3.5 h-3.5" /> Inworld Built-In
-                    {builtinVoices.length > 0 && <span className="ml-1 text-[10px] px-1.5 py-0.5 rounded-full bg-white text-black">{builtinVoices.length}</span>}
+                    {builtinVoices.length > 0 && <span className="ml-1 text-[10px] px-1.5 py-0.5 rounded-full bg-orange-500 text-white">{builtinVoices.length}</span>}
                 </button>
             </div>
 
@@ -303,12 +303,12 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                             </div>
                         ) : (
                             <div className="grid grid-cols-1 gap-2 max-h-[200px] overflow-y-auto pr-1">
-                                {clonedVoices.map(v => (
-                                    <button key={v.voiceId}
+                                {clonedVoices.filter(v => v && v.voiceId).map((v, i) => (
+                                    <button key={`${v.voiceId}-${i}`}
                                         onClick={() => selectVoice(v.voiceId, v.displayName, false)}
-                                        className={`flex items-center gap-3 p-3.5 rounded-2xl border text-left w-full transition-all ${selected?.id === v.voiceId ? 'border-white/40 bg-white/10' : 'border-white/10 bg-zinc-900/40 hover:border-white/20'}`}>
-                                        <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${selected?.id === v.voiceId ? 'bg-white' : 'bg-zinc-950 border border-white/5'}`}>
-                                            <Mic className={`w-3.5 h-3.5 ${selected?.id === v.voiceId ? 'text-black' : 'text-zinc-600'}`} />
+                                        className={`flex items-center gap-3 p-3.5 rounded-2xl border text-left w-full transition-all ${selected?.id === v.voiceId ? 'border-orange-500/40 bg-orange-500/10' : 'border-theme bg-card-theme hover:border-orange-500/20'}`}>
+                                        <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${selected?.id === v.voiceId ? 'bg-orange-500' : 'bg-card-hover border border-theme'}`}>
+                                            <Mic className={`w-3.5 h-3.5 ${selected?.id === v.voiceId ? 'text-white' : 'text-theme-secondary'}`} />
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <p className={`text-sm font-bold truncate ${selected?.id === v.voiceId ? 'text-theme-primary' : 'text-theme-primary'}`}>{v.displayName}</p>
@@ -352,9 +352,9 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                                 {builtinVoices.map(v => (
                                     <button key={v.id}
                                         onClick={() => selectVoice(v.id, v.name, true)}
-                                        className={`flex items-center gap-3 p-3.5 rounded-2xl border text-left w-full transition-all ${selected?.id === v.id ? 'border-white/40 bg-white/10' : 'border-white/10 bg-zinc-900/40 hover:border-white/20'}`}>
-                                        <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${selected?.id === v.id ? 'bg-white' : 'bg-zinc-950 border border-white/5'}`}>
-                                            <Star className={`w-3.5 h-3.5 ${selected?.id === v.id ? 'text-black' : 'text-zinc-600'}`} />
+                                        className={`flex items-center gap-3 p-3.5 rounded-2xl border text-left w-full transition-all ${selected?.id === v.id ? 'border-orange-500/40 bg-orange-500/10' : 'border-theme bg-card-theme hover:border-orange-500/20'}`}>
+                                        <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${selected?.id === v.id ? 'bg-orange-500' : 'bg-card-hover border border-theme'}`}>
+                                            <Star className={`w-3.5 h-3.5 ${selected?.id === v.id ? 'text-white' : 'text-theme-secondary'}`} />
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <p className={`text-sm font-bold truncate ${selected?.id === v.id ? 'text-theme-primary' : 'text-theme-primary'}`}>{v.name}</p>
@@ -385,9 +385,9 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                             <button onClick={() => setShowControls(s => !s)}
                                 className="w-full flex items-center justify-between px-5 py-3.5 bg-card-hover hover:bg-card-theme transition">
                                 <div className="flex items-center gap-2 text-sm font-bold text-theme-primary">
-                                    <Sliders className="w-4 h-4 text-white" />
+                                    <Sliders className="w-4 h-4 text-theme-primary" />
                                     Voice Controls
-                                    {isModified && <span className="px-2 py-0.5 text-[10px] rounded-full bg-white/10 text-white font-bold border border-white/10">Modified</span>}
+                                    {isModified && <span className="px-2 py-0.5 text-[10px] rounded-full bg-orange-500/10 text-orange-500 font-bold border border-orange-500/20">Modified</span>}
                                 </div>
                                 {showControls ? <ChevronUp className="w-4 h-4 text-gray-500" /> : <ChevronDown className="w-4 h-4 text-gray-500" />}
                             </button>
@@ -406,7 +406,7 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                                         <div className="flex flex-wrap gap-1.5">
                                             {EMOTIONS.map(e => (
                                                 <button key={e.value} onClick={() => patch('emotion', e.value)}
-                                                    className={`px-2.5 py-1 rounded-lg text-xs font-bold border flex items-center gap-1 transition-all ${controls.emotion === e.value ? 'bg-white text-black border-white' : 'bg-zinc-900 border-white/10 text-zinc-500 hover:border-white/30'}`}>
+                                                    className={`px-2.5 py-1 rounded-lg text-xs font-bold border flex items-center gap-1 transition-all ${controls.emotion === e.value ? 'bg-orange-500 text-white border-orange-500' : 'bg-card-theme border-theme text-theme-secondary hover:border-orange-500/30'}`}>
                                                     {e.emoji} {e.label}
                                                 </button>
                                             ))}
@@ -418,7 +418,7 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                                         <div className="flex flex-wrap gap-1.5">
                                             {STYLES.map(s => (
                                                 <button key={s.value} onClick={() => patch('style', s.value)}
-                                                    className={`px-2.5 py-1 rounded-lg text-xs font-bold border flex items-center gap-1 transition-all ${controls.style === s.value ? 'bg-white text-black border-white' : 'bg-zinc-900 border-white/10 text-zinc-500 hover:border-white/30'}`}>
+                                                    className={`px-2.5 py-1 rounded-lg text-xs font-bold border flex items-center gap-1 transition-all ${controls.style === s.value ? 'bg-orange-500 text-white border-orange-500' : 'bg-card-theme border-theme text-theme-secondary hover:border-orange-500/30'}`}>
                                                     {s.icon} {s.label}
                                                 </button>
                                             ))}
@@ -430,9 +430,9 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                                         <div className="flex gap-2">
                                             {MODELS.map(m => (
                                                 <button key={m.value} onClick={() => patch('model', m.value)}
-                                                    className={`px-3 py-1.5 rounded-xl text-xs font-bold border flex items-center gap-2 transition-all ${controls.model === m.value ? 'bg-white text-black border-white' : 'bg-zinc-900 border-white/10 text-zinc-500 hover:border-white/30'}`}>
+                                                    className={`px-3 py-1.5 rounded-xl text-xs font-bold border flex items-center gap-2 transition-all ${controls.model === m.value ? 'bg-orange-500 text-white border-orange-500' : 'bg-card-theme border-theme text-theme-secondary hover:border-orange-500/30'}`}>
                                                     {m.label}
-                                                    <span className={`text-[9px] px-1 py-0.5 rounded font-black ${controls.model === m.value ? 'bg-black text-white' : 'bg-zinc-800 text-zinc-400'}`}>{m.badge}</span>
+                                                    <span className={`text-[9px] px-1 py-0.5 rounded font-black ${controls.model === m.value ? 'bg-black text-white' : 'bg-card-hover border border-theme text-theme-secondary'}`}>{m.badge}</span>
                                                 </button>
                                             ))}
                                         </div>
@@ -455,7 +455,7 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                             </div>
                             <div className="px-4 py-4 flex items-center gap-3">
                                 <button onClick={previewSrc ? togglePlay : previewVoice} disabled={previewing}
-                                    className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-white text-black font-bold transition-all disabled:opacity-50 shadow-lg hover:scale-105 active:scale-95">
+                                    className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center bg-orange-500 text-white font-bold transition-all disabled:opacity-50 shadow-lg hover:scale-105 active:scale-95 border-2 border-orange-600">
                                     {previewing ? <Loader2 className="w-4 h-4 animate-spin" />
                                         : previewSrc
                                             ? (isPlaying ? <Pause className="w-4 h-4 fill-current" /> : <Play className="w-4 h-4 fill-current" />)
@@ -478,7 +478,11 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                                                         style={{
                                                             height: isPlaying ? `${4 + Math.abs(Math.sin(i * 0.8)) * 12}px` : '3px',
                                                             background: isPlaying ? '#ffffff' : '#ffffff20',
-                                                            animation: isPlaying ? `pulse 0.${(i % 5) + 3}s ease-in-out infinite alternate` : 'none',
+                                                            animationName: isPlaying ? 'pulse' : 'none',
+                                                            animationDuration: isPlaying ? `0.${(i % 5) + 3}s` : '0s',
+                                                            animationTimingFunction: 'ease-in-out',
+                                                            animationIterationCount: 'infinite',
+                                                            animationDirection: 'alternate',
                                                             animationDelay: `${i * 0.05}s`,
                                                         }} />
                                                 ))}
@@ -500,7 +504,7 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                         {/* ── Config summary pills ── */}
                         <div className="flex flex-wrap gap-1.5 items-center">
                             <span className="text-[10px] text-gray-600 font-bold uppercase tracking-wider">Render with:</span>
-                             <span className="text-[10px] px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white flex items-center gap-1">
+                             <span className="text-[10px] px-2 py-1 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-500 flex items-center gap-1">
                                 {selected.isBuiltIn ? <Star className="w-2.5 h-2.5 fill-current" /> : <Mic className="w-2.5 h-2.5" />}
                                 {selected.name}
                             </span>

@@ -7,7 +7,7 @@ import {
     Mic, Copy, CheckCheck, Sparkles,
 } from 'lucide-react';
 import Image from 'next/image';
-
+import AvatarUpload from '@/components/AvatarUpload';
 
 function StatCard({ label, value, icon: Icon, color }: { label: string; value: number | string; icon: any; color: string }) {
     return (
@@ -163,6 +163,11 @@ export default function ProfilePage() {
                             </div>
                         ))}
                     </div>
+                </div>
+
+                {/* ─── API Integrations & Avatar ─── */}
+                <div className="pt-4">
+                    <AvatarUpload />
                 </div>
 
                 {/* ─── Sign Out ─── */}

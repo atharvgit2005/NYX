@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Upload, Mic, Video, Check, Loader2, HelpCircle, Info, AlertTriangle, ExternalLink } from 'lucide-react';
+import { enhanceAudioBlob } from '@/lib/audioProcessing';
 
 // Known working public HeyGen avatar IDs (non-streaming, work with v2/video/generate)
 const PUBLIC_AVATARS = [
@@ -50,8 +51,17 @@ export default function AvatarUpload() {
         setError(null);
 
         try {
+            let processedFile: Blob | File = voiceFile;
+            
+            try {
+                const blob = await enhanceAudioBlob(voiceFile, false, false);
+                processedFile = new File([blob], voiceFile.name.replace(/\.[^/.]+$/, "") + ".wav", { type: blob.type });
+            } catch (err) {
+                console.warn('Browser audio processing skipped:', err);
+            }
+
             const formData = new FormData();
-            formData.append('file', voiceFile);
+            formData.append('file', processedFile);
             formData.append('name', `NYX Clone - ${new Date().toLocaleDateString()}`);
 
             const response = await fetch('/api/voice/clone', {

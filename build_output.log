@@ -1,0 +1,38 @@
+⚠ `eslint` configuration in next.config.ts is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+⚠ Invalid next.config.ts options detected: 
+⚠     Unrecognized key(s) in object: 'eslint'
+⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+▲ Next.js 16.2.1 (Turbopack)
+- Environments: .env.local, .env
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./src/app/globals.css
+Error evaluating Node.js code
+Error: EPERM: operation not permitted, stat '/Users/atharvpaharia100/package.json'
+    [at Object.statSync (node:fs:1681:25)]
+    [at getPathType (/Users/atharvpaharia100/Desktop/NYX-Everything/NYX/node_modules/browserslist/node.js:45:43)]
+    [at isFile (/Users/atharvpaharia100/Desktop/NYX-Everything/NYX/node_modules/browserslist/node.js:65:10)]
+    [at /Users/atharvpaharia100/Desktop/NYX-Everything/NYX/node_modules/browserslist/node.js:420:13]
+    [at eachParent (/Users/atharvpaharia100/Desktop/NYX-Everything/NYX/node_modules/browserslist/node.js:90:21)]
+    [at Object.findConfigFile (/Users/atharvpaharia100/Desktop/NYX-Everything/NYX/node_modules/browserslist/node.js:412:12)]
+    [at Object.findConfig (/Users/atharvpaharia100/Desktop/NYX-Everything/NYX/node_modules/browserslist/node.js:457:27)]
+    [at Function.loadConfig (/Users/atharvpaharia100/Desktop/NYX-Everything/NYX/node_modules/browserslist/node.js:323:37)]
+    [at prepareQueries (/Users/atharvpaharia100/Desktop/NYX-Everything/NYX/node_modules/browserslist/index.js:380:31)]
+    [at browserslist (/Users/atharvpaharia100/Desktop/NYX-Everything/NYX/node_modules/browserslist/index.js:404:13)]
+
+Import trace:
+  Client Component Browser:
+    ./src/app/globals.css [Client Component Browser]
+    ./src/app/layout.tsx [Server Component]
+
+
+    at ignore-listed frames
+npm notice
+npm notice New minor version of npm available! 11.6.2 -> 11.12.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.12.1
+npm notice To update run: npm install -g npm@11.12.1
+npm notice

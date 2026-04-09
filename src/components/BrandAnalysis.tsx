@@ -2,21 +2,21 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Target, MessageCircle, Users, Layers, TrendingUp, ArrowRight, AlertCircle, Loader2, Link as LinkIcon, Check } from 'lucide-react';
+import { Target, MessageCircle, Users, Layers, TrendingUp, ArrowRight, AlertCircle, Loader2, Link as LinkIcon, Check, Linkedin } from 'lucide-react';
 import NyxButton from './ui/NyxButton';
 
 export default function BrandAnalysis() {
     const [analyzing, setAnalyzing] = useState(false);
     const [analysis, setAnalysis] = useState<any>(null);
     const [username, setUsername] = useState<string | null>(null);
-    const [activePlatform, setActivePlatform] = useState<'instagram' | 'youtube'>('instagram');
+    const [activePlatform, setActivePlatform] = useState<'instagram' | 'youtube' | 'linkedin'>('instagram');
 
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         // Check for connected accounts
         const savedSocials = localStorage.getItem('connected_socials');
-        let initialPlatform: 'instagram' | 'youtube' = 'instagram';
+        let initialPlatform: 'instagram' | 'youtube' | 'linkedin' = 'instagram';
 
         if (savedSocials) {
             try {
@@ -41,7 +41,7 @@ export default function BrandAnalysis() {
         handleCacheLoad(username, initialPlatform);
     }, [username]);
 
-    const handleCacheLoad = (user: string | null, platform: 'instagram' | 'youtube') => {
+    const handleCacheLoad = (user: string | null, platform: 'instagram' | 'youtube' | 'linkedin') => {
         if (user) {
             const savedAnalysis = localStorage.getItem(`brand_analysis_results_${platform}_${user}`);
             if (savedAnalysis) {
@@ -56,7 +56,7 @@ export default function BrandAnalysis() {
         }
     };
 
-    const switchPlatform = (platform: 'instagram' | 'youtube') => {
+    const switchPlatform = (platform: 'instagram' | 'youtube' | 'linkedin') => {
         const savedSocials = localStorage.getItem('connected_socials');
         if (savedSocials) {
             try {
@@ -75,10 +75,15 @@ export default function BrandAnalysis() {
         setAnalyzing(true);
         setError(null);
         try {
-            const endpoint = activePlatform === 'youtube' ? '/api/analyze-youtube' : '/api/analyze';
-            const payload = activePlatform === 'youtube'
-                ? { profileData: { channelHandle: username } }
-                : { profileData: { username: username } };
+            const endpoint = 
+                activePlatform === 'youtube' ? '/api/analyze-youtube' : 
+                activePlatform === 'linkedin' ? '/api/analyze-linkedin' : 
+                '/api/analyze';
+            
+            const payload = 
+                activePlatform === 'youtube' ? { profileData: { channelHandle: username } } : 
+                activePlatform === 'linkedin' ? { profileData: { username: username } } : 
+                { profileData: { username: username } };
 
             const response = await fetch(endpoint, {
                 method: 'POST',
@@ -132,15 +137,21 @@ export default function BrandAnalysis() {
                 <div className="bg-accent p-1.5 rounded-full flex border border-theme shadow-2xl">
                     <button
                         onClick={() => switchPlatform('instagram')}
-                        className={`px-8 py-2 rounded-full text-xs font-bold transition-all ${activePlatform === 'instagram' ? 'bg-inverse text-inverse shadow-lg' : 'text-theme-secondary hover:text-theme-primary'}`}
+                        className={`px-8 py-2 rounded-full text-xs font-bold transition-all ${activePlatform === 'instagram' ? 'bg-orange-500 text-white shadow-lg' : 'text-theme-secondary hover:text-theme-primary'}`}
                     >
                         INSTAGRAM
                     </button>
                     <button
                         onClick={() => switchPlatform('youtube')}
-                        className={`px-8 py-2 rounded-full text-xs font-bold transition-all ${activePlatform === 'youtube' ? 'bg-inverse text-inverse shadow-lg' : 'text-theme-secondary hover:text-theme-primary'}`}
+                        className={`px-8 py-2 rounded-full text-xs font-bold transition-all ${activePlatform === 'youtube' ? 'bg-orange-500 text-white shadow-lg' : 'text-theme-secondary hover:text-theme-primary'}`}
                     >
                         YOUTUBE
+                    </button>
+                    <button
+                        onClick={() => switchPlatform('linkedin')}
+                        className={`px-8 py-2 rounded-full text-xs font-bold transition-all ${activePlatform === 'linkedin' ? 'bg-orange-500 text-white shadow-lg' : 'text-theme-secondary hover:text-theme-primary'}`}
+                    >
+                        LINKEDIN
                     </button>
                 </div>
             </div>
@@ -305,11 +316,19 @@ export default function BrandAnalysis() {
                             </div>
 
                             <NyxButton
-                                href={activePlatform === 'youtube' ? `https://youtube.com/@${username}` : `https://instagram.com/${username}`}
+                                href={
+                                    activePlatform === 'youtube' ? `https://youtube.com/@${username}` : 
+                                    activePlatform === 'linkedin' ? `https://linkedin.com/in/${username}` : 
+                                    `https://instagram.com/${username}`
+                                }
                                 className="mt-6 w-full justify-center"
                                 variant="outline"
                             >
-                                VIEW ON {activePlatform === 'youtube' ? 'YOUTUBE' : 'INSTAGRAM'}
+                                VIEW ON {
+                                    activePlatform === 'youtube' ? 'YOUTUBE' : 
+                                    activePlatform === 'linkedin' ? 'LINKEDIN' : 
+                                    'INSTAGRAM'
+                                }
                             </NyxButton>
 
                             {analysis.scrapedData?.isMockData && (

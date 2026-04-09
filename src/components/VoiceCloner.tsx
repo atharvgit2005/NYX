@@ -123,8 +123,7 @@ function WaveformBars({ active, color = '#f97316' }: { active: boolean; color?: 
                     style={{
                         background: active ? color : `${color}40`,
                         height: active ? `${12 + Math.abs(Math.sin(i * 0.6)) * 20}px` : '3px',
-                        animation: active ? `pulse-bar 0.${(i % 5) + 3}s ease-in-out infinite alternate` : 'none',
-                        animationDelay: `${i * 0.04}s`,
+                        animation: active ? `pulse-bar 0.${(i % 5) + 3}s ease-in-out ${i * 0.04}s infinite alternate` : 'none',
                     }} />
             ))}
         </div>
@@ -356,18 +355,17 @@ export default function VoiceCloner() {
         setCloning(true);
         setCloneError(null);
 
-        // Natively process WebAudio buffer to alter literal Blob metadata
-        if (noiseRemoval || autoTrim) {
-            try {
-                sourceBlob = await enhanceAudioBlob(sourceBlob, autoTrim, noiseRemoval);
-            } catch (err: any) {
-                console.warn('Enhancement failed:', err);
-                // Fail gracefully, use unedited blob
-            }
+        // MUST always normalize into a standard WebAudio PCM WAV buffer.
+        // Inworld AI does not natively support browser WebM and will reject it with a 400 error.
+        try {
+            sourceBlob = await enhanceAudioBlob(sourceBlob, autoTrim, noiseRemoval);
+        } catch (err: any) {
+            console.warn('Enhancement failed:', err);
+            // Fail gracefully, use unedited blob
         }
 
         const formData = new FormData();
-        formData.append('file', sourceBlob, audioBlob ? 'recording.webm' : (uploadFile?.name || 'audio.mp3'));
+        formData.append('file', sourceBlob, 'recording.wav');
         formData.append('name', voiceName.trim());
         formData.append('langCode', langCode);
         if (voiceDescription.trim()) formData.append('description', voiceDescription.trim());
@@ -377,8 +375,11 @@ export default function VoiceCloner() {
             const data = await res.json();
             if (!res.ok || !data.success) throw new Error(data.error || 'Failed to clone voice');
 
+            const voiceId = data.voiceId;
+            if (!voiceId) throw new Error('Cloning succeeded but no voiceId was returned. Please try again.');
+
             const voice: ClonedVoice = {
-                voiceId: data.voiceId,
+                voiceId,
                 displayName: voiceName.trim(),
                 langCode,
                 description: voiceDescription.trim() || undefined,
@@ -525,7 +526,7 @@ export default function VoiceCloner() {
                             <div className="flex border-b border-theme">
                                 {(['record', 'upload'] as const).map(t => (
                                     <button key={t} onClick={() => { setTab(t); setAudioBlob(null); setAudioUrl(null); setUploadFile(null); }}
-                                        className={`flex-1 py-4 text-sm font-bold flex items-center justify-center gap-2 transition-colors ${tab === t ? 'text-orange-500 border-b-2 border-orange-500' : 'text-theme-secondary hover:text-theme-primary'}`}>
+                                        className={`flex-1 py-4 text-sm font-bold flex items-center justify-center gap-2 transition-colors outline-none focus:outline-none ${tab === t ? 'text-orange-500 border-b-2 border-orange-500 bg-orange-500/5' : 'text-theme-secondary hover:text-theme-primary hover:bg-card-hover'}`}>
                                         {t === 'record' ? <><Mic className="w-4 h-4" /> Record Voice</> : <><Upload className="w-4 h-4" /> Upload File</>}
                                     </button>
                                 ))}
@@ -601,7 +602,7 @@ export default function VoiceCloner() {
                                             <div className={`relative w-36 h-36 rounded-full flex items-center justify-center cursor-pointer transition-all duration-500
                                                 ${isRecording ? 'bg-red-500/10 ring-4 ring-red-500/30 ring-offset-4 ring-offset-transparent'
                                                     : audioBlob ? 'bg-green-500/10 ring-2 ring-green-500/30'
-                                                        : 'bg-card-hover ring-2 ring-theme hover:ring-orange-500/30'}`}
+                                                        : 'bg-card-hover border border-theme hover:border-orange-500/30'}`}
                                                 onClick={isRecording ? stopRecording : startRecording}>
                                                 {isRecording && <>
                                                     <div className="absolute inset-0 rounded-full bg-red-500/10 animate-ping" />
@@ -724,8 +725,8 @@ export default function VoiceCloner() {
                                 <div className="flex-1">
                                     <h3 className="text-lg font-bold text-theme-primary">{activeVoice.displayName}</h3>
                                     <div className="flex items-center gap-2 mt-0.5">
-                                        <p className="text-xs text-theme-secondary font-mono">{activeVoice.voiceId.slice(0, 20)}…</p>
-                                        <button onClick={() => copyId(activeVoice.voiceId)} className="p-1 rounded text-gray-600 hover:text-orange-500">
+                                        <p className="text-xs text-theme-secondary font-mono">{activeVoice.voiceId?.slice(0, 20)}…</p>
+                                        <button onClick={() => copyId(activeVoice.voiceId ?? '')} className="p-1 rounded text-gray-600 hover:text-orange-500">
                                             <Copy className="w-3 h-3" />
                                         </button>
                                         {copied === activeVoice.voiceId && <span className="text-[10px] text-green-400">Copied!</span>}
@@ -878,8 +879,8 @@ export default function VoiceCloner() {
                                     <Mic className="w-8 h-8 text-theme-secondary/20 mx-auto mb-3" />
                                     <p className="text-xs text-theme-secondary/40">No voices yet.</p>
                                 </div>
-                            ) : savedVoices.map(voice => (
-                                <div key={voice.voiceId}
+                            ) : savedVoices.filter(v => v.voiceId).map((voice, idx) => (
+                                <div key={voice.voiceId || idx}
                                     className={`p-4 rounded-2xl border group cursor-pointer transition-all ${activeVoiceId === voice.voiceId ? 'border-orange-500/40 bg-orange-500/10' : 'border-theme bg-card-hover hover:border-orange-500/20'}`}
                                     onClick={() => { setActiveVoiceId(voice.voiceId); setClonedVoice(voice); setStep('done'); setTestAudioSrc(null); }}>
                                     <div className="flex items-start justify-between gap-2">

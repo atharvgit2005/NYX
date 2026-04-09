@@ -78,8 +78,8 @@ export default function VoiceTester() {
     return (
         <div className="w-full max-w-4xl mx-auto p-6 bg-card-theme rounded-2xl border border-theme">
             <div className="flex items-center justify-between mb-8">
-                <h2 className="text-2xl font-black text-white tracking-tight flex items-center gap-3">
-                    <Volume2 className="w-6 h-6 text-white" /> Voice Tester
+                <h2 className="text-2xl font-black text-theme-primary tracking-tight flex items-center gap-3">
+                    <Volume2 className="w-6 h-6 text-theme-primary" /> Voice Tester
                 </h2>
                 <button
                     onClick={fetchVoices}
@@ -104,12 +104,12 @@ export default function VoiceTester() {
                             <select
                                 value={selectedVoice}
                                 onChange={(e) => setSelectedVoice(e.target.value)}
-                                className="w-full bg-zinc-950/40 border border-white/10 rounded-xl px-4 py-3 text-theme-primary appearance-none focus:outline-none focus:border-white/40 transition-colors"
+                                className="w-full bg-accent border border-theme rounded-xl px-4 py-3 text-theme-primary appearance-none focus:outline-none focus:border-orange-500/50 transition-colors"
                                 disabled={loadingVoices}
                             >
                                 {voices.length === 0 && <option>Loading voices...</option>}
                                 {voices.map((voice) => (
-                                    <option key={voice.id} value={voice.id} className="bg-gray-900 ">
+                                    <option key={voice.id} value={voice.id} className="bg-page text-theme-primary">
                                         {voice.name} ({voice.gender}, {voice.language}) {voice.isCustom ? '- CLONED' : ''}
                                     </option>
                                 ))}
@@ -126,7 +126,7 @@ export default function VoiceTester() {
                             value={text}
                             onChange={(e) => setText(e.target.value)}
                             rows={5}
-                            className="w-full bg-zinc-950/40 border border-white/10 rounded-xl p-4 text-theme-primary focus:outline-none focus:border-white/40 resize-none transition-colors"
+                            className="w-full bg-accent border border-theme rounded-xl p-4 text-theme-primary focus:outline-none focus:border-orange-500/50 resize-none transition-colors"
                             placeholder="Enter text here..."
                         />
                     </div>
@@ -135,7 +135,7 @@ export default function VoiceTester() {
                         <button
                             onClick={handleSynthesize}
                             disabled={synthesizing || !selectedVoice || !text}
-                            className="flex items-center gap-2 px-8 py-3 bg-white hover:bg-white/90 text-black rounded-xl font-black text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                            className="flex items-center gap-2 px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-xl font-black text-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(249,115,22,0.2)]"
                         >
                             {synthesizing ? (
                                 <>
@@ -155,8 +155,8 @@ export default function VoiceTester() {
                 <div className="flex flex-col items-center justify-center p-8 bg-card-hover rounded-2xl border border-theme/50 min-h-[300px]">
                     {audioSrc ? (
                         <div className="flex flex-col items-center gap-6 w-full animate-in fade-in zoom-in duration-300">
-                            <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-lg shadow-white/10 animate-pulse">
-                                <Volume2 className="w-10 h-10 text-black" />
+                            <div className="w-20 h-20 rounded-full bg-orange-500 flex items-center justify-center shadow-lg shadow-orange-500/20 animate-pulse">
+                                <Volume2 className="w-10 h-10 text-white" />
                             </div>
                             <audio controls src={audioSrc} className="w-full" autoPlay />
                             <div className="text-center space-y-1">

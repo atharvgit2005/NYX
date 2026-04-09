@@ -340,8 +340,8 @@ Comment "AI" below and I'll send you the full list of tools I use.`
             {ideaTitle ? (
                 <div className="mb-8 p-4 rounded-2xl bg-card-theme border border-theme flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 flex items-center justify-center">
-                            <Lightbulb className="w-5 h-5 text-zinc-600 dark:text-white" />
+                        <div className="w-10 h-10 rounded-xl bg-card-hover border border-theme flex items-center justify-center">
+                            <Lightbulb className="w-5 h-5 text-theme-primary" />
                         </div>
                         <div>
                             <p className="text-sm font-bold text-theme-primary">
@@ -354,7 +354,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                     </div>
                     <Link
                         href="/dashboard/ideas"
-                        className="text-xs font-bold text-white hover:text-white/70 transition-colors px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 flex items-center gap-1"
+                        className="text-xs font-bold text-theme-primary hover:text-theme-secondary transition-colors px-3 py-1.5 rounded-lg bg-card-hover border border-theme flex items-center gap-1"
                     >
                         Back to Ideas <ArrowRight className="w-3 h-3" />
                     </Link>
@@ -398,8 +398,8 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                                 <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50"></div>
                             </div>
                             {isTyping ? (
-                                <span className="text-xs font-mono text-white uppercase tracking-wider flex items-center gap-2 animate-pulse">
-                                    <Sparkles className="w-3 h-3" /> AI Writing...
+                                <span className="text-xs font-mono text-theme-primary uppercase tracking-wider flex items-center gap-2 animate-pulse">
+                                    <Sparkles className="w-3 h-3 text-orange-500" /> AI Writing...
                                 </span>
                             ) : (
                                 <span className="text-xs font-mono text-theme-secondary uppercase tracking-wider">Editor Mode</span>
@@ -410,12 +410,12 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                                 value={script}
                                 onChange={handleScriptChange}
                                 readOnly={isTyping}
-                                className={`w-full h-full bg-transparent p-8 text-lg md:text-xl text-theme-primary placeholder-zinc-400 dark:placeholder-zinc-700 focus:outline-none resize-none font-serif leading-loose selection:bg-zinc-500/20 ${isTyping ? 'cursor-default' : ''}`}
+                                className={`w-full h-full bg-transparent p-8 text-lg md:text-xl text-theme-primary placeholder-theme-secondary/50 focus:outline-none resize-none font-serif leading-loose selection:bg-orange-500/20 ${isTyping ? 'cursor-default' : ''}`}
                                 placeholder="Start writing your script..."
                                 spellCheck="false"
                             />
                             {isTyping && (
-                                <span className="absolute animate-blink text-white text-2xl font-light" style={{ left: 'auto', bottom: '1rem', right: '2rem' }}>▎</span>
+                                <span className="absolute animate-blink text-theme-primary text-2xl font-light" style={{ left: 'auto', bottom: '1rem', right: '2rem' }}>▎</span>
                             )}
                         </div>
                         <div className="px-6 py-3 bg-page border-t border-theme text-xs text-theme-secondary flex justify-between">
@@ -428,10 +428,10 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                 {/* AI Chat Panel */}
                 <div className="h-[600px] flex flex-col bg-card-theme rounded-3xl border border-theme overflow-hidden shadow-2xl">
                     {/* Chat Header */}
-                    <div className="px-5 py-4 border-b border-theme flex items-center justify-between bg-zinc-50 dark:bg-zinc-900">
+                    <div className="px-5 py-4 border-b border-theme flex items-center justify-between bg-card-hover">
                         <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-lg bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10 flex items-center justify-center">
-                                <Sparkles className="w-4 h-4 text-zinc-950 dark:text-white" />
+                            <div className="w-8 h-8 rounded-lg bg-page border border-theme flex items-center justify-center">
+                                <Sparkles className="w-4 h-4 text-theme-primary" />
                             </div>
                             <div>
                                 <p className="text-sm font-bold text-theme-primary">Script AI</p>
@@ -454,20 +454,20 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                                 key={msg.id}
                                 className={`flex gap-2.5 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}
                             >
-                                <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-1 ${
+                                <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-1 border border-theme ${
                                     msg.role === 'user'
-                                        ? 'bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-white/10'
-                                        : 'bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-white/10'
+                                        ? 'bg-card-theme border-theme'
+                                        : 'bg-page border-theme'
                                 }`}>
                                     {msg.role === 'user'
-                                        ? <User className="w-3.5 h-3.5 text-zinc-600 dark:text-white" />
-                                        : <Bot className="w-3.5 h-3.5 text-zinc-600 dark:text-white" />
+                                        ? <User className="w-3.5 h-3.5 text-theme-primary" />
+                                        : <Bot className="w-3.5 h-3.5 text-theme-primary" />
                                     }
                                 </div>
                                 <div className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${
                                     msg.role === 'user'
-                                        ? 'bg-zinc-100 dark:bg-zinc-800 text-theme-primary border border-zinc-200 dark:border-white/5 rounded-tr-sm'
-                                        : 'bg-zinc-50 dark:bg-card-hover border border-theme rounded-tl-sm text-theme-primary'
+                                        ? 'bg-page text-theme-primary border border-theme rounded-tr-sm'
+                                        : 'bg-card-hover border border-theme rounded-tl-sm text-theme-primary shadow-sm'
                                 }`}>
                                     <p className="whitespace-pre-wrap">{msg.content}</p>
                                 </div>
@@ -477,14 +477,14 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                         {/* Loading indicator */}
                         {chatLoading && (
                             <div className="flex gap-2.5">
-                                <div className="w-7 h-7 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center flex-shrink-0 mt-1">
-                                    <Bot className="w-3.5 h-3.5 text-white" />
+                                <div className="w-7 h-7 rounded-full bg-page border border-theme flex items-center justify-center flex-shrink-0 mt-1">
+                                    <Bot className="w-3.5 h-3.5 text-theme-primary" />
                                 </div>
                                 <div className="bg-card-hover border border-theme px-4 py-3 rounded-2xl rounded-tl-sm">
                                     <div className="flex items-center gap-1.5">
-                                        <div className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-white animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                                        <div className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-white animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                                        <div className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-white animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                                        <div className="w-2 h-2 rounded-full bg-theme-secondary animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                                        <div className="w-2 h-2 rounded-full bg-theme-secondary animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                                        <div className="w-2 h-2 rounded-full bg-theme-secondary animate-bounce" style={{ animationDelay: '300ms' }}></div>
                                     </div>
                                 </div>
                             </div>
@@ -503,7 +503,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                                         setChatInput(prompt);
                                         chatInputRef.current?.focus();
                                     }}
-                                    className="px-3 py-1.5 bg-zinc-100 dark:bg-white/5 hover:bg-zinc-200 dark:hover:bg-white/10 border border-zinc-200 dark:border-white/10 hover:border-zinc-300 dark:hover:border-white/20 rounded-full text-xs text-zinc-600 dark:text-white/70 hover:text-zinc-900 dark:hover:text-white transition-all shadow-sm"
+                                    className="px-3 py-1.5 bg-card-theme hover:bg-card-hover border border-theme hover:border-theme/80 rounded-full text-xs text-theme-secondary hover:text-theme-primary transition-all shadow-sm"
                                 >
                                     {prompt}
                                 </button>
@@ -521,13 +521,13 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                                 onKeyDown={handleKeyDown}
                                 placeholder="Ask AI to improve your script..."
                                 rows={1}
-                                className="flex-1 bg-zinc-950/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-theme-primary placeholder-zinc-700 focus:outline-none focus:border-white/40 resize-none max-h-24 leading-relaxed transition-colors"
+                                className="flex-1 bg-accent border border-theme rounded-xl px-4 py-3 text-sm text-theme-primary placeholder-theme-secondary/50 focus:outline-none focus:border-orange-500/50 resize-none max-h-24 leading-relaxed transition-colors"
                                 style={{ minHeight: '44px' }}
                             />
                             <button
                                 onClick={handleSendMessage}
                                 disabled={!chatInput.trim() || chatLoading}
-                                className="p-3 bg-zinc-950 dark:bg-zinc-900 border border-white/10 text-white hover:bg-zinc-800 dark:hover:bg-black transition-all rounded-xl disabled:opacity-30 disabled:cursor-not-allowed flex-shrink-0"
+                                className="p-3 bg-orange-500 border border-orange-600 text-white hover:bg-orange-600 transition-all rounded-xl disabled:opacity-30 disabled:cursor-not-allowed flex-shrink-0"
                             >
                                 <Send className="w-4 h-4" />
                             </button>

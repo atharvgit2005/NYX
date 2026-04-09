@@ -109,6 +109,10 @@
   background-color: var(--bg-card);
 }
 
+.bg-card-hover {
+  background-color: var(--bg-card-hover);
+}
+
 .text-gradient-hero {
   background: linear-gradient(to bottom, var(--hero-text-start), var(--hero-text-mid), var(--hero-text-end));
   -webkit-background-clip: text;

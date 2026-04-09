@@ -86,11 +86,17 @@ export async function enhanceAudioBlob(blob: Blob, applyTrim: boolean, applyNois
             const threshold = 0.015; // Amplitude threshold representing 'silence'
             let startFound = false;
             
+            const numChannels = audioBuffer.numberOfChannels;
+            const channelsData = [];
+            for (let c = 0; c < numChannels; c++) {
+                channelsData.push(audioBuffer.getChannelData(c));
+            }
+            
             // Scan for audio start
             for (let i = 0; i < audioBuffer.length; i++) {
                 let maxMagnitude = 0;
-                for (let channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
-                    maxMagnitude = Math.max(maxMagnitude, Math.abs(audioBuffer.getChannelData(channel)[i]));
+                for (let channel = 0; channel < numChannels; channel++) {
+                    maxMagnitude = Math.max(maxMagnitude, Math.abs(channelsData[channel][i]));
                 }
                 if (maxMagnitude > threshold) {
                     // Keep 100ms cushion before audio peaks
@@ -104,8 +110,8 @@ export async function enhanceAudioBlob(blob: Blob, applyTrim: boolean, applyNois
             if (startFound) {
                 for (let i = audioBuffer.length - 1; i >= startOffset; i--) {
                     let maxMagnitude = 0;
-                    for (let channel = 0; channel < audioBuffer.numberOfChannels; channel++) {
-                        maxMagnitude = Math.max(maxMagnitude, Math.abs(audioBuffer.getChannelData(channel)[i]));
+                    for (let channel = 0; channel < numChannels; channel++) {
+                        maxMagnitude = Math.max(maxMagnitude, Math.abs(channelsData[channel][i]));
                     }
                     if (maxMagnitude > threshold) {
                         // Keep 200ms cushion after audio ends

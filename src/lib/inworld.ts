@@ -55,17 +55,31 @@ export class InworldService {
         try {
             // PRIMARY: /tts/v1/voices returns the full catalog with correct isCustom flags
             const primaryUrl = `${INWORLD_API_BASE_URL}/tts/v1/voices`;
-            console.log(`Fetching voices from: ${primaryUrl}`);
-            const response = await axios.get(primaryUrl, {
-                headers: this.getHeaders(),
-            });
-            console.log('Voices Response Status:', response.status);
+            console.log(`[Inworld] Fetching voices from: ${primaryUrl}`);
 
-            const rawVoices: any[] = response.data.voices || [];
-            console.log(`Total voices returned: ${rawVoices.length}`);
-            if (rawVoices.length > 0) {
-                console.log('Sample voice item:', rawVoices[0]);
+            // Using native fetch for better TLS/socket handling in modern Node.js
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 20000); // 20s timeout
+
+            const response = await fetch(primaryUrl, {
+                method: 'GET',
+                headers: {
+                    ...this.getHeaders(),
+                    'User-Agent': 'NYX-AI-Automation-Platform', // Some APIs require this
+                },
+                signal: controller.signal
+            });
+
+            clearTimeout(timeoutId);
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Inworld API error: ${response.status} ${errorText}`);
             }
+
+            const data = await response.json();
+            const rawVoices: any[] = data.voices || [];
+            console.log(`[Inworld] Total voices returned: ${rawVoices.length}`);
 
             return rawVoices.map((v: any) => ({
                 id: v.voiceId || v.id,
@@ -75,7 +89,11 @@ export class InworldService {
                 isCustom: v.isCustom === true,   // only true if Inworld explicitly says so
             }));
         } catch (error: any) {
-            console.error('Error listing voices:', error.response?.data || error.message);
+            if (error.name === 'AbortError') {
+                console.error('[Inworld] listVoices timed out after 20s');
+                throw new Error('Connection to Inworld API timed out. Please check your network or try again.');
+            }
+            console.error('[Inworld] Error listing voices:', error.message);
             throw error;
         }
     }
@@ -114,34 +132,53 @@ export class InworldService {
                 }
             };
 
-            // Inject emotion or stylistic tags directly
             if (payload.emotion) body.emotion = payload.emotion;
             if (payload.style) body.style = payload.style;
 
-            const response = await axios.post(
-                `${INWORLD_API_BASE_URL}/tts/v1/voice`,
-                body,
-                { headers: this.getHeaders() }
-            );
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000); // 30s timeout
 
-            return response.data.audioContent;
+            const response = await fetch(`${INWORLD_API_BASE_URL}/tts/v1/voice`, {
+                method: 'POST',
+                headers: {
+                    ...this.getHeaders(),
+                    'User-Agent': 'NYX-AI-Automation-Platform',
+                },
+                body: JSON.stringify(body),
+                signal: controller.signal
+            });
+
+            clearTimeout(timeoutId);
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Inworld synthesis failed: ${response.status} ${errorText}`);
+            }
+
+            const data = await response.json();
+            return data.audioContent;
         } catch (error: any) {
-            console.error('Error synthesizing speech:', error.response?.data || error.message);
+            if (error.name === 'AbortError') {
+                console.error('[Inworld] synthesizeSpeech timed out');
+                throw new Error('Synthesis timed out. The text might be too long or the server is busy.');
+            }
+            console.error('[Inworld] Error synthesizing speech:', error.message);
             throw error;
         }
     }
 
     static async cloneVoice(payload: CloneVoiceRequest) {
         try {
-            // POST /voices/v1/voices:clone
-            // Body: { displayName, langCode, voiceSamples: [{ content: base64 }] }
-            // Note: The docs say "voiceSamples" is object[], child attributes hidden in provided text.
-            // Standard Google/Inworld pattern for audio bytes is usually "content" or "audioContent".
-            // Let's try sending "content" with the base64 string.
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 300000); // 5 mins timeout - cloning is intensive
 
-            const response = await axios.post(
-                `${INWORLD_API_BASE_URL}/voices/v1/voices:clone`,
-                {
+            const response = await fetch(`${INWORLD_API_BASE_URL}/voices/v1/voices:clone`, {
+                method: 'POST',
+                headers: {
+                    ...this.getHeaders(),
+                    'User-Agent': 'NYX-AI-Automation-Platform',
+                },
+                body: JSON.stringify({
                     displayName: payload.displayName,
                     langCode: payload.langCode || 'EN_US',
                     description: payload.description || 'Cloned voice via NYX',
@@ -151,27 +188,45 @@ export class InworldService {
                             audioData: payload.audioBase64
                         }
                     ]
-                },
-                {
-                    headers: this.getHeaders(),
-                }
-            );
-            return response.data;
+                }),
+                signal: controller.signal
+            });
+
+            clearTimeout(timeoutId);
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Inworld cloning failed: ${response.status} ${errorText}`);
+            }
+
+            return await response.json();
         } catch (error: any) {
-            console.error('Error cloning voice:', error.response?.data || error.message);
+            if (error.name === 'AbortError') {
+                console.error('[Inworld] cloneVoice timed out after 300s');
+                throw new Error('Cloning process timed out. This often happens if the audio file is large or complex. Try a shorter sample.');
+            }
+            console.error('[Inworld] Error cloning voice:', error.message);
             throw error;
         }
     }
 
     static async deleteVoice(voiceId: string) {
         try {
-            // DELETE /voices/v1/voices/{voiceId}
-            await axios.delete(`${INWORLD_API_BASE_URL}/voices/v1/voices/${voiceId}`, {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
+
+            const response = await fetch(`${INWORLD_API_BASE_URL}/voices/v1/voices/${voiceId}`, {
+                method: 'DELETE',
                 headers: this.getHeaders(),
+                signal: controller.signal
             });
+
+            clearTimeout(timeoutId);
+
+            if (!response.ok) return false;
             return true;
         } catch (error: any) {
-            console.error('Error deleting voice:', error.response?.data || error.message);
+            console.error('[Inworld] Error deleting voice:', error.message);
             throw error;
         }
     }
