@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import ThreeBackground from './ThreeBackground';
 import VideoCarousel from './VideoCarousel';
 import gsap from 'gsap';
-import { Zap, Bot, Rocket, Check, Linkedin, Instagram, Menu, X, LogOut, ArrowRight, Globe } from 'lucide-react';
+import { Zap, Bot, Rocket, Check, Linkedin, Instagram, Menu, X, LogOut, ArrowRight, Globe, ArrowUpRight } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
 import ThemeToggle from './ThemeToggle';
 
@@ -131,23 +131,74 @@ export default function LandingPage() {
             </nav>
 
             {/* Hero Section */}
-            <section ref={heroRef} className="relative flex flex-col items-center justify-center text-center z-10 min-h-screen px-4 sm:px-6 lg:px-8 pt-20">
-                <div className="max-w-4xl mx-auto">
-                    <h1 ref={titleRef} className="text-5xl sm:text-7xl font-bold tracking-tighter mb-8 text-theme-primary leading-tight">
-                        Automate Your <br />
-                        <span className="text-gradient-hero filter drop-shadow-[0_0_20px_rgba(249,115,22,0.3)]">Content Empire</span>
-                    </h1>
-                    <p ref={subtitleRef} className="text-lg sm:text-xl text-theme-secondary mb-10 max-w-2xl mx-auto leading-relaxed">
-                        Generate viral ideas, write scripts, and produce <span className="text-theme-primary font-bold">AI-narrated videos</span> in minutes.
-                        The engine for modern creators.
-                    </p>
-                    <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <Link href={session ? "/dashboard" : "/signup"} className="px-8 py-3 bg-orange-600 text-white rounded-full text-base font-medium hover:bg-orange-700 transition-colors flex items-center gap-2 shadow-lg shadow-orange-500/20">
-                            Start Free <Rocket className="w-4 h-4" />
-                        </Link>
-                        <Link href="#how-it-works" className="px-8 py-3 bg-card-theme border-theme rounded-full text-base font-medium hover:bg-card-hover transition-all flex items-center gap-2 text-theme-primary">
-                            See How It Works
-                        </Link>
+            <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden bg-black">
+                {/* Massive Background Split Text */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+                    <div className="w-full flex justify-between px-4 md:px-20 items-center">
+                        <h1 className="text-[15vw] font-black uppercase tracking-tighter leading-none text-white/5 select-none condensed">
+                            AUTOMATE
+                        </h1>
+                        <h1 className="text-[15vw] font-black uppercase tracking-tighter leading-none text-white/5 select-none condensed">
+                            EMPIRE
+                        </h1>
+                    </div>
+                </div>
+
+                {/* Main Hero Content */}
+                <div className="container relative z-10 flex flex-col items-center justify-center">
+                    <div className="relative w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 py-20">
+                        {/* Left Text */}
+                        <div className="flex-1 text-center md:text-left z-20">
+                            <h2 ref={titleRef} className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] condensed mb-6 text-white">
+                                <span>AUTOMATE</span><br />
+                                <span>STRATEGY</span>
+                            </h2>
+                            <p ref={subtitleRef} className="text-lg md:text-xl text-theme-secondary max-w-sm mb-10 leading-relaxed font-medium">
+                                Generate viral ideas, write scripts, and produce <span className="text-theme-primary font-bold">AI videos</span> in minutes.
+                            </p>
+                            <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 items-center md:items-start">
+                                <Link href={session ? "/dashboard" : "/signup"} className="px-10 py-4 bg-orange-600 text-white rounded-full text-base font-bold hover:bg-orange-700 transition-all hover:scale-105 shadow-xl shadow-orange-500/20 flex items-center gap-3">
+                                    Start Free 🚀
+                                </Link>
+                                <Link href="#how-it-works" className="px-10 py-4 border border-white/40 bg-white/5 backdrop-blur-md text-white rounded-full text-base font-bold hover:bg-white/10 transition-all flex items-center gap-2">
+                                    See How It Works
+                                </Link>
+                            </div>
+                        </div>
+
+                        {/* Center Robot Figure */}
+                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-3xl flex items-center justify-center z-10 pointer-events-none">
+                            <div className="relative w-full h-full aspect-square">
+                                <Image 
+                                    src="/hero-ai.png" 
+                                    alt="NYX AI Humanoid" 
+                                    fill
+                                    className="object-contain"
+                                    priority
+                                />
+                            </div>
+                        </div>
+
+                        {/* Right Text */}
+                        <div className="flex-1 text-center md:text-right z-20">
+                            <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] condensed mb-6">
+                                <span className="text-gradient-hero">REAL</span><br />
+                                <span className="text-gradient-hero">RESULTS</span>
+                            </h2>
+                            
+                            {/* Floating Stat Card */}
+                            <div className="mt-12 bg-black/60 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl hover:border-orange-500/30 transition-all inline-block md:ml-auto">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-12 h-12 rounded-2xl bg-orange-500/20 flex items-center justify-center">
+                                        <Bot className="w-6 h-6 text-orange-500" />
+                                    </div>
+                                    <div>
+                                        <div className="text-2xl font-black text-white condensed">10K+</div>
+                                        <div className="text-[10px] text-white/40 uppercase tracking-widest font-black">Videos Generated</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -195,18 +246,21 @@ export default function LandingPage() {
             {/* Features Grid */}
             <section id="features" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl font-bold text-center mb-16 tracking-tight">Everything You Need to Scale</h2>
+                    <div className="flex flex-col items-center mb-16 text-center">
+                        <span className="text-orange-500 font-black tracking-[0.3em] uppercase mb-4 text-sm">Capabilities</span>
+                        <h2 className="text-4xl font-bold tracking-tight text-white uppercase condensed">Everything You Need to Scale</h2>
+                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {[
                             {
                                 title: 'Trend-Aware Ideation',
                                 desc: 'AI analyzes your niche to generate viral hooks and video concepts.',
-                                icon: <Zap className="w-6 h-6 text-yellow-400" />,
+                                icon: <Zap className="w-6 h-6 text-orange-500" />,
                             },
                             {
                                 title: 'AI Avatar & Voice',
                                 desc: 'Clone yourself or use premium AI avatars to present your content.',
-                                icon: <Bot className="w-6 h-6 text-orange-400" />,
+                                icon: <Bot className="w-6 h-6 text-orange-500" />,
                             },
                             {
                                 title: 'Auto-Publishing',
@@ -214,9 +268,11 @@ export default function LandingPage() {
                                 icon: <Rocket className="w-6 h-6 text-orange-500" />,
                             },
                         ].map((feature, i) => (
-                            <div key={i} className="p-8 rounded-2xl bg-card-theme border-theme hover:bg-card-hover transition-colors">
-                                <div className="mb-6 inline-flex p-3 rounded-lg bg-transparent">{feature.icon}</div>
-                                <h3 className="text-lg font-bold mb-3 text-theme-primary">{feature.title}</h3>
+                            <div key={i} className="p-10 rounded-3xl bg-zinc-900/50 border border-white/5 hover:bg-zinc-900 hover:border-orange-500/30 transition-all group">
+                                <div className="mb-8 w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center group-hover:bg-orange-500 transition-colors">
+                                    {React.cloneElement(feature.icon as React.ReactElement, { className: 'w-7 h-7 group-hover:text-black' })}
+                                </div>
+                                <h3 className="text-2xl font-black mb-4 text-white uppercase condensed">{feature.title}</h3>
                                 <p className="text-theme-secondary leading-relaxed text-sm">{feature.desc}</p>
                             </div>
                         ))}
@@ -224,53 +280,14 @@ export default function LandingPage() {
                 </div>
             </section>
 
-            {/* Pricing Section */}
-            <section id="pricing" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+            {/* Meet the Founders */}
+            <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10 bg-black/50">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl font-bold text-center mb-16 tracking-tight">Simple, Transparent Pricing</h2>
-                    {/* Infinite Marquee Container */}
-                    <div className="w-full overflow-hidden relative">
-                        {/* Gradient Masks */}
-                        <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[var(--bg-page)] to-transparent z-10 pointer-events-none" />
-                        <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[var(--bg-page)] to-transparent z-10 pointer-events-none" />
-
-                        <div className="flex items-center gap-6 animate-marquee py-12">
-                            {[
-                                ...Array(4).fill([
-                                    { name: 'Starter', price: '₹0', features: ['5 Scripts/mo', 'Basic Analysis', '1 Avatar'] },
-                                    { name: 'Pro', price: '₹2,499', features: ['Unlimited Scripts', 'Deep Analysis', 'Custom Avatar', 'Priority Support'], popular: true },
-                                    { name: 'Agency', price: '₹7,999', features: ['Multiple Brands', 'API Access', 'White Label', 'Dedicated Manager'] },
-                                ]).flat()
-                            ].map((plan: any, i: number) => (
-                                <Link href={session ? "/dashboard" : "/signup"} key={i} className={`relative flex-shrink-0 w-80 p-8 rounded-2xl border transition-all duration-300 group hover:-translate-y-2 ${plan.popular ? 'bg-page border-orange-500/50 shadow-[0_0_30px_rgba(249,115,22,0.15)]' : 'bg-card-theme border-theme hover:bg-card-hover'}`}>
-                                    {plan.popular && <span className="absolute -top-4 left-8 px-4 py-1.5 bg-orange-600 text-white rounded-full text-xs font-bold border border-orange-400 shadow-lg">Most Popular</span>}
-                                    <h3 className="text-xl font-bold mb-2 text-theme-primary">{plan.name}</h3>
-                                    <div className="text-4xl font-bold mb-6 text-theme-primary">{plan.price}<span className="text-sm text-theme-secondary font-normal">/mo</span></div>
-                                    <ul className="space-y-4 mb-8">
-                                        {plan.features.map((f: string, j: number) => (
-                                            <li key={j} className="flex items-center text-theme-secondary text-sm">
-                                                <Check className={`w-4 h-4 mr-3 ${plan.popular ? 'text-green-400' : 'text-green-500'}`} /> {f}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <div className={`w-full py-3 rounded-lg font-bold text-center text-sm transition-all ${plan.popular ? 'bg-orange-600 text-white hover:bg-orange-700 shadow-lg shadow-orange-500/25' : 'bg-white/10 text-theme-primary hover:bg-white/20'}`}>
-                                        Choose {plan.name}
-                                    </div>
-                                </Link>
-                            ))}
-                        </div>
+                    <div className="flex flex-col items-center mb-16 text-center">
+                        <span className="text-orange-500 font-black tracking-[0.3em] uppercase mb-4 text-sm">Visionaries</span>
+                        <h2 className="text-4xl font-bold tracking-tight text-white uppercase condensed">Meet the Founders</h2>
                     </div>
-                </div>
-            </section>
-
-            {/* About Us Section */}
-            <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl font-bold text-center mb-6 tracking-tight">Meet the Founders</h2>
-                    <p className="text-theme-secondary text-center mb-16 max-w-2xl mx-auto text-sm">
-                        Building the future of content automation.
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-8">
+                    <div className="flex flex-wrap justify-center gap-12">
                         {[
                             { 
                                 name: 'Atharv Paharia', 
@@ -287,34 +304,94 @@ export default function LandingPage() {
                                 image: '/founders/bhavya.jpg'
                             },
                         ].map((founder, i) => (
-                            <div key={i} className="flex-1 min-w-[280px] max-w-sm p-8 rounded-2xl bg-card-theme border border-white/5 hover:border-orange-500/30 hover:bg-card-hover transition-all duration-300 text-center hover:-translate-y-1">
-                                <div className="w-24 h-24 mx-auto mb-5 rounded-full bg-page flex items-center justify-center text-2xl font-bold text-theme-primary border-theme overflow-hidden relative shadow-lg">
-                                    {founder.image ? (
-                                        <Image 
-                                            src={founder.image} 
-                                            alt={founder.name} 
-                                            fill 
-                                            className="object-cover"
-                                            onError={(e) => {
-                                                // Fallback if image fails to load
-                                                e.currentTarget.style.display = 'none';
-                                                e.currentTarget.parentElement?.classList.add('flex', 'items-center', 'justify-center');
-                                            }}
-                                        />
-                                    ) : null}
-                                    <span className="absolute z-[-1]">{founder.name[0]}</span>
+                            <div key={i} className="flex-1 min-w-[300px] max-w-sm p-10 rounded-3xl bg-zinc-900/50 border border-white/5 hover:border-orange-500/30 transition-all text-center group">
+                                <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-orange-500 transition-colors relative">
+                                    <Image 
+                                        src={founder.image} 
+                                        alt={founder.name} 
+                                        fill 
+                                        className="object-cover"
+                                    />
                                 </div>
-                                <h3 className="text-lg font-bold mb-1 text-theme-primary">{founder.name}</h3>
-                                <p className="text-theme-secondary text-xs mb-4">{founder.role}</p>
-                                <div className="flex justify-center gap-3">
-                                    <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" className="p-2 text-theme-secondary hover:text-orange-500 transition-colors"><Linkedin className="w-4 h-4" /></a>
-                                    <a href={founder.instagram} target="_blank" rel="noopener noreferrer" className="p-2 text-theme-secondary hover:text-orange-500 transition-colors"><Instagram className="w-4 h-4" /></a>
+                                <h3 className="text-2xl font-black mb-1 text-white uppercase condensed">{founder.name}</h3>
+                                <p className="text-orange-500 text-xs font-bold uppercase tracking-widest mb-6">{founder.role}</p>
+                                <div className="flex justify-center gap-4">
+                                    <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-xl text-white hover:bg-orange-500 hover:text-black transition-all"><Linkedin className="w-5 h-5" /></a>
+                                    <a href={founder.instagram} target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-xl text-white hover:bg-orange-500 hover:text-black transition-all"><Instagram className="w-5 h-5" /></a>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
             </section>
+
+            {/* Pricing Section */}
+            <section id="pricing" className="py-32 px-4 relative z-10 bg-black">
+                <div className="max-w-7xl mx-auto">
+                    <div className="flex flex-col items-center mb-20 text-center">
+                        <span className="text-orange-500 font-black tracking-[0.3em] uppercase mb-4 text-sm">Pricing</span>
+                        <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase condensed mb-8">Choose Your Tier</h2>
+                        
+                        <div className="flex items-center bg-zinc-900 p-1 rounded-full border border-white/5">
+                            <button className="px-6 py-2 rounded-full bg-orange-600 text-white text-xs font-black uppercase tracking-widest">Monthly</button>
+                            <button className="px-6 py-2 rounded-full text-white/50 text-xs font-black uppercase tracking-widest hover:text-white transition-colors">Annual (-20%)</button>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {[
+                            { name: 'Starter', price: '₹0', features: ['5 Scripts/mo', 'Basic Analysis', '1 Avatar', 'Community Access'] },
+                            { name: 'Pro', price: '₹2,499', features: ['Unlimited Scripts', 'Deep Analysis', 'Custom Avatar', 'Priority Support', 'Auto-Publishing'], popular: true },
+                            { name: 'Agency', price: '₹7,999', features: ['Multiple Brands', 'API Access', 'White Label', 'Dedicated Manager', 'Custom Scripts'] },
+                        ].map((plan, i) => (
+                            <div 
+                                key={i} 
+                                className={`relative p-10 rounded-[2.5rem] border ${plan.popular ? 'bg-zinc-900 border-orange-500 shadow-2xl shadow-orange-500/10' : 'bg-zinc-900/50 border-white/5'} flex flex-col`}
+                            >
+                                {plan.popular && (
+                                    <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-orange-600 text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full">
+                                        Most Popular
+                                    </span>
+                                )}
+                                <h3 className="text-xl font-black text-white uppercase condensed mb-2">{plan.name}</h3>
+                                <div className="text-5xl font-black text-white condensed mb-8">
+                                    {plan.price}<span className="text-sm text-white/40 font-bold uppercase tracking-widest ml-1">/mo</span>
+                                </div>
+                                
+                                <ul className="space-y-4 mb-10 flex-1">
+                                    {plan.features.map((f, j) => (
+                                        <li key={j} className="flex items-start gap-3 text-sm text-white/60">
+                                            <Check className="w-5 h-5 text-orange-500 shrink-0" />
+                                            <span>{f}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                <Link 
+                                    href={session ? "/dashboard" : "/signup"} 
+                                    className={`w-full py-4 rounded-2xl font-black text-xs uppercase tracking-widest transition-all text-center ${plan.popular ? 'bg-orange-600 text-white hover:bg-orange-700' : 'bg-white/5 text-white hover:bg-white/10 border border-white/5'}`}
+                                >
+                                    Choose {plan.name}
+                                </Link>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Social Proof Bar */}
+            <div className="w-full bg-orange-600 py-6 relative z-10 overflow-hidden group">
+                <div className="flex whitespace-nowrap animate-marquee-fast">
+                    {[...Array(10)].map((_, i) => (
+                        <div key={i} className="flex items-center mx-8">
+                            <span className="text-black font-black uppercase text-xl condensed tracking-tighter">
+                                Trusted by 500+ creators • 10,000+ videos generated • Instagram, TikTok & YouTube
+                            </span>
+                            <Rocket className="w-6 h-6 text-black ml-8" />
+                        </div>
+                    ))}
+                </div>
+            </div>
 
             {/* Footer */}
             <footer className="relative z-10 border-t border-theme bg-page mt-24">

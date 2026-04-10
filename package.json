@@ -51,5 +51,9 @@
   "optionalDependencies": {
     "@tailwindcss/oxide-darwin-arm64": "^4.2.0",
     "@tailwindcss/oxide-darwin-universal": "*"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ]
 }

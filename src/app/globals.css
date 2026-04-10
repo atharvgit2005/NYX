@@ -142,6 +142,30 @@
   box-shadow: 0 0 30px var(--nav-glow-color);
 }
 
+.condensed {
+  font-stretch: condensed;
+  letter-spacing: -0.05em;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes marquee-fast {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-fast {
+  animation: marquee-fast 20s linear infinite;
+}
+
 .bg-glass {
   background-color: var(--glass-bg);
   backdrop-filter: blur(20px);

@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   /* config options here */
   images: {
     // Allow SVGs from DiceBear (avatar generator returns image/svg+xml)
@@ -33,13 +33,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-};
+} as NextConfig;
 
 export default nextConfig;
-
