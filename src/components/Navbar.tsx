@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Sparkles, Rocket, User, LogOut, Menu, X } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
 import { useState } from 'react';
+import Image from 'next/image';
 import NyxButton from './ui/NyxButton';
 
 export default function Navbar() {
@@ -18,8 +19,14 @@ export default function Navbar() {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center gap-3 cursor-pointer group">
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-zinc-950 dark:bg-black/80 border border-white/10 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
-                <Sparkles className="w-5 h-5 text-white" />
+              <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300 relative">
+                <Image 
+                  src="/logo/logo.png" 
+                  alt="NYX Logo" 
+                  fill 
+                  className="object-cover"
+                  sizes="40px"
+                />
               </div>
               <span className="text-2xl font-extrabold bg-gradient-to-r from-zinc-950 to-zinc-600 dark:from-white dark:to-zinc-400 bg-clip-text text-transparent tracking-tight transition-all duration-300">
                 NYX

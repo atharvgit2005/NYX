@@ -7,13 +7,16 @@ let rateLimitResetTime = 0;
 const MODELS = [
     "gemini-2.0-flash",
     "gemini-2.0-flash-lite",
+    "gemini-1.5-flash-latest",
     "gemini-1.5-flash",
+    "gemini-1.5-flash-8b",
 ];
 
 export async function generateWithGemini(prompt: string, options: { model?: string } = {}) {
     // Check if we are currently in a rate-limit cooldown
     if (isRateLimited && Date.now() < rateLimitResetTime) {
-        console.warn('[Gemini Sync] Circuit breaker active. Skipping API call to preserve quota.');
+        const remaining = Math.round((rateLimitResetTime - Date.now()) / 1000);
+        console.warn(`[Gemini Sync] Circuit breaker active. Cooldown: ${remaining}s remaining.`);
         throw new Error('RATE_LIMITED_COOLDOWN');
     }
 
@@ -22,31 +25,41 @@ export async function generateWithGemini(prompt: string, options: { model?: stri
     // Try models in order of preference
     const modelsToTry = options.model ? [options.model, ...MODELS.filter(m => m !== options.model)] : MODELS;
 
+    let lastError = null;
+
     for (const modelName of modelsToTry) {
         try {
+            console.log(`[Gemini Sync] Attempting generation with ${modelName}...`);
             const model = genAI.getGenerativeModel({ model: modelName });
+            
+            // Set a timeout or use a more resilient call
             const result = await model.generateContent(prompt);
             const response = await result.response;
             const text = response.text().trim();
             
+            if (!text) throw new Error("Empty response from model");
+
             // Success! Reset rate limit state
             isRateLimited = false;
             return text;
         } catch (error: any) {
             const errorMsg = error.message || '';
-            
-            // Check for 429 (Too many requests)
-            if (errorMsg.includes('429') || errorMsg.includes('quota')) {
+            const isQuotaError = errorMsg.includes('429') || 
+                               errorMsg.toLowerCase().includes('quota') || 
+                               errorMsg.toLowerCase().includes('rate limit');
+
+            if (isQuotaError) {
                 console.error(`[Gemini Sync] Model ${modelName} hit rate limit (429).`);
                 isRateLimited = true;
-                rateLimitResetTime = Date.now() + 60000; // 60s cooldown
+                rateLimitResetTime = Date.now() + 30000; // Reduced to 30s for better UX
                 throw new Error('RATE_LIMITED');
             }
 
             console.warn(`[Gemini Sync] Model ${modelName} failed: ${errorMsg}`);
-            // Continue to next model if it's not a rate limit issue
+            lastError = error;
+            // Continue to next model
         }
     }
 
-    throw new Error('All models failed or context exceeded.');
+    throw new Error(`All models failed. Last error: ${lastError?.message || 'Unknown error'}`);
 }

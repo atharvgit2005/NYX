@@ -18,6 +18,7 @@ export default function ProfileCard() {
                         alt="Profile"
                         fill
                         className="rounded-full object-cover"
+                        sizes="96px"
                     />
                 ) : (
                     <div className="w-full h-full bg-card-hover rounded-full flex items-center justify-center">

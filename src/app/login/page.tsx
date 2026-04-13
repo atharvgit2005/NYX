@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { signIn, useSession } from 'next-auth/react';
+import Image from 'next/image';
 
 function LoginContent() {
     const router = useRouter();
@@ -69,8 +70,11 @@ function LoginContent() {
     return (
         <div className="min-h-screen bg-page flex flex-col justify-center py-12 sm:px-6 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                <Link href="/" className="flex justify-center text-3xl font-bold text-theme-primary">
-                    NYX
+                <Link href="/" className="flex flex-col items-center gap-4 group">
+                    <div className="w-16 h-16 rounded-2xl overflow-hidden relative shadow-2xl group-hover:scale-105 transition-transform duration-300">
+                        <Image src="/logo/logo.png" alt="NYX Logo" fill className="object-cover" sizes="64px" />
+                    </div>
+                    <span className="text-3xl font-bold text-theme-primary">NYX</span>
                 </Link>
                 <h2 className="mt-6 text-center text-3xl font-extrabold text-theme-primary">
                     Sign in to your account

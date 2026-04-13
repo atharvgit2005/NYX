@@ -38,9 +38,9 @@ export default function LandingPage() {
 
                     {/* Left Section: Logo */}
                     <Link href="/" className="flex items-center gap-3 pl-4 group hover:opacity-80 transition-opacity">
-                        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md shadow-glow-white-small">
-                            <span className="text-white font-extrabold text-sm">N</span>
-                        </div>
+                    <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center shadow-md shadow-glow-white-small relative border border-white/10">
+                        <Image src="/logo/logo.png" alt="NYX Logo" fill className="object-cover" sizes="32px" />
+                    </div>
                         <span className="text-lg font-bold tracking-tight text-theme-primary hidden sm:block">NYX</span>
                     </Link>
 
@@ -166,18 +166,7 @@ export default function LandingPage() {
                             </div>
                         </div>
 
-                        {/* Center Robot Figure */}
-                        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-3xl flex items-center justify-center z-10 pointer-events-none">
-                            <div className="relative w-full h-full aspect-square">
-                                <Image 
-                                    src="/hero-ai.png" 
-                                    alt="NYX AI Humanoid" 
-                                    fill
-                                    className="object-contain"
-                                    priority
-                                />
-                            </div>
-                        </div>
+
 
                         {/* Right Text */}
                         <div className="flex-1 text-center md:text-right z-20">
@@ -311,6 +300,7 @@ export default function LandingPage() {
                                         alt={founder.name} 
                                         fill 
                                         className="object-cover"
+                                        sizes="(max-width: 768px) 128px, 128px"
                                     />
                                 </div>
                                 <h3 className="text-2xl font-black mb-1 text-white uppercase condensed">{founder.name}</h3>
@@ -400,9 +390,9 @@ export default function LandingPage() {
                         {/* Brand & Mission */}
                         <div className="md:col-span-1">
                             <Link href="/" className="flex items-center gap-3 mb-6 group hover:opacity-80 transition-opacity">
-                                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md shadow-glow-white-small">
-                                    <span className="text-white font-extrabold text-sm">N</span>
-                                </div>
+                            <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center shadow-md shadow-glow-white-small relative border border-white/10">
+                                <Image src="/logo/logo.png" alt="NYX Logo" fill className="object-cover" sizes="32px" />
+                            </div>
                                 <span className="text-xl font-bold tracking-tight text-theme-primary">NYX</span>
                             </Link>
                             <p className="text-theme-secondary text-sm leading-relaxed mb-6">

@@ -8,6 +8,7 @@ import { navigation } from './Sidebar';
 import { signOut } from 'next-auth/react';
 import { useSidebar } from '@/context/SidebarContext';
 import ThemeToggle from './ThemeToggle';
+import Image from 'next/image';
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -36,8 +37,8 @@ export default function Header() {
                 </button>
 
                 <Link href="/dashboard" className="flex items-center gap-3 active:scale-95 transition-transform group">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center shadow-md shadow-orange-500/20 group-hover:shadow-orange-500/40 transition-shadow">
-                        <span className="text-white font-extrabold text-sm">N</span>
+                    <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center shadow-md shadow-orange-500/20 group-hover:shadow-orange-500/40 transition-shadow relative">
+                        <Image src="/logo/logo.png" alt="NYX Logo" fill className="object-cover" sizes="32px" />
                     </div>
                     <span className="text-xl font-bold tracking-tight text-theme-primary">NYX</span>
                 </Link>

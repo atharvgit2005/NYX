@@ -109,7 +109,7 @@ export default function Sidebar() {
                         {/* Avatar: image or initials */}
                         <div className={`rounded-full bg-gradient-to-br from-orange-400 to-orange-600 border border-white/10 flex items-center justify-center text-white font-bold shadow-lg flex-shrink-0 overflow-hidden relative group-hover:scale-105 transition-transform duration-300 ${collapsed ? 'h-8 w-8' : 'h-10 w-10'}`}>
                             {avatar ? (
-                                <Image src={avatar} alt={name} fill className="object-cover" />
+                                <Image src={avatar} alt={name} fill className="object-cover" sizes="40px" />
                             ) : (
                                 <span className={collapsed ? 'text-[10px]' : 'text-sm shadow-sm'}>{initials}</span>
                             )}

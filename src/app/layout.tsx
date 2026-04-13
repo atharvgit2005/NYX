@@ -9,6 +9,9 @@ const quicksand = Quicksand({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "NYX - AI Content Automation",
   description: "Automate Your Content Empire",
+  icons: {
+    icon: "/logo/logo.png",
+  },
 };
 
 import { ThemeProvider } from "@/components/ThemeProvider";
