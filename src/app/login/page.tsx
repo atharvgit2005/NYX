@@ -155,7 +155,7 @@ function LoginContent() {
 
                         <div className="mt-6 text-center text-sm">
                             <p className="text-theme-secondary">
-                                Don't have an account?{' '}
+                                Don&apos;t have an account?{' '}
                                 <Link href="/signup" className="font-medium text-orange-500 hover:text-orange-400 transition-colors">
                                     Sign up
                                 </Link>

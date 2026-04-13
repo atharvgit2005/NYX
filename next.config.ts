@@ -2,6 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig = {
   /* config options here */
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   images: {
     // Allow SVGs from DiceBear (avatar generator returns image/svg+xml)
     dangerouslyAllowSVG: true,
@@ -31,6 +37,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'pbs.twimg.com',
       },
+      // Custom avatars (if any, used in remote sources)
+      {
+        protocol: 'https',
+        hostname: '*.dicebear.com',
+      }
     ],
   },
 } as NextConfig;

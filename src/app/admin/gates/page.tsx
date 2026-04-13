@@ -46,7 +46,7 @@ export default function GatesPage() {
                 <Info className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
                 <div className="text-sm">
                     <p className="font-bold text-blue-300 mb-1">Access Gate Rule (AND logic)</p>
-                    <p className="text-blue-400/80">A subscription grants <strong>full access only when</strong>: Voice is <strong>UP</strong> AND Video is <strong>UP</strong> AND the user's tier includes both AND the subscription is approved and active. Any condition failing = restricted access.</p>
+                    <p className="text-blue-400/80">A subscription grants <strong>full access only when</strong>: Voice is <strong>UP</strong> AND Video is <strong>UP</strong> AND the user&apos;s tier includes both AND the subscription is approved and active. Any condition failing = restricted access.</p>
                 </div>
             </div>
 
@@ -104,7 +104,7 @@ export default function GatesPage() {
             {/* Per-Tier Feature Matrix */}
             <div>
                 <h2 className="text-sm font-black text-theme-secondary uppercase tracking-wider mb-4">Per-Tier Feature Matrix</h2>
-                <p className="text-xs text-gray-600 mb-4">Global toggles above override this matrix. Even if a tier has a feature enabled here, if the global toggle is OFF, users won't have access.</p>
+                <p className="text-xs text-gray-600 mb-4">Global toggles above override this matrix. Even if a tier has a feature enabled here, if the global toggle is OFF, users won&apos;t have access.</p>
 
                 <div className="rounded-2xl border border-theme overflow-hidden">
                     <table className="w-full">

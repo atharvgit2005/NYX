@@ -91,7 +91,7 @@ export default function VideoCarousel() {
                     <span className="text-orange-500 text-[10px] font-black uppercase tracking-[0.2em]">Showcase</span>
                 </div>
                 <h2 className="text-5xl md:text-7xl font-black mb-6 text-white uppercase tracking-tighter condensed">Created with NYX</h2>
-                <p className="text-theme-secondary max-w-2xl mx-auto text-lg md:text-xl font-medium">Pushing the boundaries of what's possible with AI-driven content generation. High-fidelity visuals, zero effort.</p>
+                <p className="text-theme-secondary max-w-2xl mx-auto text-lg md:text-xl font-medium">Pushing the boundaries of what&apos;s possible with AI-driven content generation. High-fidelity visuals, zero effort.</p>
             </div>
 
             {/* Carousel Container */}
