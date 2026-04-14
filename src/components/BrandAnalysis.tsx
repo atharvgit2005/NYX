@@ -133,39 +133,30 @@ export default function BrandAnalysis() {
 
     return (
         <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col md:flex-row items-center justify-center mb-10 gap-4">
-                <div className="bg-accent p-1.5 rounded-full flex border border-theme shadow-2xl">
-                    <button
-                        onClick={() => switchPlatform('instagram')}
-                        className={`px-8 py-2 rounded-full text-xs font-bold transition-all ${activePlatform === 'instagram' ? 'bg-orange-500 text-white shadow-lg' : 'text-theme-secondary hover:text-theme-primary'}`}
-                    >
-                        INSTAGRAM
-                    </button>
-                    <button
-                        onClick={() => switchPlatform('youtube')}
-                        className={`px-8 py-2 rounded-full text-xs font-bold transition-all ${activePlatform === 'youtube' ? 'bg-orange-500 text-white shadow-lg' : 'text-theme-secondary hover:text-theme-primary'}`}
-                    >
-                        YOUTUBE
-                    </button>
-                    <button
-                        onClick={() => switchPlatform('linkedin')}
-                        className={`px-8 py-2 rounded-full text-xs font-bold transition-all ${activePlatform === 'linkedin' ? 'bg-orange-500 text-white shadow-lg' : 'text-theme-secondary hover:text-theme-primary'}`}
-                    >
-                        LINKEDIN
-                    </button>
+            <div className="flex flex-col items-center mb-10 gap-6">
+                <div className="bg-card-theme p-1.5 rounded-2xl sm:rounded-full flex flex-col sm:flex-row border border-theme shadow-lg w-full sm:w-auto">
+                    {(['instagram', 'youtube', 'linkedin'] as const).map((p) => (
+                        <button
+                            key={p}
+                            onClick={() => switchPlatform(p)}
+                            className={`px-6 sm:px-8 py-2.5 sm:py-2 rounded-xl sm:rounded-full text-[10px] sm:text-xs font-black sm:font-bold transition-all uppercase tracking-widest ${activePlatform === p ? 'bg-orange-500 text-white shadow-lg' : 'text-theme-secondary hover:text-theme-primary'}`}
+                        >
+                            {p}
+                        </button>
+                    ))}
                 </div>
             </div>
 
-            <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-6">
                 <div>
-                    <h2 className="text-4xl font-bold text-theme-primary mb-2">Brand Analysis</h2>
-                    <p className="text-theme-secondary text-lg">
+                    <h2 className="text-[clamp(28px,6vw,40px)] font-bold text-theme-primary mb-2">Brand Analysis</h2>
+                    <p className="text-theme-secondary text-base sm:text-lg">
                         AI insights for <span className="text-theme-primary font-bold">@{username}</span>
                     </p>
                 </div>
                 <NyxButton
                     onClick={handleAnalyze}
-                    className="px-8 py-4"
+                    className="w-full sm:w-auto px-8 py-4 justify-center"
                 >
                     {analyzing ? 'ANALYZING...' : analysis ? 'REGENERATE ANALYSIS' : 'START ANALYSIS'}
                 </NyxButton>
@@ -202,28 +193,28 @@ export default function BrandAnalysis() {
                     <div className="lg:col-span-2 space-y-6">
                         {/* Niche & Tone Row */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="p-8 rounded-3xl bg-secondary border border-theme relative overflow-hidden group shadow-2xl">
+                            <div className="p-6 sm:p-8 rounded-3xl bg-secondary border border-theme relative overflow-hidden group shadow-2xl">
                                 <div className="absolute -bottom-8 -right-8 opacity-[0.03] pointer-events-none group-hover:scale-110 transition-transform"><Target className="w-48 h-48" /></div>
                                 <div className="relative z-10">
-                                    <h3 className="text-theme-secondary font-bold mb-2 flex items-center"><Target className="w-5 h-5 mr-2" /> Your Niche</h3>
-                                    <p className="text-2xl font-bold text-theme-primary leading-tight">{analysis.niche}</p>
+                                    <h3 className="text-theme-secondary font-bold text-xs mb-2 flex items-center uppercase tracking-wide"><Target className="w-4 h-4 mr-2" /> Your Niche</h3>
+                                    <p className="text-[clamp(20px,4vw,24px)] font-bold text-theme-primary leading-tight">{analysis.niche}</p>
                                 </div>
                             </div>
-                            <div className="p-8 rounded-3xl bg-secondary border border-theme relative overflow-hidden group hover:border-theme/80 transition-colors">
+                            <div className="p-6 sm:p-8 rounded-3xl bg-secondary border border-theme relative overflow-hidden group hover:border-theme/80 transition-colors">
                                 <div className="absolute -bottom-8 -right-8 opacity-[0.02] pointer-events-none group-hover:scale-110 transition-transform"><MessageCircle className="w-48 h-48" /></div>
                                 <div className="relative z-10">
-                                    <h3 className="text-theme-secondary font-bold mb-2 flex items-center"><MessageCircle className="w-5 h-5 mr-2" /> Tone of Voice</h3>
-                                    <p className="text-xl text-theme-primary">{analysis.tone}</p>
+                                    <h3 className="text-theme-secondary font-bold text-xs mb-2 flex items-center uppercase tracking-wide"><MessageCircle className="w-4 h-4 mr-2" /> Tone of Voice</h3>
+                                    <p className="text-lg sm:text-xl text-theme-primary font-medium">{analysis.tone}</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Audience */}
-                        <div className="p-8 rounded-3xl bg-secondary border border-theme relative overflow-hidden group hover:border-theme/80 transition-colors">
+                        <div className="p-6 sm:p-8 rounded-3xl bg-secondary border border-theme relative overflow-hidden group hover:border-theme/80 transition-colors">
                             <div className="absolute -bottom-10 -right-10 opacity-[0.02] pointer-events-none group-hover:scale-110 transition-transform"><Users className="w-56 h-56" /></div>
                             <div className="relative z-10">
-                                <h3 className="text-theme-secondary font-bold mb-2 flex items-center"><Users className="w-5 h-5 mr-2" /> Target Audience</h3>
-                                <p className="text-xl text-theme-primary">{analysis.audience}</p>
+                                <h3 className="text-theme-secondary font-bold text-xs mb-2 flex items-center uppercase tracking-wide"><Users className="w-4 h-4 mr-2" /> Target Audience</h3>
+                                <p className="text-base sm:text-xl text-theme-primary font-medium">{analysis.audience}</p>
                             </div>
                         </div>
 

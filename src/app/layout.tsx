@@ -1,10 +1,21 @@
 import type { Metadata } from "next";
-import { Quicksand } from "next/font/google";
+import { Outfit, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import GlobalAnimations from "@/components/GlobalAnimations";
 import AuthProvider from '@/components/AuthProvider'
 
-const quicksand = Quicksand({ subsets: ["latin"] });
+const outfit = Outfit({ 
+  subsets: ["latin"],
+  variable: '--font-outfit',
+  display: 'swap',
+});
+
+const barlowCondensed = Barlow_Condensed({
+  subsets: ["latin"],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  variable: '--font-barlow-condensed',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: "NYX - AI Content Automation",
@@ -22,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={quicksand.className}>
+    <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${barlowCondensed.variable}`}>
+      <body className="font-sans antialiased">
         <AuthProvider>
           <ThemeProvider>
             <GlobalAnimations />

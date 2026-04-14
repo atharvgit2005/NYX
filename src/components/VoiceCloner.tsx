@@ -466,11 +466,11 @@ export default function VoiceCloner() {
                 @keyframes pulse-bar { from { transform: scaleY(0.4); } to { transform: scaleY(1); } }
             `}</style>
 
-            <div className="mb-8">
-                <h2 className="text-4xl font-bold text-theme-primary tracking-tight flex items-center gap-3">
-                    <Wand2 className="w-8 h-8 text-orange-500" /> Voice Studio
+            <div className="mb-8 px-4 sm:px-0">
+                <h2 className="text-[clamp(28px,6vw,40px)] font-bold text-theme-primary tracking-tight flex items-center gap-3">
+                    <Wand2 className="w-8 h-8 sm:w-10 sm:h-10 text-orange-500" /> Voice Studio
                 </h2>
-                <p className="text-theme-secondary mt-2">Clone your voice, sculpt it — control tone, emotion, speed, and style.</p>
+                <p className="text-sm text-theme-secondary mt-2 leading-relaxed">Clone your voice, sculpt it — control tone, emotion, speed, and style.</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -490,19 +490,16 @@ export default function VoiceCloner() {
 
                     {/* ── Language Selector ── */}
                     {step === 'record' && (
-                        <div className="bg-card-theme rounded-2xl border border-theme p-4 flex items-center gap-4 flex-wrap">
+                        <div className="bg-card-theme rounded-2xl border border-theme p-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
                             <div className="flex items-center gap-2">
                                 <Globe className="w-4 h-4 text-orange-500" />
-                                <span className="text-sm font-bold text-theme-primary">Clone Language</span>
+                                <span className="text-sm font-bold text-theme-primary whitespace-nowrap">Clone Language</span>
                             </div>
                             <div className="flex-1 relative">
                                 <select
                                     value={langCode}
-                                    onChange={e => {
-                                        setLangCode(e.target.value);
-                                        // Do not aggressively wipe sampletext anymore so users can translate their custom input
-                                    }}
-                                    className="w-full bg-card-hover border border-theme rounded-xl px-3 py-2 text-theme-primary text-sm focus:outline-none focus:border-orange-500/50 appearance-none"
+                                    onChange={e => setLangCode(e.target.value)}
+                                    className="w-full bg-card-hover border border-theme rounded-xl px-4 py-2.5 text-theme-primary text-sm focus:outline-none focus:border-orange-500/50 appearance-none"
                                 >
                                     {LANGUAGES.map(l => (
                                         <option key={l.code} value={l.code}>{l.flag} {l.label}</option>
@@ -513,7 +510,7 @@ export default function VoiceCloner() {
                             <NyxButton
                                 onClick={() => fetchSampleText(langCode)}
                                 disabled={loadingSample}
-                                className="px-4 py-2"
+                                className="px-4 py-2.5 justify-center"
                             >
                                 {loadingSample ? '...' : 'GET SAMPLE TEXT'}
                             </NyxButton>
@@ -613,13 +610,13 @@ export default function VoiceCloner() {
                                                 </span>
                                             </div>
 
-                                            <div className="text-center">
-                                                <p className="text-3xl font-mono font-black text-theme-primary">{fmt(recordingTime)}</p>
-                                                <p className="text-xs text-theme-secondary mt-1">
+                                            <div className="text-center px-4">
+                                                <p className="text-2xl sm:text-3xl font-mono font-black text-theme-primary">{fmt(recordingTime)}</p>
+                                                <p className="text-xs text-theme-secondary mt-2 max-w-[280px] mx-auto leading-relaxed">
                                                     {isRecording ? '🔴 Recording — click square to stop' : audioBlob ? '✅ Captured' : `${selectedLang?.flag} Click the mic to start recording in ${selectedLang?.label}`}
                                                 </p>
                                                 {recordingTime > 0 && recordingTime < 30 && !isRecording && (
-                                                    <p className="text-xs text-amber-400 mt-1">⚠️ Recommend at least 30 seconds for best results</p>
+                                                    <p className="text-xs text-amber-500 mt-2 font-medium">⚠️ Recommend at least 30 seconds</p>
                                                 )}
                                             </div>
 
@@ -737,19 +734,19 @@ export default function VoiceCloner() {
                                         )}
                                     </div>
                                 </div>
-                                <button onClick={reset} className="flex items-center gap-2 text-xs py-2 px-4 rounded-xl bg-card-hover border border-theme text-theme-secondary hover:text-theme-primary transition">
+                                <button onClick={reset} className="flex items-center gap-2 text-xs py-2 px-3 sm:px-4 rounded-xl bg-card-hover border border-theme text-theme-secondary hover:text-theme-primary transition whitespace-nowrap">
                                     <RefreshCw className="w-3.5 h-3.5" /> Clone Another
                                 </button>
                             </div>
 
                             <div className="p-6 space-y-4">
-                                <div className="flex items-center justify-between">
+                                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                                     <h4 className="text-sm font-bold text-theme-primary">Test Your Voice</h4>
-                                    <div className="flex gap-1.5">
+                                    <div className="flex flex-wrap gap-1.5">
                                         {SAMPLE_TEXTS.map((t, i) => (
                                             <button key={i} onClick={() => { setTestText(t); setTestAudioSrc(null); }}
                                                 title={t}
-                                                className={`w-6 h-6 rounded-full text-[10px] font-bold transition border ${testText === t ? 'bg-orange-500 border-orange-500 text-white' : 'bg-card-hover border-theme text-theme-secondary hover:border-orange-500/40'}`}>
+                                                className={`w-7 h-7 rounded-sm text-[10px] font-bold transition border ${testText === t ? 'bg-orange-500 border-orange-500 text-white' : 'bg-card-hover border-theme text-theme-secondary hover:border-orange-500/40'}`}>
                                                 {i + 1}
                                             </button>
                                         ))}
@@ -831,9 +828,9 @@ export default function VoiceCloner() {
                                     )}
                                 </div>
 
-                                <div className="flex gap-3">
+                                <div className="flex flex-col sm:flex-row gap-3">
                                     <button onClick={() => testAudioSrc ? toggleTestAudio() : handleTestVoice(activeVoice.voiceId)} disabled={synthesizing}
-                                        className="flex-1 py-3.5 font-bold text-sm text-theme-primary rounded-2xl flex items-center justify-center gap-2.5 transition-all hover:opacity-90 disabled:opacity-50"
+                                        className="w-full sm:flex-1 py-4 font-bold text-sm text-theme-primary rounded-2xl flex items-center justify-center gap-2.5 transition-all hover:opacity-90 disabled:opacity-50"
                                         style={{ background: 'linear-gradient(135deg, #ea580c, #f97316, #fb923c)', boxShadow: '0 4px 20px rgba(249,115,22,0.3)' }}>
                                         {synthesizing ? <><Loader2 className="w-4 h-4 animate-spin" /> Generating…</>
                                             : testAudioSrc
@@ -841,16 +838,16 @@ export default function VoiceCloner() {
                                                 : <><Sparkles className="w-4 h-4" /> Generate Audio</>}
                                     </button>
                                     {testAudioSrc && (
-                                        <>
+                                        <div className="flex gap-3">
                                             <button onClick={() => handleTestVoice(activeVoice.voiceId)} title="Regenerate"
-                                                className="p-3.5 rounded-2xl border border-theme bg-card-hover hover:bg-card-theme text-theme-secondary hover:text-theme-primary transition">
+                                                className="flex-1 sm:flex-initial sm:p-4 p-3.5 rounded-2xl border border-theme bg-card-hover hover:bg-card-theme text-theme-secondary hover:text-theme-primary transition flex items-center justify-center">
                                                 <RefreshCw className="w-4 h-4" />
                                             </button>
                                             <button onClick={downloadTestAudio} title="Download"
-                                                className="p-3.5 rounded-2xl border border-theme bg-card-hover hover:bg-card-theme text-theme-secondary hover:text-theme-primary transition">
+                                                className="flex-1 sm:flex-initial sm:p-4 p-3.5 rounded-2xl border border-theme bg-card-hover hover:bg-card-theme text-theme-secondary hover:text-theme-primary transition flex items-center justify-center">
                                                 <Download className="w-4 h-4" />
                                             </button>
-                                        </>
+                                        </div>
                                     )}
                                 </div>
                                 {isPlayingTest && (

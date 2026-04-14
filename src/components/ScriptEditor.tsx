@@ -311,25 +311,25 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                 </div>
             )}
 
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-6">
                 <div>
-                    <h2 className="text-4xl font-bold text-theme-primary tracking-tight">Script Editor</h2>
-                    <p className="text-theme-secondary mt-2 text-lg">
+                    <h2 className="text-[clamp(28px,6vw,40px)] font-bold text-theme-primary tracking-tight">Script Editor</h2>
+                    <p className="text-sm sm:text-lg text-theme-secondary mt-2">
                         Refine your masterpiece before production.
                     </p>
                 </div>
-                <div className="flex space-x-4 w-full md:w-auto">
+                <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                     <NyxButton
                         onClick={handleRegenerate}
                         variant="outline"
                         showIconContainer={false}
-                        className="py-2.5 flex-1 md:flex-none"
+                        className="py-2.5 flex-1 sm:flex-none justify-center"
                     >
                         {generating ? 'REGENERATING...' : 'REGENERATE AI'}
                     </NyxButton>
                     <NyxButton
                         onClick={handleSave}
-                        className="py-2.5 flex-1 md:flex-none"
+                        className="py-2.5 flex-1 sm:flex-none justify-center"
                     >
                         SAVE & CREATE VIDEO
                     </NyxButton>
@@ -338,9 +338,9 @@ Comment "AI" below and I'll send you the full list of tools I use.`
 
             {/* Idea Context Banner */}
             {ideaTitle ? (
-                <div className="mb-8 p-4 rounded-2xl bg-card-theme border border-theme flex items-center justify-between">
+                <div className="mb-8 p-4 rounded-2xl bg-card-theme border border-theme flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-card-hover border border-theme flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl bg-card-hover border border-theme flex items-center justify-center shrink-0">
                             <Lightbulb className="w-5 h-5 text-theme-primary" />
                         </div>
                         <div>
@@ -354,15 +354,15 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                     </div>
                     <Link
                         href="/dashboard/ideas"
-                        className="text-xs font-bold text-theme-primary hover:text-theme-secondary transition-colors px-3 py-1.5 rounded-lg bg-card-hover border border-theme flex items-center gap-1"
+                        className="w-full sm:w-auto text-center text-xs font-bold text-theme-primary hover:text-theme-secondary transition-colors px-4 py-2 rounded-lg bg-card-hover border border-theme flex items-center justify-center gap-1"
                     >
                         Back to Ideas <ArrowRight className="w-3 h-3" />
                     </Link>
                 </div>
             ) : (
-                <div className="mb-8 p-4 rounded-2xl bg-card-theme border border-theme flex items-center justify-between">
+                <div className="mb-8 p-4 rounded-2xl bg-card-theme border border-theme flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-card-hover flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl bg-card-hover flex items-center justify-center shrink-0">
                             <Lightbulb className="w-5 h-5 text-theme-secondary" />
                         </div>
                         <div>
@@ -374,7 +374,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                     </div>
                     <NyxButton
                         href="/dashboard/ideas"
-                        className="py-1.5 px-4 text-xs"
+                        className="w-full sm:w-auto py-1.5 px-4 text-xs justify-center"
                     >
                         GENERATE IDEAS
                     </NyxButton>
@@ -410,7 +410,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                                 value={script}
                                 onChange={handleScriptChange}
                                 readOnly={isTyping}
-                                className={`w-full h-full bg-transparent p-8 text-lg md:text-xl text-theme-primary placeholder-theme-secondary/50 focus:outline-none resize-none font-serif leading-loose selection:bg-orange-500/20 ${isTyping ? 'cursor-default' : ''}`}
+                                className={`w-full h-full bg-transparent p-6 sm:p-8 text-[clamp(16px,4vw,20px)] text-theme-primary placeholder-theme-secondary/50 focus:outline-none resize-none font-serif leading-loose selection:bg-orange-500/20 ${isTyping ? 'cursor-default' : ''}`}
                                 placeholder="Start writing your script..."
                                 spellCheck="false"
                             />

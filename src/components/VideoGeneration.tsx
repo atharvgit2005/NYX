@@ -156,12 +156,12 @@ export default function VideoGeneration() {
     return (
         <div className="max-w-5xl mx-auto mt-8">
             {/* ── Header ── */}
-            <div className="flex justify-between items-start mb-8">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
                 <div>
-                    <h2 className="text-3xl font-bold text-theme-primary flex items-center gap-3">
+                    <h2 className="text-[clamp(24px,5vw,30px)] font-bold text-theme-primary flex items-center gap-3">
                         <Video className="w-7 h-7 text-theme-primary" /> Video Generation
                     </h2>
-                    <p className="text-theme-secondary mt-1.5">
+                    <p className="text-sm text-theme-secondary mt-1.5 leading-relaxed">
                         Your cloned Inworld voice drives your HeyGen avatar. Tweak tone, preview, then render.
                     </p>
                 </div>
@@ -169,7 +169,7 @@ export default function VideoGeneration() {
                     <NyxButton 
                         onClick={startGeneration} 
                         icon={Sparkles}
-                        className="px-6 py-2.5"
+                        className="w-full sm:w-auto px-6 py-2.5 justify-center"
                     >
                         GENERATE VIDEO
                     </NyxButton>
@@ -241,7 +241,7 @@ export default function VideoGeneration() {
                     </div>
 
                     {/* Generate CTA (also at bottom for convenience) */}
-                    <div className="flex items-center justify-between p-5 rounded-3xl border border-theme bg-card-theme">
+                    <div className="flex flex-col sm:flex-row items-center justify-between p-5 rounded-3xl border border-theme bg-card-theme gap-6 text-center sm:text-left">
                         <div>
                             <p className="text-sm font-bold text-theme-primary">
                                 {canGenerate ? '✅ Ready to render' : '⚠️ Not ready yet'}
@@ -255,7 +255,7 @@ export default function VideoGeneration() {
                         <NyxButton 
                             onClick={startGeneration} 
                             icon={Sparkles}
-                            className="px-8 py-3"
+                            className="w-full sm:w-auto px-8 py-3 justify-center"
                         >
                             GENERATE VIDEO
                         </NyxButton>
@@ -321,9 +321,9 @@ export default function VideoGeneration() {
 
                     <div className="space-y-5">
                         <div className="bg-card-theme p-6 rounded-3xl border border-theme">
-                            <h3 className="text-xl font-bold text-green-500 mb-1">✅ Render Complete</h3>
+                            <h3 className="text-xl font-bold text-green-500 mb-1 text-center sm:text-left">✅ Render Complete</h3>
                             {voiceConfig && (
-                                <p className="text-xs text-theme-secondary mb-4">
+                                <p className="text-xs text-theme-secondary mb-4 text-center sm:text-left">
                                     Voice: <span className="text-theme-primary font-bold">{voiceConfig.voiceName}</span>
                                     {voiceConfig.controls.emotion && ` · ${voiceConfig.controls.emotion}`}
                                     {voiceConfig.controls.style && ` · ${voiceConfig.controls.style}`}
@@ -339,7 +339,7 @@ export default function VideoGeneration() {
                                     DOWNLOAD VIDEO
                                 </NyxButton>
                                 <button onClick={() => { setStatus('idle'); setVideoUrl(null); setProgress(0); }}
-                                    className="w-full py-3 text-sm text-gray-500 hover:text-theme-secondary transition">
+                                    className="w-full py-3 text-sm text-gray-500 hover:text-theme-secondary transition text-center">
                                     Generate another →
                                 </button>
                             </div>

@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw;
+  width: 100%;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+}
+
 :root {
   --background: #000000;
   --foreground: #ffffff;
@@ -143,9 +157,9 @@
 }
 
 .condensed {
-  font-stretch: condensed;
-  letter-spacing: -0.05em;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-family: var(--font-barlow-condensed), sans-serif;
+  letter-spacing: -0.02em;
+  font-weight: 800;
 }
 
 @keyframes pulse-slow {
@@ -208,7 +222,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: inherit;
+  font-family: var(--font-outfit), sans-serif;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

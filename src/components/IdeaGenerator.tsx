@@ -159,16 +159,16 @@ export default function IdeaGenerator() {
 
     return (
         <div className="max-w-4xl mx-auto relative">
-            <div className="flex justify-between items-start mb-8">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8">
                 <div>
-                    <h2 className="text-3xl font-bold text-theme-primary">Idea Generator</h2>
-                    <p className="text-theme-secondary mt-2">
+                    <h2 className="text-[clamp(24px,5vw,30px)] font-bold text-theme-primary">Idea Generator</h2>
+                    <p className="text-sm text-theme-secondary mt-1.5 leading-relaxed">
                         Get viral-ready video ideas tailored to your niche.
                     </p>
                 </div>
                 <NyxButton
                     onClick={handleGenerate}
-                    className="shrink-0"
+                    className="w-full sm:w-auto shrink-0 justify-center py-3"
                 >
                     {generating ? 'GENERATING...' : ideas.length > 1 ? 'REGENERATE IDEAS' : 'GENERATE IDEAS'}
                 </NyxButton>
@@ -176,41 +176,41 @@ export default function IdeaGenerator() {
 
             {/* Analysis Context Banner */}
             {analysisData ? (
-                <div className="mb-8 p-4 rounded-2xl bg-card-theme border border-theme flex items-center justify-between">
+                <div className="mb-8 p-4 rounded-2xl bg-card-theme border border-theme flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-secondary border border-theme flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-xl bg-secondary border border-theme flex items-center justify-center shrink-0">
                             <BrainCircuit className="w-5 h-5 text-theme-primary" />
                         </div>
                         <div>
                             <p className="text-sm font-bold text-theme-primary">
                                 Powered by {analysisData.platform} Analysis
                             </p>
-                            <p className="text-xs text-theme-secondary">
+                            <p className="text-[10px] sm:text-xs text-theme-secondary">
                                 Niche: <span className="text-primary font-bold">{analysisData.niche}</span> · {analysisData.pillars.length} pillars · Tone: {analysisData.tone}
                             </p>
                         </div>
                     </div>
                     <Link
                         href="/dashboard/analysis"
-                        className="text-xs font-bold text-theme-primary hover:text-theme-primary/80 transition-colors px-3 py-1.5 rounded-lg bg-secondary border border-theme"
+                        className="w-full sm:w-auto text-center text-xs font-bold text-theme-primary hover:text-theme-primary/80 transition-colors px-4 py-2 rounded-lg bg-secondary border border-theme"
                     >
                         Re-analyze →
                     </Link>
                 </div>
             ) : (
-                <div className="mb-8 p-6 rounded-2xl bg-yellow-500/5 border border-yellow-500/20 flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center flex-shrink-0">
-                        <AlertCircle className="w-5 h-5 text-yellow-500" />
+                <div className="mb-8 p-5 rounded-2xl bg-yellow-500/5 border border-yellow-500/20 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+                    <div className="w-12 h-12 rounded-xl bg-yellow-500/10 flex items-center justify-center flex-shrink-0">
+                        <AlertCircle className="w-6 h-6 text-yellow-500" />
                     </div>
                     <div className="flex-1">
                         <p className="text-sm font-bold text-theme-primary">No Brand Analysis Found</p>
-                        <p className="text-xs text-theme-secondary">
+                        <p className="text-xs text-theme-secondary mt-1">
                             Ideas will use generic defaults. Run a Brand Analysis first for personalized results.
                         </p>
                     </div>
                     <NyxButton
                         href="/dashboard/analysis"
-                        className="flex-shrink-0"
+                        className="w-full sm:w-auto justify-center"
                     >
                         RUN ANALYSIS
                     </NyxButton>
@@ -259,17 +259,17 @@ export default function IdeaGenerator() {
                             </div>
                         </div>
 
-                        <div className="flex justify-end space-x-4 border-t border-theme pt-6">
+                        <div className="flex flex-col sm:flex-row justify-end gap-3 sm:gap-4 border-t border-theme pt-6">
                             <NyxButton 
                                 variant="outline" 
                                 showIconContainer={false}
-                                className="px-6 py-2.5"
+                                className="px-6 py-2.5 justify-center w-full sm:w-auto"
                             >
                                 SAVE FOR LATER
                             </NyxButton>
                             <NyxButton
                                 onClick={() => handleGenerateScript(idea)}
-                                className="px-6 py-2.5"
+                                className="px-6 py-2.5 justify-center w-full sm:w-auto"
                             >
                                 {scriptGenerating === idea.id ? 'GENERATING...' : 'GENERATE SCRIPT'}
                             </NyxButton>

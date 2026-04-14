@@ -38,10 +38,10 @@ export default function LandingPage() {
 
                     {/* Left Section: Logo */}
                     <Link href="/" className="flex items-center gap-3 pl-4 group hover:opacity-80 transition-opacity">
-                    <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center shadow-md shadow-glow-white-small relative border border-white/10">
-                        <Image src="/logo/logo.png" alt="NYX Logo" fill className="object-cover" sizes="32px" />
-                    </div>
-                        <span className="text-lg font-bold tracking-tight text-theme-primary hidden sm:block">NYX</span>
+                        <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center shadow-md shadow-glow-white-small relative border border-white/10">
+                            <Image src="/logo/logo.png" alt="NYX Logo" fill className="object-cover" sizes="32px" />
+                        </div>
+                        <span className="text-lg font-bold tracking-tight text-theme-primary hidden sm:block leading-none">NYX</span>
                     </Link>
 
                     {/* Center Section: Navigation Links */}
@@ -68,18 +68,18 @@ export default function LandingPage() {
                         <div className="hidden md:block w-px h-5 bg-card-theme" />
 
                         {session ? (
-                            <Link href="/dashboard" className="hidden md:flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-md hover:scale-105 transition-all group">
+                            <Link href="/dashboard" className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold shadow-md hover:scale-105 transition-all group">
                                 Dashboard
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                             </Link>
                         ) : (
                             <>
                                 <Link href="/login" className="hidden md:block text-sm font-bold text-theme-secondary hover:text-theme-primary px-3 transition-colors">
                                     Log In
                                 </Link>
-                                <Link href="/signup" className="hidden md:flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-md hover:scale-105 transition-all group">
+                                <Link href="/signup" className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold shadow-md hover:scale-105 transition-all group">
                                     Sign Up
-                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                    <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </>
                         )}
@@ -131,59 +131,65 @@ export default function LandingPage() {
             </nav>
 
             {/* Hero Section */}
-            <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden bg-black">
+            <section className="relative min-h-screen flex flex-col items-center pt-0 overflow-hidden bg-black">
                 {/* Massive Background Split Text */}
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-                    <div className="w-full flex justify-between px-4 md:px-20 items-center">
-                        <h1 className="text-[15vw] font-black uppercase tracking-tighter leading-none text-white/5 select-none condensed">
-                            AUTOMATE
-                        </h1>
-                        <h1 className="text-[15vw] font-black uppercase tracking-tighter leading-none text-white/5 select-none condensed">
-                            EMPIRE
-                        </h1>
+                <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
+                    <div className="relative w-full h-full max-w-[1440px] mx-auto px-6 md:px-12">
+                        {/* AUTOMATE - Left Anchored Zipper Part 1 */}
+                        <div className="absolute top-[22%] left-0 md:left-12 opacity-[0.07] md:opacity-[0.12] flex flex-col items-start translate-x-[-10%] md:translate-x-[-5%]">
+                            <span className="text-[clamp(60px,12vw,220px)] font-black uppercase tracking-tighter leading-none condensed whitespace-nowrap">
+                                AUTOMATE
+                            </span>
+                            <div className="h-[2px] w-full bg-white opacity-40 mt-1" />
+                        </div>
+                        
+                        {/* EMPIRE - Interlocking Zipper Part 2 */}
+                        <div className="absolute top-[38%] left-[45%] md:left-[64%] opacity-[0.07] md:opacity-[0.12] flex flex-col items-start">
+                            <span className="text-[clamp(60px,12vw,220px)] font-black uppercase tracking-tighter leading-none condensed whitespace-nowrap">
+                                EMPIRE
+                            </span>
+                            <div className="h-[2px] w-full bg-white opacity-40 mt-1" />
+                        </div>
                     </div>
                 </div>
 
-                {/* Main Hero Content */}
-                <div className="container relative z-10 flex flex-col items-center justify-center">
-                    <div className="relative w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 py-20">
-                        {/* Left Text */}
-                        <div className="flex-1 text-center md:text-left z-20">
-                            <h2 ref={titleRef} className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] condensed mb-6 text-white">
-                                <span>AUTOMATE</span><br />
-                                <span>STRATEGY</span>
+                <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 md:px-12 pt-[140px] md:pt-[160px] pb-24 md:pb-32">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-12 items-end">
+                        {/* Left Side: AUTOMATE STRATEGY */}
+                        <div className="flex flex-col items-start text-left">
+                            <h2 ref={titleRef} className="text-[clamp(44px,10vw,160px)] font-black uppercase tracking-tighter leading-[0.85] condensed mb-8 md:mb-10 text-white">
+                                <span className="block">AUTOMATE</span>
+                                <span className="block">STRATEGY</span>
                             </h2>
-                            <p ref={subtitleRef} className="text-lg md:text-xl text-theme-secondary max-w-sm mb-10 leading-relaxed font-medium">
-                                Generate viral ideas, write scripts, and produce <span className="text-theme-primary font-bold">AI videos</span> in minutes.
+                            <p ref={subtitleRef} className="text-base md:text-lg lg:text-xl text-[#A1A1AA] max-w-sm mb-10 md:mb-12 leading-relaxed font-medium">
+                                Generate viral ideas, write scripts, and produce <span className="text-[#F97316] font-bold">AI videos</span> in minutes. The engine for modern creators.
                             </p>
-                            <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 items-center md:items-start">
-                                <Link href={session ? "/dashboard" : "/signup"} className="px-10 py-4 bg-orange-600 text-white rounded-full text-base font-bold hover:bg-orange-700 transition-all hover:scale-105 shadow-xl shadow-orange-500/20 flex items-center gap-3">
-                                    Start Free 🚀
+                            <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-stretch sm:items-start w-full sm:w-auto">
+                                <Link href={session ? "/dashboard" : "/signup"} className="h-[52px] sm:h-[56px] px-8 sm:px-10 bg-[#F97316] text-white rounded-full text-base font-bold hover:bg-[#F97316]/90 transition-all hover:scale-105 shadow-xl shadow-[#F97316]/20 flex items-center justify-center">
+                                    Start Free
                                 </Link>
-                                <Link href="#how-it-works" className="px-10 py-4 border border-white/40 bg-white/5 backdrop-blur-md text-white rounded-full text-base font-bold hover:bg-white/10 transition-all flex items-center gap-2">
+                                <Link href="#how-it-works" className="h-[52px] sm:h-[56px] px-8 sm:px-10 border border-white/30 bg-white/5 backdrop-blur-md text-white rounded-full text-base font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2">
                                     See How It Works
                                 </Link>
                             </div>
                         </div>
 
-
-
-                        {/* Right Text */}
-                        <div className="flex-1 text-center md:text-right z-20">
-                            <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] condensed mb-6">
-                                <span className="text-gradient-hero">REAL</span><br />
-                                <span className="text-gradient-hero">RESULTS</span>
+                        {/* Right Side: REAL RESULTS */}
+                        <div className="flex flex-col items-start md:items-end text-left md:text-right relative">
+                            <h2 className="text-[clamp(44px,10vw,160px)] font-black uppercase tracking-tighter leading-[0.85] condensed mb-8 md:mb-0">
+                                <span className="text-gradient-hero block">REAL</span>
+                                <span className="text-gradient-hero block">RESULTS</span>
                             </h2>
                             
-                            {/* Floating Stat Card */}
-                            <div className="mt-12 bg-black/60 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl hover:border-orange-500/30 transition-all inline-block md:ml-auto">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-2xl bg-orange-500/20 flex items-center justify-center">
-                                        <Bot className="w-6 h-6 text-orange-500" />
+                            {/* Anchored Stat Card */}
+                            <div className="w-full sm:w-auto md:absolute md:-bottom-28 md:right-0 bg-black/60 backdrop-blur-xl border border-theme rounded-3xl p-6 shadow-2xl hover:border-[#F97316]/30 transition-all mt-4 md:mt-0 z-30">
+                                <div className="flex items-center justify-center sm:justify-start gap-4">
+                                    <div className="w-12 h-12 rounded-2xl bg-[#F97316]/10 flex items-center justify-center">
+                                        <Bot className="w-6 h-6 text-[#F97316]" />
                                     </div>
-                                    <div>
-                                        <div className="text-2xl font-black text-white condensed">10K+</div>
-                                        <div className="text-[10px] text-white/40 uppercase tracking-widest font-black">Videos Generated</div>
+                                    <div className="text-left">
+                                        <div className="text-2xl font-black text-white condensed leading-none">10K+</div>
+                                        <div className="text-[10px] text-white/40 uppercase tracking-widest font-black mt-1">Videos Generated</div>
                                     </div>
                                 </div>
                             </div>
@@ -196,12 +202,16 @@ export default function LandingPage() {
             <VideoCarousel />
 
             {/* How It Works Section */}
-            <section id="how-it-works" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10 bg-page">
+            <section id="how-it-works" className="py-[80px] md:py-[120px] px-6 md:px-12 relative z-10 bg-black">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl font-bold text-center mb-16 tracking-tight">From Idea to Viral in 3 Steps</h2>
+                    <div className="flex flex-col items-center mb-16 text-center">
+                        <span className="text-[#F97316] text-[11px] font-semibold uppercase tracking-[0.1em] mb-4">Process</span>
+                        <h2 className="text-[clamp(28px,6vw,44px)] font-extrabold tracking-tight text-white uppercase condensed leading-tight">From Idea to Viral in 3 Steps</h2>
+                    </div>
+                    
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-                        {/* Connecting Line (Desktop) - Centered & Responsive */}
-                        <div className="hidden md:block absolute top-10 left-1/4 right-1/4 h-px bg-gradient-to-r from-transparent via-gray-400/30 to-transparent z-0"></div>
+                        {/* Connecting Line (Desktop) */}
+                        <div className="hidden md:block absolute top-[28px] left-[15%] right-[15%] h-px border-t border-white/[0.12] z-0"></div>
 
                         {[
                             {
@@ -221,11 +231,13 @@ export default function LandingPage() {
                             },
                         ].map((item, i) => (
                             <div key={i} className="relative z-10 flex flex-col items-center text-center group">
-                                <div className="w-20 h-20 mb-8 rounded-2xl bg-card-theme border-theme flex items-center justify-center text-2xl font-bold text-theme-primary z-10 backdrop-blur-sm group-hover:scale-105 group-hover:border-orange-400/40 group-hover:bg-card-hover transition-all duration-300">
+                                <div className="w-[56px] h-[56px] mb-6 rounded-[12px] bg-white/[0.03] border border-white/[0.15] flex items-center justify-center text-[18px] font-bold text-white z-10 backdrop-blur-sm group-hover:border-[#F97316]/40 transition-all duration-300">
                                     {item.step}
                                 </div>
-                                <h3 className="text-xl font-bold mb-3 text-theme-primary group-hover:text-orange-500 transition-colors">{item.title}</h3>
-                                <p className="text-theme-secondary max-w-xs text-sm leading-relaxed transition-colors">{item.desc}</p>
+                                <div className="flex flex-col gap-2">
+                                    <h3 className="text-[18px] font-semibold text-white">{item.title}</h3>
+                                    <p className="text-[14px] text-[#A1A1AA] leading-[1.7] max-w-xs">{item.desc}</p>
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -233,36 +245,38 @@ export default function LandingPage() {
             </section>
 
             {/* Features Grid */}
-            <section id="features" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10">
+            <section id="features" className="py-[80px] md:py-[120px] px-6 md:px-12 relative z-10">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col items-center mb-16 text-center">
-                        <span className="text-orange-500 font-black tracking-[0.3em] uppercase mb-4 text-sm">Capabilities</span>
-                        <h2 className="text-4xl font-bold tracking-tight text-white uppercase condensed">Everything You Need to Scale</h2>
+                        <span className="text-[#F97316] text-[11px] font-semibold uppercase tracking-[0.1em] mb-4">Capabilities</span>
+                        <h2 className="text-[clamp(28px,6vw,44px)] font-extrabold tracking-tight text-white uppercase condensed leading-tight">Everything You Need to Scale</h2>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
                         {[
                             {
                                 title: 'Trend-Aware Ideation',
                                 desc: 'AI analyzes your niche to generate viral hooks and video concepts.',
-                                icon: <Zap className="w-6 h-6 text-orange-500" />,
+                                icon: <Zap className="w-[22px] h-[22px] text-[#F97316]" />,
                             },
                             {
                                 title: 'AI Avatar & Voice',
                                 desc: 'Clone yourself or use premium AI avatars to present your content.',
-                                icon: <Bot className="w-6 h-6 text-orange-500" />,
+                                icon: <Bot className="w-[22px] h-[22px] text-[#F97316]" />,
                             },
                             {
                                 title: 'Auto-Publishing',
                                 desc: 'Schedule and post directly to Instagram, TikTok, and YouTube.',
-                                icon: <Rocket className="w-6 h-6 text-orange-500" />,
+                                icon: <Rocket className="w-[22px] h-[22px] text-[#F97316]" />,
                             },
                         ].map((feature, i) => (
-                            <div key={i} className="p-10 rounded-3xl bg-zinc-900/50 border border-white/5 hover:bg-zinc-900 hover:border-orange-500/30 transition-all group">
-                                <div className="mb-8 w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center group-hover:bg-orange-500 transition-colors">
-                                    {React.cloneElement(feature.icon as React.ReactElement, { className: 'w-7 h-7 group-hover:text-black' })}
+                            <div key={i} className="min-h-[280px] p-[32px] rounded-[16px] bg-white/[0.03] border border-white/[0.07] hover:border-[#F97316]/30 transition-all group flex flex-col">
+                                <div className="mb-6 w-[48px] h-[48px] rounded-[12px] bg-[#F97316]/10 flex items-center justify-center transition-colors">
+                                    {feature.icon}
                                 </div>
-                                <h3 className="text-2xl font-black mb-4 text-white uppercase condensed">{feature.title}</h3>
-                                <p className="text-theme-secondary leading-relaxed text-sm">{feature.desc}</p>
+                                <div className="flex flex-col gap-3">
+                                    <h3 className="text-[18px] font-bold text-white uppercase condensed">{feature.title}</h3>
+                                    <p className="text-[#A1A1AA] leading-[1.7] text-[14px]">{feature.desc}</p>
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -270,13 +284,13 @@ export default function LandingPage() {
             </section>
 
             {/* Meet the Founders */}
-            <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 relative z-10 bg-black/50">
+            <section id="about" className="py-[80px] md:py-[120px] px-6 md:px-12 relative z-10 bg-black">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col items-center mb-16 text-center">
-                        <span className="text-orange-500 font-black tracking-[0.3em] uppercase mb-4 text-sm">Visionaries</span>
-                        <h2 className="text-4xl font-bold tracking-tight text-white uppercase condensed">Meet the Founders</h2>
+                        <span className="text-[#F97316] text-[11px] font-semibold uppercase tracking-[0.1em] mb-4">Visionaries</span>
+                        <h2 className="text-[clamp(28px,6vw,44px)] font-extrabold tracking-tight text-white uppercase condensed leading-tight">Meet the Founders</h2>
                     </div>
-                    <div className="flex flex-wrap justify-center gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                         {[
                             { 
                                 name: 'Atharv Paharia', 
@@ -293,21 +307,21 @@ export default function LandingPage() {
                                 image: '/founders/bhavya.jpg'
                             },
                         ].map((founder, i) => (
-                            <div key={i} className="flex-1 min-w-[300px] max-w-sm p-10 rounded-3xl bg-zinc-900/50 border border-white/5 hover:border-orange-500/30 transition-all text-center group">
-                                <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-orange-500 transition-colors relative">
+                            <div key={i} className="p-[40px] rounded-[16px] bg-white/[0.03] border border-white/[0.07] hover:border-[#F97316]/30 transition-all text-center group flex flex-col items-center">
+                                <div className="w-[96px] h-[96px] mb-6 rounded-full overflow-hidden ring-2 ring-[#F97316]/30 border-2 border-transparent transition-colors relative">
                                     <Image 
                                         src={founder.image} 
                                         alt={founder.name} 
                                         fill 
-                                        className="object-cover"
-                                        sizes="(max-width: 768px) 128px, 128px"
+                                        className="object-cover rounded-full"
+                                        sizes="96px"
                                     />
                                 </div>
-                                <h3 className="text-2xl font-black mb-1 text-white uppercase condensed">{founder.name}</h3>
-                                <p className="text-orange-500 text-xs font-bold uppercase tracking-widest mb-6">{founder.role}</p>
+                                <h3 className="text-[16px] font-extrabold mb-1 text-white uppercase tracking-[0.08em]">{founder.name}</h3>
+                                <p className="text-[#F97316] text-[12px] font-medium uppercase tracking-[0.1em] mb-6">{founder.role}</p>
                                 <div className="flex justify-center gap-4">
-                                    <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-xl text-white hover:bg-orange-500 hover:text-black transition-all"><Linkedin className="w-5 h-5" /></a>
-                                    <a href={founder.instagram} target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-xl text-white hover:bg-orange-500 hover:text-black transition-all"><Instagram className="w-5 h-5" /></a>
+                                    <a href={founder.linkedin} target="_blank" rel="noopener noreferrer" className="w-[40px] h-[40px] flex items-center justify-center bg-white/5 border border-white/15 rounded-full text-white hover:bg-[#F97316] hover:text-black transition-all"><Linkedin className="w-4 h-4" /></a>
+                                    <a href={founder.instagram} target="_blank" rel="noopener noreferrer" className="w-[40px] h-[40px] flex items-center justify-center bg-white/5 border border-white/15 rounded-full text-white hover:bg-[#F97316] hover:text-black transition-all"><Instagram className="w-4 h-4" /></a>
                                 </div>
                             </div>
                         ))}
@@ -316,14 +330,14 @@ export default function LandingPage() {
             </section>
 
             {/* Pricing Section */}
-            <section id="pricing" className="py-32 px-4 relative z-10 bg-black">
+            <section id="pricing" className="py-[80px] md:py-[120px] px-6 md:px-12 relative z-10 bg-black">
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col items-center mb-20 text-center">
-                        <span className="text-orange-500 font-black tracking-[0.3em] uppercase mb-4 text-sm">Pricing</span>
-                        <h2 className="text-4xl md:text-5xl font-black tracking-tighter uppercase condensed mb-8">Choose Your Tier</h2>
+                        <span className="text-[#F97316] text-[11px] font-semibold uppercase tracking-[0.1em] mb-4">Pricing</span>
+                        <h2 className="text-[clamp(28px,6vw,48px)] font-extrabold tracking-tighter uppercase condensed mb-8 leading-tight">Choose Your Tier</h2>
                         
                         <div className="flex items-center bg-zinc-900 p-1 rounded-full border border-white/5">
-                            <button className="px-6 py-2 rounded-full bg-orange-600 text-white text-xs font-black uppercase tracking-widest">Monthly</button>
+                            <button className="px-6 py-2 rounded-full bg-[#F97316] text-white text-xs font-black uppercase tracking-widest">Monthly</button>
                             <button className="px-6 py-2 rounded-full text-white/50 text-xs font-black uppercase tracking-widest hover:text-white transition-colors">Annual (-20%)</button>
                         </div>
                     </div>
@@ -336,10 +350,10 @@ export default function LandingPage() {
                         ].map((plan, i) => (
                             <div 
                                 key={i} 
-                                className={`relative p-10 rounded-[2.5rem] border ${plan.popular ? 'bg-zinc-900 border-orange-500 shadow-2xl shadow-orange-500/10' : 'bg-zinc-900/50 border-white/5'} flex flex-col`}
+                                className={`relative p-[32px] rounded-[16px] border ${plan.popular ? 'bg-[#F97316]/5 border-[#F97316] border-[1.5px] shadow-2xl shadow-[#F97316]/10' : 'bg-white/[0.03] border-white/[0.08]'} flex flex-col`}
                             >
                                 {plan.popular && (
-                                    <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-orange-600 text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full">
+                                    <span className="absolute top-0 left-[50%] transform -translate-x-1/2 -translate-y-1/2 bg-[#F97316] text-white text-[10px] font-black uppercase tracking-[0.2em] px-4 py-2 rounded-full whitespace-nowrap z-20">
                                         Most Popular
                                     </span>
                                 )}
@@ -350,8 +364,8 @@ export default function LandingPage() {
                                 
                                 <ul className="space-y-4 mb-10 flex-1">
                                     {plan.features.map((f, j) => (
-                                        <li key={j} className="flex items-start gap-3 text-sm text-white/60">
-                                            <Check className="w-5 h-5 text-orange-500 shrink-0" />
+                                        <li key={j} className="flex items-start gap-2 text-sm text-white/60">
+                                            <Check className="w-[14px] h-[14px] text-[#F97316] mt-0.5 shrink-0" style={{ marginRight: '10px' }} />
                                             <span>{f}</span>
                                         </li>
                                     ))}
@@ -359,7 +373,7 @@ export default function LandingPage() {
 
                                 <Link 
                                     href={session ? "/dashboard" : "/signup"} 
-                                    className={`w-full py-4 rounded-2xl font-black text-xs uppercase tracking-widest transition-all text-center ${plan.popular ? 'bg-orange-600 text-white hover:bg-orange-700' : 'bg-white/5 text-white hover:bg-white/10 border border-white/5'}`}
+                                    className={`w-full h-[52px] flex items-center justify-center rounded-2xl font-black text-xs uppercase tracking-widest transition-all text-center ${plan.popular ? 'bg-[#F97316] text-white hover:bg-[#F97316]/90' : 'bg-transparent text-white hover:bg-white/5 border border-white/20'}`}
                                 >
                                     Choose {plan.name}
                                 </Link>
@@ -370,14 +384,14 @@ export default function LandingPage() {
             </section>
 
             {/* Social Proof Bar */}
-            <div className="w-full bg-orange-600 py-6 relative z-10 overflow-hidden group">
+            <div className="w-full bg-[#F97316] py-6 relative z-10 overflow-hidden group">
                 <div className="flex whitespace-nowrap animate-marquee-fast">
                     {[...Array(10)].map((_, i) => (
-                        <div key={i} className="flex items-center mx-8">
-                            <span className="text-black font-black uppercase text-xl condensed tracking-tighter">
+                        <div key={i} className="flex items-center mx-16">
+                            <span className="text-black font-bold uppercase text-[14px] tracking-tight">
                                 Trusted by 500+ creators • 10,000+ videos generated • Instagram, TikTok & YouTube
                             </span>
-                            <Rocket className="w-6 h-6 text-black ml-8" />
+                            <Rocket className="w-6 h-6 text-black ml-16" />
                         </div>
                     ))}
                 </div>
@@ -385,7 +399,7 @@ export default function LandingPage() {
 
             {/* Footer */}
             <footer className="relative z-10 border-t border-theme bg-page mt-24">
-                <div className="w-full px-6 md:px-12 lg:px-20 py-16">
+                <div className="w-full px-6 md:px-12 lg:px-20 py-16 max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
                         {/* Brand & Mission */}
                         <div className="md:col-span-1">

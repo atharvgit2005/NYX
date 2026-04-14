@@ -358,7 +358,7 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
             <div className="flex flex-col lg:flex-row">
 
                 {/* ── 3D Canvas ── */}
-                <div className="relative lg:w-[55%] bg-gradient-to-b" style={{ background: 'linear-gradient(180deg, #0a0515 0%, #050210 100%)', minHeight: 420 }}>
+                <div className="relative lg:w-[55%] bg-gradient-to-b" style={{ background: 'linear-gradient(180deg, #0a0515 0%, #050210 100%)', minHeight: 'clamp(320px, 50vh, 420px)' }}>
                     {/* Ambient glow */}
                     <div className="absolute inset-0 pointer-events-none">
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full blur-3xl opacity-20"
@@ -370,7 +370,7 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
 
                     <Canvas
                         camera={{ position: [0, 0.5, 3.2], fov: 42 }}
-                        style={{ height: 420 }}
+                        style={{ height: 'clamp(320px, 50vh, 420px)' }}
                         gl={{ alpha: true, antialias: true }}
                     >
                         <color attach="background" args={['transparent']} />
@@ -403,7 +403,7 @@ export default function AvatarBuilder({ onSave }: { onSave?: (config: AvatarConf
                 </div>
 
                 {/* ── Customization Panel ── */}
-                <div className="lg:w-[45%] p-5 space-y-5 overflow-y-auto" style={{ maxHeight: 480, borderLeft: '1px solid rgba(255,255,255,0.04)' }}>
+                <div className="lg:w-[45%] p-6 space-y-6 overflow-y-auto lg:max-h-[500px]" style={{ borderLeft: '1px solid rgba(255,255,255,0.04)' }}>
 
                     {/* Header */}
                     <div className="flex items-center justify-between">

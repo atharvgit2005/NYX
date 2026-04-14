@@ -1,0 +1,18 @@
+<svg width="2000" height="2000" viewBox="0 0 2000 2000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- NYX Logo Geometric Mark -->
+  <path d="M523 709L299 1396L999 1169L1476 1288L1700 610L1140 876Z" 
+        fill="#F97316" 
+        stroke="white" 
+        stroke-width="32" 
+        stroke-linejoin="round"/>
+  
+  <!-- Sparkles -->
+  <g fill="white">
+    <!-- Top-Middle-Right Sparkle -->
+    <path d="M1532 439L1547 464L1572 479L1547 494L1532 519L1517 494L1492 479L1517 464Z"/>
+    <!-- Far-Right Sparkle -->
+    <path d="M1852 606L1867 631L1892 646L1867 661L1852 686L1837 661L1812 646L1837 631Z"/>
+    <!-- Bottom-Left Sparkle -->
+    <path d="M145 1313L160 1338L185 1353L160 1368L145 1393L130 1368L105 1353L130 1338Z"/>
+  </g>
+</svg>

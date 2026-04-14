@@ -18,8 +18,8 @@ export default function Header() {
     const { toggleSidebar } = useSidebar();
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 header-bg-theme backdrop-blur-xl h-20 flex items-center justify-between pl-7 pr-5 transition-all duration-300 border-b border-theme">
-            <div className="flex items-center gap-4 mt-2">
+        <header className="fixed top-0 left-0 right-0 z-50 header-bg-theme backdrop-blur-xl h-20 flex items-center justify-between px-4 sm:px-6 transition-all duration-300 border-b border-theme">
+            <div className="flex items-center gap-3 sm:gap-4 mt-2">
                 {/* Mobile Toggle */}
                 <button
                     onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -36,11 +36,11 @@ export default function Header() {
                     <Menu className="w-6 h-6" />
                 </button>
 
-                <Link href="/dashboard" className="flex items-center gap-3 active:scale-95 transition-transform group">
-                    <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center shadow-md shadow-orange-500/20 group-hover:shadow-orange-500/40 transition-shadow relative">
+                <Link href="/dashboard" className="flex items-center gap-2 sm:gap-3 active:scale-95 transition-transform group">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg overflow-hidden flex items-center justify-center shadow-md shadow-orange-500/20 group-hover:shadow-orange-500/40 transition-shadow relative">
                         <Image src="/logo/logo.png" alt="NYX Logo" fill className="object-cover" sizes="32px" />
                     </div>
-                    <span className="text-xl font-bold tracking-tight text-theme-primary">NYX</span>
+                    <span className="text-lg sm:text-xl font-bold tracking-tight text-theme-primary whitespace-nowrap">NYX</span>
                 </Link>
             </div>
 

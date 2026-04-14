@@ -118,12 +118,12 @@ export default function ConnectSocials() {
     ];
 
     return (
-        <div className="max-w-6xl mx-auto px-4">
-            <div className="text-center mb-16 space-y-4">
-                <h2 className="text-5xl font-bold text-theme-primary pb-2">
+        <div className="max-w-6xl mx-auto px-6 sm:px-4">
+            <div className="text-center mb-10 sm:mb-16 space-y-4">
+                <h2 className="text-[clamp(32px,8vw,56px)] font-bold text-theme-primary leading-tight">
                     Connect Your Socials
                 </h2>
-                <p className="text-theme-secondary max-w-2xl mx-auto text-lg leading-relaxed">
+                <p className="text-theme-secondary max-w-2xl mx-auto text-sm sm:text-lg leading-relaxed">
                     Link your accounts to unlock AI-powered analysis and auto-publishing.
                     We study your content to perfectly match your unique brand voice.
                 </p>
@@ -227,29 +227,29 @@ export default function ConnectSocials() {
             {/* Features Section */}
             <div className="relative rounded-[2.5rem] p-1 bg-card-theme border border-theme overflow-hidden shadow-2xl">
                 <div className="absolute inset-0 bg-page/80 backdrop-blur-xl" />
-                <div className="relative px-6 py-8 md:px-8 md:py-10 flex flex-col md:flex-row items-start gap-10">
-                    <div className="md:w-1/3">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="px-3 py-1 rounded-full bg-orange-500/20 text-orange-600 dark:text-orange-300 text-xs font-bold border border-orange-500/30">
+                <div className="relative px-6 py-8 sm:px-10 flex flex-col lg:flex-row items-center lg:items-start gap-10">
+                    <div className="lg:w-1/3 text-center lg:text-left">
+                        <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+                            <div className="px-3 py-1 rounded-full bg-orange-500/20 text-orange-600 dark:text-orange-300 text-[10px] font-bold border border-orange-500/30 uppercase tracking-widest">
                                 AI POWERED
                             </div>
                         </div>
-                        <h3 className="text-3xl font-bold text-theme-primary mb-4">Why connect?</h3>
-                        <p className="text-theme-secondary">Unlock the full potential of our engine. We analyze your past performance to predict future virality.</p>
+                        <h3 className="text-[clamp(24px,5vw,32px)] font-bold text-theme-primary mb-4">Why connect?</h3>
+                        <p className="text-sm sm:text-base text-theme-secondary leading-relaxed">Unlock the full potential of our engine. We analyze your past performance to predict future virality.</p>
                     </div>
 
-                    <div className="md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+                    <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
                         {[
                             { title: 'Voice Match', desc: 'Mimics your unique tone' },
                             { title: 'Viral Hooks', desc: 'Identifies high-performing patterns' },
                             { title: 'Auto-Publish', desc: 'One-click direct upload' },
                             { title: 'Trend Sync', desc: 'Real-time trend adaptation' }
                         ].map((item, i) => (
-                            <div key={i} className="flex items-start bg-card-theme p-4 rounded-xl border border-theme hover:border-orange-500/20 transition-colors shadow-sm">
+                            <div key={i} className="flex items-start bg-card-theme p-5 rounded-2xl border border-theme hover:border-orange-500/20 transition-colors shadow-sm">
                                 <div className="mt-1 mr-3 w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
                                     <Check className="w-3 h-3 text-green-500" />
                                 </div>
-                                <div>
+                                <div className="min-w-0">
                                     <h4 className="font-bold text-theme-primary text-sm mb-1">{item.title}</h4>
                                     <p className="text-xs text-theme-secondary">{item.desc}</p>
                                 </div>
