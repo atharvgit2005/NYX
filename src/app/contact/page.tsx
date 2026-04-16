@@ -79,8 +79,8 @@ export default function AdContactPage() {
                                 <div>
                                     <p className="text-xs font-headline uppercase tracking-widest text-secondary mb-2 scramble-text" data-original="* PHYSICAL_NODE">* PHYSICAL_NODE</p>
                                     <p className="text-xl font-medium leading-relaxed">
-                                        1124 Midnight Plaza<br/>
-                                        Design District, TX 75201
+                                        Pune<br/>
+                                        Maharashtra, India
                                     </p>
                                 </div>
                                 <div className="pt-8 border-t-4 border-black">
