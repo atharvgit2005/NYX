@@ -80,7 +80,7 @@ export function ContactForm() {
                 </div>
             </div>
             <div className="form-element pt-4 opacity-0">
-                <button className="glitch-btn w-full md:w-auto bg-[#E8441A] text-white px-12 py-6 font-headline font-black text-2xl uppercase tracking-tighter border-4 border-black transition-all duration-150 active:scale-95 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]" id="submit-btn" type="submit">
+                <button className="glitch-btn w-full md:w-auto bg-[#E8441A] text-white px-2 md:px-12 py-4 md:py-6 font-headline font-black text-[1.05rem] md:text-2xl uppercase tracking-tighter border-4 border-black transition-all duration-150 active:scale-95 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap overflow-hidden text-ellipsis" id="submit-btn" type="submit">
                     INITIALIZE_TRANSFER →
                 </button>
             </div>

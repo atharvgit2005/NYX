@@ -64,7 +64,7 @@ export default function AdServicesPage() {
                 <div className="md:col-span-7 p-8 md:p-16 flex flex-col justify-between bg-surface-container-lowest">
                     <div>
                         <span className="font-label text-xs uppercase tracking-widest text-secondary mb-12 block animate-reveal">* SERVICE_01</span>
-                        <h2 className="font-headline text-6xl md:text-8xl font-black tracking-tighter uppercase mb-8 leading-none reveal-ink js-ink-reveal">CONTENT<br/>STRATEGY</h2>
+                        <h2 className="font-headline text-5xl md:text-8xl font-black tracking-tighter uppercase mb-8 leading-none reveal-ink js-ink-reveal break-words">CONTENT<br/>STRATEGY</h2>
                     </div>
                     <div className="max-w-md animate-reveal">
                         <p className="font-body text-lg mb-8">Architecting narratives that pierce the noise. We map the digital landscape to find the cracks where your brand can bloom.</p>
@@ -92,7 +92,7 @@ export default function AdServicesPage() {
                 <div className="grid grid-cols-1 md:grid-cols-12">
                     <div className="md:col-span-5 p-8 md:p-16 border-r-4 border-ink-black flex flex-col justify-center bg-primary js-card">
                         <span className="font-label text-xs uppercase tracking-widest text-on-primary mb-6 block">* SERVICE_02</span>
-                        <h2 className="font-headline text-6xl md:text-7xl font-black tracking-tighter uppercase text-on-primary leading-none mb-6 reveal-ink js-ink-reveal">PAID<br/>SOCIAL</h2>
+                        <h2 className="font-headline text-5xl md:text-7xl font-black tracking-tighter uppercase text-on-primary leading-none mb-6 reveal-ink js-ink-reveal break-words">PAID<br/>SOCIAL</h2>
                         <p className="text-on-primary-container font-medium text-lg">Precision targeting meets raw creativity. We don't buy ads; we buy attention.</p>
                     </div>
                     <div className="md:col-span-7 grid grid-cols-1 md:grid-cols-2">
@@ -116,7 +116,7 @@ export default function AdServicesPage() {
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
                     <div className="md:col-span-8">
                         <span className="font-label text-xs uppercase tracking-widest text-ink-black mb-8 block font-black animate-reveal">* SERVICE_03 / THE AESTHETIC ENGINE</span>
-                        <h2 className="font-headline text-7xl md:text-9xl font-black tracking-tighter uppercase text-ink-black leading-[0.8] mb-0 reveal-ink js-ink-reveal">CREATIVE<br/>PRODUCTION</h2>
+                        <h2 className="font-headline text-5xl md:text-9xl font-black tracking-tighter uppercase text-ink-black leading-[0.8] mb-0 reveal-ink js-ink-reveal break-words hyphens-auto" lang="en">CREATIVE<br/>PRODUCTION</h2>
                     </div>
                     <div className="md:col-span-4 pb-4 animate-reveal">
                         <p className="text-ink-black font-body text-xl font-bold uppercase tracking-tight leading-tight">
@@ -150,7 +150,7 @@ export default function AdServicesPage() {
                 <div className="p-8 md:p-20 flex flex-col justify-between border-b-4 md:border-b-0 md:border-r-4 border-ink-black js-card">
                     <div className="mb-20">
                         <span className="font-label text-xs uppercase tracking-widest text-[#76dc83] mb-6 block animate-reveal">* SERVICE_04</span>
-                        <h2 className="font-headline text-6xl md:text-7xl font-black tracking-tighter uppercase leading-none reveal-ink js-ink-reveal">BRAND<br/>GROWTH</h2>
+                        <h2 className="font-headline text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none reveal-ink js-ink-reveal break-words">BRAND<br/>GROWTH</h2>
                     </div>
                     <p className="font-body text-lg leading-relaxed opacity-80 animate-reveal">
                         Scaling is an art form. We provide the operational backbone and strategic foresight to move your brand from "niche favorite" to "cultural staple" without losing the edge that made you famous.

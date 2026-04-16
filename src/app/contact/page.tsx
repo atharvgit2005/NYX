@@ -69,11 +69,11 @@ export default function AdContactPage() {
                         <div className="border-4 border-black p-8 bg-surface-container-high relative overflow-hidden" id="intel-container">
                             <div className="form-border-draw"></div>
                             <div className="absolute top-0 right-0 p-2 text-secondary text-2xl font-bold">+</div>
-                            <h2 className="text-3xl font-black mb-8 tracking-tighter uppercase font-headline text-primary">CONTACT_INTEL</h2>
+                            <h2 className="text-3xl md:text-5xl font-black mb-8 tracking-tighter uppercase font-headline text-primary break-words">CONTACT_INTEL</h2>
                             <div className="space-y-8">
                                 <div>
                                     <p className="text-xs font-headline uppercase tracking-widest text-secondary mb-2 scramble-text" data-original="* DIRECT_LINE">* DIRECT_LINE</p>
-                                    <a className="text-2xl md:text-3xl font-bold tracking-tighter hover:text-secondary transition-colors duration-75 block" href="mailto:nyx.studios.ai@gmail.com">
+                                    <a className="text-[1.15rem] md:text-3xl font-bold tracking-tighter hover:text-secondary transition-colors duration-75 block break-all" href="mailto:nyx.studios.ai@gmail.com">
                                         nyx.studios.ai@gmail.com
                                     </a>
                                 </div>
@@ -110,7 +110,7 @@ export default function AdContactPage() {
                     {/* Form Column (7/12) */}
                     <div className="lg:col-span-7 bg-white p-8 md:p-12 border-4 border-black shadow-[16px_16px_0px_0px_rgba(232,68,26,1)] relative" id="manifesto-form-container">
                         <div className="form-border-draw"></div>
-                        <h2 className="form-element text-4xl font-black mb-12 tracking-tighter uppercase font-headline text-black opacity-0">TRANSMIT_MANIFESTO</h2>
+                        <h2 className="form-element text-3xl md:text-4xl font-black mb-12 tracking-tighter uppercase font-headline text-black opacity-0 break-words">TRANSMIT_MANIFESTO</h2>
                         <ContactForm />
                     </div>
                 </div>
