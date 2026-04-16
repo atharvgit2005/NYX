@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { LeadForm } from "./components/LeadForm";
+import { AdAnimations } from "./components/AdAnimations";
 import "./page.css";
 
 export const metadata: Metadata = {
@@ -43,22 +44,25 @@ export default function AdPage() {
         </header>
 
         <main className="pt-[88px]">
+            <AdAnimations />
             {/* Hero Section */}
             <section className="relative min-h-[921px] bg-surface-container-lowest px-8 py-24 flex flex-col md:flex-row items-center border-b-4 border-black overflow-hidden">
                 <div className="noise-texture absolute inset-0"></div>
                 <div className="z-10 md:w-3/5">
-                    <h1 className="font-headline font-bold text-[4rem] md:text-[6rem] leading-[0.9] tracking-[-0.05em] uppercase mb-12">
-                        We make brands <span className="text-primary-container">impossible</span> to scroll past.
+                    <h1 className="font-headline font-bold text-[4rem] md:text-[6rem] leading-[0.9] tracking-[-0.05em] uppercase mb-12 reveal-text">
+                        <span className="block">We make brands</span>
+                        <span className="text-primary-container block">impossible</span>
+                        <span className="block">to scroll past.</span>
                     </h1>
                     <Link href="/contact" className="bg-primary text-on-primary-fixed font-headline font-bold text-xl px-10 py-5 uppercase border-4 border-black hover:bg-secondary hover:shadow-[4px_4px_0px_#000000] transition-all flex items-center gap-4 w-fit">
                         Book a Call <span className="material-symbols-outlined">arrow_forward</span>
                     </Link>
                 </div>
-                <div className="relative md:w-2/5 flex justify-center items-center mt-12 md:mt-0">
+                <div className="relative md:w-2/5 flex justify-center items-center mt-12 md:mt-0 hero-visual">
                     <div className="w-64 h-64 md:w-96 md:h-96 text-primary-container animate-pulse">
-                        <span className="material-symbols-outlined !text-[12rem] md:!text-[20rem]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                        <span className="material-symbols-outlined !text-[12rem] md:!text-[20rem] star-icon" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
                     </div>
-                    <div className="absolute -top-10 -right-10 text-secondary hidden md:block">
+                    <div className="absolute -top-10 -right-10 text-secondary hidden md:block secondary-icon">
                         <span className="material-symbols-outlined !text-[8rem]">emergency</span>
                     </div>
                 </div>
@@ -88,15 +92,15 @@ export default function AdPage() {
             {/* Stats Bar */}
             <section className="bg-secondary border-b-4 border-black py-12 px-8">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto">
-                    <div className="text-center md:text-left">
+                    <div className="text-center md:text-left stat-item">
                         <p className="font-headline font-black text-5xl md:text-7xl text-black">320M+</p>
                         <p className="font-label uppercase tracking-widest text-black/60 font-bold">* REACH GENERATED</p>
                     </div>
-                    <div className="text-center md:text-left">
+                    <div className="text-center md:text-left stat-item">
                         <p className="font-headline font-black text-5xl md:text-7xl text-black">4.8x</p>
                         <p className="font-label uppercase tracking-widest text-black/60 font-bold">* AVG. ROAS</p>
                     </div>
-                    <div className="text-center md:text-left">
+                    <div className="text-center md:text-left stat-item">
                         <p className="font-headline font-black text-5xl md:text-7xl text-black">50+</p>
                         <p className="font-label uppercase tracking-widest text-black/60 font-bold">* BRANDS GROWN</p>
                     </div>
@@ -107,11 +111,14 @@ export default function AdPage() {
             <section className="p-8 md:p-16 bg-surface-dim">
                 <div className="mb-16">
                     <p className="font-label text-primary uppercase font-bold mb-4 tracking-tighter">* OUR_CAPABILITIES</p>
-                    <h2 className="font-headline text-5xl md:text-7xl font-bold uppercase tracking-tight">Full Spectrum <br/>Growth Architecture</h2>
+                    <h2 className="font-headline text-5xl md:text-7xl font-bold uppercase tracking-tight reveal-text">
+                        <span className="block">Full Spectrum</span>
+                        <span className="block">Growth Architecture</span>
+                    </h2>
                 </div>
                 <div className="bento-grid">
                     {/* Card 1: Green */}
-                    <div className="col-span-12 md:col-span-7 bg-tertiary border-4 border-black p-8 flex flex-col justify-between min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
+                    <div className="bento-card col-span-12 md:col-span-7 bg-tertiary border-4 border-black p-8 flex flex-col justify-between min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
                         <div className="flex justify-between items-start">
                             <span className="material-symbols-outlined !text-6xl text-black">ads_click</span>
                             <p className="font-label text-black/40 font-bold">*01</p>
@@ -122,7 +129,7 @@ export default function AdPage() {
                         </div>
                     </div>
                     {/* Card 2: Orange */}
-                    <div className="col-span-12 md:col-span-5 bg-primary-container border-4 border-black p-8 flex flex-col justify-between min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
+                    <div className="bento-card col-span-12 md:col-span-5 bg-primary-container border-4 border-black p-8 flex flex-col justify-between min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
                         <div className="flex justify-between items-start">
                             <span className="material-symbols-outlined !text-6xl text-black">movie_edit</span>
                             <p className="font-label text-black/40 font-bold">*02</p>
@@ -133,7 +140,7 @@ export default function AdPage() {
                         </div>
                     </div>
                     {/* Card 3: White/Grey */}
-                    <div className="col-span-12 md:col-span-5 bg-on-surface border-4 border-black p-8 flex flex-col justify-between min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
+                    <div className="bento-card col-span-12 md:col-span-5 bg-on-surface border-4 border-black p-8 flex flex-col justify-between min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
                         <div className="flex justify-between items-start">
                             <span className="material-symbols-outlined !text-6xl text-black">groups</span>
                             <p className="font-label text-black/40 font-bold">*03</p>
@@ -144,7 +151,7 @@ export default function AdPage() {
                         </div>
                     </div>
                     {/* Card 4: Pink */}
-                    <div className="col-span-12 md:col-span-7 bg-[#F2A7C3] border-4 border-black p-8 flex flex-col justify-between min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
+                    <div className="bento-card col-span-12 md:col-span-7 bg-[#F2A7C3] border-4 border-black p-8 flex flex-col justify-between min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
                         <div className="flex justify-between items-start">
                             <span className="material-symbols-outlined !text-6xl text-black">analytics</span>
                             <p className="font-label text-black/40 font-bold">*04</p>
@@ -160,16 +167,16 @@ export default function AdPage() {
             {/* Why NYX Section */}
             <section className="relative bg-on-surface py-32 px-8 overflow-hidden border-y-4 border-black">
                 {/* Organic Blob Background */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-[#F2A7C3] opacity-20 blur-[100px] rounded-full"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-[#F2A7C3] opacity-20 blur-[100px] rounded-full manifesto-glow"></div>
                 <div className="relative z-10 max-w-4xl mx-auto text-black text-center">
                     <p className="font-label uppercase font-black text-xl mb-8 tracking-tighter">THE MANIFESTO</p>
                     <div className="space-y-12">
-                        <h2 className="font-headline text-6xl md:text-8xl font-black uppercase leading-none tracking-tighter">
-                            AI-NATIVE.<br/>
-                            CULTURALLY SHARP.<br/>
-                            BUILT FOR SPEED.
+                        <h2 className="font-headline text-6xl md:text-8xl font-black uppercase leading-none tracking-tighter reveal-text">
+                            <span className="block">AI-NATIVE.</span>
+                            <span className="block">CULTURALLY SHARP.</span>
+                            <span className="block">BUILT FOR SPEED.</span>
                         </h2>
-                        <div className="flex justify-center gap-4">
+                        <div className="flex flex-wrap justify-center gap-4 manifesto-pills">
                             <div className="bg-black text-white px-4 py-1 font-label text-sm uppercase">* NO BLOAT</div>
                             <div className="bg-black text-white px-4 py-1 font-label text-sm uppercase">* NO POLITE BS</div>
                             <div className="bg-black text-white px-4 py-1 font-label text-sm uppercase">* JUST GROWTH</div>
@@ -231,8 +238,8 @@ export default function AdPage() {
 
             {/* Lead Capture */}
             <section className="bg-primary-container px-8 py-24 flex flex-col items-center justify-center text-black">
-                <h2 className="font-headline text-6xl md:text-8xl font-black uppercase mb-12 text-center tracking-tighter">Ready to grow?</h2>
-                <LeadForm />
+                <h2 className="font-headline text-6xl md:text-8xl font-black uppercase mb-12 text-center tracking-tighter reveal-text"><span className="block">Ready to grow?</span></h2>
+                <div className="cta-form w-full flex justify-center"><LeadForm /></div>
                 <p className="mt-8 font-label uppercase tracking-widest text-sm font-bold opacity-70">* NO SPAM. JUST STRATEGY.</p>
             </section>
         </main>
