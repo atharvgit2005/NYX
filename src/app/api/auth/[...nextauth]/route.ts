@@ -67,7 +67,7 @@ export const authOptions: AuthOptions = {
         })
     ],
     pages: {
-        signIn: '/login', // Corrected path from /signin to /login based on file structure
+        signIn: '/automate/login', // Corrected path from /signin to /login based on file structure
     },
     callbacks: {
         async signIn({ user, account, profile }) {

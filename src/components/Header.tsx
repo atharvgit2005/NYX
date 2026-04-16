@@ -36,7 +36,7 @@ export default function Header() {
                     <Menu className="w-6 h-6" />
                 </button>
 
-                <Link href="/dashboard" className="flex items-center gap-2 sm:gap-3 active:scale-95 transition-transform group">
+                <Link href="/automate/dashboard" className="flex items-center gap-2 sm:gap-3 active:scale-95 transition-transform group">
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg overflow-hidden flex items-center justify-center shadow-md shadow-orange-500/20 group-hover:shadow-orange-500/40 transition-shadow relative">
                         <Image src="/logo/logo.png" alt="NYX Logo" fill className="object-cover" sizes="32px" />
                     </div>

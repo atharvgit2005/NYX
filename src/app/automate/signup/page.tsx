@@ -1,69 +1,67 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { signIn, useSession } from 'next-auth/react';
 import Image from 'next/image';
 
-function LoginContent() {
+export default function Signup() {
     const router = useRouter();
-    const searchParams = useSearchParams();
     const { data: session } = useSession();
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
 
     useEffect(() => {
         if (session) {
             router.push('/dashboard');
         }
+    }, [session, router]);
 
-        // Check for error in URL
-        const errorParam = searchParams.get('error');
-        if (errorParam) {
-            setError(AuthErrorMessages[errorParam] || errorParam);
-        }
-    }, [session, router, searchParams]);
-
-    const AuthErrorMessages: Record<string, string> = {
-        "Signin": "Try signing with a different account.",
-        "OAuthSignin": "Sign in failed. Check if your Google account is valid.",
-        "OAuthCallback": "Google denied access or network failed.",
-        "OAuthCreateAccount": "Could not create user in database.",
-        "EmailCreateAccount": "Could not create user in database.",
-        "Callback": "Error during authentication callback.",
-        "OAuthAccountNotLinked": "Email already used with another provider.",
-        "EmailSignin": "Check your email for a verification link.",
-        "CredentialsSignin": "Sign in failed. Check the details you provided.",
-        "default": "Unable to sign in."
-    };
-
-    const handleLogin = async (e: React.FormEvent) => {
+    const handleSignup = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-        setError('');
+        // Clear previous errors if any
 
         const form = e.target as HTMLFormElement;
+        const name = (form.elements.namedItem('name') as HTMLInputElement).value;
         const email = (form.elements.namedItem('email') as HTMLInputElement).value;
         const password = (form.elements.namedItem('password') as HTMLInputElement).value;
 
-        const result = await signIn('credentials', {
-            redirect: false,
-            email,
-            password,
-        });
+        try {
+            // 1. Create User
+            const response = await fetch('/api/auth/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password })
+            });
 
-        if (result?.error) {
-            console.error("Login Result Error:", result.error);
-            setError(result.error);
-            setLoading(false);
+            const data = await response.json();
 
-            // Helpful alerts for debugging
-            if (result.error === "CredentialsSignin") {
-                setError("Invalid email or password");
+            if (!response.ok || data.error) {
+                console.error("Signup failed:", data.error);
+                setLoading(false);
+                alert(`Signup failed: ${data.error}`);
+                return;
             }
-        } else {
-            router.push('/dashboard');
+
+            // 2. Sign In
+            const result = await signIn('credentials', {
+                redirect: true,
+                callbackUrl: '/dashboard',
+                email,
+                password,
+            });
+
+            if (result?.error) {
+                console.error("Auto-login failed:", result.error);
+                setLoading(false);
+                alert(`Auto-login failed: ${result.error}`);
+            }
+
+        } catch (error: any) {
+            console.error("Signup error:", error);
+            setLoading(false);
+            alert(`Something went wrong: ${error.message}`);
         }
     };
 
@@ -77,18 +75,29 @@ function LoginContent() {
                     <span className="text-3xl font-bold text-theme-primary">NYX</span>
                 </Link>
                 <h2 className="mt-6 text-center text-3xl font-extrabold text-theme-primary">
-                    Sign in to your account
+                    Create your account
                 </h2>
             </div>
 
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="bg-card-theme py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-theme">
-                    <form className="space-y-6" onSubmit={handleLogin}>
-                        {error && (
-                            <div className="bg-red-500/10 border border-red-500 text-red-500 px-4 py-2 rounded text-sm text-center">
-                                {error}
+                    <form className="space-y-6" onSubmit={handleSignup}>
+                        <div>
+                            <label htmlFor="name" className="block text-sm font-medium text-theme-secondary">
+                                Full Name
+                            </label>
+                            <div className="mt-1">
+                                <input
+                                    id="name"
+                                    name="name"
+                                    type="text"
+                                    autoComplete="name"
+                                    required
+                                    className="appearance-none block w-full px-3 py-2 border border-theme rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-page/50 text-theme-primary sm:text-sm"
+                                />
                             </div>
-                        )}
+                        </div>
+
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-theme-secondary">
                                 Email address
@@ -114,7 +123,7 @@ function LoginContent() {
                                     id="password"
                                     name="password"
                                     type="password"
-                                    autoComplete="current-password"
+                                    autoComplete="new-password"
                                     required
                                     className="appearance-none block w-full px-3 py-2 border border-theme rounded-md shadow-sm placeholder-gray-500 focus:outline-none focus:ring-orange-500 focus:border-orange-500 bg-page/50 text-theme-primary sm:text-sm"
                                 />
@@ -127,7 +136,7 @@ function LoginContent() {
                                 disabled={loading}
                                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                {loading ? 'Signing in...' : 'Sign in'}
+                                {loading ? 'Creating account...' : 'Sign up'}
                             </button>
                         </div>
                     </form>
@@ -152,31 +161,17 @@ function LoginContent() {
                                 Instagram
                             </button>
                         </div>
-
                         <div className="mt-6 text-center text-sm">
                             <p className="text-theme-secondary">
-                                Don&apos;t have an account?{' '}
-                                <Link href="/signup" className="font-medium text-orange-500 hover:text-orange-400 transition-colors">
-                                    Sign up
-                                </Link>
-                            </p>
-                            <p className="mt-2 text-gray-500">
-                                <Link href="/" className="font-medium text-theme-secondary hover:text-theme-primary transition-colors flex items-center justify-center gap-1">
-                                    ← Back to Home
+                                Already have an account?{' '}
+                                <Link href="/automate/login" className="font-medium text-orange-500 hover:text-orange-400 transition-colors">
+                                    Sign in
                                 </Link>
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div >
-    );
-}
-
-export default function Login() {
-    return (
-        <Suspense fallback={<div className="min-h-screen bg-page flex items-center justify-center text-theme-primary">Loading...</div>}>
-            <LoginContent />
-        </Suspense>
+        </div>
     );
 }

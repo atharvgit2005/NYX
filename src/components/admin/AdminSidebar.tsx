@@ -97,7 +97,7 @@ export default function AdminSidebar() {
 
             {/* Bottom */}
             <div className="px-3 pb-4 space-y-2 border-t border-theme pt-3">
-                <Link href="/dashboard" className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-theme-secondary hover:text-theme-primary hover:bg-accent transition-all ${collapsed ? 'justify-center' : ''}`}>
+                <Link href="/automate/dashboard" className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-theme-secondary hover:text-theme-primary hover:bg-accent transition-all ${collapsed ? 'justify-center' : ''}`}>
                     <LogOut className="w-4 h-4 flex-shrink-0" />
                     {!collapsed && <span>Back to App</span>}
                 </Link>

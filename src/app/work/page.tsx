@@ -16,7 +16,7 @@ export default function AdWorkPage() {
       <div className="font-body selection:bg-secondary selection:text-black min-h-screen relative w-full overflow-hidden bg-[#131313] text-[#e5e2e1]">
         {/* TopAppBar */}
         <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 bg-[#0E0E0E] dark:bg-black border-b-4 border-black dark:border-white/10 rounded-none">
-            <Link href="/ad" className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center relative">
                     <Image 
                         src="/logo/logo.png" 
@@ -31,12 +31,11 @@ export default function AdWorkPage() {
                 </div>
             </Link>
             <div className="hidden md:flex gap-12 items-center">
-                <Link className="font-headline uppercase tracking-tighter font-bold text-[#E8441A] border-b-4 border-[#E8441A] pb-1 transition-all duration-75" href="/ad/work">WORK</Link>
-                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] hover:bg-[#F5C518] hover:text-black transition-all duration-75 px-2" href="/ad/services">SERVICES</Link>
-                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] hover:bg-[#F5C518] hover:text-black transition-all duration-75 px-2" href="/ad/contact">CONTACT</Link>
-                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] hover:bg-[#F5C518] hover:text-black transition-all duration-75 px-2" href="/">AUTOMATE</Link>
+                <Link className="font-headline uppercase tracking-tighter font-bold text-[#E8441A] border-b-4 border-[#E8441A] pb-1 transition-all duration-75" href="/work">WORK</Link>
+                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] hover:bg-[#F5C518] hover:text-black transition-all duration-75 px-2" href="/services">SERVICES</Link>
+                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] hover:bg-[#F5C518] hover:text-black transition-all duration-75 px-2" href="/contact">CONTACT</Link>
             </div>
-            <Link href="/ad/contact" className="bg-[#ffb4a2] px-6 py-2 text-black font-headline font-bold uppercase tracking-tighter border-4 border-black hover:bg-[#F5C518] hover:translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0px_#000000] transition-all duration-75 inline-block">
+            <Link href="/contact" className="bg-[#ffb4a2] px-6 py-2 text-black font-headline font-bold uppercase tracking-tighter border-4 border-black hover:bg-[#F5C518] hover:translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0px_#000000] transition-all duration-75 inline-block">
                 LET'S TALK →
             </Link>
         </nav>
@@ -152,7 +151,7 @@ export default function AdWorkPage() {
                 <h3 className="text-5xl md:text-7xl font-headline font-black tracking-tighter uppercase mb-12 text-white">
                     YOUR PROJECT IS<br/>NEXT IN LINE.
                 </h3>
-                <Link className="bg-white text-black px-12 py-6 font-headline font-black text-2xl uppercase border-4 border-black hover:bg-[#E8441A] hover:text-white transition-all transform hover:-rotate-2 inline-block" href="/ad/contact">
+                <Link className="bg-white text-black px-12 py-6 font-headline font-black text-2xl uppercase border-4 border-black hover:bg-[#E8441A] hover:text-white transition-all transform hover:-rotate-2 inline-block" href="/contact">
                     START THE BROADCAST →
                 </Link>
             </div>
@@ -160,7 +159,7 @@ export default function AdWorkPage() {
 
         {/* Footer */}
         <footer className="w-full flex flex-col md:flex-row justify-between items-center px-8 py-12 gap-6 bg-[#0E0E0E] dark:bg-black border-t-4 border-black dark:border-white/10 rounded-none relative z-10">
-            <Link href="/ad" className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-xl overflow-hidden flex items-center justify-center relative border border-white/20">
                     <Image 
                         src="/logo/logo.png" 
@@ -178,7 +177,7 @@ export default function AdWorkPage() {
                 <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
                 <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank">LINKEDIN</a>
                 <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">TWITTER</a>
-                <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/ad/work">ARCHIVE</Link>
+                <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
             </div>
             <div className="font-body text-xs uppercase tracking-widest text-white">
                 © 2024 NYX STUDIO * THE MIDNIGHT MANIFESTO

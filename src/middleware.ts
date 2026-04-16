@@ -8,17 +8,17 @@ export default withAuth(
 
         // ── Admin route guard ──────────────────────────────────────────
         // Must be logged in AND be the designated admin email
-        if (pathname.startsWith('/admin')) {
+        if (pathname.startsWith('/automate/admin')) {
             const adminEmail = process.env.ADMIN_EMAIL;
 
             // No admin email configured → block everyone
             if (!adminEmail) {
-                return NextResponse.redirect(new URL('/dashboard', req.url));
+                return NextResponse.redirect(new URL('/automate/dashboard', req.url));
             }
 
             // Not the admin → redirect silently to dashboard (don't reveal /admin exists)
             if (token?.email !== adminEmail) {
-                return NextResponse.redirect(new URL('/dashboard', req.url));
+                return NextResponse.redirect(new URL('/automate/dashboard', req.url));
             }
         }
 
@@ -30,7 +30,7 @@ export default withAuth(
         callbacks: {
             authorized: ({ req, token }) => {
                 // /admin and /dashboard both require authentication
-                if (req.nextUrl.pathname.startsWith('/admin') || req.nextUrl.pathname.startsWith('/dashboard')) {
+                if (req.nextUrl.pathname.startsWith('/automate/admin') || req.nextUrl.pathname.startsWith('/automate/dashboard')) {
                     return token !== null;
                 }
                 return true;
@@ -40,5 +40,5 @@ export default withAuth(
 )
 
 export const config = {
-    matcher: ['/dashboard/:path*', '/admin/:path*'],
+    matcher: ['/automate/dashboard/:path*', '/automate/admin/:path*'],
 }

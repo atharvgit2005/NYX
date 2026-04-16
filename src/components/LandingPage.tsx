@@ -68,16 +68,16 @@ export default function LandingPage() {
                         <div className="hidden md:block w-px h-5 bg-card-theme" />
 
                         {session ? (
-                            <Link href="/dashboard" className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold shadow-md hover:scale-105 transition-all group">
+                            <Link href="/automate/dashboard" className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold shadow-md hover:scale-105 transition-all group">
                                 Dashboard
                                 <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                             </Link>
                         ) : (
                             <>
-                                <Link href="/login" className="hidden md:block text-sm font-bold text-theme-secondary hover:text-theme-primary px-3 transition-colors">
+                                <Link href="/automate/login" className="hidden md:block text-sm font-bold text-theme-secondary hover:text-theme-primary px-3 transition-colors">
                                     Log In
                                 </Link>
-                                <Link href="/signup" className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold shadow-md hover:scale-105 transition-all group">
+                                <Link href="/automate/signup" className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold shadow-md hover:scale-105 transition-all group">
                                     Sign Up
                                     <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
                                 </Link>
@@ -105,7 +105,7 @@ export default function LandingPage() {
                             <div className="h-px bg-card-theme my-2 mx-4" />
                             {session ? (
                                 <>
-                                    <Link href="/dashboard" className="flex items-center justify-center gap-2 w-full px-4 py-3.5 bg-orange-600 text-white rounded-full font-bold hover:bg-orange-700 transition-colors shadow-lg">
+                                    <Link href="/automate/dashboard" className="flex items-center justify-center gap-2 w-full px-4 py-3.5 bg-orange-600 text-white rounded-full font-bold hover:bg-orange-700 transition-colors shadow-lg">
                                         Dashboard <ArrowRight className="w-4 h-4" />
                                     </Link>
                                     <button
@@ -117,10 +117,10 @@ export default function LandingPage() {
                                 </>
                             ) : (
                                 <div className="flex flex-col gap-3 pt-2">
-                                    <Link href="/login" className="text-center w-full px-4 py-3 text-theme-secondary font-bold hover:bg-card-hover rounded-xl transition-colors border border-transparent hover:border-theme">
+                                    <Link href="/automate/login" className="text-center w-full px-4 py-3 text-theme-secondary font-bold hover:bg-card-hover rounded-xl transition-colors border border-transparent hover:border-theme">
                                         Log In
                                     </Link>
-                                    <Link href="/signup" className="flex items-center justify-center gap-2 w-full px-4 py-3.5 bg-orange-600 text-white rounded-full font-bold hover:bg-orange-700 transition-colors shadow-lg">
+                                    <Link href="/automate/signup" className="flex items-center justify-center gap-2 w-full px-4 py-3.5 bg-orange-600 text-white rounded-full font-bold hover:bg-orange-700 transition-colors shadow-lg">
                                         Sign Up Free <ArrowRight className="w-4 h-4" />
                                     </Link>
                                 </div>
@@ -165,7 +165,7 @@ export default function LandingPage() {
                                 Generate viral ideas, write scripts, and produce <span className="text-[#F97316] font-bold">AI videos</span> in minutes. The engine for modern creators.
                             </p>
                             <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 sm:gap-5 items-stretch sm:items-start w-full sm:w-auto">
-                                <Link href={session ? "/dashboard" : "/signup"} className="h-[52px] sm:h-[56px] px-8 sm:px-10 bg-[#F97316] text-white rounded-full text-base font-bold hover:bg-[#F97316]/90 transition-all hover:scale-105 shadow-xl shadow-[#F97316]/20 flex items-center justify-center">
+                                <Link href={session ? "/automate/dashboard" : "/automate/signup"} className="h-[52px] sm:h-[56px] px-8 sm:px-10 bg-[#F97316] text-white rounded-full text-base font-bold hover:bg-[#F97316]/90 transition-all hover:scale-105 shadow-xl shadow-[#F97316]/20 flex items-center justify-center">
                                     Start Free
                                 </Link>
                                 <Link href="#how-it-works" className="h-[52px] sm:h-[56px] px-8 sm:px-10 border border-white/30 bg-white/5 backdrop-blur-md text-white rounded-full text-base font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2">
@@ -372,7 +372,7 @@ export default function LandingPage() {
                                 </ul>
 
                                 <Link 
-                                    href={session ? "/dashboard" : "/signup"} 
+                                    href={session ? "/automate/dashboard" : "/automate/signup"} 
                                     className={`w-full h-[52px] flex items-center justify-center rounded-2xl font-black text-xs uppercase tracking-widest transition-all text-center ${plan.popular ? 'bg-[#F97316] text-white hover:bg-[#F97316]/90' : 'bg-transparent text-white hover:bg-white/5 border border-white/20'}`}
                                 >
                                     Choose {plan.name}

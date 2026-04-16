@@ -63,7 +63,7 @@ export default function Navbar() {
                 </button>
                 {showDropdown && (
                   <div className="absolute right-0 mt-2 w-48 bg-page/90 backdrop-blur-xl border border-theme rounded-xl shadow-xl py-2">
-                    <Link href="/dashboard" className="block px-4 py-2 text-sm hover:bg-card-theme transition-colors">
+                    <Link href="/automate/dashboard" className="block px-4 py-2 text-sm hover:bg-card-theme transition-colors">
                       Dashboard
                     </Link>
                     <button
@@ -77,7 +77,7 @@ export default function Navbar() {
                 )}
               </div>
             ) : (
-              <NyxButton href="/signup" className="py-2.5">
+              <NyxButton href="/automate/signup" className="py-2.5">
                 START FREE
               </NyxButton>
             )}
@@ -120,7 +120,7 @@ export default function Navbar() {
                     <span className="font-medium">{session.user?.name || 'User'}</span>
                   </div>
                   <Link
-                    href="/dashboard"
+                    href="/automate/dashboard"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block w-full text-center py-3 rounded-xl bg-zinc-950 text-white dark:bg-white dark:text-black font-bold border border-white/10 hover:opacity-90 transition-opacity"
                   >
@@ -135,7 +135,7 @@ export default function Navbar() {
                 </div>
               ) : (
                   <NyxButton
-                    href="/signup"
+                    href="/automate/signup"
                     onClick={() => setMobileMenuOpen(false)}
                     className="w-full justify-start"
                   >

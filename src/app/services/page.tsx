@@ -17,7 +17,7 @@ export default function AdServicesPage() {
       <div className="bg-[#0E0E0E] text-[#e5e2e1] font-body selection:bg-primary selection:text-ink-black min-h-screen relative w-full overflow-hidden">
         {/* TopAppBar */}
         <header className="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 bg-[#0E0E0E] dark:bg-black border-b-4 border-black dark:border-white/10 rounded-none">
-            <Link href="/ad" className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shadow-lg relative">
                     <Image 
                         src="/logo/logo.png" 
@@ -32,12 +32,11 @@ export default function AdServicesPage() {
                 </div>
             </Link>
             <nav className="hidden md:flex gap-8 items-center">
-                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/ad/work">WORK</Link>
-                <Link className="font-headline uppercase tracking-tighter font-bold text-[#E8441A] border-b-4 border-[#E8441A] pb-1 px-2" href="/ad/services">SERVICES</Link>
-                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/ad/contact">CONTACT</Link>
-                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/">AUTOMATE</Link>
+                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/work">WORK</Link>
+                <Link className="font-headline uppercase tracking-tighter font-bold text-[#E8441A] border-b-4 border-[#E8441A] pb-1 px-2" href="/services">SERVICES</Link>
+                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/contact">CONTACT</Link>
             </nav>
-            <Link href="/ad/contact" className="bg-[#E8441A] text-white px-6 py-2 font-headline uppercase tracking-tighter font-bold scale-100 active:scale-95 hover:bg-[#F5C518] hover:text-black transition-all duration-75 inline-block border-4 border-transparent hover:border-black">
+            <Link href="/contact" className="bg-[#E8441A] text-white px-6 py-2 font-headline uppercase tracking-tighter font-bold scale-100 active:scale-95 hover:bg-[#F5C518] hover:text-black transition-all duration-75 inline-block border-4 border-transparent hover:border-black">
                 LET'S TALK →
             </Link>
         </header>
@@ -149,7 +148,7 @@ export default function AdServicesPage() {
                         Scaling is an art form. We provide the operational backbone and strategic foresight to move your brand from "niche favorite" to "cultural staple" without losing the edge that made you famous.
                     </p>
                     <div className="mt-12">
-                        <Link href="/ad/contact" className="w-full md:w-auto bg-[#76dc83] text-ink-black px-12 py-6 font-headline text-2xl font-black uppercase tracking-tighter hover:bg-[#ffd65b] hover:translate-x-2 hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all inline-block text-center border-4 border-black">
+                        <Link href="/contact" className="w-full md:w-auto bg-[#76dc83] text-ink-black px-12 py-6 font-headline text-2xl font-black uppercase tracking-tighter hover:bg-[#ffd65b] hover:translate-x-2 hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all inline-block text-center border-4 border-black">
                             INQUIRE NOW →
                         </Link>
                     </div>
@@ -174,15 +173,15 @@ export default function AdServicesPage() {
             <section className="py-32 px-8 text-center bg-surface">
                 <h3 className="font-headline text-[clamp(3rem,10vw,8rem)] leading-[0.9] font-black tracking-tighter uppercase mb-12">READY TO<br/>MANIFEST?</h3>
                 <div className="flex flex-col md:flex-row gap-6 justify-center">
-                    <Link className="px-10 py-5 bg-white text-ink-black font-headline text-xl font-bold uppercase tracking-tighter hover:bg-primary transition-all border-4 border-black" href="/ad/work">VIEW WORK →</Link>
-                    <Link className="px-10 py-5 border-4 border-white text-white font-headline text-xl font-bold uppercase tracking-tighter hover:bg-white hover:text-ink-black transition-all" href="/ad">OUR PROCESS →</Link>
+                    <Link className="px-10 py-5 bg-white text-ink-black font-headline text-xl font-bold uppercase tracking-tighter hover:bg-primary transition-all border-4 border-black" href="/work">VIEW WORK →</Link>
+                    <Link className="px-10 py-5 border-4 border-white text-white font-headline text-xl font-bold uppercase tracking-tighter hover:bg-white hover:text-ink-black transition-all" href="/">OUR PROCESS →</Link>
                 </div>
             </section>
         </main>
 
         {/* Footer */}
         <footer className="w-full flex flex-col md:flex-row justify-between items-center px-8 py-12 gap-6 bg-[#0E0E0E] dark:bg-black border-t-4 border-black dark:border-white/10 rounded-none relative z-10">
-            <Link href="/ad" className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-xl overflow-hidden flex items-center justify-center shadow-lg relative border border-white/20">
                     <Image 
                         src="/logo/logo.png" 
@@ -198,7 +197,7 @@ export default function AdServicesPage() {
                 <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
                 <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank">LINKEDIN</a>
                 <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">TWITTER</a>
-                <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/ad/work">ARCHIVE</Link>
+                <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
             </div>
             <div className="font-body text-xs uppercase tracking-widest text-[#E8441A] dark:text-[#ffb4a2]">
                 © 2024 NYX STUDIO * THE MIDNIGHT MANIFESTO
