@@ -79,8 +79,8 @@ export default function AdContactPage() {
                                 <div>
                                     <p className="text-xs font-headline uppercase tracking-widest text-secondary mb-2 scramble-text" data-original="* PHYSICAL_NODE">* PHYSICAL_NODE</p>
                                     <p className="text-xl font-medium leading-relaxed">
-                                        Pune<br/>
-                                        Maharashtra, India
+                                        411047 Pune Maharashtra,<br/>
+                                        INDIA
                                     </p>
                                 </div>
                                 <div className="pt-8 border-t-4 border-black">
