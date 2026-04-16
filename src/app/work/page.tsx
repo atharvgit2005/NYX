@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { WorkAnimations } from "../components/WorkAnimations";
 import "../page.css";
 
 export const metadata: Metadata = {
@@ -42,18 +43,20 @@ export default function AdWorkPage() {
         </nav>
 
         <main className="pt-32 pb-24 px-8 max-w-[1600px] mx-auto">
+            <WorkAnimations />
             {/* Section Header */}
             <div className="mb-24 flex items-baseline gap-4">
                 <span className="text-[#E8441A] font-headline font-bold text-xl">* 01</span>
-                <h1 className="text-8xl md:text-[10rem] font-headline font-bold tracking-tighter leading-none uppercase text-white">
-                    SELECTED<br/>WORK
+                <h1 className="text-8xl md:text-[10rem] font-headline font-bold tracking-tighter leading-none uppercase text-white reveal-text">
+                    <span className="block">SELECTED</span>
+                    <span className="block text-[#E8441A]">WORK</span>
                 </h1>
             </div>
 
             {/* Bento Grid Mosaic */}
             <div className="bento-grid">
                 {/* Project 01: Large Feature */}
-                <div className="col-span-12 md:col-span-8 bg-[#0E0E0E] border-4 border-black group overflow-visible relative">
+                <div className="bento-card col-span-12 md:col-span-8 bg-[#0E0E0E] border-4 border-black group overflow-visible relative">
                     <div className="relative h-[600px] overflow-hidden">
                         <img className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Abstract geometric landscape" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdhgG6-cdcNkgftqkpLS2MQyZa5hy5vs5Qh6U4stw60YnBIHQK8AOXfqQWKC7bceThct6f3GsrR5iIwiWohxTlUJqQWw4lO4L8Qyd-4uFVy2PG3JGLikjFbfV1kwTTvVAqEpP5T24d_yIkQVP8-20PBqxi6jKJnU__88jNR49mVa505n0awjH_IvyGbVx4h8cEtze7IzbytrNC5q1ZUXW78jR2iuXHG0Tfyh5nYRATgv0uRCETLPn5HA9cQ09BFGBBinpz_s-4c1kW" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
@@ -75,7 +78,7 @@ export default function AdWorkPage() {
                 </div>
 
                 {/* Project 02: Vertical Burst */}
-                <div className="col-span-12 md:col-span-4 bg-[#F5C518] border-4 border-black p-8 flex flex-col justify-between min-h-[400px]">
+                <div className="bento-card col-span-12 md:col-span-4 bg-[#F5C518] border-4 border-black p-8 flex flex-col justify-between min-h-[400px]">
                     <div>
                         <div className="flex items-center gap-2 mb-8">
                             <span className="bg-black text-white px-2 py-0.5 font-headline font-bold text-xs">* DIGITAL PRODUCT</span>
@@ -90,7 +93,7 @@ export default function AdWorkPage() {
                 </div>
 
                 {/* Project 03: The Void */}
-                <div className="col-span-12 md:col-span-4 bg-[#0E0E0E] border-4 border-black overflow-hidden relative group">
+                <div className="bento-card col-span-12 md:col-span-4 bg-[#0E0E0E] border-4 border-black overflow-hidden relative group">
                     <div className="aspect-square">
                         <img className="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-1000" alt="Minimalist architectural detail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvGBldL5WgU6eSplGnsDa4GaVOnXnKifIROka8nQGMxHjJp55sdE6-7bolAJU9TR4h0kmoBMIV_vsIDTyAy0Yb9qAhIPvAKsdAltEUDzo_CCtwobPQ_HOdJ5yKv--L848FyrK82PpNYjJhkawsztwDH4Bz3Iw3P4ytbTFg9kYVFxILOXXtTOW4K47pvmYwCV9ZuRem6AkaUrROkV9qbjO0IDqTVglS5uOOJijVg5mFjp30R3GrakPofXVSkWizzQc1wfVc6S2jC6tR" />
                     </div>
@@ -101,7 +104,7 @@ export default function AdWorkPage() {
                 </div>
 
                 {/* Project 04: Burnt Orange Statement */}
-                <div className="col-span-12 md:col-span-8 bg-[#E8441A] border-4 border-black p-12 flex flex-col md:flex-row gap-8 relative overflow-hidden">
+                <div className="bento-card col-span-12 md:col-span-8 bg-[#E8441A] border-4 border-black p-12 flex flex-col md:flex-row gap-8 relative overflow-hidden">
                     <div className="flex-1 z-10">
                         <span className="bg-black text-[#E8441A] px-2 py-0.5 font-headline font-bold text-xs mb-6 inline-block">* ART DIRECTION</span>
                         <h2 className="text-6xl md:text-8xl font-headline font-black tracking-tighter leading-none uppercase text-black mb-8">
@@ -119,7 +122,7 @@ export default function AdWorkPage() {
                 </div>
 
                 {/* Project 05: Small Accent */}
-                <div className="col-span-12 md:col-span-5 bg-[#0E0E0E] border-4 border-black p-8 group">
+                <div className="bento-card col-span-12 md:col-span-5 bg-[#0E0E0E] border-4 border-black p-8 group">
                     <div className="mb-12">
                         <img className="w-full h-64 object-cover border-4 border-black group-hover:rotate-1 transition-transform" alt="Monochrome close up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYgQF8U4EtxeOIErA1V1jwUepv2pN4rsVvM_IhNZgDQeFzf8_f1IGpptJMpU9kEWnKJ2fqs3hjfOJZcJQZFXMg6auaOvVWUxYQ8q02zcYPHpe3svTjWj5K46TgFcP8YISGHQHLpJaKZFjkl8Yf1Z-Pvkff_j8yP8ICocfU0yH4d7EMPfBjUADXEymyyJ_LFF7QQeGecz6OzpltnBpiFMXDs56sTW25T8Uu5XBRUZGpvjJsf0Nh31mDSE7n7-7STc_7C8IOm8bvDufl" />
                     </div>
@@ -128,7 +131,7 @@ export default function AdWorkPage() {
                 </div>
 
                 {/* Project 06: Asymmetric Text Block */}
-                <div className="col-span-12 md:col-span-7 border-4 border-black bg-[#131313] p-12 relative flex flex-col justify-center">
+                <div className="bento-card col-span-12 md:col-span-7 border-4 border-black bg-[#131313] p-12 relative flex flex-col justify-center">
                     <div className="absolute top-0 left-0 p-4 font-headline text-white/20 text-8xl font-black">06</div>
                     <div className="relative z-10 ml-auto max-w-xl text-right">
                         <h2 className="text-5xl md:text-7xl font-headline font-bold tracking-tighter uppercase text-white mb-6">
@@ -149,8 +152,9 @@ export default function AdWorkPage() {
 
             {/* Call to Action */}
             <div className="mt-48 border-y-4 border-black py-24 flex flex-col items-center text-center">
-                <h3 className="text-5xl md:text-7xl font-headline font-black tracking-tighter uppercase mb-12 text-white">
-                    YOUR PROJECT IS<br/>NEXT IN LINE.
+                <h3 className="text-5xl md:text-7xl font-headline font-black tracking-tighter uppercase mb-12 text-white reveal-text">
+                    <span className="block">YOUR PROJECT IS</span>
+                    <span className="block mt-2">NEXT IN LINE.</span>
                 </h3>
                 <Link className="bg-white text-black px-12 py-6 font-headline font-black text-2xl uppercase border-4 border-black hover:bg-[#E8441A] hover:text-white transition-all transform hover:-rotate-2 inline-block" href="/contact">
                     START THE BROADCAST →
