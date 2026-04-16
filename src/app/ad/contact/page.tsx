@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ContactForm } from "./components/ContactForm";
 import "../page.css"; // Reuse the css from /ad/page.css for icons and basic styles
 
 export const metadata: Metadata = {
@@ -103,36 +104,7 @@ export default function AdContactPage() {
                     {/* Form Column (7/12) */}
                     <div className="lg:col-span-7 bg-white p-8 md:p-12 border-4 border-black shadow-[16px_16px_0px_0px_rgba(232,68,26,1)]">
                         <h2 className="text-4xl font-black mb-12 tracking-tighter uppercase font-headline text-black">TRANSMIT_MANIFESTO</h2>
-                        <form className="space-y-8">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div className="group">
-                                    <label className="block text-xs font-headline font-black uppercase tracking-widest text-black mb-2">* OPERATOR_NAME</label>
-                                    <input className="w-full bg-transparent border-4 border-black p-4 text-black font-bold focus:ring-0 focus:border-[#E8441A] transition-colors placeholder:text-gray-400 focus:outline-none" placeholder="WHO ARE YOU?" type="text"/>
-                                </div>
-                                <div className="group">
-                                    <label className="block text-xs font-headline font-black uppercase tracking-widest text-black mb-2">* COMMS_FREQUENCY</label>
-                                    <input className="w-full bg-transparent border-4 border-black p-4 text-black font-bold focus:ring-0 focus:border-[#E8441A] transition-colors placeholder:text-gray-400 focus:outline-none" placeholder="EMAIL@DOMAIN.COM" type="email"/>
-                                </div>
-                            </div>
-                            <div>
-                                <label className="block text-xs font-headline font-black uppercase tracking-widest text-black mb-2">* MISSION_OBJECTIVE</label>
-                                <select className="w-full bg-transparent border-4 border-black p-4 text-black font-bold focus:ring-0 focus:border-[#E8441A] transition-colors focus:outline-none appearance-none">
-                                    <option>BRAND_IDENTITY</option>
-                                    <option>DIGITAL_MANIFESTO</option>
-                                    <option>VISUAL_SABOTAGE</option>
-                                    <option>GENERAL_INTEL</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label className="block text-xs font-headline font-black uppercase tracking-widest text-black mb-2">* MESSAGE_PAYLOAD</label>
-                                <textarea className="w-full bg-transparent border-4 border-black p-4 text-black font-bold focus:ring-0 focus:border-[#E8441A] transition-colors placeholder:text-gray-400 focus:outline-none resize-none" placeholder="WHAT'S THE SCOPE?" rows={6}></textarea>
-                            </div>
-                            <div className="pt-4">
-                                <button className="w-full md:w-auto bg-[#E8441A] text-white px-12 py-6 font-headline font-black text-2xl uppercase tracking-tighter border-4 border-black hover:bg-black hover:text-[#E8441A] transition-all duration-150 active:scale-95 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1" type="submit">
-                                    INITIALIZE_TRANSFER →
-                                </button>
-                            </div>
-                        </form>
+                        <ContactForm />
                     </div>
                 </div>
             </section>

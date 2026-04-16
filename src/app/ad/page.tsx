@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { LeadForm } from "./components/LeadForm";
 import "./page.css";
 
 export const metadata: Metadata = {
@@ -184,12 +185,7 @@ export default function AdPage() {
             {/* Lead Capture */}
             <section className="bg-primary-container px-8 py-24 flex flex-col items-center justify-center text-black">
                 <h2 className="font-headline text-6xl md:text-8xl font-black uppercase mb-12 text-center tracking-tighter">Ready to grow?</h2>
-                <form className="w-full max-w-2xl flex flex-col md:flex-row gap-0">
-                    <input className="flex-grow bg-surface-container-lowest border-4 border-black px-6 py-5 font-headline font-bold text-white focus:outline-none focus:border-black placeholder:text-surface-variant" placeholder="ENTER YOUR EMAIL" type="email"/>
-                    <button className="bg-black text-white font-headline font-bold px-10 py-5 uppercase border-4 border-black border-l-0 hover:bg-secondary hover:text-black transition-colors flex items-center justify-center gap-2" type="submit">
-                        Let's Talk <span className="material-symbols-outlined">arrow_forward</span>
-                    </button>
-                </form>
+                <LeadForm />
                 <p className="mt-8 font-label uppercase tracking-widest text-sm font-bold opacity-70">* NO SPAM. JUST STRATEGY.</p>
             </section>
         </main>
