@@ -28,7 +28,8 @@ const config: Config = {
         "on-surface-variant": "#e4beb5",
         "outline": "#ab8981",
         "outline-variant": "#5b403a",
-        "error": "#ffb4ab",
+        "editorial-pink": "#F2A7C3",
+        "ink-black": "#000000",
       },
       borderRadius: {
         DEFAULT: "0px",

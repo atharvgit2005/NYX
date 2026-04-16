@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import "./page.css";
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export default function AdPage() {
       <div className="bg-surface-container-lowest text-on-surface font-body selection:bg-secondary selection:text-on-secondary min-h-screen relative w-full overflow-hidden">
         {/* TopAppBar */}
         <header className="fixed top-0 w-full border-b-4 border-black bg-[#0E0E0E] flex justify-between items-center px-8 py-6 z-50">
-            <div className="flex items-center gap-3">
+            <Link href="/ad" className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center relative">
                     <Image 
                         src="/logo/logo.png" 
@@ -27,12 +28,12 @@ export default function AdPage() {
                     />
                 </div>
                 <div className="text-3xl font-black tracking-tighter text-white uppercase font-headline">NYX STUDIO</div>
-            </div>
+            </Link>
             <nav className="hidden md:flex gap-8 items-center">
-                <a className="text-[#E8441A] font-bold font-label uppercase tracking-wider transition-colors duration-100" href="#">HOME</a>
-                <a className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="#">WORK</a>
-                <a className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="#">SERVICES</a>
-                <a className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="#">CONTACT</a>
+                <Link className="text-[#E8441A] font-bold font-label uppercase tracking-wider transition-colors duration-100" href="/ad">HOME</Link>
+                <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/ad/work">WORK</Link>
+                <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/ad/services">SERVICES</Link>
+                <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/ad/contact">CONTACT</Link>
             </nav>
             <div className="text-[#E8441A] font-headline uppercase tracking-[-0.05em] text-[1.1rem] font-bold border-2 border-[#E8441A] px-4 py-1">
                 *LIVE_NOW
@@ -47,9 +48,9 @@ export default function AdPage() {
                     <h1 className="font-headline font-bold text-[4rem] md:text-[6rem] leading-[0.9] tracking-[-0.05em] uppercase mb-12">
                         We make brands <span className="text-primary-container">impossible</span> to scroll past.
                     </h1>
-                    <button className="bg-primary text-on-primary-fixed font-headline font-bold text-xl px-10 py-5 uppercase border-4 border-black hover:bg-secondary hover:shadow-[4px_4px_0px_#000000] transition-all flex items-center gap-4">
+                    <Link href="/ad/contact" className="bg-primary text-on-primary-fixed font-headline font-bold text-xl px-10 py-5 uppercase border-4 border-black hover:bg-secondary hover:shadow-[4px_4px_0px_#000000] transition-all flex items-center gap-4 w-fit">
                         Book a Call <span className="material-symbols-outlined">arrow_forward</span>
-                    </button>
+                    </Link>
                 </div>
                 <div className="relative md:w-2/5 flex justify-center items-center mt-12 md:mt-0">
                     <div className="w-64 h-64 md:w-96 md:h-96 text-primary-container animate-pulse">
@@ -196,7 +197,7 @@ export default function AdPage() {
         {/* Footer */}
         <footer className="bg-[#0E0E0E] flex flex-col md:flex-row justify-between items-start md:items-center px-8 py-12 w-full border-t-4 border-black z-10 relative">
             <div className="flex flex-col gap-3 mb-8 md:mb-0">
-                <div className="flex items-center gap-3">
+                <Link href="/ad" className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-xl overflow-hidden flex items-center justify-center relative">
                         <Image 
                             src="/logo/logo.png" 
@@ -207,7 +208,7 @@ export default function AdPage() {
                         />
                     </div>
                     <div className="text-2xl font-black text-white uppercase font-headline">NYX STUDIO</div>
-                </div>
+                </Link>
                 <p className="font-headline text-[0.75rem] uppercase tracking-wider text-white/60">
                     ©2024 NYX STUDIO | THE MIDNIGHT MANIFESTO
                 </p>
