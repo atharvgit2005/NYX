@@ -4,6 +4,7 @@ import Link from "next/link";
 import { LeadForm } from "./components/LeadForm";
 import { AdAnimations } from "./components/AdAnimations";
 import "./page.css";
+import { MobileNav } from "./components/MobileNav";
 
 export const metadata: Metadata = {
   title: "NYX STUDIO | THE MIDNIGHT MANIFESTO",
@@ -43,7 +44,7 @@ export default function AdPage() {
             </div>
         </header>
 
-        <main className="pt-[88px]">
+        <main className="pt-[88px] pb-20 md:pb-0">
             <AdAnimations />
             {/* Hero Section */}
             <section className="relative min-h-[921px] bg-surface-container-lowest px-8 py-24 flex flex-col md:flex-row items-center border-b-4 border-black overflow-hidden">
@@ -276,6 +277,7 @@ export default function AdPage() {
                 </div>
             </div>
         </footer>
+        <MobileNav />
       </div>
     </>
   );

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { WorkAnimations } from "../components/WorkAnimations";
 import "../page.css";
+import { MobileNav } from "../components/MobileNav";
 
 export const metadata: Metadata = {
   title: "WORK | NYX STUDIO",
@@ -48,7 +49,7 @@ export default function AdWorkPage() {
             <div className="absolute inset-0 bg-gradient-to-br from-surface-container-lowest via-[#0e0e0e] to-[#1a0a05]"></div>
         </div>
 
-        <main className="pt-32 pb-20 px-8 max-w-[1600px] mx-auto">
+        <main className="pt-32 pb-20 px-8 max-w-[1600px] mx-auto pb-20 md:pb-0">
             <WorkAnimations />
             {/* Hero Header */}
             <header className="mb-24 relative">
@@ -188,6 +189,7 @@ export default function AdWorkPage() {
                 © 2024 NYX STUDIO * THE MIDNIGHT MANIFESTO
             </div>
         </footer>
+        <MobileNav />
       </div>
     </>
   );

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ContactForm } from "./components/ContactForm";
 import { ContactAnimations } from "../components/ContactAnimations";
 import "../page.css"; // Reuse the css from /ad/page.css for icons and basic styles
+import { MobileNav } from "../components/MobileNav";
 
 export const metadata: Metadata = {
   title: "NYX STUDIO | CONTACT",
@@ -45,7 +46,7 @@ export default function AdContactPage() {
             </Link>
         </nav>
 
-                <main className="pt-24 relative z-10">
+                <main className="pt-24 relative z-10 pb-20 md:pb-0">
             <ContactAnimations />
             {/* Hero Section */}
             <section className="bg-[#E8441A] min-h-[614px] flex flex-col justify-end px-8 pb-16 border-b-[12px] border-black relative overflow-hidden">
@@ -165,6 +166,7 @@ export default function AdContactPage() {
                 © 2024 NYX STUDIO * THE MIDNIGHT MANIFESTO
             </div>
         </footer>
+        <MobileNav />
       </div>
     </>
   );

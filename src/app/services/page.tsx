@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ServiceAnimations } from "../components/ServiceAnimations";
 import "../page.css";
+import { MobileNav } from "../components/MobileNav";
 
 export const metadata: Metadata = {
   title: "SERVICES | NYX STUDIO",
@@ -43,7 +44,7 @@ export default function AdServicesPage() {
             </Link>
         </header>
 
-                <main className="pt-28">
+                <main className="pt-28 pb-20 md:pb-0">
             <ServiceAnimations />
             {/* Hero Section */}
             <section className="relative px-8 py-20 border-b-4 border-ink-black overflow-hidden">
@@ -210,6 +211,7 @@ export default function AdServicesPage() {
                 © 2024 NYX STUDIO * THE MIDNIGHT MANIFESTO
             </div>
         </footer>
+        <MobileNav />
       </div>
     </>
   );
