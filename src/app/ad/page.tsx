@@ -35,6 +35,7 @@ export default function AdPage() {
                 <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/ad/work">WORK</Link>
                 <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/ad/services">SERVICES</Link>
                 <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/ad/contact">CONTACT</Link>
+                <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/">AUTOMATE</Link>
             </nav>
             <div className="text-[#E8441A] font-headline uppercase tracking-[-0.05em] text-[1.1rem] font-bold border-2 border-[#E8441A] px-4 py-1">
                 *LIVE_NOW
