@@ -59,7 +59,7 @@ export default function AdPage() {
                         Book a Call <span className="material-symbols-outlined">arrow_forward</span>
                     </Link>
                 </div>
-                <div className="relative md:w-2/5 flex justify-center items-center mt-12 md:mt-0 hero-visual">
+                <div className="relative md:w-2/5 hidden md:flex justify-center items-center mt-12 md:mt-0 hero-visual">
                     <div className="w-64 h-64 md:w-96 md:h-96 text-primary-container animate-pulse">
                         <span className="material-symbols-outlined !text-[12rem] md:!text-[20rem] star-icon" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
                     </div>
