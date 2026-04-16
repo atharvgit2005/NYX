@@ -7,7 +7,7 @@ export function LeadForm() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const mailtoLink = `mailto:hello@nyxstudio.tech?subject=${encodeURIComponent("New NYX Studio Lead")}&body=${encodeURIComponent(`I am ready to grow. My email is: ${email}`)}`;
+        const mailtoLink = `mailto:nyx.studios.ai@gmail.com?subject=${encodeURIComponent("New NYX Studio Lead")}&body=${encodeURIComponent(`I am ready to grow. My email is: ${email}`)}`;
         window.location.href = mailtoLink;
     };
 

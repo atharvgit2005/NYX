@@ -182,6 +182,52 @@ export default function AdPage() {
                 <div className="absolute bottom-10 right-10 text-black/20"><span className="material-symbols-outlined !text-4xl">add</span></div>
             </section>
 
+            {/* Founders Section */}
+            <section className="bg-surface-container-lowest py-32 px-8 border-y-4 border-black text-white">
+                <div className="max-w-7xl mx-auto">
+                    <div className="mb-16">
+                        <span className="text-secondary font-headline font-bold text-xl uppercase tracking-widest">* THE RUNNERS</span>
+                        <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase font-headline leading-none mt-4 text-black">
+                            OPERATORS<br/>BEHIND THE CODE.
+                        </h2>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {/* Founder 1 */}
+                        <div className="border-4 border-black p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#E8441A] group">
+                            <div className="w-32 h-32 mb-6 border-4 border-white overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-300">
+                                <Image src="/founders/atharv.jpg" alt="Atharv Paharia" fill className="object-cover" />
+                            </div>
+                            <h3 className="text-4xl font-black uppercase font-headline tracking-tighter text-white mb-2">ATHARV PAHARIA</h3>
+                            <p className="text-[#E8441A] font-bold uppercase tracking-widest text-sm mb-8">* CO-FOUNDER & TECH LEAD</p>
+                            <div className="flex gap-4">
+                                <a href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
+                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">LINKEDIN <span className="material-symbols-outlined text-[1rem]">north_east</span></span>
+                                </a>
+                                <a href="https://www.instagram.com/i___am__atharv/" target="_blank" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
+                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">INSTA <span className="material-symbols-outlined text-[1rem]">north_east</span></span>
+                                </a>
+                            </div>
+                        </div>
+                        {/* Founder 2 */}
+                        <div className="border-4 border-black p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#E8441A] group">
+                            <div className="w-32 h-32 mb-6 border-4 border-white overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-300">
+                                <Image src="/founders/bhavya.jpg" alt="Bhavya Jain" fill className="object-cover" />
+                            </div>
+                            <h3 className="text-4xl font-black uppercase font-headline tracking-tighter text-white mb-2">BHAVYA JAIN</h3>
+                            <p className="text-[#E8441A] font-bold uppercase tracking-widest text-sm mb-8">* CO-FOUNDER & PRODUCT</p>
+                            <div className="flex gap-4">
+                                <a href="https://www.linkedin.com/in/bhavya-jain-10963b33a/" target="_blank" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
+                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">LINKEDIN <span className="material-symbols-outlined text-[1rem]">north_east</span></span>
+                                </a>
+                                <a href="https://www.instagram.com/bhavyakun_/" target="_blank" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
+                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">INSTA <span className="material-symbols-outlined text-[1rem]">north_east</span></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Lead Capture */}
             <section className="bg-primary-container px-8 py-24 flex flex-col items-center justify-center text-black">
                 <h2 className="font-headline text-6xl md:text-8xl font-black uppercase mb-12 text-center tracking-tighter">Ready to grow?</h2>
@@ -212,13 +258,13 @@ export default function AdPage() {
             <div className="flex gap-12">
                 <div className="flex flex-col gap-2">
                     <span className="text-[#E8441A] font-label text-[0.75rem] uppercase font-bold tracking-widest">CONNECT</span>
-                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="#">INSTAGRAM</a>
-                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="#">LINKEDIN</a>
+                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
+                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank">LINKEDIN</a>
                 </div>
                 <div className="flex flex-col gap-2">
                     <span className="text-[#E8441A] font-label text-[0.75rem] uppercase font-bold tracking-widest">RESOURCES</span>
-                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="#">ARCHIVE</a>
-                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="#">CONTACT</a>
+                    <Link className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="/ad/work">ARCHIVE</Link>
+                    <Link className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="/ad/contact">CONTACT</Link>
                 </div>
             </div>
         </footer>

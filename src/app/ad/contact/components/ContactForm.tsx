@@ -13,7 +13,7 @@ export function ContactForm() {
         const subject = `New NYX Studio Lead: ${objective} from ${name}`;
         const body = `Name: ${name}\nEmail: ${email}\nObjective: ${objective}\n\nMessage Payload:\n${message}`;
         
-        const mailtoLink = `mailto:hello@nyxstudio.tech?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        const mailtoLink = `mailto:nyx.studios.ai@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         window.location.href = mailtoLink;
     };
 

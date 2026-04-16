@@ -67,8 +67,8 @@ export default function AdContactPage() {
                             <div className="space-y-8">
                                 <div>
                                     <p className="text-xs font-headline uppercase tracking-widest text-secondary mb-2">* DIRECT_LINE</p>
-                                    <a className="text-2xl md:text-3xl font-bold tracking-tighter hover:text-secondary transition-colors duration-75 block" href="mailto:hello@nyxstudio.tech">
-                                        hello@nyxstudio.tech
+                                    <a className="text-2xl md:text-3xl font-bold tracking-tighter hover:text-secondary transition-colors duration-75 block" href="mailto:nyx.studios.ai@gmail.com">
+                                        nyx.studios.ai@gmail.com
                                     </a>
                                 </div>
                                 <div>
@@ -81,13 +81,13 @@ export default function AdContactPage() {
                                 <div className="pt-8 border-t-4 border-black">
                                     <p className="text-xs font-headline uppercase tracking-widest text-secondary mb-4">* FREQUENCY_CHANNELS</p>
                                     <div className="flex flex-col gap-2">
-                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="#">
+                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">
                                             <span className="mr-4 text-xs">01/</span> INSTAGRAM <span className="ml-auto opacity-0 group-hover:opacity-100">↗</span>
                                         </a>
-                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="#">
+                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank">
                                             <span className="mr-4 text-xs">02/</span> LINKEDIN <span className="ml-auto opacity-0 group-hover:opacity-100">↗</span>
                                         </a>
-                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="#">
+                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">
                                             <span className="mr-4 text-xs">03/</span> TWITTER <span className="ml-auto opacity-0 group-hover:opacity-100">↗</span>
                                         </a>
                                     </div>
@@ -150,10 +150,10 @@ export default function AdContactPage() {
                 </div>
             </Link>
             <div className="flex gap-8 text-gray-500 font-body text-xs uppercase tracking-widest">
-                <a className="hover:text-[#F5C518] transition-colors" href="#">INSTAGRAM</a>
-                <a className="hover:text-[#F5C518] transition-colors" href="#">LINKEDIN</a>
-                <a className="hover:text-[#F5C518] transition-colors" href="#">TWITTER</a>
-                <a className="hover:text-[#F5C518] transition-colors" href="#">ARCHIVE</a>
+                <a className="hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
+                <a className="hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank">LINKEDIN</a>
+                <a className="hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">TWITTER</a>
+                <Link className="hover:text-[#F5C518] transition-colors" href="/ad/work">ARCHIVE</Link>
             </div>
             <div className="text-gray-500 font-body text-xs uppercase tracking-widest">
                 © 2024 NYX STUDIO * THE MIDNIGHT MANIFESTO

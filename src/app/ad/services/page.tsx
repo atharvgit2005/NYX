@@ -194,10 +194,10 @@ export default function AdServicesPage() {
                 <div className="text-xl font-bold text-white font-headline uppercase">NYX STUDIO</div>
             </Link>
             <div className="flex gap-8">
-                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="#">INSTAGRAM</a>
-                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="#">LINKEDIN</a>
-                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="#">TWITTER</a>
-                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="#">ARCHIVE</a>
+                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
+                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank">LINKEDIN</a>
+                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">TWITTER</a>
+                <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/ad/work">ARCHIVE</Link>
             </div>
             <div className="font-body text-xs uppercase tracking-widest text-[#E8441A] dark:text-[#ffb4a2]">
                 © 2024 NYX STUDIO * THE MIDNIGHT MANIFESTO
