@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactForm } from "./components/ContactForm";
+import { ContactAnimations } from "../components/ContactAnimations";
 import "../page.css"; // Reuse the css from /ad/page.css for icons and basic styles
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function AdContactPage() {
       {/* Main wrapper containing body-level styling to isolate from global styles */}
       <div className="bg-surface text-on-surface font-body selection:bg-secondary selection:text-on-secondary min-h-screen relative w-full overflow-hidden">
         {/* TopAppBar */}
+        <canvas id="background-canvas"></canvas>
         <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 bg-[#0E0E0E] dark:bg-black border-b-4 border-black dark:border-white/10 rounded-none">
             <Link href="/" className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center relative">
@@ -43,44 +45,46 @@ export default function AdContactPage() {
             </Link>
         </nav>
 
-        <main className="pt-24">
-            {/* Hero Section: Burnt Orange-Red Full-Bleed */}
-            <section className="bg-[#E8441A] min-h-[614px] flex flex-col justify-end px-8 pb-16 border-b-[12px] border-black">
-                <div className="max-w-7xl mx-auto w-full relative">
+                <main className="pt-24 relative z-10">
+            <ContactAnimations />
+            {/* Hero Section */}
+            <section className="bg-[#E8441A] min-h-[614px] flex flex-col justify-end px-8 pb-16 border-b-[12px] border-black relative overflow-hidden">
+                <div className="max-w-7xl mx-auto w-full relative z-10">
                     <div className="absolute -top-32 right-0 opacity-10 pointer-events-none">
                         <span className="text-[20rem] font-black leading-none font-headline tracking-tighter">NYX</span>
                     </div>
                     <p className="font-headline text-black text-xl mb-4 font-bold tracking-widest">* ESTABLISH CONTACT</p>
-                    <h1 className="text-[5rem] md:text-[8rem] lg:text-[10rem] font-black leading-[0.85] tracking-tighter text-black uppercase font-headline">
+                    <h1 className="text-[5rem] md:text-[8rem] lg:text-[10rem] font-black leading-[0.85] tracking-tighter text-black uppercase font-headline" id="hero-headline">
                         LET'S START THE MANIFESTO.
                     </h1>
                 </div>
             </section>
 
             {/* Content Section: Bento Grid Layout */}
-            <section className="p-8 md:p-16 bg-surface-container-lowest">
+            <section className="p-8 md:p-16 bg-surface-container-lowest/80 backdrop-blur-md overflow-hidden">
                 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
                     {/* Contact Details Column (4/12) */}
                     <div className="lg:col-span-5 space-y-12">
-                        <div className="border-4 border-black p-8 bg-surface-container-high relative overflow-hidden">
+                        <div className="border-4 border-black p-8 bg-surface-container-high relative overflow-hidden" id="intel-container">
+                            <div className="form-border-draw"></div>
                             <div className="absolute top-0 right-0 p-2 text-secondary text-2xl font-bold">+</div>
                             <h2 className="text-3xl font-black mb-8 tracking-tighter uppercase font-headline text-primary">CONTACT_INTEL</h2>
                             <div className="space-y-8">
                                 <div>
-                                    <p className="text-xs font-headline uppercase tracking-widest text-secondary mb-2">* DIRECT_LINE</p>
+                                    <p className="text-xs font-headline uppercase tracking-widest text-secondary mb-2 scramble-text" data-original="* DIRECT_LINE">* DIRECT_LINE</p>
                                     <a className="text-2xl md:text-3xl font-bold tracking-tighter hover:text-secondary transition-colors duration-75 block" href="mailto:nyx.studios.ai@gmail.com">
                                         nyx.studios.ai@gmail.com
                                     </a>
                                 </div>
                                 <div>
-                                    <p className="text-xs font-headline uppercase tracking-widest text-secondary mb-2">* PHYSICAL_NODE</p>
+                                    <p className="text-xs font-headline uppercase tracking-widest text-secondary mb-2 scramble-text" data-original="* PHYSICAL_NODE">* PHYSICAL_NODE</p>
                                     <p className="text-xl font-medium leading-relaxed">
                                         1124 Midnight Plaza<br/>
                                         Design District, TX 75201
                                     </p>
                                 </div>
                                 <div className="pt-8 border-t-4 border-black">
-                                    <p className="text-xs font-headline uppercase tracking-widest text-secondary mb-4">* FREQUENCY_CHANNELS</p>
+                                    <p className="text-xs font-headline uppercase tracking-widest text-secondary mb-4 scramble-text" data-original="* FREQUENCY_CHANNELS">* FREQUENCY_CHANNELS</p>
                                     <div className="flex flex-col gap-2">
                                         <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">
                                             <span className="mr-4 text-xs">01/</span> INSTAGRAM <span className="ml-auto opacity-0 group-hover:opacity-100">↗</span>
@@ -103,16 +107,17 @@ export default function AdContactPage() {
                         </div>
                     </div>
                     {/* Form Column (7/12) */}
-                    <div className="lg:col-span-7 bg-white p-8 md:p-12 border-4 border-black shadow-[16px_16px_0px_0px_rgba(232,68,26,1)]">
-                        <h2 className="text-4xl font-black mb-12 tracking-tighter uppercase font-headline text-black">TRANSMIT_MANIFESTO</h2>
+                    <div className="lg:col-span-7 bg-white p-8 md:p-12 border-4 border-black shadow-[16px_16px_0px_0px_rgba(232,68,26,1)] relative" id="manifesto-form-container">
+                        <div className="form-border-draw"></div>
+                        <h2 className="form-element text-4xl font-black mb-12 tracking-tighter uppercase font-headline text-black opacity-0">TRANSMIT_MANIFESTO</h2>
                         <ContactForm />
                     </div>
                 </div>
             </section>
 
             {/* Studio Atmosphere Section */}
-            <section className="bg-black py-24 px-8 border-y-4 border-black overflow-hidden relative">
-                <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16">
+            <section className="bg-black/90 py-24 px-8 border-y-4 border-black overflow-hidden relative min-h-[600px]">
+                <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-16 content-relative">
                     <div className="flex-1 order-2 md:order-1">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="aspect-square border-4 border-white/10 overflow-hidden">
