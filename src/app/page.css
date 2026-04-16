@@ -30,3 +30,8 @@
 .reveal-text span.block {
     display: inline-block;
 }
+
+.bento-border { border: 4px solid #000000; }
+.zine-shadow { box-shadow: 8px 8px 0px #000000; }
+.text-stroke { -webkit-text-stroke: 1px #ffb4a2; color: transparent; }
+.clip-diagonal { clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%); }

@@ -42,124 +42,124 @@ export default function AdWorkPage() {
             </Link>
         </nav>
 
-        <main className="pt-32 pb-24 px-8 max-w-[1600px] mx-auto">
+                {/* Canvas Background */}
+        <div className="fixed inset-0 -z-10 opacity-30 pointer-events-none">
+            <div className="absolute inset-0 noise-texture"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-surface-container-lowest via-[#0e0e0e] to-[#1a0a05]"></div>
+        </div>
+
+        <main className="pt-32 pb-20 px-8 max-w-[1600px] mx-auto">
             <WorkAnimations />
-            {/* Section Header */}
-            <div className="mb-24 flex items-baseline gap-4">
-                <span className="text-[#E8441A] font-headline font-bold text-xl">* 01</span>
-                <h1 className="text-8xl md:text-[10rem] font-headline font-bold tracking-tighter leading-none uppercase text-white reveal-text">
+            {/* Hero Header */}
+            <header className="mb-24 relative">
+                <div className="absolute -top-12 -left-12 text-[#E8441A] opacity-20 text-[15rem] font-black select-none pointer-events-none">WORK</div>
+                <h1 className="text-[clamp(4rem,15vw,12rem)] font-headline font-black leading-[0.8] tracking-tighter uppercase relative reveal-text">
                     <span className="block">SELECTED</span>
-                    <span className="block text-[#E8441A]">WORK</span>
+                    <span className="text-[#E8441A] block">WORK</span>
                 </h1>
-            </div>
+                <div className="flex items-center gap-4 mt-8">
+                    <span className="w-12 h-1 bg-[#F5C518]"></span>
+                    <p className="font-label text-secondary uppercase tracking-[0.3em]">* THE MIDNIGHT MANIFESTO VOL. 01</p>
+                </div>
+            </header>
 
-            {/* Bento Grid Mosaic */}
-            <div className="bento-grid">
-                {/* Project 01: Large Feature */}
-                <div className="bento-card col-span-12 md:col-span-8 bg-[#0E0E0E] border-4 border-black group overflow-visible relative">
-                    <div className="relative h-[600px] overflow-hidden">
-                        <img className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Abstract geometric landscape" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdhgG6-cdcNkgftqkpLS2MQyZa5hy5vs5Qh6U4stw60YnBIHQK8AOXfqQWKC7bceThct6f3GsrR5iIwiWohxTlUJqQWw4lO4L8Qyd-4uFVy2PG3JGLikjFbfV1kwTTvVAqEpP5T24d_yIkQVP8-20PBqxi6jKJnU__88jNR49mVa505n0awjH_IvyGbVx4h8cEtze7IzbytrNC5q1ZUXW78jR2iuXHG0Tfyh5nYRATgv0uRCETLPn5HA9cQ09BFGBBinpz_s-4c1kW" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+            {/* Asymmetric Bento Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 auto-rows-[minmax(300px,auto)]">
+                {/* Project 01 */}
+                <div className="bento-card md:col-span-8 group relative overflow-hidden bento-border bg-[#1c1b1b] transition-all duration-300 hover:bg-[#ffb4a2]">
+                    <div className="absolute top-4 right-4 z-10 flex gap-2">
+                        <span className="bg-black text-white px-3 py-1 font-label text-xs uppercase">* EDITORIAL DESIGN</span>
                     </div>
-                    <div className="p-8 relative">
-                        <div className="flex items-center gap-2 mb-4">
-                            <span className="bg-[#F5C518] text-black px-2 py-0.5 font-headline font-bold text-xs">* BRAND IDENTITY</span>
-                            <span className="text-white/40 font-headline text-xs">/ 2024</span>
+                    <div className="h-full w-full min-h-[500px] flex flex-col md:flex-row">
+                        <div className="md:w-1/2 p-12 flex flex-col justify-between">
+                            <div>
+                                <span className="font-headline text-6xl text-[#E8441A] group-hover:text-black transition-colors">01</span>
+                                <h2 className="font-headline text-5xl font-bold uppercase mt-4 group-hover:text-black transition-colors">AETHER CAMPAIGN</h2>
+                            </div>
+                            <p className="font-body text-lg max-w-xs group-hover:text-black/80 transition-colors">A transcendental visual narrative exploring the intersection of digital decay and classical form.</p>
                         </div>
-                        <h2 className="text-6xl md:text-8xl font-headline font-bold tracking-tighter leading-none uppercase text-white group-hover:text-[#E8441A] transition-colors">
-                            AETHER<br/>CAMPAIGN
-                        </h2>
-                        {/* Breakout Element */}
-                        <div className="absolute -bottom-8 -right-8 hidden md:block w-48 h-48 bg-[#E8441A] border-4 border-black p-4 z-10 flex flex-col justify-between">
-                            <span className="material-symbols-outlined text-4xl text-black">north_east</span>
-                            <p className="text-black font-headline font-black text-xl leading-none">VIEW CASE STUDY</p>
+                        <div className="md:w-1/2 bg-black relative overflow-hidden">
+                            <img alt="Abstract 3D ethereal shapes" className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUulpU6A18uD617RCZzVXDqIUjobuCegAV8QeieIojg4Ug5Ou0q9HOFnRt22x3t6Jnwnvsgti1A8pU_AQ5jeMaFScgEBUmJlC3DmBOcSZZ35LKN4OkiEsnBcRodWd2RjTdfIHGEyp6O7mGseUCLMpFY6IDmpn18KwZp6bHpUKW3jqRS1g8JPBmYxbKFqotQMqFkfS7SPDHwjnxBcR5OhSdnS0it5ztzIb-6bZQP5bdKY23EufgxkgVnokXnpbmGPRm4RnysFOUY8hZ"/>
+                        </div>
+                    </div>
+                    <div className="absolute bottom-0 left-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="material-symbols-outlined text-4xl text-black">arrow_outward</span>
+                    </div>
+                </div>
+
+                {/* Project 02 */}
+                <div className="bento-card md:col-span-4 group relative overflow-hidden bento-border bg-[#2a2a2a] transition-all duration-300 hover:bg-[#ffd65b]">
+                    <div className="p-8 h-full flex flex-col">
+                        <div className="mb-8">
+                            <span className="bg-black text-white px-3 py-1 font-label text-xs uppercase">* DIGITAL PRODUCT</span>
+                        </div>
+                        <div className="flex-grow">
+                            <span className="font-headline text-4xl text-[#F5C518] group-hover:text-black">02</span>
+                            <h2 className="font-headline text-4xl font-bold uppercase mt-2 group-hover:text-black">NEON DRIFT</h2>
+                        </div>
+                        <div className="mt-8 border-t-4 border-black pt-4 group-hover:border-black/20">
+                            <img alt="Cyberpunk interface detail" className="w-full aspect-square object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe_U5eQsxm3jSjWOJbvS_KSc3GlVbkTO85DDrnsntltDCJzn_fTT0-lceUbyOw3r9U07XwOUBprqY6jtEqA4sj7Zhy-C9iHq2XcHz1doI0rWyHCKfCaAefk0T0-TUzbXqZXxGYmTU11nuaadBVvyipXoeSd-2BOAEEaGset_qhm_rv-UG61PtYcQXohRVjFPwRbuM4PpRfCyls9x-V0a9ORCDUg5WA0afkgKRiUnwvbND-hgcBNjTuJGvbNU17VfpEVxHFcvGXBmn0"/>
                         </div>
                     </div>
                 </div>
 
-                {/* Project 02: Vertical Burst */}
-                <div className="bento-card col-span-12 md:col-span-4 bg-[#F5C518] border-4 border-black p-8 flex flex-col justify-between min-h-[400px]">
-                    <div>
-                        <div className="flex items-center gap-2 mb-8">
-                            <span className="bg-black text-white px-2 py-0.5 font-headline font-bold text-xs">* DIGITAL PRODUCT</span>
+                {/* Project 03 */}
+                <div className="bento-card md:col-span-5 group relative overflow-hidden bento-border bg-[#0e0e0e] transition-all duration-300 hover:bg-[#3da452]">
+                    <div className="h-full flex flex-col">
+                        <div className="relative h-64 overflow-hidden">
+                            <img alt="Luxury fashion model" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-125 group-hover:scale-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD01ISdydSb0bf_FjOM3nFO0t6L45k4m7mkUyvD1g_zhXuLomfJYFF8zS3uOhky9tSqDGS6W_fBzpxG9a0Q86UwKACOXvs6xRJ4ZvmpwuxD0x_TjSsZMI4SAhx4ILibW758Jvq_AtqqXr7--LAVdDyFkJAOBRKH39gTlnjWzpOTn-tFDibDaN3CccPnp1Nutk788psPLE8woNup34C2M0K4-QFO_LfQirskdE3TmKm1jLfDYj9PdSUPZdPyNvN2qHpuDiXJfeSzNXNN"/>
                         </div>
-                        <h2 className="text-5xl font-headline font-bold tracking-tighter leading-tight uppercase text-black">
-                            NEON<br/>DRIFT
-                        </h2>
-                    </div>
-                    <div className="mt-8 border-t-4 border-black pt-4">
-                        <p className="text-black font-body text-sm font-medium">Redefining the high-performance automotive interface for the electric age.</p>
-                    </div>
-                </div>
-
-                {/* Project 03: The Void */}
-                <div className="bento-card col-span-12 md:col-span-4 bg-[#0E0E0E] border-4 border-black overflow-hidden relative group">
-                    <div className="aspect-square">
-                        <img className="w-full h-full object-cover opacity-50 group-hover:scale-110 transition-transform duration-1000" alt="Minimalist architectural detail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvGBldL5WgU6eSplGnsDa4GaVOnXnKifIROka8nQGMxHjJp55sdE6-7bolAJU9TR4h0kmoBMIV_vsIDTyAy0Yb9qAhIPvAKsdAltEUDzo_CCtwobPQ_HOdJ5yKv--L848FyrK82PpNYjJhkawsztwDH4Bz3Iw3P4ytbTFg9kYVFxILOXXtTOW4K47pvmYwCV9ZuRem6AkaUrROkV9qbjO0IDqTVglS5uOOJijVg5mFjp30R3GrakPofXVSkWizzQc1wfVc6S2jC6tR" />
-                    </div>
-                    <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                        <span className="font-headline font-bold text-[#F2A7C3] mb-2">* EDITORIAL DESIGN</span>
-                        <h2 className="text-4xl font-headline font-bold tracking-tighter uppercase text-white">THE MIDNIGHT<br/>CHRONICLES</h2>
+                        <div className="p-8 flex-grow flex flex-col justify-between">
+                            <div>
+                                <span className="font-headline text-4xl text-[#76dc83] group-hover:text-white">03</span>
+                                <h2 className="font-headline text-4xl font-bold uppercase mt-2 group-hover:text-white">VELVET REBEL</h2>
+                            </div>
+                            <div className="mt-4">
+                                <span className="font-label text-xs uppercase text-stone-500 group-hover:text-white/70 tracking-widest">* ART DIRECTION</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                {/* Project 04: Burnt Orange Statement */}
-                <div className="bento-card col-span-12 md:col-span-8 bg-[#E8441A] border-4 border-black p-12 flex flex-col md:flex-row gap-8 relative overflow-hidden">
-                    <div className="flex-1 z-10">
-                        <span className="bg-black text-[#E8441A] px-2 py-0.5 font-headline font-bold text-xs mb-6 inline-block">* ART DIRECTION</span>
-                        <h2 className="text-6xl md:text-8xl font-headline font-black tracking-tighter leading-none uppercase text-black mb-8">
-                            VELVET<br/>REBEL
-                        </h2>
-                        <p className="max-w-md text-black font-body font-bold text-lg mb-8">A provocative visual manifesto for the avant-garde fashion house, fusing street grit with luxury precision.</p>
-                        <button className="border-4 border-black px-8 py-3 font-headline font-bold text-black uppercase hover:bg-black hover:text-[#E8441A] transition-colors bg-transparent">
-                            EXPLORE PROJECT →
-                        </button>
+                {/* Project 04 */}
+                <div className="bento-card md:col-span-7 group relative overflow-hidden bento-border bg-black transition-all duration-300 hover:invert">
+                    <div className="absolute inset-0 opacity-20">
+                        <img alt="Grid pattern" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKnuy_y4OrZ1ySjpUZ--ba4Fo3H9_2UTfC-wTc-G9VE9mXCCNEqHzjV9sRIOseoTFcI-WsU9ILF0nRpZOBUj-hrYwBKF8gmNjBt7h22VHFrWdYdCENyMR-XAEuHASp_1bR5qSDAVHBvV4g6DExy2K3Gkk5E2WDqxtmQiZAQE7975Lnq9-P1b5jgOn3aJgLFxRkk0HpDgzl-RUL7Zb9jnNEMeg7uyCEiO2IT5KK0Q6hSlnm-QOlnbSWR0MW2wCPThUTSOeAl90Uuqu0"/>
                     </div>
-                    {/* Breakout Visual */}
-                    <div className="hidden lg:block absolute right-0 top-0 w-1/2 h-full">
-                        <img className="w-full h-full object-cover mix-blend-multiply opacity-80" alt="Abstract painterly textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSjxkEQfMvInEY8bB1ZeH85sbvunBTO0M6t5TKjw66vwk5deJao7cXoXKPHyyUqYZqN0zb-g39_G7orUI_LwlMcDRq7pEJGl9vRrTDj6J59x52sqVTDsZ0C7PMh6ldXBl7Bgrg1muIMAPWSVVqmXNI8FoRMHtwiiO5KMPn0FkUX-WMSmRH4_UwGQ80j6YEFaJP6JabdfJzMb8InYWDVqICsqW6aUOH57jegEgD19YYMo0_B--USIKbeE31BJxLUeR-vKRFrW-QeNRw" />
-                    </div>
-                </div>
-
-                {/* Project 05: Small Accent */}
-                <div className="bento-card col-span-12 md:col-span-5 bg-[#0E0E0E] border-4 border-black p-8 group">
-                    <div className="mb-12">
-                        <img className="w-full h-64 object-cover border-4 border-black group-hover:rotate-1 transition-transform" alt="Monochrome close up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYgQF8U4EtxeOIErA1V1jwUepv2pN4rsVvM_IhNZgDQeFzf8_f1IGpptJMpU9kEWnKJ2fqs3hjfOJZcJQZFXMg6auaOvVWUxYQ8q02zcYPHpe3svTjWj5K46TgFcP8YISGHQHLpJaKZFjkl8Yf1Z-Pvkff_j8yP8ICocfU0yH4d7EMPfBjUADXEymyyJ_LFF7QQeGecz6OzpltnBpiFMXDs56sTW25T8Uu5XBRUZGpvjJsf0Nh31mDSE7n7-7STc_7C8IOm8bvDufl" />
-                    </div>
-                    <span className="text-[#F5C518] font-headline font-bold">* EXPERIMENTAL</span>
-                    <h2 className="text-4xl font-headline font-bold tracking-tighter uppercase mt-2 text-white">OBSCURA LABS</h2>
-                </div>
-
-                {/* Project 06: Asymmetric Text Block */}
-                <div className="bento-card col-span-12 md:col-span-7 border-4 border-black bg-[#131313] p-12 relative flex flex-col justify-center">
-                    <div className="absolute top-0 left-0 p-4 font-headline text-white/20 text-8xl font-black">06</div>
-                    <div className="relative z-10 ml-auto max-w-xl text-right">
-                        <h2 className="text-5xl md:text-7xl font-headline font-bold tracking-tighter uppercase text-white mb-6">
-                            SHADOW<br/><span className="text-[#E8441A]">ARCHIVE</span>
-                        </h2>
-                        <p className="text-[#e4beb5] font-body text-xl">Digital preservation of the ephemeral. A high-fidelity storage solution for contemporary digital artifacts.</p>
-                    </div>
-                    {/* Decoration */}
-                    <div className="absolute bottom-0 left-0 p-8">
-                        <div className="flex gap-4">
-                            <div className="w-12 h-4 bg-[#E8441A]"></div>
-                            <div className="w-12 h-4 bg-[#F5C518]"></div>
-                            <div className="w-12 h-4 bg-[#F2A7C3]"></div>
+                    <div className="relative z-10 p-12 h-full flex flex-col justify-center items-center text-center">
+                        <span className="font-headline text-9xl text-white drop-shadow-2xl">04</span>
+                        <h2 className="font-headline text-6xl font-black uppercase mt-4 text-white">SHADOW ARCHIVE</h2>
+                        <p className="font-body text-white/60 mt-6 max-w-md tracking-wider uppercase text-sm">Experimental data visualization mapping the unseen digital footprints of urban environments.</p>
+                        <div className="mt-12">
+                            <button className="border-4 border-white text-white px-10 py-4 font-headline font-bold uppercase hover:bg-white hover:text-black transition-all">
+                                ENTER THE VOID →
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Call to Action */}
-            <div className="mt-48 border-y-4 border-black py-24 flex flex-col items-center text-center">
-                <h3 className="text-5xl md:text-7xl font-headline font-black tracking-tighter uppercase mb-12 text-white reveal-text">
-                    <span className="block">YOUR PROJECT IS</span>
-                    <span className="block mt-2">NEXT IN LINE.</span>
-                </h3>
-                <Link className="bg-white text-black px-12 py-6 font-headline font-black text-2xl uppercase border-4 border-black hover:bg-[#E8441A] hover:text-white transition-all transform hover:-rotate-2 inline-block" href="/contact">
-                    START THE BROADCAST →
-                </Link>
-            </div>
+            {/* Next Project CTA */}
+            <section className="mt-32 mb-12 border-4 border-black bg-[#ffb4a2] p-16 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-4">
+                    <span className="material-symbols-outlined text-9xl text-black/10 group-hover:text-black/20 transition-colors">add_circle</span>
+                </div>
+                <div className="relative z-10">
+                    <h3 className="font-headline text-[clamp(2.5rem,8vw,6rem)] font-black leading-tight uppercase text-black reveal-text">
+                        <span className="block">YOUR PROJECT IS</span>
+                        <span className="text-white group-hover:text-[#ffd65b] transition-colors block leading-tight mt-2">NEXT IN LINE</span>
+                    </h3>
+                    <div className="mt-12 flex flex-col md:flex-row gap-8 items-start md:items-center">
+                        <p className="font-body text-xl text-black font-medium max-w-xl">We are currently accepting new partners for the Q3-Q4 broadcast cycle. Let's build something that demands attention.</p>
+                        <Link className="bg-black text-white px-12 py-6 text-2xl font-headline font-bold uppercase group-hover:translate-x-4 transition-transform zine-shadow" href="/contact">
+                            BOOK A DISCOVERY →
+                        </Link>
+                    </div>
+                </div>
+                {/* Registration Marks */}
+                <div className="absolute top-4 left-4 font-headline text-black text-2xl">+</div>
+                <div className="absolute bottom-4 right-4 font-headline text-black text-2xl">+</div>
+            </section>
         </main>
 
         {/* Footer */}
