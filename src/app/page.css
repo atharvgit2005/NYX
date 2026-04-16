@@ -35,3 +35,22 @@
 .zine-shadow { box-shadow: 8px 8px 0px #000000; }
 .text-stroke { -webkit-text-stroke: 1px #ffb4a2; color: transparent; }
 .clip-diagonal { clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%); }
+
+.text-huge {
+    font-size: clamp(3rem, 10vw, 8rem);
+    line-height: 0.9;
+}
+.reveal-ink {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+}
+.border-draw-x {
+    transform: scaleX(0);
+    transform-origin: left;
+}
+.border-draw-y {
+    transform: scaleY(0);
+    transform-origin: top;
+}
+canvas {
+    display: block;
+}
