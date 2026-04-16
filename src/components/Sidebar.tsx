@@ -25,7 +25,7 @@ export const navigation = [
     { name: 'Script Editor', href: '/automate/dashboard/scripts', icon: FileText },
     { name: 'Avatar & Voice', href: '/automate/dashboard/avatar', icon: User },
     { name: 'Video Generation', href: '/automate/dashboard/video', icon: Video },
-    { name: 'Back to Home', href: '/', icon: Home },
+    { name: 'Back to Home', href: '/automate', icon: Home },
 ];
 
 export default function Sidebar() {
@@ -85,7 +85,7 @@ export default function Sidebar() {
             {/* Bottom Links */}
             <div className={`px-4 pb-4 ${collapsed ? 'mt-auto' : ''}`}>
                 <Link
-                    href="/"
+                    href="/automate"
                     title={collapsed ? 'Back to Home' : ''}
                     className={`group flex items-center transition-all duration-300 text-theme-secondary hover:bg-orange-500/10 hover:text-orange-500 border border-transparent hover:border-orange-500/20 hover:scale-[1.02] ${collapsed
                         ? 'w-12 h-12 justify-center mx-auto rounded-xl'
