@@ -18,18 +18,18 @@ export default function AdServicesPage() {
       {/* Main wrapper containing body-level styling to isolate from global styles */}
       <div className="bg-[#0E0E0E] text-[#e5e2e1] font-body selection:bg-primary selection:text-ink-black min-h-screen relative w-full overflow-hidden">
         {/* TopAppBar */}
-        <header className="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 bg-[#0E0E0E] dark:bg-black border-b-4 border-black dark:border-white/10 rounded-none">
-            <Link href="/" className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shadow-lg relative">
+        <header className="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-8 py-4 md:py-6 bg-[#0E0E0E] dark:bg-black border-b-4 border-black dark:border-white/10 rounded-none">
+            <Link href="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl overflow-hidden flex items-center justify-center shadow-lg relative flex-shrink-0">
                     <Image 
                         src="/logo/logo.png" 
                         alt="NYX Logo" 
                         fill 
                         className="object-cover"
-                        sizes="40px"
+                        sizes="(max-width: 768px) 32px, 40px"
                     />
                 </div>
-                <div className="text-3xl font-black tracking-tighter text-white dark:text-[#F5C518] font-headline uppercase">
+                <div className="text-xl md:text-3xl font-black tracking-tighter text-white dark:text-[#F5C518] font-headline uppercase whitespace-nowrap">
                     NYX STUDIO
                 </div>
             </Link>
@@ -39,7 +39,7 @@ export default function AdServicesPage() {
                 <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/contact">CONTACT</Link>
                 <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/automate">AUTOMATE</Link>
             </nav>
-            <Link href="/contact" className="bg-[#E8441A] text-white px-6 py-2 font-headline uppercase tracking-tighter font-bold scale-100 active:scale-95 hover:bg-[#F5C518] hover:text-black transition-all duration-75 inline-block border-4 border-transparent hover:border-black">
+            <Link href="/contact" className="bg-[#E8441A] text-white px-3 md:px-6 py-1 md:py-2 font-headline uppercase tracking-tighter font-bold text-[0.75rem] md:text-base scale-100 active:scale-95 hover:bg-[#F5C518] hover:text-black transition-all duration-75 inline-block border-4 border-transparent hover:border-black whitespace-nowrap">
                 LET'S TALK →
             </Link>
         </header>

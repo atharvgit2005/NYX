@@ -17,18 +17,18 @@ export default function AdWorkPage() {
 
       <div className="font-body selection:bg-secondary selection:text-black min-h-screen relative w-full overflow-hidden bg-[#131313] text-[#e5e2e1]">
         {/* TopAppBar */}
-        <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 bg-[#0E0E0E] dark:bg-black border-b-4 border-black dark:border-white/10 rounded-none">
-            <Link href="/" className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center relative">
+        <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-8 py-4 md:py-6 bg-[#0E0E0E] dark:bg-black border-b-4 border-black dark:border-white/10 rounded-none">
+            <Link href="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl overflow-hidden flex items-center justify-center relative flex-shrink-0">
                     <Image 
                         src="/logo/logo.png" 
                         alt="NYX Logo" 
                         fill 
                         className="object-cover"
-                        sizes="40px"
+                        sizes="(max-width: 768px) 32px, 40px"
                     />
                 </div>
-                <div className="text-3xl font-black tracking-tighter text-white dark:text-[#F5C518] font-headline uppercase">
+                <div className="text-xl md:text-3xl font-black tracking-tighter text-white dark:text-[#F5C518] font-headline uppercase whitespace-nowrap">
                     NYX STUDIO
                 </div>
             </Link>
@@ -38,7 +38,7 @@ export default function AdWorkPage() {
                 <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] hover:bg-[#F5C518] hover:text-black transition-all duration-75 px-2" href="/contact">CONTACT</Link>
                 <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] hover:bg-[#F5C518] hover:text-black transition-all duration-75 px-2" href="/automate">AUTOMATE</Link>
             </div>
-            <Link href="/contact" className="bg-[#ffb4a2] px-6 py-2 text-black font-headline font-bold uppercase tracking-tighter border-4 border-black hover:bg-[#F5C518] hover:translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0px_#000000] transition-all duration-75 inline-block">
+            <Link href="/contact" className="bg-[#ffb4a2] px-3 md:px-6 py-1 md:py-2 text-black font-headline font-bold text-[0.75rem] md:text-base uppercase tracking-tighter border-4 border-black hover:bg-[#F5C518] hover:translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0px_#000000] transition-all duration-75 inline-block whitespace-nowrap">
                 LET'S TALK →
             </Link>
         </nav>

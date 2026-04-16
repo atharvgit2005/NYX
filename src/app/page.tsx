@@ -19,18 +19,18 @@ export default function AdPage() {
       {/* Main wrapper containing body-level styling to isolate from global styles */}
       <div className="bg-surface-container-lowest text-on-surface font-body selection:bg-secondary selection:text-on-secondary min-h-screen relative w-full overflow-hidden">
         {/* TopAppBar */}
-        <header className="fixed top-0 w-full border-b-4 border-black bg-[#0E0E0E] flex justify-between items-center px-8 py-6 z-50">
-            <Link href="/" className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center relative">
+        <header className="fixed top-0 w-full border-b-4 border-black bg-[#0E0E0E] flex justify-between items-center px-4 md:px-8 py-4 md:py-6 z-50">
+            <Link href="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl overflow-hidden flex items-center justify-center relative flex-shrink-0">
                     <Image 
                         src="/logo/logo.png" 
                         alt="NYX Logo" 
                         fill 
                         className="object-cover"
-                        sizes="40px"
+                        sizes="(max-width: 768px) 32px, 40px"
                     />
                 </div>
-                <div className="text-3xl font-black tracking-tighter text-white uppercase font-headline">NYX STUDIO</div>
+                <div className="text-xl md:text-3xl font-black tracking-tighter text-white uppercase font-headline whitespace-nowrap">NYX STUDIO</div>
             </Link>
             <nav className="hidden md:flex gap-8 items-center">
                 <Link className="text-[#E8441A] font-bold font-label uppercase tracking-wider transition-colors duration-100" href="/">HOME</Link>
@@ -39,7 +39,7 @@ export default function AdPage() {
                 <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/contact">CONTACT</Link>
                 <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/automate">AUTOMATE</Link>
             </nav>
-            <div className="text-[#E8441A] font-headline uppercase tracking-[-0.05em] text-[1.1rem] font-bold border-2 border-[#E8441A] px-4 py-1">
+            <div className="text-[#E8441A] font-headline uppercase tracking-[-0.05em] text-[0.75rem] md:text-[1.1rem] font-bold border-2 border-[#E8441A] px-2 md:px-4 py-1 whitespace-nowrap">
                 *LIVE_NOW
             </div>
         </header>
@@ -125,8 +125,8 @@ export default function AdPage() {
                             <p className="font-label text-black/40 font-bold">*01</p>
                         </div>
                         <div>
-                            <h3 className="font-headline text-6xl font-black text-black uppercase mb-4 leading-none">PAID MEDIA</h3>
-                            <p className="text-black font-medium text-lg max-w-md">Aggressive performance scaling across TikTok, Meta, and Google. We turn clicks into culture.</p>
+                            <h3 className="font-headline text-4xl md:text-6xl font-black text-black uppercase mb-4 leading-none break-words">PAID MEDIA</h3>
+                            <p className="text-black font-medium text-base md:text-lg max-w-md">Aggressive performance scaling across TikTok, Meta, and Google. We turn clicks into culture.</p>
                         </div>
                     </div>
                     {/* Card 2: Orange */}
@@ -136,8 +136,8 @@ export default function AdPage() {
                             <p className="font-label text-black/40 font-bold">*02</p>
                         </div>
                         <div>
-                            <h3 className="font-headline text-5xl font-black text-black uppercase mb-4 leading-none">CONTENT PRODUCTION</h3>
-                            <p className="text-black font-medium text-lg">High-octane visual assets designed for the 3-second hook era.</p>
+                            <h3 className="font-headline text-4xl md:text-5xl font-black text-black uppercase mb-4 leading-none break-words hyphens-auto" lang="en">CONTENT PRODUCTION</h3>
+                            <p className="text-black font-medium text-base md:text-lg">High-octane visual assets designed for the 3-second hook era.</p>
                         </div>
                     </div>
                     {/* Card 3: White/Grey */}
@@ -147,8 +147,8 @@ export default function AdPage() {
                             <p className="font-label text-black/40 font-bold">*03</p>
                         </div>
                         <div>
-                            <h3 className="font-headline text-5xl font-black text-black uppercase mb-4 leading-none">INFLUENCER OPS</h3>
-                            <p className="text-black font-medium text-lg">Strategic matchmaking that bypasses the "ad" filter.</p>
+                            <h3 className="font-headline text-4xl md:text-5xl font-black text-black uppercase mb-4 leading-none break-words">INFLUENCER OPS</h3>
+                            <p className="text-black font-medium text-base md:text-lg">Strategic matchmaking that bypasses the "ad" filter.</p>
                         </div>
                     </div>
                     {/* Card 4: Pink */}
@@ -158,8 +158,8 @@ export default function AdPage() {
                             <p className="font-label text-black/40 font-bold">*04</p>
                         </div>
                         <div>
-                            <h3 className="font-headline text-6xl font-black text-black uppercase mb-4 leading-none">STRATEGY &amp; AUDIT</h3>
-                            <p className="text-black font-medium text-lg max-w-md">Data-driven roadmaps that expose competitors' weaknesses and exploit market gaps.</p>
+                            <h3 className="font-headline text-4xl md:text-6xl font-black text-black uppercase mb-4 leading-none break-words">STRATEGY &amp; AUDIT</h3>
+                            <p className="text-black font-medium text-base md:text-lg max-w-md">Data-driven roadmaps that expose competitors' weaknesses and exploit market gaps.</p>
                         </div>
                     </div>
                 </div>
