@@ -74,7 +74,7 @@ export default function StartButton3D() {
     const handleClick = () => {
         setLoading(true);
         setTimeout(() => {
-            router.push('/signup');
+            router.push('/automate/signup');
         }, 1500);
     };
 

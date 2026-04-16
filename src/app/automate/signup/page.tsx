@@ -13,7 +13,7 @@ export default function Signup() {
 
     useEffect(() => {
         if (session) {
-            router.push('/dashboard');
+            router.push('/automate/dashboard');
         }
     }, [session, router]);
 
@@ -47,7 +47,7 @@ export default function Signup() {
             // 2. Sign In
             const result = await signIn('credentials', {
                 redirect: true,
-                callbackUrl: '/dashboard',
+                callbackUrl: '/automate/dashboard',
                 email,
                 password,
             });
@@ -154,7 +154,7 @@ export default function Signup() {
                         </div>
 
                         <div className="mt-6 grid grid-cols-2 gap-3">
-                            <button onClick={() => signIn('google', { callbackUrl: '/dashboard' })} className="w-full inline-flex justify-center py-2 px-4 border border-theme rounded-md shadow-sm bg-card-theme text-sm font-medium text-theme-secondary hover:bg-card-theme transition-colors">
+                            <button onClick={() => signIn('google', { callbackUrl: '/automate/dashboard' })} className="w-full inline-flex justify-center py-2 px-4 border border-theme rounded-md shadow-sm bg-card-theme text-sm font-medium text-theme-secondary hover:bg-card-theme transition-colors">
                                 Google
                             </button>
                             <button className="w-full inline-flex justify-center py-2 px-4 border border-theme rounded-md shadow-sm bg-card-theme text-sm font-medium text-theme-secondary hover:bg-card-theme transition-colors">

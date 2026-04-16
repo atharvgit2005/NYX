@@ -296,7 +296,7 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                                 <div>
                                     <p className="text-sm font-bold text-theme-secondary">No cloned voices yet</p>
                                     <p className="text-xs text-gray-600 mt-0.5">
-                                        Go to <a href="/dashboard/avatar" className="text-orange-500 hover:text-orange-400 underline">Avatar &amp; Voice</a> → scroll to Voice Studio.
+                                        Go to <a href="/automate/dashboard/avatar" className="text-orange-500 hover:text-orange-400 underline">Avatar &amp; Voice</a> → scroll to Voice Studio.
                                         Or switch to <button onClick={() => setVoiceTab('builtin')} className="text-amber-400 hover:text-amber-300 underline">Built-In Voices</button>.
                                     </p>
                                 </div>

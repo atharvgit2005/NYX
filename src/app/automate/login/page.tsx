@@ -15,7 +15,7 @@ function LoginContent() {
 
     useEffect(() => {
         if (session) {
-            router.push('/dashboard');
+            router.push('/automate/dashboard');
         }
 
         // Check for error in URL
@@ -63,7 +63,7 @@ function LoginContent() {
                 setError("Invalid email or password");
             }
         } else {
-            router.push('/dashboard');
+            router.push('/automate/dashboard');
         }
     };
 
@@ -145,7 +145,7 @@ function LoginContent() {
                         </div>
 
                         <div className="mt-6 grid grid-cols-2 gap-3">
-                            <button onClick={() => signIn('google', { callbackUrl: '/dashboard' })} className="w-full inline-flex justify-center py-2 px-4 border border-theme rounded-md shadow-sm bg-card-theme text-sm font-medium text-theme-secondary hover:bg-card-theme transition-colors">
+                            <button onClick={() => signIn('google', { callbackUrl: '/automate/dashboard' })} className="w-full inline-flex justify-center py-2 px-4 border border-theme rounded-md shadow-sm bg-card-theme text-sm font-medium text-theme-secondary hover:bg-card-theme transition-colors">
                                 Google
                             </button>
                             <button className="w-full inline-flex justify-center py-2 px-4 border border-theme rounded-md shadow-sm bg-card-theme text-sm font-medium text-theme-secondary hover:bg-card-theme transition-colors">

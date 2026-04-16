@@ -12,14 +12,14 @@ import { useAdmin } from '@/context/AdminContext';
 import Image from 'next/image';
 
 const navItems = [
-    { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
-    { name: 'Users', href: '/admin/users', icon: Users },
-    { name: 'Subscriptions', href: '/admin/subscriptions', icon: CreditCard },
-    { name: 'Tiers', href: '/admin/tiers', icon: Layers },
-    { name: 'Feature Gates', href: '/admin/gates', icon: Shield },
-    { name: 'Analytics', href: '/admin/analytics', icon: BarChart3 },
-    { name: 'Audit Log', href: '/admin/audit', icon: ScrollText },
-    { name: 'Alerts', href: '/admin/alerts', icon: Bell },
+    { name: 'Dashboard', href: '/automate/admin', icon: LayoutDashboard },
+    { name: 'Users', href: '/automate/admin/users', icon: Users },
+    { name: 'Subscriptions', href: '/automate/admin/subscriptions', icon: CreditCard },
+    { name: 'Tiers', href: '/automate/admin/tiers', icon: Layers },
+    { name: 'Feature Gates', href: '/automate/admin/gates', icon: Shield },
+    { name: 'Analytics', href: '/automate/admin/analytics', icon: BarChart3 },
+    { name: 'Audit Log', href: '/automate/admin/audit', icon: ScrollText },
+    { name: 'Alerts', href: '/automate/admin/alerts', icon: Bell },
 ];
 
 export default function AdminSidebar() {

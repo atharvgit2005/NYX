@@ -191,7 +191,7 @@ export default function IdeaGenerator() {
                         </div>
                     </div>
                     <Link
-                        href="/dashboard/analysis"
+                        href="/automate/dashboard/analysis"
                         className="w-full sm:w-auto text-center text-xs font-bold text-theme-primary hover:text-theme-primary/80 transition-colors px-4 py-2 rounded-lg bg-secondary border border-theme"
                     >
                         Re-analyze →
@@ -209,7 +209,7 @@ export default function IdeaGenerator() {
                         </p>
                     </div>
                     <NyxButton
-                        href="/dashboard/analysis"
+                        href="/automate/dashboard/analysis"
                         className="w-full sm:w-auto justify-center"
                     >
                         RUN ANALYSIS
@@ -329,7 +329,7 @@ export default function IdeaGenerator() {
                                         localStorage.setItem('current_video_script', generatedScript.content);
                                         localStorage.setItem('current_script_idea', generatedScript.ideaTitle);
                                         setScriptSaved(true);
-                                        window.location.href = '/dashboard/scripts';
+                                        window.location.href = '/automate/dashboard/scripts';
                                     }
                                 }}
                                 className="px-4 py-2 bg-accent hover:bg-theme-secondary/20 text-theme-primary rounded-lg text-sm font-medium transition-colors flex items-center border border-theme"
@@ -341,7 +341,7 @@ export default function IdeaGenerator() {
                                     if (generatedScript) {
                                         localStorage.setItem('current_video_script', generatedScript.content);
                                         localStorage.setItem('current_script_idea', generatedScript.ideaTitle);
-                                        window.location.href = '/dashboard/video';
+                                        window.location.href = '/automate/dashboard/video';
                                     }
                                 }}
                                 className="px-6 py-2.5"

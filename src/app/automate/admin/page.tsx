@@ -53,7 +53,7 @@ export default function AdminDashboard() {
                         Platform health overview · {new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                     </p>
                 </div>
-                <Link href="/admin/subscriptions" className="text-xs px-4 py-2 rounded-lg bg-card-theme border border-theme text-theme-secondary hover:text-theme-primary hover:bg-accent transition flex items-center gap-2">
+                <Link href="/automate/admin/subscriptions" className="text-xs px-4 py-2 rounded-lg bg-card-theme border border-theme text-theme-secondary hover:text-theme-primary hover:bg-accent transition flex items-center gap-2">
                     Pending Approvals {pendingCount > 0 && <span className="bg-orange-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-bold">{pendingCount}</span>}
                 </Link>
             </div>
@@ -121,10 +121,10 @@ export default function AdminDashboard() {
                 <div className="space-y-2">
                     <p className="text-xs text-theme-secondary uppercase font-bold tracking-wider mb-3">Quick Actions</p>
                     {[
-                        { label: 'Review Pending Approvals', href: '/admin/subscriptions', badge: pendingCount },
-                        { label: 'Feature Gate Control', href: '/admin/gates', badge: 0 },
-                        { label: 'View Audit Log', href: '/admin/audit', badge: 0 },
-                        { label: 'Configure Alerts', href: '/admin/alerts', badge: 0 },
+                        { label: 'Review Pending Approvals', href: '/automate/admin/subscriptions', badge: pendingCount },
+                        { label: 'Feature Gate Control', href: '/automate/admin/gates', badge: 0 },
+                        { label: 'View Audit Log', href: '/automate/admin/audit', badge: 0 },
+                        { label: 'Configure Alerts', href: '/automate/admin/alerts', badge: 0 },
                     ].map(({ label, href, badge }) => (
                         <Link key={href} href={href} className="flex items-center justify-between p-3 rounded-xl bg-card-theme border border-theme hover:bg-accent text-sm text-theme-secondary hover:text-theme-primary group transition-all">
                             <span>{label}</span>
@@ -154,7 +154,7 @@ export default function AdminDashboard() {
                             ))}
                         </div>
                     )}
-                    <Link href="/admin/audit" className="mt-4 text-xs text-orange-500 hover:text-orange-400 flex items-center gap-1 transition">View full log <ChevronRight className="w-3 h-3" /></Link>
+                    <Link href="/automate/admin/audit" className="mt-4 text-xs text-orange-500 hover:text-orange-400 flex items-center gap-1 transition">View full log <ChevronRight className="w-3 h-3" /></Link>
                 </div>
             </div>
         </div>
