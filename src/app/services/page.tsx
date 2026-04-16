@@ -35,6 +35,7 @@ export default function AdServicesPage() {
                 <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/work">WORK</Link>
                 <Link className="font-headline uppercase tracking-tighter font-bold text-[#E8441A] border-b-4 border-[#E8441A] pb-1 px-2" href="/services">SERVICES</Link>
                 <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/contact">CONTACT</Link>
+                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/automate">AUTOMATE</Link>
             </nav>
             <Link href="/contact" className="bg-[#E8441A] text-white px-6 py-2 font-headline uppercase tracking-tighter font-bold scale-100 active:scale-95 hover:bg-[#F5C518] hover:text-black transition-all duration-75 inline-block border-4 border-transparent hover:border-black">
                 LET'S TALK →
