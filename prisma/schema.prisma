@@ -135,3 +135,18 @@ model Video {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Lead {
+  id        String   @id @default(cuid())
+  email     String
+  createdAt DateTime @default(now())
+}
+
+model Contact {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  objective String
+  message   String
+  createdAt DateTime @default(now())
+}

@@ -4,12 +4,47 @@ import { useState } from "react";
 
 export function LeadForm() {
     const [email, setEmail] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const mailtoLink = `mailto:nyx.studios.ai@gmail.com?subject=${encodeURIComponent("New NYX Studio Lead")}&body=${encodeURIComponent(`I am ready to grow. My email is: ${email}`)}`;
-        window.location.href = mailtoLink;
+        
+        if (!email) return;
+        
+        setIsLoading(true);
+        setStatus("idle");
+        
+        try {
+            const res = await fetch("/api/lead", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email }),
+            });
+            
+            if (!res.ok) {
+                throw new Error("Failed to submit");
+            }
+            
+            setStatus("success");
+            setEmail("");
+        } catch (error) {
+            console.error(error);
+            setStatus("error");
+        } finally {
+            setIsLoading(false);
+        }
     };
+
+    if (status === "success") {
+        return (
+            <div className="w-full max-w-2xl bg-[#E8441A] text-white p-6 border-4 border-black font-headline font-bold text-center uppercase tracking-wider">
+                TRANSMISSION SUCCESSFUL. WE WILL BE IN TOUCH.
+            </div>
+        );
+    }
 
     return (
         <form className="w-full max-w-2xl flex flex-col md:flex-row gap-0" onSubmit={handleSubmit}>
@@ -21,8 +56,8 @@ export function LeadForm() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
             />
-            <button className="bg-black text-white font-headline font-bold px-10 py-5 uppercase border-4 border-black border-l-0 hover:bg-secondary hover:text-black transition-colors flex items-center justify-center gap-2" type="submit">
-                Let's Talk <span className="material-symbols-outlined">arrow_forward</span>
+            <button className="bg-black text-white font-headline font-bold px-10 py-5 uppercase border-4 border-black border-l-0 hover:bg-secondary hover:text-black transition-colors flex items-center justify-center gap-2 disabled:opacity-50" type="submit" disabled={isLoading}>
+                {isLoading ? "PROCESSING..." : "Let's Talk"} {!isLoading && <span className="material-symbols-outlined">arrow_forward</span>}
             </button>
         </form>
     );

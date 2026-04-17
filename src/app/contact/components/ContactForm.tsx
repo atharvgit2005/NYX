@@ -7,15 +7,51 @@ export function ContactForm() {
     const [email, setEmail] = useState("");
     const [objective, setObjective] = useState("BRAND_IDENTITY");
     const [message, setMessage] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        const subject = `New NYX Studio Lead: ${objective} from ${name}`;
-        const body = `Name: ${name}\nEmail: ${email}\nObjective: ${objective}\n\nMessage Payload:\n${message}`;
         
-        const mailtoLink = `mailto:nyx.studios.ai@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        window.location.href = mailtoLink;
+        if (!name || !email || !objective || !message) return;
+        
+        setIsLoading(true);
+        setStatus("idle");
+        
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ name, email, objective, message }),
+            });
+            
+            if (!res.ok) {
+                throw new Error("Failed to submit");
+            }
+            
+            setStatus("success");
+            setName("");
+            setEmail("");
+            setMessage("");
+            setObjective("BRAND_IDENTITY");
+        } catch (error) {
+            console.error(error);
+            setStatus("error");
+        } finally {
+            setIsLoading(false);
+        }
     };
+
+    if (status === "success") {
+        return (
+            <div className="w-full bg-[#E8441A] text-white p-8 border-4 border-black font-headline text-center uppercase tracking-wider">
+                <h3 className="text-2xl md:text-4xl font-black mb-4">TRANSMISSION RECEIVED</h3>
+                <p className="font-bold">YOUR DATA HAS BEEN SECURELY LOGGED. OPERATIVES WILL BE IN TOUCH SHORTLY.</p>
+            </div>
+        );
+    }
 
     return (
                 <form className="space-y-8" onSubmit={handleSubmit}>
@@ -80,8 +116,8 @@ export function ContactForm() {
                 </div>
             </div>
             <div className="form-element pt-4 opacity-0">
-                <button className="glitch-btn w-full md:w-auto bg-[#E8441A] text-white px-2 md:px-12 py-4 md:py-6 font-headline font-black text-[1.05rem] md:text-2xl uppercase tracking-tighter border-4 border-black transition-all duration-150 active:scale-95 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap overflow-hidden text-ellipsis" id="submit-btn" type="submit">
-                    INITIALIZE_TRANSFER →
+                <button className="glitch-btn w-full md:w-auto bg-[#E8441A] text-white px-2 md:px-12 py-4 md:py-6 font-headline font-black text-[1.05rem] md:text-2xl uppercase tracking-tighter border-4 border-black transition-all duration-150 active:scale-95 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap overflow-hidden text-ellipsis disabled:opacity-50 disabled:active:scale-100" id="submit-btn" type="submit" disabled={isLoading}>
+                    {isLoading ? "PROCESSING..." : "INITIALIZE_TRANSFER →"}
                 </button>
             </div>
         </form>
