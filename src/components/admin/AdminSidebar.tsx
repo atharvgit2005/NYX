@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import {
     LayoutDashboard, Users, CreditCard, Layers, Shield,
     BarChart3, ScrollText, Bell, ChevronLeft, ChevronRight,
-    LogOut, AlertTriangle
+    LogOut, AlertTriangle, BookOpen
 } from 'lucide-react';
 import { useAdmin } from '@/context/AdminContext';
 import Image from 'next/image';
@@ -18,6 +18,7 @@ const navItems = [
     { name: 'Tiers', href: '/automate/admin/tiers', icon: Layers },
     { name: 'Feature Gates', href: '/automate/admin/gates', icon: Shield },
     { name: 'Analytics', href: '/automate/admin/analytics', icon: BarChart3 },
+    { name: 'Inquiries', href: '/automate/admin/inquiries', icon: BookOpen },
     { name: 'Audit Log', href: '/automate/admin/audit', icon: ScrollText },
     { name: 'Alerts', href: '/automate/admin/alerts', icon: Bell },
 ];
