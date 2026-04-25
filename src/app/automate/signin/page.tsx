@@ -40,7 +40,7 @@ export default function SignInPage() {
                     </button>
 
                     <div className="mt-6 text-center text-sm text-theme-secondary">
-                        Don't have an account?{' '}
+                        Don&apos;t have an account?{' '}
                         <Link href="/automate/signup" className="text-orange-500 hover:text-orange-400 font-medium">
                             Sign up
                         </Link>

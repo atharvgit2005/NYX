@@ -44,7 +44,7 @@ export function ServiceAnimations() {
             });
 
             // 3. Sequential Service Card Reveals
-            gsap.utils.toArray('.js-card').forEach((card: any, i) => {
+            gsap.utils.toArray('.js-card').forEach((card: Element, i) => {
                 gsap.from(card, {
                     scrollTrigger: {
                         trigger: card,

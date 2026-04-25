@@ -40,7 +40,7 @@ export default function AdServicesPage() {
                 <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/automate">AUTOMATE</Link>
             </nav>
             <Link href="/contact" className="bg-[#E8441A] text-white px-3 md:px-6 py-1 md:py-2 font-headline uppercase tracking-tighter font-bold text-[0.75rem] md:text-base scale-100 active:scale-95 hover:bg-[#F5C518] hover:text-black transition-all duration-75 inline-block border-4 border-transparent hover:border-black whitespace-nowrap">
-                LET'S TALK →
+                LET&apos;S TALK →
             </Link>
         </header>
 
@@ -53,7 +53,7 @@ export default function AdServicesPage() {
                     <span className="font-label text-xs uppercase tracking-widest text-primary mb-4 block animate-reveal">* THE MIDNIGHT MANIFESTO / 2024</span>
                     <h1 className="font-headline text-huge font-black tracking-tighter uppercase mb-8 reveal-ink js-ink-reveal">OUR<br/>SERVICES</h1>
                     <p className="font-body text-xl max-w-2xl text-on-surface-variant leading-relaxed animate-reveal">
-                                    We don't do "marketing." We build cultural infrastructure. Our services are designed for brands that thrive in the shadows of the mainstream and the spotlight of the subculture.
+                                    We don&apos;t do &quot;marketing.&quot; We build cultural infrastructure. Our services are designed for brands that thrive in the shadows of the mainstream and the spotlight of the subculture.
                     </p>
                 </div>
             </section>
@@ -93,7 +93,7 @@ export default function AdServicesPage() {
                     <div className="md:col-span-5 p-8 md:p-16 border-r-4 border-ink-black flex flex-col justify-center bg-primary js-card">
                         <span className="font-label text-xs uppercase tracking-widest text-on-primary mb-6 block">* SERVICE_02</span>
                         <h2 className="font-headline text-5xl md:text-7xl font-black tracking-tighter uppercase text-on-primary leading-none mb-6 reveal-ink js-ink-reveal break-words">PAID<br/>SOCIAL</h2>
-                        <p className="text-on-primary-container font-medium text-lg">Precision targeting meets raw creativity. We don't buy ads; we buy attention.</p>
+                        <p className="text-on-primary-container font-medium text-lg">Precision targeting meets raw creativity. We don&apos;t buy ads; we buy attention.</p>
                     </div>
                     <div className="md:col-span-7 grid grid-cols-1 md:grid-cols-2">
                         <div className="p-12 border-b-4 md:border-b-0 md:border-r-4 border-ink-black flex flex-col gap-8 hover:bg-secondary transition-colors group js-card">

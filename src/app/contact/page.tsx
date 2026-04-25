@@ -42,7 +42,7 @@ export default function AdContactPage() {
                 <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/automate">AUTOMATE</Link>
             </div>
             <Link href="/contact" className="bg-[#ffb4a2] text-black px-3 md:px-6 py-1 md:py-3 font-headline font-bold text-[0.75rem] md:text-base uppercase tracking-tighter border-4 border-black transition-all duration-75 hover:bg-[#F5C518] active:scale-95 inline-block whitespace-nowrap">
-                LET'S TALK →
+                LET&apos;S TALK →
             </Link>
         </nav>
 
@@ -56,7 +56,7 @@ export default function AdContactPage() {
                     </div>
                     <p className="font-headline text-black text-xl mb-4 font-bold tracking-widest">* ESTABLISH CONTACT</p>
                     <h1 className="text-[5rem] md:text-[8rem] lg:text-[10rem] font-black leading-[0.85] tracking-tighter text-black uppercase font-headline" id="hero-headline">
-                        LET'S START THE MANIFESTO.
+                        LET&apos;S START THE MANIFESTO.
                     </h1>
                 </div>
             </section>
@@ -133,7 +133,7 @@ export default function AdContactPage() {
                         <span className="text-secondary font-headline font-bold text-xl uppercase">* THE_VIBE</span>
                         <h3 className="text-5xl md:text-7xl font-black tracking-tighter text-white font-headline leading-none">NOCTURNAL BY CHOICE.</h3>
                         <p className="text-on-surface-variant text-xl leading-relaxed font-body max-w-md">
-                            We don't work the 9-to-5. Our best manifestos are written under the hum of neon and the silence of the midnight hour. Reach out when the sun goes down.
+                            We don&apos;t work the 9-to-5. Our best manifestos are written under the hum of neon and the silence of the midnight hour. Reach out when the sun goes down.
                         </p>
                     </div>
                 </div>

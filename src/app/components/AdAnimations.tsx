@@ -61,7 +61,7 @@ export function AdAnimations() {
             // GSAP marquee removal preserves system stability against React mounting.
 
             // Bento Cards Animation
-            gsap.utils.toArray('.bento-card').forEach((card: any, i) => {
+            gsap.utils.toArray('.bento-card').forEach((card: Element, i) => {
                 gsap.fromTo(card,
                     { y: 100, opacity: 0 },
                     {

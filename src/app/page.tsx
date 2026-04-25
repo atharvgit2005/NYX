@@ -148,7 +148,7 @@ export default function AdPage() {
                         </div>
                         <div>
                             <h3 className="font-headline text-4xl md:text-5xl font-black text-black uppercase mb-4 leading-none break-words">INFLUENCER OPS</h3>
-                            <p className="text-black font-medium text-base md:text-lg">Strategic matchmaking that bypasses the "ad" filter.</p>
+                            <p className="text-black font-medium text-base md:text-lg">Strategic matchmaking that bypasses the &quot;ad&quot; filter.</p>
                         </div>
                     </div>
                     {/* Card 4: Pink */}
@@ -159,7 +159,7 @@ export default function AdPage() {
                         </div>
                         <div>
                             <h3 className="font-headline text-4xl md:text-6xl font-black text-black uppercase mb-4 leading-none break-words">STRATEGY &amp; AUDIT</h3>
-                            <p className="text-black font-medium text-base md:text-lg max-w-md">Data-driven roadmaps that expose competitors' weaknesses and exploit market gaps.</p>
+                            <p className="text-black font-medium text-base md:text-lg max-w-md">Data-driven roadmaps that expose competitors&apos; weaknesses and exploit market gaps.</p>
                         </div>
                     </div>
                 </div>
