@@ -31,7 +31,7 @@ export function WorkAnimations() {
             });
 
             // Bento Cards Animation
-            gsap.utils.toArray('.bento-card').forEach((card: Element, i) => {
+            (gsap.utils.toArray('.bento-card') as HTMLElement[]).forEach((card, i) => {
                 gsap.fromTo(card,
                     { y: 150, opacity: 0 },
                     {

@@ -15,7 +15,7 @@ export function AdAnimations() {
         const ctx = gsap.context(() => {
             // Text Reveal for Headlines
             document.querySelectorAll('.reveal-text span.block').forEach(span => {
-                gsap.fromTo(span, 
+                gsap.fromTo(span,
                     { y: "110%" },
                     {
                         y: "0%",
@@ -30,7 +30,7 @@ export function AdAnimations() {
             });
 
             // Hero Visual Entrance
-            gsap.fromTo('.hero-visual', 
+            gsap.fromTo('.hero-visual',
                 { scale: 0.8, opacity: 0 },
                 {
                     scale: 1,
@@ -49,7 +49,7 @@ export function AdAnimations() {
                 yoyo: true,
                 ease: "power1.inOut"
             });
-            
+
             gsap.to('.secondary-icon', {
                 rotation: 360,
                 duration: 20,
@@ -61,7 +61,7 @@ export function AdAnimations() {
             // GSAP marquee removal preserves system stability against React mounting.
 
             // Bento Cards Animation
-            gsap.utils.toArray('.bento-card').forEach((card: Element, i) => {
+            (gsap.utils.toArray('.bento-card') as HTMLElement[]).forEach((card, i) => {
                 gsap.fromTo(card,
                     { y: 100, opacity: 0 },
                     {
@@ -79,7 +79,7 @@ export function AdAnimations() {
             });
 
             // Manifesto Elements
-            gsap.fromTo('.manifesto-pills > div', 
+            gsap.fromTo('.manifesto-pills > div',
                 { scale: 0, opacity: 0 },
                 {
                     scale: 1,
@@ -94,7 +94,7 @@ export function AdAnimations() {
                 }
             );
 
-            gsap.fromTo('.manifesto-glow', 
+            gsap.fromTo('.manifesto-glow',
                 { opacity: 0, scale: 0.5 },
                 {
                     opacity: 0.2,
@@ -109,7 +109,7 @@ export function AdAnimations() {
             );
 
             // Stats Counter-like reveal
-            gsap.fromTo('.stat-item', 
+            gsap.fromTo('.stat-item',
                 { y: 40, opacity: 0 },
                 {
                     y: 0,
