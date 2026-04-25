@@ -1,16 +1,15 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import * as THREE from 'three';
+import { usePathname } from 'next/navigation';
 
 export function ServiceAnimations() {
-    const isMounted = useRef(false);
+    const pathname = usePathname();
 
     useEffect(() => {
-        if (isMounted.current) return;
-        isMounted.current = true;
 
         // --- GSAP Animations ---
         gsap.registerPlugin(ScrollTrigger);
@@ -161,10 +160,14 @@ export function ServiceAnimations() {
         return () => {
             ctx.revert();
             if (animationId) cancelAnimationFrame(animationId);
-            if (renderer) renderer.dispose();
-            // Optional: container.innerHTML = '';
+            if (renderer) {
+                renderer.dispose();
+                if (container && renderer.domElement && container.contains(renderer.domElement)) {
+                    container.removeChild(renderer.domElement);
+                }
+            }
         };
-    }, []);
+    }, [pathname]);
 
     return null;
 }

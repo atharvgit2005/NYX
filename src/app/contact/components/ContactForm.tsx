@@ -6,9 +6,17 @@ export function ContactForm() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [objective, setObjective] = useState("BRAND_IDENTITY");
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [message, setMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+
+    const objectiveOptions = [
+        "BRAND_IDENTITY",
+        "DIGITAL_MANIFESTO",
+        "VISUAL_SABOTAGE",
+        "GENERAL_INTEL"
+    ];
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -85,20 +93,52 @@ export function ContactForm() {
                     </div>
                 </div>
             </div>
-            <div className="form-element opacity-0">
+            <div className={`form-element opacity-0 ${isDropdownOpen ? 'relative z-50' : 'relative z-10'}`}>
                 <label className="block text-xs font-headline font-black uppercase tracking-widest text-black mb-2">* MISSION_OBJECTIVE</label>
                 <div className="relative">
                     <div className="form-border-draw"></div>
-                    <select 
-                        className="w-full bg-transparent border-4 border-black p-4 text-black font-bold focus:ring-0 focus:border-[#E8441A] transition-colors focus:outline-none appearance-none"
-                        value={objective}
-                        onChange={(e) => setObjective(e.target.value)}
+                    <div 
+                        className="relative"
+                        tabIndex={0}
+                        onBlur={(e) => {
+                            if (!e.currentTarget.contains(e.relatedTarget)) {
+                                setIsDropdownOpen(false);
+                            }
+                        }}
                     >
-                        <option value="BRAND_IDENTITY">BRAND_IDENTITY</option>
-                        <option value="DIGITAL_MANIFESTO">DIGITAL_MANIFESTO</option>
-                        <option value="VISUAL_SABOTAGE">VISUAL_SABOTAGE</option>
-                        <option value="GENERAL_INTEL">GENERAL_INTEL</option>
-                    </select>
+                        {/* Base Button (takes up space, invisible when open) */}
+                        <button
+                            type="button"
+                            className={`w-full bg-white border-4 border-black p-4 text-black font-bold focus:ring-0 transition-colors focus:outline-none flex justify-between items-center ${isDropdownOpen ? 'opacity-0' : 'hover:border-[#E8441A]'}`}
+                            onClick={() => setIsDropdownOpen(true)}
+                        >
+                            <span>{objective}</span>
+                            <svg className="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" /></svg>
+                        </button>
+                        
+                        {/* Absolute Overlay Dropdown Panel */}
+                        {isDropdownOpen && (
+                            <div className="absolute top-0 left-0 w-full bg-white border-4 border-[#E8441A] z-50 flex flex-col shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] animate-fade-in origin-top">
+                                {objectiveOptions.map((opt) => (
+                                    <button
+                                        key={opt}
+                                        type="button"
+                                        className={`text-left font-bold p-4 hover:bg-[#E8441A] hover:text-white transition-colors border-b-4 border-black last:border-b-0 flex justify-between items-center ${objective === opt ? 'bg-black text-white' : 'text-black'}`}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setObjective(opt);
+                                            setIsDropdownOpen(false);
+                                        }}
+                                    >
+                                        <span>{opt}</span>
+                                        {objective === opt && (
+                                            <svg className="w-5 h-5 rotate-180 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" /></svg>
+                                        )}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
             <div className="form-element opacity-0">

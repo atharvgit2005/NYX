@@ -1,15 +1,14 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import { usePathname } from 'next/navigation';
 
 export function WorkAnimations() {
-    const isMounted = useRef(false);
+    const pathname = usePathname();
 
     useEffect(() => {
-        if (isMounted.current) return;
-        isMounted.current = true;
 
         gsap.registerPlugin(ScrollTrigger);
 
@@ -53,7 +52,7 @@ export function WorkAnimations() {
         });
 
         return () => ctx.revert();
-    }, []);
+    }, [pathname]);
 
     return null;
 }

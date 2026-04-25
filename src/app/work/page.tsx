@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { WorkAnimations } from "../components/WorkAnimations";
+import { WorkGrid } from "../components/WorkGrid";
 import "../page.css";
 import { MobileNav } from "../components/MobileNav";
 
@@ -64,81 +65,8 @@ export default function AdWorkPage() {
                 </div>
             </header>
 
-            {/* Asymmetric Bento Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 auto-rows-[minmax(300px,auto)]">
-                {/* Project 01 */}
-                <div className="bento-card md:col-span-8 group relative overflow-hidden bento-border bg-[#1c1b1b] transition-all duration-300 hover:bg-[#ffb4a2]">
-                    <div className="absolute top-4 right-4 z-10 flex gap-2">
-                        <span className="bg-black text-white px-3 py-1 font-label text-xs uppercase">* EDITORIAL DESIGN</span>
-                    </div>
-                    <div className="h-full w-full min-h-[500px] flex flex-col md:flex-row">
-                        <div className="md:w-1/2 p-12 flex flex-col justify-between">
-                            <div>
-                                <span className="font-headline text-6xl text-[#E8441A] group-hover:text-black transition-colors">01</span>
-                                <h2 className="font-headline text-5xl font-bold uppercase mt-4 group-hover:text-black transition-colors">AETHER CAMPAIGN</h2>
-                            </div>
-                            <p className="font-body text-lg max-w-xs group-hover:text-black/80 transition-colors">A transcendental visual narrative exploring the intersection of digital decay and classical form.</p>
-                        </div>
-                        <div className="md:w-1/2 bg-black relative overflow-hidden">
-                            <img alt="Abstract 3D ethereal shapes" className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUulpU6A18uD617RCZzVXDqIUjobuCegAV8QeieIojg4Ug5Ou0q9HOFnRt22x3t6Jnwnvsgti1A8pU_AQ5jeMaFScgEBUmJlC3DmBOcSZZ35LKN4OkiEsnBcRodWd2RjTdfIHGEyp6O7mGseUCLMpFY6IDmpn18KwZp6bHpUKW3jqRS1g8JPBmYxbKFqotQMqFkfS7SPDHwjnxBcR5OhSdnS0it5ztzIb-6bZQP5bdKY23EufgxkgVnokXnpbmGPRm4RnysFOUY8hZ"/>
-                        </div>
-                    </div>
-                    <div className="absolute bottom-0 left-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span className="material-symbols-outlined text-4xl text-black">arrow_outward</span>
-                    </div>
-                </div>
-
-                {/* Project 02 */}
-                <div className="bento-card md:col-span-4 group relative overflow-hidden bento-border bg-[#2a2a2a] transition-all duration-300 hover:bg-[#ffd65b]">
-                    <div className="p-8 h-full flex flex-col">
-                        <div className="mb-8">
-                            <span className="bg-black text-white px-3 py-1 font-label text-xs uppercase">* DIGITAL PRODUCT</span>
-                        </div>
-                        <div className="flex-grow">
-                            <span className="font-headline text-4xl text-[#F5C518] group-hover:text-black">02</span>
-                            <h2 className="font-headline text-4xl font-bold uppercase mt-2 group-hover:text-black">NEON DRIFT</h2>
-                        </div>
-                        <div className="mt-8 border-t-4 border-black pt-4 group-hover:border-black/20">
-                            <img alt="Cyberpunk interface detail" className="w-full aspect-square object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe_U5eQsxm3jSjWOJbvS_KSc3GlVbkTO85DDrnsntltDCJzn_fTT0-lceUbyOw3r9U07XwOUBprqY6jtEqA4sj7Zhy-C9iHq2XcHz1doI0rWyHCKfCaAefk0T0-TUzbXqZXxGYmTU11nuaadBVvyipXoeSd-2BOAEEaGset_qhm_rv-UG61PtYcQXohRVjFPwRbuM4PpRfCyls9x-V0a9ORCDUg5WA0afkgKRiUnwvbND-hgcBNjTuJGvbNU17VfpEVxHFcvGXBmn0"/>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Project 03 */}
-                <div className="bento-card md:col-span-5 group relative overflow-hidden bento-border bg-[#0e0e0e] transition-all duration-300 hover:bg-[#3da452]">
-                    <div className="h-full flex flex-col">
-                        <div className="relative h-64 overflow-hidden">
-                            <img alt="Luxury fashion model" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-125 group-hover:scale-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD01ISdydSb0bf_FjOM3nFO0t6L45k4m7mkUyvD1g_zhXuLomfJYFF8zS3uOhky9tSqDGS6W_fBzpxG9a0Q86UwKACOXvs6xRJ4ZvmpwuxD0x_TjSsZMI4SAhx4ILibW758Jvq_AtqqXr7--LAVdDyFkJAOBRKH39gTlnjWzpOTn-tFDibDaN3CccPnp1Nutk788psPLE8woNup34C2M0K4-QFO_LfQirskdE3TmKm1jLfDYj9PdSUPZdPyNvN2qHpuDiXJfeSzNXNN"/>
-                        </div>
-                        <div className="p-8 flex-grow flex flex-col justify-between">
-                            <div>
-                                <span className="font-headline text-4xl text-[#76dc83] group-hover:text-white">03</span>
-                                <h2 className="font-headline text-4xl font-bold uppercase mt-2 group-hover:text-white">VELVET REBEL</h2>
-                            </div>
-                            <div className="mt-4">
-                                <span className="font-label text-xs uppercase text-stone-500 group-hover:text-white/70 tracking-widest">* ART DIRECTION</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Project 04 */}
-                <div className="bento-card md:col-span-7 group relative overflow-hidden bento-border bg-black transition-all duration-300 hover:invert">
-                    <div className="absolute inset-0 opacity-20">
-                        <img alt="Grid pattern" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKnuy_y4OrZ1ySjpUZ--ba4Fo3H9_2UTfC-wTc-G9VE9mXCCNEqHzjV9sRIOseoTFcI-WsU9ILF0nRpZOBUj-hrYwBKF8gmNjBt7h22VHFrWdYdCENyMR-XAEuHASp_1bR5qSDAVHBvV4g6DExy2K3Gkk5E2WDqxtmQiZAQE7975Lnq9-P1b5jgOn3aJgLFxRkk0HpDgzl-RUL7Zb9jnNEMeg7uyCEiO2IT5KK0Q6hSlnm-QOlnbSWR0MW2wCPThUTSOeAl90Uuqu0"/>
-                    </div>
-                    <div className="relative z-10 p-12 h-full flex flex-col justify-center items-center text-center">
-                        <span className="font-headline text-9xl text-white drop-shadow-2xl">04</span>
-                        <h2 className="font-headline text-6xl font-black uppercase mt-4 text-white">SHADOW ARCHIVE</h2>
-                        <p className="font-body text-white/60 mt-6 max-w-md tracking-wider uppercase text-sm">Experimental data visualization mapping the unseen digital footprints of urban environments.</p>
-                        <div className="mt-12">
-                            <button className="border-4 border-white text-white px-10 py-4 font-headline font-bold uppercase hover:bg-white hover:text-black transition-all">
-                                ENTER THE VOID →
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {/* Interactive Asymmetric Bento Grid */}
+            <WorkGrid />
 
             {/* Next Project CTA */}
             <section className="mt-32 mb-12 border-4 border-black bg-[#ffb4a2] p-16 relative overflow-hidden group">
