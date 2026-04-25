@@ -153,7 +153,7 @@ export default function AdServicesPage() {
                         <h2 className="font-headline text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none reveal-ink js-ink-reveal break-words">BRAND<br/>GROWTH</h2>
                     </div>
                     <p className="font-body text-lg leading-relaxed opacity-80 animate-reveal">
-                        Scaling is an art form. We provide the operational backbone and strategic foresight to move your brand from "niche favorite" to "cultural staple" without losing the edge that made you famous.
+                        Scaling is an art form. We provide the operational backbone and strategic foresight to move your brand from &quot;niche favorite&quot; to &quot;cultural staple&quot; without losing the edge that made you famous.
                     </p>
                     <div className="mt-12">
                         <Link href="/contact" className="w-full md:w-auto bg-[#76dc83] text-ink-black px-12 py-6 font-headline text-2xl font-black uppercase tracking-tighter hover:bg-[#ffd65b] hover:translate-x-2 hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all animate-reveal inline-block text-center border-4 border-black border-solid border-2 zine-shadow">

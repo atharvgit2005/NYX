@@ -40,7 +40,7 @@ export default function AdWorkPage() {
                         <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] hover:bg-[#F5C518] hover:text-black transition-all duration-75 px-2" href="/automate">AUTOMATE</Link>
                     </div>
                     <Link href="/contact" className="bg-[#ffb4a2] px-3 md:px-6 py-1 md:py-2 text-black font-headline font-bold text-[0.75rem] md:text-base uppercase tracking-tighter border-4 border-black hover:bg-[#F5C518] hover:translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0px_#000000] transition-all duration-75 inline-block whitespace-nowrap">
-                        LET'S TALK →
+                        LET&apos;S TALK →
                     </Link>
                 </nav>
 
@@ -79,7 +79,7 @@ export default function AdWorkPage() {
                                 <span className="text-white group-hover:text-[#ffd65b] transition-colors block leading-tight mt-2">NEXT IN LINE</span>
                             </h3>
                             <div className="mt-12 flex flex-col md:flex-row gap-8 items-start md:items-center">
-                                <p className="font-body text-xl text-black font-medium max-w-xl">We are currently accepting new partners for the Q3-Q4 broadcast cycle. Let's build something that demands attention.</p>
+                                <p className="font-body text-xl text-black font-medium max-w-xl">We are currently accepting new partners for the Q3-Q4 broadcast cycle. Let&apos;s build something that demands attention.</p>
                                 <Link className="bg-black text-white px-12 py-6 text-2xl font-headline font-bold uppercase group-hover:translate-x-4 transition-transform zine-shadow" href="/contact">
                                     BOOK A DISCOVERY →
                                 </Link>
