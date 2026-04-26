@@ -56,8 +56,8 @@ export default function AdWorkPage() {
                     <header className="mb-24 relative">
                         <div className="absolute -top-12 -left-12 text-[#E8441A] opacity-20 text-[15rem] font-black select-none pointer-events-none">WORK</div>
                         <h1 className="text-[clamp(4rem,15vw,12rem)] font-headline font-black leading-[0.8] tracking-tighter uppercase relative reveal-text">
-                            <span className="block">SELECTED</span>
-                            <span className="text-[#E8441A] block">WORK</span>
+                            <span className="block">CONCEPTS &</span>
+                            <span className="text-[#E8441A] block">EARLY WORK</span>
                         </h1>
                         <div className="flex items-center gap-4 mt-8">
                             <span className="w-12 h-1 bg-[#F5C518]"></span>
@@ -109,7 +109,7 @@ export default function AdWorkPage() {
                     </Link>
                     <div className="flex flex-wrap justify-center gap-8">
                         <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
-                        <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank">LINKEDIN</a>
+                        <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/company/nyx-studio-ai/?viewAsMember=true" target="_blank">LINKEDIN</a>
                         <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">TWITTER</a>
                         <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
                     </div>

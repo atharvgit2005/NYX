@@ -6,6 +6,8 @@ import { AdAnimations } from "./components/AdAnimations";
 import "./page.css";
 import { MobileNav } from "./components/MobileNav";
 
+import { LiveHub } from "./components/LiveHub";
+
 export const metadata: Metadata = {
   title: "NYX STUDIO | THE MIDNIGHT MANIFESTO",
 };
@@ -39,9 +41,7 @@ export default function AdPage() {
                 <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/contact">CONTACT</Link>
                 <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/automate">AUTOMATE</Link>
             </nav>
-            <div className="text-[#E8441A] font-headline uppercase tracking-[-0.05em] text-[0.75rem] md:text-[1.1rem] font-bold border-2 border-[#E8441A] px-2 md:px-4 py-1 whitespace-nowrap">
-                *LIVE_NOW
-            </div>
+            <LiveHub />
         </header>
 
         <main className="pt-[88px] pb-20 md:pb-0">
@@ -90,22 +90,11 @@ export default function AdPage() {
                 </div>
             </section>
 
-            {/* Stats Bar */}
-            <section className="bg-secondary border-b-4 border-black py-12 px-8">
-                <div className="flex flex-col md:flex-row justify-between items-center gap-8 max-w-7xl mx-auto">
-                    <div className="text-center md:text-left stat-item">
-                        <p className="font-headline font-black text-5xl md:text-7xl text-black">320M+</p>
-                        <p className="font-label uppercase tracking-widest text-black/60 font-bold">* REACH GENERATED</p>
-                    </div>
-                    <div className="text-center md:text-left stat-item">
-                        <p className="font-headline font-black text-5xl md:text-7xl text-black">4.8x</p>
-                        <p className="font-label uppercase tracking-widest text-black/60 font-bold">* AVG. ROAS</p>
-                    </div>
-                    <div className="text-center md:text-left stat-item">
-                        <p className="font-headline font-black text-5xl md:text-7xl text-black">50+</p>
-                        <p className="font-label uppercase tracking-widest text-black/60 font-bold">* BRANDS GROWN</p>
-                    </div>
-                </div>
+            {/* Status Bar */}
+            <section className="bg-secondary border-b-4 border-black py-12 px-8 text-center">
+                <p className="font-headline font-black text-3xl md:text-5xl text-black uppercase tracking-tighter max-w-7xl mx-auto">
+                    Selectively onboarding our first brand partners. Limited spots, Q3 2026.
+                </p>
             </section>
 
             {/* Services Bento */}
@@ -182,6 +171,9 @@ export default function AdPage() {
                             <div className="bg-black text-white px-4 py-1 font-label text-sm uppercase">* NO POLITE BS</div>
                             <div className="bg-black text-white px-4 py-1 font-label text-sm uppercase">* JUST GROWTH</div>
                         </div>
+                        <p className="text-black font-label font-bold uppercase tracking-tight opacity-80 max-w-2xl mx-auto mt-12">
+                            Currently building our first client roster — if you&apos;re reading this, you&apos;re early.
+                        </p>
                     </div>
                 </div>
                 {/* Registration Marks */}
@@ -261,14 +253,14 @@ export default function AdPage() {
                     <div className="text-2xl font-black text-white uppercase font-headline">NYX STUDIO</div>
                 </Link>
                 <p className="font-headline text-[0.75rem] uppercase tracking-wider text-white/60">
-                    ©2024 NYX STUDIO | THE MIDNIGHT MANIFESTO
+                    ©2026 NYX STUDIO | THE MIDNIGHT MANIFESTO
                 </p>
             </div>
             <div className="flex gap-12">
                 <div className="flex flex-col gap-2">
                     <span className="text-[#E8441A] font-label text-[0.75rem] uppercase font-bold tracking-widest">CONNECT</span>
                     <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
-                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank">LINKEDIN</a>
+                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="https://www.linkedin.com/company/nyx-studio-ai/?viewAsMember=true" target="_blank">LINKEDIN</a>
                 </div>
                 <div className="flex flex-col gap-2">
                     <span className="text-[#E8441A] font-label text-[0.75rem] uppercase font-bold tracking-widest">RESOURCES</span>

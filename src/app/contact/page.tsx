@@ -90,7 +90,7 @@ export default function AdContactPage() {
                                         <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">
                                             <span className="mr-4 text-xs">01/</span> INSTAGRAM <span className="ml-auto opacity-0 group-hover:opacity-100">↗</span>
                                         </a>
-                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank">
+                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.linkedin.com/company/nyx-studio-ai/?viewAsMember=true" target="_blank">
                                             <span className="mr-4 text-xs">02/</span> LINKEDIN <span className="ml-auto opacity-0 group-hover:opacity-100">↗</span>
                                         </a>
                                         <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">
@@ -163,7 +163,7 @@ export default function AdContactPage() {
                 <Link className="hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
             </div>
             <div className="text-gray-500 font-body text-xs uppercase tracking-widest">
-                © 2024 NYX STUDIO * THE MIDNIGHT MANIFESTO
+                © 2026 NYX STUDIO * THE MIDNIGHT MANIFESTO
             </div>
         </footer>
         <MobileNav />

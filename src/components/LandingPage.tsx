@@ -416,7 +416,7 @@ export default function LandingPage() {
                                 <a href="https://www.instagram.com/nyx.studios.ai/" target="_blank" rel="noopener noreferrer" className="p-2 -ml-2 text-theme-secondary hover:text-orange-500 transition-colors rounded-full hover:bg-card-hover">
                                     <Instagram className="w-5 h-5" />
                                 </a>
-                                <a href="#" className="p-2 text-theme-secondary hover:text-orange-500 transition-colors rounded-full hover:bg-card-hover">
+                                <a href="https://www.linkedin.com/company/nyx-studio-ai/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="p-2 text-theme-secondary hover:text-orange-500 transition-colors rounded-full hover:bg-card-hover">
                                     <Linkedin className="w-5 h-5" />
                                 </a>
                             </div>
