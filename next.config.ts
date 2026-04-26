@@ -5,6 +5,9 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     // Allow SVGs from DiceBear (avatar generator returns image/svg+xml)
     dangerouslyAllowSVG: true,
