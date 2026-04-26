@@ -311,7 +311,7 @@ export default function LandingPage() {
                                 <div className="w-[96px] h-[96px] mb-6 rounded-full overflow-hidden ring-2 ring-[#F97316]/30 border-2 border-transparent transition-colors relative">
                                     <Image 
                                         src={founder.image} 
-                                        alt={founder.name} 
+                                        alt={founder.name === 'Atharv Paharia' ? "Atharv Paharia, Co-Founder and Tech Lead at NYX Studio" : "Bhavya Jain, Co-Founder and Product Lead at NYX Studio"} 
                                         fill 
                                         className="object-cover rounded-full"
                                         unoptimized sizes="96px"
@@ -403,9 +403,9 @@ export default function LandingPage() {
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
                         {/* Brand & Mission */}
                         <div className="md:col-span-1">
-                            <Link href="/" className="flex items-center gap-3 mb-6 group hover:opacity-80 transition-opacity">
+                            <Link href="/" className="flex items-center gap-3 mb-6 group hover:opacity-80 transition-opacity" aria-label="NYX Studio Home">
                             <div className="w-8 h-8 flex items-center justify-center relative flex-shrink-0">
-                                <Image src="/logo/NYX-Logo.png" alt="NYX Logo" fill className="object-contain" unoptimized sizes="32px" />
+                                <Image src="/logo/NYX-Logo.png" alt="NYX Studio logo" fill className="object-contain" unoptimized sizes="32px" />
                             </div>
                                 <span className="text-xl font-bold tracking-tight text-theme-primary">NYX</span>
                             </Link>
@@ -457,7 +457,7 @@ export default function LandingPage() {
 
                     <div className="mt-16 pt-8 border-t border-theme flex flex-col md:flex-row items-center justify-center gap-4">
                         <p className="text-theme-secondary text-sm">
-                            © 2026 NYX STUDIO
+                            © 2025 NYX Studio
                         </p>
                     </div>
                 </div>

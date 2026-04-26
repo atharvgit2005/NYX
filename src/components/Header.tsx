@@ -36,9 +36,9 @@ export default function Header() {
                     <Menu className="w-6 h-6" />
                 </button>
 
-                <Link href="/" className="flex items-center gap-3 group">
+                <Link href="/" className="flex items-center gap-3 group" aria-label="NYX Studio Home">
                     <div className="w-8 h-8 relative flex-shrink-0">
-                        <Image src="/logo/NYX-Logo.png" alt="NYX Logo" fill className="object-contain" unoptimized sizes="32px" />
+                        <Image src="/logo/NYX-Logo.png" alt="NYX Studio logo" fill className="object-contain" unoptimized sizes="32px" />
                     </div>
                     <span className="text-lg sm:text-xl font-bold tracking-tight text-theme-primary whitespace-nowrap">NYX</span>
                 </Link>

@@ -10,7 +10,8 @@
     "build": "prisma generate && next build",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@aduptive/instagram-scraper": "^1.0.3",

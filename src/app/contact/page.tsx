@@ -7,8 +7,11 @@ import "../page.css"; // Reuse the css from /ad/page.css for icons and basic sty
 import { MobileNav } from "../components/MobileNav";
 
 export const metadata: Metadata = {
-  title: "CONTACT | BUILD WITH NYX",
-  description: "Ready to scale? Selective onboarding for Q3 2026 brand partners is now open.",
+  title: "Book a Strategy Call | NYX Studio",
+  description: "Ready to grow your brand? Book a free strategy call with NYX Studio — India's AI-native content and performance marketing studio.",
+  alternates: {
+    canonical: '/contact',
+  },
 };
 
 export default function AdContactPage() {
@@ -166,7 +169,7 @@ export default function AdContactPage() {
                 <Link className="hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
             </div>
             <div className="text-gray-500 font-body text-xs uppercase tracking-widest">
-                © 2026 NYX STUDIO
+                © 2025 NYX Studio
             </div>
         </footer>
         <MobileNav />

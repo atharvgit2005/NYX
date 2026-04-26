@@ -18,11 +18,11 @@ export default function Navbar() {
         <div className="flex items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center gap-3 cursor-pointer group">
-            <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+            <Link href="/" className="flex items-center gap-2 flex-shrink-0" aria-label="NYX Studio Home">
               <div className="w-8 h-8 relative flex-shrink-0">
                 <Image 
                   src="/logo/NYX-Logo.png" 
-                  alt="NYX Logo" 
+                  alt="NYX Studio logo" 
                   fill 
                   unoptimized
                   className="object-contain"

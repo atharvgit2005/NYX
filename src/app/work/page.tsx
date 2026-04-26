@@ -7,8 +7,11 @@ import "../page.css";
 import { MobileNav } from "../components/MobileNav";
 
 export const metadata: Metadata = {
-    title: "CONCEPTS & EARLY WORK | NYX STUDIO",
-    description: "Explore the early work and experimental AI content concepts from NYX Studio.",
+    title: "Our Work & Case Studies | NYX Studio",
+    description: "See how NYX Studio has grown D2C brands across social media, paid ads, and content production. Real results, real brands.",
+    alternates: {
+        canonical: '/work',
+    },
 };
 
 export default function AdWorkPage() {
@@ -117,7 +120,7 @@ export default function AdWorkPage() {
                         <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
                     </div>
                     <div className="font-body text-xs uppercase tracking-widest text-white">
-                        © 2026 NYX STUDIO
+                        © 2025 NYX Studio
                     </div>
                 </footer>
                 <MobileNav />

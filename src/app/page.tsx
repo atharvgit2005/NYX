@@ -7,14 +7,43 @@ import "./page.css";
 import { MobileNav } from "./components/MobileNav";
 
 import { LiveHub } from "./components/LiveHub";
+import JsonLd from "@/components/JsonLd";
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "NYX Studio",
+  "url": "https://www.nyxstudio.tech",
+  "logo": "https://www.nyxstudio.tech/logo/logo.png",
+  "description": "AI-powered content studio helping D2C brands grow through content production, paid media, and influencer marketing.",
+  "foundingDate": "2024",
+  "founders": [
+    { "@type": "Person", "name": "Atharv Paharia" },
+    { "@type": "Person", "name": "Bhavya Jain" }
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "url": "https://www.nyxstudio.tech/contact"
+  },
+  "sameAs": [
+    "https://www.instagram.com/nyx.studios.ai/",
+    "https://www.linkedin.com/in/atharv-paharia-468276272/"
+  ]
+};
 
 export const metadata: Metadata = {
-  title: "NYX STUDIO | THE MIDNIGHT MANIFESTO",
+  title: "AI-Powered Content Studio for D2C Brands | NYX Studio",
+  description: "NYX Studio builds scroll-stopping content, paid media, and growth systems for D2C brands. Based in India. 320M+ reach generated. Book a free strategy call.",
+  alternates: {
+    canonical: '/',
+  },
 };
 
 export default function AdPage() {
   return (
     <>
+      <JsonLd data={organizationSchema} />
       <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
@@ -256,7 +285,7 @@ export default function AdPage() {
                     <div className="text-2xl font-black text-white uppercase font-headline">NYX STUDIO</div>
                 </Link>
                 <p className="font-headline text-[0.75rem] uppercase tracking-wider text-white/60">
-                    ©2026 NYX STUDIO
+                    ©2025 NYX Studio
                 </p>
             </div>
             <div className="flex gap-12">

@@ -18,18 +18,36 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  title: "NYX STUDIO | AI Content & Performance Engine",
-  description: "NYX Studio is a performance-driven AI content engine. We build custom content ecosystems that scale reach and drive real growth for the next generation of brands.",
+  metadataBase: new URL('https://nyxstudio.tech'),
+  title: {
+    default: "NYX STUDIO | AI-Powered Content Studio",
+    template: "%s | NYX Studio"
+  },
+  description: "AI-powered content studio helping D2C brands grow through content production, paid media, and influencer marketing.",
   icons: {
     icon: "/logo/logo.png",
   },
   openGraph: {
-    title: "NYX STUDIO | AI Content & Performance Engine",
-    description: "Automate your content empire with high-performance AI ecosystems.",
-    url: "https://nyxstudio.tech",
+    type: "website",
     siteName: "NYX Studio",
     locale: "en_US",
-    type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "NYX Studio - AI Powered Content Engine",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NYX Studio",
+    description: "AI-Powered Content Studio for D2C Brands",
+    images: ["/og-image.jpg"],
+  },
+  alternates: {
+    canonical: './',
   },
 };
 
