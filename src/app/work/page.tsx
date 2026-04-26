@@ -7,7 +7,8 @@ import "../page.css";
 import { MobileNav } from "../components/MobileNav";
 
 export const metadata: Metadata = {
-    title: "WORK | NYX STUDIO",
+    title: "CONCEPTS & EARLY WORK | NYX STUDIO",
+    description: "Explore the early work and experimental AI content concepts from NYX Studio.",
 };
 
 export default function AdWorkPage() {
@@ -20,12 +21,13 @@ export default function AdWorkPage() {
                 {/* TopAppBar */}
                 <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-8 py-4 md:py-6 bg-[#0E0E0E] dark:bg-black border-b-4 border-black dark:border-white/10 rounded-none">
                     <Link href="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0">
-                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl overflow-hidden flex items-center justify-center relative flex-shrink-0">
+                        <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center relative flex-shrink-0">
                             <Image
-                                src="/logo/logo.png"
+                                src="/logo/NYX-Logo.png"
                                 alt="NYX Logo"
                                 fill
-                                className="object-cover"
+                                unoptimized
+                                className="object-contain"
                                 sizes="(max-width: 768px) 32px, 40px"
                             />
                         </div>
@@ -94,12 +96,13 @@ export default function AdWorkPage() {
                 {/* Footer */}
                 <footer className="w-full flex flex-col md:flex-row justify-between items-center px-8 py-12 gap-6 bg-[#0E0E0E] dark:bg-black border-t-4 border-black dark:border-white/10 rounded-none relative z-10">
                     <Link href="/" className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-xl overflow-hidden flex items-center justify-center relative border border-white/20">
+                        <div className="w-8 h-8 flex items-center justify-center relative">
                             <Image
-                                src="/logo/logo.png"
+                                src="/logo/NYX-Logo.png"
                                 alt="NYX Logo"
                                 fill
-                                className="object-cover"
+                                unoptimized
+                                className="object-contain"
                                 sizes="32px"
                             />
                         </div>

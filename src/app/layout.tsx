@@ -18,10 +18,18 @@ const barlowCondensed = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  title: "NYX - AI Content Automation",
-  description: "Automate Your Content Empire",
+  title: "NYX STUDIO | AI Content & Performance Engine",
+  description: "NYX Studio is a performance-driven AI content engine. We build custom content ecosystems that scale reach and drive real growth for the next generation of brands.",
   icons: {
     icon: "/logo/logo.png",
+  },
+  openGraph: {
+    title: "NYX STUDIO | AI Content & Performance Engine",
+    description: "Automate your content empire with high-performance AI ecosystems.",
+    url: "https://nyxstudio.tech",
+    siteName: "NYX Studio",
+    locale: "en_US",
+    type: "website",
   },
 };
 

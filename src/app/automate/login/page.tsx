@@ -71,8 +71,8 @@ function LoginContent() {
         <div className="min-h-screen bg-page flex flex-col justify-center py-12 sm:px-6 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <Link href="/" className="flex flex-col items-center gap-4 group">
-                    <div className="w-16 h-16 rounded-2xl overflow-hidden relative shadow-2xl group-hover:scale-105 transition-transform duration-300">
-                        <Image src="/logo/logo.png" alt="NYX Logo" fill className="object-cover" sizes="64px" />
+                    <div className="w-16 h-16 relative group-hover:scale-105 transition-transform duration-300">
+                        <Image src="/logo/NYX-Logo.png" alt="NYX Logo" fill className="object-contain" unoptimized sizes="64px" />
                     </div>
                     <span className="text-3xl font-bold text-theme-primary">NYX</span>
                 </Link>

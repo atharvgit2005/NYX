@@ -38,8 +38,8 @@ export default function LandingPage() {
 
                     {/* Left Section: Logo */}
                     <Link href="/" className="flex items-center gap-3 pl-4 group hover:opacity-80 transition-opacity">
-                        <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center shadow-md shadow-glow-white-small relative border border-white/10">
-                            <Image src="/logo/logo.png" alt="NYX Logo" fill className="object-cover" sizes="32px" />
+                        <div className="w-8 h-8 flex items-center justify-center relative flex-shrink-0">
+                            <Image src="/logo/NYX-Logo.png" alt="NYX Logo" fill className="object-contain" unoptimized sizes="32px" />
                         </div>
                         <span className="text-lg font-bold tracking-tight text-theme-primary hidden sm:block leading-none">NYX</span>
                     </Link>
@@ -314,7 +314,7 @@ export default function LandingPage() {
                                         alt={founder.name} 
                                         fill 
                                         className="object-cover rounded-full"
-                                        sizes="96px"
+                                        unoptimized sizes="96px"
                                     />
                                 </div>
                                 <h3 className="text-[16px] font-extrabold mb-1 text-white uppercase tracking-[0.08em]">{founder.name}</h3>
@@ -404,8 +404,8 @@ export default function LandingPage() {
                         {/* Brand & Mission */}
                         <div className="md:col-span-1">
                             <Link href="/" className="flex items-center gap-3 mb-6 group hover:opacity-80 transition-opacity">
-                            <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center shadow-md shadow-glow-white-small relative border border-white/10">
-                                <Image src="/logo/logo.png" alt="NYX Logo" fill className="object-cover" sizes="32px" />
+                            <div className="w-8 h-8 flex items-center justify-center relative flex-shrink-0">
+                                <Image src="/logo/NYX-Logo.png" alt="NYX Logo" fill className="object-contain" unoptimized sizes="32px" />
                             </div>
                                 <span className="text-xl font-bold tracking-tight text-theme-primary">NYX</span>
                             </Link>

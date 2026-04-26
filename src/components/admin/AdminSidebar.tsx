@@ -35,9 +35,9 @@ export default function AdminSidebar() {
 
             {/* Logo */}
             <div className={`flex items-center gap-3 px-5 py-5 border-b border-theme ${collapsed ? 'justify-center px-0' : ''}`}>
-                <div className="w-9 h-9 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0 shadow-lg shadow-orange-500/20 relative border border-orange-500/20">
-                    <Image src="/logo/logo.png" alt="NYX Logo" fill className="object-cover" sizes="36px" />
-                </div>
+                    <div className="w-8 h-8 relative flex-shrink-0">
+                        <Image src="/logo/NYX-Logo.png" alt="NYX Logo" fill className="object-contain" sizes="32px" unoptimized />
+                    </div>
                 {!collapsed && (
                     <div>
                         <p className="text-sm font-black text-theme-primary tracking-tight">NYX Admin</p>

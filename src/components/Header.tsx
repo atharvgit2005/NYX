@@ -36,9 +36,9 @@ export default function Header() {
                     <Menu className="w-6 h-6" />
                 </button>
 
-                <Link href="/automate/dashboard" className="flex items-center gap-2 sm:gap-3 active:scale-95 transition-transform group">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg overflow-hidden flex items-center justify-center shadow-md shadow-orange-500/20 group-hover:shadow-orange-500/40 transition-shadow relative">
-                        <Image src="/logo/logo.png" alt="NYX Logo" fill className="object-cover" sizes="32px" />
+                <Link href="/" className="flex items-center gap-3 group">
+                    <div className="w-8 h-8 relative flex-shrink-0">
+                        <Image src="/logo/NYX-Logo.png" alt="NYX Logo" fill className="object-contain" unoptimized sizes="32px" />
                     </div>
                     <span className="text-lg sm:text-xl font-bold tracking-tight text-theme-primary whitespace-nowrap">NYX</span>
                 </Link>
