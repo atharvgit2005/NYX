@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     template: "%s | NYX Studio"
   },
   description: "AI-powered content studio helping D2C brands grow through content production, paid media, and influencer marketing.",
+  verification: {
+    google: 'google15745e31bbfe363b',
+  },
   icons: {
     icon: "/logo/logo.png",
   },
