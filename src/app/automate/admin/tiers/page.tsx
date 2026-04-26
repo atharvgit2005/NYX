@@ -5,7 +5,7 @@ import { useAdmin } from '@/context/AdminContext';
 import { Plus, Edit2, Trash2, Users, Mic, Video, Code2, Zap, X } from 'lucide-react';
 import type { Tier } from '@/context/AdminContext';
 
-const FEATURE_ICONS: Record<string, React.ElementType> = { voice: Mic, video: Video, api: Code2, priority: Zap };
+const FEATURE_ICONS: Record<string, React.ComponentType<{ className?: string }>> = { voice: Mic, video: Video, api: Code2, priority: Zap };
 
 const defaultTier: Omit<Tier, 'id'> = {
     name: '', price: 0, billingCycle: 'monthly', trialDays: 0, maxUsers: 100,
