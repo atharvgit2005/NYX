@@ -28,7 +28,7 @@ export default function TiersPage() {
         
         try {
             if (modal.mode === 'create') {
-                const { id, ...newTierData } = modal.data;
+                const { id: _id, ...newTierData } = modal.data;
                 await addTier(newTierData as unknown as Tier);
                 addAudit({ admin: 'admin@nyx.ai', action: 'Tier created', target: modal.data.name, details: `Price: $${modal.data.price}/${modal.data.billingCycle}`, category: 'tier' });
                 addNotification(`✅ Tier "${modal.data.name}" created`, 'success');

@@ -69,7 +69,6 @@ export default function UserAvatar({ userEmail, userName, compact = false }: Use
     const [showIframe, setShowIframe] = useState(false);
     const [modelReady, setModelReady] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [scriptLoaded, setScriptLoaded] = useState(false);
     const iframeRef = useRef<HTMLIFrameElement>(null);
 
     // ── Fetch saved avatar from DB ─────────────────────────────────────────
@@ -183,7 +182,6 @@ export default function UserAvatar({ userEmail, userName, compact = false }: Use
                 src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"
                 type="module"
                 strategy="lazyOnload"
-                onLoad={() => setScriptLoaded(true)}
             />
 
             <div className="w-full space-y-4">

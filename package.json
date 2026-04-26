@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "next-sitemap": "^4.2.3",
-    "@next/bundle-analyzer": "^15.1.9",
     "@aduptive/instagram-scraper": "^1.0.3",
     "@auth/core": "^0.34.3",
     "@google/generative-ai": "^0.24.1",

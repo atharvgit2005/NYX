@@ -49,7 +49,7 @@ export default function UsersPage() {
                 category: 'user',
             });
             addNotification(`✅ ${user.name || user.email} ${action}d successfully`, 'success');
-        } catch (e) {
+        } catch {
             addNotification(`❌ Failed to ${action} user`, 'error');
         } finally {
             setLoadingAction(null);

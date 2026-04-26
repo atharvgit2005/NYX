@@ -57,7 +57,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
         if (savedChat) {
             try {
                 setChatMessages(JSON.parse(savedChat));
-            } catch (e) { }
+            } catch { }
         } else {
             // Welcome message
             setChatMessages([{
@@ -249,7 +249,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                         break;
                     }
                 }
-            } catch (e) { }
+            } catch { }
         }
 
         try {

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Send, MessageSquare, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { X, MessageSquare, ArrowRight, CheckCircle2 } from 'lucide-react';
 import gsap from 'gsap';
 
 export function LiveHub() {

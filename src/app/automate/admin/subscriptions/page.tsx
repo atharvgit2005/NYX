@@ -69,7 +69,7 @@ export default function SubscriptionsPage() {
                 category: 'subscription',
             });
             addNotification(`✅ Subscription for ${userName} ${action}d`, 'success');
-        } catch (e) {
+        } catch {
             addNotification(`❌ Failed to ${action} subscription`, 'error');
         } finally {
             setLoadingAction(false);

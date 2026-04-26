@@ -13,7 +13,7 @@ export default function VideoGeneration() {
     const [progressLabel, setProgressLabel] = useState('');
     const [script, setScript] = useState('');
     const [error, setError] = useState<string | null>(null);
-    const [videoId, setVideoId] = useState<string | null>(null);
+    const [_videoId, setVideoId] = useState<string | null>(null);
     const [videoUrl, setVideoUrl] = useState<string | null>(null);
     const [apiKey, setApiKey] = useState('');
     const [mounted, setMounted] = useState(false);

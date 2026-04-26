@@ -1,7 +1,7 @@
 'use client';
 
 import { useAdmin } from '@/context/AdminContext';
-import { Bell, Mail, Slack, Monitor } from 'lucide-react';
+import { Bell, Mail, Monitor } from 'lucide-react';
 
 const TRIGGER_DESCRIPTIONS: Record<string, string> = {
     al1: 'Instantly alerts when Voice or Video service goes DOWN.',

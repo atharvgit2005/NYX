@@ -6,13 +6,12 @@ import Image from 'next/image';
 import ThreeBackground from './ThreeBackground';
 import VideoCarousel from './VideoCarousel';
 import gsap from 'gsap';
-import { Zap, Bot, Rocket, Check, Linkedin, Instagram, Menu, X, LogOut, ArrowRight, Globe, ArrowUpRight } from 'lucide-react';
+import { Zap, Bot, Rocket, Check, Linkedin, Instagram, Menu, X, ArrowRight, Globe } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
 import ThemeToggle from './ThemeToggle';
 
 export default function LandingPage() {
     const { data: session } = useSession();
-    const heroRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
     const subtitleRef = useRef<HTMLParagraphElement>(null);
     const ctaRef = useRef<HTMLDivElement>(null);

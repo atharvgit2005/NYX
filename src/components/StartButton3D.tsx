@@ -13,7 +13,7 @@ function ButtonMesh({ onClick }: { onClick: () => void }) {
     const [active, setActive] = useState(false);
     const { theme } = useTheme();
 
-    useFrame((state) => {
+    useFrame((_state) => {
         if (mesh.current) {
             // Gentle rotation
             mesh.current.rotation.x = THREE.MathUtils.lerp(mesh.current.rotation.x, hovered ? 0.2 : 0, 0.1);
@@ -69,10 +69,8 @@ function ButtonMesh({ onClick }: { onClick: () => void }) {
 
 export default function StartButton3D() {
     const router = useRouter();
-    const [loading, setLoading] = useState(false);
 
     const handleClick = () => {
-        setLoading(true);
         setTimeout(() => {
             router.push('/automate/signup');
         }, 1500);

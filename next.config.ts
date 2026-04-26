@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
-import withBundleAnalyzer from '@next/bundle-analyzer';
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   /* config options here */
   typescript: {
     ignoreBuildErrors: false,
@@ -45,8 +44,6 @@ const nextConfig = {
       }
     ],
   },
-} as NextConfig;
+};
 
-export default withBundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
-})(nextConfig);
+export default nextConfig;

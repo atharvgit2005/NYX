@@ -31,6 +31,21 @@ export default function BrandAnalysis() {
 
     const [error, setError] = useState<string | null>(null);
 
+    const handleCacheLoad = useCallback((user: string | null, platform: 'instagram' | 'youtube' | 'linkedin') => {
+        if (user) {
+            const savedAnalysis = localStorage.getItem(`brand_analysis_results_${platform}_${user}`);
+            if (savedAnalysis) {
+                try {
+                    setAnalysis(JSON.parse(savedAnalysis));
+                } catch {
+                    console.error("Failed to parse saved analysis");
+                }
+            } else {
+                setAnalysis(null); // Ensure we don't display stale data
+            }
+        }
+    }, []);
+
     useEffect(() => {
         // Check for connected accounts
         const savedSocials = localStorage.getItem('connected_socials');
@@ -57,22 +72,7 @@ export default function BrandAnalysis() {
 
         // Check for existing analysis cache
         handleCacheLoad(username, initialPlatform);
-    }, [username]);
-
-    const handleCacheLoad = (user: string | null, platform: 'instagram' | 'youtube' | 'linkedin') => {
-        if (user) {
-            const savedAnalysis = localStorage.getItem(`brand_analysis_results_${platform}_${user}`);
-            if (savedAnalysis) {
-                try {
-                    setAnalysis(JSON.parse(savedAnalysis));
-                } catch (e) {
-                    console.error("Failed to parse saved analysis", e);
-                }
-            } else {
-                setAnalysis(null); // Ensure we don't display stale data
-            }
-        }
-    };
+    }, [username, handleCacheLoad]);
 
     const switchPlatform = (platform: 'instagram' | 'youtube' | 'linkedin') => {
         const savedSocials = localStorage.getItem('connected_socials');
