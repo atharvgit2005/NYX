@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 type SidebarContextType = {
     collapsed: boolean;
@@ -10,19 +10,19 @@ type SidebarContextType = {
 const SidebarContext = createContext<SidebarContextType | undefined>(undefined);
 
 export function SidebarProvider({ children }: { children: React.ReactNode }) {
-    const [collapsed, setCollapsed] = useState(false);
-
-    // Load state from localStorage on mount
-    useEffect(() => {
-        const saved = localStorage.getItem('sidebar_collapsed');
-        if (saved) {
-            try {
-                setCollapsed(JSON.parse(saved));
-            } catch (e) {
-                console.error('Failed to parse sidebar state', e);
+    const [collapsed, setCollapsed] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem('sidebar_collapsed');
+            if (saved) {
+                try {
+                    return JSON.parse(saved);
+                } catch (e) {
+                    console.error('Failed to parse sidebar state', e);
+                }
             }
         }
-    }, []);
+        return false;
+    });
 
     const toggleSidebar = () => {
         setCollapsed((prev) => {

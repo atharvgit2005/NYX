@@ -1,7 +1,6 @@
 import axios from 'axios';
 import fs from 'fs';
 import path from 'path';
-import https from 'https';
 import { InworldService } from '../inworld';
 
 const LOG_FILE = path.join(process.cwd(), 'debug_log.txt');
@@ -27,7 +26,6 @@ export async function generateVideo(
     voiceControls: VoiceControls = {}
 ) {
     const HEYGEN_API_KEY = apiKey || process.env.HEYGEN_API_KEY;
-    const ELEVENLABS_API_KEY = process.env.ELEVENLABS_API_KEY;
 
     // 1. Check for API Keys OR Mock IDs
     if (!HEYGEN_API_KEY || avatarId.startsWith('mock-')) {
@@ -117,9 +115,10 @@ export async function generateVideo(
                 throw new Error(`Upload Failed - No ID in response: ${JSON.stringify(parsedData)}`);
             }
 
-        } catch (error: any) {
-            logToFile(`Inworld generation or HeyGen upload failed: ${error.message || error}`);
-            console.warn("Inworld generation or HeyGen upload failed (continuing with HeyGen default voice):", error.message || error);
+        } catch (error: unknown) {
+            const errorMessage = error instanceof Error ? error.message : String(error);
+            logToFile(`Inworld generation or HeyGen upload failed: ${errorMessage}`);
+            console.warn("Inworld generation or HeyGen upload failed (continuing with HeyGen default voice):", errorMessage);
         }
     }
 
@@ -182,24 +181,30 @@ export async function generateVideo(
             url: null,
         };
 
-    } catch (error: any) {
-        const errorData = error.response?.data || {};
-        const errorMessage = errorData.error?.message || errorData.message || error.message;
+    } catch (error: unknown) {
+        let errorData: Record<string, unknown> = {};
+        let errorMessage = 'Failed to generate video';
+        
+        if (axios.isAxiosError(error)) {
+            errorData = error.response?.data || {};
+            errorMessage = errorData.error?.message || errorData.message || error.message;
 
-        logToFile(`HeyGen Generation Error: ${JSON.stringify(errorData, null, 2)}`);
-        console.error("HeyGen Generation Error:", JSON.stringify(errorData, null, 2));
+            logToFile(`HeyGen Generation Error: ${JSON.stringify(errorData, null, 2)}`);
+            console.error("HeyGen Generation Error:", JSON.stringify(errorData, null, 2));
 
-        // Surface meaningful errors rather than hiding them with mock fallbacks
-        if (error.response?.status === 401 || error.response?.status === 403) {
-            throw new Error('HeyGen API key is invalid or expired. Please check your HEYGEN_API_KEY.');
-        }
+            if (error.response?.status === 401 || error.response?.status === 403) {
+                throw new Error('HeyGen API key is invalid or expired. Please check your HEYGEN_API_KEY.');
+            }
 
-        if (error.response?.status === 404 ||
-            (errorData.error?.code === 'internal_error' && errorMessage.includes('not found'))) {
-            throw new Error(
-                `Avatar not found in your HeyGen account: "${avatarId}". ` +
-                `Go to Avatar & Voice → use a Talking Avatar ID from your HeyGen library.`
-            );
+            if (error.response?.status === 404 ||
+                (errorData.error?.code === 'internal_error' && errorMessage.includes('not found'))) {
+                throw new Error(
+                    `Avatar not found in your HeyGen account: "${avatarId}". ` +
+                    `Go to Avatar & Voice → use a Talking Avatar ID from your HeyGen library.`
+                );
+            }
+        } else if (error instanceof Error) {
+            errorMessage = error.message;
         }
 
         throw new Error(`HeyGen Failed: ${errorMessage}`);
@@ -226,8 +231,8 @@ export async function checkVideoStatus(videoId: string, apiKey?: string) {
         logToFile(`Checking status for ${videoId}, Custom Key: ${!!apiKey}`);
 
         // ✅ Try V2 Status API first
-        let statusUrl = `https://api.heygen.com/v2/video/${videoId}`;
-        let response = await axios.get(statusUrl, {
+        const statusUrl = `https://api.heygen.com/v2/video/${videoId}`;
+        const response = await axios.get(statusUrl, {
             headers: { 'X-Api-Key': HEYGEN_API_KEY },
             validateStatus: () => true, // Don't throw on 404
         });
@@ -272,27 +277,34 @@ export async function checkVideoStatus(videoId: string, apiKey?: string) {
 
         return { status: 'processing', progress: 30, url: null };
 
-    } catch (error: any) {
-        const statusCode = error.response?.status;
-        const errData = error.response?.data;
+    } catch (error: unknown) {
+        let statusCode: number | undefined;
+        let errData: Record<string, unknown> | undefined;
+        let errorMessage = 'Failed to check video status';
 
-        logToFile(`Status Check Error [${statusCode}]: ${JSON.stringify(errData || error.message)}`);
+        if (axios.isAxiosError(error)) {
+            statusCode = error.response?.status;
+            errData = error.response?.data;
+            errorMessage = errData?.message || error.message;
 
-        // 404 or HeyGen code 400569 = video not in this account's space
-        // This happens with old video IDs from a previous API key — treat as expired
-        if (statusCode === 404 ||
-            errData?.code === 400569 ||
-            (typeof errData?.message === 'string' && errData.message.includes('not found'))) {
-            return {
-                status: 'not_found',
-                progress: 0,
-                url: null,
-                error: 'Video not found — may belong to a previous API key or has expired'
-            };
+            logToFile(`Status Check Error [${statusCode}]: ${JSON.stringify(errData || error.message)}`);
+
+            if (statusCode === 404 ||
+                errData?.code === 400569 ||
+                (typeof errData?.message === 'string' && errData.message.includes('not found'))) {
+                return {
+                    status: 'not_found',
+                    progress: 0,
+                    url: null,
+                    error: 'Video not found — may belong to a previous API key or has expired'
+                };
+            }
+        } else if (error instanceof Error) {
+            errorMessage = error.message;
         }
 
-        console.error("Status Check Error:", errData || error.message);
-        return { status: 'error', progress: 0, url: null, error: error.message };
+        console.error("Status Check Error:", errData || errorMessage);
+        return { status: 'error', progress: 0, url: null, error: errorMessage };
     }
 }
 

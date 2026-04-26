@@ -70,11 +70,11 @@ export const authOptions: AuthOptions = {
         signIn: '/automate/login', // Corrected path from /signin to /login based on file structure
     },
     callbacks: {
-        async signIn({ user, account, profile }) {
+        async signIn({ user, account }) {
             console.log("AUTH_SignIn_Callback:", { userEmail: user.email, provider: account?.provider });
             return true;
         },
-        async jwt({ token, user, account }: any) {
+        async jwt({ token, user }) {
             if (user) {
                 token.id = user.id;
                 token.name = user.name;
@@ -83,7 +83,7 @@ export const authOptions: AuthOptions = {
             }
             return token;
         },
-        async session({ session, token }: any) {
+        async session({ session, token }) {
             if (session?.user) {
                 session.user.id = token.id;
                 session.user.name = token.name;

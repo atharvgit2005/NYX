@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Lightbulb, Loader2, ArrowRight, Send, Bot, User, Sparkles, Trash2, Save, Rocket } from 'lucide-react';
+import { Lightbulb, ArrowRight, Send, Bot, User, Sparkles, Trash2 } from 'lucide-react';
 import NyxButton from './ui/NyxButton';
 
 interface ChatMessage {
@@ -197,7 +197,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
             if (scriptContent) {
                 typewriteScript(scriptContent);
             }
-        } catch (err) {
+        } catch {
             const errMsg: ChatMessage = {
                 id: (Date.now() + 1).toString(),
                 role: 'assistant',
@@ -272,8 +272,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
             } else {
                 setError(data.error || 'Failed to regenerate script');
             }
-        } catch (error) {
-            console.error('Script generation failed:', error);
+        } catch {
             setError('Network error during generation');
         } finally {
             setGenerating(false);
@@ -289,9 +288,7 @@ Comment "AI" below and I'll send you the full list of tools I use.`
                 setShowToast(false);
                 window.location.href = '/automate/dashboard/video';
             }, 1500);
-        } catch (e) {
-            console.error(e);
-        }
+        } catch { }
     };
 
     // Quick suggestion chips

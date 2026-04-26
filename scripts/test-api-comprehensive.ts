@@ -6,7 +6,7 @@ const RAPID_API_HOST = 'instagram-data1.p.rapidapi.com';
 
 const username = 'nike';
 
-async function testEndpoint(path: string, params: any) {
+async function testEndpoint(path: string, params: Record<string, unknown>) {
     console.log(`Testing ${path} with params:`, params);
     try {
         const response = await axios.get(`https://${RAPID_API_HOST}${path}`, {
@@ -24,8 +24,8 @@ async function testEndpoint(path: string, params: any) {
         } else {
             console.log('Error:', response.data);
         }
-    } catch (error: any) {
-        console.log('Exception:', error.message);
+    } catch (error: unknown) {
+        console.log('Exception:', error instanceof Error ? error.message : String(error));
     }
     return false;
 }

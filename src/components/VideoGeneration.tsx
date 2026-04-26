@@ -145,8 +145,8 @@ export default function VideoGeneration() {
                     }
                 }
             }, 2000);
-        } catch (err: any) {
-            setError(err.message || 'Unexpected error');
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : 'Unexpected error');
             setStatus('idle');
         }
     };

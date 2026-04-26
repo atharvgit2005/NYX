@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Sparkles, Rocket, User, LogOut, Menu, X } from 'lucide-react';
+import { User, LogOut, Menu, X } from 'lucide-react';
 import { useSession, signOut } from 'next-auth/react';
 import { useState } from 'react';
 import Image from 'next/image';

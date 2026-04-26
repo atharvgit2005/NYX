@@ -18,11 +18,11 @@ export async function GET() {
                 hasDirectUrl: !!process.env.DIRECT_URL,
             }
         });
-    } catch (error: any) {
+    } catch (error: unknown) {
         return NextResponse.json({
             status: 'Error',
-            message: error.message,
-            stack: error.stack
+            message: error instanceof Error ? error.message : 'Unknown error',
+            stack: error instanceof Error ? error.stack : undefined
         }, { status: 500 });
     }
 }

@@ -155,8 +155,8 @@ async function getRecentVideos(channelId: string): Promise<RawVideoItem[]> {
         throw new Error(`Search (videos) API failed (${res.status}): ${body}`);
     }
 
-    const data = await res.json();
-    const items: RawVideoItem[] = (data?.items || []).map((item: any) => ({
+    const data = await res.json() as { items?: Record<string, unknown>[] };
+    const items: RawVideoItem[] = (data?.items || []).map((item) => ({
         videoId: item.id?.videoId || '',
         title: item.snippet?.title || 'Untitled',
         thumbnail: item.snippet?.thumbnails?.high?.url || item.snippet?.thumbnails?.default?.url || '',
@@ -283,8 +283,8 @@ export async function scrapeYoutubeProfile(channelHandle: string): Promise<Youtu
         console.log(`[YouTube API] ✓ Complete — ${channelData.name}: ${shorts.length} shorts, ${channelData.subscribers} subscribers`);
         return result;
 
-    } catch (error: any) {
-        console.error(`[YouTube API] Pipeline failed for ${handle}: ${error.message}`);
+    } catch (error: unknown) {
+        console.error(`[YouTube API] Pipeline failed for ${handle}: ${error instanceof Error ? error.message : String(error)}`);
         return getMockYoutubeProfile(channelHandle);
     }
 }

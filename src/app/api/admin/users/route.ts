@@ -8,7 +8,7 @@ function adminOnly(email?: string | null) {
 }
 
 // GET /api/admin/users
-export async function GET(req: Request) {
+export async function GET() {
     const session = await getServerSession(authOptions);
     if (!adminOnly(session?.user?.email)) {
         return NextResponse.json({ error: 'Forbidden' }, { status: 403 });

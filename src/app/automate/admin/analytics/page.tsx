@@ -56,7 +56,7 @@ const REVENUE_BY_TIER = [
 ];
 
 export default function AnalyticsPage() {
-    const { users, subscriptions, tiers } = useAdmin();
+    const { subscriptions } = useAdmin();
     const [period, setPeriod] = useState<'weekly' | 'monthly' | 'daily'>('monthly');
 
     const activeCount = subscriptions.filter(s => s.status === 'active').length;

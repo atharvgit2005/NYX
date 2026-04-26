@@ -61,8 +61,8 @@ async function testNewAPI() {
             console.log('Media Error:', mediaResponse.data);
         }
 
-    } catch (error: any) {
-        console.error('Test Failed:', error.message);
+    } catch (error: unknown) {
+        console.error('Test Failed:', error instanceof Error ? error.message : String(error));
     }
 }
 

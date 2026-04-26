@@ -8,8 +8,8 @@ async function testScraper() {
         const profile = await scrapeInstagramProfile(username);
         console.log('Scraping Success!');
         console.log('Profile Data:', JSON.stringify(profile, null, 2));
-    } catch (error: any) {
-        console.error('Scraping Failed:', error.message);
+    } catch (error: unknown) {
+        console.error('Scraping Failed:', error instanceof Error ? error.message : String(error));
     }
 }
 

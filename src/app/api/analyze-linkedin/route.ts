@@ -33,10 +33,10 @@ export async function POST(request: Request) {
                 }
             }
         });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("LinkedIn Analysis API Error:", error);
         return NextResponse.json(
-            { error: error.message || 'Failed to analyze professional profile' },
+            { error: error instanceof Error ? error.message : 'Failed to analyze professional profile' },
             { status: 500 }
         );
     }

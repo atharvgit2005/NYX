@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import {
     LayoutDashboard, Users, CreditCard, Layers, Shield,
     BarChart3, ScrollText, Bell, ChevronLeft, ChevronRight,
-    LogOut, AlertTriangle, BookOpen
+    LogOut, BookOpen
 } from 'lucide-react';
 import { useAdmin } from '@/context/AdminContext';
 import Image from 'next/image';

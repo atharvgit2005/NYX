@@ -6,8 +6,9 @@ export async function GET() {
     try {
         const voices = await InworldService.listVoices();
         return NextResponse.json({ voices });
-    } catch (error) {
-        console.error('Error fetching voices:', (error as any).response?.data || (error as Error).message);
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        console.error('Error fetching voices:', errorMessage);
         return NextResponse.json(
             { error: 'Failed to fetch voices' },
             { status: 500 }

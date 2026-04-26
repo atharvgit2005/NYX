@@ -42,10 +42,10 @@ export async function POST(request: Request) {
                 }
             }
         });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("[YouTube Route] Error:", error);
         return NextResponse.json(
-            { error: error.message || 'Failed to analyze YouTube channel' },
+            { error: error instanceof Error ? error.message : 'Failed to analyze YouTube channel' },
             { status: 500 }
         );
     }

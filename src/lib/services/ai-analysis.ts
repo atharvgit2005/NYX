@@ -31,11 +31,11 @@ export async function analyzeNiche(transcript: string) {
         
         return JSON.parse(jsonMatch[0]);
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Gemini Analysis Error:", error);
         return {
             ...getMockAnalysis(),
-            error_details: error.message || error.toString()
+            error_details: error instanceof Error ? error.message : String(error)
         };
     }
 }
@@ -69,8 +69,8 @@ export async function generateIdeas(niche: string, pillars: string[]) {
         
         const json = JSON.parse(jsonMatch[0]);
         return Array.isArray(json) ? json : json.ideas || [];
-    } catch (error) {
-        console.error("Gemini Ideation Error:", error);
+    } catch {
+        console.error("Gemini Ideation Error");
         return getMockIdeas();
     }
 }
@@ -83,7 +83,7 @@ function getMockIdeas() {
     ];
 }
 
-export async function generateScript(idea: any, tone: string) {
+export async function generateScript(idea: { title: string; hook: string; angle: string }, tone: string) {
     if (!process.env.GEMINI_API_KEY) return "Failed to generate script (Mock fallback).";
 
     try {
@@ -98,8 +98,8 @@ export async function generateScript(idea: any, tone: string) {
     `;
 
         return await generateWithGemini(prompt);
-    } catch (error) {
-        console.error("Gemini Scripting Error:", error);
+    } catch {
+        console.error("Gemini Scripting Error");
         return `[HOOK]\n${idea.hook}\n\n[BODY]\n(Script generation failed. This is a placeholder.)\n\n[CTA]\nFollow for more!`;
     }
 }

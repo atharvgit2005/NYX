@@ -14,7 +14,7 @@ try {
             }
         });
     }
-} catch (e) {
+} catch {
     console.warn('Failed to load .env.local manually');
 }
 
@@ -48,13 +48,13 @@ async function verifyHeyGen() {
             console.log('   Example Voice:', JSON.stringify(voiceResponse.data.data.voices[0], null, 2));
         }
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('❌ HeyGen API Verification FAILED.');
-        if (error.response) {
+        if (axios.isAxiosError(error) && error.response) {
             console.error(`   Status: ${error.response.status}`);
             console.error(`   Message: ${JSON.stringify(error.response.data)}`);
         } else {
-            console.error(`   Error: ${error.message}`);
+            console.error(`   Error: ${error instanceof Error ? error.message : String(error)}`);
         }
     }
 }
@@ -75,13 +75,13 @@ async function verifyElevenLabs() {
         });
         console.log('✅ ElevenLabs API Key is VALID.');
         console.log(`   User: ${response.data.subscription.tier} tier`);
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('❌ ElevenLabs API Verification FAILED.');
-        if (error.response) {
+        if (axios.isAxiosError(error) && error.response) {
             console.error(`   Status: ${error.response.status}`);
             console.error(`   Message: ${JSON.stringify(error.response.data)}`);
         } else {
-            console.error(`   Error: ${error.message}`);
+            console.error(`   Error: ${error instanceof Error ? error.message : String(error)}`);
         }
     }
 }

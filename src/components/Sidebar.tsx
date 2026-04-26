@@ -35,7 +35,6 @@ export default function Sidebar() {
 
     // Derive initials from name
     const name = session?.user?.name || 'User';
-    const email = session?.user?.email || '';
     const avatar = session?.user?.image || null;
     const initials = name
         .split(' ')

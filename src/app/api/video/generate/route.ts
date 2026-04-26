@@ -42,9 +42,9 @@ export async function POST(request: Request) {
                             }
                         });
                     }
-                } catch (dbErr: any) {
+                } catch (dbErr: unknown) {
                     // DB save failure should NOT fail the video generation response
-                    console.error('DB save error (non-fatal):', dbErr.message);
+                    console.error('DB save error (non-fatal):', dbErr instanceof Error ? dbErr.message : String(dbErr));
                 }
             }
 
@@ -55,10 +55,10 @@ export async function POST(request: Request) {
                 { status: 500 }
             );
         }
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Video Generation API Error:", error);
         return NextResponse.json(
-            { error: error.message || 'Failed to generate video' },
+            { error: error instanceof Error ? error.message : 'Failed to generate video' },
             { status: 500 }
         );
     }

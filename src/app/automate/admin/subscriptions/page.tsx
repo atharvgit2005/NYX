@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import { useAdmin } from '@/context/AdminContext';
-import type { AdminSubscription } from '@/context/AdminContext';
-import { CheckCircle, ChevronDown, Search, ChevronRight, X, RefreshCw, Loader2, PauseCircle } from 'lucide-react';
+import { ChevronDown, Search, ChevronRight, X, RefreshCw, Loader2, PauseCircle } from 'lucide-react';
 
 const STATUS_STYLES: Record<string, string> = {
     active: 'bg-green-500/10 text-green-400 border-green-500/20',
@@ -45,7 +44,7 @@ export default function SubscriptionsPage() {
         const sub = subscriptions.find(s => s.id === id)!;
         const userName = sub.user?.name || sub.user?.email || 'Unknown';
 
-        let patch: Record<string, any> = {};
+        let patch: Record<string, unknown> = {};
 
         switch (action) {
             case 'approve': patch = { status: 'active' }; break;

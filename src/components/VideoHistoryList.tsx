@@ -5,9 +5,16 @@ import { useSession } from 'next-auth/react';
 import { Upload } from 'lucide-react';
 import NyxButton from './ui/NyxButton';
 
+interface VideoRecord {
+    id: string;
+    status: string;
+    url: string | null;
+    createdAt: string;
+}
+
 export default function VideoHistoryList() {
     const { data: session } = useSession();
-    const [videos, setVideos] = useState<any[]>([]);
+    const [videos, setVideos] = useState<VideoRecord[]>([]);
     const [uploading, setUploading] = useState(false);
 
     const fetchVideos = () => {
@@ -113,13 +120,14 @@ export default function VideoHistoryList() {
 }
 
 
-function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete: () => void }) {
+function VideoListItem({ video: initialVideo, onDelete }: { video: VideoRecord, onDelete: () => void }) {
     const [video, setVideo] = useState(initialVideo);
     const [progress, setProgress] = useState(0);
     const [playError, setPlayError] = useState(false);
 
     // Sync initialVideo if updated (e.g. from parent refresh)
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setVideo(initialVideo);
         setPlayError(false); // Reset error on new video
     }, [initialVideo]);
@@ -142,7 +150,7 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
 
                         // Update if status changed
                         if (status !== 'processing') {
-                            setVideo((prev: any) => ({ ...prev, status, url }));
+                            setVideo((prev) => ({ ...prev, status, url }));
                             setProgress(100);
                         }
                     }
@@ -151,6 +159,7 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: any, onDelete
                 }
             }, 3000);
         } else if (video.status === 'completed') {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setProgress(100);
         }
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useAdmin } from '@/context/AdminContext';
-import { Users, CreditCard, DollarSign, Clock, Mic, Video, ChevronRight, Loader2 } from 'lucide-react';
+import { Users, CreditCard, DollarSign, Clock, Mic, Video, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
 function MiniChart({ data, color }: { data: number[]; color: string }) {

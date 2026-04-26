@@ -75,7 +75,7 @@ export default function NyxButton({
                 className={fullClassName}
                 target={target}
                 rel={rel}
-                download={download as any}
+                download={download as string | undefined}
             >
                 {content}
             </Link>

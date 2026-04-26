@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Instagram, Music, Youtube, Linkedin, Check, Loader2, Link as LinkIcon, Sparkles } from 'lucide-react';
+import { Instagram, Music, Youtube, Linkedin, Check, Link as LinkIcon } from 'lucide-react';
 import NyxButton from './ui/NyxButton';
 
 export default function ConnectSocials() {

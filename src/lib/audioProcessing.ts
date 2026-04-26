@@ -58,7 +58,7 @@ export function audioBufferToWavBlob(buffer: AudioBuffer): Blob {
     // 4. Write actual PCM audio data
     let offset = 44;
     for (let i = 0; i < result.length; i++, offset += 2) {
-        let s = Math.max(-1, Math.min(1, result[i]));
+        const s = Math.max(-1, Math.min(1, result[i]));
         view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
     }
     
@@ -68,7 +68,7 @@ export function audioBufferToWavBlob(buffer: AudioBuffer): Blob {
 // Processes the Blob with Auto-trim (Silence Deletion) and Native Noise Removal
 export async function enhanceAudioBlob(blob: Blob, applyTrim: boolean, applyNoiseRemoval: boolean): Promise<Blob> {
     try {
-        const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+        const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
         if (!AudioContextClass) {
             console.warn('Web Audio API not supported in this browser. Skipping audio enhancement.');
             return blob;

@@ -1,13 +1,31 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Target, MessageCircle, Users, Layers, TrendingUp, ArrowRight, AlertCircle, Loader2, Link as LinkIcon, Check, Linkedin } from 'lucide-react';
+import { Target, MessageCircle, Users, Layers, TrendingUp, ArrowRight, AlertCircle, Link as LinkIcon } from 'lucide-react';
 import NyxButton from './ui/NyxButton';
+
+interface AnalysisResult {
+    niche: string;
+    tone: string;
+    audience: string;
+    pillars: string[];
+    competitors: string[];
+    scrapedData?: {
+        fullName?: string;
+        followers?: string | number;
+        bio?: string;
+        isMockData?: boolean;
+        posts?: {
+            imageUrl?: string;
+            likes?: string | number;
+            caption?: string;
+        }[];
+    };
+}
 
 export default function BrandAnalysis() {
     const [analyzing, setAnalyzing] = useState(false);
-    const [analysis, setAnalysis] = useState<any>(null);
+    const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
     const [username, setUsername] = useState<string | null>(null);
     const [activePlatform, setActivePlatform] = useState<'instagram' | 'youtube' | 'linkedin'>('instagram');
 
@@ -28,7 +46,7 @@ export default function BrandAnalysis() {
                 } else {
                     setUsername(parsed.instagram || parsed.tiktok || localStorage.getItem('primary_username'));
                 }
-            } catch (e) {
+            } catch {
                 setUsername(localStorage.getItem('primary_username'));
             }
         } else {
@@ -65,7 +83,7 @@ export default function BrandAnalysis() {
                 setUsername(newUser || null);
                 setActivePlatform(platform);
                 handleCacheLoad(newUser, platform);
-            } catch (e) { }
+            } catch { }
         }
     };
 
@@ -287,7 +305,7 @@ export default function BrandAnalysis() {
 
                             {/* Recent Posts Grid */}
                                 <div className={`grid gap-2 ${activePlatform === 'youtube' ? 'grid-cols-2' : 'grid-cols-3'}`}>
-                                    {analysis.scrapedData?.posts?.slice(0, 6).map((post: any, i: number) => (
+                                    {analysis.scrapedData?.posts?.slice(0, 6).map((post, i: number) => (
                                         <div key={i} className={`${activePlatform === 'youtube' ? 'aspect-[9/16]' : 'aspect-square'} bg-accent rounded-lg overflow-hidden relative group cursor-pointer border border-theme/20`}>
                                         {post.imageUrl ? (
                                             <img src={`/api/proxy-image?url=${encodeURIComponent(post.imageUrl)}`} alt="Post" className="w-full h-full object-cover" referrerPolicy="no-referrer" loading="lazy" />

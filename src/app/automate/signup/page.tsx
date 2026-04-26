@@ -58,10 +58,11 @@ export default function Signup() {
                 alert(`Auto-login failed: ${result.error}`);
             }
 
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error("Signup error:", error);
             setLoading(false);
-            alert(`Something went wrong: ${error.message}`);
+            const message = error instanceof Error ? error.message : 'An unexpected error occurred';
+            alert(`Something went wrong: ${message}`);
         }
     };
 

@@ -4,10 +4,10 @@ import withBundleAnalyzer from '@next/bundle-analyzer';
 const nextConfig = {
   /* config options here */
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: false,
   },
   images: {
     // Allow SVGs from DiceBear (avatar generator returns image/svg+xml)

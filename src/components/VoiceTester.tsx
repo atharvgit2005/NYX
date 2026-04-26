@@ -26,7 +26,7 @@ export default function VoiceTester() {
     // Moved useEffect down to ensure fetchVoices is defined
 
 
-    const fetchVoices = async () => {
+    const fetchVoices = React.useCallback(async () => {
         setLoadingVoices(true);
         setError(null);
         try {
@@ -37,17 +37,17 @@ export default function VoiceTester() {
                     setSelectedVoice(response.data.voices[0].id);
                 }
             }
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error('Failed to fetch voices', err);
             setError('Failed to fetch voices. Please ensure INWORLD_API_KEY is set in .env');
         } finally {
             setLoadingVoices(false);
         }
-    };
+    }, [selectedVoice]);
 
     useEffect(() => {
         fetchVoices();
-    }, []);
+    }, [fetchVoices]);
 
     const handleSynthesize = async () => {
         if (!selectedVoice || !text) return;
@@ -67,7 +67,7 @@ export default function VoiceTester() {
                 const audioUrl = `data:audio/wav;base64,${response.data.audioContent}`;
                 setAudioSrc(audioUrl);
             }
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error('Failed to synthesize speech', err);
             setError('Failed to synthesize speech. Check console for details.');
         } finally {

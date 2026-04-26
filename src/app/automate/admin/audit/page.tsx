@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useAdmin } from '@/context/AdminContext';
 import { Search, ChevronDown, Download, Filter } from 'lucide-react';
-import type { AuditEntry } from '@/context/AdminContext';
 
 const CATEGORY_STYLES: Record<string, string> = {
     subscription: 'bg-orange-500/10 text-orange-500 border-orange-500/20',

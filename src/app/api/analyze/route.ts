@@ -19,7 +19,7 @@ export async function POST(request: Request) {
             // 1. Try to scrape the real profile
             console.log(`Scraping profile for @${username}...`);
             scrapedProfile = await scrapeInstagramProfile(username);
-        } catch (scrapeError) {
+        } catch {
             console.warn(`Live scraping failed for @${username}. Falling back to mock data.`);
             // 2. Fallback to mock data
             const mockProfile = await scrapeMockProfile(username);
@@ -60,10 +60,10 @@ export async function POST(request: Request) {
                 }
             }
         });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Analysis API Error:", error);
         return NextResponse.json(
-            { error: error.message || 'Failed to analyze niche' },
+            { error: error instanceof Error ? error.message : 'Failed to analyze niche' },
             { status: 500 }
         );
     }

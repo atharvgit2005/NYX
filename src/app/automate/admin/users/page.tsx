@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import { useAdmin } from '@/context/AdminContext';
-import type { AdminUser } from '@/context/AdminContext';
-import { Search, CheckCircle, XCircle, PauseCircle, MoreHorizontal, Download, ChevronDown, Mic, Video, UserCheck, UserX, User, RefreshCw, Loader2 } from 'lucide-react';
+import { Search, PauseCircle, MoreHorizontal, Download, ChevronDown, Mic, Video, UserCheck, UserX, User, RefreshCw, Loader2, CheckCircle } from 'lucide-react';
 
 const STATUS_COLORS: Record<string, string> = {
     active: 'bg-green-500/10 text-green-400 border-green-500/20',

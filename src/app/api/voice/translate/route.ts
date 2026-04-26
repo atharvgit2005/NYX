@@ -1,22 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const LANG_NAMES: Record<string, string> = {
-    EN_US: 'English (US)',
-    EN_GB: 'English (UK)',
-    HI_IN: 'Hindi',
-    ES_ES: 'Spanish',
-    FR_FR: 'French',
-    DE_DE: 'German',
-    JA_JP: 'Japanese',
-    KO_KR: 'Korean',
-    PT_BR: 'Portuguese (Brazil)',
-    ZH_CN: 'Chinese (Mandarin)',
-    IT_IT: 'Italian',
-    RU_RU: 'Russian',
-    AR_SA: 'Arabic',
-    NL_NL: 'Dutch',
-    PL_PL: 'Polish',
-};
+
 
 export async function POST(req: Request) {
     try {
@@ -51,8 +35,9 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ text: translatedText.trim() });
 
-    } catch (error: any) {
-        console.error('Translation error:', error.message);
-        return NextResponse.json({ error: error.message || 'Failed to translate' }, { status: 500 });
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : 'Failed to translate';
+        console.error('Translation error:', errorMessage);
+        return NextResponse.json({ error: errorMessage }, { status: 500 });
     }
 }

@@ -15,7 +15,7 @@ export async function GET() {
     }
 
     const gates = await prisma.featureGate.findMany();
-    const map: Record<string, any> = {};
+    const map: Record<string, unknown> = {};
     gates.forEach(g => { map[g.key] = g.value; });
 
     return NextResponse.json({ gates: map });

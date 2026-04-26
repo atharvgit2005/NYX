@@ -25,10 +25,11 @@ export async function POST(req: Request) {
         const audioContent = await InworldService.synthesizeSpeech(payload);
 
         return NextResponse.json({ audioContent });
-    } catch (error: any) {
-        console.error('Error synthesizing speech:', error.response?.data || error.message);
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : 'Failed to synthesize speech';
+        console.error('Error synthesizing speech:', errorMessage);
         return NextResponse.json(
-            { error: 'Failed to synthesize speech', details: error.response?.data },
+            { error: 'Failed to synthesize speech', details: errorMessage },
             { status: 500 }
         );
     }

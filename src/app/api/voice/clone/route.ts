@@ -45,22 +45,21 @@ export async function POST(req: Request) {
             voice: clonedVoice
         });
 
-    } catch (error: any) {
-        console.error('Error cloning voice:', error.response?.data || error.message);
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : 'Failed to clone voice';
+        console.error('Error cloning voice:', errorMessage);
         
         let statusCode = 500;
-        if (error.response?.status) {
-            statusCode = error.response.status;
-        } else if (error.message?.includes('400')) {
+        if (errorMessage.includes('400')) {
             statusCode = 400;
-        } else if (error.message?.includes('401')) {
+        } else if (errorMessage.includes('401')) {
             statusCode = 401;
-        } else if (error.message?.includes('429')) {
+        } else if (errorMessage.includes('429')) {
             statusCode = 429;
         }
 
         return NextResponse.json(
-            { error: error.message || 'Failed to clone voice', details: error.response?.data },
+            { error: errorMessage },
             { status: statusCode }
         );
     }

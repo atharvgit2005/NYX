@@ -42,8 +42,8 @@ export async function generateWithGemini(prompt: string, options: { model?: stri
             // Success! Reset rate limit state
             isRateLimited = false;
             return text;
-        } catch (error: any) {
-            const errorMsg = error.message || '';
+        } catch (error: unknown) {
+            const errorMsg = error instanceof Error ? error.message : '';
             const isQuotaError = errorMsg.includes('429') || 
                                errorMsg.toLowerCase().includes('quota') || 
                                errorMsg.toLowerCase().includes('rate limit');
@@ -56,7 +56,7 @@ export async function generateWithGemini(prompt: string, options: { model?: stri
             }
 
             console.warn(`[Gemini Sync] Model ${modelName} failed: ${errorMsg}`);
-            lastError = error;
+            lastError = error instanceof Error ? error : new Error(String(error));
             // Continue to next model
         }
     }

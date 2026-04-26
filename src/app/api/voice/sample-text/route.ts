@@ -70,13 +70,14 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ text: generatedText, langCode, source: 'gemini' });
 
-    } catch (error: any) {
-        console.error('Sample text generation error (swapping to fallback):', error.message);
+    } catch (error: unknown) {
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        console.error('Sample text generation error (swapping to fallback):', errorMessage);
         return NextResponse.json({ 
             text: getRandomFallback(langCode), 
             langCode, 
             source: 'fallback',
-            reason: error.message === 'RATE_LIMITED' ? 'rate_limit' : 'error'
+            reason: errorMessage === 'RATE_LIMITED' ? 'rate_limit' : 'error'
         });
     }
 }

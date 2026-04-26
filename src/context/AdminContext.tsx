@@ -105,8 +105,8 @@ interface AdminStore {
     refreshUsers: () => void;
     refreshSubscriptions: () => void;
     // User actions
-    updateUserRemote: (userId: string, patch: Record<string, any>) => Promise<void>;
-    updateSubscriptionRemote: (subscriptionId: string, patch: Record<string, any>) => Promise<void>;
+    updateUserRemote: (userId: string, patch: Record<string, unknown>) => Promise<void>;
+    updateSubscriptionRemote: (subscriptionId: string, patch: Record<string, unknown>) => Promise<void>;
     // Tiers (config-driven)
     tiers: Tier[];
     updateTier: (id: string, patch: Partial<Tier>) => void;
@@ -262,7 +262,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
         finally { setLoadingUsers(false); }
     }, []);
 
-    const updateUserRemote = useCallback(async (userId: string, patch: Record<string, any>) => {
+    const updateUserRemote = useCallback(async (userId: string, patch: Record<string, unknown>) => {
         const res = await fetch('/api/admin/users', {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
@@ -286,7 +286,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
         finally { setLoadingSubscriptions(false); }
     }, []);
 
-    const updateSubscriptionRemote = useCallback(async (subscriptionId: string, patch: Record<string, any>) => {
+    const updateSubscriptionRemote = useCallback(async (subscriptionId: string, patch: Record<string, unknown>) => {
         const res = await fetch('/api/admin/subscriptions', {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
@@ -357,15 +357,16 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
         refreshAuditLog();
 
         // Load feature gates from DB
-        fetch('/api/admin/gates').then(r => r.json()).then(({ gates }) => {
+        fetch('/api/admin/gates').then(r => r.json()).then((data: { gates?: Record<string, unknown> }) => {
+            const gates = data.gates;
             if (!gates) return;
             setFeatureGatesState(fg => ({
-                voiceGlobal: gates.voiceGlobal ?? fg.voiceGlobal,
-                videoGlobal: gates.videoGlobal ?? fg.videoGlobal,
+                voiceGlobal: typeof gates.voiceGlobal === 'boolean' ? gates.voiceGlobal : fg.voiceGlobal,
+                videoGlobal: typeof gates.videoGlobal === 'boolean' ? gates.videoGlobal : fg.videoGlobal,
                 perTier: gates.tierMatrix ?? fg.perTier,
             }));
-            setVoiceServiceRaw(gates.voiceGlobal === false ? 'DOWN' : 'UP');
-            setVideoServiceRaw(gates.videoGlobal === false ? 'DOWN' : 'UP');
+            if (typeof gates.voiceGlobal === 'boolean') setVoiceServiceRaw(gates.voiceGlobal ? 'UP' : 'DOWN');
+            if (typeof gates.videoGlobal === 'boolean') setVideoServiceRaw(gates.videoGlobal ? 'UP' : 'DOWN');
         }).catch(() => {});
     }, [refreshTiers, refreshUsers, refreshSubscriptions, refreshAuditLog]);
 

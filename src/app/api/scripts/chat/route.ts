@@ -19,8 +19,8 @@ async function generateWithFallback(prompt: string): Promise<string> {
             const result = await model.generateContent(prompt);
             const response = await result.response;
             return response.text();
-        } catch (error: any) {
-            errors.push(`${modelName}: ${error.message}`);
+        } catch (error: unknown) {
+            errors.push(`${modelName}: ${error instanceof Error ? error.message : String(error)}`);
         }
     }
     throw new Error(`All models failed: ${errors.join(' | ')}`);
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
 
         // Build context-aware prompt
         const historyContext = chatHistory?.length > 0
-            ? `\nPrevious conversation:\n${chatHistory.map((m: any) => `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`).join('\n')}\n`
+            ? `\nPrevious conversation:\n${(chatHistory as { role: string; content: string }[]).map((m) => `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`).join('\n')}\n`
             : '';
 
         const prompt = `You are an expert short-form video script consultant embedded inside a script editor tool. Your job is to help the user improve their video script for platforms like YouTube Shorts, Instagram Reels, and TikTok.
@@ -71,10 +71,10 @@ Respond now:`;
 
         return NextResponse.json({ success: true, data: response });
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('[Script Chat Error]', error);
         return NextResponse.json(
-            { error: error.message || 'Failed to get AI response' },
+            { error: error instanceof Error ? error.message : 'Failed to get AI response' },
             { status: 500 }
         );
     }

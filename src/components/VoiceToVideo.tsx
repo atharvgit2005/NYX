@@ -135,21 +135,21 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                 }
             } catch { }
         }
-    }, []);
+    }, [selected]);
 
-    useEffect(() => { loadClonedVoices(); }, []);
+    useEffect(() => { loadClonedVoices(); }, [loadClonedVoices]);
 
     // ── Load built-in Inworld voices ────────────────────────────────────────
-    const loadBuiltinVoices = async () => {
+    const loadBuiltinVoices = useCallback(async () => {
         if (builtinVoices.length > 0) return; // already loaded
         setLoadingBuiltin(true);
         setBuiltinError(null);
         try {
             const res = await fetch('/api/tts/voices');
-            const data = await res.json();
+            const data = await res.json() as { voices?: InworldVoice[]; error?: string };
             if (data.voices && data.voices.length > 0) {
                 // Show ALL voices from the /tts/v1/voices catalog (built-in library)
-                setBuiltinVoices(data.voices as InworldVoice[]);
+                setBuiltinVoices(data.voices);
             } else if (data.voices && data.voices.length === 0) {
                 setBuiltinError('No voices returned. Check your INWORLD_API_KEY.');
             } else {
@@ -160,15 +160,14 @@ export default function VoiceToVideo({ script, onChange }: Props) {
         } finally {
             setLoadingBuiltin(false);
         }
-    };
+    }, [builtinVoices.length]);
 
     // Auto-load when switching to built-in tab
     useEffect(() => {
         if (voiceTab === 'builtin') loadBuiltinVoices();
-    }, [voiceTab]);
+    }, [voiceTab, loadBuiltinVoices]);
 
     // ── Notify parent ───────────────────────────────────────────────────────
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (!selected) { onChange(null); return; }
         onChange({
@@ -178,7 +177,7 @@ export default function VoiceToVideo({ script, onChange }: Props) {
             previewAudioSrc: previewSrc ?? undefined,
             isBuiltIn: selected.isBuiltIn,
         });
-    }, [selected, controls, previewSrc]);
+    }, [selected, controls, previewSrc, onChange]);
 
     const patch = useCallback(<K extends keyof VoiceControls>(k: K, v: VoiceControls[K]) => {
         setControls(c => ({ ...c, [k]: v }));
@@ -212,7 +211,7 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                     style: controls.style || undefined,
                 }),
             });
-            const data = await res.json();
+            const data = await res.json() as { audioContent?: string; error?: string };
             if (data.audioContent) {
                 const src = `data:audio/wav;base64,${data.audioContent}`;
                 setPreviewSrc(src);

@@ -9,7 +9,8 @@ gsap.registerPlugin(ScrollTrigger);
 export default function GlobalAnimations() {
     useEffect(() => {
         // Hero Text Fade-Slide
-        gsap.utils.toArray('h1').forEach((el: any) => {
+        gsap.utils.toArray('h1').forEach((el) => {
+            const element = el as HTMLElement;
             gsap.fromTo(el,
                 { opacity: 0, y: 30 },
                 {
@@ -18,7 +19,7 @@ export default function GlobalAnimations() {
                     duration: 1,
                     ease: 'power3.out',
                     scrollTrigger: {
-                        trigger: el,
+                        trigger: element,
                         start: 'top 80%',
                         toggleActions: 'play none none reverse'
                     }
@@ -27,7 +28,8 @@ export default function GlobalAnimations() {
         });
 
         // Subheadings
-        gsap.utils.toArray('h2, h3').forEach((el: any) => {
+        gsap.utils.toArray('h2, h3').forEach((el) => {
+            const element = el as HTMLElement;
             gsap.fromTo(el,
                 { opacity: 0, y: 20 },
                 {
@@ -36,7 +38,7 @@ export default function GlobalAnimations() {
                     duration: 0.8,
                     ease: 'power3.out',
                     scrollTrigger: {
-                        trigger: el,
+                        trigger: element,
                         start: 'top 85%',
                     }
                 }

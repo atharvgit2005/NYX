@@ -120,8 +120,8 @@ export function LiveHub() {
                                     <span className="text-[#E8441A] font-label text-xs uppercase tracking-[0.3em] font-bold block mb-2">* SESSION_ACTIVE</span>
                                     <h2 className="text-white font-headline text-2xl md:text-4xl font-black uppercase tracking-tighter leading-none">
                                         {typeof steps[step].question === 'function' 
-                                            ? (steps[step].question as any)(formData.brandName) 
-                                            : steps[step].question}
+                                            ? (steps[step].question as (name: string) => string)(formData.brandName) 
+                                            : steps[step].question as string}
                                     </h2>
                                 </div>
 

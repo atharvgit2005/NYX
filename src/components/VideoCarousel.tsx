@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Play, X, TrendingUp, Zap } from 'lucide-react';
 
 const DEMO_VIDEOS = [

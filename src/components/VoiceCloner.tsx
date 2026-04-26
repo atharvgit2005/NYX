@@ -187,7 +187,7 @@ export default function VoiceCloner() {
     // ── Load saved voices ──────────────────────────────────────────────────
     useEffect(() => {
         const saved = localStorage.getItem('cloned_voices');
-        if (saved) { try { setSavedVoices(JSON.parse(saved)); } catch { } }
+        if (saved) { try { setSavedVoices(JSON.parse(saved) as ClonedVoice[]); } catch { } }
     }, []);
 
     const persistVoices = (list: ClonedVoice[]) => {
@@ -208,7 +208,7 @@ export default function VoiceCloner() {
     };
 
     // ── Gemini Sample Text ─────────────────────────────────────────────────
-    const fetchSampleText = async (code = langCode) => {
+    const fetchSampleText = useCallback(async (code = langCode) => {
         setLoadingSample(true);
         // Do not clear the text right away to prevent blinking, just show loader
         try {
@@ -224,12 +224,12 @@ export default function VoiceCloner() {
         } finally {
             setLoadingSample(false);
         }
-    };
+    }, [langCode]);
 
     // Auto-fetch when switching to Record tab if empty
     useEffect(() => {
         if (tab === 'record' && !sampleText.trim()) fetchSampleText();
-    }, [tab]);
+    }, [tab, sampleText, fetchSampleText]);
 
     // ── Pre-translation for Recording Script ──
     const translateRecordingScript = async () => {
@@ -342,7 +342,11 @@ export default function VoiceCloner() {
     const handleDrop = (e: React.DragEvent) => {
         e.preventDefault();
         const file = e.dataTransfer.files[0];
-        if (file) handleFileChange({ target: { files: [file] } } as any);
+        if (file) {
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            handleFileChange({ target: { files: dataTransfer.files } } as unknown as React.ChangeEvent<HTMLInputElement>);
+        }
     };
 
     // ── Clone ──────────────────────────────────────────────────────────────
@@ -359,7 +363,7 @@ export default function VoiceCloner() {
         // Inworld AI does not natively support browser WebM and will reject it with a 400 error.
         try {
             sourceBlob = await enhanceAudioBlob(sourceBlob, autoTrim, noiseRemoval);
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.warn('Enhancement failed:', err);
             // Fail gracefully, use unedited blob
         }
@@ -389,8 +393,9 @@ export default function VoiceCloner() {
             saveVoice(voice);
             setActiveVoiceId(voice.voiceId);
             setStep('done');
-        } catch (err: any) {
-            setCloneError(err.message || 'Something went wrong.');
+        } catch (err: unknown) {
+            const errorMessage = err instanceof Error ? err.message : 'Something went wrong.';
+            setCloneError(errorMessage);
         } finally {
             setCloning(false);
         }

@@ -5,7 +5,7 @@ import { useAdmin } from '@/context/AdminContext';
 import { Plus, Edit2, Trash2, Users, Mic, Video, Code2, Zap, X } from 'lucide-react';
 import type { Tier } from '@/context/AdminContext';
 
-const FEATURE_ICONS: Record<string, any> = { voice: Mic, video: Video, api: Code2, priority: Zap };
+const FEATURE_ICONS: Record<string, React.ElementType> = { voice: Mic, video: Video, api: Code2, priority: Zap };
 
 const defaultTier: Omit<Tier, 'id'> = {
     name: '', price: 0, billingCycle: 'monthly', trialDays: 0, maxUsers: 100,
@@ -29,7 +29,7 @@ export default function TiersPage() {
         try {
             if (modal.mode === 'create') {
                 const { id, ...newTierData } = modal.data;
-                await addTier(newTierData as any);
+                await addTier(newTierData as unknown as Tier);
                 addAudit({ admin: 'admin@nyx.ai', action: 'Tier created', target: modal.data.name, details: `Price: $${modal.data.price}/${modal.data.billingCycle}`, category: 'tier' });
                 addNotification(`✅ Tier "${modal.data.name}" created`, 'success');
             } else if (modal.data.id) {
@@ -57,11 +57,11 @@ export default function TiersPage() {
         setDeleteConfirm(null);
     };
 
-    const patch = (path: string[], value: any) => {
+    const patch = (path: string[], value: unknown) => {
         if (!modal) return;
         const updated = { ...modal.data };
-        let obj: any = updated;
-        for (let i = 0; i < path.length - 1; i++) obj = obj[path[i]];
+        let obj: Record<string, unknown> = updated as unknown as Record<string, unknown>;
+        for (let i = 0; i < path.length - 1; i++) obj = obj[path[i]] as Record<string, unknown>;
         obj[path[path.length - 1]] = value;
         setModal({ ...modal, data: updated });
     };
@@ -223,7 +223,7 @@ export default function TiersPage() {
                                 ].map(({ label, path }) => (
                                     <div key={label}>
                                         <label className="text-xs text-gray-500 font-bold mb-1.5 block">{label}</label>
-                                        <input type="number" value={(modal.data as any)[path[0]][path[1]]} onChange={e => patch(path, +e.target.value)} min={0}
+                                        <input type="number" value={(modal.data as unknown as Record<string, Record<string, number>>)[path[0]][path[1]]} onChange={e => patch(path, +e.target.value)} min={0}
                                             className="w-full bg-page/30 border border-theme rounded-xl px-4 py-2.5 text-sm text-theme-primary focus:outline-none" />
                                     </div>
                                 ))}

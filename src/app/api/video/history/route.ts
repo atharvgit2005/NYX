@@ -5,7 +5,7 @@ import { authOptions } from '../../auth/[...nextauth]/route';
 import prisma from '@/lib/prismadb';
 
 // GET: Fetch user's video history
-export async function GET(req: Request) {
+export async function GET() {
     try {
         const session = await getServerSession(authOptions);
         if (!session?.user?.email) {

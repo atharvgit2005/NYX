@@ -1,13 +1,21 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Loader2, X, Copy, Check, Play, FileText, BrainCircuit, AlertCircle, Sparkles } from 'lucide-react';
+import { X, Copy, Check, FileText, BrainCircuit, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 import NyxButton from './ui/NyxButton';
 
+interface Idea {
+    id: number;
+    title: string;
+    hook: string;
+    angle: string;
+    format: string;
+}
+
 export default function IdeaGenerator() {
     const [generating, setGenerating] = useState(false);
-    const [ideas, setIdeas] = useState<any[]>([]);
+    const [ideas, setIdeas] = useState<Idea[]>([]);
     const [analysisData, setAnalysisData] = useState<{ niche: string; pillars: string[]; tone: string; platform: string } | null>(null);
 
     // Script Generation State
@@ -72,7 +80,7 @@ export default function IdeaGenerator() {
                         platform: 'Instagram',
                     });
                     foundAnalysis = true;
-                } catch (e) { }
+                } catch { }
             }
         }
 
@@ -118,15 +126,14 @@ export default function IdeaGenerator() {
             } else {
                 setError(data.error || 'Failed to generate ideas');
             }
-        } catch (error) {
-            console.error('Idea generation failed:', error);
-            setError('Network error. Please try again.');
-        } finally {
+    } catch {
+        setError('Network error. Please try again.');
+    } finally {
             setGenerating(false);
         }
     };
 
-    const handleGenerateScript = async (idea: any) => {
+    const handleGenerateScript = async (idea: Idea) => {
         setScriptGenerating(idea.id);
         try {
             const response = await fetch('/api/scripts/generate', {
@@ -142,8 +149,8 @@ export default function IdeaGenerator() {
                 setGeneratedScript({ id: idea.id, content: data.data, ideaTitle: idea.title });
                 setScriptSaved(false);
             }
-        } catch (error) {
-            console.error('Script generation failed:', error);
+        } catch {
+            console.error('Script generation failed');
         } finally {
             setScriptGenerating(null);
         }

@@ -1,3 +1,4 @@
+/* eslint-disable */
 require('dotenv').config({ path: '.env.local' });
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 

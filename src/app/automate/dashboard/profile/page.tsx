@@ -6,10 +6,11 @@ import {
     LogOut, Edit2, Check, X, Film, FileText,
     Mic, Copy, CheckCheck, Sparkles,
 } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 import Image from 'next/image';
 import AvatarUpload from '@/components/AvatarUpload';
 
-function StatCard({ label, value, icon: Icon, color }: { label: string; value: number | string; icon: any; color: string }) {
+function StatCard({ label, value, icon: Icon, color }: { label: string; value: number | string; icon: LucideIcon; color: string }) {
     return (
         <div className="flex items-center gap-4 p-4 rounded-2xl border border-theme bg-card-theme hover:bg-card-theme transition-all">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: `${color}22` }}>

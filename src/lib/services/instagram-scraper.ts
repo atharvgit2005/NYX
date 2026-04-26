@@ -62,8 +62,8 @@ async function scrapeWithIGApi(username: string): Promise<ScrapedProfile | null>
         const fullName = user.full_name || username;
         const biography = user.biography || 'Bio not available';
 
-        let followersCountNum = user.edge_followed_by?.count || 0;
-        let followersCount = followersCountNum >= 1000000
+        const followersCountNum = user.edge_followed_by?.count || 0;
+        const followersCount = followersCountNum >= 1000000
             ? (followersCountNum / 1000000).toFixed(1) + 'M'
             : followersCountNum >= 1000
                 ? (followersCountNum / 1000).toFixed(1) + 'k'
@@ -76,8 +76,8 @@ async function scrapeWithIGApi(username: string): Promise<ScrapedProfile | null>
             const node = edges[i].node;
             const caption = node.edge_media_to_caption?.edges[0]?.node?.text || 'No caption';
 
-            let likesNum = node.edge_liked_by?.count || 0;
-            let likes = likesNum >= 1000000
+            const likesNum = node.edge_liked_by?.count || 0;
+            const likes = likesNum >= 1000000
                 ? (likesNum / 1000000).toFixed(1) + 'M'
                 : likesNum >= 1000
                     ? (likesNum / 1000).toFixed(1) + 'k'
@@ -105,8 +105,8 @@ async function scrapeWithIGApi(username: string): Promise<ScrapedProfile | null>
             transcript: createTranscript(username, fullName, biography, followersCount, posts)
         };
 
-    } catch (error: any) {
-        console.error(`[Strategy: IG API] Error: ${error.message}`);
+    } catch (error: unknown) {
+        console.error(`[Strategy: IG API] Error: ${error instanceof Error ? error.message : String(error)}`);
         return null;
     }
 }
@@ -163,11 +163,11 @@ async function scrapeWithPicuki(username: string): Promise<ScrapedProfile | null
             transcript: createTranscript(username, fullName, biography, followersCount, posts)
         };
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
             console.error(`[Strategy: Picuki] Request failed: ${error.response?.status} ${error.response?.statusText}`);
         } else {
-            console.error(`[Strategy: Picuki] Failed: ${error.message}`);
+            console.error(`[Strategy: Picuki] Failed: ${error instanceof Error ? error.message : String(error)}`);
         }
         return null; // Fallback to next strategy
     }
@@ -209,7 +209,7 @@ async function scrapeWithDumpoir(username: string): Promise<ScrapedProfile | nul
             posts,
             transcript: createTranscript(username, fullName, biography, followersCount, posts)
         };
-    } catch (error) {
+    } catch {
         console.warn(`[Strategy: Dumpoir] Failed`);
         return null;
     }
@@ -232,8 +232,8 @@ export async function scrapeInstagramProfile(username: string): Promise<ScrapedP
         if (validResult) {
             return validResult;
         }
-    } catch (error) {
-        console.error('[Scraper] Parallel execution failed:', error);
+    } catch {
+        console.error('[Scraper] Parallel execution failed');
     }
 
     console.warn('[Scraper] All mirror strategies failed. Returning Fallback Mock Data.');

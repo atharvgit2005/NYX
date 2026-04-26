@@ -6,6 +6,7 @@ import { User, RefreshCw, X, Wand2, Trash2, CheckCircle, Loader2, AlertCircle } 
 
 // ─── model-viewer TypeScript declaration ──────────────────────────────────────
 declare global {
+// eslint-disable-next-line @typescript-eslint/no-namespace
     namespace JSX {
         interface IntrinsicElements {
             'model-viewer': React.DetailedHTMLProps<
@@ -125,8 +126,9 @@ export default function UserAvatar({ userEmail, userName, compact = false }: Use
                 setGlbUrl(avatarUrl);
                 setShowIframe(false);
                 setModelReady(false);
-            } catch (err: any) {
-                setError(err.message);
+            } catch (err: unknown) {
+                const message = err instanceof Error ? err.message : 'An unknown error occurred';
+                setError(message);
                 console.error('[Avaturn] Save failed:', err);
             } finally {
                 setSaving(false);
@@ -156,7 +158,7 @@ export default function UserAvatar({ userEmail, userName, compact = false }: Use
                             type="module"
                             strategy="lazyOnload"
                         />
-                        {/* @ts-ignore */}
+                        {/* @ts-expect-error — model-viewer is a web component not in standard React types */}
                         <model-viewer
                             src={glbUrl}
                             auto-rotate
@@ -213,7 +215,7 @@ export default function UserAvatar({ userEmail, userName, compact = false }: Use
                                         </div>
                                     </div>
                                 )}
-                                {/* @ts-ignore — model-viewer is a web component */}
+                                {/* @ts-expect-error — model-viewer is a web component not in standard React types */}
                                 <model-viewer
                                     src={glbUrl}
                                     alt={`${userName || 'User'}'s 3D avatar`}

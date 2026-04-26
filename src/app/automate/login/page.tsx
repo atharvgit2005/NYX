@@ -6,6 +6,19 @@ import Link from 'next/link';
 import { signIn, useSession } from 'next-auth/react';
 import Image from 'next/image';
 
+const AuthErrorMessages: Record<string, string> = {
+    "Signin": "Try signing with a different account.",
+    "OAuthSignin": "Sign in failed. Check if your Google account is valid.",
+    "OAuthCallback": "Google denied access or network failed.",
+    "OAuthCreateAccount": "Could not create user in database.",
+    "EmailCreateAccount": "Could not create user in database.",
+    "Callback": "Error during authentication callback.",
+    "OAuthAccountNotLinked": "Email already used with another provider.",
+    "EmailSignin": "Check your email for a verification link.",
+    "CredentialsSignin": "Sign in failed. Check the details you provided.",
+    "default": "Unable to sign in."
+};
+
 function LoginContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -17,26 +30,12 @@ function LoginContent() {
         if (session) {
             router.push('/automate/dashboard');
         }
+    }, [session, router]);
 
-        // Check for error in URL
-        const errorParam = searchParams.get('error');
-        if (errorParam) {
-            setError(AuthErrorMessages[errorParam] || errorParam);
-        }
-    }, [session, router, searchParams]);
-
-    const AuthErrorMessages: Record<string, string> = {
-        "Signin": "Try signing with a different account.",
-        "OAuthSignin": "Sign in failed. Check if your Google account is valid.",
-        "OAuthCallback": "Google denied access or network failed.",
-        "OAuthCreateAccount": "Could not create user in database.",
-        "EmailCreateAccount": "Could not create user in database.",
-        "Callback": "Error during authentication callback.",
-        "OAuthAccountNotLinked": "Email already used with another provider.",
-        "EmailSignin": "Check your email for a verification link.",
-        "CredentialsSignin": "Sign in failed. Check the details you provided.",
-        "default": "Unable to sign in."
-    };
+    // Derived error from URL
+    const errorParam = searchParams.get('error');
+    const urlError = errorParam ? (AuthErrorMessages[errorParam] || errorParam) : '';
+    const displayError = error || urlError;
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -84,9 +83,9 @@ function LoginContent() {
             <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
                 <div className="bg-card-theme py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-theme">
                     <form className="space-y-6" onSubmit={handleLogin}>
-                        {error && (
+                        {displayError && (
                             <div className="bg-red-500/10 border border-red-500 text-red-500 px-4 py-2 rounded text-sm text-center">
-                                {error}
+                                {displayError}
                             </div>
                         )}
                         <div>

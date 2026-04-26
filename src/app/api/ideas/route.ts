@@ -6,7 +6,7 @@ export async function POST(request: Request) {
         const { niche, pillars } = await request.json();
         const ideas = await generateIdeas(niche, pillars);
         return NextResponse.json({ success: true, data: ideas });
-    } catch (error) {
+    } catch {
         return NextResponse.json(
             { error: 'Failed to generate ideas' },
             { status: 500 }

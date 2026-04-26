@@ -50,29 +50,17 @@ export default function ThreeBackground() {
         // Camera position
         camera.position.z = 3;
 
-        // Mouse interaction
-        let mouseX = 0;
-        let mouseY = 0;
-
-        const animateParticles = (event: MouseEvent) => {
-            mouseX = event.clientX;
-            mouseY = event.clientY;
-        };
-
-        document.addEventListener('mousemove', animateParticles);
-
         // Animation Loop
         const clock = new THREE.Clock();
+        let animationId: number;
 
         const animate = () => {
             const elapsedTime = clock.getElapsedTime();
-
             particlesMesh.rotation.y = elapsedTime * 0.05;
             particlesMesh.rotation.x = elapsedTime * 0.02;
 
-
             renderer.render(scene, camera);
-            requestAnimationFrame(animate);
+            animationId = requestAnimationFrame(animate);
         };
 
         animate();
@@ -87,14 +75,16 @@ export default function ThreeBackground() {
         window.addEventListener('resize', handleResize);
 
         // Cleanup
+        const currentMount = mountRef.current;
         return () => {
             window.removeEventListener('resize', handleResize);
-            document.removeEventListener('mousemove', animateParticles);
-            if (mountRef.current) {
-                mountRef.current.removeChild(renderer.domElement);
+            if (animationId) cancelAnimationFrame(animationId);
+            if (currentMount) {
+                currentMount.removeChild(renderer.domElement);
             }
             particlesGeometry.dispose();
             material.dispose();
+            renderer.dispose();
         };
     }, [theme]); // Re-run effect when theme changes to update colors
 
