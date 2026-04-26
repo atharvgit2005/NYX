@@ -35,7 +35,7 @@ export default function NyxButton({
     download,
     as: ComponentProp
 }: NyxButtonProps) {
-    const baseStyles = "flex items-center gap-4 px-2 py-2 rounded-full transition-all duration-300 group relative disabled:opacity-50 disabled:cursor-not-allowed";
+    const baseStyles = "flex items-center gap-4 px-3 py-3 rounded-full transition-all duration-300 group relative disabled:opacity-50 disabled:cursor-not-allowed";
     
     const variants = {
         primary: "bg-inverse hover:opacity-90 border border-theme text-inverse pr-6",

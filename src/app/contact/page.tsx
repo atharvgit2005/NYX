@@ -10,14 +10,22 @@ export const metadata: Metadata = {
   title: "Book a Strategy Call | NYX Studio",
   description: "Ready to grow your brand? Book a free strategy call with NYX Studio — India's AI-native content and performance marketing studio.",
   alternates: {
-    canonical: '/contact',
+    canonical: 'https://www.nyxstudio.tech/contact',
+  },
+  openGraph: {
+    title: "Book a Strategy Call | NYX Studio",
+    description: "Ready to grow your brand? Book a free strategy call with NYX Studio — India's AI-native content and performance marketing studio.",
+    url: "https://www.nyxstudio.tech/contact",
+  },
+  twitter: {
+    title: "Book a Strategy Call | NYX Studio",
+    description: "Ready to grow your brand? Book a free strategy call with NYX Studio — India's AI-native content and performance marketing studio.",
   },
 };
 
 export default function AdContactPage() {
   return (
     <>
-      <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
       {/* Main wrapper containing body-level styling to isolate from global styles */}

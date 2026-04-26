@@ -10,14 +10,22 @@ export const metadata: Metadata = {
     title: "Our Work & Case Studies | NYX Studio",
     description: "See how NYX Studio has grown D2C brands across social media, paid ads, and content production. Real results, real brands.",
     alternates: {
-        canonical: '/work',
+        canonical: 'https://www.nyxstudio.tech/work',
+    },
+    openGraph: {
+        title: "Our Work & Case Studies | NYX Studio",
+        description: "See how NYX Studio has grown D2C brands across social media, paid ads, and content production. Real results, real brands.",
+        url: "https://www.nyxstudio.tech/work",
+    },
+    twitter: {
+        title: "Our Work & Case Studies | NYX Studio",
+        description: "See how NYX Studio has grown D2C brands across social media, paid ads, and content production. Real results, real brands.",
     },
 };
 
 export default function AdWorkPage() {
     return (
         <>
-            <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Work+Sans:wght@300..600&display=swap" rel="stylesheet" />
             <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
             <div className="font-body selection:bg-secondary selection:text-black min-h-screen relative w-full overflow-hidden bg-[#131313] text-[#e5e2e1]">

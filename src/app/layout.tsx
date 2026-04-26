@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Barlow_Condensed } from "next/font/google";
+import { Outfit, Barlow_Condensed, Space_Grotesk, Work_Sans } from "next/font/google";
 import "./globals.css";
 import GlobalAnimations from "@/components/GlobalAnimations";
 import AuthProvider from '@/components/AuthProvider'
@@ -17,10 +17,22 @@ const barlowCondensed = Barlow_Condensed({
   display: 'swap',
 });
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: '--font-space-grotesk',
+  display: 'swap',
+});
+
+const workSans = Work_Sans({
+  subsets: ["latin"],
+  variable: '--font-work-sans',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://nyxstudio.tech'),
+  metadataBase: new URL('https://www.nyxstudio.tech'),
   title: {
-    default: "NYX STUDIO | AI-Powered Content Studio",
+    default: "NYX Studio | AI-Powered Content Studio",
     template: "%s | NYX Studio"
   },
   description: "AI-powered content studio helping D2C brands grow through content production, paid media, and influencer marketing.",
@@ -30,13 +42,17 @@ export const metadata: Metadata = {
   icons: {
     icon: "/logo/logo.png",
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
   openGraph: {
     type: "website",
     siteName: "NYX Studio",
     locale: "en_US",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://www.nyxstudio.tech/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "NYX Studio - AI Powered Content Engine",
@@ -45,12 +61,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NYX Studio",
-    description: "AI-Powered Content Studio for D2C Brands",
-    images: ["/og-image.jpg"],
-  },
-  alternates: {
-    canonical: './',
+    site: "@nyxstudiosai",
+    images: ["https://www.nyxstudio.tech/og-image.jpg"],
   },
 };
 
@@ -62,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${barlowCondensed.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${barlowCondensed.variable} ${spaceGrotesk.variable} ${workSans.variable}`}>
       <body className="font-sans antialiased">
         <AuthProvider>
           <ThemeProvider>

@@ -34,9 +34,18 @@ const organizationSchema = {
 
 export const metadata: Metadata = {
   title: "AI-Powered Content Studio for D2C Brands | NYX Studio",
-  description: "NYX Studio builds scroll-stopping content, paid media, and growth systems for D2C brands. Based in India. 320M+ reach generated. Book a free strategy call.",
+  description: "NYX Studio builds scroll-stopping content, paid media, and growth systems for D2C brands. 320M+ reach generated. Book a free strategy call.",
   alternates: {
-    canonical: '/',
+    canonical: 'https://www.nyxstudio.tech/',
+  },
+  openGraph: {
+    title: "AI-Powered Content Studio for D2C Brands | NYX Studio",
+    description: "NYX Studio builds scroll-stopping content, paid media, and growth systems for D2C brands. 320M+ reach generated. Book a free strategy call.",
+    url: "https://www.nyxstudio.tech/",
+  },
+  twitter: {
+    title: "AI-Powered Content Studio for D2C Brands | NYX Studio",
+    description: "NYX Studio builds scroll-stopping content, paid media, and growth systems for D2C brands. 320M+ reach generated. Book a free strategy call.",
   },
 };
 
@@ -44,7 +53,7 @@ export default function AdPage() {
   return (
     <>
       <JsonLd data={organizationSchema} />
-      <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+      {/* Material Symbols - Only external link kept as it's an icon font with many variants */}
       <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
       {/* Main wrapper containing body-level styling to isolate from global styles */}

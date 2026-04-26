@@ -437,10 +437,10 @@ export default function LandingPage() {
                         <div>
                             <h4 className="text-theme-primary font-bold mb-6">Resources</h4>
                             <ul className="space-y-4">
-                                <li><a href="#" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Blog</a></li>
-                                <li><a href="#" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Help Center</a></li>
-                                <li><a href="#" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">API Documentation</a></li>
-                                <li><a href="#" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Community</a></li>
+                                <li><Link href="/" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Blog</Link></li>
+                                <li><Link href="/contact" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Help Center</Link></li>
+                                <li><Link href="/automate" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">API Documentation</Link></li>
+                                <li><Link href="/contact" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Community</Link></li>
                             </ul>
                         </div>
 
@@ -448,8 +448,8 @@ export default function LandingPage() {
                         <div>
                             <h4 className="text-theme-primary font-bold mb-6">Company</h4>
                             <ul className="space-y-4">
-                                <li><a href="#" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Privacy Policy</a></li>
-                                <li><a href="#" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Terms of Service</a></li>
+                                <li><Link href="/" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Privacy Policy</Link></li>
+                                <li><Link href="/" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Terms of Service</Link></li>
                                 <li><Link href="/contact" className="text-theme-secondary hover:text-theme-primary text-sm transition-colors">Contact Us</Link></li>
                             </ul>
                         </div>

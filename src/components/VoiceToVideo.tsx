@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import Link from 'next/link';
 import {
     Mic, Play, Pause, Loader2, ChevronDown, ChevronUp,
     Sliders, RefreshCw, CheckCircle, AlertCircle, Wand2,
@@ -296,7 +297,7 @@ export default function VoiceToVideo({ script, onChange }: Props) {
                                 <div>
                                     <p className="text-sm font-bold text-theme-secondary">No cloned voices yet</p>
                                     <p className="text-xs text-gray-600 mt-0.5">
-                                        Go to <a href="/automate/dashboard/avatar" className="text-orange-500 hover:text-orange-400 underline">Avatar &amp; Voice</a> → scroll to Voice Studio.
+                                        Go to <Link href="/automate/dashboard/avatar" className="text-orange-500 hover:text-orange-400 underline">Avatar &amp; Voice</Link> → scroll to Voice Studio.
                                         Or switch to <button onClick={() => setVoiceTab('builtin')} className="text-amber-400 hover:text-amber-300 underline">Built-In Voices</button>.
                                     </p>
                                 </div>

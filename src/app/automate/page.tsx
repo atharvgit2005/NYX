@@ -5,7 +5,16 @@ export const metadata: Metadata = {
   title: "AI Content Automation for Brands | NYX Studio",
   description: "Automate your content workflows with NYX Studio's AI-native production pipeline. Faster output, lower cost, higher performance.",
   alternates: {
-    canonical: '/automate',
+    canonical: 'https://www.nyxstudio.tech/automate',
+  },
+  openGraph: {
+    title: "AI Content Automation for Brands | NYX Studio",
+    description: "Automate your content workflows with NYX Studio's AI-native production pipeline. Faster output, lower cost, higher performance.",
+    url: "https://www.nyxstudio.tech/automate",
+  },
+  twitter: {
+    title: "AI Content Automation for Brands | NYX Studio",
+    description: "Automate your content workflows with NYX Studio's AI-native production pipeline. Faster output, lower cost, higher performance.",
   },
 };
 

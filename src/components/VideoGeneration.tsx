@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import VideoHistoryList from './VideoHistoryList';
 import VoiceToVideo, { VoiceConfig } from './VoiceToVideo';
 import { Video, Sparkles, AlertTriangle, Play } from 'lucide-react';
@@ -206,11 +207,11 @@ export default function VideoGeneration() {
                                             <p className="text-theme-primary font-mono text-xs break-all">{avatarId}</p>
                                         </>
                                     ) : (
-                                        <p className="text-sm text-theme-secondary">No avatar set. <a href="/automate/dashboard/avatar" className="text-theme-primary underline font-bold">Set Avatar ID →</a></p>
+                                        <p className="text-sm text-theme-secondary">No avatar set. <Link href="/automate/dashboard/avatar" className="text-theme-primary underline font-bold">Set Avatar ID →</Link></p>
                                     )}
                                 </div>
                                 {avatarId && (
-                                    <a href="/automate/dashboard/avatar" className="text-[10px] text-gray-600 hover:text-theme-secondary underline mt-2 block">Change Avatar ID</a>
+                                    <Link href="/automate/dashboard/avatar" className="text-[10px] text-gray-600 hover:text-theme-secondary underline mt-2 block">Change Avatar ID</Link>
                                 )}
                             </div>
 

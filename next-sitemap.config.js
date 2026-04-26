@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://nyxstudio.tech',
+  siteUrl: 'https://www.nyxstudio.tech',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
   changefreq: 'weekly',
@@ -11,11 +11,11 @@ module.exports = {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api', '/automate/admin', '/automate/dashboard'],
+        disallow: ['/api', '/admin', '/automate/admin', '/automate/dashboard'],
       },
     ],
     additionalSitemaps: [
-      'https://nyxstudio.tech/sitemap.xml',
+      'https://www.nyxstudio.tech/sitemap.xml',
     ],
   },
   // Custom transform for specific priorities
@@ -33,11 +33,11 @@ module.exports = {
       priority = 0.8;
       changefreq = 'weekly';
     } else if (path === '/contact') {
-      priority = 0.7;
+      priority = 0.6;
       changefreq = 'monthly';
     } else if (path === '/automate') {
-      priority = 0.8;
-      changefreq = 'weekly';
+      priority = 0.6;
+      changefreq = 'monthly';
     }
 
     return {

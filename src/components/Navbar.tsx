@@ -88,7 +88,7 @@ export default function Navbar() {
           <div className="ml-auto md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg bg-card-theme text-theme-secondary hover:text-theme-primary hover:bg-card-theme transition-colors"
+              className="p-3 rounded-lg bg-card-theme text-theme-secondary hover:text-theme-primary hover:bg-card-theme transition-colors"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>

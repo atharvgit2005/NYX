@@ -5,6 +5,7 @@ export default function JsonLd({ data }: { data: Record<string, unknown> }) {
     <Script
       id="json-ld"
       type="application/ld+json"
+      strategy="beforeInteractive"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
     />
   );

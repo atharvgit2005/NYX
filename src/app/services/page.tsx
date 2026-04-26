@@ -18,7 +18,9 @@ const servicesSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Content Strategy",
-          "description": "Strategic content planning for high-growth brands."
+          "description": "Strategic content planning for high-growth brands.",
+          "provider": { "@type": "Organization", "name": "NYX Studio" },
+          "areaServed": { "@type": "Country", "name": "India" }
         }
       },
       {
@@ -26,7 +28,9 @@ const servicesSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Paid Social",
-          "description": "High-performance Meta and Google Ads management."
+          "description": "High-performance Meta and Google Ads management.",
+          "provider": { "@type": "Organization", "name": "NYX Studio" },
+          "areaServed": { "@type": "Country", "name": "India" }
         }
       },
       {
@@ -34,7 +38,9 @@ const servicesSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Creative Production",
-          "description": "Cinematic reels and premium ad creatives."
+          "description": "Cinematic reels and premium ad creatives.",
+          "provider": { "@type": "Organization", "name": "NYX Studio" },
+          "areaServed": { "@type": "Country", "name": "India" }
         }
       },
       {
@@ -42,7 +48,9 @@ const servicesSchema = {
         "itemOffered": {
           "@type": "Service",
           "name": "Brand Growth",
-          "description": "Full-spectrum growth systems for D2C brands."
+          "description": "Full-spectrum growth systems for D2C brands.",
+          "provider": { "@type": "Organization", "name": "NYX Studio" },
+          "areaServed": { "@type": "Country", "name": "India" }
         }
       }
     ]
@@ -56,9 +64,18 @@ import { MobileNav } from "../components/MobileNav";
 
 export const metadata: Metadata = {
   title: "Content Production, Paid Ads & Brand Growth Services | NYX Studio",
-  description: "From cinematic reels to Meta Ads and influencer ops — NYX Studio's full-spectrum growth packages start at ₹30K. Built for brands that want to move fast.",
+  description: "From cinematic reels to Meta Ads and influencer ops — NYX Studio's full-spectrum growth packages start at ₹30K. Built for fast-moving brands.",
   alternates: {
-    canonical: '/services',
+    canonical: 'https://www.nyxstudio.tech/services',
+  },
+  openGraph: {
+    title: "Content Production, Paid Ads & Brand Growth Services | NYX Studio",
+    description: "From cinematic reels to Meta Ads and influencer ops — NYX Studio's full-spectrum growth packages start at ₹30K. Built for fast-moving brands.",
+    url: "https://www.nyxstudio.tech/services",
+  },
+  twitter: {
+    title: "Content Production, Paid Ads & Brand Growth Services | NYX Studio",
+    description: "From cinematic reels to Meta Ads and influencer ops — NYX Studio's full-spectrum growth packages start at ₹30K. Built for fast-moving brands.",
   },
 };
 
@@ -66,7 +83,6 @@ export default function AdServicesPage() {
   return (
     <>
       <JsonLd data={servicesSchema} />
-      <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
       {/* Main wrapper containing body-level styling to isolate from global styles */}

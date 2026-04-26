@@ -11,7 +11,7 @@
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate",
-    "postbuild": "npx next-sitemap"
+    "postbuild": "npx next-sitemap && node scripts/indexnow.js"
   },
   "dependencies": {
     "next-sitemap": "^4.2.3",
