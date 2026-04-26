@@ -182,11 +182,10 @@ export async function generateVideo(
         };
 
     } catch (error: unknown) {
-        let errorData: Record<string, unknown> = {};
         let errorMessage = 'Failed to generate video';
         
         if (axios.isAxiosError(error)) {
-            errorData = error.response?.data || {};
+            const errorData = (error.response?.data || {}) as any;
             errorMessage = errorData.error?.message || errorData.message || error.message;
 
             logToFile(`HeyGen Generation Error: ${JSON.stringify(errorData, null, 2)}`);
@@ -279,12 +278,11 @@ export async function checkVideoStatus(videoId: string, apiKey?: string) {
 
     } catch (error: unknown) {
         let statusCode: number | undefined;
-        let errData: Record<string, unknown> | undefined;
         let errorMessage = 'Failed to check video status';
 
         if (axios.isAxiosError(error)) {
             statusCode = error.response?.status;
-            errData = error.response?.data;
+            const errData = (error.response?.data || {}) as any;
             errorMessage = errData?.message || error.message;
 
             logToFile(`Status Check Error [${statusCode}]: ${JSON.stringify(errData || error.message)}`);
@@ -303,7 +301,7 @@ export async function checkVideoStatus(videoId: string, apiKey?: string) {
             errorMessage = error.message;
         }
 
-        console.error("Status Check Error:", errData || errorMessage);
+        console.error("Status Check Error:", errorMessage);
         return { status: 'error', progress: 0, url: null, error: errorMessage };
     }
 }

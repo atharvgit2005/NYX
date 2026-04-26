@@ -11,7 +11,7 @@ export default function GlobalAnimations() {
         // Hero Text Fade-Slide
         gsap.utils.toArray('h1').forEach((el) => {
             const element = el as HTMLElement;
-            gsap.fromTo(el,
+            gsap.fromTo(element,
                 { opacity: 0, y: 30 },
                 {
                     opacity: 1,
@@ -30,7 +30,7 @@ export default function GlobalAnimations() {
         // Subheadings
         gsap.utils.toArray('h2, h3').forEach((el) => {
             const element = el as HTMLElement;
-            gsap.fromTo(el,
+            gsap.fromTo(element,
                 { opacity: 0, y: 20 },
                 {
                     opacity: 1,

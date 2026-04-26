@@ -247,7 +247,7 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: VideoRecord, 
                 {/* Download Button for Completed */}
                 {video.status === 'completed' && !video.url?.includes('placeholder') && !playError && (
                     <NyxButton
-                        href={video.url}
+                        href={video.url ?? undefined}
                         variant="outline"
                         showIconContainer={false}
                         className="mt-3 w-full justify-center"

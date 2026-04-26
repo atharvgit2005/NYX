@@ -363,7 +363,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
             setFeatureGatesState(fg => ({
                 voiceGlobal: typeof gates.voiceGlobal === 'boolean' ? gates.voiceGlobal : fg.voiceGlobal,
                 videoGlobal: typeof gates.videoGlobal === 'boolean' ? gates.videoGlobal : fg.videoGlobal,
-                perTier: gates.tierMatrix ?? fg.perTier,
+                perTier: (gates.tierMatrix as FeatureGates['perTier']) ?? fg.perTier,
             }));
             if (typeof gates.voiceGlobal === 'boolean') setVoiceServiceRaw(gates.voiceGlobal ? 'UP' : 'DOWN');
             if (typeof gates.videoGlobal === 'boolean') setVideoServiceRaw(gates.videoGlobal ? 'UP' : 'DOWN');

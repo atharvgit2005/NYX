@@ -25,7 +25,7 @@ export function SidebarProvider({ children }: { children: React.ReactNode }) {
     });
 
     const toggleSidebar = () => {
-        setCollapsed((prev) => {
+        setCollapsed((prev: boolean) => {
             const newState = !prev;
             localStorage.setItem('sidebar_collapsed', JSON.stringify(newState));
             return newState;

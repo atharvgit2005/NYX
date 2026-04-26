@@ -156,7 +156,7 @@ async function getRecentVideos(channelId: string): Promise<RawVideoItem[]> {
     }
 
     const data = await res.json() as { items?: Record<string, unknown>[] };
-    const items: RawVideoItem[] = (data?.items || []).map((item) => ({
+    const items: RawVideoItem[] = (data?.items || []).map((item: any) => ({
         videoId: item.id?.videoId || '',
         title: item.snippet?.title || 'Untitled',
         thumbnail: item.snippet?.thumbnails?.high?.url || item.snippet?.thumbnails?.default?.url || '',
