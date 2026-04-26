@@ -457,7 +457,7 @@ export default function LandingPage() {
 
                     <div className="mt-16 pt-8 border-t border-theme flex flex-col md:flex-row items-center justify-center gap-4">
                         <p className="text-theme-secondary text-sm">
-                            © {new Date().getFullYear()} NYX. All rights reserved.
+                            © 2026 NYX STUDIO
                         </p>
                     </div>
                 </div>

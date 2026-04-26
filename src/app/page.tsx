@@ -256,7 +256,7 @@ export default function AdPage() {
                     <div className="text-2xl font-black text-white uppercase font-headline">NYX STUDIO</div>
                 </Link>
                 <p className="font-headline text-[0.75rem] uppercase tracking-wider text-white/60">
-                    ©2026 NYX STUDIO | THE MIDNIGHT MANIFESTO
+                    ©2026 NYX STUDIO
                 </p>
             </div>
             <div className="flex gap-12">

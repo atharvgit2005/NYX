@@ -117,7 +117,7 @@ export default function AdWorkPage() {
                         <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
                     </div>
                     <div className="font-body text-xs uppercase tracking-widest text-white">
-                        © 2026 NYX STUDIO * THE MIDNIGHT MANIFESTO
+                        © 2026 NYX STUDIO
                     </div>
                 </footer>
                 <MobileNav />

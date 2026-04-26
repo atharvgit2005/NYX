@@ -166,7 +166,7 @@ export default function AdContactPage() {
                 <Link className="hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
             </div>
             <div className="text-gray-500 font-body text-xs uppercase tracking-widest">
-                © 2026 NYX STUDIO * THE MIDNIGHT MANIFESTO
+                © 2026 NYX STUDIO
             </div>
         </footer>
         <MobileNav />

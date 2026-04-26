@@ -292,9 +292,9 @@ export default function AdServicesPage() {
                 <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">TWITTER</a>
                 <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
             </div>
-            <div className="font-body text-xs uppercase tracking-widest text-[#E8441A] dark:text-[#ffb4a2]">
-                © 2026 NYX STUDIO * THE MIDNIGHT MANIFESTO
-            </div>
+            <p className="font-headline text-[0.75rem] uppercase tracking-wider text-white/60">
+                ©2026 NYX STUDIO
+            </p>
         </footer>
         <MobileNav />
       </div>
