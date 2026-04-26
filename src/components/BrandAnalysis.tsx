@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { Target, MessageCircle, Users, Layers, TrendingUp, ArrowRight, AlertCircle, Link as LinkIcon } from 'lucide-react';
 import NyxButton from './ui/NyxButton';
 
@@ -271,10 +272,12 @@ export default function BrandAnalysis() {
                             <div className="flex items-center space-x-4 mb-6">
                                 <div className={`w-16 h-16 rounded-full p-[2px] bg-accent border-2 border-theme`}>
                                     <div className="w-full h-full rounded-full bg-transparent overflow-hidden relative">
-                                        <img
+                                        <Image
                                             src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${analysis.scrapedData?.fullName || username}`}
                                             alt={username || 'Profile'}
-                                            className="w-full h-full object-cover"
+                                            fill
+                                            unoptimized
+                                            className="object-cover"
                                         />
                                     </div>
                                 </div>
@@ -308,7 +311,13 @@ export default function BrandAnalysis() {
                                     {analysis.scrapedData?.posts?.slice(0, 6).map((post, i: number) => (
                                         <div key={i} className={`${activePlatform === 'youtube' ? 'aspect-[9/16]' : 'aspect-square'} bg-accent rounded-lg overflow-hidden relative group cursor-pointer border border-theme/20`}>
                                         {post.imageUrl ? (
-                                            <img src={`/api/proxy-image?url=${encodeURIComponent(post.imageUrl)}`} alt="Post" className="w-full h-full object-cover" referrerPolicy="no-referrer" loading="lazy" />
+                                            <Image 
+                                                src={`/api/proxy-image?url=${encodeURIComponent(post.imageUrl)}`} 
+                                                alt="Post" 
+                                                fill
+                                                unoptimized
+                                                className="object-cover" 
+                                            />
                                         ) : (
                                             <div className="w-full h-full flex items-center justify-center text-theme-secondary bg-accent">
                                                 <AlertCircle className="w-4 h-4" />

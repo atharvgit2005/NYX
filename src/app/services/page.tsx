@@ -83,7 +83,6 @@ export default function AdServicesPage() {
   return (
     <>
       <JsonLd data={servicesSchema} />
-      <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
       {/* Main wrapper containing body-level styling to isolate from global styles */}
       <div className="bg-[#0E0E0E] text-[#e5e2e1] font-body selection:bg-primary selection:text-ink-black min-h-screen relative w-full overflow-hidden">

@@ -13,7 +13,7 @@ function ButtonMesh({ onClick }: { onClick: () => void }) {
     const [active, setActive] = useState(false);
     const { theme } = useTheme();
 
-    useFrame((_state) => {
+    useFrame(() => {
         if (mesh.current) {
             // Gentle rotation
             mesh.current.rotation.x = THREE.MathUtils.lerp(mesh.current.rotation.x, hovered ? 0.2 : 0, 0.1);

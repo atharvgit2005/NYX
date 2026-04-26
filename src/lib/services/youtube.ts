@@ -155,8 +155,20 @@ async function getRecentVideos(channelId: string): Promise<RawVideoItem[]> {
         throw new Error(`Search (videos) API failed (${res.status}): ${body}`);
     }
 
-    const data = await res.json() as { items?: Record<string, unknown>[] };
-    const items: RawVideoItem[] = (data?.items || []).map((item: any) => ({
+    const data = await res.json() as { 
+        items?: Array<{
+            id: { videoId: string };
+            snippet: {
+                title: string;
+                thumbnails: {
+                    high: { url: string };
+                    default: { url: string };
+                };
+                publishedAt: string;
+            };
+        }> 
+    };
+    const items: RawVideoItem[] = (data?.items || []).map((item) => ({
         videoId: item.id?.videoId || '',
         title: item.snippet?.title || 'Untitled',
         thumbnail: item.snippet?.thumbnails?.high?.url || item.snippet?.thumbnails?.default?.url || '',

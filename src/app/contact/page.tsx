@@ -26,7 +26,6 @@ export const metadata: Metadata = {
 export default function AdContactPage() {
   return (
     <>
-      <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
       {/* Main wrapper containing body-level styling to isolate from global styles */}
       <div className="bg-surface text-on-surface font-body selection:bg-secondary selection:text-on-secondary min-h-screen relative w-full overflow-hidden">
@@ -114,7 +113,13 @@ export default function AdContactPage() {
                             </div>
                         </div>
                         <div className="h-64 border-4 border-black bg-black relative overflow-hidden">
-                            <img className="w-full h-full object-cover grayscale contrast-125 opacity-50" alt="Abstract dark grainy texture with orange geometric shapes and sharp shadows mimicking a brutalist architecture model" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfXmGMzJoLlSj1uVRt3U2cHzw3vbQEiiYaUeAGDpDenpt8dqQusy0HJivOxfkLUaOAin2EyFIWzL88IzxuaXbxSOODB6on8XLv4SeIVDgguzjti0Iac8ueelT4N47Csg4ez8jjy6EBu4l2AykZ83LlrA7FZBe9i8yAqMaMKFEwyIP33g6soITbOE9sUqdHQtFByqgdzMoybqo05NLzAVskfRn5QBKrloI-r6EJUUvbwvf8YNJrap3USnZDc_X0rlAERfK2nhgy_iva" />
+                            <Image 
+                                className="w-full h-full object-cover grayscale contrast-125 opacity-50" 
+                                alt="Abstract dark grainy texture" 
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfXmGMzJoLlSj1uVRt3U2cHzw3vbQEiiYaUeAGDpDenpt8dqQusy0HJivOxfkLUaOAin2EyFIWzL88IzxuaXbxSOODB6on8XLv4SeIVDgguzjti0Iac8ueelT4N47Csg4ez8jjy6EBu4l2AykZ83LlrA7FZBe9i8yAqMaMKFEwyIP33g6soITbOE9sUqdHQtFByqgdzMoybqo05NLzAVskfRn5QBKrloI-r6EJUUvbwvf8YNJrap3USnZDc_X0rlAERfK2nhgy_iva"
+                                fill
+                                unoptimized
+                            />
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <span className="text-white text-4xl font-black font-headline uppercase tracking-tighter border-2 border-white px-4 py-2">NOCTURNAL_VIBE</span>
                             </div>
@@ -135,10 +140,22 @@ export default function AdContactPage() {
                     <div className="flex-1 order-2 md:order-1">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="aspect-square border-4 border-white/10 overflow-hidden">
-                                <img className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" alt="Dark aesthetic office interior with neon orange accents and brutalist concrete furniture in a low light setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCS2FyCCpQmjR3WEFQiYi7uI-oPWJ_atBcE5gfkOlI6FjhC6QpkLjbtQSsILnTRSxGc0l_FqpMGzBS2JxeD5z2xsLICArngLFOvFa0DWT4RxXKdnncI3zowgy_aJG-CRH2IWCDlo06gzt31VIkCrmoXEARJnYAkhuNhwReZrFDWIrUEfeKoBZh-TbrFoAtsE-hzmrGt61mlN6JjhDBi30yIE2P0WBX4kZesnZfBv97CBLLYI7Xk_Eb09u6fZ7eraT_ZlmRYninAfGYt" />
+                                <Image 
+                                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" 
+                                    alt="Dark aesthetic office interior" 
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCS2FyCCpQmjR3WEFQiYi7uI-oPWJ_atBcE5gfkOlI6FjhC6QpkLjbtQSsILnTRSxGc0l_FqpMGzBS2JxeD5z2xsLICArngLFOvFa0DWT4RxXKdnncI3zowgy_aJG-CRH2IWCDlo06gzt31VIkCrmoXEARJnYAkhuNhwReZrFDWIrUEfeKoBZh-TbrFoAtsE-hzmrGt61mlN6JjhDBi30yIE2P0WBX4kZesnZfBv97CBLLYI7Xk_Eb09u6fZ7eraT_ZlmRYninAfGYt"
+                                    fill
+                                    unoptimized
+                                />
                             </div>
                             <div className="aspect-square border-4 border-white/10 overflow-hidden translate-y-8">
-                                <img className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" alt="Close up of a vintage typewriter on a black desk with dramatic top lighting and harsh shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnoaTEhK0nkpEvRJkzpyMyp20xHIDXXDngpsNRvkT70YeGSOaIw1YeW--LlGLT0kndC7gXkOipvBiclFWxRLrIN2-NN508N4WMNfUhhFT7r9rX9tHXvQD2SOEbXM9MWFAAkND2vKDkDuqbmYA7iHL1eO9CaKGYY2T4xa3GLe1rEsnbT4IL41tJvwjPJgSN5YviSC8ABuYlfjSCaRLwHCk5CgTn6Ej1Inshif1ek-7e0z8aJ1o0Cgtz9NGEyrd7iWKZIcuWuHEn_Mpi" />
+                                <Image 
+                                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" 
+                                    alt="Vintage typewriter" 
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnoaTEhK0nkpEvRJkzpyMyp20xHIDXXDngpsNRvkT70YeGSOaIw1YeW--LlGLT0kndC7gXkOipvBiclFWxRLrIN2-NN508N4WMNfUhhFT7r9rX9tHXvQD2SOEbXM9MWFAAkND2vKDkDuqbmYA7iHL1eO9CaKGYY2T4xa3GLe1rEsnbT4IL41tJvwjPJgSN5YviSC8ABuYlfjSCaRLwHCk5CgTn6Ej1Inshif1ek-7e0z8aJ1o0Cgtz9NGEyrd7iWKZIcuWuHEn_Mpi"
+                                    fill
+                                    unoptimized
+                                />
                             </div>
                         </div>
                     </div>

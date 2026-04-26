@@ -26,7 +26,6 @@ export const metadata: Metadata = {
 export default function AdWorkPage() {
     return (
         <>
-            <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
             <div className="font-body selection:bg-secondary selection:text-black min-h-screen relative w-full overflow-hidden bg-[#131313] text-[#e5e2e1]">
                 {/* TopAppBar */}

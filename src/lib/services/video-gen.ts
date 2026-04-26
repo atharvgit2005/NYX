@@ -185,7 +185,11 @@ export async function generateVideo(
         let errorMessage = 'Failed to generate video';
         
         if (axios.isAxiosError(error)) {
-            const errorData = (error.response?.data || {}) as any;
+            const errorData = (error.response?.data || {}) as { 
+                error?: { message?: string; code?: string }; 
+                message?: string;
+                code?: string | number;
+            };
             errorMessage = errorData.error?.message || errorData.message || error.message;
 
             logToFile(`HeyGen Generation Error: ${JSON.stringify(errorData, null, 2)}`);
@@ -282,7 +286,10 @@ export async function checkVideoStatus(videoId: string, apiKey?: string) {
 
         if (axios.isAxiosError(error)) {
             statusCode = error.response?.status;
-            const errData = (error.response?.data || {}) as any;
+            const errData = (error.response?.data || {}) as { 
+                message?: string; 
+                code?: string | number;
+            };
             errorMessage = errData?.message || error.message;
 
             logToFile(`Status Check Error [${statusCode}]: ${JSON.stringify(errData || error.message)}`);

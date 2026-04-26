@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import { Upload } from 'lucide-react';
 import NyxButton from './ui/NyxButton';
@@ -127,7 +128,6 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: VideoRecord, 
 
     // Sync initialVideo if updated (e.g. from parent refresh)
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setVideo(initialVideo);
         setPlayError(false); // Reset error on new video
     }, [initialVideo]);
@@ -159,7 +159,6 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: VideoRecord, 
                 }
             }, 3000);
         } else if (video.status === 'completed') {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
             setProgress(100);
         }
 
@@ -185,10 +184,12 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: VideoRecord, 
                 {video.url ? (
                     video.url.includes('placeholder') ? (
                         <>
-                            <img
+                            <Image
                                 src={video.url}
                                 alt="Mock Video Preview"
-                                className="w-full h-full object-cover opacity-50"
+                                fill
+                                unoptimized
+                                className="object-cover opacity-50"
                             />
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <span className="bg-page px-3 py-1 rounded text-xs text-theme-secondary">Mock Preview (Not Playable)</span>

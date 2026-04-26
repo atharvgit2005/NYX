@@ -9,7 +9,7 @@ function ProfileCard({ name, role }: { name: string; role: string }) {
     const mesh = useRef<THREE.Group>(null);
     const [hovered, setHover] = useState(false);
 
-    useFrame((_state) => {
+    useFrame(() => {
         if (mesh.current) {
             mesh.current.rotation.y = THREE.MathUtils.lerp(mesh.current.rotation.y, hovered ? 0.5 : 0, 0.1);
             mesh.current.rotation.x = THREE.MathUtils.lerp(mesh.current.rotation.x, hovered ? -0.2 : 0, 0.1);

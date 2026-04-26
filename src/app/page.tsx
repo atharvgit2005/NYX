@@ -53,8 +53,6 @@ export default function AdPage() {
   return (
     <>
       <JsonLd data={organizationSchema} />
-      {/* Material Symbols - Only external link kept as it's an icon font with many variants */}
-      <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
       {/* Main wrapper containing body-level styling to isolate from global styles */}
       <div className="bg-surface-container-lowest text-on-surface font-body selection:bg-secondary selection:text-on-secondary min-h-screen relative w-full overflow-hidden">

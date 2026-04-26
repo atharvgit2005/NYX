@@ -14,7 +14,7 @@ try {
             }
         });
     }
-} catch (e) {
+} catch {
     console.warn('Failed to load .env.local manually');
 }
 
