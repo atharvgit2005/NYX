@@ -112,7 +112,8 @@ export default function TiersPage() {
                                 <div>
                                     <p className="text-xs text-gray-500 uppercase font-bold tracking-wide mb-3">Features</p>
                                     <div className="flex gap-2 flex-wrap">
-                                        {Object.entries(tier.features).map(([f, v]) => {
+                                        {(['voice', 'video', 'api', 'priority'] as const).map((f) => {
+                                            const v = tier.features[f];
                                             const Icon = FEATURE_ICONS[f] || Zap;
                                             return (
                                                 <div key={f} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold capitalize border ${v ? 'bg-orange-500/10 text-orange-300 border-orange-500/20' : 'bg-white/3 text-gray-600 border-theme'}`}>
