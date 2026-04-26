@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Target, MessageCircle, Users, Layers, TrendingUp, ArrowRight, AlertCircle, Link as LinkIcon } from 'lucide-react';
 import NyxButton from './ui/NyxButton';
 
