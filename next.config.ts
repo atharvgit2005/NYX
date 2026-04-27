@@ -5,10 +5,6 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  // @ts-expect-error: Custom eslint property is not always recognized in all NextConfig types
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
   images: {
     // Allow SVGs from DiceBear (avatar generator returns image/svg+xml)
     dangerouslyAllowSVG: true,
