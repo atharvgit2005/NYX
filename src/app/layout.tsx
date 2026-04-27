@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "NYX Studio - AI Powered Content Engine",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@nyxstudiosai",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
 };
 

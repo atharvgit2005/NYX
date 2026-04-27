@@ -22,7 +22,7 @@ const videoSchemas = [
     "@type": "VideoObject",
     "name": "Dessertino Happiness",
     "description": "Cinematic food film for Dessertino by NYX Studio.",
-    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.jpg",
+    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.png",
     "uploadDate": "2026-04-28",
     "contentUrl": "/videos/dessertino_happiness.mp4",
     "publisher": {
@@ -39,7 +39,7 @@ const videoSchemas = [
     "@type": "VideoObject",
     "name": "Mango Jungle",
     "description": "Creative product film for Mango Jungle by NYX Studio.",
-    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.jpg",
+    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.png",
     "uploadDate": "2026-04-28",
     "contentUrl": "/videos/mango_jungle.mp4",
     "publisher": {
@@ -56,7 +56,7 @@ const videoSchemas = [
     "@type": "VideoObject",
     "name": "Mango Shower",
     "description": "Visual storytelling for Mango Shower Dessertino by NYX Studio.",
-    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.jpg",
+    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.png",
     "uploadDate": "2026-04-28",
     "contentUrl": "/videos/mango_shower_dessertino.mp4",
     "publisher": {
@@ -73,7 +73,7 @@ const videoSchemas = [
     "@type": "VideoObject",
     "name": "Brioso Unboxing",
     "description": "Unboxing experience film for Brioso by NYX Studio.",
-    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.jpg",
+    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.png",
     "uploadDate": "2026-04-28",
     "contentUrl": "/videos/brioso_unboxing.mp4",
     "publisher": {
