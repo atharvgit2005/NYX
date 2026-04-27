@@ -7,52 +7,32 @@ import "./page.css";
 import { MobileNav } from "./components/MobileNav";
 
 import { LiveHub } from "./components/LiveHub";
-import JsonLd from "@/components/JsonLd";
+import SchemaOrg from "@/components/SchemaOrg";
 
-const organizationSchema = {
+const websiteSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "WebSite",
   "name": "NYX Studio",
   "url": "https://www.nyxstudio.tech",
-  "logo": "https://www.nyxstudio.tech/logo/logo.png",
-  "description": "AI-powered content studio helping D2C brands grow through content production, paid media, and influencer marketing.",
-  "foundingDate": "2024",
-  "founders": [
-    { "@type": "Person", "name": "Atharv Paharia" },
-    { "@type": "Person", "name": "Bhavya Jain" }
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "sales",
-    "url": "https://www.nyxstudio.tech/contact"
-  },
-  "sameAs": [
-    "https://www.instagram.com/nyx.studios.ai/",
-    "https://www.linkedin.com/in/atharv-paharia-468276272/"
-  ]
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.nyxstudio.tech/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
 };
 
 export const metadata: Metadata = {
   title: "AI-Powered Content Studio for D2C Brands | NYX Studio",
-  description: "NYX Studio builds scroll-stopping content, paid media, and growth systems for D2C brands. 320M+ reach generated. Book a free strategy call.",
+  description: "NYX Studio builds growth infrastructure for D2C brands — cinematic content, aggressive paid media, influencer ops, and AI-driven strategy. Based in India.",
   alternates: {
-    canonical: 'https://www.nyxstudio.tech/',
-  },
-  openGraph: {
-    title: "AI-Powered Content Studio for D2C Brands | NYX Studio",
-    description: "NYX Studio builds scroll-stopping content, paid media, and growth systems for D2C brands. 320M+ reach generated. Book a free strategy call.",
-    url: "https://www.nyxstudio.tech/",
-  },
-  twitter: {
-    title: "AI-Powered Content Studio for D2C Brands | NYX Studio",
-    description: "NYX Studio builds scroll-stopping content, paid media, and growth systems for D2C brands. 320M+ reach generated. Book a free strategy call.",
+    canonical: 'https://www.nyxstudio.tech',
   },
 };
 
 export default function AdPage() {
   return (
     <>
-      <JsonLd data={organizationSchema} />
+      <SchemaOrg schema={websiteSchema} />
 
       {/* Main wrapper containing body-level styling to isolate from global styles */}
       <div className="bg-surface-container-lowest text-on-surface font-body selection:bg-secondary selection:text-on-secondary min-h-screen relative w-full overflow-hidden">
@@ -62,7 +42,7 @@ export default function AdPage() {
                 <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center relative flex-shrink-0">
                     <Image 
                         src="/logo/NYX-Logo.png" 
-                        alt="NYX Logo" 
+                        alt="NYX Studio logo" 
                         fill 
                         priority
                         unoptimized
@@ -105,6 +85,13 @@ export default function AdPage() {
                         <span className="material-symbols-outlined !text-[8rem]">emergency</span>
                     </div>
                 </div>
+            </section>
+
+            {/* SEO Copy Block */}
+            <section className="bg-surface-container-lowest px-8 py-4 border-b-4 border-black">
+                <p className="text-[0.75rem] text-on-surface/60 max-w-2xl font-label leading-relaxed">
+                    NYX Studio is an AI-native creative and growth agency built for D2C brands in India. We combine cinematic content production, performance marketing, and influencer strategy into one integrated system — designed to move fast and scale faster.
+                </p>
             </section>
 
             {/* Marquee */}
@@ -234,7 +221,7 @@ export default function AdPage() {
                         {/* Founder 1 */}
                         <div className="border-4 border-black p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#E8441A] group">
                             <div className="w-32 h-32 mb-6 border-4 border-white overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-300">
-                                <Image src="/founders/atharv.jpg" alt="Atharv Paharia" fill className="object-cover" />
+                                <Image src="/founders/atharv.jpg" alt="Atharv Paharia, Co-Founder and Tech Lead at NYX Studio" width={600} height={600} className="object-cover" />
                             </div>
                             <h3 className="text-4xl font-black uppercase font-headline tracking-tighter text-white mb-2">ATHARV PAHARIA</h3>
                             <p className="text-[#E8441A] font-bold uppercase tracking-widest text-sm mb-8">* CO-FOUNDER & TECH LEAD</p>
@@ -250,7 +237,7 @@ export default function AdPage() {
                         {/* Founder 2 */}
                         <div className="border-4 border-black p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#E8441A] group">
                             <div className="w-32 h-32 mb-6 border-4 border-white overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-300">
-                                <Image src="/founders/bhavya.jpg" alt="Bhavya Jain" fill className="object-cover" />
+                                <Image src="/founders/bhavya.jpg" alt="Bhavya Jain, Co-Founder and Product Lead at NYX Studio" width={600} height={600} className="object-cover" />
                             </div>
                             <h3 className="text-4xl font-black uppercase font-headline tracking-tighter text-white mb-2">BHAVYA JAIN</h3>
                             <p className="text-[#E8441A] font-bold uppercase tracking-widest text-sm mb-8">* CO-FOUNDER & PRODUCT</p>
@@ -282,7 +269,7 @@ export default function AdPage() {
                     <div className="w-8 h-8 flex items-center justify-center relative">
                         <Image 
                             src="/logo/NYX-Logo.png" 
-                            alt="NYX Logo" 
+                            alt="NYX Studio logo" 
                             fill 
                             unoptimized
                             className="object-contain"
@@ -292,7 +279,7 @@ export default function AdPage() {
                     <div className="text-2xl font-black text-white uppercase font-headline">NYX STUDIO</div>
                 </Link>
                 <p className="font-headline text-[0.75rem] uppercase tracking-wider text-white/60">
-                    ©2025 NYX Studio
+                    © 2026 NYX Studio
                 </p>
             </div>
             <div className="flex gap-12">

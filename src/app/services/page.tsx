@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import JsonLd from "@/components/JsonLd";
+import SchemaOrg from "@/components/SchemaOrg";
 
 const servicesSchema = {
   "@context": "https://schema.org",
@@ -63,26 +63,17 @@ import "../page.css";
 import { MobileNav } from "../components/MobileNav";
 
 export const metadata: Metadata = {
-  title: "Content Production, Paid Ads & Brand Growth Services | NYX Studio",
-  description: "From cinematic reels to Meta Ads and influencer ops — NYX Studio's full-spectrum growth packages start at ₹30K. Built for fast-moving brands.",
+  title: "Services & Pricing — Content, Paid Media & Growth",
+  description: "Explore NYX Studio's content and growth packages starting at ₹30K. Includes reels, paid ads, influencer marketing, and full-funnel strategy for Indian D2C brands.",
   alternates: {
     canonical: 'https://www.nyxstudio.tech/services',
-  },
-  openGraph: {
-    title: "Content Production, Paid Ads & Brand Growth Services | NYX Studio",
-    description: "From cinematic reels to Meta Ads and influencer ops — NYX Studio's full-spectrum growth packages start at ₹30K. Built for fast-moving brands.",
-    url: "https://www.nyxstudio.tech/services",
-  },
-  twitter: {
-    title: "Content Production, Paid Ads & Brand Growth Services | NYX Studio",
-    description: "From cinematic reels to Meta Ads and influencer ops — NYX Studio's full-spectrum growth packages start at ₹30K. Built for fast-moving brands.",
   },
 };
 
 export default function AdServicesPage() {
   return (
     <>
-      <JsonLd data={servicesSchema} />
+      <SchemaOrg schema={servicesSchema} />
 
       {/* Main wrapper containing body-level styling to isolate from global styles */}
       <div className="bg-[#0E0E0E] text-[#e5e2e1] font-body selection:bg-primary selection:text-ink-black min-h-screen relative w-full overflow-hidden">
@@ -92,7 +83,7 @@ export default function AdServicesPage() {
                 <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center relative flex-shrink-0">
                     <Image 
                         src="/logo/NYX-Logo.png" 
-                        alt="NYX Logo" 
+                        alt="NYX Studio logo" 
                         fill 
                         unoptimized
                         className="object-contain"
@@ -345,7 +336,7 @@ export default function AdServicesPage() {
                 <div className="w-8 h-8 flex items-center justify-center relative">
                     <Image 
                         src="/logo/NYX-Logo.png" 
-                        alt="NYX Logo" 
+                        alt="NYX Studio logo" 
                         fill 
                         unoptimized
                         className="object-contain"
@@ -357,11 +348,11 @@ export default function AdServicesPage() {
             <div className="flex gap-8">
                 <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
                 <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/company/nyx-studio-ai/?viewAsMember=true" target="_blank">LINKEDIN</a>
-                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">TWITTER</a>
+                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://twitter.com/nyxstudiosai" target="_blank">TWITTER</a>
                 <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
             </div>
             <p className="font-headline text-[0.75rem] uppercase tracking-wider text-white/60">
-                ©2025 NYX Studio
+                © 2026 NYX Studio
             </p>
         </footer>
         <MobileNav />

@@ -38,7 +38,7 @@ export default function LandingPage() {
                     {/* Left Section: Logo */}
                     <Link href="/" className="flex items-center gap-3 pl-4 group hover:opacity-80 transition-opacity">
                         <div className="w-8 h-8 flex items-center justify-center relative flex-shrink-0">
-                            <Image src="/logo/NYX-Logo.png" alt="NYX Logo" fill className="object-contain" unoptimized sizes="32px" />
+                            <Image src="/logo/NYX-Logo.png" alt="NYX Studio logo" fill className="object-contain" unoptimized sizes="32px" />
                         </div>
                         <span className="text-lg font-bold tracking-tight text-theme-primary hidden sm:block leading-none">NYX</span>
                     </Link>
@@ -456,7 +456,7 @@ export default function LandingPage() {
 
                     <div className="mt-16 pt-8 border-t border-theme flex flex-col md:flex-row items-center justify-center gap-4">
                         <p className="text-theme-secondary text-sm">
-                            © 2025 NYX Studio
+                            © 2026 NYX Studio
                         </p>
                     </div>
                 </div>

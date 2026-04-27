@@ -32,10 +32,13 @@ const workSans = Work_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.nyxstudio.tech'),
   title: {
-    default: "NYX Studio | AI-Powered Content Studio",
+    default: "AI-Powered Content Studio for D2C Brands | NYX Studio",
     template: "%s | NYX Studio"
   },
-  description: "AI-powered content studio helping D2C brands grow through content production, paid media, and influencer marketing.",
+  description: "NYX Studio is an AI-native content and growth studio for D2C brands in India. We handle paid media, creative production, influencer ops, and full-funnel strategy.",
+  alternates: {
+    canonical: 'https://www.nyxstudio.tech',
+  },
   verification: {
     google: 'google15745e31bbfe363b',
   },
@@ -52,7 +55,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://www.nyxstudio.tech/og-image.jpg",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "NYX Studio - AI Powered Content Engine",
@@ -62,11 +65,29 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@nyxstudiosai",
-    images: ["https://www.nyxstudio.tech/og-image.jpg"],
+    images: ["/og-image.jpg"],
   },
 };
 
 import { ThemeProvider } from "@/components/ThemeProvider";
+import SchemaOrg from "@/components/SchemaOrg";
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "NYX Studio",
+  "url": "https://www.nyxstudio.tech",
+  "logo": "https://www.nyxstudio.tech/logo/NYX-Logo.png",
+  "description": "AI-native content and growth studio for D2C brands in India",
+  "sameAs": [
+    "https://www.instagram.com/nyx.studios.ai/",
+    "https://www.linkedin.com/company/nyx-studio-ai/"
+  ],
+  "founder": [
+    { "@type": "Person", "name": "Atharv Paharia" },
+    { "@type": "Person", "name": "Bhavya Jain" }
+  ]
+};
 
 export default function RootLayout({
   children,
@@ -76,6 +97,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${barlowCondensed.variable} ${spaceGrotesk.variable} ${workSans.variable}`}>
       <body className="font-sans antialiased">
+        <SchemaOrg schema={organizationSchema} />
         <AuthProvider>
           <ThemeProvider>
             <GlobalAnimations />

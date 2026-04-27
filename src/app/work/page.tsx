@@ -6,26 +6,93 @@ import { WorkGrid } from "../components/WorkGrid";
 import "../page.css";
 import { MobileNav } from "../components/MobileNav";
 
+import SchemaOrg from "@/components/SchemaOrg";
+
 export const metadata: Metadata = {
-    title: "Our Work & Case Studies | NYX Studio",
-    description: "See how NYX Studio has grown D2C brands across social media, paid ads, and content production. Real results, real brands.",
+    title: "Our Work — Creative Portfolio",
+    description: "See how NYX Studio creates scroll-stopping content for D2C brands. Cinematic reels, food films, and product campaigns.",
     alternates: {
         canonical: 'https://www.nyxstudio.tech/work',
     },
-    openGraph: {
-        title: "Our Work & Case Studies | NYX Studio",
-        description: "See how NYX Studio has grown D2C brands across social media, paid ads, and content production. Real results, real brands.",
-        url: "https://www.nyxstudio.tech/work",
-    },
-    twitter: {
-        title: "Our Work & Case Studies | NYX Studio",
-        description: "See how NYX Studio has grown D2C brands across social media, paid ads, and content production. Real results, real brands.",
-    },
 };
+
+const videoSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Dessertino Happiness",
+    "description": "Cinematic food film for Dessertino by NYX Studio.",
+    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.jpg",
+    "uploadDate": "2026-04-28",
+    "contentUrl": "/videos/dessertino_happiness.mp4",
+    "publisher": {
+      "@type": "Organization",
+      "name": "NYX Studio",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.nyxstudio.tech/logo/NYX-Logo.png"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Mango Jungle",
+    "description": "Creative product film for Mango Jungle by NYX Studio.",
+    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.jpg",
+    "uploadDate": "2026-04-28",
+    "contentUrl": "/videos/mango_jungle.mp4",
+    "publisher": {
+      "@type": "Organization",
+      "name": "NYX Studio",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.nyxstudio.tech/logo/NYX-Logo.png"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Mango Shower",
+    "description": "Visual storytelling for Mango Shower Dessertino by NYX Studio.",
+    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.jpg",
+    "uploadDate": "2026-04-28",
+    "contentUrl": "/videos/mango_shower_dessertino.mp4",
+    "publisher": {
+      "@type": "Organization",
+      "name": "NYX Studio",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.nyxstudio.tech/logo/NYX-Logo.png"
+      }
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Brioso Unboxing",
+    "description": "Unboxing experience film for Brioso by NYX Studio.",
+    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.jpg",
+    "uploadDate": "2026-04-28",
+    "contentUrl": "/videos/brioso_unboxing.mp4",
+    "publisher": {
+      "@type": "Organization",
+      "name": "NYX Studio",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.nyxstudio.tech/logo/NYX-Logo.png"
+      }
+    }
+  }
+];
 
 export default function AdWorkPage() {
     return (
         <>
+        {videoSchemas.map((schema, index) => (
+            <SchemaOrg key={index} schema={schema} />
+        ))}
 
             <div className="font-body selection:bg-secondary selection:text-black min-h-screen relative w-full overflow-hidden bg-[#131313] text-[#e5e2e1]">
                 {/* TopAppBar */}
@@ -34,7 +101,7 @@ export default function AdWorkPage() {
                         <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center relative flex-shrink-0">
                             <Image
                                 src="/logo/NYX-Logo.png"
-                                alt="NYX Logo"
+                                alt="NYX Studio logo"
                                 fill
                                 unoptimized
                                 className="object-contain"
@@ -109,7 +176,7 @@ export default function AdWorkPage() {
                         <div className="w-8 h-8 flex items-center justify-center relative">
                             <Image
                                 src="/logo/NYX-Logo.png"
-                                alt="NYX Logo"
+                                alt="NYX Studio logo"
                                 fill
                                 unoptimized
                                 className="object-contain"
@@ -123,11 +190,11 @@ export default function AdWorkPage() {
                     <div className="flex flex-wrap justify-center gap-8">
                         <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
                         <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/company/nyx-studio-ai/?viewAsMember=true" target="_blank">LINKEDIN</a>
-                        <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">TWITTER</a>
+                        <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://twitter.com/nyxstudiosai" target="_blank">TWITTER</a>
                         <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
                     </div>
                     <div className="font-body text-xs uppercase tracking-widest text-white">
-                        © 2025 NYX Studio
+                        © 2026 NYX Studio
                     </div>
                 </footer>
                 <MobileNav />

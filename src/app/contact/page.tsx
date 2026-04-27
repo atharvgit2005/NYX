@@ -7,19 +7,10 @@ import "../page.css"; // Reuse the css from /ad/page.css for icons and basic sty
 import { MobileNav } from "../components/MobileNav";
 
 export const metadata: Metadata = {
-  title: "Book a Strategy Call | NYX Studio",
-  description: "Ready to grow your brand? Book a free strategy call with NYX Studio — India's AI-native content and performance marketing studio.",
+  title: "Book a Discovery Call",
+  description: "Ready to grow? Book a free discovery call with the NYX Studio team and let's build something that demands attention.",
   alternates: {
     canonical: 'https://www.nyxstudio.tech/contact',
-  },
-  openGraph: {
-    title: "Book a Strategy Call | NYX Studio",
-    description: "Ready to grow your brand? Book a free strategy call with NYX Studio — India's AI-native content and performance marketing studio.",
-    url: "https://www.nyxstudio.tech/contact",
-  },
-  twitter: {
-    title: "Book a Strategy Call | NYX Studio",
-    description: "Ready to grow your brand? Book a free strategy call with NYX Studio — India's AI-native content and performance marketing studio.",
   },
 };
 
@@ -36,7 +27,7 @@ export default function AdContactPage() {
                 <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center relative flex-shrink-0">
                     <Image 
                         src="/logo/NYX-Logo.png" 
-                        alt="NYX Logo" 
+                        alt="NYX Studio logo" 
                         fill 
                         unoptimized
                         className="object-contain"
@@ -105,7 +96,7 @@ export default function AdContactPage() {
                                         <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.linkedin.com/company/nyx-studio-ai/?viewAsMember=true" target="_blank">
                                             <span className="mr-4 text-xs">02/</span> LINKEDIN <span className="ml-auto opacity-0 group-hover:opacity-100">↗</span>
                                         </a>
-                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">
+                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://twitter.com/nyxstudiosai" target="_blank">
                                             <span className="mr-4 text-xs">03/</span> TWITTER <span className="ml-auto opacity-0 group-hover:opacity-100">↗</span>
                                         </a>
                                     </div>
@@ -176,7 +167,7 @@ export default function AdContactPage() {
                 <div className="w-8 h-8 flex items-center justify-center relative">
                     <Image 
                         src="/logo/NYX-Logo.png" 
-                        alt="NYX Logo" 
+                        alt="NYX Studio logo" 
                         fill 
                         unoptimized
                         className="object-contain"
@@ -190,11 +181,11 @@ export default function AdContactPage() {
             <div className="flex gap-8 text-gray-500 font-body text-xs uppercase tracking-widest">
                 <a className="hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
                 <a className="hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank">LINKEDIN</a>
-                <a className="hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">TWITTER</a>
+                <a className="hover:text-[#F5C518] transition-colors" href="https://twitter.com/nyxstudiosai" target="_blank">TWITTER</a>
                 <Link className="hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
             </div>
             <div className="text-gray-500 font-body text-xs uppercase tracking-widest">
-                © 2025 NYX Studio
+                © 2026 NYX Studio
             </div>
         </footer>
         <MobileNav />
