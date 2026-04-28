@@ -23,9 +23,10 @@ export default function Navbar() {
                 <Image 
                   src="/logo/NYX-Logo.png" 
                   alt="NYX Studio logo" 
-                  fill 
+                  width={120}
+                  height={40}
                   unoptimized
-                  className="object-contain"
+                  className="h-full w-full object-contain"
                   sizes="32px"
                 />
               </div>

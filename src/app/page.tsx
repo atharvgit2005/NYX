@@ -22,8 +22,30 @@ const websiteSchema = {
 };
 
 export const metadata: Metadata = {
-  title: "AI-Powered Content Studio for D2C Brands | NYX Studio",
-  description: "NYX Studio builds growth infrastructure for D2C brands — cinematic content, aggressive paid media, influencer ops, and AI-driven strategy. Based in India.",
+  title: 'Stop Scrolling. Start Converting. | NYX Studio — AI Content Agency India',
+  description:
+    'NYX Studio builds AI-powered content systems for D2C brands in India. Cinematic reels, aggressive paid media, and influencer ops — all under one roof. Currently onboarding Q3 2026 brand partners.',
+  openGraph: {
+    title: 'Stop Scrolling. Start Converting. | NYX Studio',
+    description:
+      'NYX Studio builds AI-powered content systems for D2C brands in India.',
+    url: 'https://www.nyxstudio.tech',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'NYX Studio — We make brands impossible to scroll past',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Stop Scrolling. Start Converting. | NYX Studio',
+    description:
+      'NYX Studio builds AI-powered content systems for D2C brands in India.',
+    images: ['/og-image.jpg'],
+  },
   alternates: {
     canonical: 'https://www.nyxstudio.tech',
   },
@@ -43,10 +65,11 @@ export default function AdPage() {
                     <Image 
                         src="/logo/NYX-Logo.png" 
                         alt="NYX Studio logo" 
-                        fill 
+                        width={120}
+                        height={40}
                         priority
                         unoptimized
-                        className="object-contain"
+                        className="h-full w-full object-contain"
                         sizes="(max-width: 768px) 32px, 40px"
                     />
                 </div>
@@ -88,8 +111,8 @@ export default function AdPage() {
             </section>
 
             {/* SEO Copy Block */}
-            <section className="bg-surface-container-lowest px-8 py-4 border-b-4 border-black">
-                <p className="text-[0.75rem] text-on-surface/60 max-w-2xl font-label leading-relaxed">
+            <section className="bg-surface-container-lowest px-8 py-8">
+                <p className="text-sm text-on-surface/60 max-w-2xl font-body leading-relaxed">
                     NYX Studio is an AI-native creative and growth agency built for D2C brands in India. We combine cinematic content production, performance marketing, and influencer strategy into one integrated system — designed to move fast and scale faster.
                 </p>
             </section>
@@ -221,7 +244,7 @@ export default function AdPage() {
                         {/* Founder 1 */}
                         <div className="border-4 border-black p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#E8441A] group">
                             <div className="w-32 h-32 mb-6 border-4 border-white overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-300">
-                                <Image src="/founders/atharv.jpg" alt="Atharv Paharia, Co-Founder and Tech Lead at NYX Studio" width={600} height={600} className="object-cover" />
+                                <Image src="/founders/atharv.jpg" alt="Atharv Paharia, Co-Founder and Tech Lead at NYX Studio" width={600} height={750} className="h-full w-full object-cover" />
                             </div>
                             <h3 className="text-4xl font-black uppercase font-headline tracking-tighter text-white mb-2">ATHARV PAHARIA</h3>
                             <p className="text-[#E8441A] font-bold uppercase tracking-widest text-sm mb-8">* CO-FOUNDER & TECH LEAD</p>
@@ -237,7 +260,7 @@ export default function AdPage() {
                         {/* Founder 2 */}
                         <div className="border-4 border-black p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#E8441A] group">
                             <div className="w-32 h-32 mb-6 border-4 border-white overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-300">
-                                <Image src="/founders/bhavya.jpg" alt="Bhavya Jain, Co-Founder and Product Lead at NYX Studio" width={600} height={600} className="object-cover" />
+                                <Image src="/founders/bhavya.jpg" alt="Bhavya Jain, Co-Founder and Product Lead at NYX Studio" width={600} height={750} className="h-full w-full object-cover" />
                             </div>
                             <h3 className="text-4xl font-black uppercase font-headline tracking-tighter text-white mb-2">BHAVYA JAIN</h3>
                             <p className="text-[#E8441A] font-bold uppercase tracking-widest text-sm mb-8">* CO-FOUNDER & PRODUCT</p>
@@ -270,9 +293,10 @@ export default function AdPage() {
                         <Image 
                             src="/logo/NYX-Logo.png" 
                             alt="NYX Studio logo" 
-                            fill 
+                            width={120}
+                            height={40}
                             unoptimized
-                            className="object-contain"
+                            className="h-full w-full object-contain"
                             sizes="32px"
                         />
                     </div>
@@ -286,7 +310,7 @@ export default function AdPage() {
                 <div className="flex flex-col gap-2">
                     <span className="text-[#E8441A] font-label text-[0.75rem] uppercase font-bold tracking-widest">CONNECT</span>
                     <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
-                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="https://www.linkedin.com/company/nyx-studio-ai/?viewAsMember=true" target="_blank">LINKEDIN</a>
+                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank">LINKEDIN</a>
                 </div>
                 <div className="flex flex-col gap-2">
                     <span className="text-[#E8441A] font-label text-[0.75rem] uppercase font-bold tracking-widest">RESOURCES</span>

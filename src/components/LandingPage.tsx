@@ -38,7 +38,7 @@ export default function LandingPage() {
                     {/* Left Section: Logo */}
                     <Link href="/" className="flex items-center gap-3 pl-4 group hover:opacity-80 transition-opacity">
                         <div className="w-8 h-8 flex items-center justify-center relative flex-shrink-0">
-                            <Image src="/logo/NYX-Logo.png" alt="NYX Studio logo" fill className="object-contain" unoptimized sizes="32px" />
+                            <Image src="/logo/NYX-Logo.png" alt="NYX Studio logo" width={120} height={40} className="h-full w-full object-contain" unoptimized sizes="32px" />
                         </div>
                         <span className="text-lg font-bold tracking-tight text-theme-primary hidden sm:block leading-none">NYX</span>
                     </Link>
@@ -311,8 +311,9 @@ export default function LandingPage() {
                                     <Image 
                                         src={founder.image} 
                                         alt={founder.name === 'Atharv Paharia' ? "Atharv Paharia, Co-Founder and Tech Lead at NYX Studio" : "Bhavya Jain, Co-Founder and Product Lead at NYX Studio"} 
-                                        fill 
-                                        className="object-cover rounded-full"
+                                        width={600}
+                                        height={750}
+                                        className="h-full w-full object-cover rounded-full"
                                         unoptimized sizes="96px"
                                     />
                                 </div>
@@ -404,7 +405,7 @@ export default function LandingPage() {
                         <div className="md:col-span-1">
                             <Link href="/" className="flex items-center gap-3 mb-6 group hover:opacity-80 transition-opacity" aria-label="NYX Studio Home">
                             <div className="w-8 h-8 flex items-center justify-center relative flex-shrink-0">
-                                <Image src="/logo/NYX-Logo.png" alt="NYX Studio logo" fill className="object-contain" unoptimized sizes="32px" />
+                                <Image src="/logo/NYX-Logo.png" alt="NYX Studio logo" width={120} height={40} className="h-full w-full object-contain" unoptimized sizes="32px" />
                             </div>
                                 <span className="text-xl font-bold tracking-tight text-theme-primary">NYX</span>
                             </Link>
@@ -415,7 +416,7 @@ export default function LandingPage() {
                                 <a href="https://www.instagram.com/nyx.studios.ai/" target="_blank" rel="noopener noreferrer" className="p-2 -ml-2 text-theme-secondary hover:text-orange-500 transition-colors rounded-full hover:bg-card-hover">
                                     <Instagram className="w-5 h-5" />
                                 </a>
-                                <a href="https://www.linkedin.com/company/nyx-studio-ai/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="p-2 text-theme-secondary hover:text-orange-500 transition-colors rounded-full hover:bg-card-hover">
+                                <a href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank" rel="noopener noreferrer" className="p-2 text-theme-secondary hover:text-orange-500 transition-colors rounded-full hover:bg-card-hover">
                                     <Linkedin className="w-5 h-5" />
                                 </a>
                             </div>

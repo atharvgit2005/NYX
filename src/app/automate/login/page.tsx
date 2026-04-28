@@ -71,7 +71,7 @@ function LoginContent() {
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
                 <Link href="/" className="flex flex-col items-center gap-4 group">
                     <div className="w-16 h-16 relative group-hover:scale-105 transition-transform duration-300">
-                        <Image src="/logo/NYX-Logo.png" alt="NYX Studio logo" fill className="object-contain" unoptimized sizes="64px" />
+                        <Image src="/logo/NYX-Logo.png" alt="NYX Studio logo" width={120} height={40} className="h-full w-full object-contain" unoptimized sizes="64px" />
                     </div>
                     <span className="text-3xl font-bold text-theme-primary">NYX</span>
                 </Link>

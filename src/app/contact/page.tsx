@@ -7,8 +7,20 @@ import "../page.css"; // Reuse the css from /ad/page.css for icons and basic sty
 import { MobileNav } from "../components/MobileNav";
 
 export const metadata: Metadata = {
-  title: "Book a Discovery Call",
-  description: "Ready to grow? Book a free discovery call with the NYX Studio team and let's build something that demands attention.",
+  title: "Let's Build Something Unmissable",
+  description:
+    "You found us early. NYX Studio is selectively onboarding D2C brand partners for Q3 2026. Book a free discovery call and let's see if we're the right fit.",
+  openGraph: {
+    title: "Let's Build Something Unmissable | NYX Studio",
+    description:
+      "NYX Studio is selectively onboarding D2C brand partners for Q3 2026. Book a free discovery call.",
+    url: 'https://www.nyxstudio.tech/contact',
+  },
+  twitter: {
+    title: "Let's Build Something Unmissable | NYX Studio",
+    description:
+      "NYX Studio is selectively onboarding D2C brand partners for Q3 2026.",
+  },
   alternates: {
     canonical: 'https://www.nyxstudio.tech/contact',
   },
@@ -28,9 +40,10 @@ export default function AdContactPage() {
                     <Image 
                         src="/logo/NYX-Logo.png" 
                         alt="NYX Studio logo" 
-                        fill 
+                        width={120}
+                        height={40}
                         unoptimized
-                        className="object-contain"
+                        className="h-full w-full object-contain"
                         sizes="(max-width: 768px) 32px, 40px"
                     />
                 </div>
@@ -93,7 +106,7 @@ export default function AdContactPage() {
                                         <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">
                                             <span className="mr-4 text-xs">01/</span> INSTAGRAM <span className="ml-auto opacity-0 group-hover:opacity-100">↗</span>
                                         </a>
-                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.linkedin.com/company/nyx-studio-ai/?viewAsMember=true" target="_blank">
+                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank">
                                             <span className="mr-4 text-xs">02/</span> LINKEDIN <span className="ml-auto opacity-0 group-hover:opacity-100">↗</span>
                                         </a>
                                         <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://twitter.com/nyxstudiosai" target="_blank">
@@ -168,9 +181,10 @@ export default function AdContactPage() {
                     <Image 
                         src="/logo/NYX-Logo.png" 
                         alt="NYX Studio logo" 
-                        fill 
+                        width={120}
+                        height={40}
                         unoptimized
-                        className="object-contain"
+                        className="h-full w-full object-contain"
                         sizes="32px"
                     />
                 </div>
@@ -180,7 +194,7 @@ export default function AdContactPage() {
             </Link>
             <div className="flex gap-8 text-gray-500 font-body text-xs uppercase tracking-widest">
                 <a className="hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
-                <a className="hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank">LINKEDIN</a>
+                <a className="hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank">LINKEDIN</a>
                 <a className="hover:text-[#F5C518] transition-colors" href="https://twitter.com/nyxstudiosai" target="_blank">TWITTER</a>
                 <Link className="hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
             </div>

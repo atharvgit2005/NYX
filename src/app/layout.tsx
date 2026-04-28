@@ -3,6 +3,8 @@ import { Outfit, Barlow_Condensed, Space_Grotesk, Work_Sans } from "next/font/go
 import "./globals.css";
 import GlobalAnimations from "@/components/GlobalAnimations";
 import AuthProvider from '@/components/AuthProvider'
+import { ThemeProvider } from "@/components/ThemeProvider";
+import SchemaOrg from "@/components/SchemaOrg";
 
 const outfit = Outfit({ 
   subsets: ["latin"],
@@ -32,45 +34,37 @@ const workSans = Work_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.nyxstudio.tech'),
   title: {
-    default: "AI-Powered Content Studio for D2C Brands | NYX Studio",
-    template: "%s | NYX Studio"
+    default: 'Stop Scrolling. Start Converting. | NYX Studio — AI Content Agency India',
+    template: '%s | NYX Studio',
   },
-  description: "NYX Studio is an AI-native content and growth studio for D2C brands in India. We handle paid media, creative production, influencer ops, and full-funnel strategy.",
-  alternates: {
-    canonical: 'https://www.nyxstudio.tech',
-  },
-  verification: {
-    google: 'google15745e31bbfe363b',
-  },
-  icons: {
-    icon: "/logo/logo.png",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  description:
+    'NYX Studio builds AI-powered content systems for D2C brands in India. Cinematic reels, aggressive paid media, and influencer ops — all under one roof. Currently onboarding Q3 2026 brand partners.',
   openGraph: {
-    type: "website",
-    siteName: "NYX Studio",
-    locale: "en_US",
+    type: 'website',
+    siteName: 'NYX Studio',
+    title: 'Stop Scrolling. Start Converting. | NYX Studio',
+    description:
+      'NYX Studio builds AI-powered content systems for D2C brands in India. Cinematic reels, aggressive paid media, and influencer ops — all under one roof.',
     images: [
       {
-        url: "/og-image.png",
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: "NYX Studio - AI Powered Content Engine",
+        alt: 'NYX Studio — We make brands impossible to scroll past',
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
-    site: "@nyxstudiosai",
-    images: ["/og-image.png"],
+    card: 'summary_large_image',
+    title: 'Stop Scrolling. Start Converting. | NYX Studio',
+    description:
+      'AI-powered content and growth studio for D2C brands in India.',
+    images: ['/og-image.jpg'],
+  },
+  alternates: {
+    canonical: 'https://www.nyxstudio.tech',
   },
 };
-
-import { ThemeProvider } from "@/components/ThemeProvider";
-import SchemaOrg from "@/components/SchemaOrg";
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -81,7 +75,8 @@ const organizationSchema = {
   "description": "AI-native content and growth studio for D2C brands in India",
   "sameAs": [
     "https://www.instagram.com/nyx.studios.ai/",
-    "https://www.linkedin.com/company/nyx-studio-ai/"
+    "https://www.linkedin.com/company/nyx-studio-ai/",
+    "https://twitter.com/nyxstudiosai"
   ],
   "founder": [
     { "@type": "Person", "name": "Atharv Paharia" },

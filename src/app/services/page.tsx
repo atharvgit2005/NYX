@@ -1,61 +1,64 @@
 import type { Metadata } from "next";
 import SchemaOrg from "@/components/SchemaOrg";
 
-const servicesSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "serviceType": "Marketing and Content Production",
-  "provider": {
-    "@type": "Organization",
-    "name": "NYX Studio"
+const servicesSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "provider": { "@type": "Organization", "name": "NYX Studio" },
+    "name": "Content Strategy",
+    "description": "Architecting narratives that pierce the noise. Narrative mapping, trend forecasting, and channel ecosystems.",
+    "areaServed": "India"
   },
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Growth Packages",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Content Strategy",
-          "description": "Strategic content planning for high-growth brands.",
-          "provider": { "@type": "Organization", "name": "NYX Studio" },
-          "areaServed": { "@type": "Country", "name": "India" }
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Paid Social",
-          "description": "High-performance Meta and Google Ads management.",
-          "provider": { "@type": "Organization", "name": "NYX Studio" },
-          "areaServed": { "@type": "Country", "name": "India" }
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Creative Production",
-          "description": "Cinematic reels and premium ad creatives.",
-          "provider": { "@type": "Organization", "name": "NYX Studio" },
-          "areaServed": { "@type": "Country", "name": "India" }
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Brand Growth",
-          "description": "Full-spectrum growth systems for D2C brands.",
-          "provider": { "@type": "Organization", "name": "NYX Studio" },
-          "areaServed": { "@type": "Country", "name": "India" }
-        }
-      }
-    ]
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "provider": { "@type": "Organization", "name": "NYX Studio" },
+    "name": "Paid Social",
+    "description": "Precision targeting meets raw creativity. Algorithmic dominance across Meta, TikTok, and Google.",
+    "areaServed": "India"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "provider": { "@type": "Organization", "name": "NYX Studio" },
+    "name": "Creative Production",
+    "description": "High-fidelity visuals for a low-attention world. Film, motion, photography, VFX, 3D art, and layout design.",
+    "areaServed": "India"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "provider": { "@type": "Organization", "name": "NYX Studio" },
+    "name": "Brand Growth",
+    "description": "Full-scale ecosystem execution — retention systems, partnership outreach, and performance ops.",
+    "areaServed": "India"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Offer",
+    "name": "Trial Pack",
+    "price": "30000",
+    "priceCurrency": "INR",
+    "description": "15-17 high-fidelity posts, cinematic reels, POV, hooks, premium photography, 1 platform focus, deep analytics."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Offer",
+    "name": "Starter Pack",
+    "price": "50000",
+    "priceCurrency": "INR",
+    "description": "20-25 dynamic reels and posts, UGC sourcing, Meta Ads engine, hyper-local targeting, influencer collabs."
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Offer",
+    "name": "Growth Pack",
+    "price": "80000",
+    "priceCurrency": "INR",
+    "description": "30-40 dominant reels and posts, full-scale ecosystem execution, multi-tiered campaign funnels, WhatsApp/SMS funnels."
   }
-};
+];
 import Image from "next/image";
 import Link from "next/link";
 import { ServiceAnimations } from "../components/ServiceAnimations";
@@ -63,8 +66,20 @@ import "../page.css";
 import { MobileNav } from "../components/MobileNav";
 
 export const metadata: Metadata = {
-  title: "Services & Pricing — Content, Paid Media & Growth",
-  description: "Explore NYX Studio's content and growth packages starting at ₹30K. Includes reels, paid ads, influencer marketing, and full-funnel strategy for Indian D2C brands.",
+  title: 'Content + Growth Packages for D2C Brands in India',
+  description:
+    'From ₹30K cinematic content sprints to full-funnel growth systems at ₹80K — NYX Studio\'s packages are built to move product. Paid ads, reels, UGC, and influencer ops for Indian D2C brands.',
+  openGraph: {
+    title: 'Content + Growth Packages for D2C Brands in India | NYX Studio',
+    description:
+      'From ₹30K to ₹80K — content, paid ads, reels, and influencer ops for Indian D2C brands.',
+    url: 'https://www.nyxstudio.tech/services',
+  },
+  twitter: {
+    title: 'Content + Growth Packages for D2C Brands | NYX Studio',
+    description:
+      'From ₹30K to ₹80K — content, paid ads, reels, and influencer ops for Indian D2C brands.',
+  },
   alternates: {
     canonical: 'https://www.nyxstudio.tech/services',
   },
@@ -84,9 +99,10 @@ export default function AdServicesPage() {
                     <Image 
                         src="/logo/NYX-Logo.png" 
                         alt="NYX Studio logo" 
-                        fill 
+                        width={120}
+                        height={40}
                         unoptimized
-                        className="object-contain"
+                        className="h-full w-full object-contain"
                         sizes="(max-width: 768px) 32px, 40px"
                     />
                 </div>
@@ -337,9 +353,10 @@ export default function AdServicesPage() {
                     <Image 
                         src="/logo/NYX-Logo.png" 
                         alt="NYX Studio logo" 
-                        fill 
+                        width={120}
+                        height={40}
                         unoptimized
-                        className="object-contain"
+                        className="h-full w-full object-contain"
                         sizes="32px"
                     />
                 </div>
@@ -347,7 +364,7 @@ export default function AdServicesPage() {
             </Link>
             <div className="flex gap-8">
                 <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
-                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/company/nyx-studio-ai/?viewAsMember=true" target="_blank">LINKEDIN</a>
+                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank">LINKEDIN</a>
                 <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://twitter.com/nyxstudiosai" target="_blank">TWITTER</a>
                 <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
             </div>

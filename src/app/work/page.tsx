@@ -9,11 +9,23 @@ import { MobileNav } from "../components/MobileNav";
 import SchemaOrg from "@/components/SchemaOrg";
 
 export const metadata: Metadata = {
-    title: "Our Work — Creative Portfolio",
-    description: "See how NYX Studio creates scroll-stopping content for D2C brands. Cinematic reels, food films, and product campaigns.",
-    alternates: {
-        canonical: 'https://www.nyxstudio.tech/work',
-    },
+  title: 'Work That Sells — D2C Creative Portfolio',
+  description:
+    'Scroll through NYX Studio\'s portfolio of food films, product campaigns, and cinematic reels built for D2C brands. Every frame designed to stop thumbs and drive conversions.',
+  openGraph: {
+    title: 'Work That Sells — D2C Creative Portfolio | NYX Studio',
+    description:
+      'Food films, product campaigns, and cinematic reels built for D2C brands.',
+    url: 'https://www.nyxstudio.tech/work',
+  },
+  twitter: {
+    title: 'Work That Sells — D2C Creative Portfolio | NYX Studio',
+    description:
+      'Food films, product campaigns, and cinematic reels built for D2C brands.',
+  },
+  alternates: {
+    canonical: 'https://www.nyxstudio.tech/work',
+  },
 };
 
 const videoSchemas = [
@@ -21,78 +33,44 @@ const videoSchemas = [
     "@context": "https://schema.org",
     "@type": "VideoObject",
     "name": "Dessertino Happiness",
-    "description": "Cinematic food film for Dessertino by NYX Studio.",
-    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.png",
-    "uploadDate": "2026-04-28",
-    "contentUrl": "/videos/dessertino_happiness.mp4",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NYX Studio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.nyxstudio.tech/logo/NYX-Logo.png"
-      }
-    }
+    "description": "A delightful exploration of sweetness and joy — cinematic food film by NYX Studio.",
+    "contentUrl": "https://www.nyxstudio.tech/videos/dessertino_happiness.mp4",
+    "uploadDate": "2026-01-01",
+    "publisher": { "@type": "Organization", "name": "NYX Studio" }
   },
   {
     "@context": "https://schema.org",
     "@type": "VideoObject",
     "name": "Mango Jungle",
-    "description": "Creative product film for Mango Jungle by NYX Studio.",
-    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.png",
-    "uploadDate": "2026-04-28",
-    "contentUrl": "/videos/mango_jungle.mp4",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NYX Studio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.nyxstudio.tech/logo/NYX-Logo.png"
-      }
-    }
+    "description": "Creative D2C product film by NYX Studio.",
+    "contentUrl": "https://www.nyxstudio.tech/videos/mango_jungle.mp4",
+    "uploadDate": "2026-01-01",
+    "publisher": { "@type": "Organization", "name": "NYX Studio" }
   },
   {
     "@context": "https://schema.org",
     "@type": "VideoObject",
     "name": "Mango Shower",
-    "description": "Visual storytelling for Mango Shower Dessertino by NYX Studio.",
-    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.png",
-    "uploadDate": "2026-04-28",
-    "contentUrl": "/videos/mango_shower_dessertino.mp4",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NYX Studio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.nyxstudio.tech/logo/NYX-Logo.png"
-      }
-    }
+    "description": "Art direction and creative production by NYX Studio for Dessertino.",
+    "contentUrl": "https://www.nyxstudio.tech/videos/mango_shower_dessertino.mp4",
+    "uploadDate": "2026-01-01",
+    "publisher": { "@type": "Organization", "name": "NYX Studio" }
   },
   {
     "@context": "https://schema.org",
     "@type": "VideoObject",
     "name": "Brioso Unboxing",
-    "description": "Unboxing experience film for Brioso by NYX Studio.",
-    "thumbnailUrl": "https://www.nyxstudio.tech/og-image.png",
-    "uploadDate": "2026-04-28",
-    "contentUrl": "/videos/brioso_unboxing.mp4",
-    "publisher": {
-      "@type": "Organization",
-      "name": "NYX Studio",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://www.nyxstudio.tech/logo/NYX-Logo.png"
-      }
-    }
+    "description": "Product unboxing film — experience the reveal and product details.",
+    "contentUrl": "https://www.nyxstudio.tech/videos/brioso_unboxing.mp4",
+    "uploadDate": "2026-01-01",
+    "publisher": { "@type": "Organization", "name": "NYX Studio" }
   }
 ];
 
 export default function AdWorkPage() {
     return (
         <>
-        {videoSchemas.map((schema, index) => (
-            <SchemaOrg key={index} schema={schema} />
-        ))}
+        <SchemaOrg schema={videoSchemas} />
 
             <div className="font-body selection:bg-secondary selection:text-black min-h-screen relative w-full overflow-hidden bg-[#131313] text-[#e5e2e1]">
                 {/* TopAppBar */}
@@ -102,9 +80,10 @@ export default function AdWorkPage() {
                             <Image
                                 src="/logo/NYX-Logo.png"
                                 alt="NYX Studio logo"
-                                fill
+                                width={120}
+                                height={40}
                                 unoptimized
-                                className="object-contain"
+                                className="h-full w-full object-contain"
                                 sizes="(max-width: 768px) 32px, 40px"
                             />
                         </div>
@@ -177,9 +156,10 @@ export default function AdWorkPage() {
                             <Image
                                 src="/logo/NYX-Logo.png"
                                 alt="NYX Studio logo"
-                                fill
+                                width={120}
+                                height={40}
                                 unoptimized
-                                className="object-contain"
+                                className="h-full w-full object-contain"
                                 sizes="32px"
                             />
                         </div>
@@ -189,7 +169,7 @@ export default function AdWorkPage() {
                     </Link>
                     <div className="flex flex-wrap justify-center gap-8">
                         <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
-                        <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/company/nyx-studio-ai/?viewAsMember=true" target="_blank">LINKEDIN</a>
+                        <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank">LINKEDIN</a>
                         <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://twitter.com/nyxstudiosai" target="_blank">TWITTER</a>
                         <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
                     </div>

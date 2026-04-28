@@ -38,7 +38,7 @@ export default function Header() {
 
                 <Link href="/" className="flex items-center gap-3 group" aria-label="NYX Studio Home">
                     <div className="w-8 h-8 relative flex-shrink-0">
-                        <Image src="/logo/NYX-Logo.png" alt="NYX Studio logo" fill className="object-contain" unoptimized sizes="32px" />
+                        <Image src="/logo/NYX-Logo.png" alt="NYX Studio logo" width={120} height={40} className="h-full w-full object-contain" unoptimized sizes="32px" />
                     </div>
                     <span className="text-lg sm:text-xl font-bold tracking-tight text-theme-primary whitespace-nowrap">NYX</span>
                 </Link>
