@@ -167,6 +167,7 @@ export function LiveHub() {
                                 <a 
                                     href={`https://wa.me/919098344807?text=Hi, I've just submitted a brand brief for ${formData.brandName}. Let's discuss the strategy.`} 
                                     target="_blank"
+                                    rel="noopener noreferrer"
                                     className="inline-flex items-center gap-3 bg-[#25D366] text-black font-headline font-bold uppercase px-12 py-6 text-2xl hover:scale-105 transition-transform zine-shadow"
                                 >
                                     OPEN WHATSAPP <MessageSquare size={28} />

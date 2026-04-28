@@ -156,10 +156,10 @@ export default function LandingPage() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-12 items-end">
                         {/* Left Side: AUTOMATE STRATEGY */}
                         <div className="flex flex-col items-start text-left">
-                            <h2 ref={titleRef} className="text-[clamp(44px,10vw,160px)] font-black uppercase tracking-tighter leading-[0.85] condensed mb-8 md:mb-10 text-white">
+                            <h1 ref={titleRef} className="text-[clamp(44px,10vw,160px)] font-black uppercase tracking-tighter leading-[0.85] condensed mb-8 md:mb-10 text-white">
                                 <span className="block">AUTOMATE</span>
                                 <span className="block">STRATEGY</span>
-                            </h2>
+                            </h1>
                             <p ref={subtitleRef} className="text-base md:text-lg lg:text-xl text-[#A1A1AA] max-w-sm mb-10 md:mb-12 leading-relaxed font-medium">
                                 Generate viral ideas, write scripts, and produce <span className="text-[#F97316] font-bold">AI videos</span> in minutes. The engine for modern creators.
                             </p>
@@ -175,10 +175,10 @@ export default function LandingPage() {
 
                         {/* Right Side: REAL RESULTS */}
                         <div className="flex flex-col items-start md:items-end text-left md:text-right relative">
-                            <h2 className="text-[clamp(44px,10vw,160px)] font-black uppercase tracking-tighter leading-[0.85] condensed mb-8 md:mb-0">
+                            <p className="text-[clamp(44px,10vw,160px)] font-black uppercase tracking-tighter leading-[0.85] condensed mb-8 md:mb-0">
                                 <span className="text-gradient-hero block">REAL</span>
                                 <span className="text-gradient-hero block">RESULTS</span>
-                            </h2>
+                            </p>
                             
                             {/* Anchored Stat Card */}
                             <div className="w-full sm:w-auto md:absolute md:-bottom-28 md:right-0 bg-black/60 backdrop-blur-xl border border-theme rounded-3xl p-6 shadow-2xl hover:border-[#F97316]/30 transition-all mt-4 md:mt-0 z-30">

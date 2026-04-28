@@ -64,31 +64,48 @@ import Link from "next/link";
 import { ServiceAnimations } from "../components/ServiceAnimations";
 import "../page.css";
 import { MobileNav } from "../components/MobileNav";
+import { createMarketingMetadata, SITE_URL } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMarketingMetadata({
   title: 'Content + Growth Packages for D2C Brands in India',
   description:
-    'From ₹30K cinematic content sprints to full-funnel growth systems at ₹80K — NYX Studio\'s packages are built to move product. Paid ads, reels, UGC, and influencer ops for Indian D2C brands.',
-  openGraph: {
-    title: 'Content + Growth Packages for D2C Brands in India | NYX Studio',
-    description:
-      'From ₹30K to ₹80K — content, paid ads, reels, and influencer ops for Indian D2C brands.',
-    url: 'https://www.nyxstudio.tech/services',
-  },
-  twitter: {
-    title: 'Content + Growth Packages for D2C Brands | NYX Studio',
-    description:
-      'From ₹30K to ₹80K — content, paid ads, reels, and influencer ops for Indian D2C brands.',
-  },
-  alternates: {
-    canonical: 'https://www.nyxstudio.tech/services',
-  },
+    'From ₹30K cinematic content sprints to full-funnel growth systems at ₹80K - NYX Studio\'s packages are built to move product. Paid ads, reels, UGC, and influencer ops for Indian D2C brands.',
+  path: '/services',
+  openGraphTitle: 'Content + Growth Packages for D2C Brands in India | NYX Studio',
+  openGraphDescription:
+    'From ₹30K to ₹80K - content, paid ads, reels, and influencer ops for Indian D2C brands.',
+  twitterTitle: 'Content + Growth Packages for D2C Brands | NYX Studio',
+  twitterDescription:
+    'From ₹30K to ₹80K - content, paid ads, reels, and influencer ops for Indian D2C brands.',
+});
+
+const servicesGraph = {
+  "@context": "https://schema.org",
+  "@graph": servicesSchema.map((entry, index) => ({
+    ...entry,
+    "@id": `${SITE_URL}/services#item-${index + 1}`,
+    url: `${SITE_URL}/services`,
+    ...(entry["@type"] === "Offer"
+      ? {
+          seller: { "@type": "Organization", name: "NYX Studio" },
+          availability: "https://schema.org/InStock",
+        }
+      : {
+          provider: { "@type": "Organization", name: "NYX Studio", url: SITE_URL },
+          offers: servicesSchema
+            .filter((item) => item["@type"] === "Offer")
+            .map((offer, offerIndex) => ({
+              "@id": `${SITE_URL}/services#item-${servicesSchema.indexOf(offer) + 1}`,
+              position: offerIndex + 1,
+            })),
+        }),
+  })),
 };
 
 export default function AdServicesPage() {
   return (
     <>
-      <SchemaOrg schema={servicesSchema} />
+      <SchemaOrg schema={servicesGraph} />
 
       {/* Main wrapper containing body-level styling to isolate from global styles */}
       <div className="bg-[#0E0E0E] text-[#e5e2e1] font-body selection:bg-primary selection:text-ink-black min-h-screen relative w-full overflow-hidden">
@@ -363,9 +380,9 @@ export default function AdServicesPage() {
                 <div className="text-xl font-bold text-white font-headline uppercase">NYX STUDIO</div>
             </Link>
             <div className="flex gap-8">
-                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
-                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank">LINKEDIN</a>
-                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://twitter.com/nyxstudiosai" target="_blank">TWITTER</a>
+                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://twitter.com/nyxstudiosai" target="_blank" rel="noopener noreferrer">TWITTER</a>
                 <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
             </div>
             <p className="font-headline text-[0.75rem] uppercase tracking-wider text-white/60">

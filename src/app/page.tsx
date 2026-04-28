@@ -7,55 +7,24 @@ import "./page.css";
 import { MobileNav } from "./components/MobileNav";
 
 import { LiveHub } from "./components/LiveHub";
-import SchemaOrg from "@/components/SchemaOrg";
+import { createMarketingMetadata } from "@/lib/seo";
 
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "NYX Studio",
-  "url": "https://www.nyxstudio.tech",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://www.nyxstudio.tech/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-};
-
-export const metadata: Metadata = {
+export const metadata: Metadata = createMarketingMetadata({
   title: 'Stop Scrolling. Start Converting. | NYX Studio — AI Content Agency India',
   description:
-    'NYX Studio builds AI-powered content systems for D2C brands in India. Cinematic reels, aggressive paid media, and influencer ops — all under one roof. Currently onboarding Q3 2026 brand partners.',
-  openGraph: {
-    title: 'Stop Scrolling. Start Converting. | NYX Studio',
-    description:
-      'NYX Studio builds AI-powered content systems for D2C brands in India.',
-    url: 'https://www.nyxstudio.tech',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'NYX Studio — We make brands impossible to scroll past',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Stop Scrolling. Start Converting. | NYX Studio',
-    description:
-      'NYX Studio builds AI-powered content systems for D2C brands in India.',
-    images: ['/og-image.jpg'],
-  },
-  alternates: {
-    canonical: 'https://www.nyxstudio.tech',
-  },
-};
+    'NYX Studio builds AI-powered content systems for D2C brands in India. Cinematic reels, aggressive paid media, and influencer ops - all under one roof. Currently onboarding Q3 2026 brand partners.',
+  path: '/',
+  openGraphTitle: 'Stop Scrolling. Start Converting. | NYX Studio',
+  openGraphDescription:
+    'NYX Studio builds AI-powered content systems for D2C brands in India.',
+  twitterTitle: 'Stop Scrolling. Start Converting. | NYX Studio',
+  twitterDescription:
+    'NYX Studio builds AI-powered content systems for D2C brands in India.',
+});
 
 export default function AdPage() {
   return (
     <>
-      <SchemaOrg schema={websiteSchema} />
-
       {/* Main wrapper containing body-level styling to isolate from global styles */}
       <div className="bg-surface-container-lowest text-on-surface font-body selection:bg-secondary selection:text-on-secondary min-h-screen relative w-full overflow-hidden">
         {/* TopAppBar */}
@@ -249,10 +218,10 @@ export default function AdPage() {
                             <h3 className="text-4xl font-black uppercase font-headline tracking-tighter text-white mb-2">ATHARV PAHARIA</h3>
                             <p className="text-[#E8441A] font-bold uppercase tracking-widest text-sm mb-8">* CO-FOUNDER & TECH LEAD</p>
                             <div className="flex gap-4">
-                                <a href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
+                                <a href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
                                     <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">LINKEDIN <span className="material-symbols-outlined text-[1rem]">north_east</span></span>
                                 </a>
-                                <a href="https://www.instagram.com/i___am__atharv/" target="_blank" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
+                                <a href="https://www.instagram.com/i___am__atharv/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
                                     <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">INSTA <span className="material-symbols-outlined text-[1rem]">north_east</span></span>
                                 </a>
                             </div>
@@ -265,10 +234,10 @@ export default function AdPage() {
                             <h3 className="text-4xl font-black uppercase font-headline tracking-tighter text-white mb-2">BHAVYA JAIN</h3>
                             <p className="text-[#E8441A] font-bold uppercase tracking-widest text-sm mb-8">* CO-FOUNDER & PRODUCT</p>
                             <div className="flex gap-4">
-                                <a href="https://www.linkedin.com/in/bhavya-jain-10963b33a/" target="_blank" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
+                                <a href="https://www.linkedin.com/in/bhavya-jain-10963b33a/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
                                     <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">LINKEDIN <span className="material-symbols-outlined text-[1rem]">north_east</span></span>
                                 </a>
-                                <a href="https://www.instagram.com/bhavyakun_/" target="_blank" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
+                                <a href="https://www.instagram.com/bhavyakun_/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
                                     <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">INSTA <span className="material-symbols-outlined text-[1rem]">north_east</span></span>
                                 </a>
                             </div>
@@ -309,8 +278,8 @@ export default function AdPage() {
             <div className="flex gap-12">
                 <div className="flex flex-col gap-2">
                     <span className="text-[#E8441A] font-label text-[0.75rem] uppercase font-bold tracking-widest">CONNECT</span>
-                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
-                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank">LINKEDIN</a>
+                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="https://www.instagram.com/nyx.studios.ai/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
                 </div>
                 <div className="flex flex-col gap-2">
                     <span className="text-[#E8441A] font-label text-[0.75rem] uppercase font-bold tracking-widest">RESOURCES</span>

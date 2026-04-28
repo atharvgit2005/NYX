@@ -1,7 +1,15 @@
-'use client';
-
+import type { Metadata } from "next";
 import Link from 'next/link';
 import { Mail, Instagram, ArrowLeft } from 'lucide-react';
+
+export const metadata: Metadata = {
+    title: "Automate Contact",
+    description: "Contact NYX Studio about the automate product.",
+    robots: {
+        index: false,
+        follow: false,
+    },
+};
 
 export default function ContactPage() {
     return (

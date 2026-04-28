@@ -7,6 +7,6 @@ module.exports = {
   exclude: ['/automate/*', '/icon.png'],
   robotsTxtOptions: {
     transformRobotsTxt: async () =>
-      'User-agent: *\nAllow: /\nSitemap: https://www.nyxstudio.tech/sitemap.xml\n',
+      'User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /automate/admin/\nDisallow: /automate/contact/\nDisallow: /automate/dashboard/\nDisallow: /automate/login/\nDisallow: /automate/signin/\nDisallow: /automate/signup/\nDisallow: /automate/test-voice/\nDisallow: /uploads/\nSitemap: https://www.nyxstudio.tech/sitemap.xml\n',
   },
 };

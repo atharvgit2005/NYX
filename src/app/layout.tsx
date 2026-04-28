@@ -5,6 +5,7 @@ import GlobalAnimations from "@/components/GlobalAnimations";
 import AuthProvider from '@/components/AuthProvider'
 import { ThemeProvider } from "@/components/ThemeProvider";
 import SchemaOrg from "@/components/SchemaOrg";
+import { SITE_URL, defaultOgImage, organizationSchema } from "@/lib/seo";
 
 const outfit = Outfit({ 
   subsets: ["latin"],
@@ -32,56 +33,31 @@ const workSans = Work_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.nyxstudio.tech'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Stop Scrolling. Start Converting. | NYX Studio — AI Content Agency India',
     template: '%s | NYX Studio',
   },
   description:
-    'NYX Studio builds AI-powered content systems for D2C brands in India. Cinematic reels, aggressive paid media, and influencer ops — all under one roof. Currently onboarding Q3 2026 brand partners.',
+    'NYX Studio builds AI-powered content systems for D2C brands in India. Cinematic reels, aggressive paid media, and influencer ops - all under one roof. Currently onboarding Q3 2026 brand partners.',
   openGraph: {
     type: 'website',
     siteName: 'NYX Studio',
     title: 'Stop Scrolling. Start Converting. | NYX Studio',
     description:
-      'NYX Studio builds AI-powered content systems for D2C brands in India. Cinematic reels, aggressive paid media, and influencer ops — all under one roof.',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'NYX Studio — We make brands impossible to scroll past',
-      },
-    ],
+      'NYX Studio builds AI-powered content systems for D2C brands in India. Cinematic reels, aggressive paid media, and influencer ops - all under one roof.',
+    images: [defaultOgImage],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Stop Scrolling. Start Converting. | NYX Studio',
     description:
       'AI-powered content and growth studio for D2C brands in India.',
-    images: ['/og-image.jpg'],
+    images: [defaultOgImage.url],
   },
   alternates: {
-    canonical: 'https://www.nyxstudio.tech',
+    canonical: SITE_URL,
   },
-};
-
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "NYX Studio",
-  "url": "https://www.nyxstudio.tech",
-  "logo": "https://www.nyxstudio.tech/logo/NYX-Logo.png",
-  "description": "AI-native content and growth studio for D2C brands in India",
-  "sameAs": [
-    "https://www.instagram.com/nyx.studios.ai/",
-    "https://www.linkedin.com/company/nyx-studio-ai/",
-    "https://twitter.com/nyxstudiosai"
-  ],
-  "founder": [
-    { "@type": "Person", "name": "Atharv Paharia" },
-    { "@type": "Person", "name": "Bhavya Jain" }
-  ]
 };
 
 export default function RootLayout({

@@ -1,3 +1,12 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /automate/admin/
+Disallow: /automate/contact/
+Disallow: /automate/dashboard/
+Disallow: /automate/login/
+Disallow: /automate/signin/
+Disallow: /automate/signup/
+Disallow: /automate/test-voice/
+Disallow: /uploads/
 Sitemap: https://www.nyxstudio.tech/sitemap.xml

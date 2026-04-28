@@ -27,6 +27,9 @@ export default withAuth(
         return NextResponse.next();
     },
     {
+        pages: {
+            signIn: '/automate/login',
+        },
         callbacks: {
             authorized: ({ req, token }) => {
                 // /admin and /dashboard both require authentication

@@ -42,7 +42,7 @@ export function WorkGrid() {
                             <p className="font-body text-lg max-w-xs group-hover:text-black/80 transition-colors">A delightful exploration of sweetness and joy.</p>
                         </div>
                         <div className="md:w-1/2 bg-black relative overflow-hidden">
-                            <video autoPlay loop muted playsInline className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700">
+                            <video autoPlay loop muted playsInline preload="metadata" poster="/og-image.jpg" className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700">
                                 <source src="/videos/dessertino_happiness.mp4" type="video/mp4" />
                             </video>
                         </div>
@@ -66,7 +66,7 @@ export function WorkGrid() {
                             <h2 className="font-headline text-4xl font-bold uppercase mt-2 group-hover:text-black">MANGO JUNGLE</h2>
                         </div>
                         <div className="mt-8 border-t-4 border-black pt-4 group-hover:border-black/20">
-                            <video autoPlay loop muted playsInline className="w-full aspect-square object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                            <video autoPlay loop muted playsInline preload="metadata" poster="/og-image.jpg" className="w-full aspect-square object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
                                 <source src="/videos/mango_jungle.mp4" type="video/mp4" />
                             </video>
                         </div>
@@ -83,7 +83,7 @@ export function WorkGrid() {
                 >
                     <div className="h-full flex flex-col pointer-events-none">
                         <div className="relative h-64 overflow-hidden">
-                            <video autoPlay loop muted playsInline className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-125 group-hover:scale-100">
+                            <video autoPlay loop muted playsInline preload="metadata" poster="/og-image.jpg" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-125 group-hover:scale-100">
                                 <source src="/videos/mango_shower_dessertino.mp4" type="video/mp4" />
                             </video>
                         </div>
@@ -108,7 +108,7 @@ export function WorkGrid() {
                     className="bento-card md:col-span-7 group relative overflow-hidden bento-border bg-black transition-all duration-300 hover:invert cursor-pointer"
                 >
                     <div className="absolute inset-0 opacity-20 pointer-events-none">
-                        <video autoPlay loop muted playsInline className="w-full h-full object-cover">
+                        <video autoPlay loop muted playsInline preload="metadata" poster="/og-image.jpg" className="w-full h-full object-cover">
                             <source src="/videos/brioso_unboxing.mp4" type="video/mp4" />
                         </video>
                     </div>
@@ -151,6 +151,7 @@ export function WorkGrid() {
                             src={activeVideo} 
                             autoPlay 
                             controls 
+                            preload="metadata"
                             className="w-full h-full object-contain"
                         />
                     </div>

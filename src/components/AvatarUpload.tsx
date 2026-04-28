@@ -171,7 +171,7 @@ export default function AvatarUpload() {
                             <div className="bg-white/5 p-4 rounded-xl border border-white/10 text-sm text-theme-secondary animate-fade-in">
                                 <h4 className="font-bold text-theme-primary mb-2 flex items-center"><Info className="w-4 h-4 mr-2" /> How to find your Avatar ID:</h4>
                                 <ol className="list-decimal list-inside space-y-1 text-xs">
-                                    <li>Log in to <a href="https://app.heygen.com/avatars" target="_blank" className="text-white underline">HeyGen Avatars</a>.</li>
+                                    <li>Log in to <a href="https://app.heygen.com/avatars" target="_blank" rel="noopener noreferrer" className="text-white underline">HeyGen Avatars</a>.</li>
                                     <li>Click a <strong>Talking Avatar</strong> (NOT a Streaming Avatar — those start with sk_ and don&apos;t work here).</li>
                                     <li>Copy the ID from the URL or avatar settings.</li>
                                     <li>Or use the public ones above to test.</li>

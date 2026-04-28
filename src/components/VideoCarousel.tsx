@@ -118,7 +118,8 @@ export default function VideoCarousel() {
                                     loop
                                     playsInline
                                     autoPlay
-                                    preload="auto"
+                                    preload="metadata"
+                                    poster="/og-image.jpg"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-700" />
                             </div>
@@ -184,6 +185,7 @@ export default function VideoCarousel() {
                                 autoPlay
                                 controls
                                 playsInline
+                                preload="metadata"
                             />
                             
                             <button 

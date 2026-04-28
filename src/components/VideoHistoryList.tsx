@@ -254,6 +254,7 @@ function VideoListItem({ video: initialVideo, onDelete }: { video: VideoRecord, 
                         className="mt-3 w-full justify-center"
                         download
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         DOWNLOAD VIDEO
                     </NyxButton>

@@ -1,6 +1,16 @@
 
 import React from 'react';
+import type { Metadata } from "next";
 import VoiceTester from '@/components/VoiceTester';
+
+export const metadata: Metadata = {
+    title: "Test Voice",
+    description: "Internal voice testing surface for NYX Studio.",
+    robots: {
+        index: false,
+        follow: false,
+    },
+};
 
 export default function TestVoicePage() {
     return (

@@ -17,6 +17,10 @@ export function ContactForm() {
         "VISUAL_SABOTAGE",
         "GENERAL_INTEL"
     ];
+    const nameFieldId = "contact-name";
+    const emailFieldId = "contact-email";
+    const objectiveFieldId = "contact-objective";
+    const messageFieldId = "contact-message";
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -54,7 +58,7 @@ export function ContactForm() {
 
     if (status === "success") {
         return (
-            <div className="w-full bg-[#E8441A] text-white p-8 border-4 border-black font-headline text-center uppercase tracking-wider">
+            <div className="w-full bg-[#E8441A] text-white p-8 border-4 border-black font-headline text-center uppercase tracking-wider" aria-live="polite">
                 <h3 className="text-2xl md:text-4xl font-black mb-4">TRANSMISSION RECEIVED</h3>
                 <p className="font-bold">YOUR DATA HAS BEEN SECURELY LOGGED. OPERATIVES WILL BE IN TOUCH SHORTLY.</p>
             </div>
@@ -65,13 +69,15 @@ export function ContactForm() {
                 <form className="space-y-8" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="form-element group opacity-0">
-                    <label className="block text-xs font-headline font-black uppercase tracking-widest text-black mb-2">* OPERATOR_NAME</label>
+                    <label className="block text-xs font-headline font-black uppercase tracking-widest text-black mb-2" htmlFor={nameFieldId}>* OPERATOR_NAME</label>
                     <div className="relative">
                         <div className="form-border-draw"></div>
                         <input 
+                            id={nameFieldId}
                             className="w-full bg-transparent border-4 border-black p-4 text-black font-bold focus:ring-0 focus:border-[#E8441A] transition-colors placeholder:text-gray-400 focus:outline-none" 
                             placeholder="WHO ARE YOU?" 
                             type="text"
+                            autoComplete="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
@@ -79,13 +85,15 @@ export function ContactForm() {
                     </div>
                 </div>
                 <div className="form-element group opacity-0">
-                    <label className="block text-xs font-headline font-black uppercase tracking-widest text-black mb-2">* COMMS_FREQUENCY</label>
+                    <label className="block text-xs font-headline font-black uppercase tracking-widest text-black mb-2" htmlFor={emailFieldId}>* COMMS_FREQUENCY</label>
                     <div className="relative">
                         <div className="form-border-draw"></div>
                         <input 
+                            id={emailFieldId}
                             className="w-full bg-transparent border-4 border-black p-4 text-black font-bold focus:ring-0 focus:border-[#E8441A] transition-colors placeholder:text-gray-400 focus:outline-none" 
                             placeholder="EMAIL@DOMAIN.COM" 
                             type="email"
+                            autoComplete="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
@@ -94,7 +102,7 @@ export function ContactForm() {
                 </div>
             </div>
             <div className={`form-element opacity-0 ${isDropdownOpen ? 'relative z-50' : 'relative z-10'}`}>
-                <label className="block text-xs font-headline font-black uppercase tracking-widest text-black mb-2">* MISSION_OBJECTIVE</label>
+                <label className="block text-xs font-headline font-black uppercase tracking-widest text-black mb-2" htmlFor={objectiveFieldId}>* MISSION_OBJECTIVE</label>
                 <div className="relative">
                     <div className="form-border-draw"></div>
                     <div 
@@ -108,9 +116,12 @@ export function ContactForm() {
                     >
                         {/* Base Button (takes up space, invisible when open) */}
                         <button
+                            id={objectiveFieldId}
                             type="button"
                             className={`w-full bg-white border-4 border-black p-4 text-black font-bold focus:ring-0 transition-colors focus:outline-none flex justify-between items-center ${isDropdownOpen ? 'opacity-0' : 'hover:border-[#E8441A]'}`}
                             onClick={() => setIsDropdownOpen(true)}
+                            aria-haspopup="listbox"
+                            aria-expanded={isDropdownOpen}
                         >
                             <span>{objective}</span>
                             <svg className="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" /></svg>
@@ -118,7 +129,7 @@ export function ContactForm() {
                         
                         {/* Absolute Overlay Dropdown Panel */}
                         {isDropdownOpen && (
-                            <div className="absolute top-0 left-0 w-full bg-white border-4 border-[#E8441A] z-50 flex flex-col shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] animate-fade-in origin-top">
+                            <div className="absolute top-0 left-0 w-full bg-white border-4 border-[#E8441A] z-50 flex flex-col shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] animate-fade-in origin-top" role="listbox" aria-label="Mission objective">
                                 {objectiveOptions.map((opt) => (
                                     <button
                                         key={opt}
@@ -129,6 +140,8 @@ export function ContactForm() {
                                             setObjective(opt);
                                             setIsDropdownOpen(false);
                                         }}
+                                        role="option"
+                                        aria-selected={objective === opt}
                                     >
                                         <span>{opt}</span>
                                         {objective === opt && (
@@ -142,10 +155,11 @@ export function ContactForm() {
                 </div>
             </div>
             <div className="form-element opacity-0">
-                <label className="block text-xs font-headline font-black uppercase tracking-widest text-black mb-2">* MESSAGE_PAYLOAD</label>
+                <label className="block text-xs font-headline font-black uppercase tracking-widest text-black mb-2" htmlFor={messageFieldId}>* MESSAGE_PAYLOAD</label>
                 <div className="relative">
                     <div className="form-border-draw"></div>
                     <textarea 
+                        id={messageFieldId}
                         className="w-full bg-transparent border-4 border-black p-4 text-black font-bold focus:ring-0 focus:border-[#E8441A] transition-colors placeholder:text-gray-400 focus:outline-none resize-none" 
                         placeholder="WHAT'S THE SCOPE?" 
                         rows={6}
@@ -160,6 +174,9 @@ export function ContactForm() {
                     {isLoading ? "PROCESSING..." : "INITIALIZE_TRANSFER →"}
                 </button>
             </div>
+            <p className="sr-only" aria-live="polite">
+                {status === "error" ? "There was a problem submitting the contact form." : ""}
+            </p>
         </form>
     );
 }

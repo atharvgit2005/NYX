@@ -5,30 +5,51 @@ import { ContactForm } from "./components/ContactForm";
 import { ContactAnimations } from "../components/ContactAnimations";
 import "../page.css"; // Reuse the css from /ad/page.css for icons and basic styles
 import { MobileNav } from "../components/MobileNav";
+import SchemaOrg from "@/components/SchemaOrg";
+import { createMarketingMetadata, SITE_URL } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createMarketingMetadata({
   title: "Let's Build Something Unmissable",
   description:
     "You found us early. NYX Studio is selectively onboarding D2C brand partners for Q3 2026. Book a free discovery call and let's see if we're the right fit.",
-  openGraph: {
-    title: "Let's Build Something Unmissable | NYX Studio",
-    description:
-      "NYX Studio is selectively onboarding D2C brand partners for Q3 2026. Book a free discovery call.",
-    url: 'https://www.nyxstudio.tech/contact',
-  },
-  twitter: {
-    title: "Let's Build Something Unmissable | NYX Studio",
-    description:
-      "NYX Studio is selectively onboarding D2C brand partners for Q3 2026.",
-  },
-  alternates: {
-    canonical: 'https://www.nyxstudio.tech/contact',
+  path: '/contact',
+  openGraphTitle: "Let's Build Something Unmissable | NYX Studio",
+  openGraphDescription:
+    "NYX Studio is selectively onboarding D2C brand partners for Q3 2026. Book a free discovery call.",
+  twitterTitle: "Let's Build Something Unmissable | NYX Studio",
+  twitterDescription:
+    "NYX Studio is selectively onboarding D2C brand partners for Q3 2026.",
+});
+
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Contact NYX Studio",
+  url: `${SITE_URL}/contact`,
+  description: "Book a discovery call with NYX Studio.",
+  mainEntity: {
+    "@type": "Organization",
+    name: "NYX Studio",
+    email: "nyx.studios.ai@gmail.com",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Pune",
+      addressRegion: "Maharashtra",
+      postalCode: "411047",
+      addressCountry: "IN",
+    },
+    sameAs: [
+      "https://www.instagram.com/nyx.studios.ai/",
+      "https://www.linkedin.com/company/nyx-studio-ai/",
+      "https://twitter.com/nyxstudiosai",
+    ],
   },
 };
 
 export default function AdContactPage() {
   return (
     <>
+      <SchemaOrg schema={contactPageSchema} />
 
       {/* Main wrapper containing body-level styling to isolate from global styles */}
       <div className="bg-surface text-on-surface font-body selection:bg-secondary selection:text-on-secondary min-h-screen relative w-full overflow-hidden">
@@ -103,13 +124,13 @@ export default function AdContactPage() {
                                 <div className="pt-8 border-t-4 border-black">
                                     <p className="text-xs font-headline uppercase tracking-widest text-secondary mb-4 scramble-text" data-original="* FREQUENCY_CHANNELS">* FREQUENCY_CHANNELS</p>
                                     <div className="flex flex-col gap-2">
-                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">
+                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.instagram.com/nyx.studios.ai/" target="_blank" rel="noopener noreferrer">
                                             <span className="mr-4 text-xs">01/</span> INSTAGRAM <span className="ml-auto opacity-0 group-hover:opacity-100">↗</span>
                                         </a>
-                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank">
+                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank" rel="noopener noreferrer">
                                             <span className="mr-4 text-xs">02/</span> LINKEDIN <span className="ml-auto opacity-0 group-hover:opacity-100">↗</span>
                                         </a>
-                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://twitter.com/nyxstudiosai" target="_blank">
+                                        <a className="text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://twitter.com/nyxstudiosai" target="_blank" rel="noopener noreferrer">
                                             <span className="mr-4 text-xs">03/</span> TWITTER <span className="ml-auto opacity-0 group-hover:opacity-100">↗</span>
                                         </a>
                                     </div>
@@ -193,9 +214,9 @@ export default function AdContactPage() {
                 </div>
             </Link>
             <div className="flex gap-8 text-gray-500 font-body text-xs uppercase tracking-widest">
-                <a className="hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank">INSTAGRAM</a>
-                <a className="hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank">LINKEDIN</a>
-                <a className="hover:text-[#F5C518] transition-colors" href="https://twitter.com/nyxstudiosai" target="_blank">TWITTER</a>
+                <a className="hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+                <a className="hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
+                <a className="hover:text-[#F5C518] transition-colors" href="https://twitter.com/nyxstudiosai" target="_blank" rel="noopener noreferrer">TWITTER</a>
                 <Link className="hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
             </div>
             <div className="text-gray-500 font-body text-xs uppercase tracking-widest">
