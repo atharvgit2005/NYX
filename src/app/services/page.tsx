@@ -339,7 +339,6 @@ export default function AdServicesPage() {
                                     <li className="flex gap-3 flex-col items-start">
                                         <div className="flex gap-3 w-full"><span className="text-black font-black">+</span> <span>Curated Monthly Concepts:</span></div>
                                         <ul className="pl-6 space-y-2 mt-2 w-full text-black/80 text-sm">
-                                            <li className="flex gap-2 items-start"><span className="opacity-50 mt-1">•</span> Frullato Date Night</li>
                                             <li className="flex gap-2 items-start"><span className="opacity-50 mt-1">•</span> Campus Take-over</li>
                                             <li className="flex gap-2 items-start"><span className="opacity-50 mt-1">•</span> Midnight Craving Drives</li>
                                         </ul>
