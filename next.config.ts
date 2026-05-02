@@ -1,6 +1,21 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'nyxstudio.tech',
+          },
+        ],
+        destination: 'https://www.nyxstudio.tech/:path*',
+        permanent: true,
+      },
+    ];
+  },
   /* config options here */
   outputFileTracingRoot: __dirname,
   typescript: {
