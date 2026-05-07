@@ -228,7 +228,7 @@ export const authOptions: AuthOptions = {
             if (token.jti) {
                 await prisma.revokedToken.create({
                     data: {
-                        token: token.jti,
+                        token: token.jti as string,
                         expiresAt: new Date(Date.now() + 15 * 60 * 1000) // Match maxAge
                     }
                 });
