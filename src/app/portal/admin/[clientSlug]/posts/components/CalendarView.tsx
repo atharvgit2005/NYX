@@ -35,6 +35,7 @@ interface Props {
   posts: AdminPost[]
   onMoveDate: (id: string, scheduledDate: string) => void
   onClickPost: (post: AdminPost) => void
+  onCreateOnDay: (isoDay: string) => void
 }
 
 function isoDay(d: Date): string {
@@ -45,7 +46,12 @@ function startOfMonth(d: Date) {
   return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1))
 }
 
-export default function CalendarView({ posts, onMoveDate, onClickPost }: Props) {
+export default function CalendarView({
+  posts,
+  onMoveDate,
+  onClickPost,
+  onCreateOnDay,
+}: Props) {
   // Anchor the grid to the earliest scheduled post (or today).
   const initial = useMemo(() => {
     if (posts.length === 0) return startOfMonth(new Date())
@@ -153,6 +159,7 @@ export default function CalendarView({ posts, onMoveDate, onClickPost }: Props) 
                 inMonth={inMonth}
                 posts={dayPosts}
                 onClickPost={onClickPost}
+                onCreateOnDay={onCreateOnDay}
               />
             )
           })}
@@ -167,11 +174,13 @@ function DayCell({
   inMonth,
   posts,
   onClickPost,
+  onCreateOnDay,
 }: {
   date: Date
   inMonth: boolean
   posts: AdminPost[]
   onClickPost: (post: AdminPost) => void
+  onCreateOnDay: (isoDay: string) => void
 }) {
   const dayKey = isoDay(date)
   const { setNodeRef, isOver } = useDroppable({ id: dayKey })
@@ -179,21 +188,50 @@ function DayCell({
   return (
     <div
       ref={setNodeRef}
-      className={`min-h-[120px] border-r-4 last:border-r-0 border-b-4 border-black p-2 ${
+      className={`group relative min-h-[120px] border-r-4 last:border-r-0 border-b-4 border-black p-2 ${
         inMonth ? 'bg-[#1c1b1b]' : 'bg-[#0e0e0e]'
       } ${isOver ? 'bg-[#2a2a2a]' : ''}`}
     >
-      <div
-        className="text-[10px] font-bold uppercase tracking-widest mb-1"
-        style={{ ...HEAD, color: inMonth ? '#e5e2e1' : '#5b403a' }}
-      >
-        {date.getUTCDate()}
+      <div className="flex items-start justify-between mb-1">
+        <span
+          className="text-[10px] font-bold uppercase tracking-widest"
+          style={{ ...HEAD, color: inMonth ? '#e5e2e1' : '#5b403a' }}
+        >
+          {date.getUTCDate()}
+        </span>
+        {inMonth && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation()
+              onCreateOnDay(dayKey)
+            }}
+            className="opacity-0 group-hover:opacity-100 transition-opacity w-5 h-5 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#E8441A] hover:text-white flex items-center justify-center"
+            aria-label={`Create post on ${dayKey}`}
+            title={`Create post on ${dayKey}`}
+          >
+            <span className="material-symbols-outlined !text-xs leading-none" aria-hidden>
+              add
+            </span>
+          </button>
+        )}
       </div>
       <div className="space-y-1">
         {posts.map((p) => (
           <DayChip key={p.id} post={p} onClick={() => onClickPost(p)} />
         ))}
       </div>
+      {inMonth && posts.length === 0 && (
+        <button
+          type="button"
+          onClick={() => onCreateOnDay(dayKey)}
+          className="absolute inset-0 mt-7 m-1 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center text-[10px] uppercase tracking-widest font-bold text-[#ab8981] hover:text-[#E8441A]"
+          style={HEAD}
+          aria-label={`Create post on ${dayKey}`}
+        >
+          + ADD_POST
+        </button>
+      )}
     </div>
   )
 }

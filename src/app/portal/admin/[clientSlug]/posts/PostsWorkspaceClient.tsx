@@ -59,7 +59,7 @@ export default function PostsWorkspaceClient({
   const [view, setView] = useState<View>('kanban')
   const [posts, setPosts] = useState<AdminPost[]>(initialPosts)
   const [editing, setEditing] = useState<AdminPost | null>(null)
-  const [creating, setCreating] = useState(false)
+  const [creating, setCreating] = useState<{ scheduledDate?: string } | null>(null)
   const [, startTransition] = useTransition()
 
   // ── mutation helpers ──
@@ -183,7 +183,7 @@ export default function PostsWorkspaceClient({
         },
       ])
       toast.success('Post created')
-      setCreating(false)
+      setCreating(null)
     } catch (e) {
       toast.error((e as Error).message)
     }
@@ -236,7 +236,7 @@ export default function PostsWorkspaceClient({
           <div className="flex flex-wrap items-center gap-3">
             <ViewToggle current={view} onChange={setView} />
             <button
-              onClick={() => setCreating(true)}
+              onClick={() => setCreating({})}
               className="px-5 py-3 border-4 border-black bg-[#E8441A] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] transition-all flex items-center gap-2"
               style={HEAD}
             >
@@ -250,7 +250,7 @@ export default function PostsWorkspaceClient({
 
         <div className="flex-1 p-6 md:p-10 overflow-x-auto">
           {posts.length === 0 ? (
-            <EmptyState onCreate={() => setCreating(true)} />
+            <EmptyState onCreate={() => setCreating({})} />
           ) : view === 'kanban' ? (
             <KanbanView
               posts={posts}
@@ -261,7 +261,14 @@ export default function PostsWorkspaceClient({
           ) : view === 'list' ? (
             <ListView posts={posts} onClickPost={(p) => setEditing(p)} />
           ) : (
-            <CalendarView posts={posts} onMoveDate={moveToDate} onClickPost={(p) => setEditing(p)} />
+            <CalendarView
+              posts={posts}
+              onMoveDate={moveToDate}
+              onClickPost={(p) => setEditing(p)}
+              onCreateOnDay={(dayKey) =>
+                setCreating({ scheduledDate: dayKey + 'T00:00:00.000Z' })
+              }
+            />
           )}
         </div>
       </main>
@@ -270,7 +277,8 @@ export default function PostsWorkspaceClient({
         <PostFormModal
           mode="create"
           defaultPlatform={defaultPlatforms[0] ?? 'INSTAGRAM'}
-          onClose={() => setCreating(false)}
+          defaultScheduledDate={creating.scheduledDate}
+          onClose={() => setCreating(null)}
           onSubmit={(values) =>
             createNew({
               title: values.title,

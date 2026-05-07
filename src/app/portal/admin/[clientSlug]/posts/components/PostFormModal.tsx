@@ -24,6 +24,8 @@ export interface PostFormValues {
 interface Props {
   mode: 'create' | 'edit'
   defaultPlatform: Platform
+  /** Optional ISO date used to prefill the date picker in create mode. */
+  defaultScheduledDate?: string
   initial?: AdminPost
   onClose: () => void
   onSubmit: (values: PostFormValues) => void | Promise<void>
@@ -48,6 +50,7 @@ function dayOnly(iso: string): string {
 export default function PostFormModal({
   mode,
   defaultPlatform,
+  defaultScheduledDate,
   initial,
   onClose,
   onSubmit,
@@ -55,7 +58,11 @@ export default function PostFormModal({
 }: Props) {
   const [title, setTitle] = useState(initial?.title ?? '')
   const [scheduledDate, setScheduledDate] = useState(
-    initial ? dayOnly(initial.scheduledDate) : '',
+    initial
+      ? dayOnly(initial.scheduledDate)
+      : defaultScheduledDate
+        ? dayOnly(defaultScheduledDate)
+        : '',
   )
   const [platform, setPlatform] = useState<Platform>(initial?.platform ?? defaultPlatform)
   const [contentType, setContentType] = useState<ContentType>(initial?.contentType ?? 'STATIC_POST')
