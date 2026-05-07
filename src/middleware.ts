@@ -36,6 +36,11 @@ export default withAuth(
                 if (req.nextUrl.pathname.startsWith('/automate/admin') || req.nextUrl.pathname.startsWith('/automate/dashboard')) {
                     return token !== null;
                 }
+                // /portal/* requires authentication; the page itself routes
+                // admin vs approved client vs pending based on email.
+                if (req.nextUrl.pathname.startsWith('/portal')) {
+                    return token !== null;
+                }
                 return true;
             },
         },
@@ -43,5 +48,9 @@ export default withAuth(
 )
 
 export const config = {
-    matcher: ['/automate/dashboard/:path*', '/automate/admin/:path*'],
+    matcher: [
+        '/automate/dashboard/:path*',
+        '/automate/admin/:path*',
+        '/portal/:path*',
+    ],
 }

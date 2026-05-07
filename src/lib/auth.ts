@@ -85,6 +85,25 @@ export const authOptions: AuthOptions = {
     pages: {
         signIn: '/automate/login',
     },
+    // Share the session cookie across nyxstudio.tech subdomains in production
+    // (so signing in on www.nyxstudio.tech keeps you signed in on
+    // automate.nyxstudio.tech and vice versa). In dev/preview the cookie
+    // stays host-only, which is what we want.
+    cookies:
+        process.env.NODE_ENV === 'production'
+            ? {
+                sessionToken: {
+                    name: '__Secure-next-auth.session-token',
+                    options: {
+                        httpOnly: true,
+                        sameSite: 'lax',
+                        path: '/',
+                        secure: true,
+                        domain: '.nyxstudio.tech',
+                    },
+                },
+            }
+            : undefined,
     callbacks: {
         async signIn({ user, account }) {
             console.log("AUTH_SignIn_Callback:", { userEmail: user.email, provider: account?.provider });
