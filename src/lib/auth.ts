@@ -199,7 +199,7 @@ export const authOptions: AuthOptions = {
             if (!dbUser) return null as unknown as JWT;
 
             if (dbUser.passwordChangedAt && token.iat) {
-                const tokenIssuanceTime = new Date(token.iat * 1000);
+                const tokenIssuanceTime = new Date((token.iat as number) * 1000);
                 if (dbUser.passwordChangedAt > tokenIssuanceTime) {
                     return null as unknown as JWT;
                 }
