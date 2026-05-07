@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc *)",
+      "Bash(npx next build)",
+      "Bash(npm run build)",
+      "Bash(npx prisma generate)",
+      "Bash(git push)",
+      "Bash(git push *)"
+    ]
+  }
+}

@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
@@ -13,30 +13,30 @@ datasource db {
 }
 
 model User {
-  id            String         @id @default(cuid())
+  id            String    @id @default(cuid())
   name          String?
-  email         String         @unique
+  email         String    @unique
   emailVerified DateTime?
   password      String?
   image         String?
-  role              String         @default("user") // "user" | "admin"
-  country           String?        @default("Unknown")
-  avatarUrl         String?        // Avaturn 3D avatar GLB URL
-  avatarConfig      Json?          // Custom in-house avatar configuration
-  accounts          Account[]
-  sessions          Session[]
-  
+  role          String    @default("user") // "user" | "admin"
+  country       String?   @default("Unknown")
+  avatarUrl     String? // Avaturn 3D avatar GLB URL
+  avatarConfig  Json? // Custom in-house avatar configuration
+  accounts      Account[]
+  sessions      Session[]
+
   // Security Fields
-  passwordChangedAt DateTime?      @default(now())
-  failedAttempts    Int            @default(0)
+  passwordChangedAt DateTime? @default(now())
+  failedAttempts    Int       @default(0)
   lockUntil         DateTime?
   activeSessionId   String?
-  
-  createdAt         DateTime       @default(now())
-  updatedAt         DateTime       @updatedAt
-  scripts           Script[]
-  videos            Video[]
-  subscription      Subscription?
+
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  scripts      Script[]
+  videos       Video[]
+  subscription Subscription?
 }
 
 model RevokedToken {
@@ -47,10 +47,10 @@ model RevokedToken {
 }
 
 model LoginAttempt {
-  id        String   @id @default(cuid())
-  ip        String
-  email     String?
-  count     Int      @default(1)
+  id          String   @id @default(cuid())
+  ip          String
+  email       String?
+  count       Int      @default(1)
   lastAttempt DateTime @default(now())
 
   @@unique([ip, email])
@@ -74,12 +74,12 @@ model Tier {
   id           String   @id @default(cuid())
   name         String   @unique
   price        Float
-  billingCycle String   // monthly | annual
+  billingCycle String // monthly | annual
   trialDays    Int
   maxUsers     Int
-  features     Json     // { voice: boolean, video: boolean, api: boolean, priority: boolean }
-  quotas       Json     // { voiceCharsPerDay: number, videoMinsPerMonth: number, apiCallsPerDay: number, storageMB: number }
-  approvalMode String   // auto | manual
+  features     Json // { voice: boolean, video: boolean, api: boolean, priority: boolean }
+  quotas       Json // { voiceCharsPerDay: number, videoMinsPerMonth: number, apiCallsPerDay: number, storageMB: number }
+  approvalMode String // auto | manual
   color        String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
@@ -91,7 +91,7 @@ model AuditLog {
   action    String
   target    String
   details   String
-  category  String   // subscription | user | tier | gate | alert
+  category  String // subscription | user | tier | gate | alert
   createdAt DateTime @default(now())
 }
 
@@ -150,7 +150,7 @@ model Script {
 
 model Video {
   id        String   @id @default(cuid())
-  status    String   // processing, completed, failed
+  status    String // processing, completed, failed
   url       String?
   scriptId  String?
   script    Script?  @relation(fields: [scriptId], references: [id])
@@ -180,48 +180,56 @@ model Contact {
 // Naming reflects NYX's existing landing-page language ("Q3 2026 brand partners").
 
 model BrandPartner {
-  id          String              @id @default(cuid())
-  email       String              @unique
-  clientSlug  String              @unique
-  clientName  String
-  approvedAt  DateTime            @default(now())
-  approvedBy  String              // admin email who approved
-  status      BrandPartnerStatus  @default(ACTIVE)
-  createdAt   DateTime            @default(now())
-  updatedAt   DateTime            @updatedAt
+  id         String             @id @default(cuid())
+  email      String             @unique
+  clientSlug String             @unique
+  clientName String
+  approvedAt DateTime           @default(now())
+  approvedBy String // admin email who approved
+  status     BrandPartnerStatus @default(ACTIVE)
+  createdAt  DateTime           @default(now())
+  updatedAt  DateTime           @updatedAt
 
-  contentPosts ContentPost[]
+  contentPosts  ContentPost[]
+  configuration BrandConfiguration?
 
   @@index([email])
   @@index([clientSlug])
   @@index([status])
 }
 
-// Phase 3 — per-partner content calendar entries (read-only on partner side)
+// Phase 3 — per-partner content calendar entries
+// Phase 4 — added platform, archivedAt, comments back-rel
 model ContentPost {
-  id              String       @id @default(cuid())
-  brandPartnerId  String
-  brandPartner    BrandPartner @relation(fields: [brandPartnerId], references: [id], onDelete: Cascade)
+  id             String       @id @default(cuid())
+  brandPartnerId String
+  brandPartner   BrandPartner @relation(fields: [brandPartnerId], references: [id], onDelete: Cascade)
 
   title           String
   scheduledDate   DateTime
   contentType     ContentType
-  status          PostStatus   @default(IDEA)
-  caption         String       @db.Text
+  platform        Platform    @default(INSTAGRAM)
+  status          PostStatus  @default(IDEA)
+  caption         String      @db.Text
   hashtags        String[]
-  visualDirection String       @db.Text
-  productionNotes String?      @db.Text
+  visualDirection String      @db.Text
+  productionNotes String?     @db.Text
   thumbnailUrl    String?
-  mediaUrls       String[]     @default([])
+  mediaUrls       String[]    @default([])
 
-  position        Int
+  position Int
 
-  createdAt       DateTime     @default(now())
-  updatedAt       DateTime     @updatedAt
+  archivedAt DateTime?
+
+  comments PostComment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([brandPartnerId])
   @@index([scheduledDate])
   @@index([status])
+  @@index([archivedAt])
 }
 
 enum ContentType {
@@ -242,12 +250,12 @@ enum PostStatus {
 }
 
 model PendingPartnerRequest {
-  id          String                @id @default(cuid())
-  email       String                @unique
-  name        String?               // captured from Google profile when available
-  requestedAt DateTime              @default(now())
-  status      PendingPartnerStatus  @default(PENDING)
-  notes       String?               // admin notes during review
+  id          String               @id @default(cuid())
+  email       String               @unique
+  name        String? // captured from Google profile when available
+  requestedAt DateTime             @default(now())
+  status      PendingPartnerStatus @default(PENDING)
+  notes       String? // admin notes during review
 
   @@index([email])
   @@index([status])
@@ -262,4 +270,90 @@ enum BrandPartnerStatus {
 enum PendingPartnerStatus {
   PENDING
   REJECTED
+}
+
+// ── Phase 4: brand configuration (lifted from src/lib/portal/brands/*.ts)
+
+model BrandConfiguration {
+  id             String       @id @default(cuid())
+  brandPartnerId String       @unique
+  brandPartner   BrandPartner @relation(fields: [brandPartnerId], references: [id], onDelete: Cascade)
+
+  // Display
+  brandName String
+  tagline   String?
+  logoUrl   String?
+
+  // Theming
+  primaryColor   String
+  secondaryColor String
+  accentColor    String?
+
+  // Social
+  instagramHandle String?
+  tiktokHandle    String?
+
+  // Client meta (Phase 3 legacy fields preserved for the portal adapter)
+  clientContactName String?
+  clientPhone       String?
+  products          String[] @default([])
+  operations        String?
+
+  // Campaign
+  packageType   PackageType
+  campaignStart DateTime
+  campaignEnd   DateTime
+  platforms     Platform[]
+
+  // Agency block
+  agencyContactName  String?
+  agencyContactEmail String?
+
+  // Pack B
+  packBEnabled       Boolean  @default(false)
+  packBTitle         String?
+  packBDescription   String?  @db.Text
+  packBSourcePostIds String[] @default([])
+  packBSourceLabels  String[] @default([])
+  packBGoals         String[] @default([])
+
+  // Footer
+  confidentialityNote String? @db.Text
+  renewalEmail        String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum PackageType {
+  TRIAL
+  MONTHLY_RETAINER
+  CUSTOM
+}
+
+enum Platform {
+  INSTAGRAM
+  TIKTOK
+}
+
+// ── Phase 4: post-level comments (revision requests, approval notes,
+//    internal admin notes). authorEmail is plain text, not an FK.
+
+model PostComment {
+  id          String      @id @default(cuid())
+  postId      String
+  post        ContentPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  authorEmail String
+  body        String      @db.Text
+  type        CommentType
+  createdAt   DateTime    @default(now())
+
+  @@index([postId])
+  @@index([createdAt])
+}
+
+enum CommentType {
+  REVISION_REQUEST
+  APPROVAL_NOTE
+  INTERNAL_ADMIN
 }

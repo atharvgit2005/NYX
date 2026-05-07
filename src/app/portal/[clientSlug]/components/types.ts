@@ -1,4 +1,12 @@
-import type { ContentType, PostStatus } from '@prisma/client'
+import type { ContentType, PostStatus, CommentType } from '@prisma/client'
+
+export interface SerializedComment {
+  id: string
+  authorEmail: string
+  body: string
+  type: CommentType
+  createdAt: string
+}
 
 /**
  * Serialised ContentPost — Dates flattened to ISO strings for the
@@ -18,6 +26,7 @@ export interface SerializedPost {
   thumbnailUrl: string | null
   mediaUrls: string[]
   position: number
+  comments: SerializedComment[]
   createdAt: string
   updatedAt: string
 }

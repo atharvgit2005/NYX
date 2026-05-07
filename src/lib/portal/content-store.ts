@@ -1,7 +1,7 @@
 /**
- * Read-only DB helpers for the brand-partner content calendar.
- * Phase 3 is read-only on the partner side — mutations are admin-only and
- * land in Phase 4. Keep this module side-effect free.
+ * Read-only DB helpers for the brand-partner content calendar (Phase 3
+ * portal). Phase 4 added archivedAt + comments back-rel; the partner side
+ * never sees archived posts and gets newest comments first.
  */
 import prisma from '@/lib/prismadb'
 import type { PostStatus } from '@prisma/client'
@@ -9,13 +9,19 @@ import { POST_STATUS_PIPELINE } from './content-types'
 
 export async function getContentPosts(brandPartnerId: string) {
   return prisma.contentPost.findMany({
-    where: { brandPartnerId },
+    where: { brandPartnerId, archivedAt: null },
+    include: {
+      comments: { orderBy: { createdAt: 'desc' } },
+    },
     orderBy: [{ scheduledDate: 'asc' }, { position: 'asc' }],
   })
 }
 
 export async function getContentPostById(id: string) {
-  return prisma.contentPost.findUnique({ where: { id } })
+  return prisma.contentPost.findUnique({
+    where: { id },
+    include: { comments: { orderBy: { createdAt: 'desc' } } },
+  })
 }
 
 export async function getPostStatusCounts(
@@ -23,7 +29,7 @@ export async function getPostStatusCounts(
 ): Promise<Record<PostStatus, number>> {
   const grouped = await prisma.contentPost.groupBy({
     by: ['status'],
-    where: { brandPartnerId },
+    where: { brandPartnerId, archivedAt: null },
     _count: { _all: true },
   })
 

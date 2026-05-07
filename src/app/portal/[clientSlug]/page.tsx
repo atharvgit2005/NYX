@@ -54,7 +54,7 @@ export default async function ClientPortalPage({
   }
 
   // Brand visual config (colours, Pack B, agency block) — code-side
-  const brand = getBrandConfig(clientSlug)
+  const brand = await getBrandConfig(clientSlug)
   if (!brand) {
     // No brand config registered yet — fall through to a graceful message
     return (
@@ -105,6 +105,13 @@ export default async function ClientPortalPage({
     thumbnailUrl: p.thumbnailUrl,
     mediaUrls: p.mediaUrls,
     position: p.position,
+    comments: p.comments.map((c) => ({
+      id: c.id,
+      authorEmail: c.authorEmail,
+      body: c.body,
+      type: c.type,
+      createdAt: c.createdAt.toISOString(),
+    })),
     createdAt: p.createdAt.toISOString(),
     updatedAt: p.updatedAt.toISOString(),
   }))

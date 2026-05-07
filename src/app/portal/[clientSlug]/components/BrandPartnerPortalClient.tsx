@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { Toaster } from 'sonner'
 import type { ContentType, PostStatus } from '@prisma/client'
 import type { BrandConfig } from '@/lib/portal/brand-config'
 import type { SerializedPost } from './types'
@@ -32,13 +33,35 @@ const VIEW_OPTIONS: { value: View; label: string; icon: string }[] = [
 
 export default function BrandPartnerPortalClient({
   brand,
-  posts,
-  statusCounts,
+  posts: initialPosts,
+  statusCounts: initialCounts,
   signedInAs,
   viewerIsAdmin,
 }: Props) {
   const [view, setView] = useState<View>('calendar')
+  const [posts, setPosts] = useState<SerializedPost[]>(initialPosts)
+  const [statusCounts, setStatusCounts] =
+    useState<Record<PostStatus, number>>(initialCounts)
   const [selectedPost, setSelectedPost] = useState<SerializedPost | null>(null)
+
+  function applyPostUpdate(updated: SerializedPost) {
+    setPosts((prev) => {
+      const next = prev.map((p) => (p.id === updated.id ? updated : p))
+      // Recompute status counts from the new list.
+      const counts: Record<PostStatus, number> = {
+        IDEA: 0,
+        DRAFTING: 0,
+        NEEDS_APPROVAL: 0,
+        NEEDS_REVISION: 0,
+        APPROVED: 0,
+        POSTED: 0,
+      }
+      for (const p of next) counts[p.status]++
+      setStatusCounts(counts)
+      return next
+    })
+    setSelectedPost(updated)
+  }
 
   const typeCounts = useMemo(() => {
     const c: Record<ContentType, number> = {
@@ -61,6 +84,7 @@ export default function BrandPartnerPortalClient({
         fontFamily: 'var(--font-portal-body)',
       }}
     >
+      <Toaster position="top-right" richColors />
       <PortalHeader brand={brand} signedInAs={signedInAs} viewerIsAdmin={viewerIsAdmin} />
 
       <main className="max-w-6xl mx-auto px-6 py-10 md:py-14 space-y-10">
@@ -176,7 +200,10 @@ export default function BrandPartnerPortalClient({
         <PostModal
           post={selectedPost}
           brand={brand}
+          viewerIsAdmin={viewerIsAdmin}
+          partnerSlug={brand.slug}
           onClose={() => setSelectedPost(null)}
+          onPostMutated={applyPostUpdate}
         />
       )}
 

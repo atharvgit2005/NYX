@@ -25,11 +25,8 @@ const ORANGE = '#E8441A'
 const YELLOW = '#ffd65b'
 const GREEN = '#76dc83'
 const GREEN_DK = '#3da452'
-const RED = '#ffb4ab'
 const BG_LOWEST = '#0e0e0e'
 const BG_LOW = '#1c1b1b'
-const BG_MID = '#131313'
-const BG_HIGH = '#2a2a2a'
 const BG_HIGHEST = '#353534'
 const FG = '#e5e2e1'
 const FG_DIM = '#e4beb5'
@@ -115,30 +112,42 @@ export default function AdminDashboardClient({
         <div className="p-6 md:p-10 max-w-7xl mx-auto w-full">
           {/* Page header */}
           <section className="mb-10 md:mb-12">
-            <div className="flex flex-wrap items-end gap-4 mb-2">
-              <div
-                className="text-4xl md:text-6xl font-black tracking-tighter leading-none uppercase"
-                style={HEAD}
-                role="heading"
-                aria-level={1}
-              >
-                Brand Partners
+            <div className="flex flex-wrap items-start justify-between gap-6 mb-2">
+              <div>
+                <div className="flex flex-wrap items-end gap-4 mb-2">
+                  <div
+                    className="text-4xl md:text-6xl font-black tracking-tighter leading-none uppercase"
+                    style={HEAD}
+                    role="heading"
+                    aria-level={1}
+                  >
+                    Brand Partners
+                  </div>
+                  <span
+                    className="text-xs px-2 py-0.5 font-bold uppercase mb-1"
+                    style={{ ...HEAD, backgroundColor: YELLOW, color: '#3d2f00' }}
+                  >
+                    *ADMIN_PORTAL
+                  </span>
+                </div>
+                <p className="text-[#e4beb5] tracking-tight max-w-2xl text-sm md:text-base">
+                  Approve incoming partners, manage active portals, and monitor operational
+                  health. System cycle:{' '}
+                  <span className="text-[#e5e2e1] font-bold uppercase tracking-widest" style={HEAD}>
+                    {today}
+                  </span>
+                  .
+                </p>
               </div>
-              <span
-                className="text-xs px-2 py-0.5 font-bold uppercase mb-1"
-                style={{ ...HEAD, backgroundColor: YELLOW, color: '#3d2f00' }}
+              <Link
+                href="/portal/admin/brands/new"
+                className="px-5 py-3 border-4 border-black bg-[#E8441A] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] transition-all flex items-center gap-2"
+                style={HEAD}
               >
-                *ADMIN_PORTAL
-              </span>
+                <MIcon name="add" className="!text-base" />
+                + NEW_BRAND
+              </Link>
             </div>
-            <p className="text-[#e4beb5] tracking-tight max-w-2xl text-sm md:text-base">
-              Approve incoming partners, manage active portals, and monitor operational
-              health. System cycle:{' '}
-              <span className="text-[#e5e2e1] font-bold uppercase tracking-widest" style={HEAD}>
-                {today}
-              </span>
-              .
-            </p>
           </section>
 
           {/* Metric bento */}
@@ -722,6 +731,22 @@ function PartnerRow({
         </div>
       </div>
       <div className="flex flex-wrap gap-2">
+        <Link
+          href={`/portal/admin/${partner.clientSlug}/posts`}
+          className="px-4 py-2 border-2 border-black font-bold uppercase text-[10px] flex items-center gap-2 hover:bg-[#E8441A] hover:text-white transition-all"
+          style={{ ...HEAD, backgroundColor: BG_LOWEST }}
+        >
+          <MIcon name="grid_view" className="!text-sm" />
+          Content
+        </Link>
+        <Link
+          href={`/portal/admin/brands/${partner.clientSlug}/edit`}
+          className="px-4 py-2 border-2 border-black font-bold uppercase text-[10px] flex items-center gap-2 hover:bg-[#ffd65b] hover:text-[#3d2f00] transition-all"
+          style={{ ...HEAD, backgroundColor: BG_LOWEST }}
+        >
+          <MIcon name="edit" className="!text-sm" />
+          Edit
+        </Link>
         <Link
           href={portalUrl}
           target="_blank"
