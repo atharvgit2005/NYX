@@ -187,7 +187,7 @@ export const authOptions: AuthOptions = {
             const isBlacklisted = await prisma.revokedToken.findUnique({
                 where: { token: token.jti as string }
             });
-            if (isBlacklisted) return null;
+            if (isBlacklisted) return null as unknown as JWT;
 
             // Session Hardening: Invalidate if password changed after token issuance
             const dbUser = await prisma.user.findUnique({
@@ -195,18 +195,18 @@ export const authOptions: AuthOptions = {
                 select: { passwordChangedAt: true, activeSessionId: true, role: true }
             });
 
-            if (!dbUser) return null;
+            if (!dbUser) return null as unknown as JWT;
 
             if (dbUser.passwordChangedAt && token.iat) {
                 const tokenIssuanceTime = new Date(token.iat * 1000);
                 if (dbUser.passwordChangedAt > tokenIssuanceTime) {
-                    return null;
+                    return null as unknown as JWT;
                 }
             }
 
             // Concurrent Session Limiting: 1 active session per user unless admin
             if (dbUser.role !== 'admin' && dbUser.activeSessionId !== token.activeSessionId) {
-                return null;
+                return null as unknown as JWT;
             }
 
             return token;
