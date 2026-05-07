@@ -174,3 +174,46 @@ model Contact {
   message   String
   createdAt DateTime @default(now())
 }
+
+// ── Client Portal (NYX × brand partners) ───────────────────────────────────
+// `BrandPartner` is an approved client granted access to /portal/[slug].
+// Naming reflects NYX's existing landing-page language ("Q3 2026 brand partners").
+
+model BrandPartner {
+  id          String              @id @default(cuid())
+  email       String              @unique
+  clientSlug  String              @unique
+  clientName  String
+  approvedAt  DateTime            @default(now())
+  approvedBy  String              // admin email who approved
+  status      BrandPartnerStatus  @default(ACTIVE)
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+
+  @@index([email])
+  @@index([clientSlug])
+  @@index([status])
+}
+
+model PendingPartnerRequest {
+  id          String                @id @default(cuid())
+  email       String                @unique
+  name        String?               // captured from Google profile when available
+  requestedAt DateTime              @default(now())
+  status      PendingPartnerStatus  @default(PENDING)
+  notes       String?               // admin notes during review
+
+  @@index([email])
+  @@index([status])
+}
+
+enum BrandPartnerStatus {
+  ACTIVE
+  PAUSED
+  ARCHIVED
+}
+
+enum PendingPartnerStatus {
+  PENDING
+  REJECTED
+}

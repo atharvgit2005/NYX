@@ -1,0 +1,18 @@
+{
+  "approvedClients": [
+    {
+      "email": "ca.priyankabaheti@gmail.com",
+      "clientSlug": "dessertino",
+      "clientName": "Dessertino",
+      "approvedAt": "2026-05-05",
+      "approvedBy": "atharv@nyxstudio.tech"
+    }
+  ],
+  "pendingClients": [
+    {
+      "email": "pahariaatharv2005@gmail.com",
+      "name": "Atharv Paharia",
+      "requestedAt": "2026-05-05T21:18:58.031Z"
+    }
+  ]
+}

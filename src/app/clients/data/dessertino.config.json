@@ -1,0 +1,148 @@
+{
+  "client": {
+    "name": "Dessertino",
+    "tagline": "Shakes and More",
+    "contact": "Priyanka Baheti",
+    "email": "ca.priyankabaheti@gmail.com",
+    "phone": "+91 96046 60660",
+    "products": ["Thick Shakes", "Ice Cream", "Waffles", "Pizza", "Burgers", "Fries", "Coffee"],
+    "operations": "Dine-in + Delivery (Swiggy/Zomato)",
+    "logoUrl": "/clients/dessertino/logo.svg"
+  },
+  "brand": {
+    "primary": "#E91E8C",
+    "secondary": "#00AEEF",
+    "accent": "#1A2A5E"
+  },
+  "auth": {
+    "password": "dessertino2026"
+  },
+  "campaign": {
+    "title": "Trial Pack A",
+    "period": "May 5–15, 2026",
+    "platform": "Instagram",
+    "totals": {
+      "posts": 8,
+      "reels": 4,
+      "carousels": 2,
+      "photos": 1,
+      "stories": 1
+    }
+  },
+  "posts": [
+    {
+      "id": 1,
+      "title": "Brand Intro — What is Dessertino?",
+      "date": "2026-05-05",
+      "day": "Tuesday",
+      "type": "Reel",
+      "status": "Idea",
+      "caption": "Pune, your new dessert obsession just dropped 🍦\n\nThick shakes that hit different. Ice cream that makes you stop scrolling. Waffles that make you forget your diet.\n\nWelcome to Dessertino — Shakes and More.\n\n📍 Dine-in | 🛵 Delivery\n\nTag someone who NEEDS to try this 👇",
+      "hashtags": ["Dessertino", "PuneFood", "ShakesAndMore", "PuneFoodies", "NewInPune", "DessertLovers", "ThickShakes", "PuneCafe", "FoodReels"],
+      "visualDirection": "Fast cuts, cinematic close-ups of pouring shakes, drizzling chocolate, waffle plating. Sky blue + pink overlay on text. Mascot reveal at end. Trending upbeat audio. 15-30s.",
+      "productionNotes": "REEL #1 — First impression matters. Shoot all hero products in one session. Use brand mascot in end card."
+    },
+    {
+      "id": 2,
+      "title": "Top 5 Must-Try Thick Shakes",
+      "date": "2026-05-07",
+      "day": "Thursday",
+      "type": "Carousel",
+      "status": "Idea",
+      "caption": "Which one are you grabbing first? 👇\n\nSwipe through Dessertino's top 5 thick shakes that Pune can't stop ordering 🥤\n\nFrom classic chocolate overload to fruity madness — there's a shake for every mood.\n\n💬 Drop your pick in the comments!\n📍 Order now on Swiggy/Zomato or walk in",
+      "hashtags": ["ThickShakes", "PuneDesserts", "Dessertino", "ShakeLover", "FoodPorn", "MilkshakePune", "PuneEats", "ShakesAndMore"],
+      "visualDirection": "5 slides. Slide 1: Bold hook text 'Top 5 Shakes You NEED to Try' on pink brand bg. Slides 2-5: One shake per slide — product photo on solid brand color bg (alternate blue/pink). Name + price overlay. Slide 6: CTA + logo.",
+      "productionNotes": "CAROUSEL — Shoot each shake individually with consistent lighting. Use brand bg colors. Include pricing if client approves."
+    },
+    {
+      "id": 3,
+      "title": "POV: You walk into Dessertino",
+      "date": "2026-05-08",
+      "day": "Friday",
+      "type": "Reel",
+      "status": "Idea",
+      "caption": "POV: You finally found the dessert spot everyone's been talking about 😍\n\nThat first sip >>> everything else.\n\n📍 Dessertino — Shakes and More\n🛵 Also on Swiggy & Zomato\n\nSave this for your next craving 🔖",
+      "hashtags": ["POV", "PuneVibes", "DessertSpot", "Dessertino", "FoodReels", "ShakesAndMore", "PuneFoodie", "FoodPOV"],
+      "visualDirection": "Handheld POV style. Walk-in shot → look around store → scan menu → order at counter → wait → first sip reaction (satisfied close-up). Natural lighting, immersive feel. Trending audio. 20-40s.",
+      "productionNotes": "REEL #2 — Needs store access. Film during quieter hours for clean shots. Capture real ambiance."
+    },
+    {
+      "id": 4,
+      "title": "Hero Product Shot — Signature Shake",
+      "date": "2026-05-09",
+      "day": "Saturday",
+      "type": "Photo",
+      "status": "Idea",
+      "caption": "This isn't just a shake. It's a whole mood. 🤤\n\nDessertino's signature thick shake — crafted to perfection, served to impress.\n\nOne sip and you'll know why Pune is obsessed.\n\n📍 Dessertino — Shakes and More\n🛵 Order now | 🪑 Dine in",
+      "hashtags": ["FoodPhotography", "Dessertino", "PuneEats", "ShakeTime", "DessertPorn", "Foodgasm", "CinematicFood", "PuneFood"],
+      "visualDirection": "Dark/moody background. Dramatic side lighting. Shake as hero center-frame. Slight condensation/mist effect. Brand color props (pink napkin, blue straw). Minimal text — let the visual speak. Shot in portrait for feed.",
+      "productionNotes": "PHOTO POST — Cinematic product photography. This shot also feeds into Pack B (in-store screen content). Shoot multiple angles."
+    },
+    {
+      "id": 5,
+      "title": "Sunday Deserves Dessertino 🍨",
+      "date": "2026-05-11",
+      "day": "Monday",
+      "type": "Reel",
+      "status": "Idea",
+      "caption": "Your Sunday plans just got an upgrade 🍨\n\nGrab your crew. Pick your shake. Make it a Dessertino kind of Sunday.\n\nBecause weekends are made for thick shakes and zero regrets 😌\n\n📍 Walk in or order from home\n💬 Tag your Sunday dessert buddy!",
+      "hashtags": ["SundayVibes", "WeekendTreat", "Dessertino", "PuneWeekend", "DessertTime", "TreatYourself", "ShakesAndMore", "SundayFunday"],
+      "visualDirection": "Bright, warm tones. Lifestyle montage — friends sharing shakes, couple on a dessert date, family dine-in moment. Mix of dine-in + delivery unboxing shots. Upbeat trending audio. 15-30s.",
+      "productionNotes": "REEL #3 — Lifestyle/vibe reel. Can use UGC-style footage. Posts on Sunday for relevance."
+    },
+    {
+      "id": 6,
+      "title": "Dessertino vs. Your Regular Shake",
+      "date": "2026-05-12",
+      "day": "Tuesday",
+      "type": "Carousel",
+      "status": "Idea",
+      "caption": "Still drinking boring shakes? 😴\n\nSwipe to see what you're missing → \n\nDessertino doesn't do basic. We do LOADED.\n\n🔥 Thick. Rich. Over-the-top. The way a shake should be.\n\n📍 Dessertino — Shakes and More\n💬 Regular or Dessertino? Be honest 👇",
+      "hashtags": ["DessertComparison", "ShakeUpgrade", "Dessertino", "PuneFoodie", "FoodvsFood", "ThickShake", "ShakesAndMore", "DessertsOfPune"],
+      "visualDirection": "4 slides. Slide 1: Hook — 'Your shake vs Dessertino shake'. Slide 2: Split — plain boring shake (desaturated) vs Dessertino shake (vibrant, brand colors, loaded). Slide 3: Close-up of toppings/drizzle. Slide 4: CTA + logo.",
+      "productionNotes": "CAROUSEL — Design-heavy post. Comparison format performs well. Can be designed using existing product shots."
+    },
+    {
+      "id": 7,
+      "title": "Behind the Scenes — How we make the magic 🎬",
+      "date": "2026-05-14",
+      "day": "Thursday",
+      "type": "Reel",
+      "status": "Idea",
+      "caption": "Ever wondered what goes into your favourite shake? 👀\n\nSpoiler: It's a lot of love, a lot of cream, and zero shortcuts.\n\nWatch how Dessertino crafts every shake from scratch 🤌\n\n📍 Dessertino — Shakes and More\n🔖 Save this for your next craving!",
+      "hashtags": ["BehindTheScenes", "BTS", "Dessertino", "ShakeMaking", "FoodBTS", "PuneFood", "Satisfying", "ASMR", "FoodProcess"],
+      "visualDirection": "Close-up macro shots. Ingredients going in → blending (slow-mo) → pouring into glass → topping drizzle → final hero reveal. ASMR-style audio (no music or optional lo-fi). Clean counter, branded elements visible. 20-40s.",
+      "productionNotes": "REEL #4 — Satisfying/process content. Performs great for saves & shares. Footage also feeds Pack B screen content."
+    },
+    {
+      "id": 8,
+      "title": "Thank You Pune — This was just the beginning 🚀",
+      "date": "2026-05-15",
+      "day": "Friday",
+      "type": "Reel + Story",
+      "status": "Idea",
+      "caption": "2 weeks. 8 posts. And Pune showed up like we hoped you would ❤️\n\nThis was just the warm-up.\n\nDessertino has something bigger coming... 👀\n\nStay tuned. Stay hungry.\n\n📍 Dessertino — Shakes and More\n🔔 Turn on notifications so you don't miss it!",
+      "hashtags": ["Dessertino", "PuneFood", "ComingSoon", "ShakesAndMore", "StayTuned", "DessertLover", "PuneFoodie", "SomethingBig"],
+      "visualDirection": "Highlight reel compilation — best moments from all trial content. Fast-paced edits synced to music. Brand colors throughout. Final 3 seconds: mystery/teaser frame with logo + 'Coming Soon'. Push to Stories with countdown sticker.",
+      "productionNotes": "REEL #5 + STORY PUSH — Trial wrap post. Teases monthly retainer continuation. Use best clips from 2 weeks. Push hard on Stories for retention."
+    }
+  ],
+  "packB": {
+    "title": "In-Store Screen Content",
+    "description": "Hero shots from selected posts repurposed for in-store vertical screen loops",
+    "sources": [
+      "Post #2 (Top 5 Shakes) — Best-seller loop",
+      "Post #4 (Signature Shake) — Premium product still",
+      "Post #7 (BTS) — Process footage to trigger cravings"
+    ],
+    "goals": ["Increase AOV", "Drive impulse purchases at point of sale"]
+  },
+  "agency": {
+    "name": "NYX Studio",
+    "tagline": "AI-Powered Content Studio",
+    "founders": ["Atharv Paharia", "Bhavya Jain"],
+    "email": "nyx.studios.ai@gmail.com",
+    "phone": "+91 86192 63998",
+    "website": "https://nyxstudio.tech"
+  }
+}

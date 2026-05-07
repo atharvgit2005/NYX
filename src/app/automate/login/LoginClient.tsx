@@ -26,11 +26,17 @@ function LoginContent() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
+    // Honour ?callbackUrl=... if present (sent here by middleware redirects),
+    // otherwise default to the existing /automate/dashboard behaviour.
+    const rawCallback = searchParams.get('callbackUrl');
+    const callbackUrl =
+        rawCallback && rawCallback.startsWith('/') ? rawCallback : '/automate/dashboard';
+
     useEffect(() => {
         if (session) {
-            router.push('/automate/dashboard');
+            router.push(callbackUrl);
         }
-    }, [session, router]);
+    }, [session, router, callbackUrl]);
 
     const errorParam = searchParams.get('error');
     const urlError = errorParam ? (AuthErrorMessages[errorParam] || errorParam) : '';
@@ -56,7 +62,7 @@ function LoginContent() {
             setError(result.error === "CredentialsSignin" ? "Invalid email or password" : result.error);
             setLoading(false);
         } else {
-            router.push('/automate/dashboard');
+            router.push(callbackUrl);
         }
     };
 
@@ -138,7 +144,7 @@ function LoginContent() {
                         </div>
 
                         <div className="mt-6 grid grid-cols-2 gap-3">
-                            <button onClick={() => signIn('google', { callbackUrl: '/automate/dashboard' })} className="w-full inline-flex justify-center py-2 px-4 border border-theme rounded-md shadow-sm bg-card-theme text-sm font-medium text-theme-secondary hover:bg-card-theme transition-colors">
+                            <button onClick={() => signIn('google', { callbackUrl })} className="w-full inline-flex justify-center py-2 px-4 border border-theme rounded-md shadow-sm bg-card-theme text-sm font-medium text-theme-secondary hover:bg-card-theme transition-colors">
                                 Google
                             </button>
                             <button className="w-full inline-flex justify-center py-2 px-4 border border-theme rounded-md shadow-sm bg-card-theme text-sm font-medium text-theme-secondary hover:bg-card-theme transition-colors">
@@ -147,12 +153,20 @@ function LoginContent() {
                         </div>
 
                         <div className="mt-6 text-center text-sm">
-                            <p className="text-theme-secondary">
-                                Don&apos;t have an account?{' '}
-                                <Link href="/automate/signup" className="font-medium text-orange-500 hover:text-orange-400 transition-colors">
-                                    Sign up
-                                </Link>
-                            </p>
+                            {/* Sign-up link is only for the legacy Automate flow.
+                                Hide it when this login page is being used as the universal
+                                sign-in entry from /portal — those users never sign up here. */}
+                            {!callbackUrl.startsWith('/portal') && (
+                                <p className="text-theme-secondary">
+                                    Don&apos;t have an account?{' '}
+                                    <Link
+                                        href={`/automate/signup?callbackUrl=${encodeURIComponent(callbackUrl)}`}
+                                        className="font-medium text-orange-500 hover:text-orange-400 transition-colors"
+                                    >
+                                        Sign up
+                                    </Link>
+                                </p>
+                            )}
                             <p className="mt-2 text-gray-500">
                                 <Link href="/" className="font-medium text-theme-secondary hover:text-theme-primary transition-colors flex items-center justify-center gap-1">
                                     ← Back to Home

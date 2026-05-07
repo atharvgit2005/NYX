@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import LoginClient from "./LoginClient";
 
 export const metadata: Metadata = {
-  title: "Login",
-  description: "Access your NYX Studio automation dashboard.",
+  title: "Sign in",
+  description: "Sign in to NYX Studio.",
   robots: {
     index: false,
     follow: false,

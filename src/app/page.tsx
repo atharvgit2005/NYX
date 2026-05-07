@@ -49,7 +49,7 @@ export default function AdPage() {
                 <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/work">WORK</Link>
                 <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/services">SERVICES</Link>
                 <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/contact">CONTACT</Link>
-                <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/automate">AUTOMATE</Link>
+                <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/portal">PORTAL</Link>
             </nav>
             <LiveHub />
         </header>
