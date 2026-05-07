@@ -6,25 +6,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { signOut } from 'next-auth/react'
 import { Toaster, toast } from 'sonner'
-import {
-  Users,
-  Clock,
-  PauseCircle,
-  Layers,
-  Mail,
-  Eye,
-  Pause,
-  Archive,
-  Play,
-  Check,
-  X,
-  Copy,
-  ExternalLink,
-  LogOut,
-  Inbox,
-  Sparkles,
-} from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
 import type { SerializedPending, SerializedPartner } from './page'
 
 type Stats = { active: number; pending: number; paused: number; total: number }
@@ -36,6 +17,23 @@ interface Props {
   initialPartners: SerializedPartner[]
   initialStats: Stats
 }
+
+const HEAD = { fontFamily: 'var(--font-space-grotesk), sans-serif' } as const
+const BODY = { fontFamily: 'var(--font-work-sans), sans-serif' } as const
+
+const ORANGE = '#E8441A'
+const YELLOW = '#ffd65b'
+const GREEN = '#76dc83'
+const GREEN_DK = '#3da452'
+const RED = '#ffb4ab'
+const BG_LOWEST = '#0e0e0e'
+const BG_LOW = '#1c1b1b'
+const BG_MID = '#131313'
+const BG_HIGH = '#2a2a2a'
+const BG_HIGHEST = '#353534'
+const FG = '#e5e2e1'
+const FG_DIM = '#e4beb5'
+const FG_MUTED = '#ab8981'
 
 // ── helpers ────────────────────────────────────────────────────────────────
 
@@ -64,6 +62,16 @@ function suggestSlug(name: string) {
     .replace(/-+/g, '-')
 }
 
+// ── icon (inline SVG to avoid lucide stroke vibe — brutalist wants chunky) ──
+// Reusing material-symbols-outlined font already loaded globally (globals.css).
+function MIcon({ name, className = '' }: { name: string; className?: string }) {
+  return (
+    <span className={`material-symbols-outlined ${className}`} aria-hidden>
+      {name}
+    </span>
+  )
+}
+
 // ── main ───────────────────────────────────────────────────────────────────
 
 export default function AdminDashboardClient({
@@ -80,138 +88,224 @@ export default function AdminDashboardClient({
   const [approveTarget, setApproveTarget] = useState<SerializedPending | null>(null)
   const [rejectTarget, setRejectTarget] = useState<SerializedPending | null>(null)
 
+  const today = new Date().toLocaleDateString('en-IN', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+  const buildTag = new Date().toISOString().slice(0, 10).replace(/-/g, '_')
+
   return (
-    <div className="min-h-screen bg-page text-theme-primary">
+    <div
+      className="flex min-h-screen text-[#e5e2e1] selection:bg-[#E8441A] selection:text-white"
+      style={{ ...BODY, backgroundColor: BG_LOWEST }}
+    >
       <Toaster position="top-right" theme="dark" richColors />
 
-      {/* Header */}
-      <header className="border-b border-theme bg-card-theme/60 backdrop-blur-sm sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 relative shrink-0">
-              <Image src="/logo/NYX-Logo.png" alt="NYX" width={36} height={36} className="h-full w-full object-contain" unoptimized sizes="36px" />
+      {/* Side nav */}
+      <SideNav adminName={adminName} />
+
+      {/* Content canvas */}
+      <main className="ml-0 md:ml-64 flex-1 flex flex-col min-h-screen">
+        {/* Top bar */}
+        <TopBar adminEmail={adminEmail} adminName={adminName} />
+
+        {/* Page body */}
+        <div className="p-6 md:p-10 max-w-7xl mx-auto w-full">
+          {/* Page header */}
+          <section className="mb-10 md:mb-12">
+            <div className="flex flex-wrap items-end gap-4 mb-2">
+              <div
+                className="text-4xl md:text-6xl font-black tracking-tighter leading-none uppercase"
+                style={HEAD}
+                role="heading"
+                aria-level={1}
+              >
+                Brand Partners
+              </div>
+              <span
+                className="text-xs px-2 py-0.5 font-bold uppercase mb-1"
+                style={{ ...HEAD, backgroundColor: YELLOW, color: '#3d2f00' }}
+              >
+                *ADMIN_PORTAL
+              </span>
             </div>
-            <div>
-              <p className="text-xs uppercase tracking-widest text-theme-secondary font-bold">NYX Studio</p>
-              <p className="text-sm font-black text-theme-primary -mt-0.5">Portal Admin</p>
-            </div>
-          </div>
+            <p className="text-[#e4beb5] tracking-tight max-w-2xl text-sm md:text-base">
+              Approve incoming partners, manage active portals, and monitor operational
+              health. System cycle:{' '}
+              <span className="text-[#e5e2e1] font-bold uppercase tracking-widest" style={HEAD}>
+                {today}
+              </span>
+              .
+            </p>
+          </section>
 
-          <div className="flex items-center gap-3">
-            <div className="hidden sm:block text-right">
-              {adminName && <p className="text-xs font-bold text-theme-primary leading-tight">{adminName}</p>}
-              <p className="text-[11px] text-theme-secondary leading-tight">{adminEmail}</p>
-            </div>
-            <button
-              onClick={() => signOut({ callbackUrl: '/' })}
-              className="flex items-center gap-2 text-xs px-3 py-2 rounded-lg bg-card-theme border border-theme text-theme-secondary hover:text-theme-primary hover:bg-accent transition"
-            >
-              <LogOut className="w-3.5 h-3.5" />
-              Sign out
-            </button>
-          </div>
-        </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto px-6 py-8 space-y-8">
-        {/* Page title */}
-        <div>
-          <h1 className="text-3xl font-black text-theme-primary">Brand Partners</h1>
-          <p className="text-theme-secondary mt-1 text-sm">
-            Approve incoming partners, manage active portals · {new Date().toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
-          </p>
-        </div>
-
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <StatCard label="Active" value={stats.active} icon={Users} color="#10b981" />
-          <StatCard label="Pending" value={stats.pending} icon={Clock} color="#f59e0b" pulse={stats.pending > 0} />
-          <StatCard label="Paused" value={stats.paused} icon={PauseCircle} color="#06b6d4" />
-          <StatCard label="Total" value={stats.total} icon={Layers} color="#f97316" />
-        </div>
-
-        {/* Pending */}
-        <section>
-          <SectionHeader
-            icon={Clock}
-            iconColor="#f59e0b"
-            title="Pending Requests"
-            count={pending.length}
-            description="People who signed in but aren't yet approved"
-          />
-          {pending.length === 0 ? (
-            <EmptyState
-              icon={Inbox}
-              title="All caught up"
-              body="No pending requests right now. New sign-ins land here automatically."
+          {/* Metric bento */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-10 md:mb-12">
+            <MetricCell
+              icon="group"
+              iconBg={GREEN_DK}
+              iconFg="#00320f"
+              status="*STATUS_OK"
+              value={stats.active}
+              valueColor={FG}
+              label="ACTIVE"
             />
-          ) : (
-            <div className="rounded-2xl border border-theme bg-card-theme overflow-hidden">
-              <ul className="divide-y divide-theme">
+            <MetricCell
+              icon="schedule"
+              iconBg={YELLOW}
+              iconFg="#3d2f00"
+              status="*WAIT_LIST"
+              value={stats.pending}
+              valueColor={YELLOW}
+              label="PENDING"
+              pulse={stats.pending > 0}
+            />
+            <MetricCell
+              icon="pause_circle"
+              iconBg={BG_HIGHEST}
+              iconFg={FG_DIM}
+              status="*IDLE_STATE"
+              value={stats.paused}
+              valueColor={FG_DIM}
+              label="PAUSED"
+            />
+            <MetricCell
+              icon="layers"
+              iconBg={ORANGE}
+              iconFg="#ffffff"
+              status="*LIFETIME"
+              value={stats.total}
+              valueColor={ORANGE}
+              label="TOTAL"
+            />
+          </div>
+
+          {/* Pending requests */}
+          <section className="mb-10 md:mb-12">
+            <SectionHead
+              icon="pending_actions"
+              accent={YELLOW}
+              title="Pending Requests"
+              count={pending.length}
+            />
+            {pending.length === 0 ? (
+              <EmptyBlock
+                icon="inbox"
+                title="ALL CAUGHT UP"
+                body="No pending requests right now. New sign-ins land here automatically."
+              />
+            ) : (
+              <div className="space-y-4">
                 {pending.map((p) => (
-                  <li key={p.id} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4">
-                    <div className="flex items-center gap-4 flex-1 min-w-0">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-amber-500 flex items-center justify-center text-sm font-black text-white shrink-0">
-                        {(p.name || p.email).charAt(0).toUpperCase()}
+                  <div
+                    key={p.id}
+                    className="bg-[#0e0e0e] border-4 border-black p-5 md:p-6 flex flex-wrap items-center justify-between gap-6 group transition-transform hover:translate-x-1"
+                  >
+                    <div className="flex items-center gap-5 md:gap-6 flex-1 min-w-0">
+                      <div
+                        className="w-14 h-14 md:w-16 md:h-16 border-4 border-black bg-[#E8441A] flex items-center justify-center shrink-0"
+                        style={HEAD}
+                      >
+                        <span className="text-2xl md:text-3xl font-black text-white">
+                          {(p.name || p.email).charAt(0).toUpperCase()}
+                        </span>
                       </div>
-                      <div className="min-w-0 flex-1">
-                        {p.name && <p className="text-sm font-bold text-theme-primary truncate">{p.name}</p>}
-                        <p className="text-xs text-theme-secondary flex items-center gap-1.5 truncate">
-                          <Mail className="w-3 h-3 shrink-0" />
-                          <span className="truncate">{p.email}</span>
+                      <div className="min-w-0">
+                        {p.name && (
+                          <div
+                            className="text-base md:text-lg font-black tracking-tighter uppercase truncate"
+                            style={HEAD}
+                          >
+                            {p.name}
+                          </div>
+                        )}
+                        <p className="text-xs md:text-sm text-[#e4beb5] truncate">{p.email}</p>
+                        <p
+                          className="text-[10px] text-[#E8441A] mt-1 uppercase font-bold tracking-widest"
+                          style={HEAD}
+                        >
+                          *REQUESTED {timeAgo(p.requestedAt).toUpperCase()}
                         </p>
-                        <p className="text-[11px] text-theme-secondary mt-0.5">Requested {timeAgo(p.requestedAt)}</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 sm:shrink-0">
+                    <div className="flex flex-wrap gap-3">
                       <button
                         onClick={() => setApproveTarget(p)}
-                        className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 text-xs px-3 py-2 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400 hover:bg-green-500/20 transition"
+                        className="flex items-center gap-2 px-5 py-3 bg-[#76dc83] text-[#00320f] font-black uppercase text-xs border-4 border-black hover:shadow-[4px_4px_0px_#000] transition-all"
+                        style={HEAD}
                       >
-                        <Check className="w-3.5 h-3.5" />
+                        <MIcon name="check_circle" className="text-sm" />
                         Approve
                       </button>
                       <button
                         onClick={() => setRejectTarget(p)}
-                        className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 text-xs px-3 py-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition"
+                        className="flex items-center gap-2 px-5 py-3 bg-[#2a2a2a] text-[#e5e2e1] font-black uppercase text-xs border-4 border-black hover:bg-[#93000a] hover:text-[#ffdad6] transition-all"
+                        style={HEAD}
                       >
-                        <X className="w-3.5 h-3.5" />
+                        <MIcon name="cancel" className="text-sm" />
                         Reject
                       </button>
                     </div>
-                  </li>
+                  </div>
                 ))}
-              </ul>
-            </div>
-          )}
-        </section>
+              </div>
+            )}
+          </section>
 
-        {/* Active partners */}
-        <section>
-          <SectionHeader
-            icon={Sparkles}
-            iconColor="#10b981"
-            title="Active Brand Partners"
-            count={partners.length}
-            description="Approved partners with active or paused portals"
-          />
-          {partners.length === 0 ? (
-            <EmptyState
-              icon={Users}
-              title="No partners yet"
-              body="Approve a pending request to get started."
+          {/* Active partners */}
+          <section>
+            <SectionHead
+              icon="check_circle"
+              accent={GREEN}
+              title="Active Brand Partners"
+              count={partners.length}
             />
-          ) : (
-            <div className="rounded-2xl border border-theme bg-card-theme overflow-hidden">
-              <ul className="divide-y divide-theme">
+            {partners.length === 0 ? (
+              <EmptyBlock
+                icon="group"
+                title="NO PARTNERS YET"
+                body="Approve a pending request to get started."
+              />
+            ) : (
+              <div className="bg-[#1c1b1b] border-4 border-black divide-y-4 divide-black overflow-hidden">
                 {partners.map((p) => (
                   <PartnerRow key={p.id} partner={p} onChange={() => router.refresh()} />
                 ))}
-              </ul>
+              </div>
+            )}
+          </section>
+        </div>
+
+        {/* Footer */}
+        <footer
+          className="mt-auto p-6 md:p-8 flex flex-wrap justify-between gap-6 border-t-4 border-black"
+          style={{ backgroundColor: BG_LOWEST }}
+        >
+          <div className="flex flex-wrap gap-8 md:gap-12">
+            <FooterCell label="*DATABASE_RELAY" value="STABLE_CONNECTION" valueColor={GREEN} />
+            <FooterCell label="*OPERATOR" value={adminEmail.toUpperCase()} />
+          </div>
+          <div className="text-right">
+            <div
+              className="text-[10px] uppercase font-bold mb-1 tracking-widest"
+              style={{ ...HEAD, color: FG_MUTED }}
+            >
+              *NYX_OS_BUILD
             </div>
-          )}
-        </section>
+            <div className="text-sm font-bold" style={HEAD}>
+              BETA_{buildTag}
+            </div>
+          </div>
+        </footer>
       </main>
+
+      {/* Registration marks */}
+      <div className="fixed top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-[#E8441A] pointer-events-none z-[100]" />
+      <div className="fixed top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-[#E8441A] pointer-events-none z-[100]" />
+      <div className="fixed bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-[#E8441A] pointer-events-none z-[100]" />
+      <div className="fixed bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-[#E8441A] pointer-events-none z-[100]" />
 
       {/* Modals */}
       {approveTarget && (
@@ -238,80 +332,318 @@ export default function AdminDashboardClient({
   )
 }
 
+// ── side nav ───────────────────────────────────────────────────────────────
+
+function SideNav({ adminName }: { adminName: string | null }) {
+  const navItems: Array<{ icon: string; label: string; href: string; active?: boolean }> = [
+    { icon: 'dashboard', label: '*DASHBOARD', href: '/automate/dashboard' },
+    { icon: 'group', label: '*BRAND_PARTNERS', href: '/portal/admin', active: true },
+    { icon: 'monitoring', label: '*ANALYTICS', href: '/automate/admin/analytics' },
+    { icon: 'inventory_2', label: '*ADMIN_LEGACY', href: '/automate/admin' },
+    { icon: 'settings', label: '*SETTINGS', href: '/automate/dashboard/profile' },
+  ]
+
+  return (
+    <aside
+      className="hidden md:flex fixed inset-y-0 left-0 flex-col z-50 w-64 border-r-4 border-black"
+      style={{ backgroundColor: BG_LOWEST }}
+    >
+      {/* Brand */}
+      <Link
+        href="/"
+        className="p-8 border-b-4 border-black hover:bg-[#1c1b1b] transition-colors block"
+        aria-label="NYX Studio Home"
+      >
+        <div className="flex items-center gap-3">
+          <Image
+            src="/logo/NYX-Logo.png"
+            alt="NYX"
+            width={120}
+            height={40}
+            unoptimized
+            sizes="36px"
+            className="w-9 h-9 object-contain"
+          />
+          <div>
+            <div
+              className="text-xl font-black tracking-tighter text-[#e5e2e1] leading-none"
+              style={HEAD}
+            >
+              NYX STUDIO
+            </div>
+            <div
+              className="text-[10px] uppercase text-[#e4beb5] tracking-widest mt-1"
+              style={HEAD}
+            >
+              {adminName ? `V.01 · ${adminName.toUpperCase()}` : 'V.01 OPERATOR'}
+            </div>
+          </div>
+        </div>
+      </Link>
+
+      {/* Nav */}
+      <nav className="flex-1 py-6 overflow-y-auto">
+        <ul className="space-y-1">
+          {navItems.map((item) => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                className={
+                  item.active
+                    ? 'flex items-center gap-3 px-6 py-4 bg-[#E8441A] text-white border-y-4 border-black translate-x-1 duration-75'
+                    : 'flex items-center gap-3 px-6 py-4 text-[#e4beb5] hover:bg-[#ffd65b] hover:text-[#3d2f00] transition-colors duration-100'
+                }
+              >
+                <MIcon name={item.icon} />
+                <span
+                  className={
+                    item.active
+                      ? 'text-xs uppercase tracking-widest font-black'
+                      : 'text-xs uppercase font-bold tracking-widest'
+                  }
+                  style={HEAD}
+                >
+                  {item.label}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {/* Footer actions */}
+      <div className="mt-auto border-t-4 border-black">
+        <button
+          onClick={() => signOut({ callbackUrl: '/' })}
+          className="w-full flex items-center gap-3 px-6 py-6 text-[#e4beb5] hover:bg-[#93000a] hover:text-[#ffdad6] transition-colors duration-100"
+        >
+          <MIcon name="logout" />
+          <span className="text-xs uppercase font-bold tracking-widest" style={HEAD}>
+            *LOGOUT
+          </span>
+        </button>
+      </div>
+    </aside>
+  )
+}
+
+// ── top bar ────────────────────────────────────────────────────────────────
+
+function TopBar({ adminEmail, adminName }: { adminEmail: string; adminName: string | null }) {
+  return (
+    <header
+      className="sticky top-0 w-full flex justify-between items-center px-4 md:px-8 py-4 z-40 border-b-4 border-black"
+      style={{ backgroundColor: BG_LOW }}
+    >
+      <div className="flex items-center gap-4 md:gap-8 min-w-0">
+        <span
+          className="text-base md:text-xl font-black text-[#E8441A] tracking-tighter truncate"
+          style={HEAD}
+        >
+          NYX_SYSTEM_BETA
+        </span>
+        <nav className="hidden lg:flex gap-6 items-center">
+          <Link
+            href="/portal/admin"
+            className="uppercase text-xs text-[#e4beb5] font-medium hover:text-[#E8441A] transition-all"
+            style={HEAD}
+          >
+            *GLOBAL_VIEW
+          </Link>
+          <Link
+            href="/automate/admin/analytics"
+            className="uppercase text-xs text-[#e4beb5] font-medium hover:text-[#E8441A] transition-all"
+            style={HEAD}
+          >
+            *MARKET_PULSE
+          </Link>
+        </nav>
+      </div>
+
+      <div className="flex items-center gap-3 md:gap-6">
+        <div
+          className="hidden sm:flex items-center gap-2 px-3 py-1 border-4 border-black text-xs font-bold text-[#76dc83]"
+          style={{ ...HEAD, backgroundColor: BG_LOWEST }}
+        >
+          <span className="block w-2 h-2 bg-[#76dc83] animate-pulse" />
+          *SYSTEM_LIVE
+        </div>
+
+        <div className="flex items-center gap-3 md:gap-4">
+          <div className="text-right hidden sm:block">
+            <p
+              className="text-[10px] uppercase font-bold text-[#e5e2e1] leading-tight"
+              style={HEAD}
+            >
+              {adminName ?? adminEmail.split('@')[0]}
+            </p>
+            <p className="text-[10px] text-[#e4beb5] leading-tight truncate max-w-[180px]">
+              {adminEmail}
+            </p>
+          </div>
+          <div
+            className="w-10 h-10 border-4 border-black flex items-center justify-center bg-[#E8441A]"
+            style={HEAD}
+          >
+            <span className="text-base font-black text-white">
+              {(adminName ?? adminEmail).charAt(0).toUpperCase()}
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+  )
+}
+
 // ── small components ───────────────────────────────────────────────────────
 
-function StatCard({
-  label,
+function MetricCell({
+  icon,
+  iconBg,
+  iconFg,
+  status,
   value,
-  icon: Icon,
-  color,
+  valueColor,
+  label,
   pulse,
 }: {
-  label: string
+  icon: string
+  iconBg: string
+  iconFg: string
+  status: string
   value: number
-  icon: LucideIcon
-  color: string
+  valueColor: string
+  label: string
   pulse?: boolean
 }) {
   return (
-    <div className="rounded-2xl border border-theme bg-card-theme p-5 hover:border-orange-500/20 transition-all">
-      <div
-        className={`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${pulse ? 'animate-pulse' : ''}`}
-        style={{ background: `${color}22` }}
-      >
-        <Icon className="w-5 h-5" style={{ color }} />
+    <div
+      className="border-4 border-black p-6 flex flex-col justify-between h-44 md:h-48 hover:bg-[#2a2a2a] transition-colors"
+      style={{ backgroundColor: BG_LOW }}
+    >
+      <div className="flex justify-between items-start">
+        <div
+          className={`p-2 border-2 border-black ${pulse ? 'animate-pulse' : ''}`}
+          style={{ backgroundColor: iconBg, color: iconFg }}
+        >
+          <MIcon name={icon} />
+        </div>
+        <span className="text-[10px] tracking-wider" style={{ ...HEAD, color: FG_DIM }}>
+          {status}
+        </span>
       </div>
-      <p className="text-3xl font-black text-theme-primary leading-none mb-1">{value}</p>
-      <p className="text-xs text-theme-secondary uppercase tracking-wider font-bold">{label}</p>
+      <div>
+        <div
+          className="text-5xl font-black tracking-tighter"
+          style={{ ...HEAD, color: valueColor }}
+        >
+          {value}
+        </div>
+        <div
+          className="text-xs uppercase font-bold tracking-widest mt-1"
+          style={{ ...HEAD, color: FG_DIM }}
+        >
+          {label}
+        </div>
+      </div>
     </div>
   )
 }
 
-function SectionHeader({
-  icon: Icon,
-  iconColor,
+function SectionHead({
+  icon,
+  accent,
   title,
   count,
-  description,
 }: {
-  icon: LucideIcon
-  iconColor: string
+  icon: string
+  accent: string
   title: string
   count: number
-  description: string
 }) {
   return (
-    <div className="flex items-end justify-between mb-4">
-      <div>
-        <h2 className="text-xl font-black text-theme-primary flex items-center gap-2.5">
-          <Icon className="w-5 h-5" style={{ color: iconColor }} />
-          {title}
-          {count > 0 && (
-            <span
-              className="text-xs font-bold px-2 py-0.5 rounded-full"
-              style={{ background: `${iconColor}22`, color: iconColor }}
-            >
-              {count}
-            </span>
-          )}
-        </h2>
-        <p className="text-xs text-theme-secondary mt-1">{description}</p>
+    <div
+      className="flex items-center gap-3 mb-6 border-l-4 pl-4"
+      style={{ borderColor: accent }}
+    >
+      <MIcon name={icon} className="!text-base" />
+      <div
+        className="text-lg md:text-xl font-black tracking-tighter uppercase"
+        style={HEAD}
+      >
+        {title}
+      </div>
+      {count > 0 && (
+        <span
+          className="px-2 font-bold text-xs"
+          style={{ ...HEAD, backgroundColor: accent, color: '#0e0e0e' }}
+        >
+          {count}
+        </span>
+      )}
+    </div>
+  )
+}
+
+function EmptyBlock({
+  icon,
+  title,
+  body,
+}: {
+  icon: string
+  title: string
+  body: string
+}) {
+  return (
+    <div
+      className="border-4 border-dashed border-[#353534] p-10 text-center"
+      style={{ backgroundColor: BG_LOW }}
+    >
+      <MIcon name={icon} className="!text-3xl opacity-40 block" />
+      <p className="text-sm font-black uppercase tracking-tighter mt-3" style={HEAD}>
+        {title}
+      </p>
+      <p className="text-xs text-[#e4beb5] mt-1 max-w-sm mx-auto">{body}</p>
+    </div>
+  )
+}
+
+function FooterCell({
+  label,
+  value,
+  valueColor,
+}: {
+  label: string
+  value: string
+  valueColor?: string
+}) {
+  return (
+    <div>
+      <div
+        className="text-[10px] uppercase font-bold block mb-1 tracking-widest"
+        style={{ ...HEAD, color: FG_MUTED }}
+      >
+        {label}
+      </div>
+      <div
+        className="text-sm font-bold truncate max-w-[260px]"
+        style={{ ...HEAD, color: valueColor ?? FG }}
+      >
+        {value}
       </div>
     </div>
   )
 }
 
-function EmptyState({ icon: Icon, title, body }: { icon: LucideIcon; title: string; body: string }) {
-  return (
-    <div className="rounded-2xl border border-dashed border-theme bg-card-theme/40 p-10 text-center">
-      <Icon className="w-8 h-8 mx-auto mb-3 text-theme-secondary opacity-40" />
-      <p className="text-sm font-bold text-theme-primary">{title}</p>
-      <p className="text-xs text-theme-secondary mt-1 max-w-sm mx-auto">{body}</p>
-    </div>
-  )
-}
+// ── partner row ────────────────────────────────────────────────────────────
 
-function PartnerRow({ partner, onChange }: { partner: SerializedPartner; onChange: () => void }) {
+function PartnerRow({
+  partner,
+  onChange,
+}: {
+  partner: SerializedPartner
+  onChange: () => void
+}) {
   const [pending, startTransition] = useTransition()
   const isPaused = partner.status === 'PAUSED'
   const portalUrl = `/portal/${partner.clientSlug}`
@@ -341,65 +673,83 @@ function PartnerRow({ partner, onChange }: { partner: SerializedPartner; onChang
   }
 
   return (
-    <li
-      className={`p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4 ${
+    <div
+      className={`p-5 md:p-6 flex flex-wrap items-center justify-between gap-6 hover:bg-[#2a2a2a] transition-colors ${
         isPaused ? 'opacity-60' : ''
       }`}
     >
-      <div className="flex items-center gap-4 flex-1 min-w-0">
-        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-orange-500 flex items-center justify-center text-sm font-black text-white shrink-0">
-          {partner.clientName.charAt(0).toUpperCase()}
+      <div className="flex items-center gap-5 md:gap-6 flex-1 min-w-0">
+        <div
+          className="w-14 h-14 md:w-16 md:h-16 border-4 border-black flex items-center justify-center bg-[#E8441A] shrink-0"
+          style={HEAD}
+        >
+          <span className="text-2xl md:text-3xl font-black text-white">
+            {partner.clientName.charAt(0).toUpperCase()}
+          </span>
         </div>
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <p className="text-sm font-bold text-theme-primary truncate">{partner.clientName}</p>
+            <div
+              className="text-base md:text-lg font-black tracking-tighter uppercase truncate"
+              style={HEAD}
+            >
+              {partner.clientName}
+            </div>
             {isPaused && (
-              <span className="text-[10px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+              <span
+                className="text-[10px] uppercase tracking-wider font-bold px-1.5 py-0.5"
+                style={{ ...HEAD, backgroundColor: YELLOW, color: '#3d2f00' }}
+              >
                 Paused
               </span>
             )}
+            <button
+              onClick={copyUrl}
+              className="text-[#e4beb5] hover:text-[#E8441A] transition-colors"
+              title="Copy portal URL"
+              aria-label="Copy portal URL"
+            >
+              <MIcon name="content_copy" className="!text-sm" />
+            </button>
           </div>
-          <button
-            onClick={copyUrl}
-            className="text-xs text-theme-secondary hover:text-orange-400 flex items-center gap-1.5 group transition mt-0.5"
-            title="Click to copy"
+          <p className="text-xs text-[#e4beb5] font-mono">{portalUrl}</p>
+          <p
+            className="text-[10px] text-[#76dc83] mt-1 uppercase font-bold tracking-widest"
+            style={HEAD}
           >
-            <span className="font-mono truncate">{portalUrl}</span>
-            <Copy className="w-3 h-3 opacity-50 group-hover:opacity-100" />
-          </button>
-          <p className="text-[11px] text-theme-secondary mt-1">
-            <Mail className="w-3 h-3 inline-block mr-1 -mt-0.5" />
-            {partner.email} · approved {formatDate(partner.approvedAt)} by {partner.approvedBy}
+            *APPROVED {formatDate(partner.approvedAt).toUpperCase()} · {partner.email}
           </p>
         </div>
       </div>
-      <div className="flex items-center gap-2 sm:shrink-0">
+      <div className="flex flex-wrap gap-2">
         <Link
           href={portalUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 text-xs px-3 py-2 rounded-lg bg-orange-500/10 border border-orange-500/20 text-orange-400 hover:bg-orange-500/20 transition"
+          className="px-4 py-2 border-2 border-black font-bold uppercase text-[10px] flex items-center gap-2 hover:bg-[#E8441A] hover:text-white transition-all"
+          style={{ ...HEAD, backgroundColor: BG_LOWEST }}
         >
-          <Eye className="w-3.5 h-3.5" />
+          <MIcon name="visibility" className="!text-sm" />
           Preview
-          <ExternalLink className="w-3 h-3 opacity-60" />
         </Link>
         {isPaused ? (
           <button
             onClick={() => setStatus('ACTIVE')}
             disabled={pending}
-            className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 text-xs px-3 py-2 rounded-lg bg-green-500/10 border border-green-500/20 text-green-400 hover:bg-green-500/20 transition disabled:opacity-50"
+            className="px-4 py-2 border-2 border-black font-bold uppercase text-[10px] flex items-center gap-2 hover:bg-[#76dc83] hover:text-[#00320f] transition-all disabled:opacity-50"
+            style={{ ...HEAD, backgroundColor: BG_LOWEST }}
           >
-            <Play className="w-3.5 h-3.5" />
+            <MIcon name="play_arrow" className="!text-sm" />
             Resume
           </button>
         ) : (
           <button
             onClick={() => setStatus('PAUSED')}
             disabled={pending}
-            className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 text-xs px-3 py-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 hover:bg-cyan-500/20 transition disabled:opacity-50"
+            className="px-4 py-2 border-2 border-black font-bold uppercase text-[10px] flex items-center gap-2 hover:bg-[#ffd65b] hover:text-[#3d2f00] transition-all disabled:opacity-50"
+            style={{ ...HEAD, backgroundColor: BG_LOWEST }}
           >
-            <Pause className="w-3.5 h-3.5" />
+            <MIcon name="pause" className="!text-sm" />
             Pause
           </button>
         )}
@@ -410,15 +760,18 @@ function PartnerRow({ partner, onChange }: { partner: SerializedPartner; onChang
             }
           }}
           disabled={pending}
-          className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 text-xs px-3 py-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 hover:bg-red-500/20 transition disabled:opacity-50"
+          className="px-4 py-2 border-2 border-black font-bold uppercase text-[10px] flex items-center gap-2 hover:bg-[#93000a] hover:text-[#ffdad6] transition-all disabled:opacity-50"
+          style={{ ...HEAD, backgroundColor: BG_LOWEST }}
         >
-          <Archive className="w-3.5 h-3.5" />
+          <MIcon name="archive" className="!text-sm" />
           Archive
         </button>
       </div>
-    </li>
+    </div>
   )
 }
+
+// ── modals ─────────────────────────────────────────────────────────────────
 
 function ApproveModal({
   target,
@@ -435,7 +788,6 @@ function ApproveModal({
 
   function onNameChange(v: string) {
     setClientName(v)
-    // Re-suggest slug as long as it still matches the previously suggested form
     const prevSuggestion = suggestSlug(clientName)
     if (clientSlug === prevSuggestion || clientSlug === '') {
       setClientSlug(suggestSlug(v))
@@ -465,42 +817,55 @@ function ApproveModal({
   }
 
   return (
-    <ModalShell title="Approve Partner" subtitle={target.email} onClose={onClose}>
-      <form onSubmit={submit} className="space-y-4">
-        <Field label="Client Name" hint="Display name shown in the portal and admin lists">
+    <ModalShell title="*APPROVE_PARTNER" subtitle={target.email} onClose={onClose}>
+      <form onSubmit={submit} className="space-y-5">
+        <BField label="*CLIENT_NAME" hint="Display name shown in the portal and admin lists">
           <input
             value={clientName}
             onChange={(e) => onNameChange(e.target.value)}
             placeholder="Dessertino"
             autoFocus
-            className="w-full px-3 py-2.5 rounded-xl bg-page border border-theme text-sm text-theme-primary outline-none focus:border-orange-500/40 transition"
+            className="w-full px-4 py-3 bg-[#0e0e0e] border-4 border-black text-sm text-[#e5e2e1] outline-none focus:border-[#E8441A] transition"
+            style={HEAD}
           />
-        </Field>
-        <Field label="Client Slug" hint="URL path for their portal · lowercase, hyphens only">
-          <div className="flex items-center rounded-xl bg-page border border-theme overflow-hidden focus-within:border-orange-500/40 transition">
-            <span className="px-3 py-2.5 text-xs text-theme-secondary font-mono border-r border-theme">/portal/</span>
+        </BField>
+        <BField label="*CLIENT_SLUG" hint="URL path · lowercase, hyphens only">
+          <div className="flex items-center bg-[#0e0e0e] border-4 border-black overflow-hidden focus-within:border-[#E8441A] transition">
+            <span
+              className="px-3 py-3 text-xs text-[#e4beb5] font-mono border-r-4 border-black"
+              style={BODY}
+            >
+              /portal/
+            </span>
             <input
               value={clientSlug}
               onChange={(e) => setClientSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''))}
               placeholder="dessertino"
-              className="flex-1 px-3 py-2.5 bg-transparent text-sm font-mono text-theme-primary outline-none"
+              className="flex-1 px-3 py-3 bg-transparent text-sm font-mono text-[#e5e2e1] outline-none"
             />
           </div>
-        </Field>
+        </BField>
         <ModalActions>
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 py-2.5 rounded-xl text-sm font-bold text-theme-secondary border border-theme hover:bg-accent transition"
+            className="flex-1 py-3 text-sm font-black uppercase border-4 border-black text-[#e4beb5] hover:bg-[#2a2a2a] transition"
+            style={{ ...HEAD, backgroundColor: BG_LOWEST }}
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={submitting}
-            className="flex-1 py-2.5 rounded-xl text-sm font-black text-white bg-green-600 hover:bg-green-500 disabled:opacity-50 transition flex items-center justify-center gap-2"
+            className="flex-1 py-3 text-sm font-black uppercase border-4 border-black text-[#00320f] bg-[#76dc83] hover:shadow-[4px_4px_0px_#000] disabled:opacity-50 transition flex items-center justify-center gap-2"
+            style={HEAD}
           >
-            {submitting ? 'Approving…' : <><Check className="w-4 h-4" /> Approve</>}
+            {submitting ? 'APPROVING…' : (
+              <>
+                <MIcon name="check_circle" className="!text-base" />
+                Approve
+              </>
+            )}
           </button>
         </ModalActions>
       </form>
@@ -539,31 +904,39 @@ function RejectModal({
   }
 
   return (
-    <ModalShell title="Reject Request" subtitle={target.email} onClose={onClose}>
-      <form onSubmit={submit} className="space-y-4">
-        <Field label="Notes (optional)" hint="Internal — why are you rejecting? Not visible to the requester">
+    <ModalShell title="*REJECT_REQUEST" subtitle={target.email} onClose={onClose}>
+      <form onSubmit={submit} className="space-y-5">
+        <BField label="*NOTES (OPTIONAL)" hint="Internal — not visible to the requester">
           <textarea
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder="Not a real client / spam / unrelated…"
             rows={3}
-            className="w-full px-3 py-2.5 rounded-xl bg-page border border-theme text-sm text-theme-primary outline-none focus:border-red-500/40 transition resize-none"
+            className="w-full px-4 py-3 bg-[#0e0e0e] border-4 border-black text-sm text-[#e5e2e1] outline-none focus:border-[#93000a] transition resize-none"
+            style={BODY}
           />
-        </Field>
+        </BField>
         <ModalActions>
           <button
             type="button"
             onClick={onClose}
-            className="flex-1 py-2.5 rounded-xl text-sm font-bold text-theme-secondary border border-theme hover:bg-accent transition"
+            className="flex-1 py-3 text-sm font-black uppercase border-4 border-black text-[#e4beb5] hover:bg-[#2a2a2a] transition"
+            style={{ ...HEAD, backgroundColor: BG_LOWEST }}
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={submitting}
-            className="flex-1 py-2.5 rounded-xl text-sm font-black text-white bg-red-600 hover:bg-red-500 disabled:opacity-50 transition flex items-center justify-center gap-2"
+            className="flex-1 py-3 text-sm font-black uppercase border-4 border-black text-[#ffdad6] bg-[#93000a] hover:shadow-[4px_4px_0px_#000] disabled:opacity-50 transition flex items-center justify-center gap-2"
+            style={HEAD}
           >
-            {submitting ? 'Rejecting…' : <><X className="w-4 h-4" /> Reject</>}
+            {submitting ? 'REJECTING…' : (
+              <>
+                <MIcon name="cancel" className="!text-base" />
+                Reject
+              </>
+            )}
           </button>
         </ModalActions>
       </form>
@@ -584,23 +957,32 @@ function ModalShell({
 }) {
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
-      style={{ background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }}
+      className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-4"
+      style={{ background: 'rgba(0,0,0,0.7)' }}
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="w-full sm:max-w-md bg-card-theme border border-theme rounded-t-3xl sm:rounded-2xl shadow-2xl">
-        <div className="flex items-start justify-between p-5 border-b border-theme">
+      <div
+        className="w-full sm:max-w-md border-4 border-black shadow-[8px_8px_0px_#000]"
+        style={{ backgroundColor: BG_LOW }}
+      >
+        <div className="flex items-start justify-between p-5 border-b-4 border-black">
           <div className="min-w-0">
-            <h3 className="text-base font-black text-theme-primary">{title}</h3>
+            <div
+              className="text-base font-black uppercase tracking-tighter text-[#e5e2e1]"
+              style={HEAD}
+            >
+              {title}
+            </div>
             {subtitle && (
-              <p className="text-xs text-theme-secondary mt-0.5 truncate font-mono">{subtitle}</p>
+              <p className="text-xs text-[#e4beb5] mt-1 truncate font-mono">{subtitle}</p>
             )}
           </div>
           <button
             onClick={onClose}
-            className="ml-3 w-7 h-7 rounded-lg bg-page border border-theme text-theme-secondary hover:text-theme-primary hover:bg-accent flex items-center justify-center transition shrink-0"
+            className="ml-3 w-8 h-8 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#E8441A] hover:text-white flex items-center justify-center transition shrink-0"
+            aria-label="Close"
           >
-            <X className="w-3.5 h-3.5" />
+            <MIcon name="close" className="!text-sm" />
           </button>
         </div>
         <div className="p-5">{children}</div>
@@ -609,7 +991,7 @@ function ModalShell({
   )
 }
 
-function Field({
+function BField({
   label,
   hint,
   children,
@@ -620,11 +1002,18 @@ function Field({
 }) {
   return (
     <div>
-      <label className="block text-xs uppercase tracking-wider font-bold text-theme-secondary mb-1.5">
+      <label
+        className="block text-[10px] uppercase tracking-widest font-bold text-[#e4beb5] mb-2"
+        style={HEAD}
+      >
         {label}
       </label>
       {children}
-      {hint && <p className="text-[11px] text-theme-secondary mt-1.5">{hint}</p>}
+      {hint && (
+        <p className="text-[11px] text-[#ab8981] mt-1.5 italic" style={BODY}>
+          {hint}
+        </p>
+      )}
     </div>
   )
 }
