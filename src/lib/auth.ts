@@ -12,17 +12,24 @@ declare module "next-auth" {
             name?: string | null;
             email?: string | null;
             image?: string | null;
+            role?: string | null;
         }
     }
 
     interface User {
         id: string;
+        role?: string | null;
+        passwordChangedAt?: Date | null;
+        activeSessionId?: string | null;
     }
 }
 
 declare module "next-auth/jwt" {
     interface JWT {
         id: string;
+        role?: string | null;
+        passwordChangedAt?: Date | null;
+        activeSessionId?: string | null;
     }
 }
 
@@ -149,9 +156,9 @@ export const authOptions: AuthOptions = {
                         role: user.role,
                         passwordChangedAt: user.passwordChangedAt,
                         activeSessionId: user.activeSessionId
-                    } as any;
-                } catch (error: any) {
-                    console.error("AUTH_Authorize_CRASH:", error.message);
+                    };
+                } catch (error: unknown) {
+                    console.error("AUTH_Authorize_CRASH:", (error as Error).message);
                     throw error;
                 }
             }
@@ -165,22 +172,22 @@ export const authOptions: AuthOptions = {
             console.log("AUTH_SignIn_Callback:", { userEmail: user.email, provider: account?.provider });
             return true;
         },
-        async jwt({ token, user, trigger, session }) {
+        async jwt({ token, user }) {
             if (user) {
                 token.id = user.id;
                 token.name = user.name;
                 token.email = user.email;
                 token.picture = user.image;
-                token.role = (user as any).role;
-                token.passwordChangedAt = (user as any).passwordChangedAt;
-                token.activeSessionId = (user as any).activeSessionId;
+                token.role = user.role;
+                token.passwordChangedAt = user.passwordChangedAt;
+                token.activeSessionId = user.activeSessionId;
             }
 
             // Session Hardening: Check if token is blacklisted
             const isBlacklisted = await prisma.revokedToken.findUnique({
                 where: { token: token.jti as string }
             });
-            if (isBlacklisted) return null as any;
+            if (isBlacklisted) return null;
 
             // Session Hardening: Invalidate if password changed after token issuance
             const dbUser = await prisma.user.findUnique({
@@ -188,18 +195,18 @@ export const authOptions: AuthOptions = {
                 select: { passwordChangedAt: true, activeSessionId: true, role: true }
             });
 
-            if (!dbUser) return null as any;
+            if (!dbUser) return null;
 
             if (dbUser.passwordChangedAt && token.iat) {
                 const tokenIssuanceTime = new Date(token.iat * 1000);
                 if (dbUser.passwordChangedAt > tokenIssuanceTime) {
-                    return null as any;
+                    return null;
                 }
             }
 
             // Concurrent Session Limiting: 1 active session per user unless admin
             if (dbUser.role !== 'admin' && dbUser.activeSessionId !== token.activeSessionId) {
-                return null as any;
+                return null;
             }
 
             return token;
@@ -210,7 +217,7 @@ export const authOptions: AuthOptions = {
                 session.user.name = token.name;
                 session.user.email = token.email;
                 session.user.image = token.picture;
-                (session.user as any).role = token.role;
+                session.user.role = token.role;
             }
             return session;
         },

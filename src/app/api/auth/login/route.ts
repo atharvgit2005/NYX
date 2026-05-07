@@ -73,7 +73,7 @@ export async function POST(request: Request) {
             },
             activeSessionId
         });
-    } catch (error) {
+    } catch (_error) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }
