@@ -12,6 +12,17 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
         }
 
+        // Brute-force protection: check rate limit (5 attempts per 15 min per IP)
+        const ip = request.headers.get('x-forwarded-for') || 'unknown';
+        const fifteenMinsAgo = new Date(Date.now() - 15 * 60 * 1000);
+        const attempts = await prisma.loginAttempt.findUnique({
+            where: { ip_email: { ip: String(ip), email } }
+        });
+
+        if (attempts && attempts.count >= 5 && attempts.lastAttempt > fifteenMinsAgo) {
+            return NextResponse.json({ error: 'Too many registration attempts. Please try again later.' }, { status: 429 });
+        }
+
         const existingUser = await prisma.user.findUnique({
             where: {
                 email,
@@ -19,6 +30,12 @@ export async function POST(request: Request) {
         });
 
         if (existingUser) {
+            // Log attempt to prevent email enumeration/probing
+            await prisma.loginAttempt.upsert({
+                where: { ip_email: { ip: String(ip), email } },
+                update: { count: { increment: 1 }, lastAttempt: new Date() },
+                create: { ip: String(ip), email, count: 1 }
+            });
             return NextResponse.json({ error: 'Email already registered' }, { status: 400 });
         }
 

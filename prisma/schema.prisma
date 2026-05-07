@@ -19,17 +19,41 @@ model User {
   emailVerified DateTime?
   password      String?
   image         String?
-  role          String         @default("user") // "user" | "admin"
-  country       String?        @default("Unknown")
-  avatarUrl     String?        // Avaturn 3D avatar GLB URL
-  avatarConfig  Json?          // Custom in-house avatar configuration
-  accounts      Account[]
-  sessions      Session[]
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  scripts       Script[]
-  videos        Video[]
-  subscription  Subscription?
+  role              String         @default("user") // "user" | "admin"
+  country           String?        @default("Unknown")
+  avatarUrl         String?        // Avaturn 3D avatar GLB URL
+  avatarConfig      Json?          // Custom in-house avatar configuration
+  accounts          Account[]
+  sessions          Session[]
+  
+  // Security Fields
+  passwordChangedAt DateTime?      @default(now())
+  failedAttempts    Int            @default(0)
+  lockUntil         DateTime?
+  activeSessionId   String?
+  
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  scripts           Script[]
+  videos            Video[]
+  subscription      Subscription?
+}
+
+model RevokedToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model LoginAttempt {
+  id        String   @id @default(cuid())
+  ip        String
+  email     String?
+  count     Int      @default(1)
+  lastAttempt DateTime @default(now())
+
+  @@unique([ip, email])
 }
 
 model Subscription {
