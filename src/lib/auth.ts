@@ -192,13 +192,20 @@ export const authOptions: AuthOptions = {
                 token.activeSessionId = user.activeSessionId;
             }
 
-            // Session Hardening: Check if token is blacklisted
-            const isBlacklisted = await prisma.revokedToken.findUnique({
-                where: { token: token.jti as string }
-            });
-            if (isBlacklisted) return null as unknown as JWT;
+            // Session Hardening: Check if token is blacklisted.
+            // `jti` is undefined on first login (NextAuth hasn't issued the
+            // JWT yet), so skip the lookup for the initial sign-in pass.
+            if (token.jti) {
+                const isBlacklisted = await prisma.revokedToken.findUnique({
+                    where: { token: token.jti as string }
+                });
+                if (isBlacklisted) return null as unknown as JWT;
+            }
 
-            // Session Hardening: Invalidate if password changed after token issuance
+            // Session Hardening: Invalidate if password changed after token issuance.
+            // Skip when token has no id yet (e.g. mid-OAuth callback before user is hydrated).
+            if (!token.id) return token;
+
             const dbUser = await prisma.user.findUnique({
                 where: { id: token.id as string },
                 select: { passwordChangedAt: true, activeSessionId: true, role: true }
@@ -213,8 +220,16 @@ export const authOptions: AuthOptions = {
                 }
             }
 
-            // Concurrent Session Limiting: 1 active session per user unless admin
-            if (dbUser.role !== 'admin' && dbUser.activeSessionId !== token.activeSessionId) {
+            // Concurrent Session Limiting: enforced only for credentials-based
+            // logins where authorize() has populated activeSessionId on both
+            // the User row and the JWT. Google OAuth users never set this
+            // field, so skip the check for them.
+            if (
+                dbUser.role !== 'admin' &&
+                dbUser.activeSessionId &&
+                token.activeSessionId &&
+                dbUser.activeSessionId !== token.activeSessionId
+            ) {
                 return null as unknown as JWT;
             }
 
