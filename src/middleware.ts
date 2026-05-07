@@ -1,51 +1,52 @@
-import { withAuth } from "next-auth/middleware"
-import { NextResponse } from "next/server"
+import { getToken } from "next-auth/jwt";
+import { NextResponse, type NextRequest } from "next/server";
 
-export default withAuth(
-    function middleware(req) {
-        const { pathname } = req.nextUrl;
-        const token = req.nextauth.token;
+// Hand-rolled middleware (replaces `withAuth`) so that /portal/* and
+// /automate/* can route unauthenticated users to *different* sign-in pages.
+//
+// Why this matters: when /portal sent users to /automate/login, the
+// next.config.ts `/automate/*` redirect bounced them onto
+// automate.nyxstudio.tech — wrong subdomain for portal traffic.
+export default async function middleware(req: NextRequest) {
+    const { pathname } = req.nextUrl;
+    const token = await getToken({ req });
 
-        // ── Admin route guard ──────────────────────────────────────────
-        // Must be logged in AND be the designated admin email
-        if (pathname.startsWith('/automate/admin')) {
-            const adminEmail = process.env.ADMIN_EMAIL;
-
-            // No admin email configured → block everyone
-            if (!adminEmail) {
-                return NextResponse.redirect(new URL('/automate/dashboard', req.url));
-            }
-
-            // Not the admin → redirect silently to dashboard (don't reveal /admin exists)
-            if (token?.email !== adminEmail) {
-                return NextResponse.redirect(new URL('/automate/dashboard', req.url));
-            }
+    // ── /portal/* (excluding /portal/login itself) ─────────────────
+    if (pathname.startsWith('/portal') && !pathname.startsWith('/portal/login')) {
+        if (!token) {
+            const url = new URL('/portal/login', req.url);
+            url.searchParams.set('callbackUrl', pathname);
+            return NextResponse.redirect(url);
         }
-
-        // ── Dashboard route guard ──────────────────────────────────────
-        // Must be logged in (token check handled by withAuth's authorized callback)
         return NextResponse.next();
-    },
-    {
-        pages: {
-            signIn: '/automate/login',
-        },
-        callbacks: {
-            authorized: ({ req, token }) => {
-                // /admin and /dashboard both require authentication
-                if (req.nextUrl.pathname.startsWith('/automate/admin') || req.nextUrl.pathname.startsWith('/automate/dashboard')) {
-                    return token !== null;
-                }
-                // /portal/* requires authentication; the page itself routes
-                // admin vs approved client vs pending based on email.
-                if (req.nextUrl.pathname.startsWith('/portal')) {
-                    return token !== null;
-                }
-                return true;
-            },
-        },
     }
-)
+
+    // ── /automate/admin — must be admin ────────────────────────────
+    if (pathname.startsWith('/automate/admin')) {
+        if (!token) {
+            const url = new URL('/automate/login', req.url);
+            url.searchParams.set('callbackUrl', pathname);
+            return NextResponse.redirect(url);
+        }
+        const adminEmail = process.env.ADMIN_EMAIL;
+        if (!adminEmail || token.email !== adminEmail) {
+            return NextResponse.redirect(new URL('/automate/dashboard', req.url));
+        }
+        return NextResponse.next();
+    }
+
+    // ── /automate/dashboard — must be logged in ────────────────────
+    if (pathname.startsWith('/automate/dashboard')) {
+        if (!token) {
+            const url = new URL('/automate/login', req.url);
+            url.searchParams.set('callbackUrl', pathname);
+            return NextResponse.redirect(url);
+        }
+        return NextResponse.next();
+    }
+
+    return NextResponse.next();
+}
 
 export const config = {
     matcher: [
@@ -53,4 +54,4 @@ export const config = {
         '/automate/admin/:path*',
         '/portal/:path*',
     ],
-}
+};

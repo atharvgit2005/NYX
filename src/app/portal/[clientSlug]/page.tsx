@@ -26,7 +26,7 @@ export default async function ClientPortalPage({
 
   if (!session?.user?.email) {
     redirect(
-      '/automate/login?callbackUrl=' + encodeURIComponent(`/portal/${clientSlug}`),
+      '/portal/login?callbackUrl=' + encodeURIComponent(`/portal/${clientSlug}`),
     )
   }
 

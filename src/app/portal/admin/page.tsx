@@ -21,7 +21,7 @@ export default async function AdminDashboardPage() {
   const session = await getServerSession(authOptions)
 
   if (!session?.user?.email) {
-    redirect('/automate/login?callbackUrl=' + encodeURIComponent('/portal/admin'))
+    redirect('/portal/login?callbackUrl=' + encodeURIComponent('/portal/admin'))
   }
   if (!isAdminEmail(session.user.email)) {
     redirect('/portal')

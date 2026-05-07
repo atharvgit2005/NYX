@@ -18,7 +18,7 @@ export default async function ClientPortalRouter() {
 
   // Not signed in → bounce to existing login with callback back here
   if (!session?.user?.email) {
-    redirect('/automate/login?callbackUrl=' + encodeURIComponent('/portal'))
+    redirect('/portal/login?callbackUrl=' + encodeURIComponent('/portal'))
   }
 
   const email = session.user.email
