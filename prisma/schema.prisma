@@ -190,9 +190,55 @@ model BrandPartner {
   createdAt   DateTime            @default(now())
   updatedAt   DateTime            @updatedAt
 
+  contentPosts ContentPost[]
+
   @@index([email])
   @@index([clientSlug])
   @@index([status])
+}
+
+// Phase 3 — per-partner content calendar entries (read-only on partner side)
+model ContentPost {
+  id              String       @id @default(cuid())
+  brandPartnerId  String
+  brandPartner    BrandPartner @relation(fields: [brandPartnerId], references: [id], onDelete: Cascade)
+
+  title           String
+  scheduledDate   DateTime
+  contentType     ContentType
+  status          PostStatus   @default(IDEA)
+  caption         String       @db.Text
+  hashtags        String[]
+  visualDirection String       @db.Text
+  productionNotes String?      @db.Text
+  thumbnailUrl    String?
+  mediaUrls       String[]     @default([])
+
+  position        Int
+
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@index([brandPartnerId])
+  @@index([scheduledDate])
+  @@index([status])
+}
+
+enum ContentType {
+  REEL
+  CAROUSEL
+  STATIC_POST
+  STORY
+  REEL_STORY
+}
+
+enum PostStatus {
+  IDEA
+  DRAFTING
+  NEEDS_APPROVAL
+  NEEDS_REVISION
+  APPROVED
+  POSTED
 }
 
 model PendingPartnerRequest {
