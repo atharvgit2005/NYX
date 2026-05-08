@@ -46,6 +46,17 @@ export const authOptions: AuthOptions = {
             clientId: process.env.GOOGLE_CLIENT_ID || "",
             clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
             allowDangerousEmailAccountLinking: true,
+            // Force Google to show the account picker on every sign-in.
+            // Without this, signing out of NYX (which clears OUR session
+            // cookie) leaves Google's own session intact, so the next
+            // sign-in silently re-uses the same Google account — users
+            // can't switch accounts. `prompt=select_account` makes
+            // Google always render the chooser.
+            authorization: {
+                params: {
+                    prompt: 'select_account',
+                },
+            },
         }),
         CredentialsProvider({
             name: "Credentials",
