@@ -16,6 +16,9 @@ interface Props {
   post: SerializedPost
   brand: BrandConfig
   viewerIsAdmin: boolean
+  /** Read-only guest (PortalViewer row): can see the post but not act on
+   *  approvals. Mutually exclusive with admin and partner. */
+  viewerIsViewerOnly?: boolean
   partnerSlug: string
   onClose: () => void
   onPostMutated?: (updated: SerializedPost) => void
@@ -50,6 +53,7 @@ export default function PostModal({
   post,
   brand,
   viewerIsAdmin,
+  viewerIsViewerOnly,
   partnerSlug,
   onClose,
   onPostMutated,
@@ -65,7 +69,10 @@ export default function PostModal({
   // Approval / revision UI shows ONLY when:
   //   • the post is awaiting client review (NEEDS_APPROVAL), and
   //   • the viewer is the brand partner (admin preview hides it)
-  const canActOnApproval = !viewerIsAdmin && post.status === 'NEEDS_APPROVAL'
+  // Approval action panel is for the brand PARTNER only — admins preview
+  // (no act), viewers are read-only guests (no act).
+  const canActOnApproval =
+    !viewerIsAdmin && !viewerIsViewerOnly && post.status === 'NEEDS_APPROVAL'
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => e.key === 'Escape' && onClose()

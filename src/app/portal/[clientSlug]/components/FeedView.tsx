@@ -13,6 +13,10 @@ interface Props {
   posts: SerializedPost[]
   brand: BrandConfig
   onSelectPost: (post: SerializedPost) => void
+  /** When true, each tile shows a subtle hover indicator that the click
+   *  opens the editor. No drag, no + add — calendar is the create surface
+   *  per the Phase 5 spec; the IG-grid stays rigid by design. */
+  viewerIsAdmin?: boolean
 }
 
 /**
@@ -20,7 +24,12 @@ interface Props {
  * - 3-column grid, newest first (matches IG behaviour)
  * - Pads to a multiple of 3 with "coming soon" placeholders
  */
-export default function FeedView({ posts, brand, onSelectPost }: Props) {
+export default function FeedView({
+  posts,
+  brand,
+  onSelectPost,
+  viewerIsAdmin,
+}: Props) {
   const sorted = [...posts].sort(
     (a, b) =>
       new Date(b.scheduledDate).getTime() - new Date(a.scheduledDate).getTime(),
@@ -107,15 +116,28 @@ export default function FeedView({ posts, brand, onSelectPost }: Props) {
               style={{ background: gradient }}
             >
               <div
-                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute inset-0 flex flex-col items-center justify-center gap-1 px-1.5 opacity-0 group-hover:opacity-100 transition-opacity"
                 style={{ background: 'rgba(0,0,0,0.4)' }}
               >
                 <p
-                  className="text-white font-medium text-center px-1.5 leading-tight"
+                  className="text-white font-medium text-center leading-tight"
                   style={{ fontSize: '10px' }}
                 >
                   {post.title.split('—')[0].trim()}
                 </p>
+                {viewerIsAdmin && (
+                  <span
+                    className="text-white text-center"
+                    style={{
+                      fontSize: '8px',
+                      letterSpacing: '0.15em',
+                      textTransform: 'uppercase',
+                      opacity: 0.85,
+                    }}
+                  >
+                    Click to edit
+                  </span>
+                )}
               </div>
               <div className="absolute top-1.5 left-1.5">
                 <span

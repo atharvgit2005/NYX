@@ -60,6 +60,7 @@ export async function POST(
     title: updated.title,
     scheduledDate: updated.scheduledDate.toISOString(),
     contentType: updated.contentType,
+    platform: updated.platform,
     status: updated.status,
     caption: updated.caption,
     hashtags: updated.hashtags,
@@ -68,6 +69,7 @@ export async function POST(
     thumbnailUrl: updated.thumbnailUrl,
     mediaUrls: updated.mediaUrls,
     position: updated.position,
+    archivedAt: updated.archivedAt ? updated.archivedAt.toISOString() : null,
     comments: updated.comments.map((c) => ({
       id: c.id,
       authorEmail: c.authorEmail,

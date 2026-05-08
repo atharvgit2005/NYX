@@ -14,6 +14,9 @@ interface Props {
   post: SerializedPost
   brand: BrandConfig
   onClick: () => void
+  /** When true, render a hover-only pencil overlay so admin knows the
+   *  click opens the editor (not the read-only modal). */
+  viewerIsAdmin?: boolean
 }
 
 function formatDate(iso: string) {
@@ -23,7 +26,7 @@ function formatDate(iso: string) {
   })
 }
 
-export default function PostCard({ post, brand, onClick }: Props) {
+export default function PostCard({ post, brand, onClick, viewerIsAdmin }: Props) {
   const typeColors = TYPE_COLORS[post.contentType]
   const gradient = TYPE_GRADIENTS[post.contentType]
   const statusColors = STATUS_COLORS[post.status]
@@ -31,7 +34,7 @@ export default function PostCard({ post, brand, onClick }: Props) {
   return (
     <button
       onClick={onClick}
-      className="w-full text-left rounded-2xl overflow-hidden group transition-all"
+      className="w-full text-left rounded-2xl overflow-hidden group transition-all relative"
       style={{
         background: '#FFFFFF',
         border: '1px solid #E8E4DC',
@@ -50,6 +53,41 @@ export default function PostCard({ post, brand, onClick }: Props) {
       }}
     >
       <div className="h-1" style={{ background: gradient }} />
+
+      {/* Admin-only edit affordance — pencil chip top-right, hover-revealed.
+          Shown over the card body, doesn't intercept clicks (the whole card
+          is one button anyway). */}
+      {viewerIsAdmin && (
+        <div
+          aria-hidden
+          className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none flex items-center gap-1 px-2 py-1 rounded-full"
+          style={{
+            background: '#FFFFFF',
+            border: `1px solid ${brand.brand.primary}30`,
+            color: brand.brand.primary,
+            boxShadow: '0 2px 8px rgba(26,42,94,0.08)',
+            zIndex: 5,
+          }}
+        >
+          <svg
+            width="11"
+            height="11"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.5 1.5l3 3-9 9H2.5v-3l9-9z"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinejoin="round"
+            />
+          </svg>
+          <span className="text-[10px] font-semibold tracking-wider uppercase">
+            Edit
+          </span>
+        </div>
+      )}
 
       <div className="p-5">
         <div className="flex items-center justify-between gap-2 mb-3">

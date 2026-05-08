@@ -1,12 +1,262 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import type { ContentType, Platform, PostStatus } from '@prisma/client'
+import { createContext, useContext, useEffect, useState } from 'react'
+import type { CommentType, ContentType, Platform, PostStatus } from '@prisma/client'
 import ThumbnailUploader from '../../../components/ThumbnailUploader'
-import type { AdminPost } from '../PostsWorkspaceClient'
+
+/**
+ * Structural subset of AdminPost / SerializedPost that the form actually
+ * consumes. Both Phase 4 (`AdminPost`) and Phase 5 (`SerializedPost`)
+ * shapes satisfy this — keeps the modal usable from both surfaces
+ * without an adapter.
+ */
+export interface PostFormInitial {
+    id: string
+    title: string
+    scheduledDate: string
+    contentType: ContentType
+    platform: Platform
+    status: PostStatus
+    caption: string
+    hashtags: string[]
+    visualDirection: string
+    productionNotes: string | null
+    thumbnailUrl: string | null
+    comments: Array<{
+        id: string
+        authorEmail: string
+        body: string
+        type: CommentType
+        createdAt: string
+    }>
+}
 
 const HEAD = { fontFamily: 'var(--font-space-grotesk), sans-serif' } as const
 const BODY = { fontFamily: 'var(--font-work-sans), sans-serif' } as const
+
+export type PostFormTheme = 'brutalist' | 'editorial'
+
+interface ThemeTokens {
+    /** Visible-on-canvas wrapper styling. */
+    overlayBg: string
+    panelClass: string
+    panelStyle: React.CSSProperties
+    headerClass: string
+    headerBg: string
+    headerHeading: string
+    headerHeadingStyle: React.CSSProperties
+    headerSubtitle: string
+    headerSubtitleStyle: React.CSSProperties
+    /** Field label visual. */
+    labelClass: string
+    labelStyle: React.CSSProperties
+    /** Buttons. */
+    btnPrimary: string
+    btnPrimaryStyle: React.CSSProperties
+    btnSecondary: string
+    btnSecondaryStyle: React.CSSProperties
+    btnDanger: string
+    btnDangerStyle: React.CSSProperties
+    /** Inputs share a global class so :focus styles can theme cleanly. */
+    inputClass: string
+    inputFontStyle: React.CSSProperties
+    /** Textarea font — preserves the original brutalist distinction
+     *  (Space Grotesk on inputs, Work Sans on multi-line textareas). */
+    textareaFontStyle: React.CSSProperties
+    /** Chip group (platform / content type). */
+    chipBase: string
+    chipActive: string
+    chipInactive: string
+    chipStyle: React.CSSProperties
+    /** Inline error banner. */
+    errorClass: string
+    errorStyle: React.CSSProperties
+    /** Hint text under a field. */
+    hintClass: string
+    hintStyle: React.CSSProperties
+    /** Hashtag pill render. */
+    hashtagClass: string
+    hashtagStyle: React.CSSProperties
+    /** Comments separator + accent colours by comment type. */
+    commentSection: string
+    commentItem: string
+    commentItemStyle: React.CSSProperties
+    commentBodyClass: string
+    commentMetaClass: string
+    commentColors: { revision: string; approval: string; internal: string }
+    /** Close-X button. */
+    closeBtn: string
+    closeBtnStyle: React.CSSProperties
+    /** Submit-button label set. */
+    labels: {
+        new: string
+        edit: string
+        create: string
+        save: string
+        creating: string
+        saving: string
+        cancel: string
+        archive: string
+    }
+}
+
+const THEMES: Record<PostFormTheme, ThemeTokens> = {
+    brutalist: {
+        overlayBg: 'rgba(0,0,0,0.7)',
+        panelClass:
+            'w-full sm:max-w-2xl my-auto border-4 border-black shadow-[8px_8px_0px_#000] max-h-[95vh] overflow-y-auto',
+        panelStyle: { backgroundColor: '#1c1b1b', ...BODY },
+        headerClass:
+            'flex items-start justify-between p-5 border-b-4 border-black sticky top-0 z-10',
+        headerBg: '#1c1b1b',
+        headerHeading: 'text-base font-black uppercase tracking-tighter text-[#e5e2e1]',
+        headerHeadingStyle: HEAD,
+        headerSubtitle: 'text-xs text-[#e4beb5] mt-1 truncate font-mono',
+        headerSubtitleStyle: {},
+        labelClass:
+            'block text-[10px] uppercase tracking-widest font-bold text-[#e4beb5] mb-2',
+        labelStyle: HEAD,
+        btnPrimary:
+            'px-6 py-3 border-4 border-black bg-[#E8441A] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] disabled:opacity-50',
+        btnPrimaryStyle: HEAD,
+        btnSecondary:
+            'px-5 py-3 border-4 border-black text-xs font-black uppercase tracking-widest text-[#e4beb5] hover:bg-[#2a2a2a]',
+        btnSecondaryStyle: { ...HEAD, backgroundColor: '#0e0e0e' },
+        btnDanger:
+            'px-4 py-3 border-4 border-black text-xs font-black uppercase tracking-widest text-[#ffdad6] bg-[#93000a] hover:shadow-[4px_4px_0px_#000]',
+        btnDangerStyle: HEAD,
+        inputClass: 'brutal-input',
+        inputFontStyle: HEAD,
+        textareaFontStyle: BODY,
+        chipBase:
+            'px-3 py-2 border-4 border-black text-[10px] font-bold uppercase tracking-widest transition-all',
+        chipActive: 'bg-[#E8441A] text-white',
+        chipInactive: 'bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#2a2a2a]',
+        chipStyle: HEAD,
+        errorClass:
+            'border-4 border-[#93000a] bg-[#93000a]/30 text-[#ffb4ab] px-4 py-3 text-xs tracking-widest',
+        errorStyle: HEAD,
+        hintClass: 'text-[11px] text-[#ab8981] mt-1.5',
+        hintStyle: BODY,
+        hashtagClass: 'text-[10px] px-1.5 py-0.5 font-bold tracking-tight',
+        hashtagStyle: {
+            ...HEAD,
+            backgroundColor: '#0e0e0e',
+            color: '#E8441A',
+            border: '2px solid #000',
+        },
+        commentSection: 'border-t-4 border-black pt-5',
+        commentItem: 'border-2 border-black bg-[#0e0e0e] p-3',
+        commentItemStyle: BODY,
+        commentBodyClass: 'text-sm text-[#e5e2e1] whitespace-pre-wrap',
+        commentMetaClass: 'text-[10px] text-[#ab8981] mt-1 font-mono',
+        commentColors: {
+            revision: '#E8441A',
+            approval: '#76dc83',
+            internal: '#ab8981',
+        },
+        closeBtn:
+            'ml-3 w-8 h-8 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#E8441A] hover:text-white flex items-center justify-center transition shrink-0',
+        closeBtnStyle: {},
+        labels: {
+            new: '*NEW_POST',
+            edit: '*EDIT_POST',
+            create: 'CREATE_POST →',
+            save: 'SAVE →',
+            creating: 'CREATING…',
+            saving: 'SAVING…',
+            cancel: 'Cancel',
+            archive: 'ARCHIVE',
+        },
+    },
+    editorial: {
+        overlayBg: 'rgba(26,42,94,0.5)',
+        panelClass:
+            'w-full sm:max-w-2xl my-auto rounded-2xl shadow-[0_24px_80px_rgba(26,42,94,0.18)] max-h-[95vh] overflow-y-auto',
+        panelStyle: {
+            backgroundColor: '#FFFFFF',
+            border: '1px solid #E8E4DC',
+            color: '#1A2A5E',
+            fontFamily: 'var(--font-portal-body)',
+        },
+        headerClass:
+            'flex items-start justify-between p-5 sticky top-0 z-10 rounded-t-2xl border-b border-[#E8E4DC]',
+        headerBg: '#FFFFFF',
+        headerHeading: 'text-lg font-bold tracking-tight',
+        headerHeadingStyle: {
+            fontFamily: 'var(--font-portal-display)',
+            color: '#1A2A5E',
+        },
+        headerSubtitle: 'text-xs mt-1 truncate',
+        headerSubtitleStyle: { color: '#6B6B6B' },
+        labelClass:
+            'block text-xs uppercase tracking-widest font-semibold mb-2',
+        labelStyle: { color: '#6B6B6B' },
+        btnPrimary:
+            'px-5 py-2.5 rounded-full text-sm font-semibold text-white hover:opacity-90 disabled:opacity-50 transition-opacity',
+        btnPrimaryStyle: { backgroundColor: '#1A2A5E' },
+        btnSecondary:
+            'px-5 py-2.5 rounded-full text-sm font-medium hover:bg-[#F0EDE6] transition-colors',
+        btnSecondaryStyle: {
+            backgroundColor: '#FAF7F2',
+            border: '1px solid #E8E4DC',
+            color: '#6B6B6B',
+        },
+        btnDanger:
+            'px-4 py-2.5 rounded-full text-sm font-semibold text-white hover:opacity-90 transition-opacity',
+        btnDangerStyle: { backgroundColor: '#C2410C' },
+        inputClass: 'editorial-input',
+        inputFontStyle: { fontFamily: 'var(--font-portal-body)' },
+        textareaFontStyle: { fontFamily: 'var(--font-portal-body)' },
+        chipBase:
+            'px-3.5 py-2 rounded-full text-xs font-medium tracking-wide transition-all',
+        chipActive: 'text-white',
+        chipInactive:
+            'bg-[#FAF7F2] text-[#6B6B6B] hover:bg-[#F0EDE6]',
+        chipStyle: {},
+        errorClass:
+            'rounded-xl px-4 py-3 text-xs tracking-wide',
+        errorStyle: {
+            backgroundColor: '#FEF2F2',
+            border: '1px solid #FECACA',
+            color: '#B91C1C',
+        },
+        hintClass: 'text-xs mt-1.5',
+        hintStyle: { color: '#9CA3AF', fontStyle: 'italic' },
+        hashtagClass: 'text-xs px-2 py-0.5 rounded-full font-medium',
+        hashtagStyle: {
+            backgroundColor: '#FAF7F2',
+            color: '#1A2A5E',
+            border: '1px solid #E8E4DC',
+        },
+        commentSection: 'pt-5',
+        commentItem: 'rounded-xl p-3',
+        commentItemStyle: { backgroundColor: '#FAF7F2', border: '1px solid #E8E4DC' },
+        commentBodyClass: 'text-sm whitespace-pre-wrap',
+        commentMetaClass: 'text-[11px] mt-1',
+        commentColors: {
+            revision: '#C2410C',
+            approval: '#0E9F5E',
+            internal: '#6B6B6B',
+        },
+        closeBtn:
+            'ml-3 w-8 h-8 rounded-full flex items-center justify-center transition-colors shrink-0',
+        closeBtnStyle: { backgroundColor: '#FAF7F2', color: '#6B6B6B' },
+        labels: {
+            new: 'New post',
+            edit: 'Edit post',
+            create: 'Create post',
+            save: 'Save',
+            creating: 'Creating…',
+            saving: 'Saving…',
+            cancel: 'Cancel',
+            archive: 'Archive',
+        },
+    },
+}
+
+const ThemeContext = createContext<ThemeTokens>(THEMES.brutalist)
+const useTheme = () => useContext(ThemeContext)
 
 export interface PostFormValues {
   title: string
@@ -26,10 +276,13 @@ interface Props {
   defaultPlatform: Platform
   /** Optional ISO date used to prefill the date picker in create mode. */
   defaultScheduledDate?: string
-  initial?: AdminPost
+  initial?: PostFormInitial
   onClose: () => void
   onSubmit: (values: PostFormValues) => void | Promise<void>
   onArchive?: () => void
+  /** Visual theme. Default 'brutalist' (workspace mode). 'editorial' is
+   *  used by the admin overlay on the cream partner canvas. */
+  theme?: PostFormTheme
 }
 
 const CONTENT_TYPES: ContentType[] = ['REEL', 'CAROUSEL', 'STATIC_POST', 'STORY', 'REEL_STORY']
@@ -55,7 +308,9 @@ export default function PostFormModal({
   onClose,
   onSubmit,
   onArchive,
+  theme = 'brutalist',
 }: Props) {
+  const T = THEMES[theme]
   const [title, setTitle] = useState(initial?.title ?? '')
   const [scheduledDate, setScheduledDate] = useState(
     initial
@@ -126,34 +381,32 @@ export default function PostFormModal({
     }
   }
 
-  const heading = mode === 'create' ? '*NEW_POST' : '*EDIT_POST'
+  const heading = mode === 'create' ? T.labels.new : T.labels.edit
 
   return (
+   <ThemeContext.Provider value={T}>
     <div
       className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto"
-      style={{ background: 'rgba(0,0,0,0.7)' }}
+      style={{ background: T.overlayBg }}
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div
-        className="w-full sm:max-w-2xl my-auto border-4 border-black shadow-[8px_8px_0px_#000] max-h-[95vh] overflow-y-auto"
-        style={{ backgroundColor: '#1c1b1b', ...BODY }}
-      >
-        <div className="flex items-start justify-between p-5 border-b-4 border-black sticky top-0 z-10" style={{ backgroundColor: '#1c1b1b' }}>
+      <div className={T.panelClass} style={T.panelStyle}>
+        <div className={T.headerClass} style={{ backgroundColor: T.headerBg }}>
           <div className="min-w-0">
-            <div
-              className="text-base font-black uppercase tracking-tighter text-[#e5e2e1]"
-              style={HEAD}
-            >
+            <div className={T.headerHeading} style={T.headerHeadingStyle}>
               {heading}
             </div>
             {initial && (
-              <p className="text-xs text-[#e4beb5] mt-1 truncate font-mono">{initial.title}</p>
+              <p className={T.headerSubtitle} style={T.headerSubtitleStyle}>
+                {initial.title}
+              </p>
             )}
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="ml-3 w-8 h-8 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#E8441A] hover:text-white flex items-center justify-center transition shrink-0"
+            className={T.closeBtn}
+            style={T.closeBtnStyle}
             aria-label="Close"
           >
             <span className="material-symbols-outlined !text-sm" aria-hidden>
@@ -164,37 +417,34 @@ export default function PostFormModal({
 
         <form onSubmit={submit} className="p-5 space-y-5">
           {err && (
-            <div
-              className="border-4 border-[#93000a] bg-[#93000a]/30 text-[#ffb4ab] px-4 py-3 text-xs tracking-widest"
-              style={HEAD}
-            >
-              {err.toUpperCase()}
+            <div className={T.errorClass} style={T.errorStyle}>
+              {theme === 'brutalist' ? err.toUpperCase() : err}
             </div>
           )}
 
-          <Field label="*TITLE" required>
+          <Field label={theme === 'brutalist' ? '*TITLE' : 'Title'} required>
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Brand Intro — What is X?"
-              className="brutal-input"
-              style={HEAD}
+              className={T.inputClass}
+              style={T.inputFontStyle}
               required
             />
           </Field>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Field label="*SCHEDULED_DATE" required>
+            <Field label={theme === 'brutalist' ? '*SCHEDULED_DATE' : 'Scheduled date'} required>
               <input
                 type="date"
                 value={scheduledDate}
                 onChange={(e) => setScheduledDate(e.target.value)}
-                className="brutal-input"
-                style={HEAD}
+                className={T.inputClass}
+                style={T.inputFontStyle}
                 required
               />
             </Field>
-            <Field label="*PLATFORM" required>
+            <Field label={theme === 'brutalist' ? '*PLATFORM' : 'Platform'} required>
               <ChipGroup
                 options={PLATFORMS.map((p) => [p, p])}
                 value={platform}
@@ -203,7 +453,7 @@ export default function PostFormModal({
             </Field>
           </div>
 
-          <Field label="*CONTENT_TYPE" required>
+          <Field label={theme === 'brutalist' ? '*CONTENT_TYPE' : 'Content type'} required>
             <ChipGroup
               options={CONTENT_TYPES.map((c) => [c, c.replace('_', ' ')])}
               value={contentType}
@@ -212,7 +462,7 @@ export default function PostFormModal({
           </Field>
 
           <Field
-            label="*CAPTION"
+            label={theme === 'brutalist' ? '*CAPTION' : 'Caption'}
             hint={`${caption.length} / 2200 (Instagram cap)`}
             required
           >
@@ -221,15 +471,15 @@ export default function PostFormModal({
               onChange={(e) => setCaption(e.target.value)}
               rows={4}
               maxLength={2200}
-              className="brutal-input resize-none"
-              style={BODY}
+              className={`${T.inputClass} resize-none`}
+              style={T.textareaFontStyle}
               placeholder="Hook · body · CTA…"
               required
             />
           </Field>
 
           <Field
-            label="*HASHTAGS"
+            label={theme === 'brutalist' ? '*HASHTAGS' : 'Hashtags'}
             hint="Comma- or space-separated. # is optional."
             required
           >
@@ -237,23 +487,14 @@ export default function PostFormModal({
               value={hashtagsRaw}
               onChange={(e) => setHashtagsRaw(e.target.value)}
               placeholder="dessertino, shakes, pune"
-              className="brutal-input font-mono"
-              style={HEAD}
+              className={`${T.inputClass} font-mono`}
+              style={T.inputFontStyle}
               required
             />
             {parseHashtags(hashtagsRaw).length > 0 && (
               <div className="flex flex-wrap gap-1 mt-2">
                 {parseHashtags(hashtagsRaw).map((h) => (
-                  <span
-                    key={h}
-                    className="text-[10px] px-1.5 py-0.5 font-bold tracking-tight"
-                    style={{
-                      ...HEAD,
-                      backgroundColor: '#0e0e0e',
-                      color: '#E8441A',
-                      border: '2px solid #000',
-                    }}
-                  >
+                  <span key={h} className={T.hashtagClass} style={T.hashtagStyle}>
                     #{h}
                   </span>
                 ))}
@@ -261,43 +502,47 @@ export default function PostFormModal({
             )}
           </Field>
 
-          <Field label="*VISUAL_DIRECTION" required>
+          <Field label={theme === 'brutalist' ? '*VISUAL_DIRECTION' : 'Visual direction'} required>
             <textarea
               value={visualDirection}
               onChange={(e) => setVisualDirection(e.target.value)}
               rows={3}
-              className="brutal-input resize-none"
-              style={BODY}
+              className={`${T.inputClass} resize-none`}
+              style={T.textareaFontStyle}
               placeholder="Wide static of storefront, golden-hour palette, ‘90s zine treatment…"
               required
             />
           </Field>
 
-          <Field label="PRODUCTION_NOTES">
+          <Field label={theme === 'brutalist' ? 'PRODUCTION_NOTES' : 'Production notes'}>
             <textarea
               value={productionNotes}
               onChange={(e) => setProductionNotes(e.target.value)}
               rows={2}
-              className="brutal-input resize-none"
-              style={BODY}
+              className={`${T.inputClass} resize-none`}
+              style={T.textareaFontStyle}
               placeholder="Internal — shoot list, props, gear…"
             />
           </Field>
 
-          <Field label="THUMBNAIL">
+          <Field label={theme === 'brutalist' ? 'THUMBNAIL' : 'Thumbnail'}>
             <ThumbnailUploader value={thumbnailUrl} onChange={setThumbnailUrl} />
           </Field>
 
           {mode === 'edit' && (
-            <Field label="*STATUS" required>
+            <Field label={theme === 'brutalist' ? '*STATUS' : 'Status'} required>
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value as PostStatus)}
-                className="brutal-input"
-                style={HEAD}
+                className={T.inputClass}
+                style={T.inputFontStyle}
               >
                 {STATUSES.map((s) => (
-                  <option key={s} value={s} className="bg-[#0e0e0e]">
+                  <option
+                    key={s}
+                    value={s}
+                    className={theme === 'brutalist' ? 'bg-[#0e0e0e]' : 'bg-white'}
+                  >
                     {s}
                   </option>
                 ))}
@@ -315,10 +560,10 @@ export default function PostFormModal({
                       onArchive()
                     }
                   }}
-                  className="px-4 py-3 border-4 border-black text-xs font-black uppercase tracking-widest text-[#ffdad6] bg-[#93000a] hover:shadow-[4px_4px_0px_#000]"
-                  style={HEAD}
+                  className={T.btnDanger}
+                  style={T.btnDangerStyle}
                 >
-                  ARCHIVE
+                  {T.labels.archive}
                 </button>
               )}
             </div>
@@ -326,67 +571,100 @@ export default function PostFormModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="px-5 py-3 border-4 border-black text-xs font-black uppercase tracking-widest text-[#e4beb5] hover:bg-[#2a2a2a]"
-                style={{ ...HEAD, backgroundColor: '#0e0e0e' }}
+                className={T.btnSecondary}
+                style={T.btnSecondaryStyle}
               >
-                Cancel
+                {T.labels.cancel}
               </button>
               <button
                 type="submit"
                 disabled={submitting}
-                className="px-6 py-3 border-4 border-black bg-[#E8441A] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] disabled:opacity-50"
-                style={HEAD}
+                className={T.btnPrimary}
+                style={T.btnPrimaryStyle}
               >
                 {submitting
                   ? mode === 'create'
-                    ? 'CREATING…'
-                    : 'SAVING…'
+                    ? T.labels.creating
+                    : T.labels.saving
                   : mode === 'create'
-                    ? 'CREATE_POST →'
-                    : 'SAVE →'}
+                    ? T.labels.create
+                    : T.labels.save}
               </button>
             </div>
           </div>
 
           {/* Edit-mode comments display (read-only) */}
           {mode === 'edit' && initial && initial.comments.length > 0 && (
-            <div className="border-t-4 border-black pt-5">
+            <div className={T.commentSection}>
               <div
-                className="text-[10px] uppercase tracking-widest font-black text-[#e4beb5] mb-3"
-                style={HEAD}
+                className={
+                  theme === 'brutalist'
+                    ? 'text-[10px] uppercase tracking-widest font-black text-[#e4beb5] mb-3'
+                    : 'text-xs uppercase tracking-widest font-semibold mb-3'
+                }
+                style={
+                  theme === 'brutalist'
+                    ? HEAD
+                    : { color: '#6B6B6B' }
+                }
               >
-                *COMMENTS · {initial.comments.length}
+                {theme === 'brutalist' ? '*COMMENTS · ' : 'Revision history · '}
+                {initial.comments.length}
               </div>
               <div className="space-y-3">
-                {initial.comments.map((c) => (
-                  <div
-                    key={c.id}
-                    className="border-2 border-black bg-[#0e0e0e] p-3"
-                    style={BODY}
-                  >
-                    <div className="flex items-center justify-between gap-3 mb-1">
-                      <span
-                        className="text-[10px] uppercase tracking-widest font-bold"
-                        style={{
-                          ...HEAD,
-                          color:
-                            c.type === 'REVISION_REQUEST'
-                              ? '#E8441A'
-                              : c.type === 'APPROVAL_NOTE'
-                                ? '#76dc83'
-                                : '#ab8981',
-                        }}
+                {initial.comments.map((c) => {
+                  const accent =
+                    c.type === 'REVISION_REQUEST'
+                      ? T.commentColors.revision
+                      : c.type === 'APPROVAL_NOTE'
+                        ? T.commentColors.approval
+                        : T.commentColors.internal
+                  return (
+                    <div
+                      key={c.id}
+                      className={T.commentItem}
+                      style={T.commentItemStyle}
+                    >
+                      <div className="flex items-center justify-between gap-3 mb-1">
+                        <span
+                          className={
+                            theme === 'brutalist'
+                              ? 'text-[10px] uppercase tracking-widest font-bold'
+                              : 'text-xs uppercase tracking-wider font-semibold'
+                          }
+                          style={{ ...(theme === 'brutalist' ? HEAD : {}), color: accent }}
+                        >
+                          {theme === 'brutalist' ? '*' : ''}
+                          {c.type.replace('_', ' ')}
+                        </span>
+                        <span
+                          className={
+                            theme === 'brutalist'
+                              ? 'text-[10px] text-[#ab8981] font-mono'
+                              : 'text-[11px]'
+                          }
+                          style={theme === 'editorial' ? { color: '#9CA3AF' } : undefined}
+                        >
+                          {new Date(c.createdAt).toLocaleString('en-US', { timeZone: 'UTC' })}
+                        </span>
+                      </div>
+                      <p
+                        className={T.commentBodyClass}
+                        style={
+                          theme === 'editorial' ? { color: '#1A2A5E' } : undefined
+                        }
                       >
-                        *{c.type.replace('_', ' ')}
-                      </span>
-                      <span className="text-[10px] text-[#ab8981] font-mono">
-                        {new Date(c.createdAt).toLocaleString('en-US', { timeZone: 'UTC' })}
-                      </span>
+                        {c.body}
+                      </p>
+                      <p
+                        className={T.commentMetaClass}
+                        style={theme === 'editorial' ? { color: '#9CA3AF' } : undefined}
+                      >
+                        — {c.authorEmail}
+                      </p>
                     </div>
-                    <p className="text-sm text-[#e5e2e1] whitespace-pre-wrap">{c.body}</p>
-                    <p className="text-[10px] text-[#ab8981] mt-1 font-mono">— {c.authorEmail}</p>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             </div>
           )}
@@ -408,9 +686,27 @@ export default function PostFormModal({
           .brutal-input:focus {
             border-color: #e8441a;
           }
+          .editorial-input {
+            width: 100%;
+            background: #FAF7F2;
+            border: 1px solid #E8E4DC;
+            border-radius: 12px;
+            padding: 0.65rem 0.9rem;
+            color: #1A2A5E;
+            outline: none;
+            transition: border-color 0.15s, box-shadow 0.15s;
+          }
+          .editorial-input::placeholder {
+            color: #9CA3AF;
+          }
+          .editorial-input:focus {
+            border-color: #1A2A5E;
+            box-shadow: 0 0 0 3px rgba(26,42,94,0.08);
+          }
         `}</style>
       </div>
     </div>
+   </ThemeContext.Provider>
   )
 }
 
@@ -425,18 +721,16 @@ function Field({
   required?: boolean
   children: React.ReactNode
 }) {
+  const T = useTheme()
   return (
     <div>
-      <label
-        className="block text-[10px] uppercase tracking-widest font-bold text-[#e4beb5] mb-2"
-        style={HEAD}
-      >
+      <label className={T.labelClass} style={T.labelStyle}>
         {required ? '' : ''}
         {label}
       </label>
       {children}
       {hint && (
-        <p className="text-[11px] text-[#ab8981] mt-1.5" style={BODY}>
+        <p className={T.hintClass} style={T.hintStyle}>
           {hint}
         </p>
       )}
@@ -453,6 +747,7 @@ function ChipGroup({
   value: string
   onChange: (v: string) => void
 }) {
+  const T = useTheme()
   return (
     <div className="flex flex-wrap gap-2">
       {options.map(([val, label]) => {
@@ -462,10 +757,16 @@ function ChipGroup({
             key={val}
             type="button"
             onClick={() => onChange(val)}
-            className={`px-3 py-2 border-4 border-black text-[10px] font-bold uppercase tracking-widest transition-all ${
-              active ? 'bg-[#E8441A] text-white' : 'bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#2a2a2a]'
-            }`}
-            style={HEAD}
+            className={`${T.chipBase} ${active ? T.chipActive : T.chipInactive}`}
+            style={{
+              ...T.chipStyle,
+              // Editorial active background uses the brand accent (navy).
+              ...(active && T.chipActive === 'text-white'
+                ? T.chipBase.includes('rounded-full')
+                  ? { backgroundColor: '#1A2A5E' }
+                  : {}
+                : {}),
+            }}
           >
             {label}
           </button>

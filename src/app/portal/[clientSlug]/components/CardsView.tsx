@@ -8,9 +8,18 @@ interface Props {
   posts: SerializedPost[]
   brand: BrandConfig
   onSelectPost: (post: SerializedPost) => void
+  /** When true, PostCard renders the admin edit-affordance overlay.
+   *  Click routing is owned by the parent's onSelectPost wrapper, which
+   *  branches admin → editor / partner → read-only modal. */
+  viewerIsAdmin?: boolean
 }
 
-export default function CardsView({ posts, brand, onSelectPost }: Props) {
+export default function CardsView({
+  posts,
+  brand,
+  onSelectPost,
+  viewerIsAdmin,
+}: Props) {
   return (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {posts.map((post, i) => (
@@ -21,7 +30,12 @@ export default function CardsView({ posts, brand, onSelectPost }: Props) {
             animationDelay: `${i * 60}ms`,
           }}
         >
-          <PostCard post={post} brand={brand} onClick={() => onSelectPost(post)} />
+          <PostCard
+            post={post}
+            brand={brand}
+            onClick={() => onSelectPost(post)}
+            viewerIsAdmin={viewerIsAdmin}
+          />
         </div>
       ))}
 

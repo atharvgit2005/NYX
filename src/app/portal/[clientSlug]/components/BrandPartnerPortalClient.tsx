@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { Toaster } from 'sonner'
 import type { ContentType, PostStatus } from '@prisma/client'
 import type { BrandConfig } from '@/lib/portal/brand-config'
@@ -14,6 +15,15 @@ import PostModal from './PostModal'
 import StatusTrackerSection from './StatusTrackerSection'
 import PackBSection from './PackBSection'
 import PortalFooter from './PortalFooter'
+import { useAdminPostMutations } from './useAdminPostMutations'
+import type { Platform } from '@prisma/client'
+
+// Lazy-mount the admin overlay so the partner bundle doesn't pull
+// PostFormModal / ThumbnailUploader / @vercel/blob client. ssr:false
+// means it's only fetched when an admin actually opens the edit modal.
+const AdminEditOverlay = dynamic(() => import('./AdminEditOverlay'), {
+  ssr: false,
+})
 
 type View = 'calendar' | 'cards' | 'feed'
 
@@ -23,6 +33,9 @@ interface Props {
   statusCounts: Record<PostStatus, number>
   signedInAs: { name: string | null; email: string }
   viewerIsAdmin: boolean
+  /** Read-only PortalViewer guest. Same canvas as the partner sees, but
+   *  the approve/revise panel is suppressed and no admin overlay loads. */
+  viewerIsViewerOnly?: boolean
 }
 
 const VIEW_OPTIONS: { value: View; label: string; icon: string }[] = [
@@ -37,29 +50,64 @@ export default function BrandPartnerPortalClient({
   statusCounts: initialCounts,
   signedInAs,
   viewerIsAdmin,
+  viewerIsViewerOnly,
 }: Props) {
   const [view, setView] = useState<View>('calendar')
   const [posts, setPosts] = useState<SerializedPost[]>(initialPosts)
-  const [statusCounts, setStatusCounts] =
-    useState<Record<PostStatus, number>>(initialCounts)
   const [selectedPost, setSelectedPost] = useState<SerializedPost | null>(null)
 
+  // Status counts derive from posts so any mutation (modal approve/revise,
+  // admin canvas drag/edit/archive) propagates without an extra setter.
+  // Initial server-rendered counts are used only to detect first paint.
+  const statusCounts = useMemo<Record<PostStatus, number>>(() => {
+    const c: Record<PostStatus, number> = {
+      IDEA: 0,
+      DRAFTING: 0,
+      NEEDS_APPROVAL: 0,
+      NEEDS_REVISION: 0,
+      APPROVED: 0,
+      POSTED: 0,
+    }
+    for (const p of posts) c[p.status]++
+    return c
+  }, [posts])
+  void initialCounts // server-rendered baseline; not read after hydration
+
+  // ── Phase 5: admin-only edit overlay state ─────────────────────────
+  // Both null on the partner side and the dynamic AdminEditOverlay
+  // renders nothing. Step 3 wires Calendar / Cards / Feed views to flip
+  // these into non-null when admin clicks/drags.
+  const [editing, setEditing] = useState<SerializedPost | null>(null)
+  const [creating, setCreating] = useState<{ scheduledDate?: string } | null>(
+    null,
+  )
+
+  const mutations = useAdminPostMutations({
+    clientSlug: brand.slug,
+    posts,
+    setPosts,
+  })
+
+  // Derive the brand's primary platform for the create form. BrandConfig
+  // exposes the human-readable label ("Instagram"/"TikTok") via campaign
+  // — convert to enum, default INSTAGRAM if unrecognised.
+  const defaultPlatform: Platform = brand.campaign.platform
+    .toLowerCase()
+    .includes('tiktok')
+    ? 'TIKTOK'
+    : 'INSTAGRAM'
+
+  // Click on a chip — admin opens the editor, partner opens read-only.
+  function handleSelectPost(post: SerializedPost) {
+    if (viewerIsAdmin) {
+      setEditing(post)
+    } else {
+      setSelectedPost(post)
+    }
+  }
+
   function applyPostUpdate(updated: SerializedPost) {
-    setPosts((prev) => {
-      const next = prev.map((p) => (p.id === updated.id ? updated : p))
-      // Recompute status counts from the new list.
-      const counts: Record<PostStatus, number> = {
-        IDEA: 0,
-        DRAFTING: 0,
-        NEEDS_APPROVAL: 0,
-        NEEDS_REVISION: 0,
-        APPROVED: 0,
-        POSTED: 0,
-      }
-      for (const p of next) counts[p.status]++
-      setStatusCounts(counts)
-      return next
-    })
+    setPosts((prev) => prev.map((p) => (p.id === updated.id ? updated : p)))
     setSelectedPost(updated)
   }
 
@@ -85,7 +133,12 @@ export default function BrandPartnerPortalClient({
       }}
     >
       <Toaster position="top-right" richColors />
-      <PortalHeader brand={brand} signedInAs={signedInAs} viewerIsAdmin={viewerIsAdmin} />
+      <PortalHeader
+        brand={brand}
+        signedInAs={signedInAs}
+        viewerIsAdmin={viewerIsAdmin}
+        viewerIsViewerOnly={viewerIsViewerOnly}
+      />
 
       <main className="max-w-6xl mx-auto px-6 py-10 md:py-14 space-y-10">
         {/* Hero */}
@@ -150,37 +203,79 @@ export default function BrandPartnerPortalClient({
               </p>
             </div>
 
-            <div
-              className="flex rounded-full overflow-hidden shrink-0"
-              style={{ border: '1px solid #E8E4DC', background: '#FFFFFF' }}
-            >
-              {VIEW_OPTIONS.map((opt) => (
+            <div className="flex items-center gap-2 shrink-0">
+              {viewerIsAdmin && (
                 <button
-                  key={opt.value}
-                  onClick={() => setView(opt.value)}
-                  className="px-4 sm:px-5 py-2.5 text-sm font-medium transition-all flex items-center gap-1.5"
-                  style={{
-                    background: view === opt.value ? '#1A2A5E' : 'transparent',
-                    color: view === opt.value ? '#FFFFFF' : '#6B6B6B',
+                  type="button"
+                  onClick={() => {
+                    const today = new Date()
+                    const pad = (n: number) => String(n).padStart(2, '0')
+                    const iso = `${today.getFullYear()}-${pad(
+                      today.getMonth() + 1,
+                    )}-${pad(today.getDate())}T00:00:00.000Z`
+                    setCreating({ scheduledDate: iso })
                   }}
+                  className="flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                  style={{ background: brand.brand.primary }}
                 >
-                  <span aria-hidden>{opt.icon}</span>
-                  <span className="hidden sm:inline">{opt.label}</span>
-                  <span className="sm:hidden">{opt.label.split(' ')[0]}</span>
+                  <span aria-hidden className="text-base leading-none">
+                    +
+                  </span>
+                  <span>New post</span>
                 </button>
-              ))}
+              )}
+              <div
+                className="flex rounded-full overflow-hidden"
+                style={{ border: '1px solid #E8E4DC', background: '#FFFFFF' }}
+              >
+                {VIEW_OPTIONS.map((opt) => (
+                  <button
+                    key={opt.value}
+                    onClick={() => setView(opt.value)}
+                    className="px-4 sm:px-5 py-2.5 text-sm font-medium transition-all flex items-center gap-1.5"
+                    style={{
+                      background: view === opt.value ? '#1A2A5E' : 'transparent',
+                      color: view === opt.value ? '#FFFFFF' : '#6B6B6B',
+                    }}
+                  >
+                    <span aria-hidden>{opt.icon}</span>
+                    <span className="hidden sm:inline">{opt.label}</span>
+                    <span className="sm:hidden">{opt.label.split(' ')[0]}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
           <div key={view} style={{ animation: 'portalViewIn 0.3s ease both' }}>
             {view === 'calendar' && (
-              <CalendarView posts={posts} brand={brand} onSelectPost={setSelectedPost} />
+              <CalendarView
+                posts={posts}
+                brand={brand}
+                onSelectPost={handleSelectPost}
+                viewerIsAdmin={viewerIsAdmin}
+                onEditPost={(post) => setEditing(post)}
+                onCreateOnDay={(isoDate) =>
+                  setCreating({ scheduledDate: isoDate + 'T00:00:00.000Z' })
+                }
+                onMoveDate={mutations.moveToDate}
+              />
             )}
             {view === 'cards' && (
-              <CardsView posts={posts} brand={brand} onSelectPost={setSelectedPost} />
+              <CardsView
+                posts={posts}
+                brand={brand}
+                onSelectPost={handleSelectPost}
+                viewerIsAdmin={viewerIsAdmin}
+              />
             )}
             {view === 'feed' && (
-              <FeedView posts={posts} brand={brand} onSelectPost={setSelectedPost} />
+              <FeedView
+                posts={posts}
+                brand={brand}
+                onSelectPost={handleSelectPost}
+                viewerIsAdmin={viewerIsAdmin}
+              />
             )}
           </div>
         </section>
@@ -201,9 +296,53 @@ export default function BrandPartnerPortalClient({
           post={selectedPost}
           brand={brand}
           viewerIsAdmin={viewerIsAdmin}
+          viewerIsViewerOnly={viewerIsViewerOnly}
           partnerSlug={brand.slug}
           onClose={() => setSelectedPost(null)}
           onPostMutated={applyPostUpdate}
+        />
+      )}
+
+      {viewerIsAdmin && (
+        <AdminEditOverlay
+          defaultPlatform={defaultPlatform}
+          editing={editing}
+          creating={creating}
+          onCloseEdit={() => setEditing(null)}
+          onCloseCreate={() => setCreating(null)}
+          onSave={async (id, values) => {
+            const result = await mutations.savePost(id, {
+              title: values.title,
+              scheduledDate: values.scheduledDate,
+              contentType: values.contentType,
+              platform: values.platform,
+              caption: values.caption,
+              hashtags: values.hashtags,
+              visualDirection: values.visualDirection,
+              productionNotes: values.productionNotes,
+              thumbnailUrl: values.thumbnailUrl,
+              status: values.status,
+            })
+            if (result) setEditing(null)
+          }}
+          onCreate={async (values) => {
+            const result = await mutations.createPost({
+              title: values.title,
+              scheduledDate: values.scheduledDate,
+              contentType: values.contentType,
+              platform: values.platform,
+              caption: values.caption,
+              hashtags: values.hashtags,
+              visualDirection: values.visualDirection,
+              productionNotes: values.productionNotes,
+              thumbnailUrl: values.thumbnailUrl,
+            })
+            if (result) setCreating(null)
+          }}
+          onArchive={async (id) => {
+            await mutations.archivePost(id)
+            setEditing(null)
+          }}
         />
       )}
 

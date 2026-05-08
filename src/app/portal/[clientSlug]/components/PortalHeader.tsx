@@ -8,9 +8,15 @@ interface Props {
   brand: BrandConfig
   signedInAs: { name: string | null; email: string }
   viewerIsAdmin: boolean
+  viewerIsViewerOnly?: boolean
 }
 
-export default function PortalHeader({ brand, signedInAs, viewerIsAdmin }: Props) {
+export default function PortalHeader({
+  brand,
+  signedInAs,
+  viewerIsAdmin,
+  viewerIsViewerOnly,
+}: Props) {
   return (
     <header
       className="sticky top-0 z-30"
@@ -49,6 +55,46 @@ export default function PortalHeader({ brand, signedInAs, viewerIsAdmin }: Props
         </div>
 
         <div className="flex items-center gap-2 shrink-0">
+          {viewerIsAdmin && (
+            <span
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold"
+              style={{
+                background: `${brand.brand.primary}10`,
+                color: brand.brand.primary,
+                border: `1px solid ${brand.brand.primary}30`,
+                letterSpacing: '0.08em',
+                textTransform: 'lowercase',
+              }}
+              aria-label="Editing as admin"
+            >
+              <span
+                className="inline-block w-1.5 h-1.5 rounded-full animate-pulse"
+                style={{ background: brand.brand.primary }}
+                aria-hidden
+              />
+              editing
+            </span>
+          )}
+          {viewerIsViewerOnly && (
+            <span
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold"
+              style={{
+                background: '#FAF7F2',
+                color: '#6B6B6B',
+                border: '1px solid #E8E4DC',
+                letterSpacing: '0.08em',
+                textTransform: 'lowercase',
+              }}
+              aria-label="Viewing as guest"
+            >
+              <span
+                className="inline-block w-1.5 h-1.5 rounded-full"
+                style={{ background: '#9CA3AF' }}
+                aria-hidden
+              />
+              viewing
+            </span>
+          )}
           {viewerIsAdmin && (
             <Link
               href="/portal/admin"

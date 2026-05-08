@@ -1,5 +1,6 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import {
   CONTENT_TYPE_LABEL,
   TYPE_COLORS,
@@ -11,8 +12,43 @@ import type { SerializedPost } from './types'
 interface Props {
   posts: SerializedPost[]
   brand: BrandConfig
+  /** Partner-side click handler (read-only PostModal). */
   onSelectPost: (post: SerializedPost) => void
+  /** When true, switches the calendar into edit mode: drag chips between
+   *  days, click chip → open editor, click empty day → create on that
+   *  day. The dnd-kit-backed layer is dynamic-imported only when this
+   *  is set, so partner traffic doesn't bundle it. */
+  viewerIsAdmin?: boolean
+  /** Admin-only: open the editor for this post. */
+  onEditPost?: (post: SerializedPost) => void
+  /** Admin-only: open the create-modal prefilled with `isoDate`. */
+  onCreateOnDay?: (isoDate: string) => void
+  /** Admin-only: drag-reschedule landed on a different day. */
+  onMoveDate?: (id: string, isoDate: string) => void
 }
+
+// Code-split the admin drag layer. Partners never load this chunk —
+// `viewerIsAdmin` is checked before the dynamic component renders, and
+// `ssr: false` keeps it client-only so it doesn't ship in the SSR bundle.
+const CalendarAdminLayer = dynamic(() => import('./CalendarAdminLayer'), {
+  ssr: false,
+  loading: () => (
+    // Match the desktop grid skeleton so admin doesn't get a layout flash
+    // while the chunk fetches. Six rows × seven cols of empty cells.
+    <div className="grid grid-cols-7">
+      {Array.from({ length: 42 }).map((_, i) => (
+        <div
+          key={i}
+          className="min-h-[88px] md:min-h-[104px]"
+          style={{
+            borderRight: (i + 1) % 7 !== 0 ? '1px solid #F0EDE6' : 'none',
+            borderBottom: i < 35 ? '1px solid #F0EDE6' : 'none',
+          }}
+        />
+      ))}
+    </div>
+  ),
+})
 
 const WEEKDAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
@@ -43,7 +79,15 @@ function formatLongDate(iso: string) {
   })
 }
 
-export default function CalendarView({ posts, brand, onSelectPost }: Props) {
+export default function CalendarView({
+  posts,
+  brand,
+  onSelectPost,
+  viewerIsAdmin,
+  onEditPost,
+  onCreateOnDay,
+  onMoveDate,
+}: Props) {
   const days = buildCalendarDays(brand.campaign.monthYear, brand.campaign.monthIndex)
 
   const byDate: Record<string, SerializedPost[]> = {}
@@ -56,11 +100,91 @@ export default function CalendarView({ posts, brand, onSelectPost }: Props) {
   const monthYear = brand.campaign.monthYear
   const monthIndex = brand.campaign.monthIndex
 
-  const campaignFirst = Math.min(
-    ...posts.map((p) => new Date(p.scheduledDate).getDate()),
-  )
-  const campaignLast = Math.max(
-    ...posts.map((p) => new Date(p.scheduledDate).getDate()),
+  const campaignFirst = posts.length
+    ? Math.min(...posts.map((p) => new Date(p.scheduledDate).getDate()))
+    : 1
+  const campaignLast = posts.length
+    ? Math.max(...posts.map((p) => new Date(p.scheduledDate).getDate()))
+    : 31
+
+  // Click handler for the mobile timeline (admin or partner).
+  function handleChipClick(post: SerializedPost) {
+    if (viewerIsAdmin && onEditPost) onEditPost(post)
+    else onSelectPost(post)
+  }
+
+  // Static partner-side desktop grid. dnd-kit-free.
+  const partnerGrid = (
+    <div className="grid grid-cols-7">
+      {days.map((day, i) => {
+        const dateStr = day ? `${monthYear}-${pad(monthIndex + 1)}-${pad(day)}` : null
+        const cellPosts = dateStr ? byDate[dateStr] ?? [] : []
+        const isToday = dateStr === today
+        const hasPosts = cellPosts.length > 0
+        const inCampaign = day !== null && day >= campaignFirst && day <= campaignLast
+        const isLastRow = i >= days.length - 7
+
+        return (
+          <div
+            key={i}
+            className="min-h-[88px] md:min-h-[104px] p-2 relative transition-colors"
+            style={{
+              borderRight: (i + 1) % 7 !== 0 ? '1px solid #F0EDE6' : 'none',
+              borderBottom: !isLastRow ? '1px solid #F0EDE6' : 'none',
+              background: isToday
+                ? `${brand.brand.primary}06`
+                : hasPosts && inCampaign
+                  ? '#FAF7F2'
+                  : 'transparent',
+            }}
+          >
+            {day !== null && (
+              <>
+                <div className="flex justify-between items-center mb-1.5">
+                  <span
+                    className="w-6 h-6 flex items-center justify-center rounded-full text-xs font-semibold transition-colors"
+                    style={{
+                      background: isToday ? brand.brand.primary : 'transparent',
+                      color: isToday
+                        ? '#FFFFFF'
+                        : inCampaign
+                          ? '#1A2A5E'
+                          : '#C0BAB0',
+                    }}
+                  >
+                    {day}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  {cellPosts.map((post) => {
+                    const colors = TYPE_COLORS[post.contentType]
+                    return (
+                      <button
+                        key={post.id}
+                        onClick={() => onSelectPost(post)}
+                        className="w-full text-left px-1.5 py-1 rounded-lg text-xs font-medium leading-tight transition-all hover:scale-[1.02]"
+                        style={{
+                          background: colors.bg,
+                          color: colors.text,
+                          borderLeft: `3px solid ${colors.dot}`,
+                        }}
+                      >
+                        <span className="hidden md:block truncate" style={{ maxWidth: '100px' }}>
+                          {post.title.split(' — ')[0].split(':')[0]}
+                        </span>
+                        <span className="md:hidden">
+                          {CONTENT_TYPE_LABEL[post.contentType].charAt(0)}
+                        </span>
+                      </button>
+                    )
+                  })}
+                </div>
+              </>
+            )}
+          </div>
+        )
+      })}
+    </div>
   )
 
   return (
@@ -82,76 +206,24 @@ export default function CalendarView({ posts, brand, onSelectPost }: Props) {
           ))}
         </div>
 
-        <div className="grid grid-cols-7">
-          {days.map((day, i) => {
-            const dateStr = day ? `${monthYear}-${pad(monthIndex + 1)}-${pad(day)}` : null
-            const cellPosts = dateStr ? byDate[dateStr] ?? [] : []
-            const isToday = dateStr === today
-            const hasPosts = cellPosts.length > 0
-            const inCampaign = day !== null && day >= campaignFirst && day <= campaignLast
-
-            return (
-              <div
-                key={i}
-                className="min-h-[88px] md:min-h-[104px] p-2 relative transition-colors"
-                style={{
-                  borderRight: (i + 1) % 7 !== 0 ? '1px solid #F0EDE6' : 'none',
-                  borderBottom: i < days.length - 7 ? '1px solid #F0EDE6' : 'none',
-                  background: isToday
-                    ? `${brand.brand.primary}06`
-                    : hasPosts && inCampaign
-                    ? '#FAF7F2'
-                    : 'transparent',
-                }}
-              >
-                {day !== null && (
-                  <>
-                    <div className="flex justify-between items-center mb-1.5">
-                      <span
-                        className="w-6 h-6 flex items-center justify-center rounded-full text-xs font-semibold transition-colors"
-                        style={{
-                          background: isToday ? brand.brand.primary : 'transparent',
-                          color: isToday
-                            ? '#FFFFFF'
-                            : inCampaign
-                            ? '#1A2A5E'
-                            : '#C0BAB0',
-                        }}
-                      >
-                        {day}
-                      </span>
-                    </div>
-
-                    <div className="flex flex-col gap-1">
-                      {cellPosts.map((post) => {
-                        const colors = TYPE_COLORS[post.contentType]
-                        return (
-                          <button
-                            key={post.id}
-                            onClick={() => onSelectPost(post)}
-                            className="w-full text-left px-1.5 py-1 rounded-lg text-xs font-medium leading-tight transition-all hover:scale-[1.02]"
-                            style={{
-                              background: colors.bg,
-                              color: colors.text,
-                              borderLeft: `3px solid ${colors.dot}`,
-                            }}
-                          >
-                            <span className="hidden md:block truncate" style={{ maxWidth: '100px' }}>
-                              {post.title.split(' — ')[0].split(':')[0]}
-                            </span>
-                            <span className="md:hidden">
-                              {CONTENT_TYPE_LABEL[post.contentType].charAt(0)}
-                            </span>
-                          </button>
-                        )
-                      })}
-                    </div>
-                  </>
-                )}
-              </div>
-            )
-          })}
-        </div>
+        {viewerIsAdmin && onEditPost && onCreateOnDay && onMoveDate ? (
+          <CalendarAdminLayer
+            posts={posts}
+            brand={brand}
+            today={today}
+            monthYear={monthYear}
+            monthIndex={monthIndex}
+            campaignFirst={campaignFirst}
+            campaignLast={campaignLast}
+            days={days}
+            byDate={byDate}
+            onEditPost={onEditPost}
+            onCreateOnDay={onCreateOnDay}
+            onMoveDate={onMoveDate}
+          />
+        ) : (
+          partnerGrid
+        )}
 
         <div
           className="px-5 py-4 flex flex-wrap gap-4"
@@ -178,7 +250,7 @@ export default function CalendarView({ posts, brand, onSelectPost }: Props) {
           return (
             <button
               key={post.id}
-              onClick={() => onSelectPost(post)}
+              onClick={() => handleChipClick(post)}
               className="w-full text-left rounded-2xl p-4 flex items-center gap-3 transition-all"
               style={{
                 background: '#FFFFFF',
@@ -206,6 +278,25 @@ export default function CalendarView({ posts, brand, onSelectPost }: Props) {
             </button>
           )
         })}
+        {viewerIsAdmin && onCreateOnDay && (
+          <button
+            type="button"
+            onClick={() => {
+              const today = new Date()
+              const iso = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`
+              onCreateOnDay(iso)
+            }}
+            className="w-full rounded-2xl p-4 flex items-center justify-center gap-2 transition-colors"
+            style={{
+              background: '#FFFFFF',
+              border: `1px dashed ${brand.brand.primary}50`,
+              color: brand.brand.primary,
+            }}
+          >
+            <span className="text-base">+</span>
+            <span className="text-sm font-medium">Add post</span>
+          </button>
+        )}
       </div>
     </div>
   )

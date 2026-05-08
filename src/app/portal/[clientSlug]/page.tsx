@@ -5,6 +5,7 @@ import { isAdminEmail } from '@/lib/config/admins'
 import { findApprovedClient, listAllBrandPartners } from '@/lib/config/clients-store'
 import { getBrandConfig } from '@/lib/portal/brand-config'
 import { getContentPosts, getPostStatusCounts } from '@/lib/portal/content-store'
+import { isViewerOfSlug } from '@/lib/portal/viewer-store'
 import BrandPartnerPortalClient from './components/BrandPartnerPortalClient'
 import type { SerializedPost } from './components/types'
 import type { Metadata } from 'next'
@@ -32,15 +33,23 @@ export default async function ClientPortalPage({
 
   const email = session.user.email
   const viewerIsAdmin = isAdminEmail(email)
+  let viewerIsViewerOnly = false
 
   // Auth gating
   if (!viewerIsAdmin) {
     const approved = await findApprovedClient(email)
-    if (!approved) {
-      redirect('/portal')
-    }
-    if (approved.clientSlug !== clientSlug) {
-      redirect(`/portal/${approved.clientSlug}`)
+    if (approved) {
+      // Brand partner — can only see their own slug.
+      if (approved.clientSlug !== clientSlug) {
+        redirect(`/portal/${approved.clientSlug}`)
+      }
+    } else {
+      // Not the brand partner — check viewer access for THIS slug.
+      const allowed = await isViewerOfSlug(email, clientSlug)
+      if (!allowed) {
+        redirect('/portal')
+      }
+      viewerIsViewerOnly = true
     }
   }
 
@@ -97,6 +106,7 @@ export default async function ClientPortalPage({
     title: p.title,
     scheduledDate: p.scheduledDate.toISOString(),
     contentType: p.contentType,
+    platform: p.platform,
     status: p.status,
     caption: p.caption,
     hashtags: p.hashtags,
@@ -105,6 +115,7 @@ export default async function ClientPortalPage({
     thumbnailUrl: p.thumbnailUrl,
     mediaUrls: p.mediaUrls,
     position: p.position,
+    archivedAt: p.archivedAt ? p.archivedAt.toISOString() : null,
     comments: p.comments.map((c) => ({
       id: c.id,
       authorEmail: c.authorEmail,
@@ -126,6 +137,7 @@ export default async function ClientPortalPage({
         email,
       }}
       viewerIsAdmin={viewerIsAdmin}
+      viewerIsViewerOnly={viewerIsViewerOnly}
     />
   )
 }
