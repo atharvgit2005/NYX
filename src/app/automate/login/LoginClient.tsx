@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { signIn, useSession } from 'next-auth/react';
@@ -119,6 +119,11 @@ export function AuthShell({
     showSignupTab?: boolean;
     children: React.ReactNode;
 }) {
+    // The LOGIN_ACCESS tab needs to point at whichever login page the user is
+    // currently on. Hardcoding /automate/login here used to bounce portal-flow
+    // users onto the automate subdomain via the next.config redirect.
+    const pathname = usePathname();
+    const loginHref = pathname?.startsWith('/portal') ? '/portal/login' : '/automate/login';
     const heading = mode === 'login' ? 'OPERATOR LOGIN' : 'INITIATE OPERATOR';
     const subheading =
         mode === 'login'
@@ -242,7 +247,7 @@ export function AuthShell({
                     {/* Toggle */}
                     <div className="flex mb-12 md:mb-16 border-b-4 border-black">
                         <Link
-                            href="/automate/login"
+                            href={loginHref}
                             className={`flex-1 py-4 text-center text-sm font-bold tracking-widest transition-all ${
                                 mode === 'login'
                                     ? 'border-b-4 border-[#E8441A] text-[#E8441A]'

@@ -73,8 +73,11 @@ export default function LandingPage() {
                             </Link>
                         ) : (
                             <>
+                                <Link href="/portal/login" className="hidden md:block text-sm font-bold text-theme-secondary hover:text-theme-primary px-3 transition-colors">
+                                    Brand Portal
+                                </Link>
                                 <Link href="/automate/login" className="hidden md:block text-sm font-bold text-theme-secondary hover:text-theme-primary px-3 transition-colors">
-                                    Log In
+                                    Operator Login
                                 </Link>
                                 <Link href="/automate/signup" className="flex items-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs sm:text-sm font-bold shadow-md hover:scale-105 transition-all group">
                                     Sign Up
@@ -116,8 +119,11 @@ export default function LandingPage() {
                                 </>
                             ) : (
                                 <div className="flex flex-col gap-3 pt-2">
+                                    <Link href="/portal/login" className="text-center w-full px-4 py-3 text-theme-secondary font-bold hover:bg-card-hover rounded-xl transition-colors border border-transparent hover:border-theme">
+                                        Brand Portal
+                                    </Link>
                                     <Link href="/automate/login" className="text-center w-full px-4 py-3 text-theme-secondary font-bold hover:bg-card-hover rounded-xl transition-colors border border-transparent hover:border-theme">
-                                        Log In
+                                        Operator Login
                                     </Link>
                                     <Link href="/automate/signup" className="flex items-center justify-center gap-2 w-full px-4 py-3.5 bg-orange-600 text-white rounded-full font-bold hover:bg-orange-700 transition-colors shadow-lg">
                                         Sign Up Free <ArrowRight className="w-4 h-4" />
