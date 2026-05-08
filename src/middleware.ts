@@ -11,8 +11,12 @@ export default async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
     const token = await getToken({ req });
 
-    // ── /portal/* (excluding /portal/login itself) ─────────────────
-    if (pathname.startsWith('/portal') && !pathname.startsWith('/portal/login')) {
+    // ── /portal/* (excluding the public auth pages) ────────────────
+    if (
+        pathname.startsWith('/portal') &&
+        !pathname.startsWith('/portal/login') &&
+        !pathname.startsWith('/portal/signup')
+    ) {
         if (!token) {
             const url = new URL('/portal/login', req.url);
             url.searchParams.set('callbackUrl', pathname);
