@@ -192,10 +192,29 @@ model BrandPartner {
 
   contentPosts  ContentPost[]
   configuration BrandConfiguration?
+  viewers       PortalViewer[]
 
   @@index([email])
   @@index([clientSlug])
   @@index([status])
+}
+
+/// Phase 5 follow-up: read-only guests granted access to a brand's
+/// /portal/[clientSlug]. Stored as plain emails (not FKs to User) so an
+/// admin can grant access to anyone with a Google account; the User row
+/// is created on first sign-in by NextAuth's PrismaAdapter.
+model PortalViewer {
+  id             String       @id @default(cuid())
+  brandPartnerId String
+  brandPartner   BrandPartner @relation(fields: [brandPartnerId], references: [id], onDelete: Cascade)
+  email          String
+  /// Display name shown in the admin list — captured at invite time.
+  name           String?
+  addedBy        String // admin email
+  addedAt        DateTime     @default(now())
+
+  @@unique([brandPartnerId, email])
+  @@index([email])
 }
 
 // Phase 3 — per-partner content calendar entries

@@ -5,6 +5,8 @@ import { isAdminEmail } from '@/lib/config/admins'
 import Link from 'next/link'
 import BrandForm, { type BrandFormValues } from '../../components/BrandForm'
 import { getBrandPartnerWithConfigBySlug } from '@/lib/portal/brand-store'
+import { listViewersForBrand } from '@/lib/portal/viewer-store'
+import ViewersSection, { type ViewerRow } from './ViewersSection'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -35,6 +37,15 @@ export default async function EditBrandPage({
   const partner = await getBrandPartnerWithConfigBySlug(clientSlug)
   if (!partner) notFound()
   const cfg = partner.configuration
+
+  const rawViewers = await listViewersForBrand(partner.id)
+  const initialViewers: ViewerRow[] = rawViewers.map((v) => ({
+    id: v.id,
+    email: v.email,
+    name: v.name,
+    addedBy: v.addedBy,
+    addedAt: v.addedAt.toISOString(),
+  }))
 
   const initial: Partial<BrandFormValues> = {
     brandName: cfg?.brandName ?? partner.clientName,
@@ -104,6 +115,8 @@ export default async function EditBrandPage({
         </p>
 
         <BrandForm mode="edit" initial={initial} lockSlug />
+
+        <ViewersSection clientSlug={partner.clientSlug} initialViewers={initialViewers} />
       </div>
     </div>
   )

@@ -14,7 +14,8 @@ export const ADMIN_EMAILS: string[] = [
   'atharv@nyxstudio.tech',
   'bhavya@nyxstudio.tech',
   'nyx.studios.ai@gmail.com',
-  'pahariaatharv2005@gmail.com', // Atharv's working Google account (added so admin login works during dev)
+  'pahariaatharv2005@gmail.com', // Atharv's working Google account
+  'adminnyx@gmail.com', // Shared NYX admin — credentials login. User row created via prisma/setup-admin-user.ts.
 ].map((e) => e.toLowerCase())
 
 export function isAdminEmail(email: string | null | undefined): boolean {

@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import { isAdminEmail } from '@/lib/config/admins'
 import { findApprovedClient, addPendingClient } from '@/lib/config/clients-store'
+import { listBrandsForViewer } from '@/lib/portal/viewer-store'
 import PendingApprovalScreen from './components/PendingApprovalScreen'
 import type { Metadata } from 'next'
 
@@ -33,6 +34,17 @@ export default async function ClientPortalRouter() {
   const approved = await findApprovedClient(email)
   if (approved) {
     redirect(`/portal/${approved.clientSlug}`)
+  }
+
+  // Read-only viewer → first brand they're invited to
+  // (single-brand viewer is the common case; multi-brand viewers land on
+  // their first brand and can navigate manually if they need to switch.)
+  const viewerOf = await listBrandsForViewer(email)
+  const activeViewerEntry = viewerOf.find(
+    (v) => v.brandPartner.status === 'ACTIVE' || v.brandPartner.status === 'PAUSED',
+  )
+  if (activeViewerEntry) {
+    redirect(`/portal/${activeViewerEntry.brandPartner.clientSlug}`)
   }
 
   // Unknown → record as pending and show holding screen
