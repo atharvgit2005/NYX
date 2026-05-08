@@ -55,9 +55,16 @@ function LoginContent({ defaultCallbackUrl }: { defaultCallbackUrl: string }) {
         if (result?.error) {
             setError(result.error === 'CredentialsSignin' ? 'Invalid email or password' : result.error);
             setLoading(false);
-        } else {
-            router.push(callbackUrl);
+            return;
         }
+        // NextAuth returns a `?csrf=true` URL when the CSRF cookie didn't
+        // round-trip — silent "stuck" state from the user's POV. Surface it.
+        if (result?.url && /[?&]csrf=true/.test(result.url)) {
+            setError('Session error — please reload the page and try again.');
+            setLoading(false);
+            return;
+        }
+        router.push(callbackUrl);
     };
 
     return <AuthShell mode="login" displayError={displayError} showSignupTab={true} portalFlow={isPortalFlow}>

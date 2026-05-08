@@ -58,12 +58,17 @@ export const authOptions: AuthOptions = {
                     throw new Error('Invalid credentials');
                 }
 
+                // Normalise email — DB stores lowercase; without this the
+                // user typing "Adminnyx@gmail.com" fails the unique lookup
+                // and gets "Invalid credentials" even when the password
+                // is right.
+                const email = credentials.email.trim().toLowerCase();
                 const ip = req?.headers?.['x-forwarded-for'] || 'unknown';
 
                 // Brute-force protection: check rate limit (5 attempts per 15 min per IP)
                 const fifteenMinsAgo = new Date(Date.now() - 15 * 60 * 1000);
                 const attempts = await prisma.loginAttempt.findUnique({
-                    where: { ip_email: { ip: String(ip), email: credentials.email } }
+                    where: { ip_email: { ip: String(ip), email } }
                 });
 
                 if (attempts && attempts.count >= 5 && attempts.lastAttempt > fifteenMinsAgo) {
@@ -72,7 +77,7 @@ export const authOptions: AuthOptions = {
 
                 try {
                     const user = await prisma.user.findUnique({
-                        where: { email: credentials.email }
+                        where: { email }
                     });
 
                     if (!user || !user.password) {
@@ -109,9 +114,9 @@ export const authOptions: AuthOptions = {
 
                         // Log attempt
                         await prisma.loginAttempt.upsert({
-                            where: { ip_email: { ip: String(ip), email: credentials.email } },
+                            where: { ip_email: { ip: String(ip), email } },
                             update: { count: { increment: 1 }, lastAttempt: new Date() },
-                            create: { ip: String(ip), email: credentials.email, count: 1 }
+                            create: { ip: String(ip), email, count: 1 }
                         });
 
                         // Exponential backoff simulation (delay response)
@@ -135,7 +140,7 @@ export const authOptions: AuthOptions = {
 
                     // Clear login attempts
                     await prisma.loginAttempt.deleteMany({
-                        where: { ip: String(ip), email: credentials.email }
+                        where: { ip: String(ip), email }
                     });
 
                     return {
