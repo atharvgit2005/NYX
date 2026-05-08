@@ -11,22 +11,26 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // ── /automate/* on main domain → automate subdomain (permanent) ──
-      // Old SaaS lives at automate.nyxstudio.tech. Anyone hitting the legacy
-      // path on the marketing domain gets bounced to the subdomain. The
-      // /automate prefix is kept on the subdomain to avoid rewriting every
-      // internal link in the legacy code.
+      // ── /automate/* on main domain → automate subdomain (TEMPORARY) ──
+      // Legacy SaaS lives at automate.nyxstudio.tech. Anyone hitting the
+      // legacy path on the marketing domain gets bounced to the subdomain.
+      // The /automate prefix is kept on the subdomain to avoid rewriting
+      // every internal link in the legacy code.
+      //
+      // Marked `permanent: false` (307) on purpose — Phase-4 era found
+      // browsers caching the old 308 even after we changed surrounding
+      // routing. Stay flexible while the auth + admin migration is hot.
       {
         source: '/automate/:path*',
         has: [{ type: 'host', value: 'www.nyxstudio.tech' }],
         destination: 'https://automate.nyxstudio.tech/automate/:path*',
-        permanent: true,
+        permanent: false,
       },
       {
         source: '/automate',
         has: [{ type: 'host', value: 'www.nyxstudio.tech' }],
         destination: 'https://automate.nyxstudio.tech/automate',
-        permanent: true,
+        permanent: false,
       },
 
       // ── Block /portal and /clients on automate subdomain ──────────────

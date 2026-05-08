@@ -41,10 +41,14 @@ export async function isPendingClient(email: string): Promise<boolean> {
  * Idempotent: if the email is already pending OR already an approved partner,
  * does nothing. Returns true only when a new pending row was created.
  * `name` is captured from the Google profile when available.
+ *
+ * `notes` is the request-access blurb a partner submits at /portal/signup.
+ * On a re-submit we *append* rather than overwrite so we don't lose context.
  */
 export async function addPendingClient(
   email: string,
   name?: string,
+  notes?: string,
 ): Promise<boolean> {
   const target = email.toLowerCase()
 
@@ -56,12 +60,31 @@ export async function addPendingClient(
 
   const alreadyPending = await prisma.pendingPartnerRequest.findUnique({
     where: { email: target },
-    select: { id: true },
+    select: { id: true, notes: true, name: true },
   })
-  if (alreadyPending) return false
+  if (alreadyPending) {
+    // Update the row with whatever new info we got — keep existing fields if
+    // the new submission left them blank.
+    if (name || notes) {
+      const existingNotes = alreadyPending.notes ?? ''
+      const merged = notes
+        ? existingNotes
+          ? `${existingNotes}\n\n— ${new Date().toISOString()} —\n${notes}`
+          : notes
+        : existingNotes
+      await prisma.pendingPartnerRequest.update({
+        where: { id: alreadyPending.id },
+        data: {
+          name: alreadyPending.name ?? name ?? null,
+          notes: merged || null,
+        },
+      })
+    }
+    return false
+  }
 
   await prisma.pendingPartnerRequest.create({
-    data: { email: target, name: name ?? null },
+    data: { email: target, name: name ?? null, notes: notes ?? null },
   })
   return true
 }

@@ -60,7 +60,7 @@ function LoginContent({ defaultCallbackUrl }: { defaultCallbackUrl: string }) {
         }
     };
 
-    return <AuthShell mode="login" displayError={displayError} showSignupTab={!isPortalFlow}>
+    return <AuthShell mode="login" displayError={displayError} showSignupTab={true} portalFlow={isPortalFlow}>
         <form onSubmit={handleLogin} className="space-y-8">
             <FieldEmail />
             <FieldPassword show={showPassword} onToggle={() => setShowPassword((v) => !v)} />
@@ -112,18 +112,23 @@ export function AuthShell({
     mode,
     displayError,
     showSignupTab = true,
+    portalFlow,
     children,
 }: {
     mode: 'login' | 'signup';
     displayError?: string;
     showSignupTab?: boolean;
+    /** Force the portal href set even before pathname resolves (SSR). */
+    portalFlow?: boolean;
     children: React.ReactNode;
 }) {
-    // The LOGIN_ACCESS tab needs to point at whichever login page the user is
-    // currently on. Hardcoding /automate/login here used to bounce portal-flow
-    // users onto the automate subdomain via the next.config redirect.
+    // Tab hrefs need to point at whichever flow the user is currently in.
+    // Hardcoded /automate/* hrefs used to bounce portal users to the automate
+    // subdomain via the next.config redirect.
     const pathname = usePathname();
-    const loginHref = pathname?.startsWith('/portal') ? '/portal/login' : '/automate/login';
+    const isPortal = portalFlow ?? pathname?.startsWith('/portal') ?? false;
+    const loginHref = isPortal ? '/portal/login' : '/automate/login';
+    const signupHref = isPortal ? '/portal/signup' : '/automate/signup';
     const heading = mode === 'login' ? 'OPERATOR LOGIN' : 'INITIATE OPERATOR';
     const subheading =
         mode === 'login'
@@ -259,7 +264,7 @@ export function AuthShell({
                         </Link>
                         {showSignupTab && (
                             <Link
-                                href="/automate/signup"
+                                href={signupHref}
                                 className={`flex-1 py-4 text-center text-sm font-bold tracking-widest transition-all ${
                                     mode === 'signup'
                                         ? 'border-b-4 border-[#E8441A] text-[#E8441A]'
@@ -267,7 +272,7 @@ export function AuthShell({
                                 }`}
                                 style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
                             >
-                                INITIATE_SIGNUP
+                                {isPortal ? 'REQUEST_ACCESS' : 'INITIATE_SIGNUP'}
                             </Link>
                         )}
                     </div>
@@ -450,8 +455,11 @@ export function SocialChannels({ callbackUrl }: { callbackUrl: string }) {
                     onClick={() => signIn('google', { callbackUrl })}
                     className="bg-[#1c1b1b] border-2 border-black p-4 flex items-center justify-center gap-3 hover:bg-[#353534] transition-all group"
                 >
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" aria-hidden>
-                        <path fill="#EA4335" d="M12 10.2v3.96h5.5c-.24 1.43-1.69 4.2-5.5 4.2-3.31 0-6.01-2.74-6.01-6.12S8.69 6.12 12 6.12c1.88 0 3.14.8 3.86 1.49l2.63-2.54C16.84 3.46 14.6 2.5 12 2.5 6.76 2.5 2.5 6.76 2.5 12s4.26 9.5 9.5 9.5c5.48 0 9.11-3.85 9.11-9.27 0-.62-.07-1.1-.16-1.53H12z" />
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" aria-hidden xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" />
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
                     </svg>
                     <span className="font-[var(--font-space-grotesk)] text-[0.7rem] font-bold tracking-widest">GOOGLE_AUTH</span>
                 </button>
