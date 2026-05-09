@@ -76,13 +76,22 @@ export default async function EditBrandPage({
       }}
     >
       <div className="max-w-3xl mx-auto">
-        <Link
-          href="/portal/admin"
-          className="text-xs uppercase tracking-widest text-[#e4beb5] hover:text-[#E8441A] inline-block mb-6"
-          style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
-        >
-          ← Back to admin
-        </Link>
+        <div className="flex items-center justify-between gap-4 mb-6 flex-wrap">
+          <Link
+            href="/portal/admin"
+            className="text-xs uppercase tracking-widest text-[#e4beb5] hover:text-[#E8441A]"
+            style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
+          >
+            ← Back to admin
+          </Link>
+          <Link
+            href={`/portal/admin/${partner.clientSlug}/calendar-builder`}
+            className="px-4 py-2 border-2 border-black bg-[#76dc83] text-[#00320f] hover:shadow-[4px_4px_0px_#000] text-[10px] font-bold uppercase tracking-widest transition-all flex items-center gap-2"
+            style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
+          >
+            ✨ BUILD_CALENDAR
+          </Link>
+        </div>
         <div className="flex flex-wrap items-end gap-4 mb-2">
           <div
             className="text-4xl md:text-5xl font-black tracking-tighter leading-none uppercase"

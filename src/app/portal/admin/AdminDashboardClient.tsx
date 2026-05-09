@@ -740,6 +740,15 @@ function PartnerRow({
           Content
         </Link>
         <Link
+          href={`/portal/admin/${partner.clientSlug}/calendar-builder`}
+          className="px-4 py-2 border-2 border-black font-bold uppercase text-[10px] flex items-center gap-2 hover:bg-[#76dc83] hover:text-[#00320f] transition-all"
+          style={{ ...HEAD, backgroundColor: BG_LOWEST }}
+          title="Bulk-create posts for a campaign window"
+        >
+          <MIcon name="auto_awesome" className="!text-sm" />
+          Build
+        </Link>
+        <Link
           href={`/portal/admin/brands/${partner.clientSlug}/edit`}
           className="px-4 py-2 border-2 border-black font-bold uppercase text-[10px] flex items-center gap-2 hover:bg-[#ffd65b] hover:text-[#3d2f00] transition-all"
           style={{ ...HEAD, backgroundColor: BG_LOWEST }}
