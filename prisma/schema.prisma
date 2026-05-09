@@ -241,6 +241,7 @@ model ContentPost {
   archivedAt DateTime?
 
   comments PostComment[]
+  versions PostVersion[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -375,4 +376,28 @@ enum CommentType {
   REVISION_REQUEST
   APPROVAL_NOTE
   INTERNAL_ADMIN
+}
+
+/// Phase 5 follow-up: snapshot of a ContentPost at a meaningful moment.
+/// Today we snapshot on the APPROVED transition so admin edits made
+/// after approval don't silently change what the partner agreed to. The
+/// snapshot is a JSON blob of the post's content fields at that moment.
+model PostVersion {
+  id        String      @id @default(cuid())
+  postId    String
+  post      ContentPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  /// Why this snapshot was taken — currently only APPROVED, but the
+  /// enum-as-string keeps the door open for future triggers.
+  reason    String
+  /// Frozen snapshot of the post fields that matter for "what was
+  /// approved" — title, scheduledDate, contentType, platform, caption,
+  /// hashtags, visualDirection, productionNotes, thumbnailUrl. Stored
+  /// as Json so future field additions don't require a migration.
+  snapshot  Json
+  /// Email of the user who triggered the snapshot (admin or partner).
+  snappedBy String
+  createdAt DateTime    @default(now())
+
+  @@index([postId])
+  @@index([createdAt])
 }

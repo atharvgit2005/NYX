@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/prismadb'
 import { requirePartner, findPostInBrand } from '../../../../[clientSlug]/_helpers'
+import { snapshotPost } from '@/lib/portal/post-versioning'
 
 // POST /api/portal/[clientSlug]/posts/[postId]/approve
 //   Partner approves a NEEDS_APPROVAL post → status becomes APPROVED and
@@ -37,6 +38,16 @@ export async function POST(
     },
     include: { comments: { orderBy: { createdAt: 'desc' } } },
   })
+
+  // Phase 5 follow-up: snapshot the post at the moment of approval so
+  // any admin edits afterwards don't silently change what the client
+  // agreed to. Logged best-effort — a snapshot failure shouldn't block
+  // the approval flow itself.
+  try {
+    await snapshotPost(updated, 'APPROVED', auth.email)
+  } catch (err) {
+    console.error('[approve] snapshot failed (non-fatal):', err)
+  }
 
   // Re-shape to the SerializedPost contract so the client can drop it
   // straight back into state.
