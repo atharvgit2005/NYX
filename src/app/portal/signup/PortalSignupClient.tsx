@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import { AuthShell, FieldText, FieldEmail } from '../../automate/login/LoginClient'
 
@@ -9,67 +10,104 @@ const HEAD = { fontFamily: 'var(--font-space-grotesk), sans-serif' } as const
 const BODY = { fontFamily: 'var(--font-work-sans), sans-serif' } as const
 
 export default function PortalSignupClient() {
+    const router = useRouter()
     const [submitting, setSubmitting] = useState(false)
     const [error, setError] = useState<string | null>(null)
-    const [submitted, setSubmitted] = useState<{
+    const [emailExistsRedirect, setEmailExistsRedirect] = useState<{
         email: string
-        message: string
+        loginUrl: string
     } | null>(null)
+    const [showPassword, setShowPassword] = useState(false)
 
     async function handleSubmit(e: React.FormEvent) {
         e.preventDefault()
         setError(null)
+        setEmailExistsRedirect(null)
         const form = e.target as HTMLFormElement
         const data = {
             name: (form.elements.namedItem('name') as HTMLInputElement).value.trim(),
             email: (form.elements.namedItem('email') as HTMLInputElement).value.trim(),
+            password: (form.elements.namedItem('password') as HTMLInputElement).value,
+            confirmPassword: (form.elements.namedItem('confirmPassword') as HTMLInputElement).value,
             brandName: (form.elements.namedItem('brandName') as HTMLInputElement).value.trim(),
             message: (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim(),
         }
         if (!data.name) return setError('Full name is required')
         if (!data.email.includes('@')) return setError('Valid email required')
+        if (data.password.length < 8) return setError('Password must be at least 8 characters')
+        if (data.password !== data.confirmPassword) return setError('Passwords don’t match')
 
         setSubmitting(true)
         try {
             const res = await fetch('/api/portal/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data),
+                body: JSON.stringify({
+                    name: data.name,
+                    email: data.email,
+                    password: data.password,
+                    brandName: data.brandName,
+                    message: data.message,
+                }),
             })
             const payload = await res.json().catch(() => ({}))
             if (!res.ok) {
+                if (payload.errorCode === 'ALREADY_REGISTERED') {
+                    setEmailExistsRedirect({
+                        email: data.email,
+                        loginUrl: payload.loginUrl ?? '/portal/login',
+                    })
+                    setSubmitting(false)
+                    return
+                }
                 setError(payload.error ?? 'Request failed')
                 setSubmitting(false)
                 return
             }
-            setSubmitted({ email: data.email, message: payload.message ?? 'Thanks — we got your request.' })
+            // Auto-sign in after successful signup so the user lands on
+            // /portal (which shows the pending-approval screen).
+            const result = await signIn('credentials', {
+                redirect: false,
+                email: data.email,
+                password: data.password,
+            })
+            if (result?.error) {
+                setError(
+                    'Account created, but auto-login failed. Please try signing in manually.',
+                )
+                setSubmitting(false)
+                return
+            }
+            router.push('/portal')
         } catch (err: unknown) {
             setError((err as Error)?.message ?? 'Network error')
             setSubmitting(false)
         }
     }
 
-    if (submitted) {
+    if (emailExistsRedirect) {
         return (
             <AuthShell mode="signup" portalFlow showSignupTab={true}>
                 <div className="space-y-6" style={BODY}>
                     <div
-                        className="border-4 border-black bg-[#76dc83] text-[#00320f] p-5"
+                        className="border-4 border-black bg-[#ffd65b] text-[#3d2f00] p-5"
                         style={HEAD}
                     >
                         <div className="text-xs uppercase tracking-widest font-bold mb-2">
-                            *REQUEST_RECEIVED
+                            *EMAIL_ALREADY_REGISTERED
                         </div>
-                        <p className="text-base">{submitted.message}</p>
-                        <p className="text-xs mt-3 font-mono">{submitted.email}</p>
+                        <p className="text-base">
+                            An account with{' '}
+                            <span className="font-mono">{emailExistsRedirect.email}</span>{' '}
+                            already exists.
+                        </p>
+                        <p className="text-sm mt-2">
+                            Sign in below with your existing password — or use Google if
+                            you originally signed up that way.
+                        </p>
                     </div>
-                    <p className="text-[#e4beb5] text-sm">
-                        Once an admin approves your access, sign in with the same Google
-                        account ({submitted.email}) at the link below — your portal will
-                        load automatically.
-                    </p>
                     <Link
-                        href="/portal/login"
+                        href={emailExistsRedirect.loginUrl}
                         className="block w-full bg-[#E8441A] py-5 px-8 border-4 border-black text-center hover:bg-[#ffd65b] hover:text-[#3d2f00] transition-all"
                         style={HEAD}
                     >
@@ -87,6 +125,56 @@ export default function PortalSignupClient() {
             <form onSubmit={handleSubmit} className="space-y-8">
                 <FieldText id="name" name="name" label="FULL_NAME" placeholder="Your name" autoComplete="name" />
                 <FieldEmail />
+                <div className="relative group">
+                    <label
+                        htmlFor="password"
+                        className="absolute -top-3 left-4 px-2 py-0.5 bg-[#131313] text-[0.65rem] font-bold tracking-[0.2em] text-[#e4beb5] transition-all duration-200 group-focus-within:bg-[#ffd65b] group-focus-within:text-[#3d2f00]"
+                        style={HEAD}
+                    >
+                        *PASSWORD (8+ CHARS)
+                    </label>
+                    <input
+                        id="password"
+                        name="password"
+                        type={showPassword ? 'text' : 'password'}
+                        autoComplete="new-password"
+                        minLength={8}
+                        required
+                        placeholder="••••••••••••"
+                        className="w-full bg-[#0e0e0e] border-4 border-black p-5 pr-14 text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#E8441A] transition-all outline-none"
+                        style={HEAD}
+                    />
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword((v) => !v)}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-[#353534] hover:text-[#E8441A] transition-colors"
+                        aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    >
+                        <span className="material-symbols-outlined">
+                            {showPassword ? 'visibility_off' : 'visibility'}
+                        </span>
+                    </button>
+                </div>
+                <div className="relative group">
+                    <label
+                        htmlFor="confirmPassword"
+                        className="absolute -top-3 left-4 px-2 py-0.5 bg-[#131313] text-[0.65rem] font-bold tracking-[0.2em] text-[#e4beb5] transition-all duration-200 group-focus-within:bg-[#ffd65b] group-focus-within:text-[#3d2f00]"
+                        style={HEAD}
+                    >
+                        *CONFIRM_PASSWORD
+                    </label>
+                    <input
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        type={showPassword ? 'text' : 'password'}
+                        autoComplete="new-password"
+                        minLength={8}
+                        required
+                        placeholder="••••••••••••"
+                        className="w-full bg-[#0e0e0e] border-4 border-black p-5 text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#E8441A] transition-all outline-none"
+                        style={HEAD}
+                    />
+                </div>
                 <FieldText
                     id="brandName"
                     name="brandName"
@@ -105,7 +193,7 @@ export default function PortalSignupClient() {
                     <textarea
                         id="message"
                         name="message"
-                        rows={4}
+                        rows={3}
                         maxLength={2000}
                         placeholder="A quick note about your brand or what you're after."
                         className="w-full bg-[#0e0e0e] border-4 border-black p-5 text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#E8441A] transition-all outline-none resize-none"
@@ -122,7 +210,7 @@ export default function PortalSignupClient() {
                         className="font-black text-xl tracking-tighter text-white group-hover:text-[#3d2f00]"
                         style={HEAD}
                     >
-                        {submitting ? 'SENDING…' : 'REQUEST ACCESS'}
+                        {submitting ? 'CREATING…' : 'CREATE ACCOUNT'}
                     </span>
                     <span className="material-symbols-outlined font-bold text-white group-hover:text-[#3d2f00]">
                         arrow_forward
@@ -130,8 +218,14 @@ export default function PortalSignupClient() {
                 </button>
 
                 <p className="text-[11px] text-[#ab8981] italic" style={BODY}>
-                    Already approved? Sign in with Google on the login page — your portal
-                    will load instantly. New here? Submit this form and we&apos;ll review.
+                    Already have an account?{' '}
+                    <Link
+                        href="/portal/login"
+                        className="text-[#E8441A] hover:underline decoration-2 underline-offset-4 not-italic"
+                    >
+                        Sign in here
+                    </Link>
+                    .
                 </p>
             </form>
 
@@ -142,7 +236,7 @@ export default function PortalSignupClient() {
                         className="text-[0.6rem] tracking-[0.3em] text-[#353534]"
                         style={HEAD}
                     >
-                        OR_SIGN_IN_DIRECTLY
+                        OR_SIGN_UP_WITH
                     </span>
                     <div className="h-px flex-1 bg-[#353534]" />
                 </div>

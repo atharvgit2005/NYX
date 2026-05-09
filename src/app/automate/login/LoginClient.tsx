@@ -31,6 +31,10 @@ function LoginContent({ defaultCallbackUrl }: { defaultCallbackUrl: string }) {
     const callbackUrl =
         rawCallback && rawCallback.startsWith('/') ? rawCallback : defaultCallbackUrl;
 
+    // ?email=… prefill — used by the signup flow when an email already
+    // exists, so the user lands here with the field ready.
+    const prefilledEmail = searchParams.get('email') ?? '';
+
     const isPortalFlow = callbackUrl.startsWith('/portal');
 
     useEffect(() => {
@@ -69,7 +73,7 @@ function LoginContent({ defaultCallbackUrl }: { defaultCallbackUrl: string }) {
 
     return <AuthShell mode="login" displayError={displayError} showSignupTab={true} portalFlow={isPortalFlow}>
         <form onSubmit={handleLogin} className="space-y-8">
-            <FieldEmail />
+            <FieldEmail defaultValue={prefilledEmail} />
             <FieldPassword show={showPassword} onToggle={() => setShowPassword((v) => !v)} />
 
             <div className="flex items-center justify-between font-[var(--font-space-grotesk)] text-[0.7rem] tracking-widest">
@@ -95,6 +99,17 @@ function LoginContent({ defaultCallbackUrl }: { defaultCallbackUrl: string }) {
                 </span>
                 <span className="material-symbols-outlined font-bold text-white group-hover:text-[#3d2f00]">arrow_forward</span>
             </button>
+
+            <p className="text-[11px] text-[#ab8981] italic" style={{ fontFamily: 'var(--font-work-sans), sans-serif' }}>
+                Don&apos;t have an account?{' '}
+                <Link
+                    href={isPortalFlow ? '/portal/signup' : '/automate/signup'}
+                    className="text-[#E8441A] hover:underline decoration-2 underline-offset-4 not-italic"
+                >
+                    {isPortalFlow ? 'Request access' : 'Sign up'}
+                </Link>
+                .
+            </p>
         </form>
 
         <SocialChannels callbackUrl={callbackUrl} />
@@ -364,6 +379,7 @@ export function FieldText({
     autoComplete,
     placeholder,
     required = true,
+    defaultValue,
 }: {
     id: string;
     name: string;
@@ -372,6 +388,7 @@ export function FieldText({
     autoComplete?: string;
     placeholder?: string;
     required?: boolean;
+    defaultValue?: string;
 }) {
     return (
         <div className="relative group">
@@ -388,13 +405,14 @@ export function FieldText({
                 autoComplete={autoComplete}
                 required={required}
                 placeholder={placeholder}
+                defaultValue={defaultValue}
                 className="w-full bg-[#0e0e0e] border-4 border-black p-5 font-[var(--font-space-grotesk)] text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#E8441A] transition-all outline-none"
             />
         </div>
     );
 }
 
-export function FieldEmail() {
+export function FieldEmail({ defaultValue }: { defaultValue?: string } = {}) {
     return (
         <FieldText
             id="email"
@@ -403,6 +421,7 @@ export function FieldEmail() {
             type="email"
             autoComplete="email"
             placeholder="IDENTITY@DOMAIN.VOID"
+            defaultValue={defaultValue}
         />
     );
 }
