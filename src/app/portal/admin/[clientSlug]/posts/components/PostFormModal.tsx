@@ -280,6 +280,8 @@ interface Props {
   onClose: () => void
   onSubmit: (values: PostFormValues) => void | Promise<void>
   onArchive?: () => void
+  /** Edit-mode only: clone the post into a new IDEA card and close. */
+  onDuplicate?: () => void
   /** Visual theme. Default 'brutalist' (workspace mode). 'editorial' is
    *  used by the admin overlay on the cream partner canvas. */
   theme?: PostFormTheme
@@ -308,6 +310,7 @@ export default function PostFormModal({
   onClose,
   onSubmit,
   onArchive,
+  onDuplicate,
   theme = 'brutalist',
 }: Props) {
   const T = THEMES[theme]
@@ -564,6 +567,16 @@ export default function PostFormModal({
                   style={T.btnDangerStyle}
                 >
                   {T.labels.archive}
+                </button>
+              )}
+              {mode === 'edit' && onDuplicate && (
+                <button
+                  type="button"
+                  onClick={onDuplicate}
+                  className={T.btnSecondary}
+                  style={T.btnSecondaryStyle}
+                >
+                  {theme === 'brutalist' ? 'DUPLICATE' : 'Duplicate'}
                 </button>
               )}
             </div>

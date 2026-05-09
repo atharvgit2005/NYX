@@ -60,7 +60,21 @@ export default function PostsWorkspaceClient({
   const [posts, setPosts] = useState<AdminPost[]>(initialPosts)
   const [editing, setEditing] = useState<AdminPost | null>(null)
   const [creating, setCreating] = useState<{ scheduledDate?: string } | null>(null)
+  // Kanban bulk selection — set of post ids currently checked.
+  const [selected, setSelected] = useState<Set<string>>(new Set())
   const [, startTransition] = useTransition()
+
+  function toggleSelect(id: string) {
+    setSelected((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
+  function clearSelection() {
+    setSelected(new Set())
+  }
 
   // ── mutation helpers ──
   async function patchPost(id: string, body: Record<string, unknown>) {
@@ -126,6 +140,69 @@ export default function PostsWorkspaceClient({
     } catch (e) {
       revert(before)
       toast.error(`Couldn't archive — reverted. ${(e as Error).message}`)
+    }
+  }
+
+  async function bulkArchive() {
+    if (selected.size === 0) return
+    if (!confirm(`Archive ${selected.size} post${selected.size === 1 ? '' : 's'}? They disappear from views and the partner portal.`)) {
+      return
+    }
+    const ids = Array.from(selected)
+    const before = posts
+    setPosts((prev) => prev.filter((p) => !selected.has(p.id)))
+    clearSelection()
+    try {
+      await Promise.all(
+        ids.map((id) =>
+          fetch(`/api/portal/admin/${clientSlug}/posts/${id}`, { method: 'DELETE' }),
+        ),
+      )
+      toast.success(`Archived ${ids.length} post${ids.length === 1 ? '' : 's'}`)
+    } catch (e) {
+      revert(before)
+      toast.error(`Couldn't archive selection — reverted. ${(e as Error).message}`)
+    }
+  }
+
+  async function bulkMoveStatus(status: PostStatus) {
+    if (selected.size === 0) return
+    const ids = Array.from(selected)
+    const before = posts
+    setPosts((prev) => prev.map((p) => (selected.has(p.id) ? { ...p, status } : p)))
+    clearSelection()
+    try {
+      await Promise.all(ids.map((id) => patchPost(id, { status })))
+      toast.success(`${ids.length} post${ids.length === 1 ? '' : 's'} → ${status}`)
+    } catch (e) {
+      revert(before)
+      toast.error(`Couldn't update selection — reverted. ${(e as Error).message}`)
+    }
+  }
+
+  async function duplicate(id: string) {
+    try {
+      const res = await fetch(
+        `/api/portal/admin/${clientSlug}/posts/${id}/duplicate`,
+        { method: 'POST' },
+      )
+      if (!res.ok) {
+        const { error } = await res.json().catch(() => ({ error: 'Duplicate failed' }))
+        throw new Error(error || 'Duplicate failed')
+      }
+      const { post } = await res.json()
+      setPosts((prev) => [
+        ...prev,
+        {
+          ...post,
+          scheduledDate: new Date(post.scheduledDate).toISOString(),
+          archivedAt: null,
+          comments: [],
+        },
+      ])
+      toast.success(`"Copy of …" created in IDEA`)
+    } catch (e) {
+      toast.error((e as Error).message)
     }
   }
 
@@ -257,9 +334,15 @@ export default function PostsWorkspaceClient({
               onMoveStatus={moveStatus}
               onReorder={reorder}
               onClickPost={(p) => setEditing(p)}
+              selectedIds={selected}
+              onToggleSelect={toggleSelect}
             />
           ) : view === 'list' ? (
-            <ListView posts={posts} onClickPost={(p) => setEditing(p)} />
+            <ListView
+              posts={posts}
+              onClickPost={(p) => setEditing(p)}
+              onChangeStatus={(id, status) => moveStatus(id, status)}
+            />
           ) : (
             <CalendarView
               posts={posts}
@@ -272,6 +355,15 @@ export default function PostsWorkspaceClient({
           )}
         </div>
       </main>
+
+      {selected.size > 0 && (
+        <BulkActionsBar
+          count={selected.size}
+          onArchive={bulkArchive}
+          onMoveStatus={bulkMoveStatus}
+          onCancel={clearSelection}
+        />
+      )}
 
       {creating && (
         <PostFormModal
@@ -319,8 +411,84 @@ export default function PostsWorkspaceClient({
             archive(editing.id)
             setEditing(null)
           }}
+          onDuplicate={() => {
+            duplicate(editing.id)
+            setEditing(null)
+          }}
         />
       )}
+    </div>
+  )
+}
+
+function BulkActionsBar({
+  count,
+  onArchive,
+  onMoveStatus,
+  onCancel,
+}: {
+  count: number
+  onArchive: () => void
+  onMoveStatus: (status: PostStatus) => void
+  onCancel: () => void
+}) {
+  const [moveOpen, setMoveOpen] = useState(false)
+  const STATUSES: PostStatus[] = [
+    'IDEA',
+    'DRAFTING',
+    'NEEDS_APPROVAL',
+    'NEEDS_REVISION',
+    'APPROVED',
+    'POSTED',
+  ]
+  return (
+    <div
+      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-3 px-5 py-3 border-4 border-black shadow-[6px_6px_0_#000]"
+      style={{ ...HEAD, backgroundColor: '#1c1b1b', color: '#e5e2e1' }}
+    >
+      <span className="text-xs font-black uppercase tracking-widest">
+        {count} selected
+      </span>
+      <div className="relative">
+        <button
+          type="button"
+          onClick={() => setMoveOpen((v) => !v)}
+          className="px-3 py-2 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#E8441A] hover:text-white text-[10px] font-bold uppercase tracking-widest transition-all"
+        >
+          Move to status ▾
+        </button>
+        {moveOpen && (
+          <div className="absolute bottom-full mb-2 left-0 border-4 border-black bg-[#1c1b1b] min-w-[180px]">
+            {STATUSES.map((s) => (
+              <button
+                key={s}
+                type="button"
+                onClick={() => {
+                  setMoveOpen(false)
+                  onMoveStatus(s)
+                }}
+                className="block w-full text-left px-3 py-2 text-[10px] uppercase tracking-widest font-bold text-[#e4beb5] hover:bg-[#E8441A] hover:text-white"
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+      <button
+        type="button"
+        onClick={onArchive}
+        className="px-3 py-2 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#93000a] hover:text-[#ffdad6] text-[10px] font-bold uppercase tracking-widest transition-all"
+      >
+        Archive
+      </button>
+      <button
+        type="button"
+        onClick={onCancel}
+        className="px-3 py-2 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#2a2a2a] text-[10px] font-bold uppercase tracking-widest transition-all"
+      >
+        Cancel
+      </button>
     </div>
   )
 }

@@ -36,6 +36,8 @@ interface Props {
   onMoveStatus: (id: string, status: PostStatus, position?: number) => void
   onReorder: (id: string, position: number) => void
   onClickPost: (post: AdminPost) => void
+  selectedIds?: Set<string>
+  onToggleSelect?: (id: string) => void
 }
 
 export default function KanbanView({
@@ -43,6 +45,8 @@ export default function KanbanView({
   onMoveStatus,
   onReorder,
   onClickPost,
+  selectedIds,
+  onToggleSelect,
 }: Props) {
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
@@ -122,6 +126,8 @@ export default function KanbanView({
             accent={col.accent}
             posts={grouped[col.status]}
             onClickPost={onClickPost}
+            selectedIds={selectedIds}
+            onToggleSelect={onToggleSelect}
           />
         ))}
       </div>
@@ -135,12 +141,16 @@ function Column({
   accent,
   posts,
   onClickPost,
+  selectedIds,
+  onToggleSelect,
 }: {
   status: PostStatus
   label: string
   accent: string
   posts: AdminPost[]
   onClickPost: (post: AdminPost) => void
+  selectedIds?: Set<string>
+  onToggleSelect?: (id: string) => void
 }) {
   const { setNodeRef, isOver } = useDroppable({ id: status })
 
@@ -177,7 +187,13 @@ function Column({
       <SortableContext items={posts.map((p) => p.id)} strategy={verticalListSortingStrategy}>
         <div className="p-3 space-y-3 min-h-[120px]">
           {posts.map((p) => (
-            <SortablePost key={p.id} post={p} onClick={() => onClickPost(p)} />
+            <SortablePost
+              key={p.id}
+              post={p}
+              onClick={() => onClickPost(p)}
+              selected={selectedIds?.has(p.id) ?? false}
+              onToggleSelect={onToggleSelect}
+            />
           ))}
           {posts.length === 0 && (
             <div
@@ -193,7 +209,17 @@ function Column({
   )
 }
 
-function SortablePost({ post, onClick }: { post: AdminPost; onClick: () => void }) {
+function SortablePost({
+  post,
+  onClick,
+  selected,
+  onToggleSelect,
+}: {
+  post: AdminPost
+  onClick: () => void
+  selected: boolean
+  onToggleSelect?: (id: string) => void
+}) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: post.id })
 
@@ -204,8 +230,34 @@ function SortablePost({ post, onClick }: { post: AdminPost; onClick: () => void 
   }
 
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <PostCard post={post} onClick={onClick} draggable />
+    <div
+      ref={setNodeRef}
+      style={style}
+      className={`relative ${selected ? 'ring-2 ring-[#E8441A]' : ''}`}
+    >
+      {onToggleSelect && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation()
+            onToggleSelect(post.id)
+          }}
+          className={`absolute top-2 left-2 z-10 w-5 h-5 border-2 border-black flex items-center justify-center transition-colors ${
+            selected ? 'bg-[#E8441A] text-white' : 'bg-[#1c1b1b] text-[#e4beb5] hover:bg-[#2a2a2a]'
+          }`}
+          aria-label={selected ? 'Deselect post' : 'Select post'}
+          aria-pressed={selected}
+        >
+          {selected && (
+            <span className="material-symbols-outlined !text-[14px] leading-none" aria-hidden>
+              check
+            </span>
+          )}
+        </button>
+      )}
+      <div {...attributes} {...listeners}>
+        <PostCard post={post} onClick={onClick} draggable />
+      </div>
     </div>
   )
 }

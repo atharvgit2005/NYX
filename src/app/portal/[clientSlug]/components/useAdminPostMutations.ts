@@ -51,6 +51,8 @@ export interface PostMutations {
     ) => Promise<SerializedPost | null>
     /** Soft-delete via DELETE — drops out of all views. */
     archivePost: (id: string) => Promise<void>
+    /** Clone an existing post into a new IDEA card. */
+    duplicatePost: (id: string) => Promise<SerializedPost | null>
     /** Drag-reschedule from the calendar. ISO date string. */
     moveToDate: (id: string, scheduledDate: string) => Promise<void>
     /** Direct status change (e.g. drag between kanban-style swimlanes — not
@@ -312,11 +314,44 @@ export function useAdminPostMutations({
         [posts, setPosts, patchRequest],
     )
 
+    // ── Duplicate ─────────────────────────────────────────────────
+    const duplicatePost = useCallback(
+        async (id: string): Promise<SerializedPost | null> => {
+            setBusy(true)
+            try {
+                const res = await fetch(
+                    `/api/portal/admin/${clientSlug}/posts/${id}/duplicate`,
+                    { method: 'POST' },
+                )
+                if (!res.ok) {
+                    const { error } = await res.json().catch(() => ({
+                        error: 'Duplicate failed',
+                    }))
+                    throw new Error(error || 'Duplicate failed')
+                }
+                const { post } = (await res.json()) as {
+                    post: Record<string, unknown>
+                }
+                const normalised = normaliseFromServer(post, [])
+                setPosts((prev) => [...prev, normalised])
+                toast.success('Duplicated as new IDEA post')
+                return normalised
+            } catch (e) {
+                toast.error((e as Error).message)
+                return null
+            } finally {
+                setBusy(false)
+            }
+        },
+        [clientSlug, setPosts],
+    )
+
     return {
         busy,
         createPost,
         savePost,
         archivePost,
+        duplicatePost,
         moveToDate,
         moveStatus,
         reorder,

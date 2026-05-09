@@ -1,6 +1,16 @@
 'use client'
 
+import type { PostStatus } from '@prisma/client'
 import type { AdminPost } from '../PostsWorkspaceClient'
+
+const STATUSES: PostStatus[] = [
+  'IDEA',
+  'DRAFTING',
+  'NEEDS_APPROVAL',
+  'NEEDS_REVISION',
+  'APPROVED',
+  'POSTED',
+]
 
 const HEAD = { fontFamily: 'var(--font-space-grotesk), sans-serif' } as const
 
@@ -16,9 +26,11 @@ const STATUS_ACCENT: Record<AdminPost['status'], string> = {
 interface Props {
   posts: AdminPost[]
   onClickPost: (post: AdminPost) => void
+  /** Inline status change from the row — no modal. */
+  onChangeStatus?: (id: string, status: PostStatus) => void
 }
 
-export default function ListView({ posts, onClickPost }: Props) {
+export default function ListView({ posts, onClickPost, onChangeStatus }: Props) {
   const sorted = [...posts].sort(
     (a, b) =>
       new Date(a.scheduledDate).getTime() - new Date(b.scheduledDate).getTime() ||
@@ -83,16 +95,37 @@ export default function ListView({ posts, onClickPost }: Props) {
                 {p.contentType.replace('_', ' ')}
               </td>
               <td className="px-4 py-3">
-                <span
-                  className="text-[10px] uppercase tracking-widest font-black px-2 py-1"
-                  style={{
-                    ...HEAD,
-                    backgroundColor: STATUS_ACCENT[p.status],
-                    color: '#0e0e0e',
-                  }}
-                >
-                  {p.status}
-                </span>
+                {onChangeStatus ? (
+                  <select
+                    value={p.status}
+                    onClick={(e) => e.stopPropagation()}
+                    onChange={(e) => onChangeStatus(p.id, e.target.value as PostStatus)}
+                    className="text-[10px] uppercase tracking-widest font-black px-2 py-1 border-2 border-black cursor-pointer outline-none"
+                    style={{
+                      ...HEAD,
+                      backgroundColor: STATUS_ACCENT[p.status],
+                      color: '#0e0e0e',
+                    }}
+                    aria-label={`Change status for ${p.title}`}
+                  >
+                    {STATUSES.map((s) => (
+                      <option key={s} value={s} className="bg-white text-black">
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <span
+                    className="text-[10px] uppercase tracking-widest font-black px-2 py-1"
+                    style={{
+                      ...HEAD,
+                      backgroundColor: STATUS_ACCENT[p.status],
+                      color: '#0e0e0e',
+                    }}
+                  >
+                    {p.status}
+                  </span>
+                )}
               </td>
             </tr>
           ))}

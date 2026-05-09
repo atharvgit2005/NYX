@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Toaster } from 'sonner'
-import { Calendar, LayoutGrid, Grid3x3, type LucideIcon } from 'lucide-react'
+import { Calendar, Download, LayoutGrid, Grid3x3, type LucideIcon } from 'lucide-react'
 import type { ContentType, PostStatus } from '@prisma/client'
 import type { BrandConfig } from '@/lib/portal/brand-config'
 import type { SerializedPost } from './types'
@@ -226,6 +226,27 @@ export default function BrandPartnerPortalClient({
             </div>
 
             <div className="flex items-center gap-2 shrink-0">
+              {/* Export to calendar — available to everyone who can see
+                  this brand: partner, admin, or read-only viewer. */}
+              <a
+                href={`/api/portal/${brand.slug}/calendar.ics`}
+                className="flex items-center gap-1.5 px-3 sm:px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-colors"
+                style={{
+                  background: '#FFFFFF',
+                  color: '#6B6B6B',
+                  border: '1px solid #E8E4DC',
+                }}
+                onMouseEnter={(e) => {
+                  ;(e.currentTarget as HTMLElement).style.background = '#F0EDE6'
+                }}
+                onMouseLeave={(e) => {
+                  ;(e.currentTarget as HTMLElement).style.background = '#FFFFFF'
+                }}
+                title="Subscribe in Google Calendar / Apple Calendar / Outlook"
+              >
+                <Download className="w-3.5 h-3.5" aria-hidden />
+                <span className="hidden sm:inline">Export</span>
+              </a>
               {viewerIsAdmin && (
                 <button
                   type="button"
@@ -363,6 +384,10 @@ export default function BrandPartnerPortalClient({
           }}
           onArchive={async (id) => {
             await mutations.archivePost(id)
+            setEditing(null)
+          }}
+          onDuplicate={async (id) => {
+            await mutations.duplicatePost(id)
             setEditing(null)
           }}
         />
