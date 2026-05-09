@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { signOut } from 'next-auth/react'
+import { ArrowLeft, Eye } from 'lucide-react'
 import type { BrandConfig } from '@/lib/portal/brand-config'
 
 interface Props {
@@ -143,7 +144,17 @@ export default function PortalHeader({
                   : '1px solid #E8E4DC',
               }}
             >
-              {previewAsPartner ? '← Back to admin' : '👁 View as partner'}
+              {previewAsPartner ? (
+                <>
+                  <ArrowLeft className="w-3.5 h-3.5" aria-hidden />
+                  <span>Back to admin</span>
+                </>
+              ) : (
+                <>
+                  <Eye className="w-3.5 h-3.5" aria-hidden />
+                  <span>View as partner</span>
+                </>
+              )}
             </button>
           )}
           {viewerIsAdmin && (

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { Film, Monitor } from 'lucide-react'
 import type { BrandConfig } from '@/lib/portal/brand-config'
 
 interface Props {
@@ -27,10 +28,11 @@ export default function PackBSection({ brand }: Props) {
         >
           <div className="w-2 h-2 rounded-full" style={{ background: colors.secondary }} />
           <h2
-            className="text-base font-semibold tracking-wide flex-1 text-left"
+            className="text-base font-semibold tracking-wide flex-1 text-left flex items-center gap-2"
             style={{ color: '#1A2A5E', letterSpacing: '0.04em' }}
           >
-            🎬 PACK B — {packB.title.toUpperCase()}
+            <Film className="w-4 h-4" aria-hidden />
+            PACK B — {packB.title.toUpperCase()}
           </h2>
           <span
             className="text-xs font-semibold transition-transform"
@@ -108,7 +110,7 @@ export default function PackBSection({ brand }: Props) {
                 className="mt-5 pt-5 flex items-start gap-2"
                 style={{ borderTop: `1px solid ${colors.secondary}20` }}
               >
-                <span className="text-base">🖥️</span>
+                <Monitor className="w-4 h-4 mt-0.5 shrink-0" style={{ color: '#6B6B6B' }} aria-hidden />
                 <p className="text-xs leading-relaxed" style={{ color: '#6B6B6B' }}>
                   Content formatted for in-store vertical displays (portrait mode loop).
                   Final delivery as MP4 + JPG stills.

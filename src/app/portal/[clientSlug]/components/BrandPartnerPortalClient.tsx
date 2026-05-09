@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Toaster } from 'sonner'
+import { Calendar, LayoutGrid, Grid3x3, type LucideIcon } from 'lucide-react'
 import type { ContentType, PostStatus } from '@prisma/client'
 import type { BrandConfig } from '@/lib/portal/brand-config'
 import type { SerializedPost } from './types'
@@ -38,10 +39,10 @@ interface Props {
   viewerIsViewerOnly?: boolean
 }
 
-const VIEW_OPTIONS: { value: View; label: string; icon: string }[] = [
-  { value: 'calendar', label: 'Calendar', icon: '📅' },
-  { value: 'cards', label: 'Cards', icon: '🗂' },
-  { value: 'feed', label: 'Feed Preview', icon: '◫' },
+const VIEW_OPTIONS: { value: View; label: string; Icon: LucideIcon }[] = [
+  { value: 'calendar', label: 'Calendar', Icon: Calendar },
+  { value: 'cards', label: 'Cards', Icon: LayoutGrid },
+  { value: 'feed', label: 'Feed Preview', Icon: Grid3x3 },
 ]
 
 export default function BrandPartnerPortalClient({
@@ -259,7 +260,7 @@ export default function BrandPartnerPortalClient({
                       color: view === opt.value ? '#FFFFFF' : '#6B6B6B',
                     }}
                   >
-                    <span aria-hidden>{opt.icon}</span>
+                    <opt.Icon className="w-4 h-4" aria-hidden />
                     <span className="hidden sm:inline">{opt.label}</span>
                     <span className="sm:hidden">{opt.label.split(' ')[0]}</span>
                   </button>
