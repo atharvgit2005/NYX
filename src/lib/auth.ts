@@ -39,7 +39,18 @@ export const authOptions: AuthOptions = {
     adapter: PrismaAdapter(prisma),
     session: {
         strategy: "jwt",
-        maxAge: 15 * 60, // 15 minutes
+        // 30 days. Was 15 min, which logged users out aggressively
+        // through the day. JWT cookie inherits this maxAge.
+        maxAge: 30 * 24 * 60 * 60,
+        // Refresh-rotate the JWT on each request that's at least a day
+        // old, so an active user's session keeps extending without ever
+        // hitting the hard expiry boundary.
+        updateAge: 24 * 60 * 60,
+    },
+    jwt: {
+        // Match the cookie / session lifetime so the signed token
+        // doesn't expire before the session does.
+        maxAge: 30 * 24 * 60 * 60,
     },
     providers: [
         GoogleProvider({
@@ -196,6 +207,11 @@ export const authOptions: AuthOptions = {
                         path: '/',
                         secure: true,
                         domain: '.nyxstudio.tech',
+                        // 30-day persistent cookie — match session.maxAge.
+                        // Without this NextAuth defaults the cookie to a
+                        // session-cookie (cleared on browser close), so
+                        // closing the tab also signed users out.
+                        maxAge: 30 * 24 * 60 * 60,
                     },
                 },
             }
@@ -237,25 +253,25 @@ export const authOptions: AuthOptions = {
 
             if (!dbUser) return null as unknown as JWT;
 
+            // Session Hardening: invalidate if password changed AFTER the
+            // token was issued. Compare with a 5-second slop so a stale
+            // millisecond on `passwordChangedAt` (set at user creation /
+            // password reset) doesn't immediately kill the freshly-minted
+            // token sitting in the same second.
             if (dbUser.passwordChangedAt && token.iat) {
-                const tokenIssuanceTime = new Date((token.iat as number) * 1000);
-                if (dbUser.passwordChangedAt > tokenIssuanceTime) {
+                const tokenIssuanceMs = (token.iat as number) * 1000;
+                const passwordChangedMs = dbUser.passwordChangedAt.getTime();
+                if (passwordChangedMs - tokenIssuanceMs > 5_000) {
                     return null as unknown as JWT;
                 }
             }
 
-            // Concurrent Session Limiting: enforced only for credentials-based
-            // logins where authorize() has populated activeSessionId on both
-            // the User row and the JWT. Google OAuth users never set this
-            // field, so skip the check for them.
-            if (
-                dbUser.role !== 'admin' &&
-                dbUser.activeSessionId &&
-                token.activeSessionId &&
-                dbUser.activeSessionId !== token.activeSessionId
-            ) {
-                return null as unknown as JWT;
-            }
+            // Concurrent Session Limiting: previously killed any older JWT
+            // when the same user signed in elsewhere — but that's also what
+            // bumped users out when they opened the portal in a second tab,
+            // or when the dev server restarted and re-auth'd. Disabled by
+            // default; keep the schema field for a future "force sign-out
+            // everywhere" admin action.
 
             return token;
         },
