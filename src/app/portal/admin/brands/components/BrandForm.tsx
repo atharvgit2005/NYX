@@ -4,6 +4,7 @@ import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { toast } from 'sonner'
+import ThumbnailUploader from '../../components/ThumbnailUploader'
 
 const HEAD = { fontFamily: 'var(--font-space-grotesk), sans-serif' } as const
 const BODY = { fontFamily: 'var(--font-work-sans), sans-serif' } as const
@@ -16,6 +17,7 @@ export interface BrandFormValues {
   clientSlug: string
   contactEmail: string
   tagline: string
+  logoUrl: string | null
   primaryColor: string
   secondaryColor: string
   accentColor: string
@@ -55,6 +57,7 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
     clientSlug: initial?.clientSlug ?? '',
     contactEmail: initial?.contactEmail ?? '',
     tagline: initial?.tagline ?? '',
+    logoUrl: initial?.logoUrl ?? null,
     primaryColor: initial?.primaryColor ?? '#E8441A',
     secondaryColor: initial?.secondaryColor ?? '#ffd65b',
     accentColor: initial?.accentColor ?? '',
@@ -125,6 +128,7 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
         agencyContactName: v.agencyContactName || null,
         agencyContactEmail: v.agencyContactEmail || null,
         tagline: v.tagline || null,
+        logoUrl: v.logoUrl || null,
       }
       const res = await fetch(url, {
         method,
@@ -203,6 +207,12 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
             placeholder="Shakes and More"
             className="brutal-input"
             style={HEAD}
+          />
+        </Field>
+        <Field label="LOGO" hint="Square JPEG/PNG/WebP, max 5 MB. Shown in the portal header.">
+          <ThumbnailUploader
+            value={v.logoUrl}
+            onChange={(url) => set('logoUrl', url)}
           />
         </Field>
       </Section>

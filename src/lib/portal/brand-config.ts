@@ -37,7 +37,12 @@ export interface BrandConfig {
   campaign: {
     title: string
     period: string
+    /** Human-readable label of the primary platform — kept for the
+     *  Phase 3 portal layout that displays one platform name. */
     platform: string
+    /** Full platform array (Phase 5 follow-up). Use this when forms /
+     *  filters need the canonical enum list. */
+    platforms: Platform[]
     monthLabel: string
     monthYear: number
     monthIndex: number
@@ -88,6 +93,7 @@ function adapt(
       title: packageTypeLabel(cfg.packageType),
       period: formatPeriod(start, end),
       platform: primaryPlatformLabel(cfg.platforms),
+      platforms: cfg.platforms.length ? cfg.platforms : ['INSTAGRAM'],
       monthLabel: start.toLocaleDateString('en-US', {
         month: 'long',
         year: 'numeric',

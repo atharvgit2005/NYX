@@ -26,6 +26,7 @@ export async function POST(req: Request) {
     clientSlug: String(body.clientSlug ?? '').trim().toLowerCase(),
     contactEmail: String(body.contactEmail ?? '').trim().toLowerCase(),
     tagline: typeof body.tagline === 'string' ? body.tagline : null,
+    logoUrl: typeof body.logoUrl === 'string' && body.logoUrl ? body.logoUrl : null,
     primaryColor: String(body.primaryColor ?? ''),
     secondaryColor: String(body.secondaryColor ?? ''),
     accentColor: typeof body.accentColor === 'string' && body.accentColor ? body.accentColor : null,

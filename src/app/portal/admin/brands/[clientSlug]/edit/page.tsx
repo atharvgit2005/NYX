@@ -52,6 +52,7 @@ export default async function EditBrandPage({
     clientSlug: partner.clientSlug,
     contactEmail: partner.email,
     tagline: cfg?.tagline ?? '',
+    logoUrl: cfg?.logoUrl ?? null,
     primaryColor: cfg?.primaryColor ?? '#E8441A',
     secondaryColor: cfg?.secondaryColor ?? '#ffd65b',
     accentColor: cfg?.accentColor ?? '',

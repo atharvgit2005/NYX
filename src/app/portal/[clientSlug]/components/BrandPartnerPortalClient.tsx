@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Toaster } from 'sonner'
 import type { ContentType, PostStatus } from '@prisma/client'
@@ -49,9 +49,31 @@ export default function BrandPartnerPortalClient({
   posts: initialPosts,
   statusCounts: initialCounts,
   signedInAs,
-  viewerIsAdmin,
+  viewerIsAdmin: realViewerIsAdmin,
   viewerIsViewerOnly,
 }: Props) {
+  // Phase 5 follow-up: admins can toggle "view as partner" to preview
+  // exactly what the brand partner sees. Persist in sessionStorage so
+  // refresh keeps the mode; never persist across browser tabs/windows.
+  const [previewAsPartner, setPreviewAsPartner] = useState(false)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    setPreviewAsPartner(sessionStorage.getItem('nyx-preview-partner') === '1')
+  }, [])
+  function togglePreviewMode() {
+    setPreviewAsPartner((prev) => {
+      const next = !prev
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('nyx-preview-partner', next ? '1' : '0')
+      }
+      return next
+    })
+  }
+  // Effective admin flag — what child components see. Real admin status
+  // (`realViewerIsAdmin`) only flows to the PortalHeader so it can render
+  // the toggle even while previewing.
+  const viewerIsAdmin = realViewerIsAdmin && !previewAsPartner
+
   const [view, setView] = useState<View>('calendar')
   const [posts, setPosts] = useState<SerializedPost[]>(initialPosts)
   const [selectedPost, setSelectedPost] = useState<SerializedPost | null>(null)
@@ -88,14 +110,10 @@ export default function BrandPartnerPortalClient({
     setPosts,
   })
 
-  // Derive the brand's primary platform for the create form. BrandConfig
-  // exposes the human-readable label ("Instagram"/"TikTok") via campaign
-  // — convert to enum, default INSTAGRAM if unrecognised.
-  const defaultPlatform: Platform = brand.campaign.platform
-    .toLowerCase()
-    .includes('tiktok')
-    ? 'TIKTOK'
-    : 'INSTAGRAM'
+  // Brand's primary platform for the create form. Reads the canonical
+  // platforms[] array; falls back to INSTAGRAM only if the brand was
+  // somehow saved with no platforms (legacy / migration safety).
+  const defaultPlatform: Platform = brand.campaign.platforms[0] ?? 'INSTAGRAM'
 
   // Click on a chip — admin opens the editor, partner opens read-only.
   function handleSelectPost(post: SerializedPost) {
@@ -138,6 +156,9 @@ export default function BrandPartnerPortalClient({
         signedInAs={signedInAs}
         viewerIsAdmin={viewerIsAdmin}
         viewerIsViewerOnly={viewerIsViewerOnly}
+        realViewerIsAdmin={realViewerIsAdmin}
+        previewAsPartner={previewAsPartner}
+        onTogglePreviewMode={togglePreviewMode}
       />
 
       <main className="max-w-6xl mx-auto px-6 py-10 md:py-14 space-y-10">

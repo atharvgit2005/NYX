@@ -7,8 +7,15 @@ import type { BrandConfig } from '@/lib/portal/brand-config'
 interface Props {
   brand: BrandConfig
   signedInAs: { name: string | null; email: string }
+  /** Effective admin flag (what child views see). False when admin is
+   *  previewing as partner. */
   viewerIsAdmin: boolean
   viewerIsViewerOnly?: boolean
+  /** Real admin status — used to decide whether to show the
+   *  view-as-partner toggle even while previewing. */
+  realViewerIsAdmin?: boolean
+  previewAsPartner?: boolean
+  onTogglePreviewMode?: () => void
 }
 
 export default function PortalHeader({
@@ -16,6 +23,9 @@ export default function PortalHeader({
   signedInAs,
   viewerIsAdmin,
   viewerIsViewerOnly,
+  realViewerIsAdmin,
+  previewAsPartner,
+  onTogglePreviewMode,
 }: Props) {
   return (
     <header
@@ -94,6 +104,47 @@ export default function PortalHeader({
               />
               viewing
             </span>
+          )}
+          {/* Admin-only: "previewing as partner" indicator (shown while
+              the toggle is on). Replaces the editing pill while active. */}
+          {realViewerIsAdmin && previewAsPartner && (
+            <span
+              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-semibold"
+              style={{
+                background: '#FAF7F2',
+                color: '#6B6B6B',
+                border: '1px solid #E8E4DC',
+                letterSpacing: '0.08em',
+                textTransform: 'lowercase',
+              }}
+              aria-label="Previewing as partner"
+            >
+              <span
+                className="inline-block w-1.5 h-1.5 rounded-full"
+                style={{ background: '#9CA3AF' }}
+                aria-hidden
+              />
+              previewing as partner
+            </span>
+          )}
+          {/* Admin-only: toggle "view as partner" / "back to admin". */}
+          {realViewerIsAdmin && onTogglePreviewMode && (
+            <button
+              type="button"
+              onClick={onTogglePreviewMode}
+              className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-colors"
+              style={{
+                background: previewAsPartner
+                  ? brand.brand.primary
+                  : '#FAF7F2',
+                color: previewAsPartner ? '#FFFFFF' : '#6B6B6B',
+                border: previewAsPartner
+                  ? `1px solid ${brand.brand.primary}`
+                  : '1px solid #E8E4DC',
+              }}
+            >
+              {previewAsPartner ? '← Back to admin' : '👁 View as partner'}
+            </button>
           )}
           {viewerIsAdmin && (
             <Link
