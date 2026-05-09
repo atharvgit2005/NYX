@@ -53,6 +53,51 @@ export function createMarketingMetadata({
   };
 }
 
+/**
+ * WebSite + SearchAction — eligible for the Sitelinks Search Box in
+ * Google SERPs. The SearchAction `target` doesn't have to point at a
+ * real internal search; pointing /work at a `?q=` param gives Google
+ * a stable surface to render the search box against.
+ */
+export const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "NYX Studio",
+  url: SITE_URL,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${SITE_URL}/work?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
+/**
+ * BreadcrumbList helper — takes an ordered list of crumbs (root last)
+ * and returns the schema object ready to drop into <SchemaOrg>.
+ *
+ *   breadcrumbSchema([
+ *     { name: 'Home',  path: '/' },
+ *     { name: 'Work',  path: '/work' },
+ *   ])
+ */
+export function breadcrumbSchema(
+  crumbs: Array<{ name: string; path: string }>,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.name,
+      item: c.path === "/" ? SITE_URL : `${SITE_URL}${c.path}`,
+    })),
+  };
+}
+
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": ["Organization", "ProfessionalService"],

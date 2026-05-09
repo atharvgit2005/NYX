@@ -64,12 +64,14 @@ import Link from "next/link";
 import { ServiceAnimations } from "../components/ServiceAnimations";
 import "../page.css";
 import { MobileNav } from "../components/MobileNav";
-import { createMarketingMetadata, SITE_URL } from "@/lib/seo";
+import { breadcrumbSchema, createMarketingMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = createMarketingMetadata({
   title: 'Content + Growth Packages for D2C Brands in India',
+  // ~155 chars — within Google's ~160 SERP cutoff. Long-form copy
+  // moved to the OG/Twitter description (those don't truncate).
   description:
-    'From ₹30K cinematic content sprints to full-funnel growth systems at ₹80K - NYX Studio\'s packages are built to move product. Paid ads, reels, UGC, and influencer ops for Indian D2C brands.',
+    'From ₹30K content sprints to ₹80K full-funnel growth systems. NYX Studio packages content, paid ads, reels, and influencer ops for Indian D2C brands.',
   path: '/services',
   openGraphTitle: 'Content + Growth Packages for D2C Brands in India | NYX Studio',
   openGraphDescription:
@@ -105,7 +107,15 @@ const servicesGraph = {
 export default function AdServicesPage() {
   return (
     <>
-      <SchemaOrg schema={servicesGraph} />
+      <SchemaOrg
+        schema={[
+          servicesGraph,
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Services', path: '/services' },
+          ]),
+        ]}
+      />
 
       {/* Main wrapper containing body-level styling to isolate from global styles */}
       <div className="bg-[#0E0E0E] text-[#e5e2e1] font-body selection:bg-primary selection:text-ink-black min-h-screen relative w-full overflow-hidden">

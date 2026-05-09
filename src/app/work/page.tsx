@@ -7,7 +7,7 @@ import "../page.css";
 import { MobileNav } from "../components/MobileNav";
 
 import SchemaOrg from "@/components/SchemaOrg";
-import { createMarketingMetadata, SITE_URL, defaultOgImage } from "@/lib/seo";
+import { breadcrumbSchema, createMarketingMetadata, SITE_URL, defaultOgImage } from "@/lib/seo";
 
 export const metadata: Metadata = createMarketingMetadata({
   title: 'Work That Sells — D2C Creative Portfolio',
@@ -104,7 +104,15 @@ const videoSchemas = [
 export default function AdWorkPage() {
     return (
         <>
-        <SchemaOrg schema={videoSchemas} />
+        <SchemaOrg
+          schema={[
+            ...videoSchemas,
+            breadcrumbSchema([
+              { name: 'Home', path: '/' },
+              { name: 'Work', path: '/work' },
+            ]),
+          ]}
+        />
 
             <div className="font-body selection:bg-secondary selection:text-black min-h-screen relative w-full overflow-hidden bg-[#131313] text-[#e5e2e1]">
                 {/* TopAppBar */}
@@ -166,10 +174,10 @@ export default function AdWorkPage() {
                             <span className="material-symbols-outlined text-9xl text-black/10 group-hover:text-black/20 transition-colors">add_circle</span>
                         </div>
                         <div className="relative z-10">
-                            <h3 className="font-headline text-[clamp(2.5rem,8vw,6rem)] font-black leading-tight uppercase text-black reveal-text">
+                            <h2 className="font-headline text-[clamp(2.5rem,8vw,6rem)] font-black leading-tight uppercase text-black reveal-text">
                                 <span className="block">YOUR PROJECT IS</span>
                                 <span className="text-white group-hover:text-[#ffd65b] transition-colors block leading-tight mt-2">NEXT IN LINE</span>
-                            </h3>
+                            </h2>
                             <div className="mt-12 flex flex-col md:flex-row gap-8 items-start md:items-center">
                                 <p className="font-body text-xl text-black font-medium max-w-xl">We are currently accepting new partners for the Q3-Q4 broadcast cycle. Let&apos;s build something that demands attention.</p>
                                 <Link className="bg-black text-white px-12 py-6 text-2xl font-headline font-bold uppercase group-hover:translate-x-4 transition-transform zine-shadow" href="/contact">

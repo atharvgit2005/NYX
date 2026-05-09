@@ -5,7 +5,7 @@ import GlobalAnimations from "@/components/GlobalAnimations";
 import AuthProvider from '@/components/AuthProvider'
 import { ThemeProvider } from "@/components/ThemeProvider";
 import SchemaOrg from "@/components/SchemaOrg";
-import { SITE_URL, defaultOgImage, organizationSchema } from "@/lib/seo";
+import { SITE_URL, defaultOgImage, organizationSchema, websiteSchema } from "@/lib/seo";
 
 const outfit = Outfit({ 
   subsets: ["latin"],
@@ -35,7 +35,9 @@ const workSans = Work_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Stop Scrolling. Start Converting. | NYX Studio — AI Content Agency India',
+    // 47 chars — within Google's ~60-char SERP cutoff. Long-tail keyword
+    // ("AI Content Agency India") moves to the description / OG title.
+    default: 'Stop Scrolling. Start Converting. | NYX Studio',
     template: '%s | NYX Studio',
   },
   description:
@@ -68,7 +70,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${barlowCondensed.variable} ${spaceGrotesk.variable} ${workSans.variable}`}>
       <body className="font-sans antialiased">
-        <SchemaOrg schema={organizationSchema} />
+        <SchemaOrg schema={[organizationSchema, websiteSchema]} />
         <AuthProvider>
           <ThemeProvider>
             <GlobalAnimations />

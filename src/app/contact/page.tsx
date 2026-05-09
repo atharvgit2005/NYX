@@ -6,7 +6,7 @@ import { ContactAnimations } from "../components/ContactAnimations";
 import "../page.css"; // Reuse the css from /ad/page.css for icons and basic styles
 import { MobileNav } from "../components/MobileNav";
 import SchemaOrg from "@/components/SchemaOrg";
-import { createMarketingMetadata, SITE_URL } from "@/lib/seo";
+import { breadcrumbSchema, createMarketingMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = createMarketingMetadata({
   title: "Let's Build Something Unmissable",
@@ -49,7 +49,15 @@ const contactPageSchema = {
 export default function AdContactPage() {
   return (
     <>
-      <SchemaOrg schema={contactPageSchema} />
+      <SchemaOrg
+        schema={[
+          contactPageSchema,
+          breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            { name: 'Contact', path: '/contact' },
+          ]),
+        ]}
+      />
 
       {/* Main wrapper containing body-level styling to isolate from global styles */}
       <div className="bg-surface text-on-surface font-body selection:bg-secondary selection:text-on-secondary min-h-screen relative w-full overflow-hidden">
