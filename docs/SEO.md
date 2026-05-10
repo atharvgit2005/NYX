@@ -171,9 +171,9 @@ Pitch 1 article each to:
 
 ## 🟡 Remaining technical polish (low priority)
 
-- [ ] `/automate` landing — decide whether to `noindex` (currently indexed; if it's only a redirect target, add `<meta name="robots" content="noindex">`)
-- [ ] FAQPage schema on `/services` — add 4-5 common questions ("How much does an AI reel cost?", "How fast is turnaround?", etc.) — eligible for rich result accordions in SERPs
-- [ ] `aria-hidden="true"` on decorative `<span class="material-symbols-outlined">` icons that have no semantic meaning
+- [x] ~~`/automate` landing — noindex check~~ — confirmed real public landing page (not a redirect), keep indexed
+- [x] ~~FAQPage schema on `/services`~~ — shipped with 5 visible Q/As + matching JSON-LD
+- [ ] `aria-hidden="true"` on decorative `<span class="material-symbols-outlined">` icons that have no semantic meaning (~28 instances across public pages — needs per-icon judgement)
 - [ ] Footer `<span>NYX STUDIO</span>` → consider semantic `<p>` (h3 would break hierarchy)
 - [ ] Image `alt` audit — every `<Image>` should have descriptive alt text, not just brand name
 - [ ] Add `priority` to LCP image on each page (Next.js hint)

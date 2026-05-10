@@ -81,6 +81,58 @@ export const metadata: Metadata = createMarketingMetadata({
     'From ₹30K to ₹80K - content, paid ads, reels, and influencer ops for Indian D2C brands.',
 });
 
+/**
+ * FAQPage schema — eligible for rich-result accordions in Google SERPs.
+ * Each Q/A is plain text (no HTML). Keep answers ~50-200 chars for best
+ * rendering across desktop and mobile snippets.
+ */
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "How much does an AI-native content package cost in India?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "NYX Studio packages start at ₹30,000/month (Trial Pack) for 15-17 high-fidelity posts and reels on a single platform, scale to ₹50,000/month (Starter Pack) for multi-platform creative plus Meta ads, and reach ₹80,000/month (Growth Pack) for full ecosystem execution including influencer ops and WhatsApp/SMS funnels.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How fast is the turnaround on a cinematic D2C reel?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Standard turnaround is 5-7 business days from approved brief to final delivery. AI-generated product films can ship in 48-72 hours when no live shoot is required. Rush turnaround is available for existing partners.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do you only work with Indian D2C brands?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Our core focus is D2C brands operating in India - food, beverage, lifestyle, beauty, and apparel categories. We're open to international D2C brands selling into India, but we don't take on B2B SaaS, professional services, or non-D2C consumer brands.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What's included in the AI content automation pipeline?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "End-to-end production: script generation, AI voiceover, AI video synthesis or live-shot editing, motion graphics, captioning, platform-specific resizing, and scheduled distribution across Meta, YouTube Shorts, and TikTok. Available as part of Starter and Growth packages.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Do you offer one-off shoots or only monthly retainers?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We're retainer-first because content velocity is what actually moves D2C metrics - one campaign a quarter doesn't compound. We do accept one-off projects for brand films and launch campaigns when the scope is clearly defined. Reach out via the contact page to discuss.",
+      },
+    },
+  ],
+};
+
 const servicesGraph = {
   "@context": "https://schema.org",
   "@graph": servicesSchema.map((entry, index) => ({
@@ -110,6 +162,7 @@ export default function AdServicesPage() {
       <SchemaOrg
         schema={[
           servicesGraph,
+          faqSchema,
           breadcrumbSchema([
             { name: 'Home', path: '/' },
             { name: 'Services', path: '/services' },
@@ -359,6 +412,38 @@ export default function AdServicesPage() {
                         </div>
 
                     </div>
+                </div>
+            </section>
+
+            {/* FAQ — visible content paired with the FAQPage JSON-LD above
+                so Google can understand and (where eligible) surface the
+                Q/As as rich results. Each entry mirrors faqSchema. */}
+            <section className="py-24 px-8 bg-surface-container-low border-b-4 border-ink-black">
+                <div className="max-w-4xl mx-auto">
+                    <span className="font-label text-xs uppercase tracking-widest text-primary mb-4 block">* QUESTIONS WE GET ASKED</span>
+                    <h2 className="font-headline text-[clamp(2.5rem,7vw,5rem)] leading-[0.9] font-black tracking-tighter uppercase mb-12">FAQ</h2>
+                    <dl className="space-y-8">
+                        <div className="border-b-4 border-ink-black pb-6">
+                            <dt className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How much does an AI-native content package cost in India?</dt>
+                            <dd className="font-body text-base md:text-lg leading-relaxed text-ink-black/80">NYX Studio packages start at ₹30,000/month (Trial Pack) for 15-17 high-fidelity posts and reels on a single platform, scale to ₹50,000/month (Starter Pack) for multi-platform creative plus Meta ads, and reach ₹80,000/month (Growth Pack) for full ecosystem execution including influencer ops and WhatsApp/SMS funnels.</dd>
+                        </div>
+                        <div className="border-b-4 border-ink-black pb-6">
+                            <dt className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How fast is the turnaround on a cinematic D2C reel?</dt>
+                            <dd className="font-body text-base md:text-lg leading-relaxed text-ink-black/80">Standard turnaround is 5-7 business days from approved brief to final delivery. AI-generated product films can ship in 48-72 hours when no live shoot is required. Rush turnaround is available for existing partners.</dd>
+                        </div>
+                        <div className="border-b-4 border-ink-black pb-6">
+                            <dt className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Do you only work with Indian D2C brands?</dt>
+                            <dd className="font-body text-base md:text-lg leading-relaxed text-ink-black/80">Our core focus is D2C brands operating in India - food, beverage, lifestyle, beauty, and apparel categories. We&apos;re open to international D2C brands selling into India, but we don&apos;t take on B2B SaaS, professional services, or non-D2C consumer brands.</dd>
+                        </div>
+                        <div className="border-b-4 border-ink-black pb-6">
+                            <dt className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">What&apos;s included in the AI content automation pipeline?</dt>
+                            <dd className="font-body text-base md:text-lg leading-relaxed text-ink-black/80">End-to-end production: script generation, AI voiceover, AI video synthesis or live-shot editing, motion graphics, captioning, platform-specific resizing, and scheduled distribution across Meta, YouTube Shorts, and TikTok. Available as part of Starter and Growth packages.</dd>
+                        </div>
+                        <div>
+                            <dt className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Do you offer one-off shoots or only monthly retainers?</dt>
+                            <dd className="font-body text-base md:text-lg leading-relaxed text-ink-black/80">We&apos;re retainer-first because content velocity is what actually moves D2C metrics - one campaign a quarter doesn&apos;t compound. We do accept one-off projects for brand films and launch campaigns when the scope is clearly defined. Reach out via the contact page to discuss.</dd>
+                        </div>
+                    </dl>
                 </div>
             </section>
 
