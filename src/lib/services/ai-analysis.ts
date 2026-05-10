@@ -1,16 +1,23 @@
 import { generateWithGemini } from '@/lib/gemini';
 
+/**
+ * Analyses a social profile transcript and returns niche/tone/audience
+ * insights. Throws on any failure (missing key, model error, malformed
+ * AI response) so the calling route can return a real error to the UI
+ * instead of silently surfacing the hard-coded "Creative Tech & AI
+ * (Fallback)" object that the user mistakes for a real analysis.
+ */
 export async function analyzeNiche(transcript: string) {
     if (!process.env.GEMINI_API_KEY) {
-        console.warn("Missing GEMINI_API_KEY");
-        return getMockAnalysis();
+        throw new Error(
+            "GEMINI_API_KEY is not configured. Set it in the environment to enable AI brand analysis.",
+        );
     }
 
-    try {
-        const prompt = `
+    const prompt = `
       Analyze this social media profile transcript:
       ${transcript}
-      
+
       Return a VALID JSON object with exactly these keys:
       - niche (string)
       - tone (string)
@@ -21,33 +28,35 @@ export async function analyzeNiche(transcript: string) {
       IMPORTANT: Return ONLY the JSON object. Do not include any introductory remarks, markdown code blocks, or conclusions. Raw JSON only.
     `;
 
-        const text = await generateWithGemini(prompt);
-        
-        // Robust extraction of JSON object string
-        const jsonMatch = text.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) {
-            throw new Error("No JSON object found in AI response");
-        }
-        
-        return JSON.parse(jsonMatch[0]);
-
+    let text: string;
+    try {
+        text = await generateWithGemini(prompt);
     } catch (error: unknown) {
-        console.error("Gemini Analysis Error:", error);
-        return {
-            ...getMockAnalysis(),
-            error_details: error instanceof Error ? error.message : String(error)
-        };
+        const msg = error instanceof Error ? error.message : String(error);
+        console.error("Gemini Analysis Error (model call):", msg);
+        // Re-throw with a stable, user-readable message. Differentiate
+        // the two common cases so /api/analyze can render them cleanly.
+        if (msg.includes('RATE_LIMITED') || msg.toLowerCase().includes('quota')) {
+            throw new Error(
+                "Gemini is rate-limiting requests right now. Try again in 30-60 seconds.",
+            );
+        }
+        throw new Error(`AI analysis failed: ${msg}`);
     }
-}
 
-function getMockAnalysis() {
-    return {
-        niche: "Creative Tech & AI (Fallback)",
-        tone: "Innovative, Educational, Future-focused",
-        audience: "Developers, Designers, Tech Enthusiasts",
-        pillars: ["AI Tools", "Coding Tips", "Future Tech", "Career Growth"],
-        competitors: ["@fireship_dev", "@webdevsimplified"]
-    };
+    // Robust extraction of JSON object string
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) {
+        console.error("Gemini Analysis Error (no JSON):", text.slice(0, 200));
+        throw new Error("AI returned an unparseable response. Please retry.");
+    }
+
+    try {
+        return JSON.parse(jsonMatch[0]);
+    } catch {
+        console.error("Gemini Analysis Error (JSON parse):", jsonMatch[0].slice(0, 200));
+        throw new Error("AI returned malformed JSON. Please retry.");
+    }
 }
 
 export async function generateIdeas(niche: string, pillars: string[]) {

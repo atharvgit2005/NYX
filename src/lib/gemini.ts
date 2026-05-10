@@ -4,12 +4,17 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 let isRateLimited = false;
 let rateLimitResetTime = 0;
 
+// Model rotation: tried in order, falling through on per-model failures.
+// As of May 2026 the gemini-1.5 family is sunset and the 2.0 line is on
+// the deprecation path - keep the 2.5 family at the top so live traffic
+// hits supported models first. The 2.0 entries remain as a soft fallback
+// in case a specific 2.5 model is regional-rate-limited.
 const MODELS = [
+    "gemini-2.5-flash",
+    "gemini-2.5-flash-lite",
+    "gemini-2.5-pro",
     "gemini-2.0-flash",
     "gemini-2.0-flash-lite",
-    "gemini-1.5-flash-latest",
-    "gemini-1.5-flash",
-    "gemini-1.5-flash-8b",
 ];
 
 export async function generateWithGemini(prompt: string, options: { model?: string } = {}) {
