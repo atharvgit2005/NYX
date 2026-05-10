@@ -8,6 +8,14 @@ export interface ScrapedProfile {
     followersCount: string;
     posts: ScrapedPost[];
     transcript: string;
+    /**
+     * True when this profile is the synthetic fallback (all real scrape
+     * strategies failed). Routes should NOT run AI analysis on a mock
+     * profile - the analysis would be identical for every username and
+     * appears to the user as "meta data instead of actual analysis."
+     * Surface the failure to the UI instead.
+     */
+    isMock?: boolean;
 }
 
 export interface ScrapedPost {
@@ -173,71 +181,50 @@ async function scrapeWithPicuki(username: string): Promise<ScrapedProfile | null
     }
 }
 
-// Strategy: Dumpoir (Backup Mirror)
-async function scrapeWithDumpoir(username: string): Promise<ScrapedProfile | null> {
-    console.log(`[Strategy: Dumpoir Mirror] Fetching info for @${username}...`);
-    try {
-        const url = `https://www.dumpoir.com/v/${username}`;
-        const { data } = await axios.get(url, {
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-            },
-            timeout: 5000 // 5s timeout
-        });
-
-        const $ = cheerio.load(data);
-
-        const fullName = $('.user__title h1').text().trim() || username;
-        const biography = $('.user__info-desc').text().trim() || '';
-        const followersCount = 'Unknown';
-
-        const posts: ScrapedPost[] = [];
-        $('.content__img').each((i, el) => {
-            if (i >= 6) return;
-            const imageUrl = $(el).attr('src') || '';
-            const caption = $(el).attr('alt') || 'No caption';
-            if (imageUrl) posts.push({ caption, likes: 'Unknown', imageUrl });
-        });
-
-        if (posts.length === 0) return null;
-
-        return {
-            username,
-            fullName,
-            biography,
-            followersCount,
-            posts,
-            transcript: createTranscript(username, fullName, biography, followersCount, posts)
-        };
-    } catch {
-        console.warn(`[Strategy: Dumpoir] Failed`);
-        return null;
-    }
-}
-
+// Removed: Dumpoir mirror strategy. That mirror's HTML used `img.alt`
+// as the post caption, but the alt content is generic page metadata
+// ("Instagram photo by X • 2024 views"), not the real caption. Feeding
+// that into Gemini produced identical-looking analysis for every brand
+// (the "meta data instead of actual analysis" symptom). If a similar
+// mirror with real captions appears later, add a new strategy function.
 
 export async function scrapeInstagramProfile(username: string): Promise<ScrapedProfile> {
-    // Run strategies concurrently to save time, since Vercel has a strict 10s limit
-    console.log(`[Scraper] Starting parallel scrape scraping for @${username}`);
-    
-    try {
-        const results = await Promise.all([
-            scrapeWithIGApi(username),
-            scrapeWithPicuki(username),
-            scrapeWithDumpoir(username)
-        ]);
-        
-        // Find the first successful result
-        const validResult = results.find(r => r !== null);
-        if (validResult) {
-            return validResult;
-        }
-    } catch {
-        console.error('[Scraper] Parallel execution failed');
+    // Run strategies concurrently to save time, since Vercel has a strict 10s limit.
+    // Dropped Dumpoir from the rotation - its scraper used `img.alt` for the
+    // post caption, which on that mirror is HTML metadata ("Instagram photo
+    // by X • 2024 views") rather than real caption text. Feeding that into
+    // Gemini produced generic, identical-looking analysis for every brand
+    // (the "meta data instead of actual analysis" symptom).
+    console.log(`[Scraper] Starting parallel scrape for @${username}`);
+
+    // Promise.allSettled so a single rejection doesn't abort the rest.
+    const settled = await Promise.allSettled([
+        scrapeWithIGApi(username),
+        scrapeWithPicuki(username),
+    ]);
+
+    const candidates = settled
+        .map((r) => (r.status === 'fulfilled' ? r.value : null))
+        .filter((p): p is ScrapedProfile => p !== null && p.posts.length > 0);
+
+    // Pick the candidate with the most posts that have non-trivial captions.
+    // Captions like "No caption", empty strings, or pure metadata score 0.
+    const scored = candidates.map((c) => ({
+        profile: c,
+        score: c.posts.filter((p) => {
+            const cap = (p.caption || '').trim();
+            return cap.length > 8 && cap.toLowerCase() !== 'no caption';
+        }).length,
+    }));
+    scored.sort((a, b) => b.score - a.score);
+
+    if (scored.length > 0 && scored[0].score > 0) {
+        console.log(`[Scraper] Best result: ${scored[0].profile.fullName} (score=${scored[0].score})`);
+        return scored[0].profile;
     }
 
-    console.warn('[Scraper] All mirror strategies failed. Returning Fallback Mock Data.');
-    return getMockProfile(username);
+    console.warn('[Scraper] All real strategies failed or returned trivial content. Returning flagged mock.');
+    return { ...getMockProfile(username), isMock: true };
 }
 
 // Mock Data Fallback

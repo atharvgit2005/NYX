@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { scrapeInstagramProfile } from '@/lib/services/instagram-scraper';
-import { scrapeInstagramProfile as scrapeMockProfile } from '@/lib/services/instagram';
 import { analyzeNiche } from '@/lib/services/ai-analysis';
 
 export async function POST(request: Request) {
@@ -12,38 +11,31 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Username is required' }, { status: 400 });
         }
 
-        let scrapedProfile;
-        let isMockData = false;
+        // 1. Scrape the real profile. The scraper itself never throws -
+        //    when every strategy fails it returns a flagged mock instead.
+        console.log(`Scraping profile for @${username}...`);
+        const scrapedProfile = await scrapeInstagramProfile(username);
 
-        try {
-            // 1. Try to scrape the real profile
-            console.log(`Scraping profile for @${username}...`);
-            scrapedProfile = await scrapeInstagramProfile(username);
-        } catch {
-            console.warn(`Live scraping failed for @${username}. Falling back to mock data.`);
-            // 2. Fallback to mock data
-            const mockProfile = await scrapeMockProfile(username);
-
-            // Convert mock profile to the format expected by analyzeNiche
-            // The mock profile has 'posts' but we need a 'transcript' string for the AI
-            const transcript = `
-            Profile: ${mockProfile.fullName} (@${mockProfile.username})
-            Bio: ${mockProfile.biography}
-            Followers: ${mockProfile.followersCount}
-            
-            Recent Content (Captions):
-            ${mockProfile.posts.map((p, i) => `[Post ${i + 1}] ${p.caption}`).join('\n\n')}
-            `;
-
-            scrapedProfile = {
-                ...mockProfile,
-                followersCount: mockProfile.followersCount.toString(),
-                transcript
-            };
-            isMockData = true;
+        // 2. Refuse to run Gemini on synthetic content. Previously the API
+        //    silently analysed the mock transcript, so every username got
+        //    the same generic "Creative Tech & AI" analysis - the user
+        //    perceived this as "meta data instead of real analysis."
+        //    Surface a real error so the UI can prompt the user.
+        if (scrapedProfile.isMock) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    error:
+                        `We couldn't read @${username}'s public Instagram profile. ` +
+                        `Confirm the account exists and is public, then try again. ` +
+                        `If the issue persists Instagram is likely rate-limiting our scrapers - retry in a few minutes.`,
+                    scrapeFailed: true,
+                },
+                { status: 502 },
+            );
         }
 
-        // 3. Analyze the transcript with Gemini
+        // 3. Analyze the (real) transcript with Gemini
         console.log(`Analyzing transcript with Gemini... (Key exists? ${!!process.env.GEMINI_API_KEY})`);
         const analysis = await analyzeNiche(scrapedProfile.transcript);
 
@@ -55,10 +47,10 @@ export async function POST(request: Request) {
                     fullName: scrapedProfile.fullName,
                     followers: scrapedProfile.followersCount,
                     bio: scrapedProfile.biography,
-                    posts: scrapedProfile.posts, // Pass posts to frontend
-                    isMockData // Inform the frontend/user that this is mock data
-                }
-            }
+                    posts: scrapedProfile.posts,
+                    isMockData: false,
+                },
+            },
         });
     } catch (error: unknown) {
         console.error("Analysis API Error:", error);
