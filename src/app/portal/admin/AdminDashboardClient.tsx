@@ -347,8 +347,8 @@ function SideNav({ adminName }: { adminName: string | null }) {
   const navItems: Array<{ icon: string; label: string; href: string; active?: boolean }> = [
     { icon: 'dashboard', label: '*DASHBOARD', href: '/automate/dashboard' },
     { icon: 'group', label: '*BRAND_PARTNERS', href: '/portal/admin', active: true },
-    { icon: 'monitoring', label: '*ANALYTICS', href: '/automate/admin/analytics' },
-    { icon: 'inventory_2', label: '*ADMIN_LEGACY', href: '/automate/admin' },
+    { icon: 'monitoring', label: '*ANALYTICS', href: '/automate/admin_automate/analytics' },
+    { icon: 'inventory_2', label: '*ADMIN_LEGACY', href: '/automate/admin_automate' },
     { icon: 'settings', label: '*SETTINGS', href: '/automate/dashboard/profile' },
   ]
 
@@ -460,7 +460,7 @@ function TopBar({ adminEmail, adminName }: { adminEmail: string; adminName: stri
             *GLOBAL_VIEW
           </Link>
           <Link
-            href="/automate/admin/analytics"
+            href="/automate/admin_automate/analytics"
             className="uppercase text-xs text-[#e4beb5] font-medium hover:text-[#E8441A] transition-all"
             style={HEAD}
           >

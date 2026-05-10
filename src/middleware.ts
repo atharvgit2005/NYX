@@ -25,8 +25,11 @@ export default async function middleware(req: NextRequest) {
         return NextResponse.next();
     }
 
-    // ── /automate/admin — must be admin ────────────────────────────
-    if (pathname.startsWith('/automate/admin')) {
+    // ── /automate/admin_automate — must be admin ───────────────────
+    // (Renamed from /automate/admin so it doesn't collide with future
+    // /automate-app routes; the directory in src/app/automate/admin_automate
+    // is the only thing that lives here.)
+    if (pathname.startsWith('/automate/admin_automate')) {
         if (!token) {
             const url = new URL('/automate/login', req.url);
             url.searchParams.set('callbackUrl', pathname);
@@ -55,7 +58,7 @@ export default async function middleware(req: NextRequest) {
 export const config = {
     matcher: [
         '/automate/dashboard/:path*',
-        '/automate/admin/:path*',
+        '/automate/admin_automate/:path*',
         '/portal/:path*',
     ],
 };

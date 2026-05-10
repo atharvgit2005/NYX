@@ -8,8 +8,8 @@ module.exports = {
   // Everything else is private (auth-gated, API, admin tooling, asset routes).
   exclude: [
     '/api/*',
-    '/automate/admin',
-    '/automate/admin/*',
+    '/automate/admin_automate',
+    '/automate/admin_automate/*',
     '/automate/dashboard',
     '/automate/dashboard/*',
     '/automate/login',
@@ -35,7 +35,7 @@ module.exports = {
         'Disallow: /clients/',
         // Automate SaaS routes that exist on the main domain only as
         // 308-redirect targets to the subdomain — also never index.
-        'Disallow: /automate/admin/',
+        'Disallow: /automate/admin_automate/',
         'Disallow: /automate/dashboard/',
         'Disallow: /automate/login',
         'Disallow: /automate/signin',

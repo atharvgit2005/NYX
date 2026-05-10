@@ -7,7 +7,7 @@
  * To add an admin: edit this array and redeploy. No DB needed.
  *
  * Note: this is separate from the existing ADMIN_EMAIL env var which gates
- * /automate/admin. They are independent on purpose so changes here don't
+ * /automate/admin_automate. They are independent on purpose so changes here don't
  * affect the automate side.
  */
 export const ADMIN_EMAILS: string[] = [

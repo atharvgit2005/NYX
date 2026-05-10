@@ -12,15 +12,15 @@ import { useAdmin } from '@/context/AdminContext';
 import Image from 'next/image';
 
 const navItems = [
-    { name: 'Dashboard', href: '/automate/admin', icon: LayoutDashboard },
-    { name: 'Users', href: '/automate/admin/users', icon: Users },
-    { name: 'Subscriptions', href: '/automate/admin/subscriptions', icon: CreditCard },
-    { name: 'Tiers', href: '/automate/admin/tiers', icon: Layers },
-    { name: 'Feature Gates', href: '/automate/admin/gates', icon: Shield },
-    { name: 'Analytics', href: '/automate/admin/analytics', icon: BarChart3 },
-    { name: 'Inquiries', href: '/automate/admin/inquiries', icon: BookOpen },
-    { name: 'Audit Log', href: '/automate/admin/audit', icon: ScrollText },
-    { name: 'Alerts', href: '/automate/admin/alerts', icon: Bell },
+    { name: 'Dashboard', href: '/automate/admin_automate', icon: LayoutDashboard },
+    { name: 'Users', href: '/automate/admin_automate/users', icon: Users },
+    { name: 'Subscriptions', href: '/automate/admin_automate/subscriptions', icon: CreditCard },
+    { name: 'Tiers', href: '/automate/admin_automate/tiers', icon: Layers },
+    { name: 'Feature Gates', href: '/automate/admin_automate/gates', icon: Shield },
+    { name: 'Analytics', href: '/automate/admin_automate/analytics', icon: BarChart3 },
+    { name: 'Inquiries', href: '/automate/admin_automate/inquiries', icon: BookOpen },
+    { name: 'Audit Log', href: '/automate/admin_automate/audit', icon: ScrollText },
+    { name: 'Alerts', href: '/automate/admin_automate/alerts', icon: Bell },
 ];
 
 export default function AdminSidebar() {
