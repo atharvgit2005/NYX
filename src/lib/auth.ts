@@ -217,8 +217,83 @@ export const authOptions: AuthOptions = {
             }
             : undefined,
     callbacks: {
-        async signIn({ user, account }) {
+        async signIn({ user, account, profile }) {
             console.log("AUTH_SignIn_Callback:", { userEmail: user.email, provider: account?.provider });
+
+            // Defensive Google ↔ existing-user linking.
+            //
+            // `allowDangerousEmailAccountLinking: true` on the GoogleProvider
+            // is supposed to auto-link Google sign-ins to an existing User row
+            // that shares the same email — but it has edge cases when the
+            // User row was created OUTSIDE NextAuth (e.g. by our admin-seed
+            // script `prisma/setup-admin-user.ts`, or by the credentials
+            // signup endpoint), because in those cases there's no Account
+            // row at all and the adapter's linkAccount path can still throw
+            // OAuthAccountNotLinked.
+            //
+            // Fix: when Google returns a verified email and we have a User
+            // row already (credentials user or earlier OAuth), make sure
+            // there's a matching Account row. If not, create it ourselves.
+            // This is safe because we're only linking when the email matches
+            // a row we already trust, and Google's `email_verified` proves
+            // the caller controls the inbox.
+            if (account?.provider === 'google' && user.email) {
+                const verifiedEmail =
+                    (profile as { email_verified?: boolean } | undefined)?.email_verified ?? true;
+                if (!verifiedEmail) return true;
+
+                try {
+                    const existing = await prisma.user.findUnique({
+                        where: { email: user.email },
+                        include: { accounts: true },
+                    });
+
+                    if (existing) {
+                        const alreadyLinked = existing.accounts.some(
+                            (a) =>
+                                a.provider === 'google' &&
+                                a.providerAccountId === account.providerAccountId,
+                        );
+
+                        if (!alreadyLinked) {
+                            await prisma.account.create({
+                                data: {
+                                    userId: existing.id,
+                                    type: account.type,
+                                    provider: account.provider,
+                                    providerAccountId: account.providerAccountId,
+                                    access_token: account.access_token,
+                                    refresh_token: account.refresh_token,
+                                    expires_at: account.expires_at,
+                                    token_type: account.token_type,
+                                    scope: account.scope,
+                                    id_token: account.id_token,
+                                    session_state:
+                                        typeof account.session_state === 'string'
+                                            ? account.session_state
+                                            : null,
+                                },
+                            });
+                            console.log("AUTH_Linked_Google_To_Existing_User:", {
+                                userId: existing.id,
+                                email: user.email,
+                            });
+                        }
+
+                        // Make sure the JWT id reflects the EXISTING user row,
+                        // not a freshly-created shadow row from the adapter.
+                        user.id = existing.id;
+                        user.role = existing.role;
+                        user.passwordChangedAt = existing.passwordChangedAt;
+                        user.activeSessionId = existing.activeSessionId;
+                    }
+                } catch (err) {
+                    console.error("AUTH_GoogleLink_Error:", err);
+                    // Don't block sign-in on link error — fall through and
+                    // let the adapter try its own path.
+                }
+            }
+
             return true;
         },
         async jwt({ token, user }) {
