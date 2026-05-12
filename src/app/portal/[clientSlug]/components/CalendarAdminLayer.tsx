@@ -24,7 +24,12 @@ import {
     useSensors,
     type DragEndEvent,
 } from '@dnd-kit/core'
-import { CONTENT_TYPE_LABEL, TYPE_COLORS } from '@/lib/portal/content-types'
+import {
+    CONTENT_TYPE_LABEL,
+    POST_STATUS_LABEL,
+    STATUS_COLORS,
+    TYPE_COLORS,
+} from '@/lib/portal/content-types'
 import type { BrandConfig } from '@/lib/portal/brand-config'
 import type { SerializedPost } from './types'
 
@@ -105,10 +110,15 @@ export default function CalendarAdminLayer({
                             (i + 1) % 7 !== 0 ? '1px solid #F0EDE6' : 'none',
                         borderBottom: !isLastRow ? '1px solid #F0EDE6' : 'none',
                         background: isToday
-                            ? `${brand.brand.primary}06`
+                            ? `${brand.brand.primary}0D`
                             : hasPosts && inCampaign
                               ? '#FAF7F2'
                               : 'transparent',
+                        // Strong today outline (inset so it doesn't collide
+                        // with the grid divider lines). Matches CalendarView.
+                        boxShadow: isToday
+                            ? `inset 0 0 0 2px ${brand.brand.primary}`
+                            : undefined,
                     }
 
                     const cellInner = (
@@ -137,7 +147,16 @@ export default function CalendarAdminLayer({
                                                 e.stopPropagation()
                                                 onCreateOnDay(dateStr)
                                             }}
-                                            className="opacity-0 group-hover:opacity-100 transition-opacity w-5 h-5 rounded-full flex items-center justify-center text-xs font-semibold"
+                                            // Always-visible faint affordance
+                                            // on in-campaign days; ramps up
+                                            // on cell hover. Off-campaign
+                                            // days stay invisible-until-hover
+                                            // so the grid doesn't look noisy.
+                                            className={`transition-opacity w-5 h-5 rounded-full flex items-center justify-center text-xs font-semibold ${
+                                                inCampaign
+                                                    ? 'opacity-40 group-hover:opacity-100'
+                                                    : 'opacity-0 group-hover:opacity-100'
+                                            }`}
                                             style={{
                                                 background: '#FFFFFF',
                                                 color: brand.brand.primary,
@@ -166,10 +185,17 @@ export default function CalendarAdminLayer({
                                     <button
                                         type="button"
                                         onClick={() => onCreateOnDay(dateStr)}
-                                        className="absolute inset-0 mt-7 m-1 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center text-xs font-medium rounded-lg"
+                                        className={`absolute inset-0 mt-7 m-1 transition-opacity flex items-center justify-center text-xs font-medium rounded-lg ${
+                                            inCampaign
+                                                ? 'opacity-30 hover:opacity-100'
+                                                : 'opacity-0 hover:opacity-100'
+                                        }`}
                                         style={{
                                             color: brand.brand.primary,
                                             background: `${brand.brand.primary}08`,
+                                            border: inCampaign
+                                                ? `1px dashed ${brand.brand.primary}30`
+                                                : 'none',
                                         }}
                                         aria-label={`Add post on ${dateStr}`}
                                     >
@@ -215,6 +241,7 @@ function DraggableChip({
     onClick: () => void
 }) {
     const colors = TYPE_COLORS[post.contentType]
+    const statusColors = STATUS_COLORS[post.status]
     const { attributes, listeners, setNodeRef, transform, isDragging } =
         useDraggable({ id: post.id })
     const style: React.CSSProperties = {
@@ -238,16 +265,32 @@ function DraggableChip({
                     onClick()
                 }
             }}
-            className="w-full text-left px-1.5 py-1 rounded-lg text-xs font-medium leading-tight transition-all hover:scale-[1.02] select-none"
+            className="group/chip relative w-full text-left px-1.5 py-1 rounded-lg text-xs font-medium leading-tight transition-all hover:scale-[1.02] select-none"
             style={style}
-            title={post.title}
+            title={`${post.title} · ${POST_STATUS_LABEL[post.status]} · ${CONTENT_TYPE_LABEL[post.contentType]} (drag to reschedule)`}
         >
-            <span className="hidden md:block truncate" style={{ maxWidth: '100px' }}>
-                {post.title.split(' — ')[0].split(':')[0]}
+            {/* Status dot — top-right corner, ring colour matches the
+                chip background so it reads as a sticker rather than part
+                of the type colour family. */}
+            <span
+                className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full"
+                style={{
+                    background: statusColors.dot,
+                    boxShadow: `0 0 0 1.5px ${colors.bg}`,
+                }}
+                aria-hidden
+            />
+            {/* Drag-handle grip — opacity-0 by default, ramps up on chip
+                hover so admin sees there's something to grab. Pointer
+                events through so the listeners on the wrapper still fire. */}
+            <span
+                className="absolute left-0.5 top-1/2 -translate-y-1/2 opacity-0 group-hover/chip:opacity-50 transition-opacity pointer-events-none leading-none"
+                style={{ color: colors.text, fontSize: '10px' }}
+                aria-hidden
+            >
+                ⋮⋮
             </span>
-            <span className="md:hidden">
-                {CONTENT_TYPE_LABEL[post.contentType].charAt(0)}
-            </span>
+            <span className="block truncate pr-3 pl-1.5">{post.title}</span>
         </div>
     )
 }

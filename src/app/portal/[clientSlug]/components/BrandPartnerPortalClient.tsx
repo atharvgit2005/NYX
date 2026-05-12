@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Toaster } from 'sonner'
-import { Calendar, Download, LayoutGrid, Grid3x3, type LucideIcon } from 'lucide-react'
+import { Archive, Calendar, Download, LayoutGrid, Grid3x3, type LucideIcon } from 'lucide-react'
 import type { ContentType, PostStatus } from '@prisma/client'
 import type { BrandConfig } from '@/lib/portal/brand-config'
 import type { SerializedPost } from './types'
@@ -23,6 +23,11 @@ import type { Platform } from '@prisma/client'
 // PostFormModal / ThumbnailUploader / @vercel/blob client. ssr:false
 // means it's only fetched when an admin actually opens the edit modal.
 const AdminEditOverlay = dynamic(() => import('./AdminEditOverlay'), {
+  ssr: false,
+})
+// Same treatment for the archive drawer — admin-only surface, no need to
+// ship it in the partner bundle.
+const ArchiveDrawer = dynamic(() => import('./ArchiveDrawer'), {
   ssr: false,
 })
 
@@ -104,6 +109,7 @@ export default function BrandPartnerPortalClient({
   const [creating, setCreating] = useState<{ scheduledDate?: string } | null>(
     null,
   )
+  const [archiveOpen, setArchiveOpen] = useState(false)
 
   const mutations = useAdminPostMutations({
     clientSlug: brand.slug,
@@ -248,24 +254,40 @@ export default function BrandPartnerPortalClient({
                 <span className="hidden sm:inline">Export</span>
               </a>
               {viewerIsAdmin && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    const today = new Date()
-                    const pad = (n: number) => String(n).padStart(2, '0')
-                    const iso = `${today.getFullYear()}-${pad(
-                      today.getMonth() + 1,
-                    )}-${pad(today.getDate())}T00:00:00.000Z`
-                    setCreating({ scheduledDate: iso })
-                  }}
-                  className="flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-opacity hover:opacity-90"
-                  style={{ background: brand.brand.primary }}
-                >
-                  <span aria-hidden className="text-base leading-none">
-                    +
-                  </span>
-                  <span>New post</span>
-                </button>
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setArchiveOpen(true)}
+                    className="flex items-center gap-1.5 px-3 sm:px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-colors"
+                    style={{
+                      background: '#FFFFFF',
+                      color: '#6B6B6B',
+                      border: '1px solid #E8E4DC',
+                    }}
+                    title="Archived posts"
+                  >
+                    <Archive className="w-3.5 h-3.5" aria-hidden />
+                    <span className="hidden sm:inline">Archive</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const today = new Date()
+                      const pad = (n: number) => String(n).padStart(2, '0')
+                      const iso = `${today.getFullYear()}-${pad(
+                        today.getMonth() + 1,
+                      )}-${pad(today.getDate())}T00:00:00.000Z`
+                      setCreating({ scheduledDate: iso })
+                    }}
+                    className="flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                    style={{ background: brand.brand.primary }}
+                  >
+                    <span aria-hidden className="text-base leading-none">
+                      +
+                    </span>
+                    <span>New post</span>
+                  </button>
+                </>
               )}
               <div
                 className="flex rounded-full overflow-hidden"
@@ -386,10 +408,25 @@ export default function BrandPartnerPortalClient({
             await mutations.archivePost(id)
             setEditing(null)
           }}
+          onDelete={async (id) => {
+            await mutations.deletePost(id)
+            setEditing(null)
+          }}
           onDuplicate={async (id) => {
             await mutations.duplicatePost(id)
             setEditing(null)
           }}
+        />
+      )}
+
+      {viewerIsAdmin && (
+        <ArchiveDrawer
+          open={archiveOpen}
+          brand={brand}
+          fetchArchived={mutations.fetchArchived}
+          onRestore={mutations.restorePost}
+          onDelete={mutations.deletePost}
+          onClose={() => setArchiveOpen(false)}
         />
       )}
 

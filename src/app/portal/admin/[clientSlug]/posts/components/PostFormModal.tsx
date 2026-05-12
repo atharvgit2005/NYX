@@ -97,6 +97,7 @@ interface ThemeTokens {
         saving: string
         cancel: string
         archive: string
+        delete: string
     }
 }
 
@@ -167,6 +168,7 @@ const THEMES: Record<PostFormTheme, ThemeTokens> = {
             saving: 'SAVING…',
             cancel: 'Cancel',
             archive: 'ARCHIVE',
+            delete: 'DELETE',
         },
     },
     editorial: {
@@ -251,6 +253,7 @@ const THEMES: Record<PostFormTheme, ThemeTokens> = {
             saving: 'Saving…',
             cancel: 'Cancel',
             archive: 'Archive',
+            delete: 'Delete',
         },
     },
 }
@@ -280,6 +283,10 @@ interface Props {
   onClose: () => void
   onSubmit: (values: PostFormValues) => void | Promise<void>
   onArchive?: () => void
+  /** Edit-mode only: hard-delete the post (irreversible). Shown alongside
+   *  archive — archive is the recoverable default, delete drops the row
+   *  permanently. */
+  onDelete?: () => void
   /** Edit-mode only: clone the post into a new IDEA card and close. */
   onDuplicate?: () => void
   /** Visual theme. Default 'brutalist' (workspace mode). 'editorial' is
@@ -310,6 +317,7 @@ export default function PostFormModal({
   onClose,
   onSubmit,
   onArchive,
+  onDelete,
   onDuplicate,
   theme = 'brutalist',
 }: Props) {
@@ -559,7 +567,7 @@ export default function PostFormModal({
                 <button
                   type="button"
                   onClick={() => {
-                    if (confirm('Archive this post? It disappears from views and the partner portal.')) {
+                    if (confirm('Archive this post? It disappears from views and the partner portal. You can restore it from the archive drawer.')) {
                       onArchive()
                     }
                   }}
@@ -567,6 +575,31 @@ export default function PostFormModal({
                   style={T.btnDangerStyle}
                 >
                   {T.labels.archive}
+                </button>
+              )}
+              {mode === 'edit' && onDelete && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (
+                      confirm(
+                        'Delete this post permanently? This removes the post, its comments, and approval history. This cannot be undone.',
+                      )
+                    ) {
+                      onDelete()
+                    }
+                  }}
+                  className={T.btnDanger}
+                  style={{
+                    ...T.btnDangerStyle,
+                    // Darker / starker than archive so the two buttons read
+                    // as distinct severities at a glance.
+                    backgroundColor:
+                      theme === 'brutalist' ? '#410002' : '#7F1D1D',
+                  }}
+                  title="Permanently delete — comments and approval history go with it"
+                >
+                  {T.labels.delete}
                 </button>
               )}
               {mode === 'edit' && onDuplicate && (

@@ -125,6 +125,20 @@ export async function archivePost(postId: string): Promise<ContentPost> {
   })
 }
 
+export async function restorePost(postId: string): Promise<ContentPost> {
+  return prisma.contentPost.update({
+    where: { id: postId },
+    data: { archivedAt: null },
+  })
+}
+
+// Hard delete — physically removes the row plus cascades comments/versions
+// (Prisma onDelete defaults handle the relations). Use only when the user
+// explicitly confirms; archive (soft) is the default recoverable path.
+export async function hardDeletePost(postId: string): Promise<void> {
+  await prisma.contentPost.delete({ where: { id: postId } })
+}
+
 // ── Listing for admin (includes archived flag) ─────────────────────────
 
 export async function listPostsForAdmin(brandPartnerId: string, includeArchived = false) {
@@ -139,5 +153,15 @@ export async function listPostsForAdmin(brandPartnerId: string, includeArchived 
       },
     },
     orderBy: [{ scheduledDate: 'asc' }, { position: 'asc' }],
+  })
+}
+
+// Archive-only listing for the admin archive drawer. Sorted by most-recently
+// archived first so the freshly removed post is at the top.
+export async function listArchivedPosts(brandPartnerId: string) {
+  return prisma.contentPost.findMany({
+    where: { brandPartnerId, archivedAt: { not: null } },
+    include: { comments: { orderBy: { createdAt: 'desc' } } },
+    orderBy: [{ archivedAt: 'desc' }],
   })
 }

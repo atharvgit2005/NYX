@@ -32,6 +32,7 @@ interface Props {
     onSave: (id: string, values: PostFormValues) => void | Promise<void>
     onCreate: (values: PostFormValues) => void | Promise<void>
     onArchive: (id: string) => void | Promise<void>
+    onDelete: (id: string) => void | Promise<void>
     onDuplicate?: (id: string) => void | Promise<void>
 }
 
@@ -44,6 +45,7 @@ export default function AdminEditOverlay({
     onSave,
     onCreate,
     onArchive,
+    onDelete,
     onDuplicate,
 }: Props) {
     return (
@@ -67,6 +69,7 @@ export default function AdminEditOverlay({
                     onClose={onCloseEdit}
                     onSubmit={(values) => onSave(editing.id, values)}
                     onArchive={() => onArchive(editing.id)}
+                    onDelete={() => onDelete(editing.id)}
                     onDuplicate={onDuplicate ? () => onDuplicate(editing.id) : undefined}
                 />
             )}

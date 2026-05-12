@@ -3,6 +3,8 @@
 import dynamic from 'next/dynamic'
 import {
   CONTENT_TYPE_LABEL,
+  POST_STATUS_LABEL,
+  STATUS_COLORS,
   TYPE_COLORS,
 } from '@/lib/portal/content-types'
 import type { ContentType } from '@prisma/client'
@@ -79,6 +81,28 @@ function formatLongDate(iso: string) {
   })
 }
 
+// Monday-start ISO week key — used to group the mobile timeline.
+function weekKey(iso: string): string {
+  const d = new Date(iso)
+  const dow = (d.getDay() + 6) % 7 // 0 = Mon
+  const monday = new Date(d)
+  monday.setDate(d.getDate() - dow)
+  return `${monday.getFullYear()}-${pad(monday.getMonth() + 1)}-${pad(monday.getDate())}`
+}
+
+function formatWeekLabel(mondayIso: string): string {
+  const monday = new Date(mondayIso + 'T00:00:00')
+  const sunday = new Date(monday)
+  sunday.setDate(monday.getDate() + 6)
+  const sameMonth = monday.getMonth() === sunday.getMonth()
+  const fmt = (d: Date, withMonth: boolean) =>
+    d.toLocaleDateString('en-IN', {
+      day: 'numeric',
+      ...(withMonth ? { month: 'short' } : {}),
+    })
+  return `${fmt(monday, !sameMonth)} – ${fmt(sunday, true)}`
+}
+
 export default function CalendarView({
   posts,
   brand,
@@ -107,6 +131,16 @@ export default function CalendarView({
     ? Math.max(...posts.map((p) => new Date(p.scheduledDate).getDate()))
     : 31
 
+  // Only show legend entries for content types that actually appear this
+  // month. Always shows nothing → fall back to the full set so the legend
+  // never disappears on an empty month.
+  const typesInUse = new Set<ContentType>(posts.map((p) => p.contentType))
+  const legendTypes = (
+    typesInUse.size > 0
+      ? (Object.keys(TYPE_COLORS) as ContentType[]).filter((t) => typesInUse.has(t))
+      : (Object.keys(TYPE_COLORS) as ContentType[])
+  )
+
   // Click handler for the mobile timeline (admin or partner).
   function handleChipClick(post: SerializedPost) {
     if (viewerIsAdmin && onEditPost) onEditPost(post)
@@ -132,10 +166,15 @@ export default function CalendarView({
               borderRight: (i + 1) % 7 !== 0 ? '1px solid #F0EDE6' : 'none',
               borderBottom: !isLastRow ? '1px solid #F0EDE6' : 'none',
               background: isToday
-                ? `${brand.brand.primary}06`
+                ? `${brand.brand.primary}0D`
                 : hasPosts && inCampaign
                   ? '#FAF7F2'
                   : 'transparent',
+              // Strong today outline — inset so it doesn't collide with the
+              // grid divider lines.
+              boxShadow: isToday
+                ? `inset 0 0 0 2px ${brand.brand.primary}`
+                : undefined,
             }}
           >
             {day !== null && (
@@ -156,28 +195,13 @@ export default function CalendarView({
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  {cellPosts.map((post) => {
-                    const colors = TYPE_COLORS[post.contentType]
-                    return (
-                      <button
-                        key={post.id}
-                        onClick={() => onSelectPost(post)}
-                        className="w-full text-left px-1.5 py-1 rounded-lg text-xs font-medium leading-tight transition-all hover:scale-[1.02]"
-                        style={{
-                          background: colors.bg,
-                          color: colors.text,
-                          borderLeft: `3px solid ${colors.dot}`,
-                        }}
-                      >
-                        <span className="hidden md:block truncate" style={{ maxWidth: '100px' }}>
-                          {post.title.split(' — ')[0].split(':')[0]}
-                        </span>
-                        <span className="md:hidden">
-                          {CONTENT_TYPE_LABEL[post.contentType].charAt(0)}
-                        </span>
-                      </button>
-                    )
-                  })}
+                  {cellPosts.map((post) => (
+                    <ChipReadOnly
+                      key={post.id}
+                      post={post}
+                      onClick={() => onSelectPost(post)}
+                    />
+                  ))}
                 </div>
               </>
             )}
@@ -186,6 +210,29 @@ export default function CalendarView({
       })}
     </div>
   )
+
+  // ── Mobile timeline: grouped by week with Today anchor ───────────────
+  const sortedPosts = [...posts].sort(
+    (a, b) =>
+      new Date(a.scheduledDate).getTime() - new Date(b.scheduledDate).getTime(),
+  )
+  const weekGroups: { week: string; posts: SerializedPost[] }[] = []
+  for (const p of sortedPosts) {
+    const wk = weekKey(p.scheduledDate)
+    const last = weekGroups[weekGroups.length - 1]
+    if (last && last.week === wk) last.posts.push(p)
+    else weekGroups.push({ week: wk, posts: [p] })
+  }
+  // Where does Today fall? Render a slim divider above the first post on
+  // or after today, so admin/partner can find "now" in the scroll.
+  const todayMs = today ? new Date(today + 'T00:00:00').getTime() : null
+  let todayAnchorId: string | null = null
+  if (todayMs !== null) {
+    const anchor = sortedPosts.find(
+      (p) => new Date(dateKey(p.scheduledDate) + 'T00:00:00').getTime() >= todayMs,
+    )
+    todayAnchorId = anchor?.id ?? null
+  }
 
   return (
     <div>
@@ -226,10 +273,10 @@ export default function CalendarView({
         )}
 
         <div
-          className="px-5 py-4 flex flex-wrap gap-4"
+          className="px-5 py-4 flex flex-wrap gap-x-4 gap-y-2"
           style={{ borderTop: '1px solid #E8E4DC', background: '#FAF7F2' }}
         >
-          {(Object.keys(TYPE_COLORS) as ContentType[]).map((type) => {
+          {legendTypes.map((type) => {
             const c = TYPE_COLORS[type]
             return (
               <div key={type} className="flex items-center gap-1.5">
@@ -240,44 +287,124 @@ export default function CalendarView({
               </div>
             )
           })}
+          {/* Today swatch — only when there's a today reference in the
+              campaign month so the legend doesn't show a stray pill on
+              months that aren't current. */}
+          {today && (
+            <div className="flex items-center gap-1.5">
+              <div
+                className="w-2.5 h-2.5 rounded-full"
+                style={{
+                  background: brand.brand.primary,
+                  boxShadow: `0 0 0 2px ${brand.brand.primary}33`,
+                }}
+              />
+              <span className="text-xs" style={{ color: '#6B6B6B' }}>
+                Today
+              </span>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Mobile: vertical timeline */}
-      <div className="sm:hidden space-y-3">
-        {posts.map((post) => {
-          const colors = TYPE_COLORS[post.contentType]
-          return (
-            <button
-              key={post.id}
-              onClick={() => handleChipClick(post)}
-              className="w-full text-left rounded-2xl p-4 flex items-center gap-3 transition-all"
-              style={{
-                background: '#FFFFFF',
-                border: '1px solid #E8E4DC',
-                borderLeft: `4px solid ${colors.dot}`,
-              }}
-            >
-              <div className="flex-1 min-w-0">
-                <p className="text-xs uppercase tracking-wider mb-1" style={{ color: '#6B6B6B' }}>
-                  {formatLongDate(post.scheduledDate)} · #{post.position}
-                </p>
-                <p
-                  className="text-sm font-bold leading-snug"
-                  style={{ fontFamily: 'var(--font-portal-display)', color: '#1A2A5E' }}
-                >
-                  {post.title}
-                </p>
-              </div>
+      {/* Mobile: weekly grouped timeline */}
+      <div className="sm:hidden space-y-5">
+        {weekGroups.length === 0 && (
+          <div
+            className="rounded-2xl px-5 py-10 text-center"
+            style={{
+              background: '#FFFFFF',
+              border: '1px dashed #E8E4DC',
+              color: '#6B6B6B',
+            }}
+          >
+            <p className="text-sm font-medium">No posts scheduled yet</p>
+          </div>
+        )}
+        {weekGroups.map((group) => (
+          <section key={group.week} className="space-y-2">
+            <div className="flex items-center gap-2 px-1">
               <span
-                className="px-2.5 py-1 rounded-full text-xs font-semibold shrink-0"
-                style={{ background: colors.bg, color: colors.text }}
+                className="text-[10px] font-semibold tracking-widest uppercase"
+                style={{ color: '#6B6B6B' }}
               >
-                {CONTENT_TYPE_LABEL[post.contentType]}
+                Week of {formatWeekLabel(group.week)}
               </span>
-            </button>
-          )
-        })}
+              <div
+                className="flex-1 h-px"
+                style={{ background: '#E8E4DC' }}
+              />
+            </div>
+            {group.posts.map((post) => {
+              const colors = TYPE_COLORS[post.contentType]
+              const statusColors = STATUS_COLORS[post.status]
+              const isTodayAnchor = post.id === todayAnchorId
+              return (
+                <div key={post.id} className="space-y-2">
+                  {isTodayAnchor && todayMs !== null && (
+                    <div className="flex items-center gap-2 pt-1">
+                      <div
+                        className="w-2 h-2 rounded-full animate-pulse"
+                        style={{ background: brand.brand.primary }}
+                      />
+                      <span
+                        className="text-[10px] font-semibold tracking-widest uppercase"
+                        style={{ color: brand.brand.primary }}
+                      >
+                        Today
+                      </span>
+                      <div
+                        className="flex-1 h-px"
+                        style={{ background: `${brand.brand.primary}40` }}
+                      />
+                    </div>
+                  )}
+                  <button
+                    onClick={() => handleChipClick(post)}
+                    className="w-full text-left rounded-2xl p-4 flex items-center gap-3 transition-all"
+                    style={{
+                      background: '#FFFFFF',
+                      border: '1px solid #E8E4DC',
+                      borderLeft: `4px solid ${colors.dot}`,
+                    }}
+                  >
+                    <div className="flex-1 min-w-0">
+                      <p
+                        className="text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5"
+                        style={{ color: '#6B6B6B' }}
+                      >
+                        <span>
+                          {formatLongDate(post.scheduledDate)} · #{post.position}
+                        </span>
+                        <span
+                          className="inline-flex items-center gap-1"
+                          title={POST_STATUS_LABEL[post.status]}
+                        >
+                          <span
+                            className="w-1.5 h-1.5 rounded-full"
+                            style={{ background: statusColors.dot }}
+                          />
+                        </span>
+                      </p>
+                      <p
+                        className="text-sm font-bold leading-snug"
+                        style={{ fontFamily: 'var(--font-portal-display)', color: '#1A2A5E' }}
+                      >
+                        {post.title}
+                      </p>
+                    </div>
+                    <span
+                      className="px-2.5 py-1 rounded-full text-xs font-semibold shrink-0"
+                      style={{ background: colors.bg, color: colors.text }}
+                    >
+                      {CONTENT_TYPE_LABEL[post.contentType]}
+                    </span>
+                  </button>
+                </div>
+              )
+            })}
+          </section>
+        ))}
         {viewerIsAdmin && onCreateOnDay && (
           <button
             type="button"
@@ -299,5 +426,43 @@ export default function CalendarView({
         )}
       </div>
     </div>
+  )
+}
+
+// ── Partner-side read-only chip ──────────────────────────────────────
+//
+// Renders the post title with status dot in the top-right corner. The
+// content-type colour stays on the chip background + left border so the
+// pre-Phase-5 visual language is preserved.
+function ChipReadOnly({
+  post,
+  onClick,
+}: {
+  post: SerializedPost
+  onClick: () => void
+}) {
+  const colors = TYPE_COLORS[post.contentType]
+  const statusColors = STATUS_COLORS[post.status]
+  return (
+    <button
+      onClick={onClick}
+      className="relative w-full text-left px-1.5 py-1 rounded-lg text-xs font-medium leading-tight transition-all hover:scale-[1.02]"
+      style={{
+        background: colors.bg,
+        color: colors.text,
+        borderLeft: `3px solid ${colors.dot}`,
+      }}
+      title={`${post.title} · ${POST_STATUS_LABEL[post.status]}`}
+    >
+      <span
+        className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full"
+        style={{
+          background: statusColors.dot,
+          boxShadow: `0 0 0 1.5px ${colors.bg}`,
+        }}
+        aria-hidden
+      />
+      <span className="block truncate pr-3">{post.title}</span>
+    </button>
   )
 }

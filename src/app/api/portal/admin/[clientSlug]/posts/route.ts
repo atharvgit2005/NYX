@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import prisma from '@/lib/prismadb'
 import {
   createPost,
+  listArchivedPosts,
   listPostsForAdmin,
   PostValidationError,
   type PostCreateInput,
@@ -16,7 +17,10 @@ async function partnerIdForSlug(slug: string): Promise<string | null> {
   return p?.id ?? null
 }
 
-// GET /api/portal/admin/[clientSlug]/posts?includeArchived=1
+// GET /api/portal/admin/[clientSlug]/posts
+//   ?includeArchived=1  → all posts (active + archived)
+//   ?archivedOnly=1     → only archived posts (for the archive drawer)
+//   default             → active posts only
 export async function GET(
   req: Request,
   { params }: { params: Promise<{ clientSlug: string }> },
@@ -29,8 +33,13 @@ export async function GET(
   const partnerId = await partnerIdForSlug(clientSlug)
   if (!partnerId) return NextResponse.json({ error: 'Brand not found' }, { status: 404 })
 
-  const includeArchived = new URL(req.url).searchParams.get('includeArchived') === '1'
-  const posts = await listPostsForAdmin(partnerId, includeArchived)
+  const url = new URL(req.url)
+  const archivedOnly = url.searchParams.get('archivedOnly') === '1'
+  const includeArchived = url.searchParams.get('includeArchived') === '1'
+
+  const posts = archivedOnly
+    ? await listArchivedPosts(partnerId)
+    : await listPostsForAdmin(partnerId, includeArchived)
   return NextResponse.json({ posts })
 }
 

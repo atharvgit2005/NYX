@@ -49,8 +49,18 @@ export interface PostMutations {
         id: string,
         input: PostSavePayload,
     ) => Promise<SerializedPost | null>
-    /** Soft-delete via DELETE — drops out of all views. */
+    /** Soft-delete via DELETE — drops out of all views, recoverable from
+     *  the archive drawer. */
     archivePost: (id: string) => Promise<void>
+    /** Hard-delete via DELETE …/permanent — irreversible. Cascades
+     *  comments + versions. Called only after an explicit confirm. */
+    deletePost: (id: string) => Promise<void>
+    /** Restore an archived post back into the active set (PATCH
+     *  archivedAt: null). Used by the archive drawer. */
+    restorePost: (id: string) => Promise<SerializedPost | null>
+    /** Fetch the archived-only list for the drawer. Server-canonical
+     *  shape — caller normalises to SerializedPost. */
+    fetchArchived: () => Promise<SerializedPost[]>
     /** Clone an existing post into a new IDEA card. */
     duplicatePost: (id: string) => Promise<SerializedPost | null>
     /** Drag-reschedule from the calendar. ISO date string. */
@@ -314,6 +324,99 @@ export function useAdminPostMutations({
         [posts, setPosts, patchRequest],
     )
 
+    // ── Hard delete ───────────────────────────────────────────────
+    const deletePost = useCallback(
+        async (id: string) => {
+            setBusy(true)
+            const before = posts
+            // Optimistically drop from active list. If the call fails
+            // we put it back. (If the post was already archived and is
+            // being deleted from the drawer, posts[] won't contain it
+            // — this filter is a no-op in that case, which is fine.)
+            setPosts((prev) => prev.filter((p) => p.id !== id))
+            try {
+                const res = await fetch(
+                    `/api/portal/admin/${clientSlug}/posts/${id}/permanent`,
+                    { method: 'DELETE' },
+                )
+                if (!res.ok) {
+                    const { error } = await res.json().catch(() => ({
+                        error: 'Delete failed',
+                    }))
+                    throw new Error(error || 'Delete failed')
+                }
+                toast.success('Post deleted')
+            } catch (e) {
+                setPosts(before)
+                toast.error((e as Error).message)
+            } finally {
+                setBusy(false)
+            }
+        },
+        [clientSlug, posts, setPosts],
+    )
+
+    // ── Restore (un-archive) ──────────────────────────────────────
+    const restorePost = useCallback(
+        async (id: string): Promise<SerializedPost | null> => {
+            setBusy(true)
+            try {
+                const post = await patchRequest(id, { archivedAt: null })
+                const normalised = normaliseFromServer(post, [])
+                // Push back into active list. Caller is responsible for
+                // removing it from any local archive cache.
+                setPosts((prev) => [...prev, normalised])
+                toast.success('Post restored')
+                return normalised
+            } catch (e) {
+                toast.error((e as Error).message)
+                return null
+            } finally {
+                setBusy(false)
+            }
+        },
+        [patchRequest, setPosts],
+    )
+
+    // ── Fetch archived for the drawer ─────────────────────────────
+    const fetchArchived = useCallback(async (): Promise<SerializedPost[]> => {
+        try {
+            const res = await fetch(
+                `/api/portal/admin/${clientSlug}/posts?archivedOnly=1`,
+            )
+            if (!res.ok) {
+                const { error } = await res.json().catch(() => ({
+                    error: 'Failed to load archive',
+                }))
+                throw new Error(error || 'Failed to load archive')
+            }
+            const { posts: raw } = (await res.json()) as {
+                posts: Record<string, unknown>[]
+            }
+            // The admin GET returns full posts with comments included.
+            // Walk the comments through normaliseFromServer's fallback.
+            return raw.map((r) => {
+                const rawComments = Array.isArray(r.comments)
+                    ? (r.comments as Record<string, unknown>[])
+                    : []
+                const comments: SerializedPost['comments'] = rawComments.map((c) => ({
+                    id: String(c.id),
+                    authorEmail: String(c.authorEmail ?? ''),
+                    body: String(c.body ?? ''),
+                    type: c.type as SerializedPost['comments'][number]['type'],
+                    createdAt:
+                        typeof c.createdAt === 'string'
+                            ? c.createdAt
+                            : new Date().toISOString(),
+                }))
+                return normaliseFromServer(r, comments)
+            })
+        } catch (e) {
+            toast.error((e as Error).message)
+            return []
+        }
+    }, [clientSlug])
+
     // ── Duplicate ─────────────────────────────────────────────────
     const duplicatePost = useCallback(
         async (id: string): Promise<SerializedPost | null> => {
@@ -351,6 +454,9 @@ export function useAdminPostMutations({
         createPost,
         savePost,
         archivePost,
+        deletePost,
+        restorePost,
+        fetchArchived,
         duplicatePost,
         moveToDate,
         moveStatus,

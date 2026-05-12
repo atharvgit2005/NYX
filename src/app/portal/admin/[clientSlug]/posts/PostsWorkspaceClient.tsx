@@ -143,6 +143,28 @@ export default function PostsWorkspaceClient({
     }
   }
 
+  async function deletePermanent(id: string) {
+    const before = posts
+    setPosts((prev) => prev.filter((p) => p.id !== id))
+    try {
+      const res = await fetch(
+        `/api/portal/admin/${clientSlug}/posts/${id}/permanent`,
+        { method: 'DELETE' },
+      )
+      if (!res.ok) {
+        const { error } = await res.json().catch(() => ({
+          error: 'Delete failed',
+        }))
+        throw new Error(error || 'Delete failed')
+      }
+      toast.success('Post deleted')
+      startTransition(() => router.refresh())
+    } catch (e) {
+      revert(before)
+      toast.error(`Couldn't delete — reverted. ${(e as Error).message}`)
+    }
+  }
+
   async function bulkArchive() {
     if (selected.size === 0) return
     if (!confirm(`Archive ${selected.size} post${selected.size === 1 ? '' : 's'}? They disappear from views and the partner portal.`)) {
@@ -409,6 +431,10 @@ export default function PostsWorkspaceClient({
           }
           onArchive={() => {
             archive(editing.id)
+            setEditing(null)
+          }}
+          onDelete={() => {
+            deletePermanent(editing.id)
             setEditing(null)
           }}
           onDuplicate={() => {
