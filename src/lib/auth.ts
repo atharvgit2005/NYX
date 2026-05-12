@@ -4,7 +4,67 @@ import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcryptjs"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import type { Adapter, AdapterAccount } from "next-auth/adapters"
 import prisma from "@/lib/prismadb"
+
+/**
+ * Custom adapter wrapper around PrismaAdapter.
+ *
+ * Two reliability fixes over the stock adapter:
+ *
+ * 1. `getUserByEmail` lowercases before the DB lookup. Our app stores all
+ *    emails lowercase (credentials signup, portal signup, admin seed all
+ *    normalise on write), but Google's OAuth profile can return a mixed-case
+ *    email in rare cases — the stock adapter would miss the match and
+ *    NextAuth would try to createUser, which fails on the unique-email
+ *    constraint and bubbles up as a generic Callback error.
+ *
+ * 2. `linkAccount` upserts instead of create. The stock adapter does
+ *    `p.account.create(data)`, which throws P2002 if the (provider,
+ *    providerAccountId) row already exists — e.g. when our signIn
+ *    callback's defensive pre-link already inserted it, or when an
+ *    earlier failed attempt left an orphan row. NextAuth's outer flow
+ *    treats that throw as `OAuthAccountNotLinked`, which is exactly
+ *    the misleading error the user was seeing. Upsert makes the link
+ *    a no-op when the row already points at the right user, and
+ *    refreshes the OAuth tokens when it does.
+ */
+function buildAdapter(): Adapter {
+    const base = PrismaAdapter(prisma) as Adapter
+    return {
+        ...base,
+        getUserByEmail: (email) => {
+            const target = email.trim().toLowerCase()
+            return prisma.user.findUnique({ where: { email: target } })
+        },
+        linkAccount: async (data: AdapterAccount) => {
+            const { provider, providerAccountId } = data
+            // Upsert keeps the call idempotent. We refresh the OAuth-token
+            // fields on conflict so a re-link replaces stale credentials.
+            const account = await prisma.account.upsert({
+                where: {
+                    provider_providerAccountId: { provider, providerAccountId },
+                },
+                create: data,
+                update: {
+                    userId: data.userId,
+                    type: data.type,
+                    access_token: data.access_token,
+                    refresh_token: data.refresh_token,
+                    expires_at: data.expires_at,
+                    token_type: data.token_type,
+                    scope: data.scope,
+                    id_token: data.id_token,
+                    session_state:
+                        typeof data.session_state === 'string'
+                            ? data.session_state
+                            : null,
+                },
+            })
+            return account as AdapterAccount
+        },
+    }
+}
 
 declare module "next-auth" {
     interface Session {
@@ -36,7 +96,7 @@ declare module "next-auth/jwt" {
 
 export const authOptions: AuthOptions = {
     debug: true,
-    adapter: PrismaAdapter(prisma),
+    adapter: buildAdapter(),
     session: {
         strategy: "jwt",
         // 30 days. Was 15 min, which logged users out aggressively
@@ -237,27 +297,41 @@ export const authOptions: AuthOptions = {
             // This is safe because we're only linking when the email matches
             // a row we already trust, and Google's `email_verified` proves
             // the caller controls the inbox.
-            if (account?.provider === 'google' && user.email) {
+            if (account?.provider === 'google') {
+                // Prefer profile.email — the OAuth-truth email — over user.email
+                // because user here is `userOrProfile`; if a prior partial link
+                // exists, user could be a row whose email is normalised differently.
+                const rawEmail =
+                    (profile as { email?: string } | undefined)?.email ??
+                    user.email ??
+                    null;
                 const verifiedEmail =
                     (profile as { email_verified?: boolean } | undefined)?.email_verified ?? true;
-                if (!verifiedEmail) return true;
+                const email = rawEmail?.trim().toLowerCase() ?? null;
 
-                try {
-                    const existing = await prisma.user.findUnique({
-                        where: { email: user.email },
-                        include: { accounts: true },
-                    });
+                if (email && verifiedEmail) {
+                    try {
+                        const existing = await prisma.user.findUnique({
+                            where: { email },
+                            include: { accounts: true },
+                        });
 
-                    if (existing) {
-                        const alreadyLinked = existing.accounts.some(
-                            (a) =>
-                                a.provider === 'google' &&
-                                a.providerAccountId === account.providerAccountId,
-                        );
-
-                        if (!alreadyLinked) {
-                            await prisma.account.create({
-                                data: {
+                        if (existing) {
+                            // Upsert the Google Account row so it points at the
+                            // existing user. If a row already exists for this
+                            // (provider, providerAccountId) — whether linked to
+                            // the same user or an orphan from a previous attempt
+                            // — we overwrite the userId + token fields. This
+                            // makes the call idempotent and removes the P2002
+                            // race that previously caused OAuthAccountNotLinked.
+                            await prisma.account.upsert({
+                                where: {
+                                    provider_providerAccountId: {
+                                        provider: account.provider,
+                                        providerAccountId: account.providerAccountId,
+                                    },
+                                },
+                                create: {
                                     userId: existing.id,
                                     type: account.type,
                                     provider: account.provider,
@@ -273,24 +347,46 @@ export const authOptions: AuthOptions = {
                                             ? account.session_state
                                             : null,
                                 },
+                                update: {
+                                    userId: existing.id,
+                                    access_token: account.access_token,
+                                    refresh_token: account.refresh_token,
+                                    expires_at: account.expires_at,
+                                    token_type: account.token_type,
+                                    scope: account.scope,
+                                    id_token: account.id_token,
+                                    session_state:
+                                        typeof account.session_state === 'string'
+                                            ? account.session_state
+                                            : null,
+                                },
                             });
                             console.log("AUTH_Linked_Google_To_Existing_User:", {
                                 userId: existing.id,
-                                email: user.email,
+                                email,
                             });
-                        }
 
-                        // Make sure the JWT id reflects the EXISTING user row,
-                        // not a freshly-created shadow row from the adapter.
-                        user.id = existing.id;
-                        user.role = existing.role;
-                        user.passwordChangedAt = existing.passwordChangedAt;
-                        user.activeSessionId = existing.activeSessionId;
+                            // Pin the JWT id to the existing row so the adapter
+                            // doesn't create a duplicate shadow user further down
+                            // the flow.
+                            user.id = existing.id;
+                            user.email = existing.email;
+                            user.role = existing.role;
+                            user.passwordChangedAt = existing.passwordChangedAt;
+                            user.activeSessionId = existing.activeSessionId;
+                        }
+                    } catch (err) {
+                        // Surface to logs (Vercel) instead of swallowing — if
+                        // this fails the user almost certainly hits
+                        // OAuthAccountNotLinked downstream, so we want to know.
+                        console.error("AUTH_GoogleLink_Error:", {
+                            email,
+                            providerAccountId: account.providerAccountId,
+                            error: (err as Error)?.message,
+                        });
+                        // Still don't block — the adapter's own linkAccount
+                        // (also now upsert) is the second line of defense.
                     }
-                } catch (err) {
-                    console.error("AUTH_GoogleLink_Error:", err);
-                    // Don't block sign-in on link error — fall through and
-                    // let the adapter try its own path.
                 }
             }
 
