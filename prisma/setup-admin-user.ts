@@ -51,7 +51,6 @@ async function main() {
     console.log('')
     console.log('Sign in at:')
     console.log('  /portal/login    (brand-partner-themed, lands at /portal → /portal/admin)')
-    console.log('  /automate/login  (operator-themed, lands at /automate/dashboard)')
     console.log(`Email:    ${EMAIL}`)
     console.log(`Password: ${PASSWORD}`)
 }

@@ -4,7 +4,7 @@ Living document. Update as steps are completed.
 
 ## ✅ Shipped (technical foundation)
 
-- `sitemap.xml` + `robots.txt` via `next-sitemap.config.js` — private routes (portal, clients, automate admin/dashboard, uploads) excluded
+- `sitemap.xml` + `robots.txt` via `next-sitemap.config.js` — private routes (portal, clients, uploads) excluded
 - Schema.org JSON-LD: `Organization` + `ProfessionalService`, `WebSite` + `SearchAction`, `BreadcrumbList` on `/work` `/services` `/contact`, `VideoObject` on each /work item, `ContactPage` on /contact
 - Meta titles trimmed to <60 chars, descriptions to ~155 chars
 - Heading hierarchy linear (no h3 before h2)
@@ -25,9 +25,8 @@ GSC → URL Inspection → paste each → Request Indexing:
 - `https://www.nyxstudio.tech/work`
 - `https://www.nyxstudio.tech/services`
 - `https://www.nyxstudio.tech/contact`
-- `https://www.nyxstudio.tech/automate`
 
-Daily cap is ~10 URLs, so 5 fits fine. Re-run anytime you push a meaningful copy/page change.
+Daily cap is ~10 URLs, so 4 fits fine. Re-run anytime you push a meaningful copy/page change.
 
 ### Google Business Profile (10 min)
 Address in `src/lib/seo.ts` is Pune, Maharashtra 411047. Claim at `business.google.com`:
@@ -171,7 +170,6 @@ Pitch 1 article each to:
 
 ## 🟡 Remaining technical polish (low priority)
 
-- [x] ~~`/automate` landing — noindex check~~ — confirmed real public landing page (not a redirect), keep indexed
 - [x] ~~FAQPage schema on `/services`~~ — shipped with 5 visible Q/As + matching JSON-LD
 - [ ] `aria-hidden="true"` on decorative `<span class="material-symbols-outlined">` icons that have no semantic meaning (~28 instances across public pages — needs per-icon judgement)
 - [ ] Footer `<span>NYX STUDIO</span>` → consider semantic `<p>` (h3 would break hierarchy)
@@ -207,5 +205,5 @@ Pitch 1 article each to:
 | WebSite schema | `src/lib/seo.ts` → `websiteSchema` |
 | Sitemap config | `next-sitemap.config.js` |
 | robots.txt rules | `next-sitemap.config.js` → `robotsTxtOptions.transformRobotsTxt` |
-| Public route metadata | `src/app/{work,services,contact,automate}/page.tsx` |
+| Public route metadata | `src/app/{work,services,contact}/page.tsx` |
 | Schema injection | `<SchemaOrg schema={[...]} />` in each page |

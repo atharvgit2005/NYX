@@ -1,3 +1,18 @@
+> **⚠️ HISTORICAL — 2026-05-18**
+>
+> All `/automate` routes, APIs, components, and Prisma models referenced
+> below have since been **removed from this repo**. The product was
+> extracted to a separate `nyx-automate` repo deployed at
+> `nyx-automate.vercel.app`.
+>
+> Sections on "Auth — Google login for admin users" and the SEO + sitemap
+> work are still accurate for *this* repo. The "Route rename
+> `/automate/admin` → `/automate/admin_automate`" and "Brand Analysis bug"
+> sections describe code that no longer lives here — keep them only as a
+> record of what shipped in that pass.
+
+---
+
 # Recent Work — Session Context (May 2026)
 
 Quick-reference log of what shipped in the recent SEO + auth + automate

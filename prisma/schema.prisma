@@ -34,9 +34,6 @@ model User {
 
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
-  scripts      Script[]
-  videos       Video[]
-  subscription Subscription?
 }
 
 model RevokedToken {
@@ -54,52 +51,6 @@ model LoginAttempt {
   lastAttempt DateTime @default(now())
 
   @@unique([ip, email])
-}
-
-model Subscription {
-  id            String   @id @default(cuid())
-  userId        String   @unique
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  tier          String   @default("Free")
-  status        String   @default("pending") // active | pending | paused | cancelled | restricted
-  paymentStatus String   @default("pending") // paid | pending | failed | refunded
-  features      Json     @default("{\"voice\":false,\"video\":false,\"api\":false,\"priority\":false}")
-  startDate     DateTime @default(now())
-  renewalDate   DateTime
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-}
-
-model Tier {
-  id           String   @id @default(cuid())
-  name         String   @unique
-  price        Float
-  billingCycle String // monthly | annual
-  trialDays    Int
-  maxUsers     Int
-  features     Json // { voice: boolean, video: boolean, api: boolean, priority: boolean }
-  quotas       Json // { voiceCharsPerDay: number, videoMinsPerMonth: number, apiCallsPerDay: number, storageMB: number }
-  approvalMode String // auto | manual
-  color        String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-}
-
-model AuditLog {
-  id        String   @id @default(cuid())
-  admin     String
-  action    String
-  target    String
-  details   String
-  category  String // subscription | user | tier | gate | alert
-  createdAt DateTime @default(now())
-}
-
-model FeatureGate {
-  id        String   @id @default(cuid())
-  key       String   @unique // voiceGlobal | videoGlobal | tierMatrix
-  value     Json
-  updatedAt DateTime @updatedAt
 }
 
 model Account {
@@ -135,29 +86,6 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-}
-
-model Script {
-  id        String   @id @default(cuid())
-  title     String?
-  content   String
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  videos    Video[]
-}
-
-model Video {
-  id        String   @id @default(cuid())
-  status    String // processing, completed, failed
-  url       String?
-  scriptId  String?
-  script    Script?  @relation(fields: [scriptId], references: [id])
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model Lead {
