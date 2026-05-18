@@ -84,6 +84,7 @@ export default function AdContactPage() {
                 <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75" href="/work">WORK</Link>
                 <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75" href="/services">SERVICES</Link>
                 <Link className="font-headline uppercase tracking-tighter font-bold text-[#E8441A] border-b-4 border-[#E8441A] pb-1" href="/contact">CONTACT</Link>
+                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75" href="/portal">PORTAL</Link>
             </div>
             <Link href="/contact" className="bg-[#ffb4a2] text-black px-3 md:px-6 py-1 md:py-3 font-headline font-bold text-[0.75rem] md:text-base uppercase tracking-tighter border-4 border-black transition-all duration-75 hover:bg-[#F5C518] active:scale-95 inline-block whitespace-nowrap">
                 LET&apos;S TALK →
