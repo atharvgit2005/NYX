@@ -1,15 +1,45 @@
-# NYX Studio — SEO Runbook
+# NYX Studio — SEO + AEO Runbook
 
 Living document. Update as steps are completed.
 
 ## ✅ Shipped (technical foundation)
 
 - `sitemap.xml` + `robots.txt` via `next-sitemap.config.js` — private routes (portal, clients, uploads) excluded
-- Schema.org JSON-LD: `Organization` + `ProfessionalService`, `WebSite` + `SearchAction`, `BreadcrumbList` on `/work` `/services` `/contact`, `VideoObject` on each /work item, `ContactPage` on /contact
+- Schema.org JSON-LD: `Organization` + `ProfessionalService`, `WebSite` + `SearchAction`, `BreadcrumbList` on `/work` `/services` `/contact` `/about`, `VideoObject` on each /work item, `ContactPage` on /contact
 - Meta titles trimmed to <60 chars, descriptions to ~155 chars
 - Heading hierarchy linear (no h3 before h2)
 - OpenGraph + Twitter cards on every public page
 - Canonicals set per route via `createMarketingMetadata` helper in `src/lib/seo.ts`
+
+## ✅ Shipped (AEO — Answer Engine Optimization, 2026-05-19)
+
+What makes ChatGPT / Perplexity / Gemini / Copilot / Claude cite us in their answers:
+
+- **`/llms.txt` + `/llms-full.txt`** at the site root. The 2026 equivalent of `robots.txt`/`sitemap.xml` for LLMs — markdown index pointing at canonical pages, plus a flat-prose knowledge digest. See `public/llms.txt` and `public/llms-full.txt`.
+- **`/about` route** with `AboutPage` + `Person` × 2 schemas, founder bios, quick-facts dl. Anchor page AI Overviews link back to for "who is NYX" / "where is NYX based" / "who founded NYX" queries.
+- **Founder Person schemas** in `src/lib/seo.ts` (`atharvSchema`, `bhavyaSchema`) — full E-E-A-T payload: `jobTitle`, `knowsAbout`, `sameAs` (LinkedIn), `image`, `worksFor` linked to Organization by `@id`.
+- **Organization sameAs** pruned to verified profiles only (Instagram + LinkedIn company). Dead/unclaimed handles removed — answer engines validate every URL.
+- **Organization extras**: `legalName`, `alternateName: "NYX"`, `slogan`, `foundingDate`, `foundingLocation`, `knowsAbout` — entity graph richer for LLM grounding.
+- **FAQPage expanded 5 → 14 Qs** on `/services`. Each Q now hits a classic answer-engine query pattern ("what is X", "where is X based", "how much does X cost", "how do I start with X"). See `src/app/services/page.tsx`.
+- **Speakable schema** on `/services` FAQ and `/about` lede — voice answer engines (Google Assistant, Alexa, Siri) read these aloud. CSS selectors: `.faq-question`, `.faq-answer`, `.about-lede`, `.about-fact`.
+- **Service items enriched** with `serviceType`, `category`, `audience: BusinessAudience`, `priceRange`, `eligibleRegion`, `priceSpecification.billingDuration` — commercial signals for "best [service] in [location]" queries.
+- **IndexNow auto-ping on every deploy** — `postbuild` script now pings Bing/IndexNow API after `next-sitemap`. Bing powers Copilot + ChatGPT search, so this hits multiple answer engines from one ping. URL list lives in `scripts/indexnow.js`.
+
+### Why this matters
+
+Traditional SEO ranks blue links. AEO decides which sites AI answer engines *cite as sources* when answering a user query. The two share a foundation (clean schemas, crawlability) but AEO adds:
+- Dense Q/A content with explicit declarative answers
+- E-E-A-T signals on people, not just orgs
+- LLM-specific routing (llms.txt)
+- Voice-readable markup (Speakable)
+- Entity validation (Organization sameAs accuracy)
+
+### Verify
+
+1. Run `npx next build && npm run postbuild` — sitemap regenerates, IndexNow pings on success
+2. Test JSON-LD via [Google Rich Results Test](https://search.google.com/test/rich-results) for `/`, `/services`, `/about`
+3. Validate llms.txt format at [llmstxt.org](https://llmstxt.org/)
+4. After deploy, query an AI engine like "What is NYX Studio?" or "Who founded NYX Studio?" and see if the response cites nyxstudio.tech. Allow 2-4 weeks for ingestion.
 
 ## ✅ Search Console / Indexing
 

@@ -13,7 +13,7 @@
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap && node scripts/indexnow.js || true"
   },
   "dependencies": {
     "@auth/core": "^0.34.3",

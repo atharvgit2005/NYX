@@ -62,8 +62,11 @@ export function createMarketingMetadata({
 export const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": `${SITE_URL}#website`,
   name: "NYX Studio",
   url: SITE_URL,
+  publisher: { "@id": `${SITE_URL}#organization` },
+  inLanguage: "en",
   potentialAction: {
     "@type": "SearchAction",
     target: {
@@ -98,14 +101,84 @@ export function breadcrumbSchema(
   };
 }
 
+/**
+ * Founder Person schemas — full E-E-A-T payload.
+ *
+ * Why this exists separately from `organizationSchema.founder`:
+ *   • The /about page references each Person by `@id` so the same entity
+ *     graph is consistent across the site (Person → worksFor → Org).
+ *   • Answer engines (ChatGPT, Perplexity, Gemini, Copilot) read jobTitle,
+ *     sameAs, knowsAbout, and image to decide *who* to cite for D2C content
+ *     queries — not just *which org*.
+ */
+export const atharvSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${SITE_URL}/about#atharv`,
+  name: "Atharv Paharia",
+  givenName: "Atharv",
+  familyName: "Paharia",
+  jobTitle: "Co-Founder & Tech Lead",
+  description:
+    "Co-founder of NYX Studio. Leads the AI engineering, content production pipeline, and video automation systems that power the studio's D2C output.",
+  image: `${SITE_URL}/founders/atharv.jpg`,
+  url: `${SITE_URL}/about#atharv`,
+  worksFor: { "@type": "Organization", "@id": `${SITE_URL}#organization`, name: "NYX Studio" },
+  knowsAbout: [
+    "AI-generated video",
+    "Content production pipelines",
+    "Direct-to-consumer marketing",
+    "Brand films",
+    "Performance creative",
+  ],
+  sameAs: [
+    "https://www.linkedin.com/in/atharv-paharia-468276272/",
+  ],
+};
+
+export const bhavyaSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${SITE_URL}/about#bhavya`,
+  name: "Bhavya Jain",
+  givenName: "Bhavya",
+  familyName: "Jain",
+  jobTitle: "Co-Founder & Product Lead",
+  description:
+    "Co-founder of NYX Studio. Leads brand strategy, product, and the partner-facing systems that translate D2C founder briefs into shipping content campaigns.",
+  image: `${SITE_URL}/founders/bhavya.jpg`,
+  url: `${SITE_URL}/about#bhavya`,
+  worksFor: { "@type": "Organization", "@id": `${SITE_URL}#organization`, name: "NYX Studio" },
+  knowsAbout: [
+    "Direct-to-consumer brand strategy",
+    "Product design for creative agencies",
+    "Influencer marketing operations",
+    "Indian D2C ecosystem",
+    "Content calendar systems",
+  ],
+  sameAs: [
+    "https://www.linkedin.com/in/bhavya-jain-10963b33a/",
+  ],
+};
+
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": ["Organization", "ProfessionalService"],
+  "@id": `${SITE_URL}#organization`,
   name: "NYX Studio",
+  legalName: "NYX Studio",
+  alternateName: "NYX",
   url: SITE_URL,
   logo: `${SITE_URL}/logo/NYX-Logo.png`,
   image: `${SITE_URL}/og-image.jpg`,
-  description: "AI-native content and growth studio for D2C brands in India",
+  description:
+    "AI-native content and growth studio for D2C brands in India. We build cinematic films, paid creative, influencer ops, and content automation for direct-to-consumer brands selling in India.",
+  slogan: "We make brands impossible to scroll past.",
+  foundingDate: "2025",
+  foundingLocation: {
+    "@type": "Place",
+    name: "Pune, India",
+  },
   email: "nyx.studios.ai@gmail.com",
   address: {
     "@type": "PostalAddress",
@@ -120,6 +193,14 @@ export const organizationSchema = {
       name: "India",
     },
   ],
+  knowsAbout: [
+    "Direct-to-consumer marketing",
+    "AI-generated video",
+    "Brand films",
+    "Performance creative",
+    "Influencer marketing in India",
+    "Indian D2C content strategy",
+  ],
   contactPoint: [
     {
       "@type": "ContactPoint",
@@ -129,13 +210,50 @@ export const organizationSchema = {
       availableLanguage: ["en"],
     },
   ],
+  // Public profiles we control. Answer engines validate the entity against
+  // every URL in this list — keep it accurate (don't list dead handles).
   sameAs: [
     "https://www.instagram.com/nyx.studios.ai/",
     "https://www.linkedin.com/company/nyx-studio-ai/",
-    "https://twitter.com/nyxstudiosai",
   ],
   founder: [
-    { "@type": "Person", name: "Atharv Paharia" },
-    { "@type": "Person", name: "Bhavya Jain" },
+    { "@id": `${SITE_URL}/about#atharv` },
+    { "@id": `${SITE_URL}/about#bhavya` },
   ],
+};
+
+/**
+ * Speakable schema marker — tells voice answer engines (Google Assistant,
+ * Alexa, Siri snippets) which CSS selectors on the page contain the
+ * answer-ready prose. Pair with a regular content schema, do not stand alone.
+ *
+ *   speakableSchema(['.faq-question', '.faq-answer'])
+ *
+ * Selectors are CSS, not XPath. Mark only the *answer* prose, not surrounding
+ * navigation, headers, or boilerplate.
+ */
+export function speakableSchema(cssSelectors: string[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: cssSelectors,
+    },
+  };
+}
+
+/**
+ * AboutPage schema — anchors the /about route and links back to the
+ * Organization entity. AEO-favoured: AI Overview and Perplexity often
+ * cite the /about page for "who is X" queries.
+ */
+export const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  url: `${SITE_URL}/about`,
+  mainEntity: { "@id": `${SITE_URL}#organization` },
+  about: { "@id": `${SITE_URL}#organization` },
+  inLanguage: "en",
+  isPartOf: { "@id": `${SITE_URL}#website` },
 };

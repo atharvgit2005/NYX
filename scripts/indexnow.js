@@ -9,7 +9,8 @@ const data = JSON.stringify({
     "https://www.nyxstudio.tech/",
     "https://www.nyxstudio.tech/services",
     "https://www.nyxstudio.tech/work",
-    "https://www.nyxstudio.tech/contact"
+    "https://www.nyxstudio.tech/contact",
+    "https://www.nyxstudio.tech/about"
   ]
 });
 

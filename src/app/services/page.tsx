@@ -1,70 +1,113 @@
 import type { Metadata } from "next";
 import SchemaOrg from "@/components/SchemaOrg";
 
+// Common fields lifted out so every Service entry shares the same
+// commercial signal (D2C, India, ₹30K-₹80K). Answer engines weight
+// `serviceType` and `audience` heavily for "agency in [location]"
+// and "best [service] for [vertical]" queries.
+const SERVICE_COMMON = {
+  provider: { "@type": "Organization", name: "NYX Studio", url: SITE_URL },
+  areaServed: { "@type": "Country", name: "India" },
+  audience: { "@type": "BusinessAudience", audienceType: "Direct-to-consumer (D2C) brands" },
+  priceRange: "₹30,000 - ₹80,000+ / month",
+  serviceType: "Marketing agency",
+} as const;
+
 const servicesSchema = [
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "provider": { "@type": "Organization", "name": "NYX Studio" },
-    "name": "Content Strategy",
-    "description": "Architecting narratives that pierce the noise. Narrative mapping, trend forecasting, and channel ecosystems.",
-    "areaServed": "India"
+    ...SERVICE_COMMON,
+    name: "Content Strategy",
+    category: "Content marketing",
+    description:
+      "Architecting narratives that pierce the noise. Narrative mapping, trend forecasting, and channel ecosystems for Indian D2C brands.",
   },
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "provider": { "@type": "Organization", "name": "NYX Studio" },
-    "name": "Paid Social",
-    "description": "Precision targeting meets raw creativity. Algorithmic dominance across Meta, TikTok, and Google.",
-    "areaServed": "India"
+    ...SERVICE_COMMON,
+    name: "Paid Social",
+    category: "Performance marketing",
+    description:
+      "Precision targeting meets raw creativity. Performance creative across Meta, TikTok, and Google for direct-to-consumer brands.",
   },
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "provider": { "@type": "Organization", "name": "NYX Studio" },
-    "name": "Creative Production",
-    "description": "High-fidelity visuals for a low-attention world. Film, motion, photography, VFX, 3D art, and layout design.",
-    "areaServed": "India"
+    ...SERVICE_COMMON,
+    name: "Creative Production",
+    category: "Video production",
+    description:
+      "High-fidelity visuals for a low-attention world. AI-generated and live-shot film, motion, photography, VFX, 3D art, and layout design.",
   },
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "provider": { "@type": "Organization", "name": "NYX Studio" },
-    "name": "Brand Growth",
-    "description": "Full-scale ecosystem execution — retention systems, partnership outreach, and performance ops.",
-    "areaServed": "India"
+    ...SERVICE_COMMON,
+    name: "Brand Growth",
+    category: "Growth marketing",
+    description:
+      "Full-scale ecosystem execution — retention systems, influencer partnership outreach, WhatsApp/SMS funnels, and performance ops.",
   },
   {
     "@context": "https://schema.org",
     "@type": "Offer",
-    "name": "Trial Pack",
-    "price": "30000",
-    "priceCurrency": "INR",
-    "description": "15-17 high-fidelity posts, cinematic reels, POV, hooks, premium photography, 1 platform focus, deep analytics."
+    name: "Trial Pack",
+    price: "30000",
+    priceCurrency: "INR",
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price: "30000",
+      priceCurrency: "INR",
+      unitText: "MONTH",
+      billingDuration: "P1M",
+    },
+    eligibleRegion: { "@type": "Country", name: "India" },
+    description:
+      "15-17 high-fidelity posts, cinematic reels, POV, hooks, premium photography, 1 platform focus, deep analytics. ₹30,000/month.",
   },
   {
     "@context": "https://schema.org",
     "@type": "Offer",
-    "name": "Starter Pack",
-    "price": "50000",
-    "priceCurrency": "INR",
-    "description": "20-25 dynamic reels and posts, UGC sourcing, Meta Ads engine, hyper-local targeting, influencer collabs."
+    name: "Starter Pack",
+    price: "50000",
+    priceCurrency: "INR",
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price: "50000",
+      priceCurrency: "INR",
+      unitText: "MONTH",
+      billingDuration: "P1M",
+    },
+    eligibleRegion: { "@type": "Country", name: "India" },
+    description:
+      "20-25 dynamic reels and posts, UGC sourcing, Meta Ads engine, hyper-local targeting, influencer collabs. ₹50,000/month.",
   },
   {
     "@context": "https://schema.org",
     "@type": "Offer",
-    "name": "Growth Pack",
-    "price": "80000",
-    "priceCurrency": "INR",
-    "description": "30-40 dominant reels and posts, full-scale ecosystem execution, multi-tiered campaign funnels, WhatsApp/SMS funnels."
-  }
+    name: "Growth Pack",
+    price: "80000",
+    priceCurrency: "INR",
+    priceSpecification: {
+      "@type": "UnitPriceSpecification",
+      price: "80000",
+      priceCurrency: "INR",
+      unitText: "MONTH",
+      billingDuration: "P1M",
+    },
+    eligibleRegion: { "@type": "Country", name: "India" },
+    description:
+      "30-40 dominant reels and posts, full-scale ecosystem execution, multi-tiered campaign funnels, WhatsApp/SMS funnels. ₹80,000/month.",
+  },
 ];
 import Image from "next/image";
 import Link from "next/link";
 import { ServiceAnimations } from "../components/ServiceAnimations";
 import "../page.css";
 import { MobileNav } from "../components/MobileNav";
-import { breadcrumbSchema, createMarketingMetadata, SITE_URL } from "@/lib/seo";
+import { breadcrumbSchema, createMarketingMetadata, SITE_URL, speakableSchema } from "@/lib/seo";
 
 export const metadata: Metadata = createMarketingMetadata({
   title: 'Content + Growth Packages for D2C Brands in India',
@@ -92,6 +135,30 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
+      name: "What is NYX Studio?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "NYX Studio is an AI-native content and growth studio for direct-to-consumer (D2C) brands selling in India. We build cinematic brand films, performance-creative ad units, content automation pipelines, and influencer ops under one roof. Based in Pune, Maharashtra.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Where is NYX Studio based?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "NYX Studio is headquartered in Pune, Maharashtra, India (411047). We work with brands across India and accept international D2C brands selling into India.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Who founded NYX Studio?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "NYX Studio was co-founded by Atharv Paharia (Co-Founder & Tech Lead) and Bhavya Jain (Co-Founder & Product Lead). Atharv leads AI engineering and the content production pipeline; Bhavya leads brand strategy, product, and the partner-facing systems.",
+      },
+    },
+    {
+      "@type": "Question",
       name: "How much does an AI-native content package cost in India?",
       acceptedAnswer: {
         "@type": "Answer",
@@ -108,10 +175,26 @@ const faqSchema = {
     },
     {
       "@type": "Question",
+      name: "What categories does NYX Studio specialize in?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We specialize in D2C brands across food, beverage, lifestyle, beauty, and apparel. Past partners include Dessertino, Mango Jungle, Mango Shower, and Brioso. We do not take on B2B SaaS, professional services, or non-D2C consumer brands.",
+      },
+    },
+    {
+      "@type": "Question",
       name: "Do you only work with Indian D2C brands?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "Our core focus is D2C brands operating in India - food, beverage, lifestyle, beauty, and apparel categories. We're open to international D2C brands selling into India, but we don't take on B2B SaaS, professional services, or non-D2C consumer brands.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How are AI-generated videos different from traditional shoots?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "AI-generated product films are indistinguishable from a five-figure live shoot for roughly 70% of social-media use cases as of 2026. They ship in 48-72 hours instead of 2-3 weeks, cost a fraction of a full production day, and let us hit weekly content velocity. We still do live shoots when the founder needs to be on camera or the brief requires a real environment.",
       },
     },
     {
@@ -124,14 +207,51 @@ const faqSchema = {
     },
     {
       "@type": "Question",
+      name: "Does NYX Studio handle influencer marketing?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Yes — influencer operations are bundled into the Growth Pack (₹80,000/month). That covers creator sourcing aligned to your brand, brief writing, deliverable QA, and post-publish reporting. We don't run influencer-only retainers; influencer ops works best when paired with the in-house content engine that supports it.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "What platforms does NYX Studio publish to?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Primarily Instagram (Reels, Posts, Stories) and TikTok for short-form video, YouTube Shorts for cross-posting, and Meta Ads (Facebook + Instagram) for paid creative. Growth Pack adds WhatsApp/SMS funnels for retention loops.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "How does NYX Studio measure campaign success?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "We track first-frame stop-rate, 3-second view-through, completion rate, and conversion-to-action per asset. For paid creative we also report CPM, CTR, ROAS, and frequency. Reports ship monthly via the partner portal.",
+      },
+    },
+    {
+      "@type": "Question",
       name: "Do you offer one-off shoots or only monthly retainers?",
       acceptedAnswer: {
         "@type": "Answer",
         text: "We're retainer-first because content velocity is what actually moves D2C metrics - one campaign a quarter doesn't compound. We do accept one-off projects for brand films and launch campaigns when the scope is clearly defined. Reach out via the contact page to discuss.",
       },
     },
+    {
+      "@type": "Question",
+      name: "How do I start working with NYX Studio?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Send a brief via the contact page at nyxstudio.tech/contact. We respond within 48 hours with a fit assessment. If we're a fit, we run a 20-minute scoping call, propose a pack (Trial / Starter / Growth), and ship the first 3 assets within 7 business days of kickoff.",
+      },
+    },
   ],
 };
+
+// Speakable schema lets voice answer engines (Google Assistant, Alexa,
+// Siri short-answer snippets) read the FAQ Q/As aloud. Pair with the
+// CSS-marked questions/answers in the visible FAQ section below.
+const faqSpeakable = speakableSchema(['.faq-question', '.faq-answer']);
 
 const servicesGraph = {
   "@context": "https://schema.org",
@@ -163,6 +283,7 @@ export default function AdServicesPage() {
         schema={[
           servicesGraph,
           faqSchema,
+          faqSpeakable,
           breadcrumbSchema([
             { name: 'Home', path: '/' },
             { name: 'Services', path: '/services' },
@@ -193,6 +314,7 @@ export default function AdServicesPage() {
             <nav className="hidden md:flex gap-8 items-center">
                 <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/work">WORK</Link>
                 <Link className="font-headline uppercase tracking-tighter font-bold text-[#E8441A] border-b-4 border-[#E8441A] pb-1 px-2" href="/services">SERVICES</Link>
+                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/about">ABOUT</Link>
                 <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/contact">CONTACT</Link>
                 <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/portal">PORTAL</Link>
             </nav>
@@ -424,24 +546,60 @@ export default function AdServicesPage() {
                     <h2 className="font-headline text-[clamp(2.25rem,7vw,5rem)] leading-[0.9] font-black tracking-tighter uppercase mb-8 md:mb-12">FAQ</h2>
                     <dl className="space-y-6 md:space-y-8">
                         <div className="border-b-4 border-ink-black pb-6">
-                            <dt className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How much does an AI-native content package cost in India?</dt>
-                            <dd className="font-body text-base md:text-lg leading-relaxed text-ink-black/80">NYX Studio packages start at ₹30,000/month (Trial Pack) for 15-17 high-fidelity posts and reels on a single platform, scale to ₹50,000/month (Starter Pack) for multi-platform creative plus Meta ads, and reach ₹80,000/month (Growth Pack) for full ecosystem execution including influencer ops and WhatsApp/SMS funnels.</dd>
+                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">What is NYX Studio?</dt>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">NYX Studio is an AI-native content and growth studio for direct-to-consumer (D2C) brands selling in India. We build cinematic brand films, performance-creative ad units, content automation pipelines, and influencer ops under one roof. Based in Pune, Maharashtra.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
-                            <dt className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How fast is the turnaround on a cinematic D2C reel?</dt>
-                            <dd className="font-body text-base md:text-lg leading-relaxed text-ink-black/80">Standard turnaround is 5-7 business days from approved brief to final delivery. AI-generated product films can ship in 48-72 hours when no live shoot is required. Rush turnaround is available for existing partners.</dd>
+                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Where is NYX Studio based?</dt>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">NYX Studio is headquartered in Pune, Maharashtra, India (411047). We work with brands across India and accept international D2C brands selling into India.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
-                            <dt className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Do you only work with Indian D2C brands?</dt>
-                            <dd className="font-body text-base md:text-lg leading-relaxed text-ink-black/80">Our core focus is D2C brands operating in India - food, beverage, lifestyle, beauty, and apparel categories. We&apos;re open to international D2C brands selling into India, but we don&apos;t take on B2B SaaS, professional services, or non-D2C consumer brands.</dd>
+                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Who founded NYX Studio?</dt>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">NYX Studio was co-founded by Atharv Paharia (Co-Founder &amp; Tech Lead) and Bhavya Jain (Co-Founder &amp; Product Lead). Atharv leads AI engineering and the content production pipeline; Bhavya leads brand strategy, product, and the partner-facing systems.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
-                            <dt className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">What&apos;s included in the AI content automation pipeline?</dt>
-                            <dd className="font-body text-base md:text-lg leading-relaxed text-ink-black/80">End-to-end production: script generation, AI voiceover, AI video synthesis or live-shot editing, motion graphics, captioning, platform-specific resizing, and scheduled distribution across Meta, YouTube Shorts, and TikTok. Available as part of Starter and Growth packages.</dd>
+                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How much does an AI-native content package cost in India?</dt>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">NYX Studio packages start at ₹30,000/month (Trial Pack) for 15-17 high-fidelity posts and reels on a single platform, scale to ₹50,000/month (Starter Pack) for multi-platform creative plus Meta ads, and reach ₹80,000/month (Growth Pack) for full ecosystem execution including influencer ops and WhatsApp/SMS funnels.</dd>
+                        </div>
+                        <div className="border-b-4 border-ink-black pb-6">
+                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How fast is the turnaround on a cinematic D2C reel?</dt>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">Standard turnaround is 5-7 business days from approved brief to final delivery. AI-generated product films can ship in 48-72 hours when no live shoot is required. Rush turnaround is available for existing partners.</dd>
+                        </div>
+                        <div className="border-b-4 border-ink-black pb-6">
+                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">What categories does NYX Studio specialize in?</dt>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">We specialize in D2C brands across food, beverage, lifestyle, beauty, and apparel. Past partners include Dessertino, Mango Jungle, Mango Shower, and Brioso. We do not take on B2B SaaS, professional services, or non-D2C consumer brands.</dd>
+                        </div>
+                        <div className="border-b-4 border-ink-black pb-6">
+                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Do you only work with Indian D2C brands?</dt>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">Our core focus is D2C brands operating in India - food, beverage, lifestyle, beauty, and apparel categories. We&apos;re open to international D2C brands selling into India, but we don&apos;t take on B2B SaaS, professional services, or non-D2C consumer brands.</dd>
+                        </div>
+                        <div className="border-b-4 border-ink-black pb-6">
+                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How are AI-generated videos different from traditional shoots?</dt>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">AI-generated product films are indistinguishable from a five-figure live shoot for roughly 70% of social-media use cases as of 2026. They ship in 48-72 hours instead of 2-3 weeks, cost a fraction of a full production day, and let us hit weekly content velocity. We still do live shoots when the founder needs to be on camera or the brief requires a real environment.</dd>
+                        </div>
+                        <div className="border-b-4 border-ink-black pb-6">
+                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">What&apos;s included in the AI content automation pipeline?</dt>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">End-to-end production: script generation, AI voiceover, AI video synthesis or live-shot editing, motion graphics, captioning, platform-specific resizing, and scheduled distribution across Meta, YouTube Shorts, and TikTok. Available as part of Starter and Growth packages.</dd>
+                        </div>
+                        <div className="border-b-4 border-ink-black pb-6">
+                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Does NYX Studio handle influencer marketing?</dt>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">Yes — influencer operations are bundled into the Growth Pack (₹80,000/month). That covers creator sourcing aligned to your brand, brief writing, deliverable QA, and post-publish reporting. We don&apos;t run influencer-only retainers; influencer ops works best when paired with the in-house content engine that supports it.</dd>
+                        </div>
+                        <div className="border-b-4 border-ink-black pb-6">
+                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">What platforms does NYX Studio publish to?</dt>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">Primarily Instagram (Reels, Posts, Stories) and TikTok for short-form video, YouTube Shorts for cross-posting, and Meta Ads (Facebook + Instagram) for paid creative. Growth Pack adds WhatsApp/SMS funnels for retention loops.</dd>
+                        </div>
+                        <div className="border-b-4 border-ink-black pb-6">
+                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How does NYX Studio measure campaign success?</dt>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">We track first-frame stop-rate, 3-second view-through, completion rate, and conversion-to-action per asset. For paid creative we also report CPM, CTR, ROAS, and frequency. Reports ship monthly via the partner portal.</dd>
+                        </div>
+                        <div className="border-b-4 border-ink-black pb-6">
+                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Do you offer one-off shoots or only monthly retainers?</dt>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">We&apos;re retainer-first because content velocity is what actually moves D2C metrics - one campaign a quarter doesn&apos;t compound. We do accept one-off projects for brand films and launch campaigns when the scope is clearly defined. Reach out via the contact page to discuss.</dd>
                         </div>
                         <div>
-                            <dt className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Do you offer one-off shoots or only monthly retainers?</dt>
-                            <dd className="font-body text-base md:text-lg leading-relaxed text-ink-black/80">We&apos;re retainer-first because content velocity is what actually moves D2C metrics - one campaign a quarter doesn&apos;t compound. We do accept one-off projects for brand films and launch campaigns when the scope is clearly defined. Reach out via the contact page to discuss.</dd>
+                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How do I start working with NYX Studio?</dt>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">Send a brief via the contact page at nyxstudio.tech/contact. We respond within 48 hours with a fit assessment. If we&apos;re a fit, we run a 20-minute scoping call, propose a pack (Trial / Starter / Growth), and ship the first 3 assets within 7 business days of kickoff.</dd>
                         </div>
                     </dl>
                 </div>

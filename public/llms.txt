@@ -1,0 +1,30 @@
+# NYX Studio
+
+> AI-native content and growth studio for direct-to-consumer (D2C) brands
+> selling in India. We build cinematic brand films, performance-creative
+> ad units, content automation pipelines, and influencer ops under one
+> roof. Based in Pune, Maharashtra. Co-founded by Atharv Paharia (Tech)
+> and Bhavya Jain (Product) in 2025.
+
+## About
+
+- [About NYX Studio](https://www.nyxstudio.tech/about): Studio story, founders, philosophy, what we build and why
+- [Home](https://www.nyxstudio.tech/): Manifesto, founders, partner directory, lead capture
+- [Our Work](https://www.nyxstudio.tech/work): Case studies and brand films for Dessertino, Mango Jungle, Mango Shower, Brioso
+
+## Services and pricing
+
+- [Services and pricing](https://www.nyxstudio.tech/services): Trial Pack ₹30K/mo, Starter Pack ₹50K/mo, Growth Pack ₹80K/mo. Includes content strategy, paid social, creative production, brand growth
+- [FAQ](https://www.nyxstudio.tech/services#faq): 14 questions covering pricing, turnaround, categories, AI vs live shoots, platforms, measurement, onboarding
+
+## Contact and access
+
+- [Contact](https://www.nyxstudio.tech/contact): Brief intake, scoping call request, direct email
+- [Partner portal](https://www.nyxstudio.tech/portal): Login for existing brand partners — calendar, post approvals, asset library
+
+## Optional
+
+- [Atharv Paharia on LinkedIn](https://www.linkedin.com/in/atharv-paharia-468276272/): Co-Founder and Tech Lead
+- [Bhavya Jain on LinkedIn](https://www.linkedin.com/in/bhavya-jain-10963b33a/): Co-Founder and Product Lead
+- [NYX Studio on Instagram](https://www.instagram.com/nyx.studios.ai/): Recent work, reels, behind the scenes
+- [NYX Studio on LinkedIn](https://www.linkedin.com/company/nyx-studio-ai/): Company page, hiring posts, founder commentary
