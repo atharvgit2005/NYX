@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { signIn, useSession } from 'next-auth/react';
@@ -34,8 +34,6 @@ function LoginContent({ defaultCallbackUrl }: { defaultCallbackUrl: string }) {
     // ?email=… prefill — used by the signup flow when an email already
     // exists, so the user lands here with the field ready.
     const prefilledEmail = searchParams.get('email') ?? '';
-
-    const isPortalFlow = callbackUrl.startsWith('/portal');
 
     useEffect(() => {
         if (session) router.push(callbackUrl);
@@ -71,7 +69,7 @@ function LoginContent({ defaultCallbackUrl }: { defaultCallbackUrl: string }) {
         router.push(callbackUrl);
     };
 
-    return <AuthShell mode="login" displayError={displayError} showSignupTab={true} portalFlow={isPortalFlow}>
+    return <AuthShell mode="login" displayError={displayError} showSignupTab={true}>
         <form onSubmit={handleLogin} className="space-y-8">
             <FieldEmail defaultValue={prefilledEmail} />
             <FieldPassword show={showPassword} onToggle={() => setShowPassword((v) => !v)} />
@@ -103,10 +101,10 @@ function LoginContent({ defaultCallbackUrl }: { defaultCallbackUrl: string }) {
             <p className="text-[11px] text-[#ab8981] italic" style={{ fontFamily: 'var(--font-work-sans), sans-serif' }}>
                 Don&apos;t have an account?{' '}
                 <Link
-                    href={isPortalFlow ? '/portal/signup' : '/automate/signup'}
+                    href="/portal/signup"
                     className="text-[#E8441A] hover:underline decoration-2 underline-offset-4 not-italic"
                 >
-                    {isPortalFlow ? 'Request access' : 'Sign up'}
+                    Request access
                 </Link>
                 .
             </p>
@@ -117,7 +115,7 @@ function LoginContent({ defaultCallbackUrl }: { defaultCallbackUrl: string }) {
 }
 
 export default function LoginClient({
-    defaultCallbackUrl = '/automate/dashboard',
+    defaultCallbackUrl = '/portal',
 }: { defaultCallbackUrl?: string } = {}) {
     return (
         <Suspense fallback={<div className="min-h-screen bg-[#0e0e0e] flex items-center justify-center text-[#e5e2e1]">Loading…</div>}>
@@ -134,23 +132,15 @@ export function AuthShell({
     mode,
     displayError,
     showSignupTab = true,
-    portalFlow,
     children,
 }: {
     mode: 'login' | 'signup';
     displayError?: string;
     showSignupTab?: boolean;
-    /** Force the portal href set even before pathname resolves (SSR). */
-    portalFlow?: boolean;
     children: React.ReactNode;
 }) {
-    // Tab hrefs need to point at whichever flow the user is currently in.
-    // Hardcoded /automate/* hrefs used to bounce portal users to the automate
-    // subdomain via the next.config redirect.
-    const pathname = usePathname();
-    const isPortal = portalFlow ?? pathname?.startsWith('/portal') ?? false;
-    const loginHref = isPortal ? '/portal/login' : '/automate/login';
-    const signupHref = isPortal ? '/portal/signup' : '/automate/signup';
+    const loginHref = '/portal/login';
+    const signupHref = '/portal/signup';
     const heading = mode === 'login' ? 'OPERATOR LOGIN' : 'INITIATE OPERATOR';
     const subheading =
         mode === 'login'
@@ -294,7 +284,7 @@ export function AuthShell({
                                 }`}
                                 style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
                             >
-                                {isPortal ? 'REQUEST_ACCESS' : 'INITIATE_SIGNUP'}
+                                REQUEST_ACCESS
                             </Link>
                         )}
                     </div>

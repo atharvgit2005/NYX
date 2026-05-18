@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import LoginClient from "../../automate/login/LoginClient";
+import LoginClient from "@/components/auth/LoginClient";
 
 export const metadata: Metadata = {
   title: "Portal sign in",

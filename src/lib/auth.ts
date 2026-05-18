@@ -242,20 +242,11 @@ export const authOptions: AuthOptions = {
         })
     ],
     pages: {
-        // Default sign-in page for NextAuth-driven redirects (e.g.
-        // /api/auth/signin direct hits, error-fallback, signOut without
-        // callbackUrl). We default to /portal/login because:
-        //   • most signed-out www visitors are brand partners,
-        //   • /portal/login is NOT subject to the /automate/* → subdomain
-        //     redirect, so the user stays on the host they came from,
-        //   • Operator (Automate) users still reach /automate/login via
-        //     the explicit "Operator Login" link in the landing nav.
         signIn: '/portal/login',
     },
     // Share the session cookie across nyxstudio.tech subdomains in production
-    // (so signing in on www.nyxstudio.tech keeps you signed in on
-    // automate.nyxstudio.tech and vice versa). In dev/preview the cookie
-    // stays host-only, which is what we want.
+    // so a single sign-in carries across any future subdomain we attach.
+    // In dev/preview the cookie stays host-only, which is what we want.
     cookies:
         process.env.NODE_ENV === 'production'
             ? {

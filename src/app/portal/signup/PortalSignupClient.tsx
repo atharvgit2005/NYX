@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
-import { AuthShell, FieldText, FieldEmail } from '../../automate/login/LoginClient'
+import { AuthShell, FieldText, FieldEmail } from '@/components/auth/LoginClient'
 
 const HEAD = { fontFamily: 'var(--font-space-grotesk), sans-serif' } as const
 const BODY = { fontFamily: 'var(--font-work-sans), sans-serif' } as const
@@ -87,7 +87,7 @@ export default function PortalSignupClient() {
 
     if (emailExistsRedirect) {
         return (
-            <AuthShell mode="signup" portalFlow showSignupTab={true}>
+            <AuthShell mode="signup" showSignupTab={true}>
                 <div className="space-y-6" style={BODY}>
                     <div
                         className="border-4 border-black bg-[#ffd65b] text-[#3d2f00] p-5"
@@ -121,7 +121,7 @@ export default function PortalSignupClient() {
     }
 
     return (
-        <AuthShell mode="signup" portalFlow showSignupTab={true} displayError={error ?? undefined}>
+        <AuthShell mode="signup" showSignupTab={true} displayError={error ?? undefined}>
             <form onSubmit={handleSubmit} className="space-y-8">
                 <FieldText id="name" name="name" label="FULL_NAME" placeholder="Your name" autoComplete="name" />
                 <FieldEmail />

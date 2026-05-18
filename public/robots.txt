@@ -4,13 +4,6 @@ Disallow: /api/
 Disallow: /portal/
 Disallow: /portal
 Disallow: /clients/
-Disallow: /automate/admin/
-Disallow: /automate/dashboard/
-Disallow: /automate/login
-Disallow: /automate/signin
-Disallow: /automate/signup
-Disallow: /automate/contact
-Disallow: /automate/test-voice
 Disallow: /uploads/
 
 Sitemap: https://www.nyxstudio.tech/sitemap.xml
