@@ -67,7 +67,7 @@ export function ContactForm() {
 
     return (
                 <form className="space-y-8" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 <div className="form-element group opacity-0">
                     <label className="block text-xs font-headline font-black uppercase tracking-widest text-black mb-2" htmlFor={nameFieldId}>* OPERATOR_NAME</label>
                     <div className="relative">
@@ -170,7 +170,7 @@ export function ContactForm() {
                 </div>
             </div>
             <div className="form-element pt-4 opacity-0">
-                <button className="glitch-btn w-full md:w-auto bg-[#E8441A] text-white px-2 md:px-12 py-4 md:py-6 font-headline font-black text-[1.05rem] md:text-2xl uppercase tracking-tighter border-4 border-black transition-all duration-150 active:scale-95 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] whitespace-nowrap overflow-hidden text-ellipsis disabled:opacity-50 disabled:active:scale-100" id="submit-btn" type="submit" disabled={isLoading}>
+                <button className="glitch-btn w-full md:w-auto bg-[#E8441A] text-white px-4 md:px-12 py-4 md:py-6 font-headline font-black text-base md:text-2xl uppercase tracking-tighter border-4 border-black transition-all duration-150 active:scale-95 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] disabled:opacity-50 disabled:active:scale-100" id="submit-btn" type="submit" disabled={isLoading}>
                     {isLoading ? "PROCESSING..." : "INITIALIZE_TRANSFER →"}
                 </button>
             </div>

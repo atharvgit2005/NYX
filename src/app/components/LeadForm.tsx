@@ -52,10 +52,10 @@ export function LeadForm() {
             <label className="sr-only" htmlFor={emailFieldId}>
                 Work email
             </label>
-            <input 
+            <input
                 id={emailFieldId}
-                className="flex-grow bg-surface-container-lowest border-4 border-black px-6 py-5 font-headline font-bold text-white focus:outline-none focus:border-black placeholder:text-surface-variant" 
-                placeholder="ENTER YOUR EMAIL" 
+                className="flex-grow w-full bg-surface-container-lowest border-4 border-black px-5 md:px-6 py-4 md:py-5 font-headline font-bold text-white focus:outline-none focus:border-black placeholder:text-surface-variant"
+                placeholder="ENTER YOUR EMAIL"
                 type="email"
                 autoComplete="email"
                 value={email}
@@ -63,7 +63,7 @@ export function LeadForm() {
                 required
                 aria-describedby="homepage-lead-status"
             />
-            <button className="bg-black text-white font-headline font-bold px-10 py-5 uppercase border-4 border-black border-l-0 hover:bg-secondary hover:text-black transition-colors flex items-center justify-center gap-2 disabled:opacity-50" type="submit" disabled={isLoading}>
+            <button className="w-full md:w-auto bg-black text-white font-headline font-bold px-6 md:px-10 py-4 md:py-5 uppercase border-4 border-black border-t-0 md:border-t-4 md:border-l-0 hover:bg-secondary hover:text-black active:bg-secondary active:text-black transition-colors flex items-center justify-center gap-2 disabled:opacity-50" type="submit" disabled={isLoading}>
                 {isLoading ? "PROCESSING..." : "Let's Talk"} {!isLoading && <span className="material-symbols-outlined">arrow_forward</span>}
             </button>
             <p id="homepage-lead-status" className="sr-only" aria-live="polite">

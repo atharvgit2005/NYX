@@ -1,3 +1,16 @@
+> **⚠️ SCRAPPED — 2026-05-18**
+>
+> The subdomain split described below has been **reverted**. `/automate/*` is
+> served from the main Next app on `www.nyxstudio.tech` again. The redirect
+> rules, host-gated rewrites, and the cross-DB migration script have all been
+> removed (or archived under `scripts/archive/`).
+>
+> This file is kept only as a historical record of what was attempted.
+> Do not act on the instructions below. If the subdomain plan is ever
+> revived, redesign from scratch rather than reusing this doc verbatim.
+
+---
+
 # Phase 2.5 — Automate moves to `automate.nyxstudio.tech`
 
 ## What this changes

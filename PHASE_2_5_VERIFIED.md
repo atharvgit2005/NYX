@@ -1,3 +1,13 @@
+> **⚠️ SCRAPPED — 2026-05-18**
+>
+> The subdomain split this file verified has since been **reverted**.
+> `/automate/*` is served from the main Next app on `www.nyxstudio.tech`
+> again. See `PHASE_2.5_AUTOMATE_SUBDOMAIN.md` for the matching scrap notice.
+>
+> Kept as a historical record only.
+
+---
+
 # Phase 2.5 — Automate subdomain split, VERIFIED in production
 
 Date verified: 2026-05-07

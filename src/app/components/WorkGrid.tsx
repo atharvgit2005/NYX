@@ -24,102 +24,105 @@ export function WorkGrid() {
 
     return (
         <>
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 auto-rows-[minmax(300px,auto)]">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 auto-rows-[minmax(300px,auto)]">
                 {/* Project 01 */}
-                <div 
+                <div
                     onClick={() => openVideo("/videos/dessertino_happiness.mp4")}
                     className="bento-card md:col-span-8 group relative overflow-hidden bento-border bg-[#1c1b1b] transition-all duration-300 hover:bg-[#ffb4a2] cursor-pointer"
                 >
-                    <div className="absolute top-4 right-4 z-10 flex gap-2">
-                        <span className="bg-black text-white px-3 py-1 font-label text-xs uppercase">* EDITORIAL DESIGN</span>
+                    <div className="absolute top-3 right-3 md:top-4 md:right-4 z-10 flex gap-2">
+                        <span className="bg-black text-white px-2 md:px-3 py-1 font-label text-[10px] md:text-xs uppercase">* EDITORIAL DESIGN</span>
                     </div>
-                    <div className="h-full w-full min-h-[500px] flex flex-col md:flex-row pointer-events-none">
-                        <div className="md:w-1/2 p-12 flex flex-col justify-between">
+                    <div className="h-full w-full min-h-[420px] md:min-h-[500px] flex flex-col md:flex-row pointer-events-none">
+                        <div className="md:w-1/2 p-6 sm:p-8 md:p-12 flex flex-col justify-between gap-6 md:gap-0">
                             <div>
-                                <span className="font-headline text-6xl text-[#E8441A] group-hover:text-black transition-colors">01</span>
-                                <h2 className="font-headline text-5xl font-bold uppercase mt-4 group-hover:text-black transition-colors">DESSERTINO HAPPINESS</h2>
+                                <span className="font-headline text-5xl md:text-6xl text-[#E8441A] group-hover:text-black transition-colors">01</span>
+                                <h2 className="font-headline text-3xl md:text-5xl font-bold uppercase mt-3 md:mt-4 group-hover:text-black transition-colors">DESSERTINO HAPPINESS</h2>
                             </div>
-                            <p className="font-body text-lg max-w-xs group-hover:text-black/80 transition-colors">A delightful exploration of sweetness and joy.</p>
+                            <p className="font-body text-base md:text-lg max-w-xs group-hover:text-black/80 transition-colors">A delightful exploration of sweetness and joy.</p>
                         </div>
-                        <div className="md:w-1/2 bg-black relative overflow-hidden">
+                        <div className="md:w-1/2 min-h-[200px] bg-black relative overflow-hidden">
                             <video autoPlay loop muted playsInline preload="metadata" poster="/og-image.jpg" className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700">
                                 <source src="/videos/dessertino_happiness.mp4" type="video/mp4" />
                             </video>
+                            <span className="md:hidden absolute inset-0 flex items-center justify-center material-symbols-outlined !text-6xl text-white drop-shadow-xl pointer-events-none">play_circle</span>
                         </div>
                     </div>
-                    <div className="absolute top-1/2 right-1/4 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 scale-50 group-hover:scale-100">
-                        <span className="material-symbols-outlined text-8xl text-white drop-shadow-xl">play_circle</span>
+                    <div className="hidden md:block absolute top-1/2 right-1/4 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 scale-50 group-hover:scale-100">
+                        <span className="material-symbols-outlined !text-8xl text-white drop-shadow-xl">play_circle</span>
                     </div>
                 </div>
 
                 {/* Project 02 */}
-                <div 
+                <div
                     onClick={() => openVideo("/videos/mango_jungle.mp4")}
                     className="bento-card md:col-span-4 group relative overflow-hidden bento-border bg-[#2a2a2a] transition-all duration-300 hover:bg-[#ffd65b] cursor-pointer"
                 >
-                    <div className="p-8 h-full flex flex-col pointer-events-none">
-                        <div className="mb-8">
-                            <span className="bg-black text-white px-3 py-1 font-label text-xs uppercase">* DIGITAL PRODUCT</span>
+                    <div className="p-6 sm:p-8 h-full flex flex-col pointer-events-none">
+                        <div className="mb-6 md:mb-8">
+                            <span className="bg-black text-white px-2 md:px-3 py-1 font-label text-[10px] md:text-xs uppercase">* DIGITAL PRODUCT</span>
                         </div>
                         <div className="flex-grow">
-                            <span className="font-headline text-4xl text-[#F5C518] group-hover:text-black">02</span>
-                            <h2 className="font-headline text-4xl font-bold uppercase mt-2 group-hover:text-black">MANGO JUNGLE</h2>
+                            <span className="font-headline text-3xl md:text-4xl text-[#F5C518] group-hover:text-black">02</span>
+                            <h2 className="font-headline text-2xl md:text-4xl font-bold uppercase mt-2 group-hover:text-black">MANGO JUNGLE</h2>
                         </div>
-                        <div className="mt-8 border-t-4 border-black pt-4 group-hover:border-black/20">
+                        <div className="mt-6 md:mt-8 border-t-4 border-black pt-4 group-hover:border-black/20 relative">
                             <video autoPlay loop muted playsInline preload="metadata" poster="/og-image.jpg" className="w-full aspect-square object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
                                 <source src="/videos/mango_jungle.mp4" type="video/mp4" />
                             </video>
+                            <span className="md:hidden absolute inset-0 flex items-center justify-center material-symbols-outlined !text-6xl text-white drop-shadow-xl pointer-events-none">play_circle</span>
                         </div>
                     </div>
-                    <div className="absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 scale-50 group-hover:scale-100">
-                        <span className="material-symbols-outlined text-8xl text-white drop-shadow-xl">play_circle</span>
+                    <div className="hidden md:block absolute top-3/4 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 scale-50 group-hover:scale-100">
+                        <span className="material-symbols-outlined !text-8xl text-white drop-shadow-xl">play_circle</span>
                     </div>
                 </div>
 
                 {/* Project 03 */}
-                <div 
+                <div
                     onClick={() => openVideo("/videos/mango_shower_dessertino.mp4")}
                     className="bento-card md:col-span-5 group relative overflow-hidden bento-border bg-[#0e0e0e] transition-all duration-300 hover:bg-[#3da452] cursor-pointer"
                 >
                     <div className="h-full flex flex-col pointer-events-none">
-                        <div className="relative h-64 overflow-hidden">
+                        <div className="relative h-56 md:h-64 overflow-hidden">
                             <video autoPlay loop muted playsInline preload="metadata" poster="/og-image.jpg" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-125 group-hover:scale-100">
                                 <source src="/videos/mango_shower_dessertino.mp4" type="video/mp4" />
                             </video>
+                            <span className="md:hidden absolute inset-0 flex items-center justify-center material-symbols-outlined !text-6xl text-white drop-shadow-xl pointer-events-none">play_circle</span>
                         </div>
-                        <div className="p-8 flex-grow flex flex-col justify-between">
+                        <div className="p-6 sm:p-8 flex-grow flex flex-col justify-between gap-3">
                             <div>
-                                <span className="font-headline text-4xl text-[#76dc83] group-hover:text-white">03</span>
-                                <h2 className="font-headline text-4xl font-bold uppercase mt-2 group-hover:text-white">MANGO SHOWER</h2>
+                                <span className="font-headline text-3xl md:text-4xl text-[#76dc83] group-hover:text-white">03</span>
+                                <h2 className="font-headline text-2xl md:text-4xl font-bold uppercase mt-2 group-hover:text-white">MANGO SHOWER</h2>
                             </div>
                             <div className="mt-4">
                                 <span className="font-label text-xs uppercase text-stone-500 group-hover:text-white/70 tracking-widest">* ART DIRECTION</span>
                             </div>
                         </div>
                     </div>
-                    <div className="absolute top-32 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 scale-50 group-hover:scale-100">
-                        <span className="material-symbols-outlined text-8xl text-white drop-shadow-xl">play_circle</span>
+                    <div className="hidden md:block absolute top-32 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 scale-50 group-hover:scale-100">
+                        <span className="material-symbols-outlined !text-8xl text-white drop-shadow-xl">play_circle</span>
                     </div>
                 </div>
 
                 {/* Project 04 */}
-                <div 
+                <div
                     onClick={() => openVideo("/videos/brioso_unboxing.mp4")}
-                    className="bento-card md:col-span-7 group relative overflow-hidden bento-border bg-black transition-all duration-300 hover:invert cursor-pointer"
+                    className="bento-card md:col-span-7 group relative overflow-hidden bento-border bg-black transition-all duration-300 md:hover:invert cursor-pointer min-h-[420px]"
                 >
                     <div className="absolute inset-0 opacity-20 pointer-events-none">
                         <video autoPlay loop muted playsInline preload="metadata" poster="/og-image.jpg" className="w-full h-full object-cover">
                             <source src="/videos/brioso_unboxing.mp4" type="video/mp4" />
                         </video>
                     </div>
-                    <div className="relative z-10 p-12 h-full flex flex-col justify-center items-center text-center pointer-events-none">
-                        <span className="font-headline text-9xl text-white drop-shadow-2xl">04</span>
-                        <h2 className="font-headline text-6xl font-black uppercase mt-4 text-white">BRIOSO UNBOXING</h2>
-                        <p className="font-body text-white/60 mt-6 max-w-md tracking-wider uppercase text-sm">Experience the reveal and product details.</p>
-                        <div className="mt-12">
-                            <button 
+                    <div className="relative z-10 p-6 sm:p-8 md:p-12 h-full flex flex-col justify-center items-center text-center pointer-events-none">
+                        <span className="font-headline text-6xl md:text-9xl text-white drop-shadow-2xl">04</span>
+                        <h2 className="font-headline text-3xl md:text-6xl font-black uppercase mt-3 md:mt-4 text-white">BRIOSO UNBOXING</h2>
+                        <p className="font-body text-white/60 mt-4 md:mt-6 max-w-md tracking-wider uppercase text-xs md:text-sm">Experience the reveal and product details.</p>
+                        <div className="mt-8 md:mt-12">
+                            <button
                                 onClick={(e) => { e.stopPropagation(); openVideo('/videos/brioso_unboxing.mp4'); }}
-                                className="border-4 border-white text-white px-10 py-4 font-headline font-bold uppercase hover:bg-white hover:text-black transition-all pointer-events-auto flex items-center gap-2"
+                                className="border-4 border-white text-white px-6 md:px-10 py-3 md:py-4 text-sm md:text-base font-headline font-bold uppercase hover:bg-white hover:text-black active:scale-95 transition-all pointer-events-auto flex items-center gap-2"
                             >
                                 <span className="material-symbols-outlined">play_arrow</span> WATCH FULL VIDEO
                             </button>
@@ -135,11 +138,12 @@ export function WorkGrid() {
                     onClick={closeVideo}
                 >
                     {/* Close Button */}
-                    <button 
+                    <button
                         onClick={closeVideo}
-                        className="absolute top-6 right-6 md:top-10 md:right-10 z-[110] p-4 text-white hover:text-[#F5C518] hover:scale-110 transition-all bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center border border-white/20"
+                        aria-label="Close video"
+                        className="absolute top-4 right-4 md:top-10 md:right-10 z-[110] p-3 md:p-4 text-white hover:text-[#F5C518] hover:scale-110 active:scale-95 transition-all bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center border border-white/20"
                     >
-                        <span className="material-symbols-outlined text-3xl md:text-4xl">close</span>
+                        <span className="material-symbols-outlined !text-2xl md:!text-4xl">close</span>
                     </button>
 
                     {/* Video Container */}

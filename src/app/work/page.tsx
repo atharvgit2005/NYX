@@ -137,7 +137,6 @@ export default function AdWorkPage() {
                         <Link className="font-headline uppercase tracking-tighter font-bold text-[#E8441A] border-b-4 border-[#E8441A] pb-1 transition-all duration-75" href="/work">WORK</Link>
                         <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] hover:bg-[#F5C518] hover:text-black transition-all duration-75 px-2" href="/services">SERVICES</Link>
                         <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] hover:bg-[#F5C518] hover:text-black transition-all duration-75 px-2" href="/contact">CONTACT</Link>
-                        <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] hover:bg-[#F5C518] hover:text-black transition-all duration-75 px-2" href="/automate">AUTOMATE</Link>
                     </div>
                     <Link href="/contact" className="bg-[#ffb4a2] px-3 md:px-6 py-1 md:py-2 text-black font-headline font-bold text-[0.75rem] md:text-base uppercase tracking-tighter border-4 border-black hover:bg-[#F5C518] hover:translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0px_#000000] transition-all duration-75 inline-block whitespace-nowrap">
                         LET&apos;S TALK →
@@ -150,18 +149,18 @@ export default function AdWorkPage() {
                     <div className="absolute inset-0 bg-gradient-to-br from-surface-container-lowest via-[#0e0e0e] to-[#1a0a05]"></div>
                 </div>
 
-                <main className="pt-32 pb-20 px-8 max-w-[1600px] mx-auto pb-20 md:pb-0">
+                <main className="pt-24 md:pt-32 px-4 sm:px-6 md:px-8 max-w-[1600px] mx-auto pb-[72px] md:pb-0 overflow-x-hidden">
                     <WorkAnimations />
                     {/* Hero Header */}
-                    <header className="mb-24 relative">
-                        <div className="absolute -top-12 -left-12 text-[#E8441A] opacity-20 text-[15rem] font-black select-none pointer-events-none">WORK</div>
-                        <h1 className="text-[clamp(4rem,15vw,12rem)] font-headline font-black leading-[0.8] tracking-tighter uppercase relative reveal-text">
+                    <header className="mb-16 md:mb-24 relative">
+                        <div className="absolute -top-6 md:-top-12 -left-4 md:-left-12 text-[#E8441A] opacity-20 text-[6rem] sm:text-[9rem] md:text-[15rem] font-black select-none pointer-events-none leading-none">WORK</div>
+                        <h1 className="text-[clamp(2.75rem,15vw,12rem)] font-headline font-black leading-[0.8] tracking-tighter uppercase relative reveal-text">
                             <span className="block">CONCEPTS &</span>
                             <span className="text-[#E8441A] block">EARLY WORK</span>
                         </h1>
-                        <div className="flex items-center gap-4 mt-8">
-                            <span className="w-12 h-1 bg-[#F5C518]"></span>
-                            <p className="font-label text-secondary uppercase tracking-[0.3em]">* THE MIDNIGHT MANIFESTO VOL. 01</p>
+                        <div className="flex items-center gap-4 mt-6 md:mt-8">
+                            <span className="w-8 md:w-12 h-1 bg-[#F5C518] flex-shrink-0"></span>
+                            <p className="font-label text-secondary uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-base">* THE MIDNIGHT MANIFESTO VOL. 01</p>
                         </div>
                     </header>
 
@@ -169,18 +168,18 @@ export default function AdWorkPage() {
                     <WorkGrid />
 
                     {/* Next Project CTA */}
-                    <section className="mt-32 mb-12 border-4 border-black bg-[#ffb4a2] p-16 relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 p-4">
-                            <span className="material-symbols-outlined text-9xl text-black/10 group-hover:text-black/20 transition-colors">add_circle</span>
+                    <section className="mt-20 md:mt-32 mb-12 border-4 border-black bg-[#ffb4a2] p-6 sm:p-10 md:p-16 relative overflow-hidden group">
+                        <div className="absolute top-0 right-0 p-2 md:p-4">
+                            <span className="material-symbols-outlined !text-6xl md:!text-9xl text-black/10 group-hover:text-black/20 transition-colors">add_circle</span>
                         </div>
                         <div className="relative z-10">
-                            <h2 className="font-headline text-[clamp(2.5rem,8vw,6rem)] font-black leading-tight uppercase text-black reveal-text">
+                            <h2 className="font-headline text-[clamp(2rem,8vw,6rem)] font-black leading-tight uppercase text-black reveal-text">
                                 <span className="block">YOUR PROJECT IS</span>
                                 <span className="text-white group-hover:text-[#ffd65b] transition-colors block leading-tight mt-2">NEXT IN LINE</span>
                             </h2>
-                            <div className="mt-12 flex flex-col md:flex-row gap-8 items-start md:items-center">
-                                <p className="font-body text-xl text-black font-medium max-w-xl">We are currently accepting new partners for the Q3-Q4 broadcast cycle. Let&apos;s build something that demands attention.</p>
-                                <Link className="bg-black text-white px-12 py-6 text-2xl font-headline font-bold uppercase group-hover:translate-x-4 transition-transform zine-shadow" href="/contact">
+                            <div className="mt-8 md:mt-12 flex flex-col md:flex-row gap-6 md:gap-8 items-start md:items-center">
+                                <p className="font-body text-base md:text-xl text-black font-medium max-w-xl">We are currently accepting new partners for the Q3-Q4 broadcast cycle. Let&apos;s build something that demands attention.</p>
+                                <Link className="bg-black text-white px-6 md:px-12 py-4 md:py-6 text-lg md:text-2xl font-headline font-bold uppercase group-hover:translate-x-4 active:translate-x-1 transition-transform zine-shadow whitespace-nowrap" href="/contact">
                                     BOOK A DISCOVERY →
                                 </Link>
                             </div>
@@ -192,7 +191,7 @@ export default function AdWorkPage() {
                 </main>
 
                 {/* Footer */}
-                <footer className="w-full flex flex-col md:flex-row justify-between items-center px-8 py-12 gap-6 bg-[#0E0E0E] dark:bg-black border-t-4 border-black dark:border-white/10 rounded-none relative z-10">
+                <footer className="w-full flex flex-col md:flex-row justify-between items-center px-4 sm:px-6 md:px-8 py-10 md:py-12 gap-6 bg-[#0E0E0E] dark:bg-black border-t-4 border-black dark:border-white/10 rounded-none relative z-10">
                     <Link href="/" className="flex items-center gap-3">
                         <div className="w-8 h-8 flex items-center justify-center relative">
                             <Image

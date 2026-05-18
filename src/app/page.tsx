@@ -54,18 +54,18 @@ export default function AdPage() {
             <LiveHub />
         </header>
 
-        <main className="pt-[88px] pb-20 md:pb-0">
+        <main className="pt-[72px] md:pt-[88px] pb-[72px] md:pb-0">
             <AdAnimations />
             {/* Hero Section */}
-            <section className="relative min-h-[921px] bg-surface-container-lowest px-8 py-24 flex flex-col md:flex-row items-center border-b-4 border-black overflow-hidden">
+            <section className="relative min-h-[560px] md:min-h-[921px] bg-surface-container-lowest px-4 sm:px-6 md:px-8 py-12 md:py-24 flex flex-col md:flex-row items-center border-b-4 border-black overflow-hidden">
                 <div className="noise-texture absolute inset-0"></div>
-                <div className="z-10 md:w-3/5">
-                    <h1 className="font-headline font-bold text-[4rem] md:text-[6rem] leading-[0.9] tracking-[-0.05em] uppercase mb-12 reveal-text">
+                <div className="z-10 w-full md:w-3/5">
+                    <h1 className="font-headline font-bold text-[2.75rem] sm:text-[3.5rem] md:text-[6rem] leading-[0.9] tracking-[-0.04em] md:tracking-[-0.05em] uppercase mb-8 md:mb-12 reveal-text">
                         <span className="block">We make brands</span>
                         <span className="text-primary-container block">impossible</span>
                         <span className="block">to scroll past.</span>
                     </h1>
-                    <Link href="/contact" className="bg-primary text-on-primary-fixed font-headline font-bold text-xl px-10 py-5 uppercase border-4 border-black hover:bg-secondary hover:shadow-[4px_4px_0px_#000000] transition-all flex items-center gap-4 w-fit">
+                    <Link href="/contact" className="bg-primary text-on-primary-fixed font-headline font-bold text-base md:text-xl px-6 md:px-10 py-4 md:py-5 uppercase border-4 border-black hover:bg-secondary hover:shadow-[4px_4px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 transition-all inline-flex items-center gap-3 md:gap-4 w-fit">
                         Book a Call <span className="material-symbols-outlined">arrow_forward</span>
                     </Link>
                 </div>
@@ -80,52 +80,52 @@ export default function AdPage() {
             </section>
 
             {/* SEO Copy Block */}
-            <section className="bg-surface-container-lowest px-8 py-8">
+            <section className="bg-surface-container-lowest px-4 sm:px-6 md:px-8 py-8">
                 <p className="text-sm text-on-surface/60 max-w-2xl font-body leading-relaxed">
                     NYX Studio is an AI-native creative and growth agency built for D2C brands in India. We combine cinematic content production, performance marketing, and influencer strategy into one integrated system — designed to move fast and scale faster.
                 </p>
             </section>
 
             {/* Marquee */}
-            <section className="bg-primary-container border-b-4 border-black py-6 flex items-center overflow-hidden">
+            <section className="bg-primary-container border-b-4 border-black py-4 md:py-6 flex items-center overflow-hidden">
                 <div className="marquee-container">
-                    <div className="marquee-content flex gap-12 text-black font-headline font-bold uppercase text-2xl tracking-widest items-center pr-12">
-                        <span>Content Strategy</span> <span className="text-4xl text-surface-container-lowest">•</span>
-                        <span>Paid Ads</span> <span className="text-4xl text-surface-container-lowest">•</span>
-                        <span>Creative Production</span> <span className="text-4xl text-surface-container-lowest">•</span>
-                        <span>Influencer Marketing</span> <span className="text-4xl text-surface-container-lowest">•</span>
-                        <span>Analytics</span> <span className="text-4xl text-surface-container-lowest">•</span>
-                        <span>Growth Strategy</span> <span className="text-4xl text-surface-container-lowest">•</span>
+                    <div className="marquee-content flex gap-6 md:gap-12 text-black font-headline font-bold uppercase text-base md:text-2xl tracking-widest items-center pr-6 md:pr-12">
+                        <span>Content Strategy</span> <span className="text-2xl md:text-4xl text-surface-container-lowest">•</span>
+                        <span>Paid Ads</span> <span className="text-2xl md:text-4xl text-surface-container-lowest">•</span>
+                        <span>Creative Production</span> <span className="text-2xl md:text-4xl text-surface-container-lowest">•</span>
+                        <span>Influencer Marketing</span> <span className="text-2xl md:text-4xl text-surface-container-lowest">•</span>
+                        <span>Analytics</span> <span className="text-2xl md:text-4xl text-surface-container-lowest">•</span>
+                        <span>Growth Strategy</span> <span className="text-2xl md:text-4xl text-surface-container-lowest">•</span>
                         {/* Duplicate for infinite effect */}
-                        <span>Content Strategy</span> <span className="text-4xl text-surface-container-lowest">•</span>
-                        <span>Paid Ads</span> <span className="text-4xl text-surface-container-lowest">•</span>
-                        <span>Creative Production</span> <span className="text-4xl text-surface-container-lowest">•</span>
-                        <span>Influencer Marketing</span> <span className="text-4xl text-surface-container-lowest">•</span>
-                        <span>Analytics</span> <span className="text-4xl text-surface-container-lowest">•</span>
-                        <span>Growth Strategy</span> <span className="text-4xl text-surface-container-lowest">•</span>
+                        <span>Content Strategy</span> <span className="text-2xl md:text-4xl text-surface-container-lowest">•</span>
+                        <span>Paid Ads</span> <span className="text-2xl md:text-4xl text-surface-container-lowest">•</span>
+                        <span>Creative Production</span> <span className="text-2xl md:text-4xl text-surface-container-lowest">•</span>
+                        <span>Influencer Marketing</span> <span className="text-2xl md:text-4xl text-surface-container-lowest">•</span>
+                        <span>Analytics</span> <span className="text-2xl md:text-4xl text-surface-container-lowest">•</span>
+                        <span>Growth Strategy</span> <span className="text-2xl md:text-4xl text-surface-container-lowest">•</span>
                     </div>
                 </div>
             </section>
 
             {/* Status Bar */}
-            <section className="bg-secondary border-b-4 border-black py-12 px-8 text-center">
-                <p className="font-headline font-black text-3xl md:text-5xl text-black uppercase tracking-tighter max-w-7xl mx-auto">
+            <section className="bg-secondary border-b-4 border-black py-8 md:py-12 px-4 sm:px-6 md:px-8 text-center">
+                <p className="font-headline font-black text-2xl md:text-5xl text-black uppercase tracking-tighter max-w-7xl mx-auto">
                     Selectively onboarding our first brand partners. Limited spots, Q3 2026.
                 </p>
             </section>
 
             {/* Services Bento */}
-            <section className="p-8 md:p-16 bg-surface-dim">
-                <div className="mb-16">
+            <section className="p-4 sm:p-6 md:p-16 bg-surface-dim">
+                <div className="mb-10 md:mb-16">
                     <p className="font-label text-primary uppercase font-bold mb-4 tracking-tighter">* OUR_CAPABILITIES</p>
-                    <h2 className="font-headline text-5xl md:text-7xl font-bold uppercase tracking-tight reveal-text">
+                    <h2 className="font-headline text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tight reveal-text">
                         <span className="block">Full Spectrum</span>
                         <span className="block">Growth Architecture</span>
                     </h2>
                 </div>
                 <div className="bento-grid">
                     {/* Card 1: Green */}
-                    <div className="bento-card col-span-12 md:col-span-7 bg-tertiary border-4 border-black p-8 flex flex-col justify-between min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
+                    <div className="bento-card col-span-12 md:col-span-7 bg-tertiary border-4 border-black p-6 md:p-8 flex flex-col justify-between min-h-[300px] md:min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
                         <div className="flex justify-between items-start">
                             <span className="material-symbols-outlined !text-6xl text-black">ads_click</span>
                             <p className="font-label text-black/40 font-bold">*01</p>
@@ -136,7 +136,7 @@ export default function AdPage() {
                         </div>
                     </div>
                     {/* Card 2: Orange */}
-                    <div className="bento-card col-span-12 md:col-span-5 bg-primary-container border-4 border-black p-8 flex flex-col justify-between min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
+                    <div className="bento-card col-span-12 md:col-span-5 bg-primary-container border-4 border-black p-6 md:p-8 flex flex-col justify-between min-h-[300px] md:min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
                         <div className="flex justify-between items-start">
                             <span className="material-symbols-outlined !text-6xl text-black">movie_edit</span>
                             <p className="font-label text-black/40 font-bold">*02</p>
@@ -147,7 +147,7 @@ export default function AdPage() {
                         </div>
                     </div>
                     {/* Card 3: White/Grey */}
-                    <div className="bento-card col-span-12 md:col-span-5 bg-on-surface border-4 border-black p-8 flex flex-col justify-between min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
+                    <div className="bento-card col-span-12 md:col-span-5 bg-on-surface border-4 border-black p-6 md:p-8 flex flex-col justify-between min-h-[300px] md:min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
                         <div className="flex justify-between items-start">
                             <span className="material-symbols-outlined !text-6xl text-black">groups</span>
                             <p className="font-label text-black/40 font-bold">*03</p>
@@ -158,7 +158,7 @@ export default function AdPage() {
                         </div>
                     </div>
                     {/* Card 4: Pink */}
-                    <div className="bento-card col-span-12 md:col-span-7 bg-[#F2A7C3] border-4 border-black p-8 flex flex-col justify-between min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
+                    <div className="bento-card col-span-12 md:col-span-7 bg-[#F2A7C3] border-4 border-black p-6 md:p-8 flex flex-col justify-between min-h-[300px] md:min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
                         <div className="flex justify-between items-start">
                             <span className="material-symbols-outlined !text-6xl text-black">analytics</span>
                             <p className="font-label text-black/40 font-bold">*04</p>
@@ -172,13 +172,13 @@ export default function AdPage() {
             </section>
 
             {/* Why NYX Section */}
-            <section className="relative bg-on-surface py-32 px-8 overflow-hidden border-y-4 border-black">
+            <section className="relative bg-on-surface py-20 md:py-32 px-4 sm:px-6 md:px-8 overflow-hidden border-y-4 border-black">
                 {/* Organic Blob Background */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-[#F2A7C3] opacity-20 blur-[100px] rounded-full manifesto-glow"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] max-w-full bg-[#F2A7C3] opacity-20 blur-[100px] rounded-full manifesto-glow"></div>
                 <div className="relative z-10 max-w-4xl mx-auto text-black text-center">
-                    <p className="font-label uppercase font-black text-xl mb-8 tracking-tighter">THE MANIFESTO</p>
-                    <div className="space-y-12">
-                        <h2 className="font-headline text-6xl md:text-8xl font-black uppercase leading-none tracking-tighter reveal-text">
+                    <p className="font-label uppercase font-black text-base md:text-xl mb-6 md:mb-8 tracking-tighter">THE MANIFESTO</p>
+                    <div className="space-y-8 md:space-y-12">
+                        <h2 className="font-headline text-4xl sm:text-5xl md:text-8xl font-black uppercase leading-none tracking-tighter reveal-text">
                             <span className="block">AI-NATIVE.</span>
                             <span className="block">CULTURALLY SHARP.</span>
                             <span className="block">BUILT FOR SPEED.</span>
@@ -201,17 +201,17 @@ export default function AdPage() {
             </section>
 
             {/* Founders Section */}
-            <section className="bg-surface-container-lowest py-32 px-8 border-y-4 border-black text-white">
+            <section className="bg-surface-container-lowest py-20 md:py-32 px-4 sm:px-6 md:px-8 border-y-4 border-black text-white">
                 <div className="max-w-7xl mx-auto">
-                    <div className="mb-16">
-                        <span className="text-secondary font-headline font-bold text-xl uppercase tracking-widest">* THE RUNNERS</span>
-                        <h2 className="text-5xl md:text-7xl font-black tracking-tighter uppercase font-headline leading-none mt-4 text-black">
+                    <div className="mb-10 md:mb-16">
+                        <span className="text-secondary font-headline font-bold text-base md:text-xl uppercase tracking-widest">* THE RUNNERS</span>
+                        <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase font-headline leading-none mt-4 text-black">
                             OPERATORS<br/>BEHIND THE CODE.
                         </h2>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                         {/* Founder 1 */}
-                        <div className="border-4 border-black p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#E8441A] group">
+                        <div className="border-4 border-black p-6 md:p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#E8441A] active:-translate-y-1 active:translate-x-1 group">
                             <div className="w-32 h-32 mb-6 border-4 border-white overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-300">
                                 <Image src="/founders/atharv.jpg" alt="Atharv Paharia, Co-Founder and Tech Lead at NYX Studio" width={600} height={750} className="h-full w-full object-cover" />
                             </div>
@@ -227,7 +227,7 @@ export default function AdPage() {
                             </div>
                         </div>
                         {/* Founder 2 */}
-                        <div className="border-4 border-black p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#E8441A] group">
+                        <div className="border-4 border-black p-6 md:p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#E8441A] active:-translate-y-1 active:translate-x-1 group">
                             <div className="w-32 h-32 mb-6 border-4 border-white overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-300">
                                 <Image src="/founders/bhavya.jpg" alt="Bhavya Jain, Co-Founder and Product Lead at NYX Studio" width={600} height={750} className="h-full w-full object-cover" />
                             </div>
@@ -247,15 +247,15 @@ export default function AdPage() {
             </section>
 
             {/* Lead Capture */}
-            <section className="bg-primary-container px-8 py-24 flex flex-col items-center justify-center text-black">
-                <h2 className="font-headline text-6xl md:text-8xl font-black uppercase mb-12 text-center tracking-tighter reveal-text"><span className="block">Ready to grow?</span></h2>
+            <section className="bg-primary-container px-4 sm:px-6 md:px-8 py-16 md:py-24 flex flex-col items-center justify-center text-black">
+                <h2 className="font-headline text-4xl sm:text-5xl md:text-8xl font-black uppercase mb-8 md:mb-12 text-center tracking-tighter reveal-text"><span className="block">Ready to grow?</span></h2>
                 <div className="cta-form w-full flex justify-center"><LeadForm /></div>
-                <p className="mt-8 font-label uppercase tracking-widest text-sm font-bold opacity-70">* NO SPAM. JUST STRATEGY.</p>
+                <p className="mt-8 font-label uppercase tracking-widest text-xs md:text-sm font-bold opacity-70 text-center">* NO SPAM. JUST STRATEGY.</p>
             </section>
         </main>
 
         {/* Footer */}
-        <footer className="bg-[#0E0E0E] flex flex-col md:flex-row justify-between items-start md:items-center px-8 py-12 w-full border-t-4 border-black z-10 relative">
+        <footer className="bg-[#0E0E0E] flex flex-col md:flex-row justify-between items-start md:items-center px-4 sm:px-6 md:px-8 py-10 md:py-12 w-full border-t-4 border-black z-10 relative">
             <div className="flex flex-col gap-3 mb-8 md:mb-0">
                 <Link href="/" className="flex items-center gap-3">
                     <div className="w-8 h-8 flex items-center justify-center relative">
@@ -275,7 +275,7 @@ export default function AdPage() {
                     © 2026 NYX Studio
                 </p>
             </div>
-            <div className="flex gap-12">
+            <div className="flex gap-8 md:gap-12">
                 <div className="flex flex-col gap-2">
                     <span className="text-[#E8441A] font-label text-[0.75rem] uppercase font-bold tracking-widest">CONNECT</span>
                     <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="https://www.instagram.com/nyx.studios.ai/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>

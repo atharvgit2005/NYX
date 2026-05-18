@@ -87,9 +87,9 @@ export function LiveHub() {
     return (
         <>
             {/* The Trigger Button */}
-            <button 
+            <button
                 onClick={() => setIsOpen(true)}
-                className="group flex items-center gap-2 text-[#E8441A] border-2 border-[#E8441A] px-2 md:px-4 py-1 hover:bg-[#E8441A] hover:text-black transition-all font-headline font-bold uppercase tracking-tighter text-[0.75rem] md:text-[1.1rem]"
+                className="group flex items-center gap-1.5 md:gap-2 text-[#E8441A] border-2 border-[#E8441A] px-2 md:px-4 py-1 hover:bg-[#E8441A] hover:text-black active:bg-[#E8441A] active:text-black transition-all font-headline font-bold uppercase tracking-tighter text-[0.6rem] md:text-[1.1rem] whitespace-nowrap flex-shrink-0"
             >
                 <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E8441A] opacity-75"></span>
@@ -100,45 +100,46 @@ export function LiveHub() {
 
             {/* The Modal */}
             {isOpen && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-                    <div 
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
+                    <div
                         ref={modalRef}
-                        className="w-full max-w-2xl bg-[#0E0E0E] border-4 border-[#E8441A] p-8 md:p-12 relative overflow-hidden"
+                        className="w-full max-w-2xl bg-[#0E0E0E] border-4 border-[#E8441A] p-6 sm:p-8 md:p-12 relative overflow-hidden my-auto"
                     >
-                        <button 
+                        <button
                             onClick={() => setIsOpen(false)}
-                            className="absolute top-4 right-4 text-white/40 hover:text-[#E8441A] transition-colors"
+                            aria-label="Close"
+                            className="absolute top-3 right-3 md:top-4 md:right-4 z-20 text-white/40 hover:text-[#E8441A] transition-colors"
                         >
-                            <X size={32} />
+                            <X size={28} />
                         </button>
 
                         <div className="noise-texture absolute inset-0 opacity-10 pointer-events-none"></div>
 
                         {!isComplete ? (
                             <div className="relative z-10">
-                                <div className="mb-8">
+                                <div className="mb-6 md:mb-8 pr-8">
                                     <span className="text-[#E8441A] font-label text-xs uppercase tracking-[0.3em] font-bold block mb-2">* SESSION_ACTIVE</span>
-                                    <h2 className="text-white font-headline text-2xl md:text-4xl font-black uppercase tracking-tighter leading-none">
-                                        {typeof steps[step].question === 'function' 
-                                            ? (steps[step].question as (name: string) => string)(formData.brandName) 
+                                    <h2 className="text-white font-headline text-xl sm:text-2xl md:text-4xl font-black uppercase tracking-tighter leading-tight md:leading-none">
+                                        {typeof steps[step].question === 'function'
+                                            ? (steps[step].question as (name: string) => string)(formData.brandName)
                                             : steps[step].question as string}
                                     </h2>
                                 </div>
 
-                                <div className="flex flex-col md:flex-row gap-4">
-                                    <input 
+                                <div className="flex flex-col md:flex-row gap-3 md:gap-4">
+                                    <input
                                         autoFocus
                                         type="text"
                                         value={formData[steps[step].key as keyof typeof formData]}
                                         onChange={(e) => setFormData({...formData, [steps[step].key]: e.target.value})}
                                         onKeyDown={(e) => e.key === 'Enter' && handleNext()}
                                         placeholder={steps[step].placeholder}
-                                        className="flex-grow bg-white/5 border-2 border-white/10 p-4 text-white font-body text-xl focus:border-[#E8441A] outline-none transition-all placeholder:text-white/20"
+                                        className="flex-grow w-full bg-white/5 border-2 border-white/10 p-3 md:p-4 text-white font-body text-base md:text-xl focus:border-[#E8441A] outline-none transition-all placeholder:text-white/20"
                                     />
-                                    <button 
+                                    <button
                                         onClick={handleNext}
                                         disabled={isSubmitting || !formData[steps[step].key as keyof typeof formData]}
-                                        className="bg-[#E8441A] text-black font-headline font-bold uppercase px-8 py-4 flex items-center justify-center gap-2 hover:bg-white transition-all disabled:opacity-50"
+                                        className="w-full md:w-auto bg-[#E8441A] text-black font-headline font-bold uppercase px-6 md:px-8 py-3 md:py-4 flex items-center justify-center gap-2 hover:bg-white active:bg-white transition-all disabled:opacity-50 flex-shrink-0"
                                     >
                                         {step === steps.length - 1 ? 'TRANSMIT' : 'NEXT'} <ArrowRight size={20} />
                                     </button>
@@ -154,23 +155,24 @@ export function LiveHub() {
                                 </div>
                             </div>
                         ) : (
-                            <div className="relative z-10 text-center py-12">
-                                <div className="flex justify-center mb-8">
-                                    <CheckCircle2 size={80} className="text-[#E8441A] animate-bounce" />
+                            <div className="relative z-10 text-center py-8 md:py-12">
+                                <div className="flex justify-center mb-6 md:mb-8">
+                                    <CheckCircle2 size={64} className="text-[#E8441A] animate-bounce md:hidden" />
+                                    <CheckCircle2 size={80} className="text-[#E8441A] animate-bounce hidden md:block" />
                                 </div>
-                                <h2 className="text-white font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-6">
+                                <h2 className="text-white font-headline text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-4 md:mb-6">
                                     BRIEF_LOCKED.
                                 </h2>
-                                <p className="text-white/60 font-body text-lg mb-12 max-w-md mx-auto">
+                                <p className="text-white/60 font-body text-base md:text-lg mb-8 md:mb-12 max-w-md mx-auto">
                                     Your brand soul is now in our system. The founders have been notified. Sync with our bot for immediate momentum.
                                 </p>
-                                <a 
-                                    href={`https://wa.me/919098344807?text=Hi, I've just submitted a brand brief for ${formData.brandName}. Let's discuss the strategy.`} 
+                                <a
+                                    href={`https://wa.me/919098344807?text=Hi, I've just submitted a brand brief for ${formData.brandName}. Let's discuss the strategy.`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-3 bg-[#25D366] text-black font-headline font-bold uppercase px-12 py-6 text-2xl hover:scale-105 transition-transform zine-shadow"
+                                    className="inline-flex items-center gap-3 bg-[#25D366] text-black font-headline font-bold uppercase px-6 md:px-12 py-4 md:py-6 text-lg md:text-2xl hover:scale-105 active:scale-95 transition-transform zine-shadow"
                                 >
-                                    OPEN WHATSAPP <MessageSquare size={28} />
+                                    OPEN WHATSAPP <MessageSquare size={24} />
                                 </a>
                             </div>
                         )}

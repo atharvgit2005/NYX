@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Outfit, Barlow_Condensed, Space_Grotesk, Work_Sans } from "next/font/google";
 import "./globals.css";
 import GlobalAnimations from "@/components/GlobalAnimations";
@@ -60,6 +60,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
   },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
 };
 
 export default function RootLayout({
