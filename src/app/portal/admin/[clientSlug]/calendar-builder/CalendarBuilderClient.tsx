@@ -6,6 +6,9 @@ import Link from 'next/link'
 import { Toaster, toast } from 'sonner'
 import type { ContentType, Platform } from '@prisma/client'
 import { ArrowLeft, ArrowRight, Sparkles, Trash2, Plus } from 'lucide-react'
+import CalendarChatPanel, {
+    type ProposedSlot,
+} from '../../components/CalendarChatPanel'
 
 const HEAD = { fontFamily: 'var(--font-space-grotesk), sans-serif' } as const
 const BODY = { fontFamily: 'var(--font-work-sans), sans-serif' } as const
@@ -136,6 +139,85 @@ export default function CalendarBuilderClient({
     // ── Generated slots ──
     const [slots, setSlots] = useState<Slot[]>([])
     const [submitting, setSubmitting] = useState(false)
+
+    // AI proposes slots → drop them into the existing slot grid. We map
+    // ProposedSlot → Slot, dedupe by date+title, and append below any
+    // manual slots the admin has already crafted.
+    function applyProposedSlots(proposed: ProposedSlot[]) {
+        if (proposed.length === 0) return
+        setSlots((prev) => {
+            const seen = new Set(prev.map((s) => `${s.date}__${s.title}`))
+            const next: Slot[] = [...prev]
+            for (let i = 0; i < proposed.length; i++) {
+                const p = proposed[i]
+                const dedupeKey = `${p.date}__${p.title}`
+                if (seen.has(dedupeKey)) continue
+                seen.add(dedupeKey)
+                next.push({
+                    key: `${p.date}-${next.length}-${Math.random().toString(36).slice(2, 6)}`,
+                    date: p.date,
+                    title: p.title,
+                    contentType: p.contentType,
+                    platform: p.platform,
+                    caption: p.caption ?? '',
+                    visualDirection: p.visualDirection ?? '',
+                    hashtagsRaw: (p.hashtags ?? []).join(' '),
+                })
+            }
+            return next
+        })
+        toast.success(`Applied ${proposed.length} AI-proposed slot${proposed.length === 1 ? '' : 's'}`)
+    }
+
+    function handleExecuteToolCall(toolName: string, toolArgs: Record<string, unknown>) {
+        const argStr = (k: string): string | null =>
+            typeof toolArgs[k] === 'string' ? (toolArgs[k] as string) : null
+        if (toolName === 'updateCampaignWindow') {
+            const s = argStr('startDate')
+            const e = argStr('endDate')
+            if (s) setStart(s)
+            if (e) setEnd(e)
+            toast.success(`AI updated campaign window: ${s ?? '?'} → ${e ?? '?'}`)
+        } else if (toolName === 'clearCalendar') {
+            setSlots([])
+            toast.success('AI cleared the calendar grid')
+        } else if (toolName === 'deleteSlot') {
+            const idx = Number(toolArgs.index) - 1
+            if (isNaN(idx) || idx < 0) return
+            setSlots((prev) => prev.filter((_, i) => i !== idx))
+            toast.success(`AI deleted slot #${String(toolArgs.index)}`)
+        } else if (toolName === 'modifySlot') {
+            const idx = Number(toolArgs.index) - 1
+            if (isNaN(idx) || idx < 0) return
+            setSlots((prev) => {
+                if (idx >= prev.length) return prev
+                return prev.map((s, i) => {
+                    if (i !== idx) return s
+                    const allowedCt = ['REEL', 'CAROUSEL', 'STATIC_POST', 'STORY', 'REEL_STORY']
+                    const allowedPl = ['INSTAGRAM', 'TIKTOK']
+                    const newTitle = argStr('title')
+                    const newDate = argStr('date')
+                    const newCt = argStr('contentType')?.toUpperCase()
+                    const newPl = argStr('platform')?.toUpperCase()
+                    return {
+                        ...s,
+                        title: newTitle ?? s.title,
+                        date: newDate ?? s.date,
+                        contentType:
+                            newCt && allowedCt.includes(newCt)
+                                ? (newCt as ContentType)
+                                : s.contentType,
+                        platform:
+                            newPl && allowedPl.includes(newPl)
+                                ? (newPl as Platform)
+                                : s.platform,
+                    }
+                })
+            })
+            toast.success(`AI modified slot #${String(toolArgs.index)}`)
+        }
+    }
+
 
     function buildSlots() {
         if (!start || !end) {
@@ -284,7 +366,7 @@ export default function CalendarBuilderClient({
             style={{ backgroundColor: '#0e0e0e', color: '#e5e2e1', ...BODY }}
         >
             <Toaster position="top-right" theme="dark" richColors />
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-7xl mx-auto">
                 {/* Header */}
                 <Link
                     href={`/portal/admin/${clientSlug}/posts`}
@@ -316,10 +398,14 @@ export default function CalendarBuilderClient({
                 </div>
                 <p className="text-[#e4beb5] text-sm mb-8 max-w-2xl">
                     Scaffold a full content calendar for {brandName} in one
-                    pass. Pick a window and cadence, tune the slot grid, then
-                    commit — every slot becomes a fresh IDEA post in the
-                    workspace ready for refinement.
+                    pass. Use the cadence form for a rule-based grid, or chat
+                    with the AI on the right to draft brand-specific slots —
+                    apply, edit, commit.
                 </p>
+
+                {/* Two-column layout: builder + chat panel */}
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-6 items-start">
+                    <div>
 
                 {/* Form */}
                 <fieldset className="border-l-4 border-[#E8441A] pl-6 space-y-5 mb-8">
@@ -434,88 +520,121 @@ export default function CalendarBuilderClient({
                             *SLOTS · {stats.count} · {Array.from(stats.byType.entries()).map(([t, n]) => `${t}=${n}`).join(' · ')}
                         </legend>
 
-                        <div className="bg-[#1c1b1b] border-4 border-black overflow-hidden">
-                            <div
-                                className="grid gap-2 px-4 py-3 border-b-4 border-black text-[10px] uppercase tracking-widest font-black text-[#e4beb5]"
-                                style={{ ...HEAD, gridTemplateColumns: '40px 130px 1fr 140px 140px 40px' }}
+                        {(() => {
+                            const groups: Record<string, { slot: Slot; originalIndex: number }[]> = {}
+                            slots.forEach((slot, index) => {
+                                const dateStr = slot.date || ''
+                                const monthKey = dateStr.slice(0, 7) || 'NO_DATE'
+                                ;(groups[monthKey] ??= []).push({ slot, originalIndex: index })
+                            })
+
+                            const sortedMonthKeys = Object.keys(groups).sort()
+
+                            return sortedMonthKeys.map((monthKey) => {
+                                const groupSlots = groups[monthKey]
+                                let monthName = 'No Date / Undefined'
+                                if (monthKey !== 'NO_DATE') {
+                                    const [year, month] = monthKey.split('-')
+                                    const d = new Date(Date.UTC(Number(year), Number(month) - 1, 1))
+                                    monthName = d.toLocaleDateString('en-US', {
+                                        month: 'long',
+                                        year: 'numeric',
+                                        timeZone: 'UTC',
+                                    })
+                                }
+
+                                return (
+                                    <div key={monthKey} className="space-y-3 mb-6">
+                                        <div className="text-xs font-black uppercase tracking-widest text-[#76dc83]" style={HEAD}>
+                                            * {monthName} ({groupSlots.length} slot{groupSlots.length === 1 ? '' : 's'})
+                                        </div>
+                                        <div className="bg-[#1c1b1b] border-4 border-black overflow-hidden">
+                                            <div
+                                                className="grid gap-2 px-4 py-3 border-b-4 border-black text-[10px] uppercase tracking-widest font-black text-[#e4beb5]"
+                                                style={{ ...HEAD, gridTemplateColumns: '40px 130px 1fr 140px 140px 40px' }}
+                                            >
+                                                <span>#</span>
+                                                <span>Date</span>
+                                                <span>Title</span>
+                                                <span>Type</span>
+                                                <span>Platform</span>
+                                                <span></span>
+                                            </div>
+                                            {groupSlots.map(({ slot, originalIndex }) => (
+                                                <div
+                                                    key={slot.key}
+                                                    className="grid gap-2 px-4 py-3 border-b-2 border-black hover:bg-[#0e0e0e] transition-colors items-center"
+                                                    style={{ gridTemplateColumns: '40px 130px 1fr 140px 140px 40px' }}
+                                                >
+                                                    <span className="text-xs font-bold text-[#ab8981]" style={HEAD}>
+                                                        {originalIndex + 1}
+                                                    </span>
+                                                    <input
+                                                        type="date"
+                                                        value={slot.date}
+                                                        onChange={(e) => updateSlot(slot.key, { date: e.target.value })}
+                                                        className="brutal-input !p-2 !text-xs"
+                                                        style={HEAD}
+                                                        title={fmtDate(slot.date)}
+                                                    />
+                                                    <input
+                                                        type="text"
+                                                        value={slot.title}
+                                                        onChange={(e) => updateSlot(slot.key, { title: e.target.value })}
+                                                        placeholder="Post title"
+                                                        className="brutal-input !p-2 !text-sm"
+                                                        style={HEAD}
+                                                    />
+                                                    <select
+                                                        value={slot.contentType}
+                                                        onChange={(e) => updateSlot(slot.key, { contentType: e.target.value as ContentType })}
+                                                        className="brutal-input !p-2 !text-xs"
+                                                        style={HEAD}
+                                                    >
+                                                        {CONTENT_TYPES.map((c) => (
+                                                            <option key={c} value={c} className="bg-[#0e0e0e]">
+                                                                {c.replace('_', ' ')}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                    <select
+                                                        value={slot.platform}
+                                                        onChange={(e) => updateSlot(slot.key, { platform: e.target.value as Platform })}
+                                                        className="brutal-input !p-2 !text-xs"
+                                                        style={HEAD}
+                                                    >
+                                                        <option value="INSTAGRAM" className="bg-[#0e0e0e]">Instagram</option>
+                                                        <option value="TIKTOK" className="bg-[#0e0e0e]">TikTok</option>
+                                                    </select>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => removeSlot(slot.key)}
+                                                        className="w-8 h-8 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#93000a] hover:text-[#ffdad6] flex items-center justify-center"
+                                                        aria-label="Remove slot"
+                                                    >
+                                                        <Trash2 className="w-3.5 h-3.5" />
+                                                    </button>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        })()}
+
+                        <div className="bg-[#1c1b1b] border-4 border-black p-4 flex items-center justify-between gap-2">
+                            <button
+                                type="button"
+                                onClick={addBlankSlot}
+                                className="px-3 py-2 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#E8441A] hover:text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5"
+                                style={HEAD}
                             >
-                                <span>#</span>
-                                <span>Date</span>
-                                <span>Title</span>
-                                <span>Type</span>
-                                <span>Platform</span>
-                                <span></span>
-                            </div>
-                            {slots.map((slot, i) => (
-                                <div
-                                    key={slot.key}
-                                    className="grid gap-2 px-4 py-3 border-b-2 border-black hover:bg-[#0e0e0e] transition-colors items-center"
-                                    style={{ gridTemplateColumns: '40px 130px 1fr 140px 140px 40px' }}
-                                >
-                                    <span className="text-xs font-bold text-[#ab8981]" style={HEAD}>
-                                        {i + 1}
-                                    </span>
-                                    <input
-                                        type="date"
-                                        value={slot.date}
-                                        onChange={(e) => updateSlot(slot.key, { date: e.target.value })}
-                                        className="brutal-input !p-2 !text-xs"
-                                        style={HEAD}
-                                        title={fmtDate(slot.date)}
-                                    />
-                                    <input
-                                        type="text"
-                                        value={slot.title}
-                                        onChange={(e) => updateSlot(slot.key, { title: e.target.value })}
-                                        placeholder="Post title"
-                                        className="brutal-input !p-2 !text-sm"
-                                        style={HEAD}
-                                    />
-                                    <select
-                                        value={slot.contentType}
-                                        onChange={(e) => updateSlot(slot.key, { contentType: e.target.value as ContentType })}
-                                        className="brutal-input !p-2 !text-xs"
-                                        style={HEAD}
-                                    >
-                                        {CONTENT_TYPES.map((c) => (
-                                            <option key={c} value={c} className="bg-[#0e0e0e]">
-                                                {c.replace('_', ' ')}
-                                            </option>
-                                        ))}
-                                    </select>
-                                    <select
-                                        value={slot.platform}
-                                        onChange={(e) => updateSlot(slot.key, { platform: e.target.value as Platform })}
-                                        className="brutal-input !p-2 !text-xs"
-                                        style={HEAD}
-                                    >
-                                        <option value="INSTAGRAM" className="bg-[#0e0e0e]">Instagram</option>
-                                        <option value="TIKTOK" className="bg-[#0e0e0e]">TikTok</option>
-                                    </select>
-                                    <button
-                                        type="button"
-                                        onClick={() => removeSlot(slot.key)}
-                                        className="w-8 h-8 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#93000a] hover:text-[#ffdad6] flex items-center justify-center"
-                                        aria-label="Remove slot"
-                                    >
-                                        <Trash2 className="w-3.5 h-3.5" />
-                                    </button>
-                                </div>
-                            ))}
-                            <div className="px-4 py-3 flex items-center justify-between gap-2">
-                                <button
-                                    type="button"
-                                    onClick={addBlankSlot}
-                                    className="px-3 py-2 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#E8441A] hover:text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5"
-                                    style={HEAD}
-                                >
-                                    <Plus className="w-3.5 h-3.5" />
-                                    Add slot
-                                </button>
-                                <p className="text-[10px] text-[#ab8981] italic" style={BODY}>
-                                    Tip: each slot becomes a draft post in the IDEA column. You can flesh out caption, hashtags, and visual direction in the workspace.
-                                </p>
-                            </div>
+                                <Plus className="w-3.5 h-3.5" />
+                                Add slot
+                            </button>
+                            <p className="text-[10px] text-[#ab8981] italic" style={BODY}>
+                                Tip: each slot becomes a draft post in the IDEA column. You can flesh out caption, hashtags, and visual direction in the workspace.
+                            </p>
                         </div>
 
                         <div className="flex flex-wrap items-center justify-end gap-3 pt-2">
@@ -538,6 +657,21 @@ export default function CalendarBuilderClient({
                         </div>
                     </fieldset>
                 )}
+                    </div>
+
+                    {/* Chat panel — sticky on lg+ so it stays in view while
+                        the admin scrolls the slot grid. */}
+                    <div className="lg:sticky lg:top-6">
+                        <CalendarChatPanel
+                            clientSlug={clientSlug}
+                            brandName={brandName}
+                            brandPrimaryColor={brandPrimaryColor}
+                            onApplySlots={applyProposedSlots}
+                            onExecuteToolCall={handleExecuteToolCall}
+                            currentSlots={slots}
+                        />
+                    </div>
+                </div>
             </div>
 
             <style jsx global>{`

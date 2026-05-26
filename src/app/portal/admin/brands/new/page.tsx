@@ -31,7 +31,7 @@ export default async function NewBrandPage() {
         fontFamily: 'var(--font-work-sans), sans-serif',
       }}
     >
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <Link
           href="/portal/admin"
           className="text-xs uppercase tracking-widest text-[#e4beb5] hover:text-[#E8441A] inline-block mb-6"

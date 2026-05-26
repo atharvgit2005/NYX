@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   DndContext,
   PointerSensor,
@@ -52,18 +52,94 @@ export default function CalendarView({
   onClickPost,
   onCreateOnDay,
 }: Props) {
-  // Anchor the grid to the earliest scheduled post (or today).
-  const initial = useMemo(() => {
-    if (posts.length === 0) return startOfMonth(new Date())
-    const earliest = posts.reduce((acc, p) => {
+  // Anchor the grid to the earliest scheduled post (or today), and
+  // pre-compute how many months the post range spans so we can default
+  // the view to cover them — otherwise a campaign that crosses month
+  // boundaries (e.g. May→June) lands its tail off-screen until the
+  // admin manually clicks NEXT.
+  const { initial, defaultMonths } = useMemo(() => {
+    if (posts.length === 0) {
+      return { initial: startOfMonth(new Date()), defaultMonths: 1 }
+    }
+    let earliest = new Date(posts[0].scheduledDate)
+    let latest = earliest
+    for (const p of posts) {
       const d = new Date(p.scheduledDate)
-      return d < acc ? d : acc
-    }, new Date(posts[0].scheduledDate))
-    return startOfMonth(earliest)
+      if (d < earliest) earliest = d
+      if (d > latest) latest = d
+    }
+    const monthSpan =
+      (latest.getUTCFullYear() - earliest.getUTCFullYear()) * 12 +
+      (latest.getUTCMonth() - earliest.getUTCMonth()) +
+      1
+    // Snap up to the next supported step so the picker can still toggle.
+    const supported = [1, 2, 3, 6]
+    const months = supported.find((m) => m >= monthSpan) ?? 6
+    return { initial: startOfMonth(earliest), defaultMonths: months }
   }, [posts])
 
   const [anchor, setAnchor] = useState(initial)
+  const [displayMonths, setDisplayMonths] = useState<number>(defaultMonths)
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }))
+
+  // Generate list of all unique months in the campaign range (earliest post to latest post, padded)
+  const allMonthsInRange = useMemo(() => {
+    let earliest = startOfMonth(new Date())
+    let latest = startOfMonth(new Date())
+    if (posts.length > 0) {
+      const dates = posts.map((p) => new Date(p.scheduledDate))
+      earliest = startOfMonth(new Date(Math.min(...dates.map((d) => d.getTime()))))
+      latest = startOfMonth(new Date(Math.max(...dates.map((d) => d.getTime()))))
+    }
+    
+    const list: Date[] = []
+    const cursor = new Date(earliest)
+    // Start 2 months before earliest
+    cursor.setUTCMonth(cursor.getUTCMonth() - 2)
+    const end = new Date(latest)
+    // End 2 months after latest
+    end.setUTCMonth(end.getUTCMonth() + 2)
+    
+    let count = 0
+    while (cursor <= end && count < 36) {
+      list.push(new Date(cursor))
+      cursor.setUTCMonth(cursor.getUTCMonth() + 1)
+      count++
+    }
+    return list
+  }, [posts])
+
+  // Track active month slider index
+  const [sliderIndex, setSliderIndex] = useState(() => {
+    const idx = allMonthsInRange.findIndex(
+      (m) =>
+        m.getUTCFullYear() === initial.getUTCFullYear() &&
+        m.getUTCMonth() === initial.getUTCMonth()
+    )
+    return idx !== -1 ? idx : 0
+  })
+
+  // Sync sliderIndex when anchor changes (e.g. from PREV/NEXT buttons)
+  useEffect(() => {
+    const idx = allMonthsInRange.findIndex(
+      (m) =>
+        m.getUTCFullYear() === anchor.getUTCFullYear() &&
+        m.getUTCMonth() === anchor.getUTCMonth()
+    )
+    if (idx !== -1 && idx !== sliderIndex) {
+      setSliderIndex(idx)
+    }
+  }, [anchor, allMonthsInRange, sliderIndex])
+
+  const months = useMemo(() => {
+    const list: Date[] = []
+    const current = new Date(anchor)
+    for (let i = 0; i < displayMonths; i++) {
+      list.push(new Date(current))
+      current.setUTCMonth(current.getUTCMonth() + 1)
+    }
+    return list
+  }, [anchor, displayMonths])
 
   const monthLabel = anchor.toLocaleDateString('en-US', {
     month: 'long',
@@ -71,9 +147,8 @@ export default function CalendarView({
     timeZone: 'UTC',
   })
 
-  // Build a 6-row × 7-col grid starting from the Sunday before the 1st.
-  const cells: Date[] = useMemo(() => {
-    const first = new Date(anchor)
+  const cellsForMonth = (monthAnchor: Date) => {
+    const first = new Date(monthAnchor)
     const startWeekday = first.getUTCDay()
     const start = new Date(first)
     start.setUTCDate(first.getUTCDate() - startWeekday)
@@ -82,7 +157,7 @@ export default function CalendarView({
       d.setUTCDate(start.getUTCDate() + i)
       return d
     })
-  }, [anchor])
+  }
 
   const byDay = useMemo(() => {
     const m: Record<string, AdminPost[]> = {}
@@ -102,9 +177,9 @@ export default function CalendarView({
     onMoveDate(post.id, targetDay + 'T00:00:00.000Z')
   }
 
-  function shift(months: number) {
+  function shift(monthsCount: number) {
     const next = new Date(anchor)
-    next.setUTCMonth(anchor.getUTCMonth() + months)
+    next.setUTCMonth(anchor.getUTCMonth() + monthsCount)
     setAnchor(startOfMonth(next))
   }
 
@@ -112,55 +187,177 @@ export default function CalendarView({
     <DndContext sensors={sensors} onDragEnd={onDragEnd}>
       <div className="border-4 border-black bg-[#1c1b1b]">
         <div
-          className="flex items-center justify-between px-4 py-3 border-b-4 border-black"
+          className="flex flex-wrap items-center justify-between px-4 py-3 border-b-4 border-black gap-3"
           style={{ backgroundColor: '#0e0e0e' }}
         >
-          <button
-            onClick={() => shift(-1)}
-            className="px-3 py-1 border-2 border-black bg-[#1c1b1b] text-xs font-bold uppercase tracking-widest hover:bg-[#E8441A] hover:text-white"
-            style={HEAD}
-          >
-            ← PREV
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => shift(-displayMonths)}
+              className="px-3 py-1 border-2 border-black bg-[#1c1b1b] text-xs font-bold uppercase tracking-widest hover:bg-[#E8441A] hover:text-white"
+              style={HEAD}
+            >
+              ← PREV
+            </button>
+            <button
+              onClick={() => shift(displayMonths)}
+              className="px-3 py-1 border-2 border-black bg-[#1c1b1b] text-xs font-bold uppercase tracking-widest hover:bg-[#E8441A] hover:text-white"
+              style={HEAD}
+            >
+              NEXT →
+            </button>
+          </div>
+          
           <span
-            className="text-base md:text-xl font-black uppercase tracking-tighter"
+            className="text-sm md:text-lg font-black uppercase tracking-tighter"
             style={HEAD}
           >
-            {monthLabel}
+            {monthLabel} {displayMonths > 1 ? ` — ${months[months.length - 1].toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}` : ''}
           </span>
-          <button
-            onClick={() => shift(1)}
-            className="px-3 py-1 border-2 border-black bg-[#1c1b1b] text-xs font-bold uppercase tracking-widest hover:bg-[#E8441A] hover:text-white"
-            style={HEAD}
-          >
-            NEXT →
-          </button>
+
+          <div className="flex border-2 border-black overflow-hidden bg-[#0e0e0e]" style={HEAD}>
+            {([1, 2, 3, 6] as const).map((m) => {
+              const active = displayMonths === m
+              return (
+                <button
+                  key={m}
+                  onClick={() => setDisplayMonths(m)}
+                  className={`px-2.5 py-1 text-[10px] font-bold border-r last:border-r-0 border-black transition-all ${
+                    active ? 'bg-[#E8441A] text-white' : 'bg-[#1c1b1b] text-[#e4beb5] hover:bg-[#2a2a2a]'
+                  }`}
+                >
+                  {m}M VIEW
+                </button>
+              )
+            })}
+          </div>
         </div>
 
-        <div className="grid grid-cols-7">
-          {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map((d) => (
-            <div
-              key={d}
-              className="px-2 py-2 border-b-4 border-r-4 last:border-r-0 border-black text-[10px] uppercase tracking-widest font-bold text-[#e4beb5]"
-              style={{ ...HEAD, backgroundColor: '#0e0e0e' }}
-            >
-              {d}
+        {/* Month Slider Timeline */}
+        {allMonthsInRange.length > 1 && (
+          <div className="px-6 py-4 border-b-4 border-black bg-[#141313] space-y-3">
+            <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-[#ab8981]">
+              <span>Timeline Navigation</span>
+              <span className="text-[#E8441A] animate-pulse">
+                * Slide to change focus month
+              </span>
             </div>
-          ))}
-
-          {cells.map((d, i) => {
-            const dayKey = isoDay(d)
-            const inMonth = d.getUTCMonth() === anchor.getUTCMonth()
-            const dayPosts = byDay[dayKey] ?? []
-            return (
-              <DayCell
-                key={dayKey + i}
-                date={d}
-                inMonth={inMonth}
-                posts={dayPosts}
-                onClickPost={onClickPost}
-                onCreateOnDay={onCreateOnDay}
+            <div className="relative pt-2">
+              <input
+                type="range"
+                min="0"
+                max={allMonthsInRange.length - 1}
+                value={sliderIndex}
+                onChange={(e) => {
+                  const idx = Number(e.target.value)
+                  setSliderIndex(idx)
+                  if (allMonthsInRange[idx]) {
+                    setAnchor(allMonthsInRange[idx])
+                  }
+                }}
+                className="brutal-slider cursor-pointer"
               />
+              <div className="flex justify-between mt-2 overflow-x-auto gap-2 py-1 scrollbar-thin">
+                {allMonthsInRange.map((m, idx) => {
+                  const label = m.toLocaleDateString('en-US', {
+                    month: 'short',
+                    year: '2-digit',
+                    timeZone: 'UTC',
+                  }).toUpperCase()
+                  const active = idx === sliderIndex
+                  return (
+                    <button
+                      key={idx}
+                      onClick={() => {
+                        setSliderIndex(idx)
+                        setAnchor(m)
+                      }}
+                      className={`text-[9px] font-mono font-bold tracking-tighter uppercase whitespace-nowrap transition-colors px-1 py-0.5 border ${
+                        active
+                          ? 'text-[#000] bg-[#E8441A] border-black font-black shadow-[2px_2px_0_#000]'
+                          : 'text-[#ab8981] border-transparent hover:text-white hover:border-[#ab8981]'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+            <style>{`
+              .brutal-slider {
+                -webkit-appearance: none;
+                width: 100%;
+                height: 12px;
+                background: #0e0e0e;
+                border: 3px solid #000;
+                outline: none;
+              }
+              .brutal-slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 24px;
+                height: 24px;
+                background: #E8441A;
+                border: 3px solid #000;
+                cursor: pointer;
+                transition: transform 0.1s;
+              }
+              .brutal-slider::-webkit-slider-thumb:hover {
+                transform: scale(1.1);
+              }
+              .brutal-slider::-moz-range-thumb {
+                width: 24px;
+                height: 24px;
+                background: #E8441A;
+                border: 3px solid #000;
+                cursor: pointer;
+              }
+            `}</style>
+          </div>
+        )}
+
+        <div className="divide-y-4 divide-black">
+          {months.map((monthAnchor) => {
+            const label = monthAnchor.toLocaleDateString('en-US', {
+              month: 'long',
+              year: 'numeric',
+              timeZone: 'UTC',
+            })
+            const cells = cellsForMonth(monthAnchor)
+
+            return (
+              <div key={monthAnchor.toISOString()} className="bg-[#1c1b1b]">
+                <div className="px-4 py-2 bg-[#141313] border-b-2 border-black text-[10px] font-black uppercase tracking-widest text-[#E8441A]" style={HEAD}>
+                  * {label}
+                </div>
+                <div className="grid grid-cols-7">
+                  {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map((d) => (
+                    <div
+                      key={d}
+                      className="px-2 py-2 border-b-4 border-r-4 last:border-r-0 border-black text-[10px] uppercase tracking-widest font-bold text-[#e4beb5]"
+                      style={{ ...HEAD, backgroundColor: '#0e0e0e' }}
+                    >
+                      {d}
+                    </div>
+                  ))}
+
+                  {cells.map((d, i) => {
+                    const dayKey = isoDay(d)
+                    const inMonth = d.getUTCMonth() === monthAnchor.getUTCMonth()
+                    const dayPosts = byDay[dayKey] ?? []
+                    return (
+                      <DayCell
+                        key={dayKey + i}
+                        date={d}
+                        inMonth={inMonth}
+                        posts={dayPosts}
+                        onClickPost={onClickPost}
+                        onCreateOnDay={onCreateOnDay}
+                      />
+                    )
+                  })}
+                </div>
+              </div>
             )
           })}
         </div>

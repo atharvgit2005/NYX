@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { toast } from 'sonner'
 import ThumbnailUploader from '../../components/ThumbnailUploader'
+import OnboardingChatPanel, { type OnboardingFile } from './OnboardingChatPanel'
 
 const HEAD = { fontFamily: 'var(--font-space-grotesk), sans-serif' } as const
 const BODY = { fontFamily: 'var(--font-work-sans), sans-serif' } as const
@@ -51,6 +52,7 @@ const HEX = /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/
 export default function BrandForm({ mode, initial, lockSlug }: Props) {
   const router = useRouter()
   const [pending, startTransition] = useTransition()
+  const [brandKitAssets, setBrandKitAssets] = useState<OnboardingFile[]>([])
 
   const [v, setV] = useState<BrandFormValues>({
     brandName: initial?.brandName ?? '',
@@ -73,6 +75,39 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
   // Track whether the user has edited the slug manually so we stop
   // auto-deriving it from the brand name.
   const [slugDirty, setSlugDirty] = useState(mode === 'edit')
+
+  function handleFillForm(raw: unknown) {
+    if (!raw || typeof raw !== 'object') return
+    const values = raw as Record<string, unknown>
+    setV((prev) => {
+      const next = { ...prev }
+      if (typeof values.brandName === 'string' && values.brandName.trim()) {
+        next.brandName = values.brandName.trim()
+        if (!slugDirty) next.clientSlug = slugify(values.brandName)
+      }
+      if (typeof values.clientSlug === 'string' && values.clientSlug.trim()) {
+        next.clientSlug = slugify(values.clientSlug)
+      }
+      if (typeof values.tagline === 'string') next.tagline = values.tagline
+      if (typeof values.logoUrl === 'string') next.logoUrl = values.logoUrl
+      if (typeof values.primaryColor === 'string' && HEX.test(values.primaryColor)) next.primaryColor = values.primaryColor
+      if (typeof values.secondaryColor === 'string' && HEX.test(values.secondaryColor)) next.secondaryColor = values.secondaryColor
+      if (typeof values.accentColor === 'string' && HEX.test(values.accentColor)) next.accentColor = values.accentColor
+      if (typeof values.instagramHandle === 'string') next.instagramHandle = values.instagramHandle
+      if (typeof values.tiktokHandle === 'string') next.tiktokHandle = values.tiktokHandle
+      if (Array.isArray(values.platforms)) {
+        next.platforms = (values.platforms as unknown[]).filter(
+          (p): p is Platform => p === 'INSTAGRAM' || p === 'TIKTOK',
+        )
+      }
+      if (typeof values.packageType === 'string' && ['TRIAL', 'MONTHLY_RETAINER', 'CUSTOM'].includes(values.packageType)) {
+        next.packageType = values.packageType as PackageType
+      }
+      if (typeof values.campaignStart === 'string') next.campaignStart = values.campaignStart
+      if (typeof values.campaignEnd === 'string') next.campaignEnd = values.campaignEnd
+      return next
+    })
+  }
 
   function set<K extends keyof BrandFormValues>(key: K, val: BrandFormValues[K]) {
     setV((prev) => ({ ...prev, [key]: val }))
@@ -129,6 +164,8 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
         agencyContactEmail: v.agencyContactEmail || null,
         tagline: v.tagline || null,
         logoUrl: v.logoUrl || null,
+        brandKitAssets,
+        brandKitNotes: `Onboarding guidelines for ${v.brandName}. Configured via assistant.`,
       }
       const res = await fetch(url, {
         method,
@@ -152,7 +189,7 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
     })
   }
 
-  return (
+  const formContent = (
     <form onSubmit={onSubmit} className="space-y-8" style={BODY}>
       <Section title="Identity">
         <Field label="*BRAND_NAME" required>
@@ -393,6 +430,23 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
       `}</style>
     </form>
   )
+
+  if (mode === 'create') {
+    return (
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-8 items-start">
+        <div>{formContent}</div>
+        <div className="lg:sticky lg:top-8">
+          <OnboardingChatPanel
+            onFillForm={handleFillForm}
+            brandPrimaryColor={v.primaryColor}
+            onFilesChanged={setBrandKitAssets}
+          />
+        </div>
+      </div>
+    )
+  }
+
+  return formContent
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {

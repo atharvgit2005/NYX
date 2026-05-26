@@ -121,6 +121,8 @@ model BrandPartner {
   contentPosts  ContentPost[]
   configuration BrandConfiguration?
   viewers       PortalViewer[]
+  brandKit      BrandKit?
+  chatSessions  ChatSession[]
 
   @@index([email])
   @@index([clientSlug])
@@ -328,4 +330,161 @@ model PostVersion {
 
   @@index([postId])
   @@index([createdAt])
+}
+
+// ── Calendar AI: per-brand kit + chat-driven calendar generation ─────────
+// A brand kit is the durable bundle of context (logo, palette PDFs,
+// product list, tone-of-voice notes, reference images) that the calendar
+// chatbot grounds its proposals in. Distinct from BrandConfiguration —
+// configuration is what the portal renders, BrandKit is what the AI reads.
+
+model BrandKit {
+  id             String       @id @default(cuid())
+  brandPartnerId String       @unique
+  brandPartner   BrandPartner @relation(fields: [brandPartnerId], references: [id], onDelete: Cascade)
+
+  /// Free-form brand description / tone-of-voice / do-and-dont notes
+  /// the admin pastes in chat or types in the kit form. Acts as the
+  /// system-prompt seed for every chat turn.
+  notes          String?      @db.Text
+  /// Audience / persona / positioning blurb.
+  audience       String?      @db.Text
+  /// "What's working" / past-winners notes — surfaces past successful
+  /// post archetypes to the AI for emulation.
+  winners        String?      @db.Text
+
+  assets    BrandKitAsset[]
+  chunks    EmbeddingChunk[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/// Any uploaded artefact tied to a brand kit — logo variations, brand
+/// guideline PDFs, product photography, mood boards. URL points at
+/// Vercel Blob; mime + size kept for client display.
+model BrandKitAsset {
+  id         String   @id @default(cuid())
+  brandKitId String
+  brandKit   BrandKit @relation(fields: [brandKitId], references: [id], onDelete: Cascade)
+
+  /// One of: 'logo' | 'guideline' | 'reference' | 'product' | 'other'.
+  /// Plain string (not enum) so we can add categories without migrations.
+  kind       String
+  url        String
+  filename   String
+  mimeType   String
+  sizeBytes  Int
+  /// Optional admin caption shown in chat; also embedded for RAG.
+  caption    String?  @db.Text
+
+  uploadedBy String
+  createdAt  DateTime @default(now())
+
+  @@index([brandKitId])
+}
+
+/// Chunked + embedded text from BrandKit notes / asset captions / PDF
+/// extractions, used for cosine-similarity retrieval at chat time.
+/// embedding stored as Bytes (Float32 little-endian) — cheap and DB-portable.
+model EmbeddingChunk {
+  id         String   @id @default(cuid())
+  brandKitId String
+  brandKit   BrandKit @relation(fields: [brandKitId], references: [id], onDelete: Cascade)
+
+  /// Where this chunk came from — used in retrieval UI to cite sources.
+  source     String
+  /// 1-based index within the source — for stable ordering on re-render.
+  chunkIndex Int
+  text       String   @db.Text
+  /// Float32 vector serialised little-endian. Dim depends on the model
+  /// (Gemini text-embedding-004 = 768). We don't enforce dim at the DB
+  /// level so the column survives model swaps.
+  embedding  Bytes
+  /// Model name used to produce the embedding — invalidate retrievals
+  /// when model changes.
+  model      String
+
+  createdAt DateTime @default(now())
+
+  @@index([brandKitId])
+}
+
+/// Per-brand chat session. A session is one conversation thread on the
+/// calendar-builder page. Multiple sessions per brand are allowed so an
+/// admin can keep "Q3 launch" and "holiday push" separate.
+model ChatSession {
+  id             String       @id @default(cuid())
+  brandPartnerId String
+  brandPartner   BrandPartner @relation(fields: [brandPartnerId], references: [id], onDelete: Cascade)
+
+  /// Free-form session label ("Q3 launch", "BTS week", etc.). Auto-set
+  /// from the first user message if blank.
+  title          String?
+
+  /// Email of the admin who started the thread.
+  createdBy      String
+
+  messages ChatMessage[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([brandPartnerId])
+  @@index([createdBy])
+}
+
+/// One message in a chat session. parentId enables the *conversation
+/// tree* — edits/retries fork a new branch instead of mutating history,
+/// which preserves auditability and lets the UI surface "regenerate".
+model ChatMessage {
+  id        String      @id @default(cuid())
+  sessionId String
+  session   ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  /// 'user' | 'assistant' | 'system' | 'tool'. String not enum — same
+  /// reasoning as BrandKitAsset.kind.
+  role      String
+  content   String      @db.Text
+
+  /// If the assistant emitted a tool call (e.g. proposeSlots), the
+  /// structured payload lands here.
+  toolName  String?
+  toolArgs  Json?
+
+  /// Parent message id for branching. NULL = root of the thread.
+  parentId  String?
+
+  /// Which LLM provider + model produced this (assistant only).
+  provider  String?
+  model     String?
+
+  /// Token/cost accounting; null for non-assistant turns.
+  promptTokens     Int?
+  completionTokens Int?
+
+  createdAt DateTime @default(now())
+
+  @@index([sessionId])
+  @@index([parentId])
+}
+
+/// Generic prompt cache shared across all LLM calls. key = SHA-256 of
+/// (provider + model + prompt + tool-schema-version). value is the raw
+/// completion text or JSON. Hit-rate keeps the chat snappy and the
+/// Gemini free-tier well under quota.
+model LLMCache {
+  key       String   @id
+  provider  String
+  model     String
+  /// Stored as text — for tool-call responses, JSON-encoded.
+  value     String   @db.Text
+  /// Bytes used by the original completion — surfaces eviction wins.
+  sizeBytes Int
+  /// Hit counter; the LRU eviction job uses this with createdAt.
+  hits      Int      @default(0)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([expiresAt])
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import {
   CONTENT_TYPE_LABEL,
@@ -103,6 +104,10 @@ function formatWeekLabel(mondayIso: string): string {
   return `${fmt(monday, !sameMonth)} – ${fmt(sunday, true)}`
 }
 
+function startOfMonth(d: Date) {
+  return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1))
+}
+
 export default function CalendarView({
   posts,
   brand,
@@ -112,7 +117,10 @@ export default function CalendarView({
   onCreateOnDay,
   onMoveDate,
 }: Props) {
-  const days = buildCalendarDays(brand.campaign.monthYear, brand.campaign.monthIndex)
+  const [activeYear, setActiveYear] = useState(brand.campaign.monthYear)
+  const [activeMonthIdx, setActiveMonthIdx] = useState(brand.campaign.monthIndex)
+
+  const days = buildCalendarDays(activeYear, activeMonthIdx)
 
   const byDate: Record<string, SerializedPost[]> = {}
   for (const p of posts) {
@@ -121,8 +129,68 @@ export default function CalendarView({
   }
 
   const today = brand.campaign.referenceToday
-  const monthYear = brand.campaign.monthYear
-  const monthIndex = brand.campaign.monthIndex
+
+  // Generate list of all unique months in the campaign range (earliest post to latest post, padded)
+  const allMonthsInRange = useMemo(() => {
+    let earliest = startOfMonth(new Date())
+    let latest = startOfMonth(new Date())
+    if (posts.length > 0) {
+      const dates = posts.map((p) => new Date(p.scheduledDate))
+      earliest = startOfMonth(new Date(Math.min(...dates.map((d) => d.getTime()))))
+      latest = startOfMonth(new Date(Math.max(...dates.map((d) => d.getTime()))))
+    } else {
+      earliest = new Date(Date.UTC(brand.campaign.monthYear, brand.campaign.monthIndex, 1))
+      latest = new Date(Date.UTC(brand.campaign.monthYear, brand.campaign.monthIndex, 1))
+    }
+    
+    const list: Date[] = []
+    const cursor = new Date(earliest)
+    // Start 2 months before earliest
+    cursor.setUTCMonth(cursor.getUTCMonth() - 2)
+    const end = new Date(latest)
+    // End 2 months after latest
+    end.setUTCMonth(end.getUTCMonth() + 2)
+    
+    let count = 0
+    while (cursor <= end && count < 36) {
+      list.push(new Date(cursor))
+      cursor.setUTCMonth(cursor.getUTCMonth() + 1)
+      count++
+    }
+    return list
+  }, [posts, brand])
+
+  // Track active month slider index
+  const [sliderIndex, setSliderIndex] = useState(() => {
+    const idx = allMonthsInRange.findIndex(
+      (m) =>
+        m.getUTCFullYear() === brand.campaign.monthYear &&
+        m.getUTCMonth() === brand.campaign.monthIndex
+    )
+    return idx !== -1 ? idx : 0
+  })
+
+  // Sync slider index when brand month configuration changes
+  useEffect(() => {
+    const idx = allMonthsInRange.findIndex(
+      (m) =>
+        m.getUTCFullYear() === brand.campaign.monthYear &&
+        m.getUTCMonth() === brand.campaign.monthIndex
+    )
+    if (idx !== -1) {
+      setSliderIndex(idx)
+      setActiveYear(brand.campaign.monthYear)
+      setActiveMonthIdx(brand.campaign.monthIndex)
+    }
+  }, [brand.campaign.monthYear, brand.campaign.monthIndex, allMonthsInRange])
+
+  const monthNameLabel = useMemo(() => {
+    return new Date(Date.UTC(activeYear, activeMonthIdx, 1)).toLocaleDateString('en-US', {
+      month: 'long',
+      year: 'numeric',
+      timeZone: 'UTC',
+    })
+  }, [activeYear, activeMonthIdx])
 
   const campaignFirst = posts.length
     ? Math.min(...posts.map((p) => new Date(p.scheduledDate).getDate()))
@@ -151,7 +219,7 @@ export default function CalendarView({
   const partnerGrid = (
     <div className="grid grid-cols-7">
       {days.map((day, i) => {
-        const dateStr = day ? `${monthYear}-${pad(monthIndex + 1)}-${pad(day)}` : null
+        const dateStr = day ? `${activeYear}-${pad(activeMonthIdx + 1)}-${pad(day)}` : null
         const cellPosts = dateStr ? byDate[dateStr] ?? [] : []
         const isToday = dateStr === today
         const hasPosts = cellPosts.length > 0
@@ -235,7 +303,99 @@ export default function CalendarView({
   }
 
   return (
-    <div>
+    <div className="space-y-6">
+      {/* Month Slider Timeline */}
+      {allMonthsInRange.length > 1 && (
+        <div 
+          className="p-5 rounded-2xl bg-white space-y-3 shadow-sm"
+          style={{ border: '1px solid #E8E4DC' }}
+        >
+          <div className="flex items-center justify-between text-xs font-semibold tracking-wider text-[#6B6B6B]">
+            <span>Timeline Navigation</span>
+            <span style={{ color: brand.brand.primary }} className="font-bold">
+              Active Month: {monthNameLabel}
+            </span>
+          </div>
+          <div className="relative pt-2">
+            <input
+              type="range"
+              min="0"
+              max={allMonthsInRange.length - 1}
+              value={sliderIndex}
+              onChange={(e) => {
+                const idx = Number(e.target.value)
+                setSliderIndex(idx)
+                const targetMonth = allMonthsInRange[idx]
+                if (targetMonth) {
+                  setActiveYear(targetMonth.getUTCFullYear())
+                  setActiveMonthIdx(targetMonth.getUTCMonth())
+                }
+              }}
+              className="portal-slider cursor-pointer"
+            />
+            <div className="flex justify-between mt-2 overflow-x-auto gap-2 py-1 scrollbar-thin">
+              {allMonthsInRange.map((m, idx) => {
+                const label = m.toLocaleDateString('en-US', {
+                  month: 'short',
+                  year: '2-digit',
+                  timeZone: 'UTC',
+                }).toUpperCase()
+                const active = idx === sliderIndex
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      setSliderIndex(idx)
+                      setActiveYear(m.getUTCFullYear())
+                      setActiveMonthIdx(m.getUTCMonth())
+                    }}
+                    className="text-xs font-semibold tracking-tighter uppercase whitespace-nowrap transition-all px-3 py-1.5 rounded-full border"
+                    style={{
+                      background: active ? brand.brand.primary : 'transparent',
+                      color: active ? '#FFFFFF' : '#6B6B6B',
+                      borderColor: active ? brand.brand.primary : '#E8E4DC',
+                    }}
+                  >
+                    {label}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+          <style>{`
+            .portal-slider {
+              -webkit-appearance: none;
+              width: 100%;
+              height: 8px;
+              background: #FAF7F2;
+              border: 1px solid #E8E4DC;
+              border-radius: 9999px;
+              outline: none;
+            }
+            .portal-slider::-webkit-slider-thumb {
+              -webkit-appearance: none;
+              appearance: none;
+              width: 20px;
+              height: 20px;
+              border-radius: 9999px;
+              background: ${brand.brand.primary};
+              border: 2px solid #FFFFFF;
+              box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+              cursor: pointer;
+            }
+            .portal-slider::-moz-range-thumb {
+              width: 20px;
+              height: 20px;
+              border-radius: 9999px;
+              background: ${brand.brand.primary};
+              border: 2px solid #FFFFFF;
+              box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+              cursor: pointer;
+            }
+          `}</style>
+        </div>
+      )}
+
       {/* Desktop: month grid */}
       <div
         className="hidden sm:block rounded-2xl overflow-hidden"
@@ -258,8 +418,8 @@ export default function CalendarView({
             posts={posts}
             brand={brand}
             today={today}
-            monthYear={monthYear}
-            monthIndex={monthIndex}
+            monthYear={activeYear}
+            monthIndex={activeMonthIdx}
             campaignFirst={campaignFirst}
             campaignLast={campaignLast}
             days={days}

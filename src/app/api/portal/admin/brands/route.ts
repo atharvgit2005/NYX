@@ -5,6 +5,7 @@ import {
   type BrandFormInput,
 } from '@/lib/portal/brand-store'
 import { requireAdmin } from '../_helpers'
+import prisma from '@/lib/prismadb'
 
 // POST /api/portal/admin/brands — admin creates a new brand + configuration
 export async function POST(req: Request) {
@@ -42,6 +43,39 @@ export async function POST(req: Request) {
 
   try {
     const result = await createBrandWithConfig(input, auth.email)
+
+    // Automatically create a BrandKit and associate any uploaded files/notes if provided
+    const brandKitNotes = typeof body.brandKitNotes === 'string' ? body.brandKitNotes : null
+    const brandKitAudience = typeof body.brandKitAudience === 'string' ? body.brandKitAudience : null
+    const brandKitWinners = typeof body.brandKitWinners === 'string' ? body.brandKitWinners : null
+    const brandKitAssets = Array.isArray(body.brandKitAssets) ? body.brandKitAssets : []
+
+    if (brandKitNotes || brandKitAudience || brandKitWinners || brandKitAssets.length > 0) {
+      const kit = await prisma.brandKit.create({
+        data: {
+          brandPartnerId: result.partner.id,
+          notes: brandKitNotes,
+          audience: brandKitAudience,
+          winners: brandKitWinners,
+        },
+      })
+
+      for (const asset of brandKitAssets) {
+        await prisma.brandKitAsset.create({
+          data: {
+            brandKitId: kit.id,
+            kind: String(asset.kind ?? 'reference'),
+            url: String(asset.url),
+            filename: String(asset.filename ?? 'document'),
+            mimeType: String(asset.mimeType ?? 'application/octet-stream'),
+            sizeBytes: Number(asset.sizeBytes ?? 0),
+            caption: asset.caption ? String(asset.caption) : null,
+            uploadedBy: auth.email,
+          },
+        })
+      }
+    }
+
     return NextResponse.json({
       partner: result.partner,
       configuration: result.configuration,
