@@ -280,27 +280,42 @@ export default function CalendarView({
   )
 
   // ── Mobile timeline: grouped by week with Today anchor ───────────────
-  const sortedPosts = [...posts].sort(
-    (a, b) =>
-      new Date(a.scheduledDate).getTime() - new Date(b.scheduledDate).getTime(),
-  )
-  const weekGroups: { week: string; posts: SerializedPost[] }[] = []
-  for (const p of sortedPosts) {
-    const wk = weekKey(p.scheduledDate)
-    const last = weekGroups[weekGroups.length - 1]
-    if (last && last.week === wk) last.posts.push(p)
-    else weekGroups.push({ week: wk, posts: [p] })
-  }
+  const activeMonthPosts = useMemo(() => {
+    return posts.filter((p) => {
+      const year = parseInt(p.scheduledDate.slice(0, 4), 10)
+      const monthIdx = parseInt(p.scheduledDate.slice(5, 7), 10) - 1
+      return year === activeYear && monthIdx === activeMonthIdx
+    })
+  }, [posts, activeYear, activeMonthIdx])
+
+  const sortedPosts = useMemo(() => {
+    return [...activeMonthPosts].sort(
+      (a, b) =>
+        new Date(a.scheduledDate).getTime() - new Date(b.scheduledDate).getTime(),
+    )
+  }, [activeMonthPosts])
+
+  const weekGroups = useMemo(() => {
+    const groups: { week: string; posts: SerializedPost[] }[] = []
+    for (const p of sortedPosts) {
+      const wk = weekKey(p.scheduledDate)
+      const last = groups[groups.length - 1]
+      if (last && last.week === wk) last.posts.push(p)
+      else groups.push({ week: wk, posts: [p] })
+    }
+    return groups
+  }, [sortedPosts])
+
   // Where does Today fall? Render a slim divider above the first post on
   // or after today, so admin/partner can find "now" in the scroll.
   const todayMs = today ? new Date(today + 'T00:00:00').getTime() : null
-  let todayAnchorId: string | null = null
-  if (todayMs !== null) {
+  const todayAnchorId = useMemo(() => {
+    if (todayMs === null) return null
     const anchor = sortedPosts.find(
       (p) => new Date(dateKey(p.scheduledDate) + 'T00:00:00').getTime() >= todayMs,
     )
-    todayAnchorId = anchor?.id ?? null
-  }
+    return anchor?.id ?? null
+  }, [sortedPosts, todayMs])
 
   return (
     <div className="space-y-6">
