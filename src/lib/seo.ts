@@ -187,12 +187,59 @@ export const organizationSchema = {
     postalCode: "411047",
     addressCountry: "IN",
   },
+  // Centroid of Pune — gives "agency near me" / "Pune content agency"
+  // queries a coordinate to rank against. Approximate, not the office
+  // pin: we're not a walk-in business and don't want a Maps pin.
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 18.5204,
+    longitude: 73.8567,
+  },
   areaServed: [
     {
       "@type": "Country",
       name: "India",
     },
   ],
+  // Surfaces the three Service tiers as a structured catalog Google can
+  // render as a sitelinks block. Prices are the published rack rates on
+  // /services — keep in sync if those change.
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "NYX Studio packages",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        name: "Trial Pack",
+        description:
+          "30-day pilot: content strategy, 4 reels, 4 statics, 1 carousel. For D2C brands testing a content engine.",
+        price: "30000",
+        priceCurrency: "INR",
+        url: `${SITE_URL}/services#trial`,
+        eligibleRegion: { "@type": "Country", name: "India" },
+      },
+      {
+        "@type": "Offer",
+        name: "Starter Pack",
+        description:
+          "Monthly retainer: content strategy, 8 reels, 6 statics, paid social management, full creative ops.",
+        price: "50000",
+        priceCurrency: "INR",
+        url: `${SITE_URL}/services#starter`,
+        eligibleRegion: { "@type": "Country", name: "India" },
+      },
+      {
+        "@type": "Offer",
+        name: "Growth Pack",
+        description:
+          "Monthly retainer: end-to-end content + paid social + influencer ops + brand growth — for brands scaling past ₹1Cr/mo.",
+        price: "80000",
+        priceCurrency: "INR",
+        url: `${SITE_URL}/services#growth`,
+        eligibleRegion: { "@type": "Country", name: "India" },
+      },
+    ],
+  },
   knowsAbout: [
     "Direct-to-consumer marketing",
     "AI-generated video",

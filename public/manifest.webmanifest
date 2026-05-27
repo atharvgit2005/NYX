@@ -1,0 +1,38 @@
+{
+  "name": "NYX Studio",
+  "short_name": "NYX",
+  "description": "AI-powered content and growth studio for D2C brands in India. Cinematic reels, paid creative, and influencer ops under one roof.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0e0e0e",
+  "theme_color": "#0e0e0e",
+  "orientation": "portrait-primary",
+  "lang": "en-IN",
+  "categories": ["business", "productivity", "lifestyle"],
+  "icons": [
+    {
+      "src": "/logo/NYX-Logo-64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo/NYX-Logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo/NYX-Logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo/NYX-Logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

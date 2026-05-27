@@ -39,27 +39,32 @@ function buildAdapter(): Adapter {
         },
         linkAccount: async (data: AdapterAccount) => {
             const { provider, providerAccountId } = data
+            const mappedData = {
+                userId: data.userId,
+                type: data.type,
+                provider: data.provider,
+                providerAccountId: data.providerAccountId,
+                access_token: data.access_token ?? (data as any).accessToken ?? null,
+                refresh_token: data.refresh_token ?? (data as any).refreshToken ?? null,
+                expires_at: data.expires_at ?? (data as any).expiresAt ?? null,
+                token_type: data.token_type ?? (data as any).tokenType ?? null,
+                scope: data.scope ?? null,
+                id_token: data.id_token ?? (data as any).idToken ?? null,
+                session_state:
+                    typeof data.session_state === 'string'
+                        ? data.session_state
+                        : typeof (data as any).sessionState === 'string'
+                        ? (data as any).sessionState
+                        : null,
+            }
             // Upsert keeps the call idempotent. We refresh the OAuth-token
             // fields on conflict so a re-link replaces stale credentials.
             const account = await prisma.account.upsert({
                 where: {
                     provider_providerAccountId: { provider, providerAccountId },
                 },
-                create: data,
-                update: {
-                    userId: data.userId,
-                    type: data.type,
-                    access_token: data.access_token,
-                    refresh_token: data.refresh_token,
-                    expires_at: data.expires_at,
-                    token_type: data.token_type,
-                    scope: data.scope,
-                    id_token: data.id_token,
-                    session_state:
-                        typeof data.session_state === 'string'
-                            ? data.session_state
-                            : null,
-                },
+                create: mappedData,
+                update: mappedData,
             })
             return account as AdapterAccount
         },
@@ -315,6 +320,18 @@ export const authOptions: AuthOptions = {
                             // — we overwrite the userId + token fields. This
                             // makes the call idempotent and removes the P2002
                             // race that previously caused OAuthAccountNotLinked.
+                            const access_token = account.access_token ?? (account as any).accessToken ?? null;
+                            const refresh_token = account.refresh_token ?? (account as any).refreshToken ?? null;
+                            const expires_at = account.expires_at ?? (account as any).expiresAt ?? null;
+                            const token_type = account.token_type ?? (account as any).tokenType ?? null;
+                            const id_token = account.id_token ?? (account as any).idToken ?? null;
+                            const session_state =
+                                typeof account.session_state === 'string'
+                                    ? account.session_state
+                                    : typeof (account as any).sessionState === 'string'
+                                    ? (account as any).sessionState
+                                    : null;
+
                             await prisma.account.upsert({
                                 where: {
                                     provider_providerAccountId: {
@@ -327,29 +344,23 @@ export const authOptions: AuthOptions = {
                                     type: account.type,
                                     provider: account.provider,
                                     providerAccountId: account.providerAccountId,
-                                    access_token: account.access_token,
-                                    refresh_token: account.refresh_token,
-                                    expires_at: account.expires_at,
-                                    token_type: account.token_type,
-                                    scope: account.scope,
-                                    id_token: account.id_token,
-                                    session_state:
-                                        typeof account.session_state === 'string'
-                                            ? account.session_state
-                                            : null,
+                                    access_token,
+                                    refresh_token,
+                                    expires_at: expires_at ? Number(expires_at) : null,
+                                    token_type,
+                                    scope: account.scope ?? null,
+                                    id_token,
+                                    session_state,
                                 },
                                 update: {
                                     userId: existing.id,
-                                    access_token: account.access_token,
-                                    refresh_token: account.refresh_token,
-                                    expires_at: account.expires_at,
-                                    token_type: account.token_type,
-                                    scope: account.scope,
-                                    id_token: account.id_token,
-                                    session_state:
-                                        typeof account.session_state === 'string'
-                                            ? account.session_state
-                                            : null,
+                                    access_token,
+                                    refresh_token,
+                                    expires_at: expires_at ? Number(expires_at) : null,
+                                    token_type,
+                                    scope: account.scope ?? null,
+                                    id_token,
+                                    session_state,
                                 },
                             });
                             console.log("AUTH_Linked_Google_To_Existing_User:", {
