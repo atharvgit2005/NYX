@@ -253,6 +253,61 @@ const faqSchema = {
 // CSS-marked questions/answers in the visible FAQ section below.
 const faqSpeakable = speakableSchema(['.faq-question', '.faq-answer']);
 
+// HowTo schema for the onboarding flow. Mirrored 1:1 by the visible
+// "How onboarding works" section below — Google flags mismatch as spam,
+// so keep them in lockstep when editing either.
+const howToOnboardingSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "@id": `${SITE_URL}/services#how-onboarding-works`,
+  name: "How to onboard with NYX Studio",
+  description:
+    "A 5-step onboarding flow used with every NYX brand partner — brief, scoping call, pack selection, brand kit handover, first shipment within 7 business days.",
+  totalTime: "P7D",
+  step: [
+    {
+      "@type": "HowToStep",
+      position: 1,
+      name: "Send a brief",
+      text:
+        "Fill the contact form at nyxstudio.tech/contact with your brand, current revenue range, and what you want help with. We reply within 48 hours.",
+      url: `${SITE_URL}/services#how-onboarding-works`,
+    },
+    {
+      "@type": "HowToStep",
+      position: 2,
+      name: "20-minute scoping call",
+      text:
+        "We jump on a call to confirm fit, pressure-test your goals, and map them to one of our packs (Trial, Starter, or Growth).",
+      url: `${SITE_URL}/services#how-onboarding-works`,
+    },
+    {
+      "@type": "HowToStep",
+      position: 3,
+      name: "Choose a pack",
+      text:
+        "You pick Trial (₹30K/mo pilot), Starter (₹50K/mo retainer), or Growth (₹80K/mo full funnel). Pricing is fixed — no scope creep.",
+      url: `${SITE_URL}/services#how-onboarding-works`,
+    },
+    {
+      "@type": "HowToStep",
+      position: 4,
+      name: "Brand kit handover",
+      text:
+        "You get a portal login. Upload logo, colours, tone-of-voice notes, products, and any past creative that worked. We index it so every future asset stays on-brand.",
+      url: `${SITE_URL}/services#how-onboarding-works`,
+    },
+    {
+      "@type": "HowToStep",
+      position: 5,
+      name: "First shipment in 7 business days",
+      text:
+        "Within 7 business days of kickoff we ship the first batch of assets — typically 3 reels and 2 statics — for review in the portal.",
+      url: `${SITE_URL}/services#how-onboarding-works`,
+    },
+  ],
+};
+
 const servicesGraph = {
   "@context": "https://schema.org",
   "@graph": servicesSchema.map((entry, index) => ({
@@ -284,6 +339,7 @@ export default function AdServicesPage() {
           servicesGraph,
           faqSchema,
           faqSpeakable,
+          howToOnboardingSchema,
           breadcrumbSchema([
             { name: 'Home', path: '/' },
             { name: 'Services', path: '/services' },
@@ -535,6 +591,94 @@ export default function AdServicesPage() {
 
                     </div>
                 </div>
+            </section>
+
+            {/* "How onboarding works" — visible content paired with the
+                HowTo JSON-LD above. Each <li> mirrors a HowToStep so
+                Google doesn't flag content/schema mismatch. */}
+            <section
+              id="how-onboarding-works"
+              className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#0E0E0E] text-[#e5e2e1] border-b-4 border-ink-black"
+            >
+              <div className="max-w-4xl mx-auto">
+                <span className="font-label text-xs uppercase tracking-widest text-[#E8441A] font-black mb-4 block">
+                  * HOW ONBOARDING WORKS
+                </span>
+                <h2 className="font-headline text-[clamp(2.25rem,7vw,5rem)] leading-[0.9] font-black tracking-tighter uppercase mb-4">
+                  From brief to <span className="text-[#E8441A]">first shipment</span> in 7 days.
+                </h2>
+                <p className="text-[#e4beb5] text-base md:text-lg mb-10 md:mb-14 max-w-2xl">
+                  Every NYX brand partner runs through the same 5-step onboarding.
+                  Fixed pricing, no scope creep, no two-month kickoff.
+                </p>
+                <ol className="space-y-6 md:space-y-8">
+                  <li className="border-l-4 border-[#E8441A] pl-5">
+                    <div className="text-xs uppercase tracking-widest text-[#E8441A] font-black mb-1">
+                      STEP 1
+                    </div>
+                    <h3 className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-2">
+                      Send a brief
+                    </h3>
+                    <p className="text-[#e5e2e1] text-base md:text-lg leading-relaxed">
+                      Fill the contact form at{' '}
+                      <Link href="/contact" className="underline decoration-[#5b403a] hover:decoration-[#E8441A]">
+                        nyxstudio.tech/contact
+                      </Link>{' '}
+                      with your brand, current revenue range, and what you want help with.
+                      We reply within 48 hours.
+                    </p>
+                  </li>
+                  <li className="border-l-4 border-[#E8441A] pl-5">
+                    <div className="text-xs uppercase tracking-widest text-[#E8441A] font-black mb-1">
+                      STEP 2
+                    </div>
+                    <h3 className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-2">
+                      20-minute scoping call
+                    </h3>
+                    <p className="text-[#e5e2e1] text-base md:text-lg leading-relaxed">
+                      We jump on a call to confirm fit, pressure-test your goals,
+                      and map them to one of our packs (Trial, Starter, or Growth).
+                    </p>
+                  </li>
+                  <li className="border-l-4 border-[#E8441A] pl-5">
+                    <div className="text-xs uppercase tracking-widest text-[#E8441A] font-black mb-1">
+                      STEP 3
+                    </div>
+                    <h3 className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-2">
+                      Choose a pack
+                    </h3>
+                    <p className="text-[#e5e2e1] text-base md:text-lg leading-relaxed">
+                      You pick Trial (₹30K/mo pilot), Starter (₹50K/mo retainer),
+                      or Growth (₹80K/mo full funnel). Pricing is fixed — no scope creep.
+                    </p>
+                  </li>
+                  <li className="border-l-4 border-[#E8441A] pl-5">
+                    <div className="text-xs uppercase tracking-widest text-[#E8441A] font-black mb-1">
+                      STEP 4
+                    </div>
+                    <h3 className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-2">
+                      Brand kit handover
+                    </h3>
+                    <p className="text-[#e5e2e1] text-base md:text-lg leading-relaxed">
+                      You get a portal login. Upload logo, colours, tone-of-voice notes,
+                      products, and any past creative that worked. We index it so every
+                      future asset stays on-brand.
+                    </p>
+                  </li>
+                  <li className="border-l-4 border-[#E8441A] pl-5">
+                    <div className="text-xs uppercase tracking-widest text-[#E8441A] font-black mb-1">
+                      STEP 5
+                    </div>
+                    <h3 className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-2">
+                      First shipment in 7 business days
+                    </h3>
+                    <p className="text-[#e5e2e1] text-base md:text-lg leading-relaxed">
+                      Within 7 business days of kickoff we ship the first batch of
+                      assets — typically 3 reels and 2 statics — for review in the portal.
+                    </p>
+                  </li>
+                </ol>
+              </div>
             </section>
 
             {/* FAQ — visible content paired with the FAQPage JSON-LD above

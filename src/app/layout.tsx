@@ -67,6 +67,12 @@ export const metadata: Metadata = {
       'en-IN': SITE_URL,
       'x-default': SITE_URL,
     },
+    // RSS auto-discovery. Lets readers + Perplexity/Bing find the feed
+    // without a robots.txt hint, and lets browsers offer the
+    // "Subscribe…" affordance when present.
+    types: {
+      'application/rss+xml': '/feed.xml',
+    },
   },
   // PWA + icons (next/metadata generates the matching <link> tags).
   // Reuses /logo/NYX-Logo.png for the larger sizes; the 64px variant

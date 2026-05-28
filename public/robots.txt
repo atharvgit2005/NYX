@@ -6,4 +6,76 @@ Disallow: /portal
 Disallow: /clients/
 Disallow: /uploads/
 
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+Disallow: /portal/
+Disallow: /portal
+Disallow: /clients/
+Disallow: /uploads/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /portal/
+Disallow: /portal
+Disallow: /clients/
+Disallow: /uploads/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /api/
+Disallow: /portal/
+Disallow: /portal
+Disallow: /clients/
+Disallow: /uploads/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+Disallow: /portal/
+Disallow: /portal
+Disallow: /clients/
+Disallow: /uploads/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /api/
+Disallow: /portal/
+Disallow: /portal
+Disallow: /clients/
+Disallow: /uploads/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+Disallow: /portal/
+Disallow: /portal
+Disallow: /clients/
+Disallow: /uploads/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /api/
+Disallow: /portal/
+Disallow: /portal
+Disallow: /clients/
+Disallow: /uploads/
+
+User-agent: CCBot
+Allow: /
+Disallow: /api/
+Disallow: /portal/
+Disallow: /portal
+Disallow: /clients/
+Disallow: /uploads/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /api/
+Disallow: /portal/
+Disallow: /portal
+Disallow: /clients/
+Disallow: /uploads/
+
 Sitemap: https://www.nyxstudio.tech/sitemap.xml

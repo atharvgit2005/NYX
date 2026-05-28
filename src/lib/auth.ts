@@ -1,3 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/*
+ * NOTE: file-level disable for `no-explicit-any` is intentional.
+ * The `as any` casts in this file bridge NextAuth adapter version
+ * differences: newer adapters return camelCase OAuth fields (accessToken,
+ * idToken) while our Prisma schema uses snake_case (access_token, id_token).
+ * Replacing with stricter narrowing risks reintroducing the
+ * OAuthAccountNotLinked / P2002 race that this code was written to fix.
+ * Touch only with auth-aware testing (see feedback_auth_test_incognito).
+ */
 import { AuthOptions } from "next-auth"
 import { JWT } from "next-auth/jwt"
 import GoogleProvider from "next-auth/providers/google"

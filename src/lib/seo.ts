@@ -2,6 +2,14 @@ import type { Metadata } from "next";
 
 export const SITE_URL = "https://www.nyxstudio.tech";
 
+/**
+ * Build-time ISO date stamped into schemas that take `dateModified`.
+ * Recomputed on every `next build`, so a fresh deploy bumps the value
+ * — that's the freshness signal AI engines and search engines key off.
+ * Format: `YYYY-MM-DD` (sufficient precision, doesn't leak deploy time).
+ */
+export const BUILD_DATE = new Date().toISOString().slice(0, 10);
+
 export const defaultOgImage = {
   url: "/og-image.jpg",
   width: 1200,
@@ -67,6 +75,8 @@ export const websiteSchema = {
   url: SITE_URL,
   publisher: { "@id": `${SITE_URL}#organization` },
   inLanguage: "en",
+  // Freshness signal — bumped on every build.
+  dateModified: BUILD_DATE,
   potentialAction: {
     "@type": "SearchAction",
     target: {
@@ -303,4 +313,8 @@ export const aboutPageSchema = {
   about: { "@id": `${SITE_URL}#organization` },
   inLanguage: "en",
   isPartOf: { "@id": `${SITE_URL}#website` },
+  // datePublished anchors when this page first existed; dateModified
+  // bumps on each build. Both improve AI engines' freshness ranking.
+  datePublished: "2025-09-01",
+  dateModified: BUILD_DATE,
 };
