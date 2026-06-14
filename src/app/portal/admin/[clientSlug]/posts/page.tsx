@@ -60,7 +60,7 @@ export default async function AdminPostsPage({
     <PostsWorkspaceClient
       clientSlug={partner.clientSlug}
       brandName={partner.configuration?.brandName ?? partner.clientName}
-      brandColor={partner.configuration?.primaryColor ?? '#E8441A'}
+      brandColor={partner.configuration?.primaryColor ?? '#D83C14'}
       defaultPlatforms={partner.configuration?.platforms ?? ['INSTAGRAM']}
       initialPosts={serialized}
     />

@@ -53,7 +53,7 @@ export default async function EditBrandPage({
     contactEmail: partner.email,
     tagline: cfg?.tagline ?? '',
     logoUrl: cfg?.logoUrl ?? null,
-    primaryColor: cfg?.primaryColor ?? '#E8441A',
+    primaryColor: cfg?.primaryColor ?? '#D83C14',
     secondaryColor: cfg?.secondaryColor ?? '#ffd65b',
     accentColor: cfg?.accentColor ?? '',
     instagramHandle: cfg?.instagramHandle ?? '',
@@ -79,7 +79,7 @@ export default async function EditBrandPage({
         <div className="flex items-center justify-between gap-4 mb-6 flex-wrap">
           <Link
             href="/portal/admin"
-            className="text-xs uppercase tracking-widest text-[#e4beb5] hover:text-[#E8441A]"
+            className="text-xs uppercase tracking-widest text-[#e4beb5] hover:text-[#D83C14]"
             style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
           >
             ← Back to admin
@@ -93,14 +93,12 @@ export default async function EditBrandPage({
           </Link>
         </div>
         <div className="flex flex-wrap items-end gap-4 mb-2">
-          <div
+          <h1
             className="text-4xl md:text-5xl font-black tracking-tighter leading-none uppercase"
             style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
-            role="heading"
-            aria-level={1}
           >
             Edit · {partner.clientName}
-          </div>
+          </h1>
           <span
             className="text-xs px-2 py-0.5 font-bold uppercase mb-1"
             style={{

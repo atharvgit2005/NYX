@@ -7,6 +7,8 @@ import "./page.css";
 import { MobileNav } from "./components/MobileNav";
 
 import { LiveHub } from "./components/LiveHub";
+import { SiteHeader } from "./components/SiteHeader";
+import { SiteFooter } from "./components/SiteFooter";
 import { createMarketingMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMarketingMetadata({
@@ -28,32 +30,7 @@ export default function AdPage() {
       {/* Main wrapper containing body-level styling to isolate from global styles */}
       <div className="bg-surface-container-lowest text-on-surface font-body selection:bg-secondary selection:text-on-secondary min-h-screen relative w-full overflow-hidden">
         {/* TopAppBar */}
-        <header className="fixed top-0 w-full border-b-4 border-black bg-[#0E0E0E] flex justify-between items-center px-4 md:px-8 py-4 md:py-6 z-50">
-            <Link href="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0">
-                <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center relative flex-shrink-0">
-                    <Image 
-                        src="/logo/NYX-Logo.png" 
-                        alt="NYX Studio logo" 
-                        width={120}
-                        height={40}
-                        priority
-                        unoptimized
-                        className="h-full w-full object-contain"
-                        sizes="(max-width: 768px) 32px, 40px"
-                    />
-                </div>
-                <div className="text-xl md:text-3xl font-black tracking-tighter text-white uppercase font-headline whitespace-nowrap">NYX STUDIO</div>
-            </Link>
-            <nav className="hidden md:flex gap-8 items-center">
-                <Link className="text-[#E8441A] font-bold font-label uppercase tracking-wider transition-colors duration-100" href="/">HOME</Link>
-                <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/work">WORK</Link>
-                <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/services">SERVICES</Link>
-                <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/about">ABOUT</Link>
-                <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/contact">CONTACT</Link>
-                <Link className="text-white hover:bg-[#E8441A] hover:text-black font-label uppercase tracking-wider transition-colors duration-100 px-2" href="/portal">PORTAL</Link>
-            </nav>
-            <LiveHub />
-        </header>
+        <SiteHeader active="home" rightSlot={<LiveHub />} />
 
         <main className="pt-[72px] md:pt-[88px] pb-[72px] md:pb-0">
             <AdAnimations />
@@ -67,15 +44,15 @@ export default function AdPage() {
                         <span className="block">to scroll past.</span>
                     </h1>
                     <Link href="/contact" className="bg-primary text-on-primary-fixed font-headline font-bold text-base md:text-xl px-6 md:px-10 py-4 md:py-5 uppercase border-4 border-black hover:bg-secondary hover:shadow-[4px_4px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 transition-all inline-flex items-center gap-3 md:gap-4 w-fit">
-                        Book a Call <span className="material-symbols-outlined">arrow_forward</span>
+                        Book a Call <span aria-hidden="true" className="material-symbols-outlined">arrow_forward</span>
                     </Link>
                 </div>
                 <div className="relative md:w-2/5 hidden md:flex justify-center items-center mt-12 md:mt-0 hero-visual">
                     <div className="w-64 h-64 md:w-96 md:h-96 text-primary-container animate-pulse">
-                        <span className="material-symbols-outlined !text-[12rem] md:!text-[20rem] star-icon" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                        <span aria-hidden="true" className="material-symbols-outlined !text-[12rem] md:!text-[20rem] star-icon" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
                     </div>
                     <div className="absolute -top-10 -right-10 text-secondary hidden md:block secondary-icon">
-                        <span className="material-symbols-outlined !text-[8rem]">emergency</span>
+                        <span aria-hidden="true" className="material-symbols-outlined !text-[8rem]">emergency</span>
                     </div>
                 </div>
             </section>
@@ -88,7 +65,7 @@ export default function AdPage() {
             </section>
 
             {/* Marquee */}
-            <section className="bg-primary-container border-b-4 border-black py-4 md:py-6 flex items-center overflow-hidden">
+            <section aria-hidden="true" className="bg-primary-container border-b-4 border-black py-4 md:py-6 flex items-center overflow-hidden">
                 <div className="marquee-container">
                     <div className="marquee-content flex gap-6 md:gap-12 text-black font-headline font-bold uppercase text-base md:text-2xl tracking-widest items-center pr-6 md:pr-12">
                         <span>Content Strategy</span> <span className="text-2xl md:text-4xl text-surface-container-lowest">•</span>
@@ -128,7 +105,7 @@ export default function AdPage() {
                     {/* Card 1: Green */}
                     <div className="bento-card col-span-12 md:col-span-7 bg-tertiary border-4 border-black p-6 md:p-8 flex flex-col justify-between min-h-[300px] md:min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
                         <div className="flex justify-between items-start">
-                            <span className="material-symbols-outlined !text-6xl text-black">ads_click</span>
+                            <span aria-hidden="true" className="material-symbols-outlined !text-6xl text-black">ads_click</span>
                             <p className="font-label text-black/40 font-bold">*01</p>
                         </div>
                         <div>
@@ -139,7 +116,7 @@ export default function AdPage() {
                     {/* Card 2: Orange */}
                     <div className="bento-card col-span-12 md:col-span-5 bg-primary-container border-4 border-black p-6 md:p-8 flex flex-col justify-between min-h-[300px] md:min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
                         <div className="flex justify-between items-start">
-                            <span className="material-symbols-outlined !text-6xl text-black">movie_edit</span>
+                            <span aria-hidden="true" className="material-symbols-outlined !text-6xl text-black">movie_edit</span>
                             <p className="font-label text-black/40 font-bold">*02</p>
                         </div>
                         <div>
@@ -150,7 +127,7 @@ export default function AdPage() {
                     {/* Card 3: White/Grey */}
                     <div className="bento-card col-span-12 md:col-span-5 bg-on-surface border-4 border-black p-6 md:p-8 flex flex-col justify-between min-h-[300px] md:min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
                         <div className="flex justify-between items-start">
-                            <span className="material-symbols-outlined !text-6xl text-black">groups</span>
+                            <span aria-hidden="true" className="material-symbols-outlined !text-6xl text-black">groups</span>
                             <p className="font-label text-black/40 font-bold">*03</p>
                         </div>
                         <div>
@@ -161,7 +138,7 @@ export default function AdPage() {
                     {/* Card 4: Pink */}
                     <div className="bento-card col-span-12 md:col-span-7 bg-[#F2A7C3] border-4 border-black p-6 md:p-8 flex flex-col justify-between min-h-[300px] md:min-h-[400px] hover:translate-x-1 hover:-translate-y-1 transition-transform">
                         <div className="flex justify-between items-start">
-                            <span className="material-symbols-outlined !text-6xl text-black">analytics</span>
+                            <span aria-hidden="true" className="material-symbols-outlined !text-6xl text-black">analytics</span>
                             <p className="font-label text-black/40 font-bold">*04</p>
                         </div>
                         <div>
@@ -195,10 +172,10 @@ export default function AdPage() {
                     </div>
                 </div>
                 {/* Registration Marks */}
-                <div className="absolute top-10 left-10 text-black/20"><span className="material-symbols-outlined !text-4xl">add</span></div>
-                <div className="absolute top-10 right-10 text-black/20"><span className="material-symbols-outlined !text-4xl">add</span></div>
-                <div className="absolute bottom-10 left-10 text-black/20"><span className="material-symbols-outlined !text-4xl">add</span></div>
-                <div className="absolute bottom-10 right-10 text-black/20"><span className="material-symbols-outlined !text-4xl">add</span></div>
+                <div className="absolute top-10 left-10 text-black/20"><span aria-hidden="true" className="material-symbols-outlined !text-4xl">add</span></div>
+                <div className="absolute top-10 right-10 text-black/20"><span aria-hidden="true" className="material-symbols-outlined !text-4xl">add</span></div>
+                <div className="absolute bottom-10 left-10 text-black/20"><span aria-hidden="true" className="material-symbols-outlined !text-4xl">add</span></div>
+                <div className="absolute bottom-10 right-10 text-black/20"><span aria-hidden="true" className="material-symbols-outlined !text-4xl">add</span></div>
             </section>
 
             {/* Founders Section */}
@@ -206,40 +183,40 @@ export default function AdPage() {
                 <div className="max-w-7xl mx-auto">
                     <div className="mb-10 md:mb-16">
                         <span className="text-secondary font-headline font-bold text-base md:text-xl uppercase tracking-widest">* THE RUNNERS</span>
-                        <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase font-headline leading-none mt-4 text-black">
+                        <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase font-headline leading-none mt-4 text-white">
                             OPERATORS<br/>BEHIND THE CODE.
                         </h2>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                         {/* Founder 1 */}
-                        <div className="border-4 border-black p-6 md:p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#E8441A] active:-translate-y-1 active:translate-x-1 group">
+                        <div className="border-4 border-black p-6 md:p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#D83C14] active:-translate-y-1 active:translate-x-1 group">
                             <div className="w-32 h-32 mb-6 border-4 border-white overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-300">
                                 <Image src="/founders/atharv.jpg" alt="Atharv Paharia, Co-Founder and Tech Lead at NYX Studio" width={600} height={750} className="h-full w-full object-cover" />
                             </div>
                             <h3 className="text-4xl font-black uppercase font-headline tracking-tighter text-white mb-2">ATHARV PAHARIA</h3>
-                            <p className="text-[#E8441A] font-bold uppercase tracking-widest text-sm mb-8">* CO-FOUNDER & TECH LEAD</p>
+                            <p className="text-[#D83C14] font-bold uppercase tracking-widest text-sm mb-8">* CO-FOUNDER & TECH LEAD</p>
                             <div className="flex gap-4">
-                                <a href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
-                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">LINKEDIN <span className="material-symbols-outlined text-[1rem]">north_east</span></span>
+                                <a href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#D83C14] hover:text-black hover:border-[#D83C14] transition-colors rounded-none flex items-center gap-2">
+                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">LINKEDIN <span aria-hidden="true" className="material-symbols-outlined text-[1rem]">north_east</span></span>
                                 </a>
-                                <a href="https://www.instagram.com/i___am__atharv/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
-                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">INSTA <span className="material-symbols-outlined text-[1rem]">north_east</span></span>
+                                <a href="https://www.instagram.com/i___am__atharv/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#D83C14] hover:text-black hover:border-[#D83C14] transition-colors rounded-none flex items-center gap-2">
+                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">INSTA <span aria-hidden="true" className="material-symbols-outlined text-[1rem]">north_east</span></span>
                                 </a>
                             </div>
                         </div>
                         {/* Founder 2 */}
-                        <div className="border-4 border-black p-6 md:p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#E8441A] active:-translate-y-1 active:translate-x-1 group">
+                        <div className="border-4 border-black p-6 md:p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#D83C14] active:-translate-y-1 active:translate-x-1 group">
                             <div className="w-32 h-32 mb-6 border-4 border-white overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-300">
                                 <Image src="/founders/bhavya.jpg" alt="Bhavya Jain, Co-Founder and Product Lead at NYX Studio" width={600} height={750} className="h-full w-full object-cover" />
                             </div>
                             <h3 className="text-4xl font-black uppercase font-headline tracking-tighter text-white mb-2">BHAVYA JAIN</h3>
-                            <p className="text-[#E8441A] font-bold uppercase tracking-widest text-sm mb-8">* CO-FOUNDER & PRODUCT</p>
+                            <p className="text-[#D83C14] font-bold uppercase tracking-widest text-sm mb-8">* CO-FOUNDER & PRODUCT</p>
                             <div className="flex gap-4">
-                                <a href="https://www.linkedin.com/in/bhavya-jain-10963b33a/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
-                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">LINKEDIN <span className="material-symbols-outlined text-[1rem]">north_east</span></span>
+                                <a href="https://www.linkedin.com/in/bhavya-jain-10963b33a/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#D83C14] hover:text-black hover:border-[#D83C14] transition-colors rounded-none flex items-center gap-2">
+                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">LINKEDIN <span aria-hidden="true" className="material-symbols-outlined text-[1rem]">north_east</span></span>
                                 </a>
-                                <a href="https://www.instagram.com/bhavyakun_/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#E8441A] hover:text-black hover:border-[#E8441A] transition-colors rounded-none flex items-center gap-2">
-                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">INSTA <span className="material-symbols-outlined text-[1rem]">north_east</span></span>
+                                <a href="https://www.instagram.com/bhavyakun_/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#D83C14] hover:text-black hover:border-[#D83C14] transition-colors rounded-none flex items-center gap-2">
+                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">INSTA <span aria-hidden="true" className="material-symbols-outlined text-[1rem]">north_east</span></span>
                                 </a>
                             </div>
                         </div>
@@ -256,39 +233,7 @@ export default function AdPage() {
         </main>
 
         {/* Footer */}
-        <footer className="bg-[#0E0E0E] flex flex-col md:flex-row justify-between items-start md:items-center px-4 sm:px-6 md:px-8 py-10 md:py-12 w-full border-t-4 border-black z-10 relative">
-            <div className="flex flex-col gap-3 mb-8 md:mb-0">
-                <Link href="/" className="flex items-center gap-3">
-                    <div className="w-8 h-8 flex items-center justify-center relative">
-                        <Image 
-                            src="/logo/NYX-Logo.png" 
-                            alt="NYX Studio logo" 
-                            width={120}
-                            height={40}
-                            unoptimized
-                            className="h-full w-full object-contain"
-                            sizes="32px"
-                        />
-                    </div>
-                    <div className="text-2xl font-black text-white uppercase font-headline">NYX STUDIO</div>
-                </Link>
-                <p className="font-headline text-[0.75rem] uppercase tracking-wider text-white/60">
-                    © 2026 NYX Studio
-                </p>
-            </div>
-            <div className="flex gap-8 md:gap-12">
-                <div className="flex flex-col gap-2">
-                    <span className="text-[#E8441A] font-label text-[0.75rem] uppercase font-bold tracking-widest">CONNECT</span>
-                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="https://www.instagram.com/nyx.studios.ai/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
-                    <a className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
-                </div>
-                <div className="flex flex-col gap-2">
-                    <span className="text-[#E8441A] font-label text-[0.75rem] uppercase font-bold tracking-widest">RESOURCES</span>
-                    <Link className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="/work">ARCHIVE</Link>
-                    <Link className="text-white font-headline text-[0.75rem] uppercase tracking-wider hover:underline decoration-4 decoration-[#E8441A]" href="/contact">CONTACT</Link>
-                </div>
-            </div>
-        </footer>
+        <SiteFooter />
         <MobileNav />
       </div>
     </>

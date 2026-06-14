@@ -97,9 +97,9 @@ export default function ViewersSection({ clientSlug, initialViewers }: Props) {
     }
 
     return (
-        <fieldset className="border-l-4 border-[#E8441A] pl-6 space-y-5 mt-12">
+        <fieldset className="border-l-4 border-[#D83C14] pl-6 space-y-5 mt-12">
             <legend
-                className="text-xs uppercase tracking-[0.2em] text-[#E8441A] font-black mb-2"
+                className="text-xs uppercase tracking-[0.2em] text-[#D83C14] font-black mb-2"
                 style={HEAD}
             >
                 *VIEWER_ACCESS
@@ -118,7 +118,7 @@ export default function ViewersSection({ clientSlug, initialViewers }: Props) {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="guest@example.com"
                     type="email"
-                    className="w-full bg-[#0e0e0e] border-4 border-black p-3 text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#E8441A] transition-all outline-none"
+                    className="w-full bg-[#0e0e0e] border-4 border-black p-3 text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#D83C14] transition-all outline-none"
                     style={HEAD}
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
@@ -132,14 +132,14 @@ export default function ViewersSection({ clientSlug, initialViewers }: Props) {
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Optional display name"
                     type="text"
-                    className="w-full bg-[#0e0e0e] border-4 border-black p-3 text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#E8441A] transition-all outline-none"
+                    className="w-full bg-[#0e0e0e] border-4 border-black p-3 text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#D83C14] transition-all outline-none"
                     style={HEAD}
                 />
                 <button
                     type="button"
                     onClick={add}
                     disabled={pending || !email.includes('@')}
-                    className="px-5 py-3 border-4 border-black bg-[#E8441A] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] disabled:opacity-50 transition-all"
+                    className="px-5 py-3 border-4 border-black bg-[#D83C14] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] disabled:opacity-50 transition-all"
                     style={HEAD}
                 >
                     + ADD_VIEWER

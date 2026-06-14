@@ -118,7 +118,7 @@ const THEMES: Record<PostFormTheme, ThemeTokens> = {
             'block text-[10px] uppercase tracking-widest font-bold text-[#e4beb5] mb-2',
         labelStyle: HEAD,
         btnPrimary:
-            'px-6 py-3 border-4 border-black bg-[#E8441A] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] disabled:opacity-50',
+            'px-6 py-3 border-4 border-black bg-[#D83C14] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] disabled:opacity-50',
         btnPrimaryStyle: HEAD,
         btnSecondary:
             'px-5 py-3 border-4 border-black text-xs font-black uppercase tracking-widest text-[#e4beb5] hover:bg-[#2a2a2a]',
@@ -131,7 +131,7 @@ const THEMES: Record<PostFormTheme, ThemeTokens> = {
         textareaFontStyle: BODY,
         chipBase:
             'px-3 py-2 border-4 border-black text-[10px] font-bold uppercase tracking-widest transition-all',
-        chipActive: 'bg-[#E8441A] text-white',
+        chipActive: 'bg-[#D83C14] text-white',
         chipInactive: 'bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#2a2a2a]',
         chipStyle: HEAD,
         errorClass:
@@ -143,7 +143,7 @@ const THEMES: Record<PostFormTheme, ThemeTokens> = {
         hashtagStyle: {
             ...HEAD,
             backgroundColor: '#0e0e0e',
-            color: '#E8441A',
+            color: '#D83C14',
             border: '2px solid #000',
         },
         commentSection: 'border-t-4 border-black pt-5',
@@ -152,12 +152,12 @@ const THEMES: Record<PostFormTheme, ThemeTokens> = {
         commentBodyClass: 'text-sm text-[#e5e2e1] whitespace-pre-wrap',
         commentMetaClass: 'text-[10px] text-[#ab8981] mt-1 font-mono',
         commentColors: {
-            revision: '#E8441A',
+            revision: '#D83C14',
             approval: '#76dc83',
             internal: '#ab8981',
         },
         closeBtn:
-            'ml-3 w-8 h-8 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#E8441A] hover:text-white flex items-center justify-center transition shrink-0',
+            'ml-3 w-8 h-8 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#D83C14] hover:text-white flex items-center justify-center transition shrink-0',
         closeBtnStyle: {},
         labels: {
             new: '*NEW_POST',
@@ -730,7 +730,7 @@ export default function PostFormModal({
             color: #353534;
           }
           .brutal-input:focus {
-            border-color: #e8441a;
+            border-color: #D83C14;
           }
           .editorial-input {
             width: 100%;

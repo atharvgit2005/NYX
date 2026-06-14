@@ -100,6 +100,13 @@ html, body {
   --text-muted: #71717a;
   --inverse-text: #000000;
   --inverse-bg: #ffffff;
+
+  /* Canonical brand orange (single source of truth for focus rings + accents).
+     Darkened from the legacy #E8441A (which only hit 3.98:1 with white) to
+     #D83C14, which clears WCAG AA (~4.58:1) against BOTH white and black text —
+     so existing white-on-orange CTAs pass without changing their markup. */
+  --brand: #D83C14;
+  --brand-ink: #000000;
 }
 
 [data-theme='light'] {
@@ -1770,35 +1777,9 @@ button {
 .border-green-500\/20 { border-color: rgba(34,197,94,0.20); }
 .border-green-500\/25 { border-color: rgba(34,197,94,0.25); }
 
-/* Orange (redirected from purple) */
-.text-purple-300    { color: #fdba74; }
-.text-purple-500    { color: #f97316; }
-.bg-purple-500\/5   { background-color: rgba(249,115,22,0.05); }
-.bg-purple-500\/10  { background-color: rgba(249,115,22,0.10); }
-.bg-purple-500\/20  { background-color: rgba(249,115,22,0.20); }
-.bg-purple-500\/30  { background-color: rgba(249,115,22,0.30); }
-.border-purple-500\/10 { border-color: rgba(249,115,22,0.10); }
-.border-purple-500\/15 { border-color: rgba(249,115,22,0.15); }
-.border-purple-500\/25 { border-color: rgba(249,115,22,0.25); }
-.border-purple-500\/30 { border-color: rgba(249,115,22,0.30); }
-.border-purple-500\/40 { border-color: rgba(249,115,22,0.40); }
-.hover\:border-purple-500\/20:hover { border-color: rgba(249,115,22,0.20); }
-.hover\:border-purple-500\/25:hover { border-color: rgba(249,115,22,0.25); }
-.hover\:border-purple-500\/30:hover { border-color: rgba(249,115,22,0.30); }
-.hover\:text-purple-300:hover { color: #fdba74; }
-.hover\:text-purple-400:hover { color: #fb923c; }
-.to-purple-400 { --tw-gradient-to: #fb923c; }
-.to-pink-400   { --tw-gradient-to: #fb923c; }
-.from-purple-700 { --tw-gradient-stops: #c2410c, var(--tw-gradient-to, rgba(194,65,12,0)); }
-
-/* Orange-amber (redirected from pink) */
-.text-pink-300   { color: #fdba74; }
-.text-pink-500   { color: #fb923c; }
-.bg-pink-500\/10 { background-color: rgba(251,146,60,0.10); }
-.border-pink-500\/20 { border-color: rgba(251,146,60,0.20); }
-.border-pink-500\/30 { border-color: rgba(251,146,60,0.30); }
-.border-pink-500\/50 { border-color: rgba(251,146,60,0.50); }
-.from-pink-500   { --tw-gradient-stops: #fb923c, var(--tw-gradient-to, rgba(251,146,60,0)); }
+/* Removed (P2): the misleadingly-named `.text-purple-*` / `.text-pink-*` /
+   `.from-purple-*` / `.to-pink-*` classes that secretly resolved to orange.
+   Verified 0 usages in the codebase — they only existed to confuse. */
 
 /* Blue (extended) */
 .text-blue-300   { color: #93c5fd; }
@@ -2080,3 +2061,68 @@ button {
   50%       { height: 16px; }
 }
 .animate-wave-bar { animation: wave-bar 0.6s ease-in-out infinite alternate; }
+
+/* =====================================================================
+ * ACCESSIBILITY FOUNDATION (additive — appended last so it wins by order)
+ * Restores keyboard focus visibility, reduced-motion safety, and the
+ * screen-reader / skip-link primitives. See plan: P0.1, P1.6, P1.8.
+ * ===================================================================== */
+
+/* --- Screen-reader-only utility + skip link --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -3rem;
+  z-index: 1000;
+  padding: 0.625rem 1rem;
+  background: var(--brand);
+  color: var(--brand-ink);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 2px solid #000;
+  transition: top 0.15s ease;
+}
+.skip-link:focus {
+  top: 0.5rem;
+}
+
+/* --- Global keyboard focus indicator (WCAG 2.4.7 / 1.4.11) ---
+ * The polyfill ships `.focus:outline-none { outline: 2px solid transparent }`
+ * and components add `focus:ring-0` + `.brutal-input { outline:none }`. This
+ * `:focus-visible` rule restores a real ring for keyboard users while leaving
+ * the no-ring look for mouse/touch. `!important` beats the transparent outline. */
+:where(a, button, input, textarea, select, summary, [tabindex], [role="button"], [contenteditable="true"]):focus-visible {
+  outline: 2px solid var(--brand) !important;
+  outline-offset: 2px !important;
+  border-radius: 1px;
+}
+
+.brutal-input:focus-visible {
+  outline: 2px solid var(--brand) !important;
+  outline-offset: 2px !important;
+}
+
+/* --- Reduced-motion safety net (WCAG 2.3.3) ---
+ * GlobalAnimations also guards in JS; this is the CSS backstop that neutralizes
+ * marquees, infinite pulses, and long transitions for users who opt out. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

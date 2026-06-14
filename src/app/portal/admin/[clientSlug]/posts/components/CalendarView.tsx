@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import {
   DndContext,
   PointerSensor,
+  KeyboardSensor,
   useSensor,
   useSensors,
   useDraggable,
@@ -11,6 +12,14 @@ import {
   type DragEndEvent,
 } from '@dnd-kit/core'
 import type { AdminPost } from '../PostsWorkspaceClient'
+import { dndScreenReaderInstructions, makeDndAnnouncements } from '@/lib/portal/dnd-a11y'
+
+// Space picks up / drops a chip so Enter stays free to open the post editor.
+const KEYBOARD_CODES = {
+  start: ['Space'],
+  cancel: ['Escape'],
+  end: ['Space'],
+}
 
 const HEAD = { fontFamily: 'var(--font-space-grotesk), sans-serif' } as const
 
@@ -26,7 +35,7 @@ const STATUS_ACCENT: Record<AdminPost['status'], string> = {
   IDEA: '#5b403a',
   DRAFTING: '#ab8981',
   NEEDS_APPROVAL: '#ffd65b',
-  NEEDS_REVISION: '#E8441A',
+  NEEDS_REVISION: '#D83C14',
   APPROVED: '#76dc83',
   POSTED: '#3da452',
 }
@@ -80,7 +89,18 @@ export default function CalendarView({
 
   const [anchor, setAnchor] = useState(initial)
   const [displayMonths, setDisplayMonths] = useState<number>(defaultMonths)
-  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 6 } }))
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
+    useSensor(KeyboardSensor, { keyboardCodes: KEYBOARD_CODES }),
+  )
+
+  const announcements = useMemo(
+    () =>
+      makeDndAnnouncements(
+        (id) => posts.find((p) => p.id === id)?.title ?? 'post',
+      ),
+    [posts],
+  )
 
   // Generate list of all unique months in the campaign range (earliest post to latest post, padded)
   const allMonthsInRange = useMemo(() => {
@@ -184,7 +204,14 @@ export default function CalendarView({
   }
 
   return (
-    <DndContext sensors={sensors} onDragEnd={onDragEnd}>
+    <DndContext
+      sensors={sensors}
+      onDragEnd={onDragEnd}
+      accessibility={{
+        announcements,
+        screenReaderInstructions: dndScreenReaderInstructions,
+      }}
+    >
       <div className="border-4 border-black bg-[#1c1b1b]">
         <div
           className="flex flex-wrap items-center justify-between px-4 py-3 border-b-4 border-black gap-3"
@@ -193,14 +220,14 @@ export default function CalendarView({
           <div className="flex items-center gap-2">
             <button
               onClick={() => shift(-displayMonths)}
-              className="px-3 py-1 border-2 border-black bg-[#1c1b1b] text-xs font-bold uppercase tracking-widest hover:bg-[#E8441A] hover:text-white"
+              className="px-3 py-1 border-2 border-black bg-[#1c1b1b] text-xs font-bold uppercase tracking-widest hover:bg-[#D83C14] hover:text-white"
               style={HEAD}
             >
               ← PREV
             </button>
             <button
               onClick={() => shift(displayMonths)}
-              className="px-3 py-1 border-2 border-black bg-[#1c1b1b] text-xs font-bold uppercase tracking-widest hover:bg-[#E8441A] hover:text-white"
+              className="px-3 py-1 border-2 border-black bg-[#1c1b1b] text-xs font-bold uppercase tracking-widest hover:bg-[#D83C14] hover:text-white"
               style={HEAD}
             >
               NEXT →
@@ -222,7 +249,7 @@ export default function CalendarView({
                   key={m}
                   onClick={() => setDisplayMonths(m)}
                   className={`px-2.5 py-1 text-[10px] font-bold border-r last:border-r-0 border-black transition-all ${
-                    active ? 'bg-[#E8441A] text-white' : 'bg-[#1c1b1b] text-[#e4beb5] hover:bg-[#2a2a2a]'
+                    active ? 'bg-[#D83C14] text-white' : 'bg-[#1c1b1b] text-[#e4beb5] hover:bg-[#2a2a2a]'
                   }`}
                 >
                   {m}M VIEW
@@ -237,7 +264,7 @@ export default function CalendarView({
           <div className="px-6 py-4 border-b-4 border-black bg-[#141313] space-y-3">
             <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-[#ab8981]">
               <span>Timeline Navigation</span>
-              <span className="text-[#E8441A] animate-pulse">
+              <span className="text-[#D83C14] animate-pulse">
                 * Slide to change focus month
               </span>
             </div>
@@ -273,7 +300,7 @@ export default function CalendarView({
                       }}
                       className={`text-[9px] font-mono font-bold tracking-tighter uppercase whitespace-nowrap transition-colors px-1 py-0.5 border ${
                         active
-                          ? 'text-[#000] bg-[#E8441A] border-black font-black shadow-[2px_2px_0_#000]'
+                          ? 'text-[#000] bg-[#D83C14] border-black font-black shadow-[2px_2px_0_#000]'
                           : 'text-[#ab8981] border-transparent hover:text-white hover:border-[#ab8981]'
                       }`}
                     >
@@ -297,7 +324,7 @@ export default function CalendarView({
                 appearance: none;
                 width: 24px;
                 height: 24px;
-                background: #E8441A;
+                background: #D83C14;
                 border: 3px solid #000;
                 cursor: pointer;
                 transition: transform 0.1s;
@@ -308,7 +335,7 @@ export default function CalendarView({
               .brutal-slider::-moz-range-thumb {
                 width: 24px;
                 height: 24px;
-                background: #E8441A;
+                background: #D83C14;
                 border: 3px solid #000;
                 cursor: pointer;
               }
@@ -327,7 +354,7 @@ export default function CalendarView({
 
             return (
               <div key={monthAnchor.toISOString()} className="bg-[#1c1b1b]">
-                <div className="px-4 py-2 bg-[#141313] border-b-2 border-black text-[10px] font-black uppercase tracking-widest text-[#E8441A]" style={HEAD}>
+                <div className="px-4 py-2 bg-[#141313] border-b-2 border-black text-[10px] font-black uppercase tracking-widest text-[#D83C14]" style={HEAD}>
                   * {label}
                 </div>
                 <div className="grid grid-cols-7">
@@ -403,7 +430,7 @@ function DayCell({
               e.stopPropagation()
               onCreateOnDay(dayKey)
             }}
-            className="opacity-0 group-hover:opacity-100 transition-opacity w-5 h-5 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#E8441A] hover:text-white flex items-center justify-center"
+            className="opacity-0 group-hover:opacity-100 focus-visible:opacity-100 transition-opacity w-5 h-5 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#D83C14] hover:text-white flex items-center justify-center"
             aria-label={`Create post on ${dayKey}`}
             title={`Create post on ${dayKey}`}
           >
@@ -422,7 +449,7 @@ function DayCell({
         <button
           type="button"
           onClick={() => onCreateOnDay(dayKey)}
-          className="absolute inset-0 mt-7 m-1 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center text-[10px] uppercase tracking-widest font-bold text-[#ab8981] hover:text-[#E8441A]"
+          className="absolute inset-0 mt-7 m-1 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center text-[10px] uppercase tracking-widest font-bold text-[#ab8981] hover:text-[#D83C14]"
           style={HEAD}
           aria-label={`Create post on ${dayKey}`}
         >
@@ -458,6 +485,16 @@ function DayChip({ post, onClick }: { post: AdminPost; onClick: () => void }) {
           onClick()
         }
       }}
+      onKeyDown={(e) => {
+        // Space (handled by the keyboard sensor) drags; Enter opens the post.
+        if (e.key === 'Enter') {
+          e.preventDefault()
+          onClick()
+          return
+        }
+        listeners?.onKeyDown?.(e)
+      }}
+      aria-label={`${post.title} — press Enter to open, Space to drag`}
       className="text-[10px] uppercase font-bold tracking-tight border-2 border-black px-1.5 py-1 cursor-grab active:cursor-grabbing truncate"
       title={post.title}
     >

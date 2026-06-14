@@ -35,7 +35,7 @@ export default async function CalendarBuilderPage({
     <CalendarBuilderClient
       clientSlug={partner.clientSlug}
       brandName={cfg?.brandName ?? partner.clientName}
-      brandPrimaryColor={cfg?.primaryColor ?? '#E8441A'}
+      brandPrimaryColor={cfg?.primaryColor ?? '#D83C14'}
       defaultPlatform={cfg?.platforms?.[0] ?? 'INSTAGRAM'}
       campaignStart={cfg ? isoDay(cfg.campaignStart) : ''}
       campaignEnd={cfg ? isoDay(cfg.campaignEnd) : ''}

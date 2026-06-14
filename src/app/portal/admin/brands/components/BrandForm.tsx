@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useState, useTransition, useId } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { toast } from 'sonner'
@@ -60,7 +60,7 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
     contactEmail: initial?.contactEmail ?? '',
     tagline: initial?.tagline ?? '',
     logoUrl: initial?.logoUrl ?? null,
-    primaryColor: initial?.primaryColor ?? '#E8441A',
+    primaryColor: initial?.primaryColor ?? '#D83C14',
     secondaryColor: initial?.secondaryColor ?? '#ffd65b',
     accentColor: initial?.accentColor ?? '',
     instagramHandle: initial?.instagramHandle ?? '',
@@ -129,7 +129,7 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
     if (!v.brandName.trim()) return 'Brand name is required'
     if (!v.clientSlug.trim()) return 'Slug is required'
     if (mode === 'create' && !v.contactEmail.includes('@')) return 'Valid contact email required'
-    if (!HEX.test(v.primaryColor)) return 'Primary colour must be a hex like #E8441A'
+    if (!HEX.test(v.primaryColor)) return 'Primary colour must be a hex like #D83C14'
     if (!HEX.test(v.secondaryColor)) return 'Secondary colour must be hex'
     if (v.accentColor && !HEX.test(v.accentColor)) return 'Accent colour must be hex'
     if (v.platforms.length === 0) return 'Pick at least one platform'
@@ -207,7 +207,7 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
           hint={lockSlug ? 'Slug is locked once a brand is created' : 'lowercase, hyphens only'}
           required
         >
-          <div className="flex items-center bg-[#0e0e0e] border-4 border-black overflow-hidden focus-within:border-[#E8441A] transition">
+          <div className="flex items-center bg-[#0e0e0e] border-4 border-black overflow-hidden focus-within:border-[#D83C14] transition">
             <span className="px-3 py-3 text-xs text-[#e4beb5] font-mono border-r-4 border-black">
               /portal/
             </span>
@@ -300,9 +300,10 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
                   type="button"
                   key={p}
                   onClick={() => togglePlatform(p)}
+                  aria-pressed={active}
                   className={`px-4 py-2 border-4 border-black text-xs font-bold uppercase tracking-widest transition-all ${
                     active
-                      ? 'bg-[#E8441A] text-white'
+                      ? 'bg-[#D83C14] text-white'
                       : 'bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#2a2a2a]'
                   }`}
                   style={HEAD}
@@ -328,9 +329,10 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
                   type="button"
                   key={val}
                   onClick={() => set('packageType', val)}
+                  aria-pressed={active}
                   className={`px-4 py-2 border-4 border-black text-xs font-bold uppercase tracking-widest transition-all ${
                     active
-                      ? 'bg-[#E8441A] text-white'
+                      ? 'bg-[#D83C14] text-white'
                       : 'bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#2a2a2a]'
                   }`}
                   style={HEAD}
@@ -398,7 +400,7 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
         <button
           type="submit"
           disabled={pending}
-          className="px-6 py-3 border-4 border-black bg-[#E8441A] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] disabled:opacity-50 transition-all"
+          className="px-6 py-3 border-4 border-black bg-[#D83C14] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] disabled:opacity-50 transition-all"
           style={HEAD}
         >
           {pending
@@ -425,7 +427,7 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
           color: #353534;
         }
         .brutal-input:focus {
-          border-color: #e8441a;
+          border-color: #D83C14;
         }
       `}</style>
     </form>
@@ -451,9 +453,9 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <fieldset className="border-l-4 border-[#E8441A] pl-6 space-y-5">
+    <fieldset className="border-l-4 border-[#D83C14] pl-6 space-y-5">
       <legend
-        className="text-xs uppercase tracking-[0.2em] text-[#E8441A] font-black mb-2"
+        className="text-xs uppercase tracking-[0.2em] text-[#D83C14] font-black mb-2"
         style={HEAD}
       >
         *{title.toUpperCase()}
@@ -474,18 +476,23 @@ function Field({
   required?: boolean
   children: React.ReactNode
 }) {
+  // role=group + aria-labelledby associates the visible label with the control(s)
+  // inside — valid whether the field wraps one input or a button/color group.
+  const labelId = useId()
+  const hintId = useId()
   return (
-    <div>
-      <label
+    <div role="group" aria-labelledby={labelId} aria-describedby={hint ? hintId : undefined}>
+      <span
+        id={labelId}
         className="block text-[10px] uppercase tracking-widest font-bold text-[#e4beb5] mb-2"
         style={HEAD}
       >
         {required ? '*' : ''}
         {label}
-      </label>
+      </span>
       {children}
       {hint && (
-        <p className="text-[11px] text-[#ab8981] mt-1 italic" style={BODY}>
+        <p id={hintId} className="text-[11px] text-[#ab8981] mt-1 italic" style={BODY}>
           {hint}
         </p>
       )}
@@ -517,7 +524,7 @@ function ColorField({
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder={allowEmpty ? 'optional' : '#E8441A'}
+          placeholder={allowEmpty ? 'optional' : '#D83C14'}
           className="brutal-input flex-1 font-mono"
           style={HEAD}
         />

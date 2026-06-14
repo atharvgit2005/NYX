@@ -70,7 +70,7 @@ function validate(input: BrandFormInput): void {
     throw new BrandValidationError('contactEmail must be a valid email')
   }
   if (!HEX.test(input.primaryColor)) {
-    throw new BrandValidationError('primaryColor must be a hex colour like #E8441A')
+    throw new BrandValidationError('primaryColor must be a hex colour like #D83C14')
   }
   if (!HEX.test(input.secondaryColor)) {
     throw new BrandValidationError('secondaryColor must be a hex colour')

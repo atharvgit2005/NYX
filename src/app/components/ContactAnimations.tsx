@@ -11,9 +11,20 @@ export function ContactAnimations() {
 
     useEffect(() => {
 
+        // Respect reduced-motion: skip every reveal + the starfield, leaving all
+        // content (form fields, headline) in its natural, visible state.
+        if (typeof window !== 'undefined' &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+        }
+
         gsap.registerPlugin(ScrollTrigger);
 
         const ctx = gsap.context(() => {
+            // Hide the form fields via JS (not CSS) so that if this script never
+            // runs the fields stay visible. The timeline below reveals them.
+            gsap.set('.form-element', { opacity: 0, y: 20 });
+
             // 1. Character-level Headline Entrance
             const heroHeadline = document.getElementById('hero-headline');
             if (heroHeadline) {

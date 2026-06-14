@@ -69,7 +69,7 @@ export default function ThumbnailUploader({ value, onChange, className }: Props)
                 type="button"
                 onClick={() => inputRef.current?.click()}
                 disabled={uploading}
-                className="px-3 py-2 border-2 border-black bg-[#1c1b1b] text-[#e5e2e1] hover:bg-[#E8441A] hover:text-white text-[10px] font-bold uppercase tracking-widest disabled:opacity-50"
+                className="px-3 py-2 border-2 border-black bg-[#1c1b1b] text-[#e5e2e1] hover:bg-[#D83C14] hover:text-white text-[10px] font-bold uppercase tracking-widest disabled:opacity-50"
                 style={HEAD}
               >
                 {uploading ? 'UPLOADING…' : 'Replace'}
@@ -99,8 +99,8 @@ export default function ThumbnailUploader({ value, onChange, className }: Props)
           disabled={uploading}
           className={`w-full border-4 border-dashed p-8 text-center transition-all disabled:opacity-50 ${
             dragging
-              ? 'border-[#E8441A] bg-[#1c1b1b]'
-              : 'border-[#353534] bg-[#0e0e0e] hover:border-[#E8441A]'
+              ? 'border-[#D83C14] bg-[#1c1b1b]'
+              : 'border-[#353534] bg-[#0e0e0e] hover:border-[#D83C14]'
           }`}
           style={HEAD}
         >

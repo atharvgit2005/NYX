@@ -34,20 +34,18 @@ export default async function NewBrandPage() {
       <div className="max-w-7xl mx-auto">
         <Link
           href="/portal/admin"
-          className="text-xs uppercase tracking-widest text-[#e4beb5] hover:text-[#E8441A] inline-block mb-6"
+          className="text-xs uppercase tracking-widest text-[#e4beb5] hover:text-[#D83C14] inline-block mb-6"
           style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
         >
           ← Back to admin
         </Link>
         <div className="flex flex-wrap items-end gap-4 mb-2">
-          <div
+          <h1
             className="text-4xl md:text-5xl font-black tracking-tighter leading-none uppercase"
             style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
-            role="heading"
-            aria-level={1}
           >
             New Brand
-          </div>
+          </h1>
           <span
             className="text-xs px-2 py-0.5 font-bold uppercase mb-1"
             style={{

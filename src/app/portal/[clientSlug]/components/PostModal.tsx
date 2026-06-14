@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef, useId } from 'react'
 import { toast } from 'sonner'
 import {
   CONTENT_TYPE_LABEL,
@@ -65,6 +65,8 @@ export default function PostModal({
   const [revising, setRevising] = useState(false)
   const [revisionText, setRevisionText] = useState('')
   const [busy, setBusy] = useState(false)
+  const titleId = useId()
+  const dialogRef = useRef<HTMLDivElement>(null)
 
   // Approval / revision UI shows ONLY when:
   //   • the post is awaiting client review (NEEDS_APPROVAL), and
@@ -75,12 +77,15 @@ export default function PostModal({
     !viewerIsAdmin && !viewerIsViewerOnly && post.status === 'NEEDS_APPROVAL'
 
   useEffect(() => {
+    const previouslyFocused = document.activeElement as HTMLElement | null
+    dialogRef.current?.focus()
     const handler = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
     document.addEventListener('keydown', handler)
     document.body.style.overflow = 'hidden'
     return () => {
       document.removeEventListener('keydown', handler)
       document.body.style.overflow = ''
+      previouslyFocused?.focus?.()
     }
   }, [onClose])
 
@@ -141,7 +146,12 @@ export default function PostModal({
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <div
-        className="w-full md:max-w-2xl max-h-[92vh] overflow-y-auto rounded-t-3xl md:rounded-2xl"
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        tabIndex={-1}
+        className="w-full md:max-w-2xl max-h-[92vh] overflow-y-auto rounded-t-3xl md:rounded-2xl focus:outline-none"
         style={{
           background: '#FFFFFF',
           boxShadow: '0 24px 80px rgba(26,42,94,0.2)',
@@ -183,6 +193,7 @@ export default function PostModal({
                 </span>
               </div>
               <h2
+                id={titleId}
                 className="text-xl font-bold leading-snug"
                 style={{ fontFamily: 'var(--font-portal-display)', color: '#1A2A5E' }}
               >

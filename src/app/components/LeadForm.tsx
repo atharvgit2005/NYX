@@ -41,7 +41,7 @@ export function LeadForm() {
 
     if (status === "success") {
         return (
-            <div className="w-full max-w-2xl bg-[#E8441A] text-white p-6 border-4 border-black font-headline font-bold text-center uppercase tracking-wider" aria-live="polite">
+            <div className="w-full max-w-2xl bg-[#D83C14] text-white p-6 border-4 border-black font-headline font-bold text-center uppercase tracking-wider" aria-live="polite">
                 TRANSMISSION SUCCESSFUL. WE WILL BE IN TOUCH.
             </div>
         );

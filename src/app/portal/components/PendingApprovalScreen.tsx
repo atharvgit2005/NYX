@@ -9,12 +9,12 @@ export default function PendingApprovalScreen({ email, name }: Props) {
   return (
     <div className="min-h-screen bg-[#0E0E0E] text-white font-body flex flex-col items-center justify-center px-6 py-16">
       <div className="max-w-lg w-full border-4 border-white p-8 md:p-12 bg-[#0E0E0E]">
-        <p className="font-label uppercase tracking-widest text-xs text-[#E8441A] mb-4">
+        <p className="font-label uppercase tracking-widest text-xs text-[#D83C14] mb-4">
           NYX Studio · Client Portal
         </p>
 
         <h1 className="font-headline font-black text-4xl md:text-5xl uppercase leading-[0.95] tracking-tighter mb-6">
-          You&rsquo;re on the list <span className="text-[#E8441A]">✦</span>
+          You&rsquo;re on the list <span className="text-[#D83C14]">✦</span>
         </h1>
 
         <p className="text-base text-white/80 leading-relaxed mb-3">
@@ -39,7 +39,7 @@ export default function PendingApprovalScreen({ email, name }: Props) {
         Need help? Email{' '}
         <a
           href="mailto:nyx.studios.ai@gmail.com"
-          className="text-[#E8441A] hover:underline"
+          className="text-[#D83C14] hover:underline"
         >
           nyx.studios.ai@gmail.com
         </a>

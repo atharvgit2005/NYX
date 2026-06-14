@@ -290,7 +290,7 @@ export default function PostsWorkspaceClient({
 
   return (
     <div
-      className="flex min-h-screen text-[#e5e2e1] selection:bg-[#E8441A] selection:text-white"
+      className="flex min-h-screen text-[#e5e2e1] selection:bg-[#D83C14] selection:text-white"
       style={{ ...BODY, backgroundColor: '#0e0e0e' }}
     >
       <Toaster position="top-right" theme="dark" richColors />
@@ -304,20 +304,18 @@ export default function PostsWorkspaceClient({
           <div>
             <Link
               href="/portal/admin"
-              className="text-xs uppercase tracking-widest text-[#e4beb5] hover:text-[#E8441A]"
+              className="text-xs uppercase tracking-widest text-[#e4beb5] hover:text-[#D83C14]"
               style={HEAD}
             >
               ← Back to admin
             </Link>
             <div className="flex flex-wrap items-end gap-3 mt-1">
-              <div
+              <h1
                 className="text-3xl md:text-5xl font-black tracking-tighter leading-none uppercase"
                 style={HEAD}
-                role="heading"
-                aria-level={1}
               >
                 {brandName}
-              </div>
+              </h1>
               <span
                 className="text-xs px-2 py-0.5 font-bold uppercase mb-1"
                 style={{
@@ -336,7 +334,7 @@ export default function PostsWorkspaceClient({
             <ViewToggle current={view} onChange={setView} />
             <button
               onClick={() => setCreating({})}
-              className="px-5 py-3 border-4 border-black bg-[#E8441A] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] transition-all flex items-center gap-2"
+              className="px-5 py-3 border-4 border-black bg-[#D83C14] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] transition-all flex items-center gap-2"
               style={HEAD}
             >
               <span className="material-symbols-outlined !text-base" aria-hidden>
@@ -479,7 +477,7 @@ function BulkActionsBar({
         <button
           type="button"
           onClick={() => setMoveOpen((v) => !v)}
-          className="px-3 py-2 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#E8441A] hover:text-white text-[10px] font-bold uppercase tracking-widest transition-all"
+          className="px-3 py-2 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#D83C14] hover:text-white text-[10px] font-bold uppercase tracking-widest transition-all"
         >
           Move to status ▾
         </button>
@@ -493,7 +491,7 @@ function BulkActionsBar({
                   setMoveOpen(false)
                   onMoveStatus(s)
                 }}
-                className="block w-full text-left px-3 py-2 text-[10px] uppercase tracking-widest font-bold text-[#e4beb5] hover:bg-[#E8441A] hover:text-white"
+                className="block w-full text-left px-3 py-2 text-[10px] uppercase tracking-widest font-bold text-[#e4beb5] hover:bg-[#D83C14] hover:text-white"
               >
                 {s}
               </button>
@@ -540,7 +538,7 @@ function ViewToggle({
             key={key}
             onClick={() => onChange(key)}
             className={`px-3 md:px-4 py-2 flex items-center gap-2 text-xs font-bold uppercase tracking-widest transition-all border-r-4 border-black last:border-r-0 ${
-              active ? 'bg-[#E8441A] text-white' : 'bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#2a2a2a]'
+              active ? 'bg-[#D83C14] text-white' : 'bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#2a2a2a]'
             }`}
           >
             <span className="material-symbols-outlined !text-sm" aria-hidden>
@@ -574,7 +572,7 @@ function EmptyState({ onCreate }: { onCreate: () => void }) {
       </p>
       <button
         onClick={onCreate}
-        className="mt-6 px-5 py-3 border-4 border-black bg-[#E8441A] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] transition-all"
+        className="mt-6 px-5 py-3 border-4 border-black bg-[#D83C14] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] transition-all"
         style={HEAD}
       >
         + NEW_POST

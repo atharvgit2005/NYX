@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { ContactForm } from "./components/ContactForm";
 import { ContactAnimations } from "../components/ContactAnimations";
 import "../page.css"; // Reuse the css from /ad/page.css for icons and basic styles
 import { MobileNav } from "../components/MobileNav";
+import { SiteHeader } from "../components/SiteHeader";
+import { SiteFooter } from "../components/SiteFooter";
 import SchemaOrg from "@/components/SchemaOrg";
 import { breadcrumbSchema, createMarketingMetadata, SITE_URL } from "@/lib/seo";
 
@@ -63,39 +64,12 @@ export default function AdContactPage() {
       <div className="bg-surface text-on-surface font-body selection:bg-secondary selection:text-on-secondary min-h-screen relative w-full overflow-hidden">
         {/* TopAppBar */}
         <canvas id="background-canvas"></canvas>
-        <nav className="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-8 py-4 md:py-6 bg-[#0E0E0E] dark:bg-black border-b-4 border-black dark:border-white/10 rounded-none">
-            <Link href="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0">
-                <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center relative flex-shrink-0">
-                    <Image 
-                        src="/logo/NYX-Logo.png" 
-                        alt="NYX Studio logo" 
-                        width={120}
-                        height={40}
-                        unoptimized
-                        className="h-full w-full object-contain"
-                        sizes="(max-width: 768px) 32px, 40px"
-                    />
-                </div>
-                <div className="text-xl md:text-3xl font-black tracking-tighter text-white dark:text-[#F5C518] font-headline uppercase whitespace-nowrap">
-                    NYX STUDIO
-                </div>
-            </Link>
-            <div className="hidden md:flex gap-12 items-center">
-                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75" href="/work">WORK</Link>
-                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75" href="/services">SERVICES</Link>
-                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75" href="/about">ABOUT</Link>
-                <Link className="font-headline uppercase tracking-tighter font-bold text-[#E8441A] border-b-4 border-[#E8441A] pb-1" href="/contact">CONTACT</Link>
-                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75" href="/portal">PORTAL</Link>
-            </div>
-            <Link href="/contact" className="bg-[#ffb4a2] text-black px-3 md:px-6 py-1 md:py-3 font-headline font-bold text-[0.75rem] md:text-base uppercase tracking-tighter border-4 border-black transition-all duration-75 hover:bg-[#F5C518] active:scale-95 inline-block whitespace-nowrap">
-                LET&apos;S TALK →
-            </Link>
-        </nav>
+        <SiteHeader active="contact" />
 
                 <main className="pt-[72px] md:pt-24 relative z-10 pb-[72px] md:pb-0">
             <ContactAnimations />
             {/* Hero Section */}
-            <section className="bg-[#E8441A] min-h-[420px] md:min-h-[614px] flex flex-col justify-end px-4 sm:px-6 md:px-8 pb-10 md:pb-16 pt-10 md:pt-0 border-b-[8px] md:border-b-[12px] border-black relative overflow-hidden">
+            <section className="bg-[#D83C14] min-h-[420px] md:min-h-[614px] flex flex-col justify-end px-4 sm:px-6 md:px-8 pb-10 md:pb-16 pt-10 md:pt-0 border-b-[8px] md:border-b-[12px] border-black relative overflow-hidden">
                 <div className="max-w-7xl mx-auto w-full relative z-10">
                     <div className="absolute -top-16 md:-top-32 right-0 opacity-10 pointer-events-none select-none">
                         <span className="text-[8rem] sm:text-[12rem] md:text-[20rem] font-black leading-none font-headline tracking-tighter">NYX</span>
@@ -205,33 +179,7 @@ export default function AdContactPage() {
         </main>
 
         {/* Footer */}
-        <footer className="w-full flex flex-col md:flex-row justify-between items-center px-4 sm:px-6 md:px-8 py-10 md:py-12 gap-6 bg-[#0E0E0E] dark:bg-black border-t-4 border-black dark:border-white/10 rounded-none z-10 relative">
-            <Link href="/" className="flex items-center gap-3">
-                <div className="w-8 h-8 flex items-center justify-center relative">
-                    <Image 
-                        src="/logo/NYX-Logo.png" 
-                        alt="NYX Studio logo" 
-                        width={120}
-                        height={40}
-                        unoptimized
-                        className="h-full w-full object-contain"
-                        sizes="32px"
-                    />
-                </div>
-                <div className="text-xl font-bold text-white font-body uppercase">
-                    NYX STUDIO
-                </div>
-            </Link>
-            <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-gray-500 font-body text-xs uppercase tracking-widest">
-                <a className="hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
-                <a className="hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
-                <a className="hover:text-[#F5C518] transition-colors" href="https://twitter.com/nyxstudiosai" target="_blank" rel="noopener noreferrer">TWITTER</a>
-                <Link className="hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
-            </div>
-            <div className="text-gray-500 font-body text-xs uppercase tracking-widest">
-                © 2026 NYX Studio
-            </div>
-        </footer>
+        <SiteFooter />
         <MobileNav />
       </div>
     </>

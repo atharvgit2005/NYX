@@ -36,7 +36,7 @@ export function WorkGrid() {
                     <div className="h-full w-full min-h-[420px] md:min-h-[500px] flex flex-col md:flex-row pointer-events-none">
                         <div className="md:w-1/2 p-6 sm:p-8 md:p-12 flex flex-col justify-between gap-6 md:gap-0">
                             <div>
-                                <span className="font-headline text-5xl md:text-6xl text-[#E8441A] group-hover:text-black transition-colors">01</span>
+                                <span className="font-headline text-5xl md:text-6xl text-[#D83C14] group-hover:text-black transition-colors">01</span>
                                 <h2 className="font-headline text-3xl md:text-5xl font-bold uppercase mt-3 md:mt-4 group-hover:text-black transition-colors">DESSERTINO HAPPINESS</h2>
                             </div>
                             <p className="font-body text-base md:text-lg max-w-xs group-hover:text-black/80 transition-colors">A delightful exploration of sweetness and joy.</p>

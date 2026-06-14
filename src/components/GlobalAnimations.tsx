@@ -6,93 +6,83 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+/**
+ * Site-wide scroll reveal animations.
+ *
+ * Robustness contract:
+ * - Content is ALWAYS visible by default (no CSS `opacity:0`). These tweens are
+ *   progressive enhancement driven by `gsap.from`, so if JS never runs the page
+ *   renders fully visible.
+ * - Honors `prefers-reduced-motion`: when set, we bail out entirely and leave
+ *   every element in its natural, visible state.
+ * - Elements already within the viewport on mount animate immediately, so nothing
+ *   can get "stuck" at opacity 0 waiting for a scroll trigger that won't fire.
+ * - All inline props are cleared on completion, and the whole context is reverted
+ *   on unmount (no leaking listeners / ScrollTriggers across client navigation).
+ */
 export default function GlobalAnimations() {
     useEffect(() => {
-        // Hero Text Fade-Slide
-        gsap.utils.toArray('h1').forEach((el) => {
-            const element = el as HTMLElement;
-            gsap.fromTo(element,
-                { opacity: 0, y: 30 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: element,
-                        start: 'top 80%',
-                        toggleActions: 'play none none reverse'
-                    }
-                }
-            );
-        });
+        if (typeof window === 'undefined') return;
 
-        // Subheadings
-        gsap.utils.toArray('h2, h3').forEach((el) => {
-            const element = el as HTMLElement;
-            gsap.fromTo(element,
-                { opacity: 0, y: 20 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: element,
-                        start: 'top 85%',
-                    }
-                }
-            );
-        });
+        // Respect the user's motion preference — leave content untouched & visible.
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+        }
 
-        // Card Stagger Animations (targeting common card classes)
-        const cards = gsap.utils.toArray('.bg-white\\/5, .bg-card-theme, .rounded-2xl, .rounded-3xl') as Element[];
-        if (cards.length > 0) {
-            ScrollTrigger.batch(cards, {
-                onEnter: (batch) => {
-                    gsap.fromTo(batch,
-                        { opacity: 0, y: 30, scale: 0.95 },
-                        {
-                            opacity: 1,
-                            y: 0,
-                            scale: 1,
+        const ctx = gsap.context(() => {
+            const reveal = (
+                selector: string,
+                fromVars: gsap.TweenVars,
+                duration: number,
+            ) => {
+                gsap.utils.toArray<HTMLElement>(selector).forEach((element) => {
+                    const inView =
+                        element.getBoundingClientRect().top < window.innerHeight * 0.9;
+
+                    gsap.from(element, {
+                        ...fromVars,
+                        duration,
+                        ease: 'power3.out',
+                        clearProps: 'opacity,transform',
+                        // In-view elements animate now; below-fold wait for scroll.
+                        scrollTrigger: inView
+                            ? undefined
+                            : { trigger: element, start: 'top 88%', once: true },
+                    });
+                });
+            };
+
+            // Hero text + subheadings.
+            reveal('h1', { opacity: 0, y: 30 }, 1);
+            reveal('h2, h3', { opacity: 0, y: 20 }, 0.8);
+
+            // Card stagger (common card classes).
+            const cards = gsap.utils.toArray<Element>(
+                '.bg-white\\/5, .bg-card-theme, .rounded-2xl, .rounded-3xl',
+            );
+            if (cards.length > 0) {
+                ScrollTrigger.batch(cards, {
+                    onEnter: (batch) => {
+                        gsap.from(batch, {
+                            opacity: 0,
+                            y: 30,
+                            scale: 0.95,
                             stagger: 0.1,
                             duration: 0.6,
                             ease: 'back.out(1.2)',
-                            overwrite: true
-                        }
-                    );
-                },
-                start: 'top 90%',
-            });
-        }
-
-        // Button Hover Micro-interactions
-        const buttons = document.querySelectorAll('button');
-        buttons.forEach((btn) => {
-            btn.addEventListener('mouseenter', () => {
-                gsap.to(btn, { scale: 1.05, duration: 0.2, ease: 'power1.out' });
-            });
-            btn.addEventListener('mouseleave', () => {
-                gsap.to(btn, { scale: 1, duration: 0.2, ease: 'power1.out' });
-            });
+                            overwrite: true,
+                            clearProps: 'opacity,transform',
+                        });
+                    },
+                    start: 'top 90%',
+                    once: true,
+                });
+            }
         });
 
-        // Sidebar Icon Pops
-        const icons = document.querySelectorAll('nav svg, .sidebar svg');
-        icons.forEach((icon) => {
-            icon.addEventListener('mouseenter', () => {
-                gsap.to(icon, { rotation: 15, scale: 1.2, duration: 0.3, ease: 'back.out(1.7)' });
-            });
-            icon.addEventListener('mouseleave', () => {
-                gsap.to(icon, { rotation: 0, scale: 1, duration: 0.3 });
-            });
-        });
-
-        return () => {
-            ScrollTrigger.getAll().forEach(t => t.kill());
-        };
+        // Reverts every tween, ScrollTrigger, and listener created in the context.
+        return () => ctx.revert();
     }, []);
 
-    return null; // This component renders nothing, just attaches animations
+    return null; // Renders nothing; only attaches animations.
 }

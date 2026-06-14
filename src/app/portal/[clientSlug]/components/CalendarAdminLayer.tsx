@@ -1,5 +1,7 @@
 'use client'
 
+import { useMemo } from 'react'
+
 /**
  * Phase 5 — admin-only drag layer for the partner-canvas calendar.
  *
@@ -18,12 +20,21 @@
 import {
     DndContext,
     PointerSensor,
+    KeyboardSensor,
     useDraggable,
     useDroppable,
     useSensor,
     useSensors,
     type DragEndEvent,
 } from '@dnd-kit/core'
+import { dndScreenReaderInstructions, makeDndAnnouncements } from '@/lib/portal/dnd-a11y'
+
+// Space picks up / drops a chip so Enter stays free to open the post.
+const KEYBOARD_CODES = {
+    start: ['Space'],
+    cancel: ['Escape'],
+    end: ['Space'],
+}
 import {
     CONTENT_TYPE_LABEL,
     POST_STATUS_LABEL,
@@ -78,6 +89,15 @@ export default function CalendarAdminLayer({
 }: Props) {
     const sensors = useSensors(
         useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+        useSensor(KeyboardSensor, { keyboardCodes: KEYBOARD_CODES }),
+    )
+
+    const announcements = useMemo(
+        () =>
+            makeDndAnnouncements(
+                (id) => posts.find((p) => p.id === id)?.title ?? 'post',
+            ),
+        [posts],
     )
 
     function handleDragEnd(event: DragEndEvent) {
@@ -92,7 +112,14 @@ export default function CalendarAdminLayer({
     }
 
     return (
-        <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+        <DndContext
+            sensors={sensors}
+            onDragEnd={handleDragEnd}
+            accessibility={{
+                announcements,
+                screenReaderInstructions: dndScreenReaderInstructions,
+            }}
+        >
             <div className="grid grid-cols-7">
                 {days.map((day, i) => {
                     const dateStr = day
@@ -152,7 +179,7 @@ export default function CalendarAdminLayer({
                                             // on cell hover. Off-campaign
                                             // days stay invisible-until-hover
                                             // so the grid doesn't look noisy.
-                                            className={`transition-opacity w-5 h-5 rounded-full flex items-center justify-center text-xs font-semibold ${
+                                            className={`transition-opacity w-5 h-5 rounded-full flex items-center justify-center text-xs font-semibold focus-visible:opacity-100 ${
                                                 inCampaign
                                                     ? 'opacity-40 group-hover:opacity-100'
                                                     : 'opacity-0 group-hover:opacity-100'
@@ -265,6 +292,16 @@ function DraggableChip({
                     onClick()
                 }
             }}
+            onKeyDown={(e) => {
+                // Space (handled by the keyboard sensor) drags; Enter opens.
+                if (e.key === 'Enter') {
+                    e.preventDefault()
+                    onClick()
+                    return
+                }
+                listeners?.onKeyDown?.(e)
+            }}
+            aria-label={`${post.title} — press Enter to open, Space to drag`}
             className="group/chip relative w-full text-left px-1.5 py-1 rounded-lg text-xs font-medium leading-tight transition-all hover:scale-[1.02] select-none"
             style={style}
             title={`${post.title} · ${POST_STATUS_LABEL[post.status]} · ${CONTENT_TYPE_LABEL[post.contentType]} (drag to reschedule)`}

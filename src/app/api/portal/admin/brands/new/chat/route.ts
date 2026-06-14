@@ -15,7 +15,7 @@ const FILL_BRAND_FORM_TOOL: ToolSchema = {
       brandName: { type: 'string', description: 'Name of the brand partner.' },
       clientSlug: { type: 'string', description: 'lowercase-hyphenated slug based on brand name.' },
       tagline: { type: 'string', description: 'Short catchy tagline.' },
-      primaryColor: { type: 'string', description: 'Hex code for primary brand color (e.g., #E8441A).' },
+      primaryColor: { type: 'string', description: 'Hex code for primary brand color (e.g., #D83C14).' },
       secondaryColor: { type: 'string', description: 'Hex code for secondary brand color (e.g., #FFD65B).' },
       accentColor: { type: 'string', description: 'Hex code for accent brand color.' },
       instagramHandle: { type: 'string', description: 'Instagram handle without @.' },

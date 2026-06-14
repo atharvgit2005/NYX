@@ -76,12 +76,12 @@ function LoginContent({ defaultCallbackUrl }: { defaultCallbackUrl: string }) {
 
             <div className="flex items-center justify-between font-[var(--font-space-grotesk)] text-[0.7rem] tracking-widest">
                 <label className="flex items-center gap-3 cursor-pointer group">
-                    <input type="checkbox" className="w-5 h-5 border-4 border-black bg-[#0e0e0e] text-[#E8441A] focus:ring-0 rounded-none" />
+                    <input type="checkbox" className="w-5 h-5 border-4 border-black bg-[#0e0e0e] text-[#D83C14] focus:ring-0 rounded-none" />
                     <span className="text-[#e4beb5] group-hover:text-[#e5e2e1] transition-colors">REMEMBER_IDENTITY</span>
                 </label>
                 <a
                     href="mailto:hello@nyxstudio.tech?subject=Access%20key%20recovery"
-                    className="text-[#E8441A] hover:underline decoration-2 underline-offset-4"
+                    className="text-[#D83C14] hover:underline decoration-2 underline-offset-4"
                 >
                     FORGOT_KEY?
                 </a>
@@ -90,7 +90,7 @@ function LoginContent({ defaultCallbackUrl }: { defaultCallbackUrl: string }) {
             <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#E8441A] py-6 px-8 border-4 border-black flex items-center justify-between group hover:bg-[#ffd65b] transition-all active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full bg-[#D83C14] py-6 px-8 border-4 border-black flex items-center justify-between group hover:bg-[#ffd65b] transition-all active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
             >
                 <span className="font-[var(--font-space-grotesk)] font-black text-xl tracking-tighter text-white group-hover:text-[#3d2f00]">
                     {loading ? 'AUTHENTICATING…' : 'ENTER THE VOID'}
@@ -102,7 +102,7 @@ function LoginContent({ defaultCallbackUrl }: { defaultCallbackUrl: string }) {
                 Don&apos;t have an account?{' '}
                 <Link
                     href="/portal/signup"
-                    className="text-[#E8441A] hover:underline decoration-2 underline-offset-4 not-italic"
+                    className="text-[#D83C14] hover:underline decoration-2 underline-offset-4 not-italic"
                 >
                     Request access
                 </Link>
@@ -149,7 +149,7 @@ export function AuthShell({
 
     return (
         <main
-            className="grid grid-cols-12 min-h-screen bg-[#0e0e0e] text-[#e5e2e1] selection:bg-[#E8441A] selection:text-white"
+            className="grid grid-cols-12 min-h-screen bg-[#0e0e0e] text-[#e5e2e1] selection:bg-[#D83C14] selection:text-white"
             style={{ fontFamily: 'var(--font-work-sans), sans-serif' }}
         >
             {/* MODULE 1: HOOK */}
@@ -171,7 +171,7 @@ export function AuthShell({
                     className="absolute -right-32 top-1/4 w-[600px] h-[600px] opacity-[0.04] pointer-events-none"
                     style={{
                         background:
-                            'repeating-linear-gradient(45deg, #E8441A 0 8px, transparent 8px 24px)',
+                            'repeating-linear-gradient(45deg, #D83C14 0 8px, transparent 8px 24px)',
                     }}
                 />
 
@@ -192,7 +192,7 @@ export function AuthShell({
                         <span className="text-xl md:text-2xl font-bold tracking-tight text-[#e5e2e1]">NYX</span>
                     </Link>
                     <div
-                        className="text-[0.65rem] md:text-[0.75rem] tracking-[0.2em] border-2 border-[#E8441A] px-3 py-1 text-[#E8441A]"
+                        className="text-[0.65rem] md:text-[0.75rem] tracking-[0.2em] border-2 border-[#D83C14] px-3 py-1 text-[#D83C14]"
                         style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
                     >
                         VERSION_2.4.0
@@ -202,7 +202,7 @@ export function AuthShell({
                 {/* Hero copy — using div not h1 to avoid global h1 GSAP animation hydration mismatch */}
                 <div className="relative z-10 px-8 md:px-16 pt-32 md:pt-40 pb-12 max-w-3xl">
                     <div
-                        className="text-[0.65rem] md:text-[0.75rem] tracking-[0.3em] text-[#E8441A] mb-6"
+                        className="text-[0.65rem] md:text-[0.75rem] tracking-[0.3em] text-[#D83C14] mb-6"
                         style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
                     >
                         ◆ SECURE_CHANNEL_OPEN
@@ -212,7 +212,7 @@ export function AuthShell({
                         style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
                     >
                         AUTHENTICATION_<br />
-                        <span className="text-[#E8441A] italic">PORTAL</span>
+                        <span className="text-[#D83C14] italic">PORTAL</span>
                     </div>
 
                     <p className="mt-8 md:mt-10 text-[#e4beb5] text-base md:text-lg max-w-lg leading-relaxed">
@@ -234,14 +234,14 @@ export function AuthShell({
 
                 {/* Corner accents */}
                 <div
-                    className="absolute top-12 right-12 text-[#E8441A] text-4xl opacity-30 select-none"
+                    className="absolute top-12 right-12 text-[#D83C14] text-4xl opacity-30 select-none"
                     style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
                     aria-hidden
                 >
                     *
                 </div>
                 <div
-                    className="absolute bottom-12 right-12 text-[#E8441A] text-4xl opacity-30 select-none"
+                    className="absolute bottom-12 right-12 text-[#D83C14] text-4xl opacity-30 select-none"
                     style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
                     aria-hidden
                 >
@@ -267,7 +267,7 @@ export function AuthShell({
                             href={loginHref}
                             className={`flex-1 py-4 text-center text-sm font-bold tracking-widest transition-all ${
                                 mode === 'login'
-                                    ? 'border-b-4 border-[#E8441A] text-[#E8441A]'
+                                    ? 'border-b-4 border-[#D83C14] text-[#D83C14]'
                                     : 'text-[#e4beb5] hover:text-[#e5e2e1]'
                             }`}
                             style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
@@ -279,7 +279,7 @@ export function AuthShell({
                                 href={signupHref}
                                 className={`flex-1 py-4 text-center text-sm font-bold tracking-widest transition-all ${
                                     mode === 'signup'
-                                        ? 'border-b-4 border-[#E8441A] text-[#E8441A]'
+                                        ? 'border-b-4 border-[#D83C14] text-[#D83C14]'
                                         : 'text-[#e4beb5] hover:text-[#e5e2e1]'
                                 }`}
                                 style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
@@ -291,14 +291,12 @@ export function AuthShell({
 
                     <div className="space-y-10">
                         <div className="space-y-2">
-                            <div
+                            <h1
                                 className="text-3xl md:text-4xl font-bold tracking-tighter uppercase"
                                 style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
-                                role="heading"
-                                aria-level={1}
                             >
                                 {heading}
-                            </div>
+                            </h1>
                             <p className="text-[#e4beb5] text-sm">{subheading}</p>
                         </div>
 
@@ -326,7 +324,7 @@ export function AuthShell({
                         <div className="flex gap-6">
                             <Link
                                 href="/"
-                                className="text-[0.6rem] tracking-widest hover:text-[#E8441A] transition-colors"
+                                className="text-[0.6rem] tracking-widest hover:text-[#D83C14] transition-colors"
                                 style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
                             >
                                 HOME
@@ -344,7 +342,7 @@ export function AuthShell({
 
 function SpecCell({ label, value }: { label: string; value: string }) {
     return (
-        <div className="border-l-2 border-[#E8441A] pl-3 md:pl-4">
+        <div className="border-l-2 border-[#D83C14] pl-3 md:pl-4">
             <div
                 className="text-[0.55rem] md:text-[0.65rem] tracking-[0.2em] text-[#ab8981] mb-1"
                 style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}
@@ -396,7 +394,7 @@ export function FieldText({
                 required={required}
                 placeholder={placeholder}
                 defaultValue={defaultValue}
-                className="w-full bg-[#0e0e0e] border-4 border-black p-5 font-[var(--font-space-grotesk)] text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#E8441A] transition-all outline-none"
+                className="w-full bg-[#0e0e0e] border-4 border-black p-5 font-[var(--font-space-grotesk)] text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#D83C14] transition-all outline-none"
             />
         </div>
     );
@@ -442,12 +440,12 @@ export function FieldPassword({
                 autoComplete={autoComplete}
                 required
                 placeholder="••••••••••••"
-                className="w-full bg-[#0e0e0e] border-4 border-black p-5 pr-14 font-[var(--font-space-grotesk)] text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#E8441A] transition-all outline-none"
+                className="w-full bg-[#0e0e0e] border-4 border-black p-5 pr-14 font-[var(--font-space-grotesk)] text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#D83C14] transition-all outline-none"
             />
             <button
                 type="button"
                 onClick={onToggle}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-[#353534] hover:text-[#E8441A] transition-colors"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-[#353534] hover:text-[#D83C14] transition-colors"
                 aria-label={show ? 'Hide password' : 'Show password'}
             >
                 <span className="material-symbols-outlined">{show ? 'visibility_off' : 'visibility'}</span>

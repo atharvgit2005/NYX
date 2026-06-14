@@ -454,7 +454,7 @@ export default function CalendarChatPanel({
               onClick={() => applySuggestion(s)}
               className="w-full text-left px-3 py-2 hover:bg-[#1c1b1b] flex items-baseline justify-between gap-3"
             >
-              <span className="font-mono text-xs font-bold text-[#E8441A]" style={HEAD}>
+              <span className="font-mono text-xs font-bold text-[#D83C14]" style={HEAD}>
                 {s.key}
               </span>
               <span className="text-[10px] text-[#ab8981] italic" style={BODY}>
@@ -475,7 +475,7 @@ export default function CalendarChatPanel({
             onKeyDown={onKeyDown}
             placeholder={`Ask for a calendar… try /calendar or "Plan a 2-week launch for ${brandName}"`}
             rows={2}
-            className="flex-1 bg-[#1c1b1b] border-2 border-black p-2 text-sm text-[#e5e2e1] outline-none focus:border-[#E8441A] resize-none"
+            className="flex-1 bg-[#1c1b1b] border-2 border-black p-2 text-sm text-[#e5e2e1] outline-none focus:border-[#D83C14] resize-none"
             style={BODY}
             disabled={sending}
           />
@@ -483,7 +483,7 @@ export default function CalendarChatPanel({
             type="button"
             onClick={send}
             disabled={sending || !input.trim()}
-            className="px-3 py-2 border-4 border-black bg-[#E8441A] text-white text-[10px] font-black uppercase tracking-widest hover:shadow-[3px_3px_0px_#000] disabled:opacity-40 transition-all flex items-center gap-1"
+            className="px-3 py-2 border-4 border-black bg-[#D83C14] text-white text-[10px] font-black uppercase tracking-widest hover:shadow-[3px_3px_0px_#000] disabled:opacity-40 transition-all flex items-center gap-1"
             style={HEAD}
           >
             <Send className="w-3 h-3" />
@@ -561,7 +561,7 @@ function MessageBubble({
       <div className={`max-w-[85%] ${isUser ? 'order-first' : ''}`}>
         <div
           className={`px-3 py-2 border-2 border-black text-sm whitespace-pre-wrap ${
-            isUser ? 'bg-[#E8441A] text-white' : 'bg-[#0e0e0e] text-[#e5e2e1]'
+            isUser ? 'bg-[#D83C14] text-white' : 'bg-[#0e0e0e] text-[#e5e2e1]'
           }`}
           style={BODY}
         >
@@ -696,7 +696,7 @@ function BrandKitDrawer({
         <button
           type="button"
           onClick={onClose}
-          className="w-6 h-6 border-2 border-black bg-[#1c1b1b] text-[#e4beb5] hover:bg-[#E8441A] hover:text-white flex items-center justify-center"
+          className="w-6 h-6 border-2 border-black bg-[#1c1b1b] text-[#e4beb5] hover:bg-[#D83C14] hover:text-white flex items-center justify-center"
           aria-label="Close brand kit"
         >
           <X className="w-3 h-3" />
@@ -760,7 +760,7 @@ function BrandKitDrawer({
               type="button"
               onClick={() => fileRef.current?.click()}
               disabled={loading}
-              className="px-3 py-2 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#E8441A] hover:text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-1 disabled:opacity-50"
+              className="px-3 py-2 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#D83C14] hover:text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-1 disabled:opacity-50"
               style={HEAD}
             >
               <Upload className="w-3 h-3" />
@@ -857,7 +857,7 @@ function KitTextarea({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         rows={3}
-        className="w-full bg-[#0e0e0e] border-2 border-black text-xs text-[#e5e2e1] p-2 outline-none focus:border-[#E8441A] resize-vertical"
+        className="w-full bg-[#0e0e0e] border-2 border-black text-xs text-[#e5e2e1] p-2 outline-none focus:border-[#D83C14] resize-vertical"
         style={BODY}
       />
     </label>

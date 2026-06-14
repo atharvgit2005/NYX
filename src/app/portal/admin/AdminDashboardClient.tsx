@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useState, useTransition, useEffect, useRef, useId } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -21,7 +21,7 @@ interface Props {
 const HEAD = { fontFamily: 'var(--font-space-grotesk), sans-serif' } as const
 const BODY = { fontFamily: 'var(--font-work-sans), sans-serif' } as const
 
-const ORANGE = '#E8441A'
+const ORANGE = '#D83C14'
 const YELLOW = '#ffd65b'
 const GREEN = '#76dc83'
 const GREEN_DK = '#3da452'
@@ -95,7 +95,7 @@ export default function AdminDashboardClient({
 
   return (
     <div
-      className="flex min-h-screen text-[#e5e2e1] selection:bg-[#E8441A] selection:text-white"
+      className="flex min-h-screen text-[#e5e2e1] selection:bg-[#D83C14] selection:text-white"
       style={{ ...BODY, backgroundColor: BG_LOWEST }}
     >
       <Toaster position="top-right" theme="dark" richColors />
@@ -115,14 +115,12 @@ export default function AdminDashboardClient({
             <div className="flex flex-wrap items-start justify-between gap-6 mb-2">
               <div>
                 <div className="flex flex-wrap items-end gap-4 mb-2">
-                  <div
+                  <h1
                     className="text-4xl md:text-6xl font-black tracking-tighter leading-none uppercase"
                     style={HEAD}
-                    role="heading"
-                    aria-level={1}
                   >
                     Brand Partners
-                  </div>
+                  </h1>
                   <span
                     className="text-xs px-2 py-0.5 font-bold uppercase mb-1"
                     style={{ ...HEAD, backgroundColor: YELLOW, color: '#3d2f00' }}
@@ -141,7 +139,7 @@ export default function AdminDashboardClient({
               </div>
               <Link
                 href="/portal/admin/brands/new"
-                className="px-5 py-3 border-4 border-black bg-[#E8441A] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] transition-all flex items-center gap-2"
+                className="px-5 py-3 border-4 border-black bg-[#D83C14] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] transition-all flex items-center gap-2"
                 style={HEAD}
               >
                 <MIcon name="add" className="!text-base" />
@@ -214,7 +212,7 @@ export default function AdminDashboardClient({
                   >
                     <div className="flex items-center gap-5 md:gap-6 flex-1 min-w-0">
                       <div
-                        className="w-14 h-14 md:w-16 md:h-16 border-4 border-black bg-[#E8441A] flex items-center justify-center shrink-0"
+                        className="w-14 h-14 md:w-16 md:h-16 border-4 border-black bg-[#D83C14] flex items-center justify-center shrink-0"
                         style={HEAD}
                       >
                         <span className="text-2xl md:text-3xl font-black text-white">
@@ -232,7 +230,7 @@ export default function AdminDashboardClient({
                         )}
                         <p className="text-xs md:text-sm text-[#e4beb5] truncate">{p.email}</p>
                         <p
-                          className="text-[10px] text-[#E8441A] mt-1 uppercase font-bold tracking-widest"
+                          className="text-[10px] text-[#D83C14] mt-1 uppercase font-bold tracking-widest"
                           style={HEAD}
                         >
                           *REQUESTED {timeAgo(p.requestedAt).toUpperCase()}
@@ -311,10 +309,10 @@ export default function AdminDashboardClient({
       </main>
 
       {/* Registration marks */}
-      <div className="fixed top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-[#E8441A] pointer-events-none z-[100]" />
-      <div className="fixed top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-[#E8441A] pointer-events-none z-[100]" />
-      <div className="fixed bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-[#E8441A] pointer-events-none z-[100]" />
-      <div className="fixed bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-[#E8441A] pointer-events-none z-[100]" />
+      <div className="fixed top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-[#D83C14] pointer-events-none z-[100]" />
+      <div className="fixed top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-[#D83C14] pointer-events-none z-[100]" />
+      <div className="fixed bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-[#D83C14] pointer-events-none z-[100]" />
+      <div className="fixed bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-[#D83C14] pointer-events-none z-[100]" />
 
       {/* Modals */}
       {approveTarget && (
@@ -343,10 +341,12 @@ export default function AdminDashboardClient({
 
 // ── side nav ───────────────────────────────────────────────────────────────
 
+const ADMIN_NAV_ITEMS: Array<{ icon: string; label: string; href: string; active?: boolean }> = [
+  { icon: 'group', label: '*BRAND_PARTNERS', href: '/portal/admin', active: true },
+]
+
 function SideNav({ adminName }: { adminName: string | null }) {
-  const navItems: Array<{ icon: string; label: string; href: string; active?: boolean }> = [
-    { icon: 'group', label: '*BRAND_PARTNERS', href: '/portal/admin', active: true },
-  ]
+  const navItems = ADMIN_NAV_ITEMS
 
   return (
     <aside
@@ -395,7 +395,7 @@ function SideNav({ adminName }: { adminName: string | null }) {
                 href={item.href}
                 className={
                   item.active
-                    ? 'flex items-center gap-3 px-6 py-4 bg-[#E8441A] text-white border-y-4 border-black translate-x-1 duration-75'
+                    ? 'flex items-center gap-3 px-6 py-4 bg-[#D83C14] text-white border-y-4 border-black translate-x-1 duration-75'
                     : 'flex items-center gap-3 px-6 py-4 text-[#e4beb5] hover:bg-[#ffd65b] hover:text-[#3d2f00] transition-colors duration-100'
                 }
               >
@@ -432,6 +432,113 @@ function SideNav({ adminName }: { adminName: string | null }) {
   )
 }
 
+// ── mobile nav (drawer) ─────────────────────────────────────────────────────
+
+function MobileNav() {
+  const [open, setOpen] = useState(false)
+  const drawerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!open) return
+    const previouslyFocused = document.activeElement as HTMLElement | null
+    drawerRef.current?.focus()
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      previouslyFocused?.focus?.()
+    }
+  }, [open])
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        aria-label="Open navigation menu"
+        aria-expanded={open}
+        className="md:hidden w-10 h-10 border-4 border-black flex items-center justify-center text-[#e5e2e1] hover:bg-[#1c1b1b] transition-colors shrink-0"
+        style={{ backgroundColor: BG_LOWEST }}
+      >
+        <MIcon name="menu" />
+      </button>
+
+      {open && (
+        <div className="md:hidden fixed inset-0 z-[100]">
+          <div
+            className="absolute inset-0"
+            style={{ background: 'rgba(0,0,0,0.7)' }}
+            onClick={() => setOpen(false)}
+          />
+          <div
+            ref={drawerRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Admin navigation"
+            tabIndex={-1}
+            className="absolute inset-y-0 left-0 w-72 max-w-[82%] border-r-4 border-black flex flex-col focus:outline-none"
+            style={{ backgroundColor: BG_LOWEST }}
+          >
+            <div className="flex items-center justify-between p-5 border-b-4 border-black">
+              <Link
+                href="/"
+                onClick={() => setOpen(false)}
+                className="text-lg font-black tracking-tighter text-[#e5e2e1]"
+                style={HEAD}
+              >
+                NYX STUDIO
+              </Link>
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                aria-label="Close menu"
+                className="w-8 h-8 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#D83C14] hover:text-white flex items-center justify-center transition"
+              >
+                <MIcon name="close" className="!text-sm" />
+              </button>
+            </div>
+
+            <nav className="flex-1 py-4 overflow-y-auto">
+              <ul className="space-y-1">
+                {ADMIN_NAV_ITEMS.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className={
+                        item.active
+                          ? 'flex items-center gap-3 px-5 py-4 bg-[#D83C14] text-white border-y-4 border-black'
+                          : 'flex items-center gap-3 px-5 py-4 text-[#e4beb5] hover:bg-[#ffd65b] hover:text-[#3d2f00] transition-colors'
+                      }
+                    >
+                      <MIcon name={item.icon} />
+                      <span className="text-xs uppercase tracking-widest font-black" style={HEAD}>
+                        {item.label}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div className="mt-auto border-t-4 border-black">
+              <button
+                onClick={() => signOut({ callbackUrl: '/' })}
+                className="w-full flex items-center gap-3 px-5 py-5 text-[#e4beb5] hover:bg-[#93000a] hover:text-[#ffdad6] transition-colors"
+              >
+                <MIcon name="logout" />
+                <span className="text-xs uppercase font-bold tracking-widest" style={HEAD}>
+                  *LOGOUT
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
+
 // ── top bar ────────────────────────────────────────────────────────────────
 
 function TopBar({ adminEmail, adminName }: { adminEmail: string; adminName: string | null }) {
@@ -441,8 +548,9 @@ function TopBar({ adminEmail, adminName }: { adminEmail: string; adminName: stri
       style={{ backgroundColor: BG_LOW }}
     >
       <div className="flex items-center gap-4 md:gap-8 min-w-0">
+        <MobileNav />
         <span
-          className="text-base md:text-xl font-black text-[#E8441A] tracking-tighter truncate"
+          className="text-base md:text-xl font-black text-[#D83C14] tracking-tighter truncate"
           style={HEAD}
         >
           NYX_SYSTEM_BETA
@@ -450,7 +558,7 @@ function TopBar({ adminEmail, adminName }: { adminEmail: string; adminName: stri
         <nav className="hidden lg:flex gap-6 items-center">
           <Link
             href="/portal/admin"
-            className="uppercase text-xs text-[#e4beb5] font-medium hover:text-[#E8441A] transition-all"
+            className="uppercase text-xs text-[#e4beb5] font-medium hover:text-[#D83C14] transition-all"
             style={HEAD}
           >
             *GLOBAL_VIEW
@@ -480,7 +588,7 @@ function TopBar({ adminEmail, adminName }: { adminEmail: string; adminName: stri
             </p>
           </div>
           <div
-            className="w-10 h-10 border-4 border-black flex items-center justify-center bg-[#E8441A]"
+            className="w-10 h-10 border-4 border-black flex items-center justify-center bg-[#D83C14]"
             style={HEAD}
           >
             <span className="text-base font-black text-white">
@@ -678,7 +786,7 @@ function PartnerRow({
     >
       <div className="flex items-center gap-5 md:gap-6 flex-1 min-w-0">
         <div
-          className="w-14 h-14 md:w-16 md:h-16 border-4 border-black flex items-center justify-center bg-[#E8441A] shrink-0"
+          className="w-14 h-14 md:w-16 md:h-16 border-4 border-black flex items-center justify-center bg-[#D83C14] shrink-0"
           style={HEAD}
         >
           <span className="text-2xl md:text-3xl font-black text-white">
@@ -703,7 +811,7 @@ function PartnerRow({
             )}
             <button
               onClick={copyUrl}
-              className="text-[#e4beb5] hover:text-[#E8441A] transition-colors"
+              className="text-[#e4beb5] hover:text-[#D83C14] transition-colors"
               title="Copy portal URL"
               aria-label="Copy portal URL"
             >
@@ -722,7 +830,7 @@ function PartnerRow({
       <div className="flex flex-wrap gap-2">
         <Link
           href={`/portal/admin/${partner.clientSlug}/posts`}
-          className="px-4 py-2 border-2 border-black font-bold uppercase text-[10px] flex items-center gap-2 hover:bg-[#E8441A] hover:text-white transition-all"
+          className="px-4 py-2 border-2 border-black font-bold uppercase text-[10px] flex items-center gap-2 hover:bg-[#D83C14] hover:text-white transition-all"
           style={{ ...HEAD, backgroundColor: BG_LOWEST }}
         >
           <MIcon name="grid_view" className="!text-sm" />
@@ -749,7 +857,7 @@ function PartnerRow({
           href={portalUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-4 py-2 border-2 border-black font-bold uppercase text-[10px] flex items-center gap-2 hover:bg-[#E8441A] hover:text-white transition-all"
+          className="px-4 py-2 border-2 border-black font-bold uppercase text-[10px] flex items-center gap-2 hover:bg-[#D83C14] hover:text-white transition-all"
           style={{ ...HEAD, backgroundColor: BG_LOWEST }}
         >
           <MIcon name="visibility" className="!text-sm" />
@@ -848,12 +956,12 @@ function ApproveModal({
             onChange={(e) => onNameChange(e.target.value)}
             placeholder="Dessertino"
             autoFocus
-            className="w-full px-4 py-3 bg-[#0e0e0e] border-4 border-black text-sm text-[#e5e2e1] outline-none focus:border-[#E8441A] transition"
+            className="w-full px-4 py-3 bg-[#0e0e0e] border-4 border-black text-sm text-[#e5e2e1] outline-none focus:border-[#D83C14] transition"
             style={HEAD}
           />
         </BField>
         <BField label="*CLIENT_SLUG" hint="URL path · lowercase, hyphens only">
-          <div className="flex items-center bg-[#0e0e0e] border-4 border-black overflow-hidden focus-within:border-[#E8441A] transition">
+          <div className="flex items-center bg-[#0e0e0e] border-4 border-black overflow-hidden focus-within:border-[#D83C14] transition">
             <span
               className="px-3 py-3 text-xs text-[#e4beb5] font-mono border-r-4 border-black"
               style={BODY}
@@ -978,6 +1086,28 @@ function ModalShell({
   onClose: () => void
   children: React.ReactNode
 }) {
+  const titleId = useId()
+  const dialogRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    // Remember what had focus so we can restore it when the dialog closes.
+    const previouslyFocused = document.activeElement as HTMLElement | null
+    // Move focus into the dialog.
+    dialogRef.current?.focus()
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.stopPropagation()
+        onClose()
+      }
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      previouslyFocused?.focus?.()
+    }
+  }, [onClose])
+
   return (
     <div
       className="fixed inset-0 z-[200] flex items-end sm:items-center justify-center p-0 sm:p-4"
@@ -985,24 +1115,30 @@ function ModalShell({
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
       <div
-        className="w-full sm:max-w-md border-4 border-black shadow-[8px_8px_0px_#000]"
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        tabIndex={-1}
+        className="w-full sm:max-w-md border-4 border-black shadow-[8px_8px_0px_#000] focus:outline-none"
         style={{ backgroundColor: BG_LOW }}
       >
         <div className="flex items-start justify-between p-5 border-b-4 border-black">
           <div className="min-w-0">
-            <div
+            <h2
+              id={titleId}
               className="text-base font-black uppercase tracking-tighter text-[#e5e2e1]"
               style={HEAD}
             >
               {title}
-            </div>
+            </h2>
             {subtitle && (
               <p className="text-xs text-[#e4beb5] mt-1 truncate font-mono">{subtitle}</p>
             )}
           </div>
           <button
             onClick={onClose}
-            className="ml-3 w-8 h-8 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#E8441A] hover:text-white flex items-center justify-center transition shrink-0"
+            className="ml-3 w-8 h-8 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#D83C14] hover:text-white flex items-center justify-center transition shrink-0"
             aria-label="Close"
           >
             <MIcon name="close" className="!text-sm" />

@@ -89,11 +89,11 @@ export function LiveHub() {
             {/* The Trigger Button */}
             <button
                 onClick={() => setIsOpen(true)}
-                className="group flex items-center gap-1.5 md:gap-2 text-[#E8441A] border-2 border-[#E8441A] px-2 md:px-4 py-1 hover:bg-[#E8441A] hover:text-black active:bg-[#E8441A] active:text-black transition-all font-headline font-bold uppercase tracking-tighter text-[0.6rem] md:text-[1.1rem] whitespace-nowrap flex-shrink-0"
+                className="group flex items-center gap-1.5 md:gap-2 text-[#D83C14] border-2 border-[#D83C14] px-2 md:px-4 py-1 hover:bg-[#D83C14] hover:text-black active:bg-[#D83C14] active:text-black transition-all font-headline font-bold uppercase tracking-tighter text-[0.6rem] md:text-[1.1rem] whitespace-nowrap flex-shrink-0"
             >
                 <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E8441A] opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E8441A]"></span>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D83C14] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D83C14]"></span>
                 </span>
                 *LIVE_NOW
             </button>
@@ -103,12 +103,12 @@ export function LiveHub() {
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm overflow-y-auto">
                     <div
                         ref={modalRef}
-                        className="w-full max-w-2xl bg-[#0E0E0E] border-4 border-[#E8441A] p-6 sm:p-8 md:p-12 relative overflow-hidden my-auto"
+                        className="w-full max-w-2xl bg-[#0E0E0E] border-4 border-[#D83C14] p-6 sm:p-8 md:p-12 relative overflow-hidden my-auto"
                     >
                         <button
                             onClick={() => setIsOpen(false)}
                             aria-label="Close"
-                            className="absolute top-3 right-3 md:top-4 md:right-4 z-20 text-white/40 hover:text-[#E8441A] transition-colors"
+                            className="absolute top-3 right-3 md:top-4 md:right-4 z-20 text-white/40 hover:text-[#D83C14] transition-colors"
                         >
                             <X size={28} />
                         </button>
@@ -118,7 +118,7 @@ export function LiveHub() {
                         {!isComplete ? (
                             <div className="relative z-10">
                                 <div className="mb-6 md:mb-8 pr-8">
-                                    <span className="text-[#E8441A] font-label text-xs uppercase tracking-[0.3em] font-bold block mb-2">* SESSION_ACTIVE</span>
+                                    <span className="text-[#D83C14] font-label text-xs uppercase tracking-[0.3em] font-bold block mb-2">* SESSION_ACTIVE</span>
                                     <h2 className="text-white font-headline text-xl sm:text-2xl md:text-4xl font-black uppercase tracking-tighter leading-tight md:leading-none">
                                         {typeof steps[step].question === 'function'
                                             ? (steps[step].question as (name: string) => string)(formData.brandName)
@@ -134,12 +134,12 @@ export function LiveHub() {
                                         onChange={(e) => setFormData({...formData, [steps[step].key]: e.target.value})}
                                         onKeyDown={(e) => e.key === 'Enter' && handleNext()}
                                         placeholder={steps[step].placeholder}
-                                        className="flex-grow w-full bg-white/5 border-2 border-white/10 p-3 md:p-4 text-white font-body text-base md:text-xl focus:border-[#E8441A] outline-none transition-all placeholder:text-white/20"
+                                        className="flex-grow w-full bg-white/5 border-2 border-white/10 p-3 md:p-4 text-white font-body text-base md:text-xl focus:border-[#D83C14] outline-none transition-all placeholder:text-white/20"
                                     />
                                     <button
                                         onClick={handleNext}
                                         disabled={isSubmitting || !formData[steps[step].key as keyof typeof formData]}
-                                        className="w-full md:w-auto bg-[#E8441A] text-black font-headline font-bold uppercase px-6 md:px-8 py-3 md:py-4 flex items-center justify-center gap-2 hover:bg-white active:bg-white transition-all disabled:opacity-50 flex-shrink-0"
+                                        className="w-full md:w-auto bg-[#D83C14] text-black font-headline font-bold uppercase px-6 md:px-8 py-3 md:py-4 flex items-center justify-center gap-2 hover:bg-white active:bg-white transition-all disabled:opacity-50 flex-shrink-0"
                                     >
                                         {step === steps.length - 1 ? 'TRANSMIT' : 'NEXT'} <ArrowRight size={20} />
                                     </button>
@@ -149,7 +149,7 @@ export function LiveHub() {
                                     {steps.map((_, i) => (
                                         <div 
                                             key={i} 
-                                            className={`h-1 flex-grow transition-all duration-500 ${i <= step ? 'bg-[#E8441A]' : 'bg-white/10'}`}
+                                            className={`h-1 flex-grow transition-all duration-500 ${i <= step ? 'bg-[#D83C14]' : 'bg-white/10'}`}
                                         />
                                     ))}
                                 </div>
@@ -157,8 +157,8 @@ export function LiveHub() {
                         ) : (
                             <div className="relative z-10 text-center py-8 md:py-12">
                                 <div className="flex justify-center mb-6 md:mb-8">
-                                    <CheckCircle2 size={64} className="text-[#E8441A] animate-bounce md:hidden" />
-                                    <CheckCircle2 size={80} className="text-[#E8441A] animate-bounce hidden md:block" />
+                                    <CheckCircle2 size={64} className="text-[#D83C14] animate-bounce md:hidden" />
+                                    <CheckCircle2 size={80} className="text-[#D83C14] animate-bounce hidden md:block" />
                                 </div>
                                 <h2 className="text-white font-headline text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-4 md:mb-6">
                                     BRIEF_LOCKED.

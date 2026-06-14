@@ -18,7 +18,7 @@ const STATUS_ACCENT: Record<AdminPost['status'], string> = {
   IDEA: '#ab8981',
   DRAFTING: '#e4beb5',
   NEEDS_APPROVAL: '#ffd65b',
-  NEEDS_REVISION: '#E8441A',
+  NEEDS_REVISION: '#D83C14',
   APPROVED: '#76dc83',
   POSTED: '#3da452',
 }

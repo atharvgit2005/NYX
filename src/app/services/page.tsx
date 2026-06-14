@@ -102,11 +102,12 @@ const servicesSchema = [
       "30-40 dominant reels and posts, full-scale ecosystem execution, multi-tiered campaign funnels, WhatsApp/SMS funnels. ₹80,000/month.",
   },
 ];
-import Image from "next/image";
 import Link from "next/link";
 import { ServiceAnimations } from "../components/ServiceAnimations";
 import "../page.css";
 import { MobileNav } from "../components/MobileNav";
+import { SiteHeader } from "../components/SiteHeader";
+import { SiteFooter } from "../components/SiteFooter";
 import { breadcrumbSchema, createMarketingMetadata, SITE_URL, speakableSchema } from "@/lib/seo";
 
 export const metadata: Metadata = createMarketingMetadata({
@@ -350,34 +351,7 @@ export default function AdServicesPage() {
       {/* Main wrapper containing body-level styling to isolate from global styles */}
       <div className="bg-[#0E0E0E] text-[#e5e2e1] font-body selection:bg-primary selection:text-ink-black min-h-screen relative w-full overflow-hidden">
         {/* TopAppBar */}
-        <header className="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-8 py-4 md:py-6 bg-[#0E0E0E] dark:bg-black border-b-4 border-black dark:border-white/10 rounded-none">
-            <Link href="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0">
-                <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center relative flex-shrink-0">
-                    <Image 
-                        src="/logo/NYX-Logo.png" 
-                        alt="NYX Studio logo" 
-                        width={120}
-                        height={40}
-                        unoptimized
-                        className="h-full w-full object-contain"
-                        sizes="(max-width: 768px) 32px, 40px"
-                    />
-                </div>
-                <div className="text-xl md:text-3xl font-black tracking-tighter text-white dark:text-[#F5C518] font-headline uppercase whitespace-nowrap">
-                    NYX STUDIO
-                </div>
-            </Link>
-            <nav className="hidden md:flex gap-8 items-center">
-                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/work">WORK</Link>
-                <Link className="font-headline uppercase tracking-tighter font-bold text-[#E8441A] border-b-4 border-[#E8441A] pb-1 px-2" href="/services">SERVICES</Link>
-                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/about">ABOUT</Link>
-                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/contact">CONTACT</Link>
-                <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/portal">PORTAL</Link>
-            </nav>
-            <Link href="/contact" className="bg-[#E8441A] text-white px-3 md:px-6 py-1 md:py-2 font-headline uppercase tracking-tighter font-bold text-[0.75rem] md:text-base scale-100 active:scale-95 hover:bg-[#F5C518] hover:text-black transition-all duration-75 inline-block border-4 border-transparent hover:border-black whitespace-nowrap">
-                LET&apos;S TALK →
-            </Link>
-        </header>
+        <SiteHeader active="services" />
 
                 <main className="pt-[72px] md:pt-28 pb-[72px] md:pb-0">
             <ServiceAnimations />
@@ -405,13 +379,13 @@ export default function AdServicesPage() {
                         <p className="font-body text-base md:text-lg mb-6 md:mb-8">Architecting narratives that pierce the noise. We map the digital landscape to find the cracks where your brand can bloom.</p>
                         <ul className="space-y-3 md:space-y-4">
                             <li className="flex items-center gap-4 font-label uppercase text-sm border-b-2 border-surface-container-high pb-2">
-                                <span className="material-symbols-outlined text-secondary" data-icon="terminal">terminal</span> Narrative Mapping
+                                <span aria-hidden="true" className="material-symbols-outlined text-secondary" data-icon="terminal">terminal</span> Narrative Mapping
                             </li>
                             <li className="flex items-center gap-4 font-label uppercase text-sm border-b-2 border-surface-container-high pb-2">
-                                <span className="material-symbols-outlined text-secondary" data-icon="analytics">analytics</span> Trend Forecasting
+                                <span aria-hidden="true" className="material-symbols-outlined text-secondary" data-icon="analytics">analytics</span> Trend Forecasting
                             </li>
                             <li className="flex items-center gap-4 font-label uppercase text-sm border-b-2 border-surface-container-high pb-2">
-                                <span className="material-symbols-outlined text-secondary" data-icon="architecture">architecture</span> Channel Ecosystems
+                                <span aria-hidden="true" className="material-symbols-outlined text-secondary" data-icon="architecture">architecture</span> Channel Ecosystems
                             </li>
                         </ul>
                     </div>
@@ -432,12 +406,12 @@ export default function AdServicesPage() {
                     </div>
                     <div className="md:col-span-7 grid grid-cols-1 md:grid-cols-2">
                         <div className="p-8 md:p-12 border-b-4 md:border-b-0 md:border-r-4 border-ink-black flex flex-col gap-6 md:gap-8 hover:bg-secondary transition-colors group js-card">
-                            <span className="material-symbols-outlined text-5xl group-hover:text-ink-black" data-icon="target">target</span>
+                            <span aria-hidden="true" className="material-symbols-outlined text-5xl group-hover:text-ink-black" data-icon="target">target</span>
                             <h3 className="font-headline text-2xl md:text-3xl font-bold uppercase group-hover:text-ink-black">ALGORITHMIC<br/>DOMINANCE</h3>
                             <p className="text-sm font-label uppercase group-hover:text-ink-black">+ SCALE FAST<br/>+ ROI FOCUSED</p>
                         </div>
                         <div className="p-8 md:p-12 flex flex-col gap-6 md:gap-8 hover:bg-[#76dc83] transition-colors group js-card">
-                            <span className="material-symbols-outlined text-5xl group-hover:text-ink-black" data-icon="bolt">bolt</span>
+                            <span aria-hidden="true" className="material-symbols-outlined text-5xl group-hover:text-ink-black" data-icon="bolt">bolt</span>
                             <h3 className="font-headline text-2xl md:text-3xl font-bold uppercase group-hover:text-ink-black">CREATIVE<br/>TESTING</h3>
                             <p className="text-sm font-label uppercase group-hover:text-ink-black">+ HIGH VELOCITY<br/>+ DATA DRIVEN</p>
                         </div>
@@ -461,19 +435,19 @@ export default function AdServicesPage() {
                 </div>
                 <div className="mt-10 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
                     <div className="aspect-square bg-ink-black flex flex-col items-center justify-center p-8 text-center group cursor-crosshair js-card">
-                        <span className="material-symbols-outlined text-[#F2A7C3] text-4xl mb-4 group-hover:scale-125 transition-transform" data-icon="videocam">videocam</span>
+                        <span aria-hidden="true" className="material-symbols-outlined text-[#F2A7C3] text-4xl mb-4 group-hover:scale-125 transition-transform" data-icon="videocam">videocam</span>
                         <span className="font-label text-white uppercase text-xs tracking-tighter">FILM &amp; MOTION</span>
                     </div>
                     <div className="aspect-square bg-ink-black flex flex-col items-center justify-center p-8 text-center group cursor-crosshair js-card">
-                        <span className="material-symbols-outlined text-[#F2A7C3] text-4xl mb-4 group-hover:scale-125 transition-transform" data-icon="camera">camera</span>
+                        <span aria-hidden="true" className="material-symbols-outlined text-[#F2A7C3] text-4xl mb-4 group-hover:scale-125 transition-transform" data-icon="camera">camera</span>
                         <span className="font-label text-white uppercase text-xs tracking-tighter">ZINE PHOTOGRAPHY</span>
                     </div>
                     <div className="aspect-square bg-ink-black flex flex-col items-center justify-center p-8 text-center group cursor-crosshair js-card">
-                        <span className="material-symbols-outlined text-[#F2A7C3] text-4xl mb-4 group-hover:scale-125 transition-transform" data-icon="auto_awesome">auto_awesome</span>
+                        <span aria-hidden="true" className="material-symbols-outlined text-[#F2A7C3] text-4xl mb-4 group-hover:scale-125 transition-transform" data-icon="auto_awesome">auto_awesome</span>
                         <span className="font-label text-white uppercase text-xs tracking-tighter">VFX / 3D ART</span>
                     </div>
                     <div className="aspect-square bg-ink-black flex flex-col items-center justify-center p-8 text-center group cursor-crosshair js-card">
-                        <span className="material-symbols-outlined text-[#F2A7C3] text-4xl mb-4 group-hover:scale-125 transition-transform" data-icon="grid_view">grid_view</span>
+                        <span aria-hidden="true" className="material-symbols-outlined text-[#F2A7C3] text-4xl mb-4 group-hover:scale-125 transition-transform" data-icon="grid_view">grid_view</span>
                         <span className="font-label text-white uppercase text-xs tracking-tighter">LAYOUT DESIGN</span>
                     </div>
                 </div>
@@ -499,15 +473,15 @@ export default function AdServicesPage() {
                 <div className="grid grid-rows-3 bg-surface">
                     <div className="border-b-4 border-ink-black p-6 md:p-8 flex items-center justify-between hover:bg-surface-bright transition-colors cursor-pointer group js-card">
                         <h4 className="font-headline text-xl md:text-3xl font-bold uppercase group-hover:translate-x-4 transition-transform">01 / RETENTION SYSTEMS</h4>
-                        <span className="material-symbols-outlined" data-icon="north_east">north_east</span>
+                        <span aria-hidden="true" className="material-symbols-outlined" data-icon="north_east">north_east</span>
                     </div>
                     <div className="border-b-4 border-ink-black p-6 md:p-8 flex items-center justify-between hover:bg-surface-bright transition-colors cursor-pointer group js-card">
                         <h4 className="font-headline text-xl md:text-3xl font-bold uppercase group-hover:translate-x-4 transition-transform">02 / PARTNERSHIP OUTREACH</h4>
-                        <span className="material-symbols-outlined" data-icon="north_east">north_east</span>
+                        <span aria-hidden="true" className="material-symbols-outlined" data-icon="north_east">north_east</span>
                     </div>
                     <div className="p-6 md:p-8 flex items-center justify-between hover:bg-surface-bright transition-colors cursor-pointer group js-card">
                         <h4 className="font-headline text-xl md:text-3xl font-bold uppercase group-hover:translate-x-4 transition-transform">03 / PERFORMANCE OPS</h4>
-                        <span className="material-symbols-outlined" data-icon="north_east">north_east</span>
+                        <span aria-hidden="true" className="material-symbols-outlined" data-icon="north_east">north_east</span>
                     </div>
                 </div>
             </section>
@@ -523,26 +497,26 @@ export default function AdServicesPage() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-stretch">
 
                         {/* Trial Pack */}
-                        <div className="flex flex-col border-4 border-[#222] bg-[#131313] text-[#e5e2e1] group hover:border-[#E8441A] transition-colors h-full js-card">
-                            <div className="p-6 sm:p-8 md:p-10 border-b-4 border-[#222] group-hover:border-[#E8441A] transition-colors">
+                        <div className="flex flex-col border-4 border-[#222] bg-[#131313] text-[#e5e2e1] group hover:border-[#D83C14] transition-colors h-full js-card">
+                            <div className="p-6 sm:p-8 md:p-10 border-b-4 border-[#222] group-hover:border-[#D83C14] transition-colors">
                                 <h3 className="font-label text-sm uppercase tracking-widest text-gray-400 mb-4 md:mb-6 font-bold">TRIAL PACK</h3>
                                 <div className="font-headline text-5xl md:text-6xl font-black text-[#F5C518]">₹30K</div>
                             </div>
                             <div className="p-6 sm:p-8 md:p-10 flex-grow">
                                 <ul className="space-y-4 font-body text-[15px] leading-relaxed">
-                                    <li className="flex gap-3"><span className="text-[#E8441A] font-bold">+</span> 15-17 High-Fidelity Posts</li>
-                                    <li className="flex gap-3"><span className="text-[#E8441A] font-bold">+</span> Narrative Carousels</li>
-                                    <li className="flex gap-3"><span className="text-[#E8441A] font-bold">+</span> Cinematic Reels, POV, Hooks, Food Porn</li>
-                                    <li className="flex gap-3"><span className="text-[#E8441A] font-bold">+</span> Premium Cinematic Photography</li>
-                                    <li className="flex gap-3"><span className="text-[#E8441A] font-bold">+</span> 1 Platform Focus (Instagram)</li>
-                                    <li className="flex gap-3"><span className="text-[#E8441A] font-bold">+</span> Deep Analytics & Audience Insights</li>
+                                    <li className="flex gap-3"><span className="text-[#D83C14] font-bold">+</span> 15-17 High-Fidelity Posts</li>
+                                    <li className="flex gap-3"><span className="text-[#D83C14] font-bold">+</span> Narrative Carousels</li>
+                                    <li className="flex gap-3"><span className="text-[#D83C14] font-bold">+</span> Cinematic Reels, POV, Hooks, Food Porn</li>
+                                    <li className="flex gap-3"><span className="text-[#D83C14] font-bold">+</span> Premium Cinematic Photography</li>
+                                    <li className="flex gap-3"><span className="text-[#D83C14] font-bold">+</span> 1 Platform Focus (Instagram)</li>
+                                    <li className="flex gap-3"><span className="text-[#D83C14] font-bold">+</span> Deep Analytics & Audience Insights</li>
                                     <li className="flex gap-3 opacity-50 mt-8 pt-4 border-t border-[#333]"><span className="text-gray-500 font-bold">-</span> NOT including: Paid Ads, Influencer Marketing</li>
                                 </ul>
                             </div>
                         </div>
 
                         {/* Starter Pack */}
-                        <div className="flex flex-col border-4 border-black bg-[#E8441A] text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:-translate-y-1 transition-transform h-full relative z-10 js-card">
+                        <div className="flex flex-col border-4 border-black bg-[#D83C14] text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] hover:translate-x-1 hover:-translate-y-1 transition-transform h-full relative z-10 js-card">
                             <div className="p-6 sm:p-8 md:p-10 border-b-4 border-black bg-[#D83810]">
                                 <h3 className="font-label text-sm uppercase tracking-widest text-white/90 mb-4 md:mb-6 font-bold">STARTER PACK</h3>
                                 <div className="font-headline text-5xl md:text-6xl font-black text-white">₹50K</div>
@@ -601,19 +575,19 @@ export default function AdServicesPage() {
               className="py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-[#0E0E0E] text-[#e5e2e1] border-b-4 border-ink-black"
             >
               <div className="max-w-4xl mx-auto">
-                <span className="font-label text-xs uppercase tracking-widest text-[#E8441A] font-black mb-4 block">
+                <span className="font-label text-xs uppercase tracking-widest text-[#D83C14] font-black mb-4 block">
                   * HOW ONBOARDING WORKS
                 </span>
                 <h2 className="font-headline text-[clamp(2.25rem,7vw,5rem)] leading-[0.9] font-black tracking-tighter uppercase mb-4">
-                  From brief to <span className="text-[#E8441A]">first shipment</span> in 7 days.
+                  From brief to <span className="text-[#D83C14]">first shipment</span> in 7 days.
                 </h2>
                 <p className="text-[#e4beb5] text-base md:text-lg mb-10 md:mb-14 max-w-2xl">
                   Every NYX brand partner runs through the same 5-step onboarding.
                   Fixed pricing, no scope creep, no two-month kickoff.
                 </p>
                 <ol className="space-y-6 md:space-y-8">
-                  <li className="border-l-4 border-[#E8441A] pl-5">
-                    <div className="text-xs uppercase tracking-widest text-[#E8441A] font-black mb-1">
+                  <li className="border-l-4 border-[#D83C14] pl-5">
+                    <div className="text-xs uppercase tracking-widest text-[#D83C14] font-black mb-1">
                       STEP 1
                     </div>
                     <h3 className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-2">
@@ -621,15 +595,15 @@ export default function AdServicesPage() {
                     </h3>
                     <p className="text-[#e5e2e1] text-base md:text-lg leading-relaxed">
                       Fill the contact form at{' '}
-                      <Link href="/contact" className="underline decoration-[#5b403a] hover:decoration-[#E8441A]">
+                      <Link href="/contact" className="underline decoration-[#5b403a] hover:decoration-[#D83C14]">
                         nyxstudio.tech/contact
                       </Link>{' '}
                       with your brand, current revenue range, and what you want help with.
                       We reply within 48 hours.
                     </p>
                   </li>
-                  <li className="border-l-4 border-[#E8441A] pl-5">
-                    <div className="text-xs uppercase tracking-widest text-[#E8441A] font-black mb-1">
+                  <li className="border-l-4 border-[#D83C14] pl-5">
+                    <div className="text-xs uppercase tracking-widest text-[#D83C14] font-black mb-1">
                       STEP 2
                     </div>
                     <h3 className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-2">
@@ -640,8 +614,8 @@ export default function AdServicesPage() {
                       and map them to one of our packs (Trial, Starter, or Growth).
                     </p>
                   </li>
-                  <li className="border-l-4 border-[#E8441A] pl-5">
-                    <div className="text-xs uppercase tracking-widest text-[#E8441A] font-black mb-1">
+                  <li className="border-l-4 border-[#D83C14] pl-5">
+                    <div className="text-xs uppercase tracking-widest text-[#D83C14] font-black mb-1">
                       STEP 3
                     </div>
                     <h3 className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-2">
@@ -652,8 +626,8 @@ export default function AdServicesPage() {
                       or Growth (₹80K/mo full funnel). Pricing is fixed — no scope creep.
                     </p>
                   </li>
-                  <li className="border-l-4 border-[#E8441A] pl-5">
-                    <div className="text-xs uppercase tracking-widest text-[#E8441A] font-black mb-1">
+                  <li className="border-l-4 border-[#D83C14] pl-5">
+                    <div className="text-xs uppercase tracking-widest text-[#D83C14] font-black mb-1">
                       STEP 4
                     </div>
                     <h3 className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-2">
@@ -665,8 +639,8 @@ export default function AdServicesPage() {
                       future asset stays on-brand.
                     </p>
                   </li>
-                  <li className="border-l-4 border-[#E8441A] pl-5">
-                    <div className="text-xs uppercase tracking-widest text-[#E8441A] font-black mb-1">
+                  <li className="border-l-4 border-[#D83C14] pl-5">
+                    <div className="text-xs uppercase tracking-widest text-[#D83C14] font-black mb-1">
                       STEP 5
                     </div>
                     <h3 className="font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-2">
@@ -691,59 +665,59 @@ export default function AdServicesPage() {
                     <dl className="space-y-6 md:space-y-8">
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">What is NYX Studio?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">NYX Studio is an AI-native content and growth studio for direct-to-consumer (D2C) brands selling in India. We build cinematic brand films, performance-creative ad units, content automation pipelines, and influencer ops under one roof. Based in Pune, Maharashtra.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">NYX Studio is an AI-native content and growth studio for direct-to-consumer (D2C) brands selling in India. We build cinematic brand films, performance-creative ad units, content automation pipelines, and influencer ops under one roof. Based in Pune, Maharashtra.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Where is NYX Studio based?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">NYX Studio is headquartered in Pune, Maharashtra, India (411047). We work with brands across India and accept international D2C brands selling into India.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">NYX Studio is headquartered in Pune, Maharashtra, India (411047). We work with brands across India and accept international D2C brands selling into India.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Who founded NYX Studio?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">NYX Studio was co-founded by Atharv Paharia (Co-Founder &amp; Tech Lead) and Bhavya Jain (Co-Founder &amp; Product Lead). Atharv leads AI engineering and the content production pipeline; Bhavya leads brand strategy, product, and the partner-facing systems.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">NYX Studio was co-founded by Atharv Paharia (Co-Founder &amp; Tech Lead) and Bhavya Jain (Co-Founder &amp; Product Lead). Atharv leads AI engineering and the content production pipeline; Bhavya leads brand strategy, product, and the partner-facing systems.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How much does an AI-native content package cost in India?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">NYX Studio packages start at ₹30,000/month (Trial Pack) for 15-17 high-fidelity posts and reels on a single platform, scale to ₹50,000/month (Starter Pack) for multi-platform creative plus Meta ads, and reach ₹80,000/month (Growth Pack) for full ecosystem execution including influencer ops and WhatsApp/SMS funnels.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">NYX Studio packages start at ₹30,000/month (Trial Pack) for 15-17 high-fidelity posts and reels on a single platform, scale to ₹50,000/month (Starter Pack) for multi-platform creative plus Meta ads, and reach ₹80,000/month (Growth Pack) for full ecosystem execution including influencer ops and WhatsApp/SMS funnels.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How fast is the turnaround on a cinematic D2C reel?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">Standard turnaround is 5-7 business days from approved brief to final delivery. AI-generated product films can ship in 48-72 hours when no live shoot is required. Rush turnaround is available for existing partners.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">Standard turnaround is 5-7 business days from approved brief to final delivery. AI-generated product films can ship in 48-72 hours when no live shoot is required. Rush turnaround is available for existing partners.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">What categories does NYX Studio specialize in?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">We specialize in D2C brands across food, beverage, lifestyle, beauty, and apparel. Past partners include Dessertino, Mango Jungle, Mango Shower, and Brioso. We do not take on B2B SaaS, professional services, or non-D2C consumer brands.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">We specialize in D2C brands across food, beverage, lifestyle, beauty, and apparel. Past partners include Dessertino, Mango Jungle, Mango Shower, and Brioso. We do not take on B2B SaaS, professional services, or non-D2C consumer brands.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Do you only work with Indian D2C brands?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">Our core focus is D2C brands operating in India - food, beverage, lifestyle, beauty, and apparel categories. We&apos;re open to international D2C brands selling into India, but we don&apos;t take on B2B SaaS, professional services, or non-D2C consumer brands.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">Our core focus is D2C brands operating in India - food, beverage, lifestyle, beauty, and apparel categories. We&apos;re open to international D2C brands selling into India, but we don&apos;t take on B2B SaaS, professional services, or non-D2C consumer brands.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How are AI-generated videos different from traditional shoots?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">AI-generated product films are indistinguishable from a five-figure live shoot for roughly 70% of social-media use cases as of 2026. They ship in 48-72 hours instead of 2-3 weeks, cost a fraction of a full production day, and let us hit weekly content velocity. We still do live shoots when the founder needs to be on camera or the brief requires a real environment.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">AI-generated product films are indistinguishable from a five-figure live shoot for roughly 70% of social-media use cases as of 2026. They ship in 48-72 hours instead of 2-3 weeks, cost a fraction of a full production day, and let us hit weekly content velocity. We still do live shoots when the founder needs to be on camera or the brief requires a real environment.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">What&apos;s included in the AI content automation pipeline?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">End-to-end production: script generation, AI voiceover, AI video synthesis or live-shot editing, motion graphics, captioning, platform-specific resizing, and scheduled distribution across Meta, YouTube Shorts, and TikTok. Available as part of Starter and Growth packages.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">End-to-end production: script generation, AI voiceover, AI video synthesis or live-shot editing, motion graphics, captioning, platform-specific resizing, and scheduled distribution across Meta, YouTube Shorts, and TikTok. Available as part of Starter and Growth packages.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Does NYX Studio handle influencer marketing?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">Yes — influencer operations are bundled into the Growth Pack (₹80,000/month). That covers creator sourcing aligned to your brand, brief writing, deliverable QA, and post-publish reporting. We don&apos;t run influencer-only retainers; influencer ops works best when paired with the in-house content engine that supports it.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">Yes — influencer operations are bundled into the Growth Pack (₹80,000/month). That covers creator sourcing aligned to your brand, brief writing, deliverable QA, and post-publish reporting. We don&apos;t run influencer-only retainers; influencer ops works best when paired with the in-house content engine that supports it.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">What platforms does NYX Studio publish to?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">Primarily Instagram (Reels, Posts, Stories) and TikTok for short-form video, YouTube Shorts for cross-posting, and Meta Ads (Facebook + Instagram) for paid creative. Growth Pack adds WhatsApp/SMS funnels for retention loops.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">Primarily Instagram (Reels, Posts, Stories) and TikTok for short-form video, YouTube Shorts for cross-posting, and Meta Ads (Facebook + Instagram) for paid creative. Growth Pack adds WhatsApp/SMS funnels for retention loops.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How does NYX Studio measure campaign success?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">We track first-frame stop-rate, 3-second view-through, completion rate, and conversion-to-action per asset. For paid creative we also report CPM, CTR, ROAS, and frequency. Reports ship monthly via the partner portal.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">We track first-frame stop-rate, 3-second view-through, completion rate, and conversion-to-action per asset. For paid creative we also report CPM, CTR, ROAS, and frequency. Reports ship monthly via the partner portal.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Do you offer one-off shoots or only monthly retainers?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">We&apos;re retainer-first because content velocity is what actually moves D2C metrics - one campaign a quarter doesn&apos;t compound. We do accept one-off projects for brand films and launch campaigns when the scope is clearly defined. Reach out via the contact page to discuss.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">We&apos;re retainer-first because content velocity is what actually moves D2C metrics - one campaign a quarter doesn&apos;t compound. We do accept one-off projects for brand films and launch campaigns when the scope is clearly defined. Reach out via the contact page to discuss.</dd>
                         </div>
                         <div>
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How do I start working with NYX Studio?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-ink-black/80">Send a brief via the contact page at nyxstudio.tech/contact. We respond within 48 hours with a fit assessment. If we&apos;re a fit, we run a 20-minute scoping call, propose a pack (Trial / Starter / Growth), and ship the first 3 assets within 7 business days of kickoff.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">Send a brief via the contact page at nyxstudio.tech/contact. We respond within 48 hours with a fit assessment. If we&apos;re a fit, we run a 20-minute scoping call, propose a pack (Trial / Starter / Growth), and ship the first 3 assets within 7 business days of kickoff.</dd>
                         </div>
                     </dl>
                 </div>
@@ -760,31 +734,7 @@ export default function AdServicesPage() {
         </main>
 
         {/* Footer */}
-        <footer className="w-full flex flex-col md:flex-row justify-between items-center px-4 sm:px-6 md:px-8 py-10 md:py-12 gap-6 bg-[#0E0E0E] dark:bg-black border-t-4 border-black dark:border-white/10 rounded-none relative z-10">
-            <Link href="/" className="flex items-center gap-3">
-                <div className="w-8 h-8 flex items-center justify-center relative">
-                    <Image 
-                        src="/logo/NYX-Logo.png" 
-                        alt="NYX Studio logo" 
-                        width={120}
-                        height={40}
-                        unoptimized
-                        className="h-full w-full object-contain"
-                        sizes="32px"
-                    />
-                </div>
-                <div className="text-xl font-bold text-white font-headline uppercase">NYX STUDIO</div>
-            </Link>
-            <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
-                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
-                <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://twitter.com/nyxstudiosai" target="_blank" rel="noopener noreferrer">TWITTER</a>
-                <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
-            </div>
-            <p className="font-headline text-[0.75rem] uppercase tracking-wider text-white/60">
-                © 2026 NYX Studio
-            </p>
-        </footer>
+        <SiteFooter />
         <MobileNav />
       </div>
     </>

@@ -108,7 +108,7 @@ export default function PortalSignupClient() {
                     </div>
                     <Link
                         href={emailExistsRedirect.loginUrl}
-                        className="block w-full bg-[#E8441A] py-5 px-8 border-4 border-black text-center hover:bg-[#ffd65b] hover:text-[#3d2f00] transition-all"
+                        className="block w-full bg-[#D83C14] py-5 px-8 border-4 border-black text-center hover:bg-[#ffd65b] hover:text-[#3d2f00] transition-all"
                         style={HEAD}
                     >
                         <span className="font-black text-lg tracking-tighter text-white">
@@ -141,13 +141,13 @@ export default function PortalSignupClient() {
                         minLength={8}
                         required
                         placeholder="••••••••••••"
-                        className="w-full bg-[#0e0e0e] border-4 border-black p-5 pr-14 text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#E8441A] transition-all outline-none"
+                        className="w-full bg-[#0e0e0e] border-4 border-black p-5 pr-14 text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#D83C14] transition-all outline-none"
                         style={HEAD}
                     />
                     <button
                         type="button"
                         onClick={() => setShowPassword((v) => !v)}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 text-[#353534] hover:text-[#E8441A] transition-colors"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 text-[#353534] hover:text-[#D83C14] transition-colors"
                         aria-label={showPassword ? 'Hide password' : 'Show password'}
                     >
                         <span className="material-symbols-outlined">
@@ -171,7 +171,7 @@ export default function PortalSignupClient() {
                         minLength={8}
                         required
                         placeholder="••••••••••••"
-                        className="w-full bg-[#0e0e0e] border-4 border-black p-5 text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#E8441A] transition-all outline-none"
+                        className="w-full bg-[#0e0e0e] border-4 border-black p-5 text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#D83C14] transition-all outline-none"
                         style={HEAD}
                     />
                 </div>
@@ -196,7 +196,7 @@ export default function PortalSignupClient() {
                         rows={3}
                         maxLength={2000}
                         placeholder="A quick note about your brand or what you're after."
-                        className="w-full bg-[#0e0e0e] border-4 border-black p-5 text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#E8441A] transition-all outline-none resize-none"
+                        className="w-full bg-[#0e0e0e] border-4 border-black p-5 text-[#e5e2e1] placeholder:text-[#353534] focus:ring-0 focus:border-[#D83C14] transition-all outline-none resize-none"
                         style={BODY}
                     />
                 </div>
@@ -204,7 +204,7 @@ export default function PortalSignupClient() {
                 <button
                     type="submit"
                     disabled={submitting}
-                    className="w-full bg-[#E8441A] py-6 px-8 border-4 border-black flex items-center justify-between group hover:bg-[#ffd65b] transition-all active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full bg-[#D83C14] py-6 px-8 border-4 border-black flex items-center justify-between group hover:bg-[#ffd65b] transition-all active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                     <span
                         className="font-black text-xl tracking-tighter text-white group-hover:text-[#3d2f00]"
@@ -221,7 +221,7 @@ export default function PortalSignupClient() {
                     Already have an account?{' '}
                     <Link
                         href="/portal/login"
-                        className="text-[#E8441A] hover:underline decoration-2 underline-offset-4 not-italic"
+                        className="text-[#D83C14] hover:underline decoration-2 underline-offset-4 not-italic"
                     >
                         Sign in here
                     </Link>

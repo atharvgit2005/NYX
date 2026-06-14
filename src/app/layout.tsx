@@ -116,11 +116,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${barlowCondensed.variable} ${spaceGrotesk.variable} ${workSans.variable}`}>
       <body className="font-sans antialiased">
+        <a href="#main-content" className="skip-link">Skip to content</a>
         <SchemaOrg schema={[organizationSchema, websiteSchema]} />
         <AuthProvider>
           <ThemeProvider>
             <GlobalAnimations />
-            {children}
+            <div id="main-content" tabIndex={-1} className="outline-none">
+              {children}
+            </div>
           </ThemeProvider>
         </AuthProvider>
       </body>

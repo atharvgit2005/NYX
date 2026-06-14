@@ -44,4 +44,9 @@ next-env.d.ts
 
 # Claude Code worktrees
 .claude/worktrees/
+.claude/launch.json
 .claude-flow/
+
+# ruflo runtime state (swarm + vector DBs)
+.swarm/
+ruvector.db

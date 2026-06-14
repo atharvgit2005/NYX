@@ -4,6 +4,7 @@ import { useMemo } from 'react'
 import {
   DndContext,
   PointerSensor,
+  KeyboardSensor,
   useSensor,
   useSensors,
   useDroppable,
@@ -12,6 +13,7 @@ import {
 import {
   SortableContext,
   useSortable,
+  sortableKeyboardCoordinates,
   verticalListSortingStrategy,
   arrayMove,
 } from '@dnd-kit/sortable'
@@ -19,6 +21,14 @@ import { CSS } from '@dnd-kit/utilities'
 import type { PostStatus } from '@prisma/client'
 import type { AdminPost } from '../PostsWorkspaceClient'
 import PostCard from './PostCard'
+import { dndScreenReaderInstructions, makeDndAnnouncements } from '@/lib/portal/dnd-a11y'
+
+// Space picks up / drops a card so Enter stays free to open the post editor.
+const KEYBOARD_CODES = {
+  start: ['Space'],
+  cancel: ['Escape'],
+  end: ['Space'],
+}
 
 const HEAD = { fontFamily: 'var(--font-space-grotesk), sans-serif' } as const
 
@@ -26,7 +36,7 @@ const COLUMNS: Array<{ status: PostStatus; label: string; accent: string }> = [
   { status: 'IDEA', label: 'IDEA', accent: '#ab8981' },
   { status: 'DRAFTING', label: 'DRAFTING', accent: '#e4beb5' },
   { status: 'NEEDS_APPROVAL', label: 'NEEDS_APPROVAL', accent: '#ffd65b' },
-  { status: 'NEEDS_REVISION', label: 'NEEDS_REVISION', accent: '#E8441A' },
+  { status: 'NEEDS_REVISION', label: 'NEEDS_REVISION', accent: '#D83C14' },
   { status: 'APPROVED', label: 'APPROVED', accent: '#76dc83' },
   { status: 'POSTED', label: 'POSTED', accent: '#3da452' },
 ]
@@ -50,6 +60,18 @@ export default function KanbanView({
 }: Props) {
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(KeyboardSensor, {
+      keyboardCodes: KEYBOARD_CODES,
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  )
+
+  const announcements = useMemo(
+    () =>
+      makeDndAnnouncements(
+        (id) => posts.find((p) => p.id === id)?.title ?? 'post',
+      ),
+    [posts],
   )
 
   const grouped = useMemo(() => {
@@ -113,7 +135,14 @@ export default function KanbanView({
   }
 
   return (
-    <DndContext sensors={sensors} onDragEnd={onDragEnd}>
+    <DndContext
+      sensors={sensors}
+      onDragEnd={onDragEnd}
+      accessibility={{
+        announcements,
+        screenReaderInstructions: dndScreenReaderInstructions,
+      }}
+    >
       <div
         className="grid gap-4 min-w-max"
         style={{ gridTemplateColumns: `repeat(${COLUMNS.length}, minmax(220px, 1fr))` }}
@@ -233,7 +262,7 @@ function SortablePost({
     <div
       ref={setNodeRef}
       style={style}
-      className={`relative ${selected ? 'ring-2 ring-[#E8441A]' : ''}`}
+      className={`relative ${selected ? 'ring-2 ring-[#D83C14]' : ''}`}
     >
       {onToggleSelect && (
         <button
@@ -243,7 +272,7 @@ function SortablePost({
             onToggleSelect(post.id)
           }}
           className={`absolute top-2 left-2 z-10 w-5 h-5 border-2 border-black flex items-center justify-center transition-colors ${
-            selected ? 'bg-[#E8441A] text-white' : 'bg-[#1c1b1b] text-[#e4beb5] hover:bg-[#2a2a2a]'
+            selected ? 'bg-[#D83C14] text-white' : 'bg-[#1c1b1b] text-[#e4beb5] hover:bg-[#2a2a2a]'
           }`}
           aria-label={selected ? 'Deselect post' : 'Select post'}
           aria-pressed={selected}
@@ -255,7 +284,20 @@ function SortablePost({
           )}
         </button>
       )}
-      <div {...attributes} {...listeners}>
+      <div
+        {...attributes}
+        {...listeners}
+        onKeyDown={(e) => {
+          // Space (handled by the keyboard sensor) drags; Enter opens the post.
+          if (e.key === 'Enter') {
+            e.preventDefault()
+            onClick()
+            return
+          }
+          listeners?.onKeyDown?.(e)
+        }}
+        aria-label={`${post.title ?? 'Post'} — press Enter to open, Space to drag`}
+      >
         <PostCard post={post} onClick={onClick} draggable />
       </div>
     </div>

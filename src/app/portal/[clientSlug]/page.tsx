@@ -69,7 +69,7 @@ export default async function ClientPortalPage({
     return (
       <main
         className="min-h-screen flex items-center justify-center px-6"
-        style={{ background: '#FAF7F2', fontFamily: 'sans-serif' }}
+        style={{ background: '#FAF7F2', fontFamily: 'var(--font-portal-body)' }}
       >
         <div
           className="max-w-lg rounded-2xl p-8 text-center"
@@ -77,11 +77,14 @@ export default async function ClientPortalPage({
         >
           <p
             className="text-xs uppercase tracking-widest mb-2"
-            style={{ color: '#E91E8C' }}
+            style={{ color: '#1A2A5E', opacity: 0.6 }}
           >
             Portal · Configuration pending
           </p>
-          <h1 className="text-2xl font-bold mb-2" style={{ color: '#1A2A5E' }}>
+          <h1
+            className="text-2xl font-bold mb-2"
+            style={{ color: '#1A2A5E', fontFamily: 'var(--font-portal-display)' }}
+          >
             {partner.clientName}
           </h1>
           <p className="text-sm" style={{ color: '#6B6B6B' }}>

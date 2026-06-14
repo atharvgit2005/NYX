@@ -370,21 +370,19 @@ export default function CalendarBuilderClient({
                 {/* Header */}
                 <Link
                     href={`/portal/admin/${clientSlug}/posts`}
-                    className="inline-flex items-center gap-1 text-xs uppercase tracking-widest text-[#e4beb5] hover:text-[#E8441A] mb-4"
+                    className="inline-flex items-center gap-1 text-xs uppercase tracking-widest text-[#e4beb5] hover:text-[#D83C14] mb-4"
                     style={HEAD}
                 >
                     <ArrowLeft className="w-3 h-3" />
                     Back to {brandName} workspace
                 </Link>
                 <div className="flex flex-wrap items-end gap-4 mb-2">
-                    <div
+                    <h1
                         className="text-3xl md:text-5xl font-black tracking-tighter leading-none uppercase"
                         style={HEAD}
-                        role="heading"
-                        aria-level={1}
                     >
                         Calendar Builder
-                    </div>
+                    </h1>
                     <span
                         className="text-xs px-2 py-0.5 font-bold uppercase mb-1"
                         style={{
@@ -408,9 +406,9 @@ export default function CalendarBuilderClient({
                     <div>
 
                 {/* Form */}
-                <fieldset className="border-l-4 border-[#E8441A] pl-6 space-y-5 mb-8">
+                <fieldset className="border-l-4 border-[#D83C14] pl-6 space-y-5 mb-8">
                     <legend
-                        className="text-xs uppercase tracking-[0.2em] text-[#E8441A] font-black"
+                        className="text-xs uppercase tracking-[0.2em] text-[#D83C14] font-black"
                         style={HEAD}
                     >
                         *CAMPAIGN_WINDOW
@@ -482,7 +480,7 @@ export default function CalendarBuilderClient({
                                 type="checkbox"
                                 checked={usePresets}
                                 onChange={(e) => setUsePresets(e.target.checked)}
-                                className="w-4 h-4 border-2 border-black bg-[#0e0e0e] text-[#E8441A] focus:ring-0 rounded-none"
+                                className="w-4 h-4 border-2 border-black bg-[#0e0e0e] text-[#D83C14] focus:ring-0 rounded-none"
                             />
                             <span className="text-[#e4beb5] uppercase tracking-widest">
                                 Seed with starter titles ({TITLE_PRESETS.length}-pattern rotation)
@@ -494,7 +492,7 @@ export default function CalendarBuilderClient({
                         <button
                             type="button"
                             onClick={buildSlots}
-                            className="px-5 py-3 border-4 border-black bg-[#E8441A] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] transition-all flex items-center gap-2"
+                            className="px-5 py-3 border-4 border-black bg-[#D83C14] text-white text-xs font-black uppercase tracking-widest hover:shadow-[4px_4px_0px_#000] transition-all flex items-center gap-2"
                             style={HEAD}
                         >
                             <Sparkles className="w-4 h-4" />
@@ -576,6 +574,7 @@ export default function CalendarBuilderClient({
                                                         className="brutal-input !p-2 !text-xs"
                                                         style={HEAD}
                                                         title={fmtDate(slot.date)}
+                                                        aria-label={`Slot ${originalIndex + 1} date`}
                                                     />
                                                     <input
                                                         type="text"
@@ -584,12 +583,14 @@ export default function CalendarBuilderClient({
                                                         placeholder="Post title"
                                                         className="brutal-input !p-2 !text-sm"
                                                         style={HEAD}
+                                                        aria-label={`Slot ${originalIndex + 1} title`}
                                                     />
                                                     <select
                                                         value={slot.contentType}
                                                         onChange={(e) => updateSlot(slot.key, { contentType: e.target.value as ContentType })}
                                                         className="brutal-input !p-2 !text-xs"
                                                         style={HEAD}
+                                                        aria-label={`Slot ${originalIndex + 1} content type`}
                                                     >
                                                         {CONTENT_TYPES.map((c) => (
                                                             <option key={c} value={c} className="bg-[#0e0e0e]">
@@ -602,6 +603,7 @@ export default function CalendarBuilderClient({
                                                         onChange={(e) => updateSlot(slot.key, { platform: e.target.value as Platform })}
                                                         className="brutal-input !p-2 !text-xs"
                                                         style={HEAD}
+                                                        aria-label={`Slot ${originalIndex + 1} platform`}
                                                     >
                                                         <option value="INSTAGRAM" className="bg-[#0e0e0e]">Instagram</option>
                                                         <option value="TIKTOK" className="bg-[#0e0e0e]">TikTok</option>
@@ -626,7 +628,7 @@ export default function CalendarBuilderClient({
                             <button
                                 type="button"
                                 onClick={addBlankSlot}
-                                className="px-3 py-2 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#E8441A] hover:text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5"
+                                className="px-3 py-2 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#D83C14] hover:text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-1.5"
                                 style={HEAD}
                             >
                                 <Plus className="w-3.5 h-3.5" />
@@ -685,7 +687,7 @@ export default function CalendarBuilderClient({
                     transition: border-color 0.15s;
                 }
                 .brutal-input::placeholder { color: #353534; }
-                .brutal-input:focus { border-color: #e8441a; }
+                .brutal-input:focus { border-color: #D83C14; }
             `}</style>
         </div>
     )
@@ -740,7 +742,7 @@ function ChipGroup({
                         onClick={() => onChange(val)}
                         className={`px-3 py-2 border-4 border-black text-[10px] font-bold uppercase tracking-widest transition-all ${
                             active
-                                ? 'bg-[#E8441A] text-white'
+                                ? 'bg-[#D83C14] text-white'
                                 : 'bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#2a2a2a]'
                         }`}
                         style={HEAD}

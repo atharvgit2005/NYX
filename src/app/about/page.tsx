@@ -12,6 +12,8 @@ import {
   speakableSchema,
 } from "@/lib/seo";
 import { MobileNav } from "../components/MobileNav";
+import { SiteHeader } from "../components/SiteHeader";
+import { SiteFooter } from "../components/SiteFooter";
 import "../page.css";
 
 export const metadata: Metadata = createMarketingMetadata({
@@ -48,34 +50,7 @@ export default function AboutPage() {
 
       <div className="bg-[#0E0E0E] text-[#e5e2e1] font-body selection:bg-primary selection:text-ink-black min-h-screen relative w-full overflow-hidden">
         {/* Header */}
-        <header className="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-8 py-4 md:py-6 bg-[#0E0E0E] dark:bg-black border-b-4 border-black dark:border-white/10 rounded-none">
-          <Link href="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0">
-            <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center relative flex-shrink-0">
-              <Image
-                src="/logo/NYX-Logo.png"
-                alt="NYX Studio logo"
-                width={120}
-                height={40}
-                unoptimized
-                className="h-full w-full object-contain"
-                sizes="(max-width: 768px) 32px, 40px"
-              />
-            </div>
-            <div className="text-xl md:text-3xl font-black tracking-tighter text-white dark:text-[#F5C518] font-headline uppercase whitespace-nowrap">
-              NYX STUDIO
-            </div>
-          </Link>
-          <nav className="hidden md:flex gap-8 items-center">
-            <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/work">WORK</Link>
-            <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/services">SERVICES</Link>
-            <Link className="font-headline uppercase tracking-tighter font-bold text-[#E8441A] border-b-4 border-[#E8441A] pb-1 px-2" href="/about">ABOUT</Link>
-            <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/contact">CONTACT</Link>
-            <Link className="font-headline uppercase tracking-tighter font-bold text-white hover:text-[#F5C518] transition-all duration-75 px-2" href="/portal">PORTAL</Link>
-          </nav>
-          <Link href="/contact" className="bg-[#E8441A] text-white px-3 md:px-6 py-1 md:py-2 font-headline uppercase tracking-tighter font-bold text-[0.75rem] md:text-base scale-100 active:scale-95 hover:bg-[#F5C518] hover:text-black transition-all duration-75 inline-block border-4 border-transparent hover:border-black whitespace-nowrap">
-            LET&apos;S TALK →
-          </Link>
-        </header>
+        <SiteHeader active="about" />
 
         <main className="pt-[72px] md:pt-28 pb-[72px] md:pb-0">
           {/* Hero */}
@@ -152,7 +127,7 @@ export default function AboutPage() {
                   <h3 className="text-3xl md:text-4xl font-black uppercase font-headline tracking-tighter text-white mb-2">
                     ATHARV PAHARIA
                   </h3>
-                  <p className="text-[#E8441A] font-bold uppercase tracking-widest text-sm mb-6">* CO-FOUNDER &amp; TECH LEAD</p>
+                  <p className="text-[#D83C14] font-bold uppercase tracking-widest text-sm mb-6">* CO-FOUNDER &amp; TECH LEAD</p>
                   <p className="about-fact font-body text-sm md:text-base leading-relaxed text-white/80 mb-6">
                     Atharv leads AI engineering, the content production
                     pipeline, and the video automation systems that let the
@@ -165,7 +140,7 @@ export default function AboutPage() {
                       href="https://www.linkedin.com/in/atharv-paharia-468276272/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="border-4 border-white p-3 hover:bg-[#E8441A] hover:border-[#E8441A] transition-colors rounded-none"
+                      className="border-4 border-white p-3 hover:bg-[#D83C14] hover:border-[#D83C14] transition-colors rounded-none"
                     >
                       <span className="text-sm font-bold uppercase tracking-wider text-white">LINKEDIN ↗</span>
                     </a>
@@ -186,7 +161,7 @@ export default function AboutPage() {
                   <h3 className="text-3xl md:text-4xl font-black uppercase font-headline tracking-tighter text-white mb-2">
                     BHAVYA JAIN
                   </h3>
-                  <p className="text-[#E8441A] font-bold uppercase tracking-widest text-sm mb-6">* CO-FOUNDER &amp; PRODUCT LEAD</p>
+                  <p className="text-[#D83C14] font-bold uppercase tracking-widest text-sm mb-6">* CO-FOUNDER &amp; PRODUCT LEAD</p>
                   <p className="about-fact font-body text-sm md:text-base leading-relaxed text-white/80 mb-6">
                     Bhavya leads brand strategy, product, and the
                     partner-facing systems that translate D2C founder briefs
@@ -198,7 +173,7 @@ export default function AboutPage() {
                       href="https://www.linkedin.com/in/bhavya-jain-10963b33a/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="border-4 border-white p-3 hover:bg-[#E8441A] hover:border-[#E8441A] transition-colors rounded-none"
+                      className="border-4 border-white p-3 hover:bg-[#D83C14] hover:border-[#D83C14] transition-colors rounded-none"
                     >
                       <span className="text-sm font-bold uppercase tracking-wider text-white">LINKEDIN ↗</span>
                     </a>
@@ -209,9 +184,9 @@ export default function AboutPage() {
           </section>
 
           {/* Quick facts strip — AEO-favoured: declarative, citable */}
-          <section className="bg-surface-container-low border-b-4 border-ink-black py-16 md:py-24 px-4 sm:px-6 md:px-8">
+          <section className="bg-[#e5e2e1] border-b-4 border-ink-black py-16 md:py-24 px-4 sm:px-6 md:px-8">
             <div className="max-w-5xl mx-auto">
-              <span className="font-label text-xs uppercase tracking-widest text-primary mb-4 block">* QUICK FACTS</span>
+              <span className="font-label text-xs uppercase tracking-widest text-ink-black mb-4 block">* QUICK FACTS</span>
               <h2 className="font-headline text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter uppercase mb-10 md:mb-12">
                 AT A GLANCE
               </h2>
@@ -267,30 +242,7 @@ export default function AboutPage() {
         </main>
 
         {/* Footer */}
-        <footer className="w-full flex flex-col md:flex-row justify-between items-center px-4 sm:px-6 md:px-8 py-10 md:py-12 gap-6 bg-[#0E0E0E] dark:bg-black border-t-4 border-black dark:border-white/10 rounded-none relative z-10">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-8 h-8 flex items-center justify-center relative">
-              <Image
-                src="/logo/NYX-Logo.png"
-                alt="NYX Studio logo"
-                width={120}
-                height={40}
-                unoptimized
-                className="h-full w-full object-contain"
-                sizes="32px"
-              />
-            </div>
-            <div className="text-xl font-bold text-white font-headline uppercase">NYX STUDIO</div>
-          </Link>
-          <div className="flex flex-wrap justify-center gap-4 md:gap-8">
-            <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.instagram.com/nyx.studios.ai/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
-            <a className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank" rel="noopener noreferrer">LINKEDIN</a>
-            <Link className="font-body text-xs uppercase tracking-widest text-gray-500 hover:text-[#F5C518] transition-colors" href="/work">ARCHIVE</Link>
-          </div>
-          <p className="font-headline text-[0.75rem] uppercase tracking-wider text-white/60">
-            © 2026 NYX Studio
-          </p>
-        </footer>
+        <SiteFooter />
         <MobileNav />
       </div>
     </>

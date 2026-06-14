@@ -32,7 +32,7 @@ interface Props {
 
 export default function OnboardingChatPanel({
   onFillForm,
-  brandPrimaryColor = '#E8441A',
+  brandPrimaryColor = '#D83C14',
   onFilesChanged
 }: Props) {
   const [messages, setMessages] = useState<Message[]>([])
@@ -234,7 +234,7 @@ export default function OnboardingChatPanel({
             <div className={`max-w-[85%] ${m.role === 'user' ? 'order-first' : ''}`}>
               <div
                 className={`px-3 py-2 border-2 border-black text-sm whitespace-pre-wrap ${
-                  m.role === 'user' ? 'bg-[#E8441A] text-white' : 'bg-[#0e0e0e] text-[#e5e2e1]'
+                  m.role === 'user' ? 'bg-[#D83C14] text-white' : 'bg-[#0e0e0e] text-[#e5e2e1]'
                 }`}
                 style={BODY}
               >
@@ -310,7 +310,7 @@ export default function OnboardingChatPanel({
             type="button"
             onClick={() => fileInputRef.current?.click()}
             disabled={loading || sending}
-            className="px-3 py-1.5 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#E8441A] hover:text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-1 disabled:opacity-50"
+            className="px-3 py-1.5 border-2 border-black bg-[#0e0e0e] text-[#e4beb5] hover:bg-[#D83C14] hover:text-white text-[10px] font-bold uppercase tracking-widest flex items-center gap-1 disabled:opacity-50"
             style={HEAD}
           >
             <Upload className="w-3 h-3" />
@@ -341,7 +341,7 @@ export default function OnboardingChatPanel({
             onKeyDown={onKeyDown}
             placeholder='Analyze attached files and suggest brand theme...'
             rows={2}
-            className="flex-1 bg-[#1c1b1b] border-2 border-black p-2 text-sm text-[#e5e2e1] outline-none focus:border-[#E8441A] resize-none"
+            className="flex-1 bg-[#1c1b1b] border-2 border-black p-2 text-sm text-[#e5e2e1] outline-none focus:border-[#D83C14] resize-none"
             style={BODY}
             disabled={sending}
           />
@@ -349,7 +349,7 @@ export default function OnboardingChatPanel({
             type="button"
             onClick={send}
             disabled={sending || !input.trim()}
-            className="px-3 py-2 border-4 border-black bg-[#E8441A] text-white text-[10px] font-black uppercase tracking-widest hover:shadow-[3px_3px_0px_#000] disabled:opacity-40 transition-all flex items-center gap-1"
+            className="px-3 py-2 border-4 border-black bg-[#D83C14] text-white text-[10px] font-black uppercase tracking-widest hover:shadow-[3px_3px_0px_#000] disabled:opacity-40 transition-all flex items-center gap-1"
             style={HEAD}
           >
             <Send className="w-3 h-3" />
