@@ -405,7 +405,7 @@ export default function AdServicesPage() {
                         <p className="text-on-primary-container font-medium text-base md:text-lg">Precision targeting meets raw creativity. We don&apos;t buy ads; we buy attention.</p>
                     </div>
                     <div className="md:col-span-7 grid grid-cols-1 md:grid-cols-2">
-                        <div className="p-8 md:p-12 border-b-4 md:border-b-0 md:border-r-4 border-ink-black flex flex-col gap-6 md:gap-8 hover:bg-secondary transition-colors group js-card">
+                        <div className="p-8 md:p-12 border-b-4 md:border-b-0 md:border-r-4 border-ink-black flex flex-col gap-6 md:gap-8 hover:bg-[#ffd65b] transition-colors group js-card">
                             <span aria-hidden="true" className="material-symbols-outlined text-5xl group-hover:text-ink-black" data-icon="target">target</span>
                             <h3 className="font-headline text-2xl md:text-3xl font-bold uppercase group-hover:text-ink-black">ALGORITHMIC<br/>DOMINANCE</h3>
                             <p className="text-sm font-label uppercase group-hover:text-ink-black">+ SCALE FAST<br/>+ ROI FOCUSED</p>

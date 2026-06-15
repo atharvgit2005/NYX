@@ -43,7 +43,7 @@ export default function AdPage() {
                         <span className="text-primary-container block">impossible</span>
                         <span className="block">to scroll past.</span>
                     </h1>
-                    <Link href="/contact" className="bg-primary text-on-primary-fixed font-headline font-bold text-base md:text-xl px-6 md:px-10 py-4 md:py-5 uppercase border-4 border-black hover:bg-secondary hover:shadow-[4px_4px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 transition-all inline-flex items-center gap-3 md:gap-4 w-fit">
+                    <Link href="/contact" className="bg-primary text-on-primary-fixed font-headline font-bold text-base md:text-xl px-6 md:px-10 py-4 md:py-5 uppercase border-4 border-black hover:bg-[#ffd65b] hover:shadow-[4px_4px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 transition-all inline-flex items-center gap-3 md:gap-4 w-fit">
                         Book a Call <span aria-hidden="true" className="material-symbols-outlined">arrow_forward</span>
                     </Link>
                 </div>
@@ -86,7 +86,7 @@ export default function AdPage() {
             </section>
 
             {/* Status Bar */}
-            <section className="bg-secondary border-b-4 border-black py-8 md:py-12 px-4 sm:px-6 md:px-8 text-center">
+            <section className="bg-[#ffd65b] border-b-4 border-black py-8 md:py-12 px-4 sm:px-6 md:px-8 text-center">
                 <p className="font-headline font-black text-2xl md:text-5xl text-black uppercase tracking-tighter max-w-7xl mx-auto">
                     Selectively onboarding our first brand partners. Limited spots, Q3 2026.
                 </p>

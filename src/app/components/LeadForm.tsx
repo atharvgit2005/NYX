@@ -63,7 +63,7 @@ export function LeadForm() {
                 required
                 aria-describedby="homepage-lead-status"
             />
-            <button className="w-full md:w-auto bg-black text-white font-headline font-bold px-6 md:px-10 py-4 md:py-5 uppercase border-4 border-black border-t-0 md:border-t-4 md:border-l-0 hover:bg-secondary hover:text-black active:bg-secondary active:text-black transition-colors flex items-center justify-center gap-2 disabled:opacity-50" type="submit" disabled={isLoading}>
+            <button className="w-full md:w-auto bg-black text-white font-headline font-bold px-6 md:px-10 py-4 md:py-5 uppercase border-4 border-black border-t-0 md:border-t-4 md:border-l-0 hover:bg-[#ffd65b] hover:text-black active:bg-[#ffd65b] active:text-black transition-colors flex items-center justify-center gap-2 disabled:opacity-50" type="submit" disabled={isLoading}>
                 {isLoading ? "PROCESSING..." : "Let's Talk"} {!isLoading && <span className="material-symbols-outlined">arrow_forward</span>}
             </button>
             <p id="homepage-lead-status" className="sr-only" aria-live="polite">
