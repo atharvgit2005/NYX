@@ -48,8 +48,8 @@ export default function AdPage() {
                 </div>
                 {/* Camcorder viewfinder — nods to NYX's content/reel craft.
                     Decorative only; the message lives in the <h1>. */}
-                <div className="relative md:w-2/5 hidden md:flex justify-center items-center" aria-hidden="true">
-                    <div className="relative w-full max-w-[380px] aspect-[4/5] border-4 border-black shadow-[10px_10px_0_#000] overflow-hidden">
+                <div className="relative w-full md:w-2/5 flex justify-center items-center" aria-hidden="true">
+                    <div className="relative w-full max-w-[300px] sm:max-w-[340px] md:max-w-[380px] aspect-[4/5] border-4 border-black shadow-[10px_10px_0_#000] overflow-hidden">
                         {/* scene: warm brand gradient + grain + scanlines */}
                         <div className="absolute inset-0 bg-gradient-to-br from-[#ff7a3c] via-[#D83C14] to-[#3c0700]"></div>
                         <div className="noise-texture absolute inset-0" style={{ opacity: 0.18 }}></div>
@@ -83,8 +83,8 @@ export default function AdPage() {
                         </div>
                     </div>
 
-                    {/* sticker badge */}
-                    <div className="absolute -top-3 -right-1 md:-right-4 bg-[#ffd65b] border-4 border-black px-3 py-1 -rotate-6 shadow-[4px_4px_0_#000] font-headline font-black text-black text-sm uppercase tracking-tight whitespace-nowrap">
+                    {/* sticker badge — kept inside the edge on mobile to avoid clipping */}
+                    <div className="absolute -top-3 right-2 md:-right-4 bg-[#ffd65b] border-4 border-black px-3 py-1 -rotate-6 shadow-[4px_4px_0_#000] font-headline font-black text-black text-xs sm:text-sm uppercase tracking-tight whitespace-nowrap">
                         ✷ Scroll-Stopper
                     </div>
                 </div>

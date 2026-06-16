@@ -9,6 +9,12 @@ export function AdAnimations() {
     const pathname = usePathname();
 
     useEffect(() => {
+        // Respect reduced motion: skip all reveals so content renders immediately
+        // and statically (no headline/card opacity:0 -> reveal-on-scroll).
+        if (typeof window !== 'undefined' &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            return;
+        }
 
         gsap.registerPlugin(ScrollTrigger);
 
@@ -29,41 +35,7 @@ export function AdAnimations() {
                 );
             });
 
-            // Hero Visual Entrance
-            if (document.querySelector('.hero-visual')) {
-                gsap.fromTo('.hero-visual',
-                    { scale: 0.8, opacity: 0 },
-                    {
-                        scale: 1,
-                        opacity: 1,
-                        duration: 1.5,
-                        ease: "expo.out",
-                        delay: 0.5
-                    }
-                );
-            }
-
-            // Floating Icons in Hero
-            if (document.querySelector('.star-icon')) {
-                gsap.to('.star-icon', {
-                    y: 20,
-                    duration: 3,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: "power1.inOut"
-                });
-            }
-
-            if (document.querySelector('.secondary-icon')) {
-                gsap.to('.secondary-icon', {
-                    rotation: 360,
-                    duration: 20,
-                    repeat: -1,
-                    ease: "none"
-                });
-            }
-
-            // Note: The Marquee animation is handled purely via CSS in page.css. 
+            // Note: The Marquee animation is handled purely via CSS in page.css.
             // GSAP marquee removal preserves system stability against React mounting.
 
             // Bento Cards Animation

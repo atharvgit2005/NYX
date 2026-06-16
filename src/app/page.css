@@ -15,7 +15,9 @@
 }
 .bento-grid {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    /* minmax(0, 1fr) prevents grid items from forcing tracks wider than the
+       viewport (the `auto` min in a bare 1fr caused mobile horizontal overflow). */
+    grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 16px;
 }
 @media (min-width: 768px) {
