@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { LeadForm } from "./components/LeadForm";
 import { AdAnimations } from "./components/AdAnimations";
@@ -35,7 +34,7 @@ export default function AdPage() {
         <main className="pt-[72px] md:pt-[88px] pb-[72px] md:pb-0">
             <AdAnimations />
             {/* Hero Section */}
-            <section className="relative min-h-[560px] md:min-h-[921px] bg-surface-container-lowest px-4 sm:px-6 md:px-8 py-12 md:py-24 flex flex-col md:flex-row items-center border-b-4 border-black overflow-hidden">
+            <section className="relative min-h-[520px] md:min-h-[680px] bg-surface-container-lowest px-4 sm:px-6 md:px-8 py-10 md:py-16 flex flex-col md:flex-row items-center gap-12 md:gap-10 border-b-4 border-black overflow-hidden">
                 <div className="noise-texture absolute inset-0"></div>
                 <div className="z-10 w-full md:w-3/5">
                     <h1 className="font-headline font-bold text-[2.75rem] sm:text-[3.5rem] md:text-[6rem] leading-[0.9] tracking-[-0.04em] md:tracking-[-0.05em] uppercase mb-8 md:mb-12 reveal-text">
@@ -47,12 +46,46 @@ export default function AdPage() {
                         Book a Call <span aria-hidden="true" className="material-symbols-outlined">arrow_forward</span>
                     </Link>
                 </div>
-                <div className="relative md:w-2/5 hidden md:flex justify-center items-center mt-12 md:mt-0 hero-visual">
-                    <div className="w-64 h-64 md:w-96 md:h-96 text-primary-container animate-pulse">
-                        <span aria-hidden="true" className="material-symbols-outlined !text-[12rem] md:!text-[20rem] star-icon" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                {/* Camcorder viewfinder — nods to NYX's content/reel craft.
+                    Decorative only; the message lives in the <h1>. */}
+                <div className="relative md:w-2/5 hidden md:flex justify-center items-center" aria-hidden="true">
+                    <div className="relative w-full max-w-[380px] aspect-[4/5] border-4 border-black shadow-[10px_10px_0_#000] overflow-hidden">
+                        {/* scene: warm brand gradient + grain + scanlines */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#ff7a3c] via-[#D83C14] to-[#3c0700]"></div>
+                        <div className="noise-texture absolute inset-0" style={{ opacity: 0.18 }}></div>
+                        <div className="absolute inset-0 hero-scanlines"></div>
+                        {/* cinematic vignette for depth */}
+                        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse at 50% 42%, transparent 30%, rgba(0,0,0,0.55) 100%)' }}></div>
+
+                        {/* viewfinder corner brackets */}
+                        <span className="absolute top-4 left-4 w-7 h-7 border-t-4 border-l-4 border-white/90"></span>
+                        <span className="absolute top-4 right-4 w-7 h-7 border-t-4 border-r-4 border-white/90"></span>
+                        <span className="absolute bottom-4 left-4 w-7 h-7 border-b-4 border-l-4 border-white/90"></span>
+                        <span className="absolute bottom-4 right-4 w-7 h-7 border-b-4 border-r-4 border-white/90"></span>
+
+                        {/* HUD top row */}
+                        <div className="absolute top-6 left-6 right-6 flex justify-between items-start text-white" style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}>
+                            <span className="flex items-center gap-2 text-xs font-black tracking-[0.2em]">
+                                <span className="w-2.5 h-2.5 rounded-full bg-[#ff3b3b] hero-rec"></span> REC
+                            </span>
+                            <span className="text-[10px] font-bold tracking-[0.2em] text-right leading-snug">NYX_STUDIO<br />CAM&nbsp;01</span>
+                        </div>
+
+                        {/* center play */}
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <span className="w-20 h-20 rounded-full border-4 border-white/90 flex items-center justify-center text-white text-3xl pl-1.5">▶</span>
+                        </div>
+
+                        {/* HUD bottom row */}
+                        <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end text-white" style={{ fontFamily: 'var(--font-space-grotesk), sans-serif' }}>
+                            <span className="text-[10px] font-bold tracking-[0.15em] leading-snug">00:00:24:18<br />15.06.2026</span>
+                            <span className="text-[10px] font-black tracking-widest border-2 border-white/90 px-1.5 py-0.5">HD</span>
+                        </div>
                     </div>
-                    <div className="absolute -top-10 -right-10 text-secondary hidden md:block secondary-icon">
-                        <span aria-hidden="true" className="material-symbols-outlined !text-[8rem]">emergency</span>
+
+                    {/* sticker badge */}
+                    <div className="absolute -top-3 -right-1 md:-right-4 bg-[#ffd65b] border-4 border-black px-3 py-1 -rotate-6 shadow-[4px_4px_0_#000] font-headline font-black text-black text-sm uppercase tracking-tight whitespace-nowrap">
+                        ✷ Scroll-Stopper
                     </div>
                 </div>
             </section>
@@ -176,52 +209,6 @@ export default function AdPage() {
                 <div className="absolute top-10 right-10 text-black/20"><span aria-hidden="true" className="material-symbols-outlined !text-4xl">add</span></div>
                 <div className="absolute bottom-10 left-10 text-black/20"><span aria-hidden="true" className="material-symbols-outlined !text-4xl">add</span></div>
                 <div className="absolute bottom-10 right-10 text-black/20"><span aria-hidden="true" className="material-symbols-outlined !text-4xl">add</span></div>
-            </section>
-
-            {/* Founders Section */}
-            <section className="bg-surface-container-lowest py-20 md:py-32 px-4 sm:px-6 md:px-8 border-y-4 border-black text-white">
-                <div className="max-w-7xl mx-auto">
-                    <div className="mb-10 md:mb-16">
-                        <span className="text-secondary font-headline font-bold text-base md:text-xl uppercase tracking-widest">* THE RUNNERS</span>
-                        <h2 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase font-headline leading-none mt-4 text-white">
-                            OPERATORS<br/>BEHIND THE CODE.
-                        </h2>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                        {/* Founder 1 */}
-                        <div className="border-4 border-black p-6 md:p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#D83C14] active:-translate-y-1 active:translate-x-1 group">
-                            <div className="w-32 h-32 mb-6 border-4 border-white overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-300">
-                                <Image src="/founders/atharv.jpg" alt="Atharv Paharia, Co-Founder and Tech Lead at NYX Studio" width={600} height={750} className="h-full w-full object-cover" />
-                            </div>
-                            <h3 className="text-4xl font-black uppercase font-headline tracking-tighter text-white mb-2">ATHARV PAHARIA</h3>
-                            <p className="text-[#D83C14] font-bold uppercase tracking-widest text-sm mb-8">* CO-FOUNDER & TECH LEAD</p>
-                            <div className="flex gap-4">
-                                <a href="https://www.linkedin.com/in/atharv-paharia-468276272/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#D83C14] hover:text-black hover:border-[#D83C14] transition-colors rounded-none flex items-center gap-2">
-                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">LINKEDIN <span aria-hidden="true" className="material-symbols-outlined text-[1rem]">north_east</span></span>
-                                </a>
-                                <a href="https://www.instagram.com/i___am__atharv/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#D83C14] hover:text-black hover:border-[#D83C14] transition-colors rounded-none flex items-center gap-2">
-                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">INSTA <span aria-hidden="true" className="material-symbols-outlined text-[1rem]">north_east</span></span>
-                                </a>
-                            </div>
-                        </div>
-                        {/* Founder 2 */}
-                        <div className="border-4 border-black p-6 md:p-8 bg-black transition-transform hover:-translate-y-2 hover:translate-x-2 hover:shadow-[-8px_8px_0px_#D83C14] active:-translate-y-1 active:translate-x-1 group">
-                            <div className="w-32 h-32 mb-6 border-4 border-white overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-300">
-                                <Image src="/founders/bhavya.jpg" alt="Bhavya Jain, Co-Founder and Product Lead at NYX Studio" width={600} height={750} className="h-full w-full object-cover" />
-                            </div>
-                            <h3 className="text-4xl font-black uppercase font-headline tracking-tighter text-white mb-2">BHAVYA JAIN</h3>
-                            <p className="text-[#D83C14] font-bold uppercase tracking-widest text-sm mb-8">* CO-FOUNDER & PRODUCT</p>
-                            <div className="flex gap-4">
-                                <a href="https://www.linkedin.com/in/bhavya-jain-10963b33a/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#D83C14] hover:text-black hover:border-[#D83C14] transition-colors rounded-none flex items-center gap-2">
-                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">LINKEDIN <span aria-hidden="true" className="material-symbols-outlined text-[1rem]">north_east</span></span>
-                                </a>
-                                <a href="https://www.instagram.com/bhavyakun_/" target="_blank" rel="noopener noreferrer" className="border-4 border-white p-3 hover:bg-[#D83C14] hover:text-black hover:border-[#D83C14] transition-colors rounded-none flex items-center gap-2">
-                                    <span className="text-sm font-bold uppercase tracking-wider text-white hover:text-black flex gap-1">INSTA <span aria-hidden="true" className="material-symbols-outlined text-[1rem]">north_east</span></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </section>
 
             {/* Lead Capture */}
