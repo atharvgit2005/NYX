@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import * as THREE from 'three';
 import { usePathname } from 'next/navigation';
 
 export function ContactAnimations() {
@@ -135,14 +134,20 @@ export function ContactAnimations() {
             });
         });
 
-        // 2. Three.js: Dark-mode starfield/noise background
-        const canvas = document.getElementById('background-canvas') as HTMLCanvasElement;
-        let renderer: THREE.WebGLRenderer, scene: THREE.Scene, camera: THREE.PerspectiveCamera, animationId: number;
-        
-        if (canvas) {
-            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        // 2. Three.js starfield — lazy-loaded so the ~150 kB three.js bundle
+        // stays OFF this page's first load (and never loads under reduced motion,
+        // since this effect already returned early above).
+        let cancelled = false;
+        let disposeThree = () => {};
+        (async () => {
+            const canvas = document.getElementById('background-canvas') as HTMLCanvasElement | null;
+            if (!canvas) return;
+            const THREE = await import('three');
+            if (cancelled) return;
+
+            const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             camera.position.z = 5;
 
             let mouseX = 0, mouseY = 0;
@@ -163,12 +168,13 @@ export function ContactAnimations() {
             const starCount = 2000;
             const starGeo = new THREE.BufferGeometry();
             const starPos = new Float32Array(starCount * 3);
-            for(let i=0; i<starCount*3; i++) starPos[i] = (Math.random() - 0.5) * 20;
+            for (let i = 0; i < starCount * 3; i++) starPos[i] = (Math.random() - 0.5) * 20;
             starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
             const starMat = new THREE.PointsMaterial({ color: 0x444444, size: 0.015, transparent: true, opacity: 0.8 });
             const stars = new THREE.Points(starGeo, starMat);
             scene.add(stars);
 
+            let animationId = 0;
             const animateThree = () => {
                 animationId = requestAnimationFrame(animateThree);
                 stars.rotation.y += 0.0005 + mouseX;
@@ -177,16 +183,19 @@ export function ContactAnimations() {
             };
             animateThree();
 
-            return () => {
-                ctx.revert();
+            disposeThree = () => {
                 cancelAnimationFrame(animationId);
                 window.removeEventListener('resize', resize);
                 document.removeEventListener('mousemove', handleMouseMove);
                 renderer.dispose();
             };
-        }
+        })();
 
-        return () => ctx.revert();
+        return () => {
+            ctx.revert();
+            cancelled = true;
+            disposeThree();
+        };
     }, [pathname]);
 
     return null;

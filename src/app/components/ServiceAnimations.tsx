@@ -3,7 +3,6 @@
 import { useEffect } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import * as THREE from 'three';
 import { usePathname } from 'next/navigation';
 
 export function ServiceAnimations() {
@@ -75,16 +74,24 @@ export function ServiceAnimations() {
             });
         });
 
-        // --- Three.js Noise Effect ---
-        let scene: THREE.Scene, camera: THREE.OrthographicCamera, renderer: THREE.WebGLRenderer;
-        let material: THREE.ShaderMaterial;
-        let animationId: number;
+        // --- Three.js glitch/noise background — lazy-loaded so the ~150 kB
+        // three.js bundle stays off this page's first load; skipped under reduced motion.
+        let cancelled = false;
+        let disposeThree = () => {};
+        const reducedMotion =
+            typeof window !== 'undefined' &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        const container = document.getElementById('three-container');
-        if (container) {
-            scene = new THREE.Scene();
-            camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-            renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
+        (async () => {
+            if (reducedMotion) return;
+            const container = document.getElementById('three-container');
+            if (!container) return;
+            const THREE = await import('three');
+            if (cancelled) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+            const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
             renderer.setSize(container.clientWidth, container.clientHeight);
             container.appendChild(renderer.domElement);
 
@@ -126,7 +133,7 @@ export function ServiceAnimations() {
                 }
             `;
 
-            material = new THREE.ShaderMaterial({
+            const material = new THREE.ShaderMaterial({
                 uniforms: {
                     uTime: { value: 0 },
                     uResolution: { value: new THREE.Vector2(container.clientWidth, container.clientHeight) }
@@ -139,33 +146,34 @@ export function ServiceAnimations() {
             const plane = new THREE.Mesh(geometry, material);
             scene.add(plane);
 
+            let animationId = 0;
             const animate = (time: number) => {
                 material.uniforms.uTime.value = time * 0.001;
                 renderer.render(scene, camera);
                 animationId = requestAnimationFrame(animate);
             };
-
             animationId = requestAnimationFrame(animate);
 
-            // Resize handler
             const handleResize = () => {
-                if (container) {
-                    renderer.setSize(container.clientWidth, container.clientHeight);
-                    material.uniforms.uResolution.value.set(container.clientWidth, container.clientHeight);
-                }
+                renderer.setSize(container.clientWidth, container.clientHeight);
+                material.uniforms.uResolution.value.set(container.clientWidth, container.clientHeight);
             };
             window.addEventListener('resize', handleResize);
-        }
+
+            disposeThree = () => {
+                cancelAnimationFrame(animationId);
+                window.removeEventListener('resize', handleResize);
+                renderer.dispose();
+                if (renderer.domElement && container.contains(renderer.domElement)) {
+                    container.removeChild(renderer.domElement);
+                }
+            };
+        })();
 
         return () => {
             ctx.revert();
-            if (animationId) cancelAnimationFrame(animationId);
-            if (renderer) {
-                renderer.dispose();
-                if (container && renderer.domElement && container.contains(renderer.domElement)) {
-                    container.removeChild(renderer.domElement);
-                }
-            }
+            cancelled = true;
+            disposeThree();
         };
     }, [pathname]);
 
