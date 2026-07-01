@@ -63,6 +63,8 @@ interface Props {
     onEditPost: (post: SerializedPost) => void
     onCreateOnDay: (isoDate: string) => void
     onMoveDate: (id: string, isoDate: string) => void
+    selectedDateStr: string | null
+    onSelectDate: (dateStr: string) => void
 }
 
 function pad(n: number) {
@@ -86,6 +88,8 @@ export default function CalendarAdminLayer({
     onEditPost,
     onCreateOnDay,
     onMoveDate,
+    selectedDateStr,
+    onSelectDate,
 }: Props) {
     const sensors = useSensors(
         useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
@@ -131,6 +135,7 @@ export default function CalendarAdminLayer({
                     const inCampaign =
                         day !== null && day >= campaignFirst && day <= campaignLast
                     const isLastRow = i >= days.length - 7
+                    const isSelected = selectedDateStr === dateStr
 
                     const baseStyle: React.CSSProperties = {
                         borderRight:
@@ -141,28 +146,38 @@ export default function CalendarAdminLayer({
                             : hasPosts && inCampaign
                               ? '#FAF7F2'
                               : 'transparent',
-                        // Strong today outline (inset so it doesn't collide
-                        // with the grid divider lines). Matches CalendarView.
-                        boxShadow: isToday
+                        boxShadow: isSelected
                             ? `inset 0 0 0 2px ${brand.brand.primary}`
-                            : undefined,
+                            : isToday
+                              ? `inset 0 0 0 2px ${brand.brand.primary}50`
+                              : undefined,
                     }
 
                     const cellInner = (
-                        <>
+                        <div 
+                            onClick={() => {
+                                if (dateStr) onSelectDate(dateStr)
+                            }}
+                            className="w-full h-full min-h-[inherit] cursor-pointer select-none"
+                        >
                             {day !== null && (
-                                <div className="flex justify-between items-center mb-1.5">
+                                <div className="flex justify-between items-center mb-1 sm:mb-1.5">
                                     <span
-                                        className="w-6 h-6 flex items-center justify-center rounded-full text-xs font-semibold transition-colors"
+                                        className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center rounded-full text-[10px] sm:text-xs font-semibold transition-colors"
                                         style={{
                                             background: isToday
                                                 ? brand.brand.primary
-                                                : 'transparent',
+                                                : isSelected
+                                                  ? `${brand.brand.primary}20`
+                                                  : 'transparent',
                                             color: isToday
                                                 ? '#FFFFFF'
-                                                : inCampaign
-                                                  ? '#1A2A5E'
-                                                  : '#C0BAB0',
+                                                : isSelected
+                                                  ? brand.brand.primary
+                                                  : inCampaign
+                                                    ? '#1A2A5E'
+                                                    : '#C0BAB0',
+                                            border: isSelected && !isToday ? `1px solid ${brand.brand.primary}` : 'none'
                                         }}
                                     >
                                         {day}
@@ -174,12 +189,7 @@ export default function CalendarAdminLayer({
                                                 e.stopPropagation()
                                                 onCreateOnDay(dateStr)
                                             }}
-                                            // Always-visible faint affordance
-                                            // on in-campaign days; ramps up
-                                            // on cell hover. Off-campaign
-                                            // days stay invisible-until-hover
-                                            // so the grid doesn't look noisy.
-                                            className={`transition-opacity w-5 h-5 rounded-full flex items-center justify-center text-xs font-semibold focus-visible:opacity-100 ${
+                                            className={`transition-opacity w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-semibold focus-visible:opacity-100 ${
                                                 inCampaign
                                                     ? 'opacity-40 group-hover:opacity-100'
                                                     : 'opacity-0 group-hover:opacity-100'
@@ -198,21 +208,43 @@ export default function CalendarAdminLayer({
                                 </div>
                             )}
                             <div className="flex flex-col gap-1">
-                                {cellPosts.map((post) => (
-                                    <DraggableChip
-                                        key={post.id}
-                                        post={post}
-                                        onClick={() => onEditPost(post)}
-                                    />
-                                ))}
+                                {/* Desktop: Draggable chips */}
+                                <div className="hidden sm:block space-y-1">
+                                    {cellPosts.map((post) => (
+                                        <DraggableChip
+                                            key={post.id}
+                                            post={post}
+                                            onClick={() => onEditPost(post)}
+                                        />
+                                    ))}
+                                </div>
+                                {/* Mobile: compact event lines */}
+                                {cellPosts.length > 0 && (
+                                    <div className="sm:hidden flex flex-col gap-0.5 mt-0.5 items-stretch">
+                                        {cellPosts.map((post) => {
+                                            const colors = TYPE_COLORS[post.contentType]
+                                            return (
+                                                <div
+                                                    key={post.id}
+                                                    className="h-1 rounded-full w-full"
+                                                    style={{ background: colors.dot }}
+                                                    title={post.title}
+                                                />
+                                            )
+                                        })}
+                                    </div>
+                                )}
                             </div>
                             {day !== null &&
                                 cellPosts.length === 0 &&
                                 dateStr && (
                                     <button
                                         type="button"
-                                        onClick={() => onCreateOnDay(dateStr)}
-                                        className={`absolute inset-0 mt-7 m-1 transition-opacity flex items-center justify-center text-xs font-medium rounded-lg ${
+                                        onClick={(e) => {
+                                            e.stopPropagation()
+                                            onCreateOnDay(dateStr)
+                                        }}
+                                        className={`absolute inset-0 mt-6 sm:mt-7 m-1 transition-opacity hidden sm:flex items-center justify-center text-xs font-medium rounded-lg ${
                                             inCampaign
                                                 ? 'opacity-30 hover:opacity-100'
                                                 : 'opacity-0 hover:opacity-100'
@@ -229,7 +261,7 @@ export default function CalendarAdminLayer({
                                         + Add
                                     </button>
                                 )}
-                        </>
+                        </div>
                     )
 
                     if (dateStr) {
@@ -238,6 +270,7 @@ export default function CalendarAdminLayer({
                                 key={i}
                                 dayIso={dateStr}
                                 style={baseStyle}
+                                onClick={() => onSelectDate(dateStr)}
                             >
                                 {cellInner}
                             </DroppableDay>
@@ -246,7 +279,7 @@ export default function CalendarAdminLayer({
                     return (
                         <div
                             key={i}
-                            className="group min-h-[88px] md:min-h-[104px] p-2 relative transition-colors"
+                            className="group min-h-[50px] sm:min-h-[88px] md:min-h-[104px] p-1 sm:p-2 relative transition-colors"
                             style={baseStyle}
                         >
                             {cellInner}
@@ -338,16 +371,19 @@ function DroppableDay({
     dayIso,
     style,
     children,
+    onClick,
 }: {
     dayIso: string
     style?: React.CSSProperties
     children: React.ReactNode
+    onClick?: () => void
 }) {
     const { setNodeRef, isOver } = useDroppable({ id: dayIso })
     return (
         <div
             ref={setNodeRef}
-            className="group min-h-[88px] md:min-h-[104px] p-2 relative transition-colors"
+            onClick={onClick}
+            className="group min-h-[50px] sm:min-h-[88px] md:min-h-[104px] p-1 sm:p-2 relative transition-colors"
             style={{
                 ...style,
                 background: isOver

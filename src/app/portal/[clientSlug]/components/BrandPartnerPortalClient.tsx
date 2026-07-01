@@ -87,18 +87,7 @@ export default function BrandPartnerPortalClient({
   // Status counts derive from posts so any mutation (modal approve/revise,
   // admin canvas drag/edit/archive) propagates without an extra setter.
   // Initial server-rendered counts are used only to detect first paint.
-  const statusCounts = useMemo<Record<PostStatus, number>>(() => {
-    const c: Record<PostStatus, number> = {
-      IDEA: 0,
-      DRAFTING: 0,
-      NEEDS_APPROVAL: 0,
-      NEEDS_REVISION: 0,
-      APPROVED: 0,
-      POSTED: 0,
-    }
-    for (const p of posts) c[p.status]++
-    return c
-  }, [posts])
+
   void initialCounts // server-rendered baseline; not read after hydration
 
   // ── Phase 5: admin-only edit overlay state ─────────────────────────
@@ -209,6 +198,19 @@ export default function BrandPartnerPortalClient({
       REEL_STORY: 0,
     }
     for (const p of activeMonthPosts) c[p.contentType]++
+    return c
+  }, [activeMonthPosts])
+
+  const statusCounts = useMemo<Record<PostStatus, number>>(() => {
+    const c: Record<PostStatus, number> = {
+      IDEA: 0,
+      DRAFTING: 0,
+      NEEDS_APPROVAL: 0,
+      NEEDS_REVISION: 0,
+      APPROVED: 0,
+      POSTED: 0,
+    }
+    for (const p of activeMonthPosts) c[p.status]++
     return c
   }, [activeMonthPosts])
 
@@ -459,7 +461,7 @@ export default function BrandPartnerPortalClient({
         </section>
 
         <div style={{ animation: 'portalFadeIn 0.5s ease 0.3s both' }}>
-          <StatusTrackerSection brand={brand} statusCounts={statusCounts} totalPosts={posts.length} />
+          <StatusTrackerSection brand={brand} statusCounts={statusCounts} totalPosts={activeMonthPosts.length} />
         </div>
 
         <div style={{ animation: 'portalFadeIn 0.5s ease 0.35s both' }}>

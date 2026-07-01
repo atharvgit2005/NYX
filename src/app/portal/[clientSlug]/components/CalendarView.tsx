@@ -145,6 +145,8 @@ export default function CalendarView({
 
   const today = brand.campaign.referenceToday
 
+  const [selectedDateStr, setSelectedDateStr] = useState<string | null>(null)
+
   const monthNameLabel = useMemo(() => {
     return new Date(Date.UTC(activeYear, activeMonthIdx, 1)).toLocaleDateString('en-US', {
       month: 'long',
@@ -179,6 +181,21 @@ export default function CalendarView({
     }
     return groups
   }, [sortedPosts])
+
+  useEffect(() => {
+    const todayDate = new Date()
+    const isCurrentMonth = todayDate.getFullYear() === activeYear && todayDate.getMonth() === activeMonthIdx
+    if (isCurrentMonth) {
+      setSelectedDateStr(`${activeYear}-${pad(activeMonthIdx + 1)}-${pad(todayDate.getDate())}`)
+    } else {
+      const firstPost = sortedPosts[0]
+      if (firstPost) {
+        setSelectedDateStr(dateKey(firstPost.scheduledDate))
+      } else {
+        setSelectedDateStr(`${activeYear}-${pad(activeMonthIdx + 1)}-01`)
+      }
+    }
+  }, [activeYear, activeMonthIdx, sortedPosts])
 
   const sliderIndex = useMemo(() => {
     return allMonthsInRange.findIndex(
@@ -272,11 +289,15 @@ export default function CalendarView({
         const hasPosts = cellPosts.length > 0
         const inCampaign = day !== null && day >= campaignFirst && day <= campaignLast
         const isLastRow = i >= days.length - 7
+        const isSelected = selectedDateStr === dateStr
 
         return (
           <div
             key={i}
-            className="min-h-[88px] md:min-h-[104px] p-2 relative transition-colors"
+            onClick={() => {
+              if (dateStr) setSelectedDateStr(dateStr)
+            }}
+            className="min-h-[50px] sm:min-h-[88px] md:min-h-[104px] p-1 sm:p-2 relative transition-colors cursor-pointer select-none"
             style={{
               borderRight: (i + 1) % 7 !== 0 ? '1px solid #F0EDE6' : 'none',
               borderBottom: !isLastRow ? '1px solid #F0EDE6' : 'none',
@@ -285,38 +306,65 @@ export default function CalendarView({
                 : hasPosts && inCampaign
                   ? '#FAF7F2'
                   : 'transparent',
-              // Strong today outline — inset so it doesn't collide with the
-              // grid divider lines.
-              boxShadow: isToday
+              // Strong outline if today or selected
+              boxShadow: isSelected
                 ? `inset 0 0 0 2px ${brand.brand.primary}`
-                : undefined,
+                : isToday
+                  ? `inset 0 0 0 2px ${brand.brand.primary}50`
+                  : undefined,
             }}
           >
             {day !== null && (
               <>
-                <div className="flex justify-between items-center mb-1.5">
+                <div className="flex justify-between items-center mb-1 sm:mb-1.5">
                   <span
-                    className="w-6 h-6 flex items-center justify-center rounded-full text-xs font-semibold transition-colors"
+                    className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center rounded-full text-[10px] sm:text-xs font-semibold transition-colors"
                     style={{
-                      background: isToday ? brand.brand.primary : 'transparent',
+                      background: isToday
+                        ? brand.brand.primary
+                        : isSelected
+                          ? `${brand.brand.primary}20`
+                          : 'transparent',
                       color: isToday
                         ? '#FFFFFF'
-                        : inCampaign
-                          ? '#1A2A5E'
-                          : '#C0BAB0',
+                        : isSelected
+                          ? brand.brand.primary
+                          : inCampaign
+                            ? '#1A2A5E'
+                            : '#C0BAB0',
+                      border: isSelected && !isToday ? `1px solid ${brand.brand.primary}` : 'none'
                     }}
                   >
                     {day}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  {cellPosts.map((post) => (
-                    <ChipReadOnly
-                      key={post.id}
-                      post={post}
-                      onClick={() => onSelectPost(post)}
-                    />
-                  ))}
+                  {/* Desktop: full chip */}
+                  <div className="hidden sm:block space-y-1">
+                    {cellPosts.map((post) => (
+                      <ChipReadOnly
+                        key={post.id}
+                        post={post}
+                        onClick={() => onSelectPost(post)}
+                      />
+                    ))}
+                  </div>
+                  {/* Mobile: compact event lines */}
+                  {cellPosts.length > 0 && (
+                    <div className="sm:hidden flex flex-col gap-0.5 mt-0.5 items-stretch">
+                      {cellPosts.map((post) => {
+                        const colors = TYPE_COLORS[post.contentType]
+                        return (
+                          <div
+                            key={post.id}
+                            className="h-1 rounded-full w-full"
+                            style={{ background: colors.dot }}
+                            title={post.title}
+                          />
+                        )
+                      })}
+                    </div>
+                  )}
                 </div>
               </>
             )}
@@ -489,16 +537,16 @@ export default function CalendarView({
         )}
       </div>
 
-      {/* Desktop: month grid */}
+      {/* Month grid (desktop & mobile) */}
       <div
-        className="hidden sm:block rounded-2xl overflow-hidden"
+        className="block rounded-2xl overflow-hidden"
         style={{ border: '1px solid #E8E4DC', background: '#FFFFFF' }}
       >
         <div className="grid grid-cols-7" style={{ borderBottom: '1px solid #E8E4DC' }}>
           {WEEKDAYS.map((d) => (
             <div
               key={d}
-              className="py-3 text-center text-xs font-semibold tracking-widest uppercase"
+              className="py-2.5 sm:py-3 text-center text-[10px] sm:text-xs font-semibold tracking-widest uppercase"
               style={{ color: '#6B6B6B' }}
             >
               {d}
@@ -520,6 +568,8 @@ export default function CalendarView({
             onEditPost={onEditPost}
             onCreateOnDay={onCreateOnDay}
             onMoveDate={onMoveDate}
+            selectedDateStr={selectedDateStr}
+            onSelectDate={setSelectedDateStr}
           />
         ) : (
           partnerGrid
@@ -560,149 +610,127 @@ export default function CalendarView({
         </div>
       </div>
 
-      {/* Mobile: weekly grouped timeline */}
-      <div className="sm:hidden space-y-5">
-        {weekGroups.length === 0 && (
-          <div
-            className="rounded-2xl px-5 py-10 text-center"
-            style={{
-              background: '#FFFFFF',
-              border: '1px dashed #E8E4DC',
-              color: '#6B6B6B',
-            }}
-          >
-            <p className="text-sm font-medium">No posts scheduled yet</p>
-          </div>
-        )}
-        {weekGroups.map((group) => (
-          <section key={group.week} className="space-y-2">
-            <div className="flex items-center gap-2 px-1">
-              <span
-                className="text-[10px] font-semibold tracking-widest uppercase"
-                style={{ color: '#6B6B6B' }}
-              >
-                Week of {formatWeekLabel(group.week)}
+      {/* Mobile only: selected day posts list */}
+      <div className="sm:hidden space-y-4">
+        {selectedDateStr && (
+          <>
+            <div className="flex items-center justify-between border-b border-[#E8E4DC] pb-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#1A2A5E]" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+                Posts for {new Date(selectedDateStr + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short' })}
               </span>
-              <div
-                className="flex-1 h-px"
-                style={{ background: '#E8E4DC' }}
-              />
+              <span className="text-[10px] font-semibold text-[#6B6B6B]">
+                {(byDate[selectedDateStr] ?? []).length} post{((byDate[selectedDateStr] ?? []).length) === 1 ? '' : 's'}
+              </span>
             </div>
-            {group.posts.map((post) => {
-              const colors = TYPE_COLORS[post.contentType]
-              const statusColors = STATUS_COLORS[post.status]
-              const isTodayAnchor = post.id === todayAnchorId
-              return (
-                <div key={post.id} className="space-y-2">
-                  {isTodayAnchor && todayMs !== null && (
-                    <div className="flex items-center gap-2 pt-1">
-                      <div
-                        className="w-2 h-2 rounded-full animate-pulse"
-                        style={{ background: brand.brand.primary }}
-                      />
-                      <span
-                        className="text-[10px] font-semibold tracking-widest uppercase"
-                        style={{ color: brand.brand.primary }}
-                      >
-                        Today
-                      </span>
-                      <div
-                        className="flex-1 h-px"
-                        style={{ background: `${brand.brand.primary}40` }}
-                      />
-                    </div>
-                  )}
-                  <button
-                    onClick={() => handleChipClick(post)}
-                    className="w-full text-left rounded-2xl p-4 flex items-center justify-between gap-4 transition-all hover:scale-[1.01] active:scale-[0.99]"
-                    style={{
-                      background: '#FFFFFF',
-                      border: '1px solid #E8E4DC',
-                      borderLeft: `4.5px solid ${colors.dot}`,
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
-                    }}
-                  >
-                    <div className="flex-1 min-w-0 space-y-1.5">
-                      <div className="flex flex-wrap items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider text-[#6B6B6B]">
-                        <span>#{post.position}</span>
-                        <span>·</span>
-                        <span>{formatLongDate(post.scheduledDate)}</span>
-                      </div>
-                      
-                      <p
-                        className="text-sm font-bold leading-snug line-clamp-2"
-                        style={{ fontFamily: 'var(--font-portal-display)', color: '#1A2A5E' }}
-                      >
-                        {post.title}
-                      </p>
 
-                      <div className="flex flex-wrap items-center gap-2 pt-0.5">
-                        <span
-                          className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider"
-                          style={{ background: colors.bg, color: colors.text }}
-                        >
-                          {CONTENT_TYPE_LABEL[post.contentType]}
-                        </span>
-                        <span
-                          className="px-2 py-0.5 rounded-full text-[10px] font-semibold flex items-center gap-1 uppercase tracking-wider"
-                          style={{ background: statusColors.bg, color: statusColors.text }}
-                        >
-                          <span
-                            className="w-1.5 h-1.5 rounded-full"
-                            style={{ background: statusColors.dot }}
-                          />
-                          {POST_STATUS_LABEL[post.status]}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Visual Preview on Right */}
-                    {post.thumbnailUrl ? (
-                      <div className="relative shrink-0 w-14 h-14 rounded-xl overflow-hidden border border-[#E8E4DC] shadow-sm">
-                        <img 
-                          src={post.thumbnailUrl} 
-                          alt="preview" 
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    ) : (
-                      <div 
-                        className="shrink-0 w-14 h-14 rounded-xl flex items-center justify-center border border-[#E8E4DC] shadow-sm"
-                        style={{ background: `${colors.dot}10` }}
-                      >
-                        {post.contentType === 'REEL' || post.contentType === 'REEL_STORY' ? (
-                          <Film className="w-5 h-5" style={{ color: colors.dot }} />
-                        ) : post.contentType === 'CAROUSEL' ? (
-                          <Layers className="w-5 h-5" style={{ color: colors.dot }} />
-                        ) : (
-                          <ImageIcon className="w-5 h-5" style={{ color: colors.dot }} />
-                        )}
-                      </div>
-                    )}
-                  </button>
+            <div className="space-y-3">
+              {(byDate[selectedDateStr] ?? []).length === 0 ? (
+                <div
+                  className="rounded-2xl px-5 py-8 text-center"
+                  style={{
+                    background: '#FFFFFF',
+                    border: '1px dashed #E8E4DC',
+                    color: '#6B6B6B',
+                  }}
+                >
+                  <p className="text-xs font-medium">No posts scheduled for this day</p>
                 </div>
-              )
-            })}
-          </section>
-        ))}
-        {viewerIsAdmin && onCreateOnDay && (
-          <button
-            type="button"
-            onClick={() => {
-              const today = new Date()
-              const iso = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`
-              onCreateOnDay(iso)
-            }}
-            className="w-full rounded-2xl p-4 flex items-center justify-center gap-2 transition-colors"
-            style={{
-              background: '#FFFFFF',
-              border: `1px dashed ${brand.brand.primary}50`,
-              color: brand.brand.primary,
-            }}
-          >
-            <span className="text-base">+</span>
-            <span className="text-sm font-medium">Add post</span>
-          </button>
+              ) : (
+                (byDate[selectedDateStr] ?? []).map((post) => {
+                  const colors = TYPE_COLORS[post.contentType]
+                  const statusColors = STATUS_COLORS[post.status]
+                  return (
+                    <button
+                      key={post.id}
+                      onClick={() => handleChipClick(post)}
+                      className="w-full text-left rounded-2xl p-4 flex items-center justify-between gap-4 transition-all hover:scale-[1.01] active:scale-[0.99]"
+                      style={{
+                        background: '#FFFFFF',
+                        border: '1px solid #E8E4DC',
+                        borderLeft: `4.5px solid ${colors.dot}`,
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                      }}
+                    >
+                      <div className="flex-1 min-w-0 space-y-1.5">
+                        <div className="flex flex-wrap items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider text-[#6B6B6B]">
+                          <span>#{post.position}</span>
+                          <span>·</span>
+                          <span>{formatLongDate(post.scheduledDate)}</span>
+                        </div>
+                        
+                        <p
+                          className="text-sm font-bold leading-snug line-clamp-2"
+                          style={{ fontFamily: 'var(--font-portal-display)', color: '#1A2A5E' }}
+                        >
+                          {post.title}
+                        </p>
+
+                        <div className="flex flex-wrap items-center gap-2 pt-0.5">
+                          <span
+                            className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider"
+                            style={{ background: colors.bg, color: colors.text }}
+                          >
+                            {CONTENT_TYPE_LABEL[post.contentType]}
+                          </span>
+                          <span
+                            className="px-2 py-0.5 rounded-full text-[10px] font-semibold flex items-center gap-1 uppercase tracking-wider"
+                            style={{ background: statusColors.bg, color: statusColors.text }}
+                          >
+                            <span
+                              className="w-1.5 h-1.5 rounded-full"
+                              style={{ background: statusColors.dot }}
+                            />
+                            {POST_STATUS_LABEL[post.status]}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Visual Preview on Right */}
+                      {post.thumbnailUrl ? (
+                        <div className="relative shrink-0 w-14 h-14 rounded-xl overflow-hidden border border-[#E8E4DC] shadow-sm">
+                          <img 
+                            src={post.thumbnailUrl} 
+                            alt="preview" 
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      ) : (
+                        <div 
+                          className="shrink-0 w-14 h-14 rounded-xl flex items-center justify-center border border-[#E8E4DC] shadow-sm"
+                          style={{ background: `${colors.dot}10` }}
+                        >
+                          {post.contentType === 'REEL' || post.contentType === 'REEL_STORY' ? (
+                            <Film className="w-5 h-5" style={{ color: colors.dot }} />
+                          ) : post.contentType === 'CAROUSEL' ? (
+                            <Layers className="w-5 h-5" style={{ color: colors.dot }} />
+                          ) : (
+                            <ImageIcon className="w-5 h-5" style={{ color: colors.dot }} />
+                          )}
+                        </div>
+                      )}
+                    </button>
+                  )
+                })
+              )}
+
+              {/* Admin quick add post affordance for selected date */}
+              {viewerIsAdmin && onCreateOnDay && (
+                <button
+                  type="button"
+                  onClick={() => onCreateOnDay(selectedDateStr)}
+                  className="w-full rounded-2xl p-4 flex items-center justify-center gap-2 transition-colors hover:opacity-90"
+                  style={{
+                    background: '#FFFFFF',
+                    border: `1px dashed ${brand.brand.primary}50`,
+                    color: brand.brand.primary,
+                  }}
+                >
+                  <span className="text-base">+</span>
+                  <span className="text-sm font-medium">Add post to this day</span>
+                </button>
+              )}
+            </div>
+          </>
         )}
       </div>
     </div>
