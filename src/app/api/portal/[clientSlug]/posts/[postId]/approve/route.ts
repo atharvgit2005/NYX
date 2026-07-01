@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import prisma from '@/lib/prismadb'
 import { requirePartner, findPostInBrand } from '../../../../[clientSlug]/_helpers'
 import { snapshotPost } from '@/lib/portal/post-versioning'
+import { triggerNotification } from '@/lib/portal/notifications'
 
 // POST /api/portal/[clientSlug]/posts/[postId]/approve
 //   Partner approves a NEEDS_APPROVAL post → status becomes APPROVED and
@@ -47,6 +48,19 @@ export async function POST(
     await snapshotPost(updated, 'APPROVED', auth.email)
   } catch (err) {
     console.error('[approve] snapshot failed (non-fatal):', err)
+  }
+
+  try {
+    await triggerNotification({
+      brandPartnerId: updated.brandPartnerId,
+      type: 'APPROVED',
+      message: `Client approved post "${updated.title}"`,
+      actor: auth.email,
+      postId: updated.id,
+      postTitle: updated.title,
+    })
+  } catch (err) {
+    console.error('[approve] triggerNotification failed (non-fatal):', err)
   }
 
   // Re-shape to the SerializedPost contract so the client can drop it

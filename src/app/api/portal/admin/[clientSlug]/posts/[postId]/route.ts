@@ -7,7 +7,7 @@ import {
   type PostUpdateInput,
 } from '@/lib/portal/post-mutations'
 import { snapshotPost } from '@/lib/portal/post-versioning'
-import { sendNeedsApprovalEmail } from '@/lib/portal/notifications'
+import { sendNeedsApprovalEmail, triggerNotification } from '@/lib/portal/notifications'
 import { requireAdmin } from '../../../_helpers'
 
 async function findPost(slug: string, postId: string) {
@@ -86,23 +86,39 @@ export async function PATCH(
       existing.status !== 'NEEDS_APPROVAL'
     ) {
       try {
-        const brand = await prisma.brandPartner.findUnique({
-          where: { id: post.brandPartnerId },
-          include: { configuration: { select: { brandName: true } } },
+        await triggerNotification({
+          brandPartnerId: post.brandPartnerId,
+          type: 'NEEDS_APPROVAL',
+          message: `Admin requested approval for post "${post.title}"`,
+          actor: auth.email,
+          postId: post.id,
+          postTitle: post.title,
         })
-        if (brand) {
-          await sendNeedsApprovalEmail({
-            partnerEmail: brand.email,
-            partnerName: brand.clientName,
-            brandName: brand.configuration?.brandName ?? brand.clientName,
-            clientSlug: brand.clientSlug,
-            postTitle: post.title,
-            scheduledDate: post.scheduledDate.toISOString(),
-          })
-        }
       } catch (e) {
-        // Non-fatal — admin save still succeeds even if email send fails.
-        console.error('[admin/posts] needs-approval email failed:', e)
+        console.error('[admin/posts] needs-approval notification failed:', e)
+      }
+    } else {
+      // General update / reschedule activity
+      try {
+        let updateMsg = `Admin updated details for post "${post.title}"`
+        if (patch.scheduledDate && patch.scheduledDate.getTime() !== existing.scheduledDate.getTime()) {
+          const dateStr = new Date(post.scheduledDate).toLocaleDateString('en-IN', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+          })
+          updateMsg = `Admin rescheduled post "${post.title}" to ${dateStr}`
+        }
+        await triggerNotification({
+          brandPartnerId: post.brandPartnerId,
+          type: 'CALENDAR_UPDATED',
+          message: updateMsg,
+          actor: auth.email,
+          postId: post.id,
+          postTitle: post.title,
+        })
+      } catch (e) {
+        console.error('[admin/posts] calendar-updated notification failed:', e)
       }
     }
 

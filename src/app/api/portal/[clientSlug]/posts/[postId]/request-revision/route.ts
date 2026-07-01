@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import prisma from '@/lib/prismadb'
 import { requirePartner, findPostInBrand } from '../../../../[clientSlug]/_helpers'
+import { triggerNotification } from '@/lib/portal/notifications'
 
 // POST /api/portal/[clientSlug]/posts/[postId]/request-revision
 // Body: { comment: string }
@@ -53,6 +54,20 @@ export async function POST(
     },
     include: { comments: { orderBy: { createdAt: 'desc' } } },
   })
+
+  try {
+    await triggerNotification({
+      brandPartnerId: updated.brandPartnerId,
+      type: 'REVISION_REQUESTED',
+      message: `Client requested revision on post "${updated.title}" with comment: "${comment}"`,
+      actor: auth.email,
+      postId: updated.id,
+      postTitle: updated.title,
+      revisionComment: comment,
+    })
+  } catch (err) {
+    console.error('[request-revision] triggerNotification failed (non-fatal):', err)
+  }
 
   const serialized = {
     id: updated.id,

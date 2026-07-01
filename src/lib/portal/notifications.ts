@@ -1,16 +1,5 @@
-/**
- * Phase 5 follow-up: outbound email notifications.
- *
- * Today the only trigger is "post entered NEEDS_APPROVAL" — fires when
- * an admin saves the post with that status. The brand partner gets an
- * email with a deep link to the post in the portal.
- *
- * Soft-fails: a missing RESEND_API_KEY logs a warning and returns
- * without throwing, so unconfigured environments (CI, preview deploys
- * before secrets land) don't block the admin save flow.
- */
-
 import { Resend } from 'resend'
+import prisma from '@/lib/prismadb'
 
 const FROM = process.env.RESEND_FROM_EMAIL ?? 'NYX Studio <onboarding@resend.dev>'
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.nyxstudio.tech'
@@ -104,6 +93,150 @@ export async function sendNeedsApprovalEmail({
     } catch (err) {
         console.error('[notifications] send threw:', err)
         return { ok: false, error: (err as Error).message }
+    }
+}
+
+interface TriggerNotificationArgs {
+    brandPartnerId: string
+    type: 'NEEDS_APPROVAL' | 'APPROVED' | 'REVISION_REQUESTED' | 'CALENDAR_UPDATED'
+    message: string
+    actor: string
+    postId?: string
+    postTitle?: string
+    revisionComment?: string
+}
+
+export async function triggerNotification({
+    brandPartnerId,
+    type,
+    message,
+    actor,
+    postId,
+    postTitle,
+    revisionComment,
+}: TriggerNotificationArgs): Promise<void> {
+    try {
+        // 1. Log to Database
+        await prisma.notification.create({
+            data: {
+                brandPartnerId,
+                type,
+                message,
+                actor,
+                postId,
+                postTitle,
+            }
+        })
+
+        // 2. Fetch Brand Partner Details
+        const brand = await prisma.brandPartner.findUnique({
+            where: { id: brandPartnerId },
+            include: { configuration: { select: { brandName: true } } }
+        })
+        if (!brand) return
+
+        const brandName = brand.configuration?.brandName ?? brand.clientName
+        const resend = getClient()
+
+        // 3. Email Outbox Routing
+        if (type === 'NEEDS_APPROVAL' && postTitle) {
+            await sendNeedsApprovalEmail({
+                partnerEmail: brand.email,
+                partnerName: brand.clientName,
+                brandName,
+                clientSlug: brand.clientSlug,
+                postTitle,
+                scheduledDate: new Date().toISOString()
+            })
+        } else if (type === 'APPROVED' && postTitle && resend && brand.approvedBy) {
+            const subject = `${brandName} — "${postTitle}" was approved by client`
+            const portalUrl = `${SITE_URL}/portal/${brand.clientSlug}`
+            const html = `
+                <div style="background:#FAF7F2;padding:32px;font-family:sans-serif;color:#1A2A5E;">
+                    <h2>Approval Received</h2>
+                    <p>Client approved post: <strong>${escapeHtml(postTitle)}</strong></p>
+                    <p>Actor: ${escapeHtml(actor)}</p>
+                    <p><a href="${portalUrl}" style="color:#E91E8C;">Go to portal</a></p>
+                </div>
+            `
+            await resend.emails.send({
+                from: FROM,
+                to: brand.approvedBy,
+                subject,
+                html,
+            }).catch(e => console.error('[notifications] approved email failed:', e))
+        } else if (type === 'REVISION_REQUESTED' && postTitle && resend && brand.approvedBy) {
+            const subject = `${brandName} — Revision requested on "${postTitle}"`
+            const portalUrl = `${SITE_URL}/portal/${brand.clientSlug}`
+            const html = `
+                <div style="background:#FAF7F2;padding:32px;font-family:sans-serif;color:#1A2A5E;">
+                    <h2>Revision Requested</h2>
+                    <p>Post: <strong>${escapeHtml(postTitle)}</strong></p>
+                    <p>Requested by: ${escapeHtml(actor)}</p>
+                    <p>Comment: <em>${escapeHtml(revisionComment ?? '')}</em></p>
+                    <p><a href="${portalUrl}" style="color:#E91E8C;">Go to portal</a></p>
+                </div>
+            `
+            await resend.emails.send({
+                from: FROM,
+                to: brand.approvedBy,
+                subject,
+                html,
+            }).catch(e => console.error('[notifications] revision email failed:', e))
+        }
+
+        // 4. Webhook Dispatch (for calling agent, Discord logs, etc.)
+        const webhookUrl = process.env.NOTIFICATION_WEBHOOK_URL
+        if (webhookUrl) {
+            const payload = {
+                type,
+                brandPartnerId,
+                brandName,
+                postId,
+                postTitle,
+                message,
+                actor,
+                revisionComment,
+                timestamp: new Date().toISOString()
+            }
+
+            // Detect if Discord Webhook URL
+            if (webhookUrl.includes('discord.com/api/webhooks')) {
+                const colorMap = {
+                    NEEDS_APPROVAL: 16711820,   // Pink
+                    APPROVED: 3066993,          // Green
+                    REVISION_REQUESTED: 15105570, // Orange
+                    CALENDAR_UPDATED: 3447003     // Blue
+                }
+                const discordPayload = {
+                    embeds: [{
+                        title: `NYX Activity Log: ${type.replace('_', ' ')}`,
+                        description: message,
+                        color: colorMap[type] ?? 8355711,
+                        fields: [
+                            { name: 'Brand', value: brandName, inline: true },
+                            { name: 'Actor', value: actor, inline: true },
+                            { name: 'Post', value: postTitle ?? 'N/A', inline: true }
+                        ],
+                        timestamp: new Date().toISOString()
+                    }]
+                }
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(discordPayload)
+                }).catch(e => console.error('[notifications] discord webhook dispatch failed:', e))
+            } else {
+                // Generic POST webhook (ideal for autonomous agent / bots!)
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).catch(e => console.error('[notifications] custom webhook dispatch failed:', e))
+            }
+        }
+    } catch (err) {
+        console.error('[notifications] triggerNotification failed:', err)
     }
 }
 

@@ -124,6 +124,7 @@ model BrandPartner {
   brandKit      BrandKit?
   chatSessions  ChatSession[]
   monthlySummaries MonthlySummary[]
+  notifications    Notification[]
 
   @@index([email])
   @@index([clientSlug])
@@ -502,4 +503,20 @@ model MonthlySummary {
 
   @@unique([brandPartnerId, year, monthIndex])
   @@index([brandPartnerId])
+}
+
+model Notification {
+  id             String       @id @default(cuid())
+  brandPartnerId String
+  brandPartner   BrandPartner @relation(fields: [brandPartnerId], references: [id], onDelete: Cascade)
+  type           String       // e.g., "NEEDS_APPROVAL", "APPROVED", "REVISION_REQUESTED", "CALENDAR_UPDATED"
+  message        String
+  postTitle      String?
+  postId         String?
+  actor          String       // Who triggered the action
+  read           Boolean      @default(false)
+  createdAt      DateTime     @default(now())
+
+  @@index([brandPartnerId])
+  @@index([createdAt])
 }

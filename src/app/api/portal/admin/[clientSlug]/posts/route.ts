@@ -8,6 +8,7 @@ import {
   type PostCreateInput,
 } from '@/lib/portal/post-mutations'
 import { requireAdmin } from '../../_helpers'
+import { triggerNotification } from '@/lib/portal/notifications'
 
 async function partnerIdForSlug(slug: string): Promise<string | null> {
   const p = await prisma.brandPartner.findUnique({
@@ -88,6 +89,18 @@ export async function POST(
 
   try {
     const post = await createPost(partnerId, input)
+    try {
+      await triggerNotification({
+        brandPartnerId: partnerId,
+        type: 'CALENDAR_UPDATED',
+        message: `Admin created a new post "${post.title}" scheduled for ${new Date(post.scheduledDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}`,
+        actor: auth.email,
+        postId: post.id,
+        postTitle: post.title,
+      })
+    } catch (e) {
+      console.error('[admin/posts] create notification failed:', e)
+    }
     return NextResponse.json({ post })
   } catch (err: unknown) {
     if (err instanceof PostValidationError) {
