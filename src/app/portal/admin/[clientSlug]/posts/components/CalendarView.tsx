@@ -61,47 +61,6 @@ export default function CalendarView({
   onClickPost,
   onCreateOnDay,
 }: Props) {
-  // Anchor the grid to the earliest scheduled post (or today), and
-  // pre-compute how many months the post range spans so we can default
-  // the view to cover them — otherwise a campaign that crosses month
-  // boundaries (e.g. May→June) lands its tail off-screen until the
-  // admin manually clicks NEXT.
-  const { initial, defaultMonths } = useMemo(() => {
-    if (posts.length === 0) {
-      return { initial: startOfMonth(new Date()), defaultMonths: 1 }
-    }
-    let earliest = new Date(posts[0].scheduledDate)
-    let latest = earliest
-    for (const p of posts) {
-      const d = new Date(p.scheduledDate)
-      if (d < earliest) earliest = d
-      if (d > latest) latest = d
-    }
-    const monthSpan =
-      (latest.getUTCFullYear() - earliest.getUTCFullYear()) * 12 +
-      (latest.getUTCMonth() - earliest.getUTCMonth()) +
-      1
-    // Snap up to the next supported step so the picker can still toggle.
-    const supported = [1, 2, 3, 6]
-    const months = supported.find((m) => m >= monthSpan) ?? 6
-    return { initial: startOfMonth(earliest), defaultMonths: months }
-  }, [posts])
-
-  const [anchor, setAnchor] = useState(initial)
-  const [displayMonths, setDisplayMonths] = useState<number>(defaultMonths)
-  const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
-    useSensor(KeyboardSensor, { keyboardCodes: KEYBOARD_CODES }),
-  )
-
-  const announcements = useMemo(
-    () =>
-      makeDndAnnouncements(
-        (id) => posts.find((p) => p.id === id)?.title ?? 'post',
-      ),
-    [posts],
-  )
-
   // Generate list of all unique months in the campaign range (earliest post to latest post, padded)
   const allMonthsInRange = useMemo(() => {
     let earliest = startOfMonth(new Date())
@@ -129,15 +88,67 @@ export default function CalendarView({
     return list
   }, [posts])
 
-  // Track active month slider index
-  const [sliderIndex, setSliderIndex] = useState(() => {
-    const idx = allMonthsInRange.findIndex(
+  // Anchor the grid to the earliest scheduled post (or today), and
+  // pre-compute how many months the post range spans so we can default
+  // the view to cover them — otherwise a campaign that crosses month
+  // boundaries (e.g. May→June) lands its tail off-screen until the
+  // admin manually clicks NEXT.
+  const { initial, defaultMonths } = useMemo(() => {
+    if (posts.length === 0) {
+      return { initial: startOfMonth(new Date()), defaultMonths: 1 }
+    }
+    let earliest = new Date(posts[0].scheduledDate)
+    let latest = earliest
+    for (const p of posts) {
+      const d = new Date(p.scheduledDate)
+      if (d < earliest) earliest = d
+      if (d > latest) latest = d
+    }
+    const monthSpan =
+      (latest.getUTCFullYear() - earliest.getUTCFullYear()) * 12 +
+      (latest.getUTCMonth() - earliest.getUTCMonth()) +
+      1
+    // Snap up to the next supported step so the picker can still toggle.
+    const supported = [1, 2, 3, 6]
+    const months = supported.find((m) => m >= monthSpan) ?? 6
+    return { initial: startOfMonth(earliest), defaultMonths: months }
+  }, [posts])
+
+  // Get index of the current real-world month in range
+  const initialIndex = useMemo(() => {
+    const todayDate = new Date()
+    const currentMonthIdx = allMonthsInRange.findIndex(
+      (m) =>
+        m.getUTCFullYear() === todayDate.getFullYear() &&
+        m.getUTCMonth() === todayDate.getMonth()
+    )
+    if (currentMonthIdx !== -1) return currentMonthIdx
+
+    // Fallback to initial month
+    const configMonthIdx = allMonthsInRange.findIndex(
       (m) =>
         m.getUTCFullYear() === initial.getUTCFullYear() &&
         m.getUTCMonth() === initial.getUTCMonth()
     )
-    return idx !== -1 ? idx : 0
-  })
+    return configMonthIdx !== -1 ? configMonthIdx : 0
+  }, [allMonthsInRange, initial])
+
+  const [anchor, setAnchor] = useState(() => allMonthsInRange[initialIndex])
+  const [displayMonths, setDisplayMonths] = useState<number>(defaultMonths)
+  const [sliderIndex, setSliderIndex] = useState(initialIndex)
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
+    useSensor(KeyboardSensor, { keyboardCodes: KEYBOARD_CODES }),
+  )
+
+  const announcements = useMemo(
+    () =>
+      makeDndAnnouncements(
+        (id) => posts.find((p) => p.id === id)?.title ?? 'post',
+      ),
+    [posts],
+  )
 
   // Sync sliderIndex when anchor changes (e.g. from PREV/NEXT buttons)
   useEffect(() => {

@@ -11,6 +11,16 @@ import {
 import type { ContentType } from '@prisma/client'
 import type { BrandConfig } from '@/lib/portal/brand-config'
 import type { SerializedPost } from './types'
+import {
+  Film,
+  Layers,
+  Image as ImageIcon,
+  BookOpen,
+  BarChart2,
+  ChevronDown,
+  ChevronUp,
+} from 'lucide-react'
+
 
 interface Props {
   posts: SerializedPost[]
@@ -117,19 +127,6 @@ export default function CalendarView({
   onCreateOnDay,
   onMoveDate,
 }: Props) {
-  const [activeYear, setActiveYear] = useState(brand.campaign.monthYear)
-  const [activeMonthIdx, setActiveMonthIdx] = useState(brand.campaign.monthIndex)
-
-  const days = buildCalendarDays(activeYear, activeMonthIdx)
-
-  const byDate: Record<string, SerializedPost[]> = {}
-  for (const p of posts) {
-    const k = dateKey(p.scheduledDate)
-    byDate[k] = byDate[k] ? [...byDate[k], p] : [p]
-  }
-
-  const today = brand.campaign.referenceToday
-
   // Generate list of all unique months in the campaign range (earliest post to latest post, padded)
   const allMonthsInRange = useMemo(() => {
     let earliest = startOfMonth(new Date())
@@ -160,15 +157,38 @@ export default function CalendarView({
     return list
   }, [posts, brand])
 
-  // Track active month slider index
-  const [sliderIndex, setSliderIndex] = useState(() => {
-    const idx = allMonthsInRange.findIndex(
+  // Get index of the current real-world month in range
+  const initialIndex = useMemo(() => {
+    const todayDate = new Date()
+    const currentMonthIdx = allMonthsInRange.findIndex(
+      (m) =>
+        m.getUTCFullYear() === todayDate.getFullYear() &&
+        m.getUTCMonth() === todayDate.getMonth()
+    )
+    if (currentMonthIdx !== -1) return currentMonthIdx
+
+    // Fallback to brand configuration
+    const configMonthIdx = allMonthsInRange.findIndex(
       (m) =>
         m.getUTCFullYear() === brand.campaign.monthYear &&
         m.getUTCMonth() === brand.campaign.monthIndex
     )
-    return idx !== -1 ? idx : 0
-  })
+    return configMonthIdx !== -1 ? configMonthIdx : 0
+  }, [allMonthsInRange, brand])
+
+  const [activeYear, setActiveYear] = useState(() => allMonthsInRange[initialIndex].getUTCFullYear())
+  const [activeMonthIdx, setActiveMonthIdx] = useState(() => allMonthsInRange[initialIndex].getUTCMonth())
+  const [sliderIndex, setSliderIndex] = useState(initialIndex)
+
+  const days = buildCalendarDays(activeYear, activeMonthIdx)
+
+  const byDate: Record<string, SerializedPost[]> = {}
+  for (const p of posts) {
+    const k = dateKey(p.scheduledDate)
+    byDate[k] = byDate[k] ? [...byDate[k], p] : [p]
+  }
+
+  const today = brand.campaign.referenceToday
 
   // Sync slider index when brand month configuration changes
   useEffect(() => {
@@ -184,6 +204,8 @@ export default function CalendarView({
     }
   }, [brand.campaign.monthYear, brand.campaign.monthIndex, allMonthsInRange])
 
+  const [showSummary, setShowSummary] = useState(true)
+
   const monthNameLabel = useMemo(() => {
     return new Date(Date.UTC(activeYear, activeMonthIdx, 1)).toLocaleDateString('en-US', {
       month: 'long',
@@ -191,6 +213,69 @@ export default function CalendarView({
       timeZone: 'UTC',
     })
   }, [activeYear, activeMonthIdx])
+
+  // ── Mobile timeline: grouped by week with Today anchor ───────────────
+  const activeMonthPosts = useMemo(() => {
+    return posts.filter((p) => {
+      const year = parseInt(p.scheduledDate.slice(0, 4), 10)
+      const monthIdx = parseInt(p.scheduledDate.slice(5, 7), 10) - 1
+      return year === activeYear && monthIdx === activeMonthIdx
+    })
+  }, [posts, activeYear, activeMonthIdx])
+
+  const sortedPosts = useMemo(() => {
+    return [...activeMonthPosts].sort(
+      (a, b) =>
+        new Date(a.scheduledDate).getTime() - new Date(b.scheduledDate).getTime(),
+    )
+  }, [activeMonthPosts])
+
+  const weekGroups = useMemo(() => {
+    const groups: { week: string; posts: SerializedPost[] }[] = []
+    for (const p of sortedPosts) {
+      const wk = weekKey(p.scheduledDate)
+      const last = groups[groups.length - 1]
+      if (last && last.week === wk) last.posts.push(p)
+      else groups.push({ week: wk, posts: [p] })
+    }
+    return groups
+  }, [sortedPosts])
+
+  const summary = useMemo(() => {
+    const total = activeMonthPosts.length
+    let reels = 0
+    let carousels = 0
+    let photos = 0
+    let stories = 0
+    let posted = 0
+    let approved = 0
+    let pending = 0
+
+    activeMonthPosts.forEach((p) => {
+      if (p.contentType === 'REEL' || p.contentType === 'REEL_STORY') reels++
+      else if (p.contentType === 'CAROUSEL') carousels++
+      else if (p.contentType === 'STATIC_POST') photos++
+      else if (p.contentType === 'STORY') stories++
+
+      if (p.status === 'POSTED') posted++
+      else if (p.status === 'APPROVED') approved++
+      else pending++
+    })
+
+    const approvalRate = total > 0 ? Math.round(((posted + approved) / total) * 100) : 0
+
+    return {
+      total,
+      reels,
+      carousels,
+      photos,
+      stories,
+      posted,
+      approved,
+      pending,
+      approvalRate,
+    }
+  }, [activeMonthPosts])
 
   const campaignFirst = posts.length
     ? Math.min(...posts.map((p) => new Date(p.scheduledDate).getDate()))
@@ -278,33 +363,6 @@ export default function CalendarView({
       })}
     </div>
   )
-
-  // ── Mobile timeline: grouped by week with Today anchor ───────────────
-  const activeMonthPosts = useMemo(() => {
-    return posts.filter((p) => {
-      const year = parseInt(p.scheduledDate.slice(0, 4), 10)
-      const monthIdx = parseInt(p.scheduledDate.slice(5, 7), 10) - 1
-      return year === activeYear && monthIdx === activeMonthIdx
-    })
-  }, [posts, activeYear, activeMonthIdx])
-
-  const sortedPosts = useMemo(() => {
-    return [...activeMonthPosts].sort(
-      (a, b) =>
-        new Date(a.scheduledDate).getTime() - new Date(b.scheduledDate).getTime(),
-    )
-  }, [activeMonthPosts])
-
-  const weekGroups = useMemo(() => {
-    const groups: { week: string; posts: SerializedPost[] }[] = []
-    for (const p of sortedPosts) {
-      const wk = weekKey(p.scheduledDate)
-      const last = groups[groups.length - 1]
-      if (last && last.week === wk) last.posts.push(p)
-      else groups.push({ week: wk, posts: [p] })
-    }
-    return groups
-  }, [sortedPosts])
 
   // Where does Today fall? Render a slim divider above the first post on
   // or after today, so admin/partner can find "now" in the scroll.
@@ -410,6 +468,106 @@ export default function CalendarView({
           `}</style>
         </div>
       )}
+
+      {/* Month Summary Section */}
+      <div 
+        className="p-5 rounded-2xl bg-white space-y-4 shadow-sm"
+        style={{ border: '1px solid #E8E4DC' }}
+      >
+        <button
+          onClick={() => setShowSummary(!showSummary)}
+          className="flex items-center justify-between w-full text-left"
+        >
+          <div className="flex items-center gap-2">
+            <BarChart2 className="w-5 h-5 text-[#1A2A5E]" style={{ color: brand.brand.primary }} />
+            <span className="text-sm font-bold uppercase tracking-wider text-[#1A2A5E]" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+              Month Summary ({monthNameLabel})
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5 text-xs text-[#6B6B6B] font-semibold">
+            <span>{showSummary ? 'Collapse' : 'Expand'}</span>
+            {showSummary ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          </div>
+        </button>
+
+        {showSummary && (
+          <div className="pt-2 grid grid-cols-1 md:grid-cols-3 gap-5 transition-all">
+            {/* Total & Approval Progress */}
+            <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#E8E4DC] flex flex-col justify-between space-y-3">
+              <div>
+                <p className="text-[10px] uppercase font-bold tracking-widest text-[#6B6B6B]">Approval Progress</p>
+                <div className="flex items-baseline gap-2 mt-1.5">
+                  <span className="text-3xl font-black text-[#1A2A5E]">{summary.approvalRate}%</span>
+                  <span className="text-xs text-[#6B6B6B] font-medium">Approved / Posted</span>
+                </div>
+              </div>
+              <div className="w-full bg-[#E8E4DC] rounded-full h-2">
+                <div 
+                  className="rounded-full h-2 transition-all duration-500" 
+                  style={{ 
+                    width: `${summary.approvalRate}%`,
+                    background: `linear-gradient(90deg, ${brand.brand.primary} 0%, ${brand.brand.accent || brand.brand.primary} 100%)`
+                  }}
+                />
+              </div>
+              <p className="text-xs text-[#6B6B6B] font-medium">
+                {summary.posted + summary.approved} of {summary.total} posts ready or live
+              </p>
+            </div>
+
+            {/* Content Formats Mix */}
+            <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#E8E4DC] space-y-3">
+              <p className="text-[10px] uppercase font-bold tracking-widest text-[#6B6B6B]">Content Format Mix</p>
+              <div className="grid grid-cols-2 gap-2 text-xs font-semibold">
+                <div className="flex items-center gap-2 p-2 rounded-lg bg-white border border-[#F0EDE6]">
+                  <Film className="w-4 h-4 text-[#E91E8C]" />
+                  <span className="text-[#6B6B6B]">{summary.reels} Reels</span>
+                </div>
+                <div className="flex items-center gap-2 p-2 rounded-lg bg-white border border-[#F0EDE6]">
+                  <Layers className="w-4 h-4 text-[#0078A8]" />
+                  <span className="text-[#6B6B6B]">{summary.carousels} Carousels</span>
+                </div>
+                <div className="flex items-center gap-2 p-2 rounded-lg bg-white border border-[#F0EDE6]">
+                  <ImageIcon className="w-4 h-4 text-[#1A2A5E]" />
+                  <span className="text-[#6B6B6B]">{summary.photos} Photos</span>
+                </div>
+                <div className="flex items-center gap-2 p-2 rounded-lg bg-white border border-[#F0EDE6]">
+                  <BookOpen className="w-4 h-4 text-[#E91E8C]" />
+                  <span className="text-[#6B6B6B]">{summary.stories} Stories</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Workflow Stages */}
+            <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#E8E4DC] space-y-3">
+              <p className="text-[10px] uppercase font-bold tracking-widest text-[#6B6B6B]">Workflow Stage</p>
+              <div className="flex flex-col gap-2">
+                <div className="flex justify-between items-center text-xs font-semibold">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full" style={{ background: '#9C27B0' }} />
+                    <span className="text-[#6B6B6B]">Posted / Live</span>
+                  </div>
+                  <span className="px-2 py-0.5 rounded-full bg-[#F3E5F5] text-[#6A1B9A] text-[10px]">{summary.posted} posts</span>
+                </div>
+                <div className="flex justify-between items-center text-xs font-semibold">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full" style={{ background: '#4CAF50' }} />
+                    <span className="text-[#6B6B6B]">Approved</span>
+                  </div>
+                  <span className="px-2 py-0.5 rounded-full bg-[#E8F5E9] text-[#2E7D32] text-[10px]">{summary.approved} posts</span>
+                </div>
+                <div className="flex justify-between items-center text-xs font-semibold">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full" style={{ background: '#FF9800' }} />
+                    <span className="text-[#6B6B6B]">In Progress / Ideas</span>
+                  </div>
+                  <span className="px-2 py-0.5 rounded-full bg-[#FFF3E0] text-[#E65100] text-[10px]">{summary.pending} posts</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* Desktop: month grid */}
       <div
@@ -536,44 +694,71 @@ export default function CalendarView({
                   )}
                   <button
                     onClick={() => handleChipClick(post)}
-                    className="w-full text-left rounded-2xl p-4 flex items-center gap-3 transition-all"
+                    className="w-full text-left rounded-2xl p-4 flex items-center justify-between gap-4 transition-all hover:scale-[1.01] active:scale-[0.99]"
                     style={{
                       background: '#FFFFFF',
                       border: '1px solid #E8E4DC',
-                      borderLeft: `4px solid ${colors.dot}`,
+                      borderLeft: `4.5px solid ${colors.dot}`,
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
                     }}
                   >
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 space-y-1.5">
+                      <div className="flex flex-wrap items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider text-[#6B6B6B]">
+                        <span>#{post.position}</span>
+                        <span>·</span>
+                        <span>{formatLongDate(post.scheduledDate)}</span>
+                      </div>
+                      
                       <p
-                        className="text-xs uppercase tracking-wider mb-1 flex items-center gap-1.5"
-                        style={{ color: '#6B6B6B' }}
+                        className="text-sm font-bold leading-snug line-clamp-2"
+                        style={{ fontFamily: 'var(--font-portal-display)', color: '#1A2A5E' }}
                       >
-                        <span>
-                          {formatLongDate(post.scheduledDate)} · #{post.position}
+                        {post.title}
+                      </p>
+
+                      <div className="flex flex-wrap items-center gap-2 pt-0.5">
+                        <span
+                          className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider"
+                          style={{ background: colors.bg, color: colors.text }}
+                        >
+                          {CONTENT_TYPE_LABEL[post.contentType]}
                         </span>
                         <span
-                          className="inline-flex items-center gap-1"
-                          title={POST_STATUS_LABEL[post.status]}
+                          className="px-2 py-0.5 rounded-full text-[10px] font-semibold flex items-center gap-1 uppercase tracking-wider"
+                          style={{ background: statusColors.bg, color: statusColors.text }}
                         >
                           <span
                             className="w-1.5 h-1.5 rounded-full"
                             style={{ background: statusColors.dot }}
                           />
+                          {POST_STATUS_LABEL[post.status]}
                         </span>
-                      </p>
-                      <p
-                        className="text-sm font-bold leading-snug"
-                        style={{ fontFamily: 'var(--font-portal-display)', color: '#1A2A5E' }}
-                      >
-                        {post.title}
-                      </p>
+                      </div>
                     </div>
-                    <span
-                      className="px-2.5 py-1 rounded-full text-xs font-semibold shrink-0"
-                      style={{ background: colors.bg, color: colors.text }}
-                    >
-                      {CONTENT_TYPE_LABEL[post.contentType]}
-                    </span>
+
+                    {/* Visual Preview on Right */}
+                    {post.thumbnailUrl ? (
+                      <div className="relative shrink-0 w-14 h-14 rounded-xl overflow-hidden border border-[#E8E4DC] shadow-sm">
+                        <img 
+                          src={post.thumbnailUrl} 
+                          alt="preview" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div 
+                        className="shrink-0 w-14 h-14 rounded-xl flex items-center justify-center border border-[#E8E4DC] shadow-sm"
+                        style={{ background: `${colors.dot}10` }}
+                      >
+                        {post.contentType === 'REEL' || post.contentType === 'REEL_STORY' ? (
+                          <Film className="w-5 h-5" style={{ color: colors.dot }} />
+                        ) : post.contentType === 'CAROUSEL' ? (
+                          <Layers className="w-5 h-5" style={{ color: colors.dot }} />
+                        ) : (
+                          <ImageIcon className="w-5 h-5" style={{ color: colors.dot }} />
+                        )}
+                      </div>
+                    )}
                   </button>
                 </div>
               )
