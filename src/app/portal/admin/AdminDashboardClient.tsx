@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition, useEffect, useRef, useId } from 'react'
+import { useState, useTransition, useEffect, useRef, useId, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -539,6 +539,170 @@ function MobileNav() {
   )
 }
 
+type ClientNotification = {
+  id: string
+  type: string
+  message: string
+  postTitle: string | null
+  postId: string | null
+  actor: string
+  read: boolean
+  createdAt: string
+  brandPartner: {
+    clientName: string
+    clientSlug: string
+  }
+}
+
+function NotificationCenter() {
+  const [notifications, setNotifications] = useState<ClientNotification[]>([])
+  const [isOpen, setIsOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
+
+  const fetchNotifications = useCallback(async () => {
+    try {
+      const res = await fetch('/api/portal/admin/notifications')
+      const data = await res.json()
+      if (data.notifications) {
+        setNotifications(data.notifications)
+      }
+    } catch (err) {
+      console.error('Failed to fetch notifications', err)
+    }
+  }, [])
+
+  useEffect(() => {
+    fetchNotifications()
+    // Poll every 30 seconds
+    const interval = setInterval(fetchNotifications, 30000)
+    return () => clearInterval(interval)
+  }, [fetchNotifications])
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  const unreadCount = notifications.filter(n => !n.read).length
+
+  const handleMarkAllRead = async () => {
+    try {
+      await fetch('/api/portal/admin/notifications/mark-read', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({}),
+      })
+      // Optimistically mark all read
+      setNotifications(prev => prev.map(n => ({ ...n, read: true })))
+    } catch (err) {
+      console.error('Failed to mark notifications read', err)
+    }
+  }
+
+  return (
+    <div className="relative" ref={dropdownRef}>
+      <button
+        type="button"
+        onClick={() => {
+          setIsOpen(!isOpen)
+          fetchNotifications()
+        }}
+        className="relative w-10 h-10 border-4 border-black flex items-center justify-center bg-black hover:bg-[#D83C14] transition-colors"
+        title="Notifications"
+      >
+        <MIcon name="notifications" className="text-white" />
+        {unreadCount > 0 && (
+          <span
+            className="absolute -top-1.5 -right-1.5 min-w-[20px] h-[20px] px-1 rounded-full flex items-center justify-center text-[10px] font-black text-[#000]"
+            style={{ backgroundColor: YELLOW, border: '2px solid black' }}
+          >
+            {unreadCount}
+          </span>
+        )}
+      </button>
+
+      {isOpen && (
+        <div
+          className="absolute right-0 mt-3 w-80 sm:w-96 border-4 border-black p-4 z-50 text-left shadow-[4px_4px_0px_#000]"
+          style={{ backgroundColor: BG_LOW, ...BODY }}
+        >
+          <div className="flex items-center justify-between border-b-2 border-black pb-2 mb-3">
+            <span className="text-xs font-black uppercase tracking-wider text-white" style={HEAD}>
+              Activity Notifications
+            </span>
+            {unreadCount > 0 && (
+              <button
+                type="button"
+                onClick={handleMarkAllRead}
+                className="text-[10px] uppercase font-bold text-[#D83C14] hover:underline"
+              >
+                Mark all read
+              </button>
+            )}
+          </div>
+
+          <div className="max-h-[300px] overflow-y-auto space-y-2.5 pr-1 scrollbar-thin">
+            {notifications.length === 0 ? (
+              <p className="text-xs text-[#ab8981] py-4 text-center">No recent activity</p>
+            ) : (
+              notifications.map((notif) => {
+                const typeColors = {
+                  APPROVED: GREEN,
+                  REVISION_REQUESTED: ORANGE,
+                  NEEDS_APPROVAL: YELLOW,
+                  CALENDAR_UPDATED: '#60a5fa',
+                }
+                const dotColor = typeColors[notif.type as keyof typeof typeColors] ?? FG_MUTED
+
+                return (
+                  <div
+                    key={notif.id}
+                    className={`p-2.5 border-2 border-black flex flex-col gap-1 transition-all ${
+                      notif.read ? 'bg-[#181818]' : 'bg-[#222121]'
+                    }`}
+                    style={{
+                      borderLeft: `6px solid ${dotColor}`
+                    }}
+                  >
+                    <div className="flex justify-between items-start text-[9px] uppercase tracking-wider font-bold">
+                      <span style={{ color: dotColor }}>
+                        {notif.brandPartner.clientName}
+                      </span>
+                      <span className="text-[#ab8981]">{timeAgo(notif.createdAt)}</span>
+                    </div>
+
+                    <p className="text-xs text-[#e5e2e1] leading-snug">
+                      {notif.message}
+                    </p>
+
+                    <div className="flex justify-between items-center text-[9px] text-[#ab8981] pt-0.5">
+                      <span>By: {notif.actor.split('@')[0]}</span>
+                      {notif.postId && (
+                        <Link
+                          href={`/portal/admin/${notif.brandPartner.clientSlug}`}
+                          onClick={() => setIsOpen(false)}
+                          className="hover:underline font-bold text-white uppercase"
+                        >
+                          View Calendar
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                )
+              })
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
 // ── top bar ────────────────────────────────────────────────────────────────
 
 function TopBar({ adminEmail, adminName }: { adminEmail: string; adminName: string | null }) {
@@ -574,6 +738,8 @@ function TopBar({ adminEmail, adminName }: { adminEmail: string; adminName: stri
           <span className="block w-2 h-2 bg-[#76dc83] animate-pulse" />
           *SYSTEM_LIVE
         </div>
+
+        <NotificationCenter />
 
         <div className="flex items-center gap-3 md:gap-4">
           <div className="text-right hidden sm:block">
