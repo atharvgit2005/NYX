@@ -136,6 +136,70 @@ export default function BrandPartnerPortalClient({
     setSelectedPost(updated)
   }
 
+  // Find current real-world month range
+  const allMonthsInRange = useMemo(() => {
+    let earliest = new Date()
+    let latest = new Date()
+    if (posts.length > 0) {
+      const dates = posts.map((p) => new Date(p.scheduledDate))
+      earliest = new Date(Math.min(...dates.map((d) => d.getTime())))
+      latest = new Date(Math.max(...dates.map((d) => d.getTime())))
+    } else {
+      earliest = new Date(Date.UTC(brand.campaign.monthYear, brand.campaign.monthIndex, 1))
+      latest = new Date(Date.UTC(brand.campaign.monthYear, brand.campaign.monthIndex, 1))
+    }
+    
+    // Normalize to start of month
+    const startOfEarliest = new Date(Date.UTC(earliest.getUTCFullYear(), earliest.getUTCMonth(), 1))
+    const startOfLatest = new Date(Date.UTC(latest.getUTCFullYear(), latest.getUTCMonth(), 1))
+
+    const list: Date[] = []
+    const cursor = new Date(startOfEarliest)
+    // Start 2 months before earliest
+    cursor.setUTCMonth(cursor.getUTCMonth() - 2)
+    const end = new Date(startOfLatest)
+    // End 2 months after latest
+    end.setUTCMonth(end.getUTCMonth() + 2)
+    
+    let count = 0
+    while (cursor <= end && count < 36) {
+      list.push(new Date(cursor))
+      cursor.setUTCMonth(cursor.getUTCMonth() + 1)
+      count++
+    }
+    return list
+  }, [posts, brand])
+
+  const initialIndex = useMemo(() => {
+    const todayDate = new Date()
+    const currentMonthIdx = allMonthsInRange.findIndex(
+      (m) =>
+        m.getUTCFullYear() === todayDate.getFullYear() &&
+        m.getUTCMonth() === todayDate.getMonth()
+    )
+    if (currentMonthIdx !== -1) return currentMonthIdx
+
+    // Fallback to brand configuration
+    const configMonthIdx = allMonthsInRange.findIndex(
+      (m) =>
+        m.getUTCFullYear() === brand.campaign.monthYear &&
+        m.getUTCMonth() === brand.campaign.monthIndex
+    )
+    return configMonthIdx !== -1 ? configMonthIdx : 0
+  }, [allMonthsInRange, brand])
+
+  const [activeYear, setActiveYear] = useState(() => allMonthsInRange[initialIndex].getUTCFullYear())
+  const [activeMonthIdx, setActiveMonthIdx] = useState(() => allMonthsInRange[initialIndex].getUTCMonth())
+
+  // Dynamic filter for activeMonthPosts
+  const activeMonthPosts = useMemo(() => {
+    return posts.filter((p) => {
+      const year = parseInt(p.scheduledDate.slice(0, 4), 10)
+      const monthIdx = parseInt(p.scheduledDate.slice(5, 7), 10) - 1
+      return year === activeYear && monthIdx === activeMonthIdx
+    })
+  }, [posts, activeYear, activeMonthIdx])
+
   const typeCounts = useMemo(() => {
     const c: Record<ContentType, number> = {
       REEL: 0,
@@ -144,9 +208,45 @@ export default function BrandPartnerPortalClient({
       STORY: 0,
       REEL_STORY: 0,
     }
-    for (const p of posts) c[p.contentType]++
+    for (const p of activeMonthPosts) c[p.contentType]++
     return c
-  }, [posts])
+  }, [activeMonthPosts])
+
+  const isTrialMonth = activeYear === brand.campaign.monthYear && activeMonthIdx === brand.campaign.monthIndex
+  const isAfterTrial = activeYear > brand.campaign.monthYear || (activeYear === brand.campaign.monthYear && activeMonthIdx > brand.campaign.monthIndex)
+
+  const activePeriod = useMemo(() => {
+    if (isTrialMonth) {
+      return brand.campaign.period
+    }
+    // Calculate full month range
+    const lastDay = new Date(activeYear, activeMonthIdx + 1, 0).getDate()
+    const monthName = new Date(Date.UTC(activeYear, activeMonthIdx, 1)).toLocaleDateString('en-US', {
+      month: 'long',
+      timeZone: 'UTC'
+    })
+    return `${monthName} 1–${lastDay}, ${activeYear}`
+  }, [isTrialMonth, activeYear, activeMonthIdx, brand.campaign.period])
+
+  const activeCampaignTitle = isTrialMonth 
+    ? brand.campaign.title 
+    : isAfterTrial 
+      ? 'Monthly Retainer' 
+      : 'Pre-Campaign'
+
+  const activeContractStatus = isTrialMonth
+    ? `Trial Period · ${activePeriod}`
+    : isAfterTrial
+      ? `Retainer Period · ${activePeriod} (Contract Renewed)`
+      : `Pre-Campaign · ${activePeriod}`
+
+  const monthNameLabel = useMemo(() => {
+    return new Date(Date.UTC(activeYear, activeMonthIdx, 1)).toLocaleDateString('en-US', {
+      month: 'long',
+      year: 'numeric',
+      timeZone: 'UTC',
+    })
+  }, [activeYear, activeMonthIdx])
 
   return (
     <div
@@ -182,7 +282,7 @@ export default function BrandPartnerPortalClient({
               className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase"
               style={{ background: `${brand.brand.secondary}15`, color: '#0078A8' }}
             >
-              {brand.campaign.title}
+              {activeCampaignTitle}
             </span>
           </div>
 
@@ -197,7 +297,7 @@ export default function BrandPartnerPortalClient({
             className="text-lg md:text-2xl mt-1 italic"
             style={{ fontFamily: 'var(--font-portal-display)', color: '#6B6B6B' }}
           >
-            Content Calendar — {brand.campaign.monthLabel}
+            Content Calendar — {monthNameLabel}
           </p>
           <div className="flex items-center gap-2 mt-4">
             <div
@@ -205,14 +305,20 @@ export default function BrandPartnerPortalClient({
               style={{ background: brand.brand.primary }}
             />
             <span className="text-sm font-medium" style={{ color: '#6B6B6B' }}>
-              Trial Period · {brand.campaign.period}
+              {activeContractStatus}
             </span>
           </div>
         </section>
 
         {/* Stat strip */}
         <section style={{ animation: 'portalFadeIn 0.5s ease 0.1s both' }}>
-          <StatStrip brand={brand} totalPosts={posts.length} typeCounts={typeCounts} />
+          <StatStrip 
+            brand={brand} 
+            totalPosts={activeMonthPosts.length} 
+            typeCounts={typeCounts} 
+            campaignTitle={activeCampaignTitle}
+            campaignPeriod={activePeriod}
+          />
         </section>
 
         {/* View toggle */}
@@ -226,8 +332,8 @@ export default function BrandPartnerPortalClient({
                 Content Planner
               </h2>
               <p className="text-sm mt-1" style={{ color: '#6B6B6B' }}>
-                {brand.campaign.monthLabel} · {posts.length} post
-                {posts.length === 1 ? '' : 's'} scheduled
+                {monthNameLabel} · {activeMonthPosts.length} post
+                {activeMonthPosts.length === 1 ? '' : 's'} scheduled
               </p>
             </div>
 
@@ -324,6 +430,13 @@ export default function BrandPartnerPortalClient({
                   setCreating({ scheduledDate: isoDate + 'T00:00:00.000Z' })
                 }
                 onMoveDate={mutations.moveToDate}
+                activeYear={activeYear}
+                activeMonthIdx={activeMonthIdx}
+                onMonthChange={(year, monthIdx) => {
+                  setActiveYear(year)
+                  setActiveMonthIdx(monthIdx)
+                }}
+                allMonthsInRange={allMonthsInRange}
               />
             )}
             {view === 'cards' && (

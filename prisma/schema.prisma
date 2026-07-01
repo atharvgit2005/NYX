@@ -123,6 +123,7 @@ model BrandPartner {
   viewers       PortalViewer[]
   brandKit      BrandKit?
   chatSessions  ChatSession[]
+  monthlySummaries MonthlySummary[]
 
   @@index([email])
   @@index([clientSlug])
@@ -487,4 +488,18 @@ model LLMCache {
   createdAt DateTime @default(now())
 
   @@index([expiresAt])
+}
+
+model MonthlySummary {
+  id             String       @id @default(cuid())
+  brandPartnerId String
+  brandPartner   BrandPartner @relation(fields: [brandPartnerId], references: [id], onDelete: Cascade)
+  year           Int
+  monthIndex     Int
+  content        String       @default("")
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@unique([brandPartnerId, year, monthIndex])
+  @@index([brandPartnerId])
 }

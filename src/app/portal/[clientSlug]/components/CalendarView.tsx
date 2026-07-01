@@ -38,6 +38,10 @@ interface Props {
   onCreateOnDay?: (isoDate: string) => void
   /** Admin-only: drag-reschedule landed on a different day. */
   onMoveDate?: (id: string, isoDate: string) => void
+  activeYear: number
+  activeMonthIdx: number
+  onMonthChange: (year: number, monthIdx: number) => void
+  allMonthsInRange: Date[]
 }
 
 // Code-split the admin drag layer. Partners never load this chunk —
@@ -126,60 +130,11 @@ export default function CalendarView({
   onEditPost,
   onCreateOnDay,
   onMoveDate,
+  activeYear,
+  activeMonthIdx,
+  onMonthChange,
+  allMonthsInRange,
 }: Props) {
-  // Generate list of all unique months in the campaign range (earliest post to latest post, padded)
-  const allMonthsInRange = useMemo(() => {
-    let earliest = startOfMonth(new Date())
-    let latest = startOfMonth(new Date())
-    if (posts.length > 0) {
-      const dates = posts.map((p) => new Date(p.scheduledDate))
-      earliest = startOfMonth(new Date(Math.min(...dates.map((d) => d.getTime()))))
-      latest = startOfMonth(new Date(Math.max(...dates.map((d) => d.getTime()))))
-    } else {
-      earliest = new Date(Date.UTC(brand.campaign.monthYear, brand.campaign.monthIndex, 1))
-      latest = new Date(Date.UTC(brand.campaign.monthYear, brand.campaign.monthIndex, 1))
-    }
-    
-    const list: Date[] = []
-    const cursor = new Date(earliest)
-    // Start 2 months before earliest
-    cursor.setUTCMonth(cursor.getUTCMonth() - 2)
-    const end = new Date(latest)
-    // End 2 months after latest
-    end.setUTCMonth(end.getUTCMonth() + 2)
-    
-    let count = 0
-    while (cursor <= end && count < 36) {
-      list.push(new Date(cursor))
-      cursor.setUTCMonth(cursor.getUTCMonth() + 1)
-      count++
-    }
-    return list
-  }, [posts, brand])
-
-  // Get index of the current real-world month in range
-  const initialIndex = useMemo(() => {
-    const todayDate = new Date()
-    const currentMonthIdx = allMonthsInRange.findIndex(
-      (m) =>
-        m.getUTCFullYear() === todayDate.getFullYear() &&
-        m.getUTCMonth() === todayDate.getMonth()
-    )
-    if (currentMonthIdx !== -1) return currentMonthIdx
-
-    // Fallback to brand configuration
-    const configMonthIdx = allMonthsInRange.findIndex(
-      (m) =>
-        m.getUTCFullYear() === brand.campaign.monthYear &&
-        m.getUTCMonth() === brand.campaign.monthIndex
-    )
-    return configMonthIdx !== -1 ? configMonthIdx : 0
-  }, [allMonthsInRange, brand])
-
-  const [activeYear, setActiveYear] = useState(() => allMonthsInRange[initialIndex].getUTCFullYear())
-  const [activeMonthIdx, setActiveMonthIdx] = useState(() => allMonthsInRange[initialIndex].getUTCMonth())
-  const [sliderIndex, setSliderIndex] = useState(initialIndex)
-
   const days = buildCalendarDays(activeYear, activeMonthIdx)
 
   const byDate: Record<string, SerializedPost[]> = {}
@@ -189,22 +144,6 @@ export default function CalendarView({
   }
 
   const today = brand.campaign.referenceToday
-
-  // Sync slider index when brand month configuration changes
-  useEffect(() => {
-    const idx = allMonthsInRange.findIndex(
-      (m) =>
-        m.getUTCFullYear() === brand.campaign.monthYear &&
-        m.getUTCMonth() === brand.campaign.monthIndex
-    )
-    if (idx !== -1) {
-      setSliderIndex(idx)
-      setActiveYear(brand.campaign.monthYear)
-      setActiveMonthIdx(brand.campaign.monthIndex)
-    }
-  }, [brand.campaign.monthYear, brand.campaign.monthIndex, allMonthsInRange])
-
-  const [showSummary, setShowSummary] = useState(true)
 
   const monthNameLabel = useMemo(() => {
     return new Date(Date.UTC(activeYear, activeMonthIdx, 1)).toLocaleDateString('en-US', {
@@ -241,41 +180,64 @@ export default function CalendarView({
     return groups
   }, [sortedPosts])
 
-  const summary = useMemo(() => {
-    const total = activeMonthPosts.length
-    let reels = 0
-    let carousels = 0
-    let photos = 0
-    let stories = 0
-    let posted = 0
-    let approved = 0
-    let pending = 0
+  const sliderIndex = useMemo(() => {
+    return allMonthsInRange.findIndex(
+      (m) =>
+        m.getUTCFullYear() === activeYear &&
+        m.getUTCMonth() === activeMonthIdx
+    )
+  }, [allMonthsInRange, activeYear, activeMonthIdx])
 
-    activeMonthPosts.forEach((p) => {
-      if (p.contentType === 'REEL' || p.contentType === 'REEL_STORY') reels++
-      else if (p.contentType === 'CAROUSEL') carousels++
-      else if (p.contentType === 'STATIC_POST') photos++
-      else if (p.contentType === 'STORY') stories++
+  const [monthlySummaryText, setMonthlySummaryText] = useState('')
+  const [isLoadingSummary, setIsLoadingSummary] = useState(false)
+  const [isSavingSummary, setIsSavingSummary] = useState(false)
+  const [showSaveSuccess, setShowSaveSuccess] = useState(false)
 
-      if (p.status === 'POSTED') posted++
-      else if (p.status === 'APPROVED') approved++
-      else pending++
-    })
-
-    const approvalRate = total > 0 ? Math.round(((posted + approved) / total) * 100) : 0
-
-    return {
-      total,
-      reels,
-      carousels,
-      photos,
-      stories,
-      posted,
-      approved,
-      pending,
-      approvalRate,
+  useEffect(() => {
+    let active = true
+    const fetchSummary = async () => {
+      setIsLoadingSummary(true)
+      try {
+        const res = await fetch(`/api/portal/${brand.slug}/monthly-summary?year=${activeYear}&monthIndex=${activeMonthIdx}`)
+        const data = await res.json()
+        if (active) {
+          setMonthlySummaryText(data.content ?? '')
+        }
+      } catch (err) {
+        console.error('Failed to fetch monthly summary', err)
+      } finally {
+        if (active) {
+          setIsLoadingSummary(false)
+        }
+      }
     }
-  }, [activeMonthPosts])
+    fetchSummary()
+    return () => {
+      active = false
+    }
+  }, [activeYear, activeMonthIdx, brand.slug])
+
+  const handleSaveSummary = async () => {
+    setIsSavingSummary(true)
+    setShowSaveSuccess(false)
+    try {
+      await fetch(`/api/portal/${brand.slug}/monthly-summary`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          year: activeYear,
+          monthIndex: activeMonthIdx,
+          content: monthlySummaryText,
+        }),
+      })
+      setShowSaveSuccess(true)
+      setTimeout(() => setShowSaveSuccess(false), 3000)
+    } catch (err) {
+      console.error('Failed to save monthly summary', err)
+    } finally {
+      setIsSavingSummary(false)
+    }
+  }
 
   const campaignFirst = posts.length
     ? Math.min(...posts.map((p) => new Date(p.scheduledDate).getDate()))
@@ -397,11 +359,9 @@ export default function CalendarView({
               value={sliderIndex}
               onChange={(e) => {
                 const idx = Number(e.target.value)
-                setSliderIndex(idx)
                 const targetMonth = allMonthsInRange[idx]
                 if (targetMonth) {
-                  setActiveYear(targetMonth.getUTCFullYear())
-                  setActiveMonthIdx(targetMonth.getUTCMonth())
+                  onMonthChange(targetMonth.getUTCFullYear(), targetMonth.getUTCMonth())
                 }
               }}
               className="portal-slider cursor-pointer"
@@ -418,9 +378,7 @@ export default function CalendarView({
                   <button
                     key={idx}
                     onClick={() => {
-                      setSliderIndex(idx)
-                      setActiveYear(m.getUTCFullYear())
-                      setActiveMonthIdx(m.getUTCMonth())
+                      onMonthChange(m.getUTCFullYear(), m.getUTCMonth())
                     }}
                     className="text-xs font-semibold tracking-tighter uppercase whitespace-nowrap transition-all px-3 py-1.5 rounded-full border"
                     style={{
@@ -469,102 +427,64 @@ export default function CalendarView({
         </div>
       )}
 
-      {/* Month Summary Section */}
+      {/* Month Preview Note Section */}
       <div 
-        className="p-5 rounded-2xl bg-white space-y-4 shadow-sm"
+        className="p-5 rounded-2xl bg-white space-y-4 shadow-sm transition-all"
         style={{ border: '1px solid #E8E4DC' }}
       >
-        <button
-          onClick={() => setShowSummary(!showSummary)}
-          className="flex items-center justify-between w-full text-left"
-        >
-          <div className="flex items-center gap-2">
-            <BarChart2 className="w-5 h-5 text-[#1A2A5E]" style={{ color: brand.brand.primary }} />
-            <span className="text-sm font-bold uppercase tracking-wider text-[#1A2A5E]" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
-              Month Summary ({monthNameLabel})
-            </span>
-          </div>
-          <div className="flex items-center gap-1.5 text-xs text-[#6B6B6B] font-semibold">
-            <span>{showSummary ? 'Collapse' : 'Expand'}</span>
-            {showSummary ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-          </div>
-        </button>
+        <div className="flex items-center gap-2 border-b border-[#FAF7F2] pb-2">
+          <ImageIcon className="w-5 h-5 text-[#1A2A5E]" style={{ color: brand.brand.primary }} />
+          <span className="text-sm font-bold uppercase tracking-wider text-[#1A2A5E]" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+            Month's Visual Direction & Focus
+          </span>
+        </div>
 
-        {showSummary && (
-          <div className="pt-2 grid grid-cols-1 md:grid-cols-3 gap-5 transition-all">
-            {/* Total & Approval Progress */}
-            <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#E8E4DC] flex flex-col justify-between space-y-3">
-              <div>
-                <p className="text-[10px] uppercase font-bold tracking-widest text-[#6B6B6B]">Approval Progress</p>
-                <div className="flex items-baseline gap-2 mt-1.5">
-                  <span className="text-3xl font-black text-[#1A2A5E]">{summary.approvalRate}%</span>
-                  <span className="text-xs text-[#6B6B6B] font-medium">Approved / Posted</span>
-                </div>
+        {viewerIsAdmin ? (
+          <div className="space-y-3">
+            <p className="text-xs text-[#6B6B6B]">
+              Describe the theme, aesthetic, styling, or key focus for this month's content. Partners will see this note at the top of their calendar.
+            </p>
+            <textarea
+              value={monthlySummaryText}
+              onChange={(e) => setMonthlySummaryText(e.target.value)}
+              placeholder="e.g. This month focuses on launching the summer dessert collection. We will use bright, natural lighting, warm tones, and dynamic transition reels..."
+              className="w-full min-h-[120px] p-3 border border-[#E8E4DC] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#1A2A5E] bg-[#FAF7F2] text-sm resize-y"
+              style={{ fontFamily: 'var(--font-portal-body)' }}
+              disabled={isLoadingSummary}
+            />
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={handleSaveSummary}
+                disabled={isSavingSummary || isLoadingSummary}
+                className="px-4 py-2 rounded-full text-xs font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+                style={{ background: brand.brand.primary }}
+              >
+                {isSavingSummary ? 'Saving...' : 'Save Notes'}
+              </button>
+              {showSaveSuccess && (
+                <span className="text-xs font-semibold text-green-600 animate-pulse">
+                  ✓ Notes saved successfully
+                </span>
+              )}
+            </div>
+          </div>
+        ) : (
+          <div className="min-h-[60px] flex flex-col justify-center">
+            {isLoadingSummary ? (
+              <p className="text-xs text-[#6B6B6B] animate-pulse">Loading visual direction notes...</p>
+            ) : monthlySummaryText ? (
+              <div 
+                className="text-sm leading-relaxed text-[#1A2A5E] whitespace-pre-wrap bg-[#FAF7F2] p-4 rounded-xl border border-[#E8E4DC]"
+                style={{ fontFamily: 'var(--font-portal-body)' }}
+              >
+                {monthlySummaryText}
               </div>
-              <div className="w-full bg-[#E8E4DC] rounded-full h-2">
-                <div 
-                  className="rounded-full h-2 transition-all duration-500" 
-                  style={{ 
-                    width: `${summary.approvalRate}%`,
-                    background: `linear-gradient(90deg, ${brand.brand.primary} 0%, ${brand.brand.accent || brand.brand.primary} 100%)`
-                  }}
-                />
-              </div>
-              <p className="text-xs text-[#6B6B6B] font-medium">
-                {summary.posted + summary.approved} of {summary.total} posts ready or live
+            ) : (
+              <p className="text-xs italic text-[#6B6B6B] bg-[#FAF7F2] p-4 rounded-xl border border-dashed border-[#E8E4DC]">
+                No specific visual direction notes set for this month yet.
               </p>
-            </div>
-
-            {/* Content Formats Mix */}
-            <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#E8E4DC] space-y-3">
-              <p className="text-[10px] uppercase font-bold tracking-widest text-[#6B6B6B]">Content Format Mix</p>
-              <div className="grid grid-cols-2 gap-2 text-xs font-semibold">
-                <div className="flex items-center gap-2 p-2 rounded-lg bg-white border border-[#F0EDE6]">
-                  <Film className="w-4 h-4 text-[#E91E8C]" />
-                  <span className="text-[#6B6B6B]">{summary.reels} Reels</span>
-                </div>
-                <div className="flex items-center gap-2 p-2 rounded-lg bg-white border border-[#F0EDE6]">
-                  <Layers className="w-4 h-4 text-[#0078A8]" />
-                  <span className="text-[#6B6B6B]">{summary.carousels} Carousels</span>
-                </div>
-                <div className="flex items-center gap-2 p-2 rounded-lg bg-white border border-[#F0EDE6]">
-                  <ImageIcon className="w-4 h-4 text-[#1A2A5E]" />
-                  <span className="text-[#6B6B6B]">{summary.photos} Photos</span>
-                </div>
-                <div className="flex items-center gap-2 p-2 rounded-lg bg-white border border-[#F0EDE6]">
-                  <BookOpen className="w-4 h-4 text-[#E91E8C]" />
-                  <span className="text-[#6B6B6B]">{summary.stories} Stories</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Workflow Stages */}
-            <div className="p-4 rounded-xl bg-[#FAF7F2] border border-[#E8E4DC] space-y-3">
-              <p className="text-[10px] uppercase font-bold tracking-widest text-[#6B6B6B]">Workflow Stage</p>
-              <div className="flex flex-col gap-2">
-                <div className="flex justify-between items-center text-xs font-semibold">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full" style={{ background: '#9C27B0' }} />
-                    <span className="text-[#6B6B6B]">Posted / Live</span>
-                  </div>
-                  <span className="px-2 py-0.5 rounded-full bg-[#F3E5F5] text-[#6A1B9A] text-[10px]">{summary.posted} posts</span>
-                </div>
-                <div className="flex justify-between items-center text-xs font-semibold">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full" style={{ background: '#4CAF50' }} />
-                    <span className="text-[#6B6B6B]">Approved</span>
-                  </div>
-                  <span className="px-2 py-0.5 rounded-full bg-[#E8F5E9] text-[#2E7D32] text-[10px]">{summary.approved} posts</span>
-                </div>
-                <div className="flex justify-between items-center text-xs font-semibold">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full" style={{ background: '#FF9800' }} />
-                    <span className="text-[#6B6B6B]">In Progress / Ideas</span>
-                  </div>
-                  <span className="px-2 py-0.5 rounded-full bg-[#FFF3E0] text-[#E65100] text-[10px]">{summary.pending} posts</span>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         )}
       </div>

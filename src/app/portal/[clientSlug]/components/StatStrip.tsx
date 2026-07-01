@@ -11,11 +11,13 @@ interface Props {
   brand: BrandConfig
   totalPosts: number
   typeCounts: Record<ContentType, number>
+  campaignTitle: string
+  campaignPeriod: string
 }
 
 const ORDER: ContentType[] = ['REEL', 'CAROUSEL', 'STATIC_POST', 'STORY', 'REEL_STORY']
 
-export default function StatStrip({ brand, totalPosts, typeCounts }: Props) {
+export default function StatStrip({ brand, totalPosts, typeCounts, campaignTitle, campaignPeriod }: Props) {
   const visible = ORDER.filter((t) => typeCounts[t] > 0)
 
   return (
@@ -32,7 +34,7 @@ export default function StatStrip({ brand, totalPosts, typeCounts }: Props) {
           className="text-xs font-semibold tracking-wider uppercase"
           style={{ color: '#6B6B6B' }}
         >
-          {brand.campaign.title} · {brand.campaign.period} · {brand.campaign.platform}
+          {campaignTitle} · {campaignPeriod} · {brand.campaign.platform}
         </p>
       </div>
 
