@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://www.nyxstudio.tech',
+  siteUrl: 'https://www.nyxstudio.in',
   generateRobotsTxt: true,
   sitemapSize: 7000,
   generateIndexSitemap: false,
@@ -57,7 +57,7 @@ module.exports = {
       return [
         ...blocks.flatMap((b, i) => (i === 0 ? b : ['', ...b])),
         '',
-        'Sitemap: https://www.nyxstudio.tech/sitemap.xml',
+        'Sitemap: https://www.nyxstudio.in/sitemap.xml',
         '',
       ].join('\n')
     },

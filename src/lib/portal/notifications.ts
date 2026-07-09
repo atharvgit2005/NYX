@@ -2,7 +2,7 @@ import { Resend } from 'resend'
 import prisma from '@/lib/prismadb'
 
 const FROM = process.env.RESEND_FROM_EMAIL ?? 'NYX Studio <onboarding@resend.dev>'
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.nyxstudio.tech'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.nyxstudio.in'
 
 let _client: Resend | null = null
 function getClient(): Resend | null {

@@ -112,8 +112,8 @@ function adapt(
     agency: {
       name: cfg.agencyContactName ?? 'NYX Studio',
       tagline: 'AI-Powered Content Studio',
-      email: cfg.agencyContactEmail ?? 'hello@nyxstudio.tech',
-      website: 'https://nyxstudio.tech',
+      email: cfg.agencyContactEmail ?? 'hello@nyxstudio.in',
+      website: 'https://nyxstudio.in',
     },
   }
 }

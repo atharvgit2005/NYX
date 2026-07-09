@@ -30,8 +30,8 @@ const videoSchemas = [
     "name": "Dessertino Happiness",
     "description": "A delightful exploration of sweetness and joy - cinematic food film by NYX Studio.",
     "thumbnailUrl": `${SITE_URL}${defaultOgImage.url}`,
-    "contentUrl": "https://www.nyxstudio.tech/videos/dessertino_happiness.mp4",
-    "url": "https://www.nyxstudio.tech/work",
+    "contentUrl": `${SITE_URL}/videos/dessertino_happiness.mp4`,
+    "url": `${SITE_URL}/work`,
     "duration": "PT19S",
     "uploadDate": "2026-01-01",
     "publisher": {
@@ -39,7 +39,7 @@ const videoSchemas = [
       "name": "NYX Studio",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.nyxstudio.tech/logo/NYX-Logo.png"
+        "url": `${SITE_URL}/logo/NYX-Logo.png`
       }
     }
   },
@@ -49,8 +49,8 @@ const videoSchemas = [
     "name": "Mango Jungle",
     "description": "Creative D2C product film by NYX Studio.",
     "thumbnailUrl": `${SITE_URL}${defaultOgImage.url}`,
-    "contentUrl": "https://www.nyxstudio.tech/videos/mango_jungle.mp4",
-    "url": "https://www.nyxstudio.tech/work",
+    "contentUrl": `${SITE_URL}/videos/mango_jungle.mp4`,
+    "url": `${SITE_URL}/work`,
     "duration": "PT15S",
     "uploadDate": "2026-01-01",
     "publisher": {
@@ -58,7 +58,7 @@ const videoSchemas = [
       "name": "NYX Studio",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.nyxstudio.tech/logo/NYX-Logo.png"
+        "url": `${SITE_URL}/logo/NYX-Logo.png`
       }
     }
   },
@@ -68,8 +68,8 @@ const videoSchemas = [
     "name": "Mango Shower",
     "description": "Art direction and creative production by NYX Studio for Dessertino.",
     "thumbnailUrl": `${SITE_URL}${defaultOgImage.url}`,
-    "contentUrl": "https://www.nyxstudio.tech/videos/mango_shower_dessertino.mp4",
-    "url": "https://www.nyxstudio.tech/work",
+    "contentUrl": `${SITE_URL}/videos/mango_shower_dessertino.mp4`,
+    "url": `${SITE_URL}/work`,
     "duration": "PT10S",
     "uploadDate": "2026-01-01",
     "publisher": {
@@ -77,7 +77,7 @@ const videoSchemas = [
       "name": "NYX Studio",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.nyxstudio.tech/logo/NYX-Logo.png"
+        "url": `${SITE_URL}/logo/NYX-Logo.png`
       }
     }
   },
@@ -87,8 +87,8 @@ const videoSchemas = [
     "name": "Brioso Unboxing",
     "description": "Product unboxing film - experience the reveal and product details.",
     "thumbnailUrl": `${SITE_URL}${defaultOgImage.url}`,
-    "contentUrl": "https://www.nyxstudio.tech/videos/brioso_unboxing.mp4",
-    "url": "https://www.nyxstudio.tech/work",
+    "contentUrl": `${SITE_URL}/videos/brioso_unboxing.mp4`,
+    "url": `${SITE_URL}/work`,
     "duration": "PT8S",
     "uploadDate": "2026-01-01",
     "publisher": {
@@ -96,7 +96,7 @@ const videoSchemas = [
       "name": "NYX Studio",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.nyxstudio.tech/logo/NYX-Logo.png"
+        "url": `${SITE_URL}/logo/NYX-Logo.png`
       }
     }
   }

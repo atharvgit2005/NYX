@@ -80,7 +80,7 @@ function LoginContent({ defaultCallbackUrl }: { defaultCallbackUrl: string }) {
                     <span className="text-[#e4beb5] group-hover:text-[#e5e2e1] transition-colors">REMEMBER_IDENTITY</span>
                 </label>
                 <a
-                    href="mailto:hello@nyxstudio.tech?subject=Access%20key%20recovery"
+                    href="mailto:hello@nyxstudio.in?subject=Access%20key%20recovery"
                     className="text-[#D83C14] hover:underline decoration-2 underline-offset-4"
                 >
                     FORGOT_KEY?

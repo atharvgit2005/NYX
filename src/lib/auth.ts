@@ -259,7 +259,7 @@ export const authOptions: AuthOptions = {
     pages: {
         signIn: '/portal/login',
     },
-    // Share the session cookie across nyxstudio.tech subdomains in production
+    // Share the session cookie across nyxstudio.in subdomains in production
     // so a single sign-in carries across any future subdomain we attach.
     // In dev/preview the cookie stays host-only, which is what we want.
     cookies:
@@ -272,7 +272,7 @@ export const authOptions: AuthOptions = {
                         sameSite: 'lax',
                         path: '/',
                         secure: true,
-                        domain: '.nyxstudio.tech',
+                        domain: '.nyxstudio.in',
                         // 30-day persistent cookie — match session.maxAge.
                         // Without this NextAuth defaults the cookie to a
                         // session-cookie (cleared on browser close), so

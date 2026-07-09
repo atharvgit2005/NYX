@@ -16,7 +16,7 @@ import prisma from '@/lib/prismadb'
 import { requirePartner } from '../_helpers'
 import { getContentPosts } from '@/lib/portal/content-store'
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.nyxstudio.tech'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.nyxstudio.in'
 
 export async function GET(
     _req: Request,
@@ -68,7 +68,7 @@ export async function GET(
 
         lines.push(
             'BEGIN:VEVENT',
-            `UID:${p.id}@nyxstudio.tech`,
+            `UID:${p.id}@nyxstudio.in`,
             `DTSTAMP:${now}`,
             `DTSTART;VALUE=DATE:${dt}`,
             `DTEND;VALUE=DATE:${dtEnd}`,

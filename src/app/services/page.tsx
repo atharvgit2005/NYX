@@ -243,7 +243,7 @@ const faqSchema = {
       name: "How do I start working with NYX Studio?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Send a brief via the contact page at nyxstudio.tech/contact. We respond within 48 hours with a fit assessment. If we're a fit, we run a 20-minute scoping call, propose a pack (Trial / Starter / Growth), and ship the first 3 assets within 7 business days of kickoff.",
+        text: "Send a brief via the contact page at nyxstudio.in/contact. We respond within 48 hours with a fit assessment. If we're a fit, we run a 20-minute scoping call, propose a pack (Trial / Starter / Growth), and ship the first 3 assets within 7 business days of kickoff.",
       },
     },
   ],
@@ -271,7 +271,7 @@ const howToOnboardingSchema = {
       position: 1,
       name: "Send a brief",
       text:
-        "Fill the contact form at nyxstudio.tech/contact with your brand, current revenue range, and what you want help with. We reply within 48 hours.",
+        "Fill the contact form at nyxstudio.in/contact with your brand, current revenue range, and what you want help with. We reply within 48 hours.",
       url: `${SITE_URL}/services#how-onboarding-works`,
     },
     {
@@ -596,7 +596,7 @@ export default function AdServicesPage() {
                     <p className="text-[#e5e2e1] text-base md:text-lg leading-relaxed">
                       Fill the contact form at{' '}
                       <Link href="/contact" className="underline decoration-[#5b403a] hover:decoration-[#D83C14]">
-                        nyxstudio.tech/contact
+                        nyxstudio.in/contact
                       </Link>{' '}
                       with your brand, current revenue range, and what you want help with.
                       We reply within 48 hours.
@@ -717,7 +717,7 @@ export default function AdServicesPage() {
                         </div>
                         <div>
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How do I start working with NYX Studio?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">Send a brief via the contact page at nyxstudio.tech/contact. We respond within 48 hours with a fit assessment. If we&apos;re a fit, we run a 20-minute scoping call, propose a pack (Trial / Starter / Growth), and ship the first 3 assets within 7 business days of kickoff.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">Send a brief via the contact page at nyxstudio.in/contact. We respond within 48 hours with a fit assessment. If we&apos;re a fit, we run a 20-minute scoping call, propose a pack (Trial / Starter / Growth), and ship the first 3 assets within 7 business days of kickoff.</dd>
                         </div>
                     </dl>
                 </div>
