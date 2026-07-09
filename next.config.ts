@@ -3,11 +3,25 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
-      // ── Canonical: nyxstudio.tech → www.nyxstudio.tech ────────────────
+      // Redirect nyxstudio.tech to www.nyxstudio.in
       {
         source: '/:path*',
         has: [{ type: 'host', value: 'nyxstudio.tech' }],
-        destination: 'https://www.nyxstudio.tech/:path*',
+        destination: 'https://www.nyxstudio.in/:path*',
+        permanent: true,
+      },
+      // Redirect www.nyxstudio.tech to www.nyxstudio.in
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.nyxstudio.tech' }],
+        destination: 'https://www.nyxstudio.in/:path*',
+        permanent: true,
+      },
+      // Redirect nyxstudio.in (non-www) to www.nyxstudio.in
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'nyxstudio.in' }],
+        destination: 'https://www.nyxstudio.in/:path*',
         permanent: true,
       },
     ];
