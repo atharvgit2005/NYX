@@ -160,7 +160,7 @@ export default function AuthGate({ config, slug, children }: Props) {
       <p className="mt-8 text-xs" style={{ color: '#6B6B6B', fontFamily: 'var(--font-inter)' }}>
         Built by{' '}
         <a
-          href="https://nyxstudio.tech"
+          href="https://nyxstudio.in"
           target="_blank"
           rel="noopener noreferrer"
           className="underline"

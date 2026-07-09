@@ -179,7 +179,7 @@ export const organizationSchema = {
   legalName: "NYX Studio",
   alternateName: "NYX",
   url: SITE_URL,
-  logo: `${SITE_URL}/logo/NYX-Logo.png`,
+  logo: `${SITE_URL}/logo/NYX-Logo-orange.png`,
   image: `${SITE_URL}/og-image.jpg`,
   description:
     "AI-native content and growth studio for D2C brands in India. We build cinematic films, paid creative, influencer ops, and content automation for direct-to-consumer brands selling in India.",

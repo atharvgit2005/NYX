@@ -81,11 +81,11 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/icon.png', sizes: '32x32', type: 'image/png' },
-      { url: '/logo/NYX-Logo-64.png', sizes: '64x64', type: 'image/png' },
-      { url: '/logo/NYX-Logo.png', sizes: '192x192', type: 'image/png' },
+      { url: '/logo/NYX-Logo-orange-64.png', sizes: '64x64', type: 'image/png' },
+      { url: '/logo/NYX-Logo-orange-192.png', sizes: '192x192', type: 'image/png' },
     ],
     shortcut: '/icon.png',
-    apple: '/logo/NYX-Logo.png',
+    apple: '/logo/NYX-Logo-orange-192.png',
   },
   // Stops iOS Safari from auto-linking phone numbers in marketing copy
   // — important here since the contact page lists email but no phone.

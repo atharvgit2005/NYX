@@ -39,7 +39,7 @@ const videoSchemas = [
       "name": "NYX Studio",
       "logo": {
         "@type": "ImageObject",
-        "url": `${SITE_URL}/logo/NYX-Logo.png`
+        "url": `${SITE_URL}/logo/NYX-Logo-orange.png`
       }
     }
   },
@@ -58,7 +58,7 @@ const videoSchemas = [
       "name": "NYX Studio",
       "logo": {
         "@type": "ImageObject",
-        "url": `${SITE_URL}/logo/NYX-Logo.png`
+        "url": `${SITE_URL}/logo/NYX-Logo-orange.png`
       }
     }
   },
@@ -77,7 +77,7 @@ const videoSchemas = [
       "name": "NYX Studio",
       "logo": {
         "@type": "ImageObject",
-        "url": `${SITE_URL}/logo/NYX-Logo.png`
+        "url": `${SITE_URL}/logo/NYX-Logo-orange.png`
       }
     }
   },
@@ -96,7 +96,7 @@ const videoSchemas = [
       "name": "NYX Studio",
       "logo": {
         "@type": "ImageObject",
-        "url": `${SITE_URL}/logo/NYX-Logo.png`
+        "url": `${SITE_URL}/logo/NYX-Logo-orange.png`
       }
     }
   }

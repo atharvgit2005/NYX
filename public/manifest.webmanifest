@@ -12,24 +12,24 @@
   "categories": ["business", "productivity", "lifestyle"],
   "icons": [
     {
-      "src": "/logo/NYX-Logo-64.png",
+      "src": "/logo/NYX-Logo-orange-64.png",
       "sizes": "64x64",
       "type": "image/png"
     },
     {
-      "src": "/logo/NYX-Logo.png",
+      "src": "/logo/NYX-Logo-orange-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/logo/NYX-Logo.png",
+      "src": "/logo/NYX-Logo-orange.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/logo/NYX-Logo.png",
+      "src": "/logo/NYX-Logo-orange.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
