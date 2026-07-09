@@ -483,14 +483,14 @@ export default function CalendarView({
         <div className="flex items-center gap-2 border-b border-[#FAF7F2] pb-2">
           <ImageIcon className="w-5 h-5 text-[#1A2A5E]" style={{ color: brand.brand.primary }} />
           <span className="text-sm font-bold uppercase tracking-wider text-[#1A2A5E]" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
-            Month's Visual Direction & Focus
+            {"Month's Visual Direction & Focus"}
           </span>
         </div>
 
         {viewerIsAdmin ? (
           <div className="space-y-3">
             <p className="text-xs text-[#6B6B6B]">
-              Describe the theme, aesthetic, styling, or key focus for this month's content. Partners will see this note at the top of their calendar.
+              {"Describe the theme, aesthetic, styling, or key focus for this month's content. Partners will see this note at the top of their calendar."}
             </p>
             <textarea
               value={monthlySummaryText}

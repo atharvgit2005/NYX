@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { Prisma } from '@prisma/client'
 import prisma from '@/lib/prismadb'
 import { requireAdmin } from '../_helpers'
 
@@ -13,7 +14,7 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url)
   const brandPartnerId = searchParams.get('brandPartnerId')
 
-  const where: any = {}
+  const where: Prisma.NotificationWhereInput = {}
   if (brandPartnerId) {
     where.brandPartnerId = brandPartnerId
   }

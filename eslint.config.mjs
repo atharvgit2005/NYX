@@ -20,6 +20,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Tooling/workspace patterns to ignore:
+    ".claude/**",
+    ".gemini/**",
+    ".gsd/**",
+    ".swarm/**",
+    ".vercel/**",
   ]),
 ]);
 
