@@ -78,4 +78,4 @@ Disallow: /portal
 Disallow: /clients/
 Disallow: /uploads/
 
-Sitemap: https://www.nyxstudio.tech/sitemap.xml
+Sitemap: https://www.nyxstudio.in/sitemap.xml
