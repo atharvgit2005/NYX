@@ -179,15 +179,15 @@ const faqSchema = {
       name: "What categories does NYX Studio specialize in?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We specialize in D2C brands across food, beverage, lifestyle, beauty, and apparel. Past partners include Dessertino, Mango Jungle, Mango Shower, and Brioso. We do not take on B2B SaaS, professional services, or non-D2C consumer brands.",
+        text: "We specialize in B2B, B2C, D2C, and Real Estate brands. Past partners include Dessertino, Habibs, Newton School, and many more.",
       },
     },
     {
       "@type": "Question",
-      name: "Do you only work with Indian D2C brands?",
+      name: "Do you only work with Indian brands?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Our core focus is D2C brands operating in India - food, beverage, lifestyle, beauty, and apparel categories. We're open to international D2C brands selling into India, but we don't take on B2B SaaS, professional services, or non-D2C consumer brands.",
+        text: "Our core focus is growth brands (B2B, B2C, D2C, and Real Estate) operating in India. We are also open to international brands targeting the Indian consumer ecosystem.",
       },
     },
     {
@@ -685,11 +685,11 @@ export default function AdServicesPage() {
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">What categories does NYX Studio specialize in?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">We specialize in D2C brands across food, beverage, lifestyle, beauty, and apparel. Past partners include Dessertino, Mango Jungle, Mango Shower, and Brioso. We do not take on B2B SaaS, professional services, or non-D2C consumer brands.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">We specialize in B2B, B2C, D2C, and Real Estate brands. Past partners include Dessertino, Habibs, Newton School, and many more.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
-                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Do you only work with Indian D2C brands?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">Our core focus is D2C brands operating in India - food, beverage, lifestyle, beauty, and apparel categories. We&apos;re open to international D2C brands selling into India, but we don&apos;t take on B2B SaaS, professional services, or non-D2C consumer brands.</dd>
+                            <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Do you only work with Indian brands?</dt>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">Our core focus is growth brands (B2B, B2C, D2C, and Real Estate) operating in India. We&apos;re open to international brands looking to target the Indian consumer ecosystem.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">How are AI-generated videos different from traditional shoots?</dt>

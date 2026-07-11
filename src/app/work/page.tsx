@@ -102,6 +102,77 @@ const videoSchemas = [
   }
 ];
 
+const PARTNERS = [
+  {
+    name: "Dessertino",
+    category: "D2C Food & Beverage",
+    color: "group-hover:bg-[#d83c14]/10 group-hover:border-[#d83c14]",
+    svg: (
+      <svg viewBox="0 0 160 40" className="h-6 w-auto text-white group-hover:text-[#F97316] transition-colors fill-current" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="10" width="20" height="20" rx="3" fill="#D83C14" />
+        <path d="M12 15 L18 15 L15 25 Z" fill="white" />
+        <text x="35" y="26" className="font-headline font-bold text-sm tracking-tight fill-current">DESSERTINO</text>
+      </svg>
+    )
+  },
+  {
+    name: "Habibs",
+    category: "B2C Hair & Beauty",
+    color: "group-hover:bg-[#ffd65b]/10 group-hover:border-[#ffd65b]",
+    svg: (
+      <svg viewBox="0 0 160 40" className="h-6 w-auto text-white group-hover:text-[#ffd65b] transition-colors fill-current" xmlns="http://www.w3.org/2000/svg">
+        <text x="10" y="27" className="font-serif italic font-extrabold text-lg tracking-[0.15em] fill-current">HABIBS</text>
+      </svg>
+    )
+  },
+  {
+    name: "Newton School",
+    category: "B2B / EdTech",
+    color: "group-hover:bg-[#00c6ff]/10 group-hover:border-[#00c6ff]",
+    svg: (
+      <svg viewBox="0 0 160 40" className="h-6 w-auto text-white group-hover:text-[#00c6ff] transition-colors fill-current" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="5,20 12,10 26,10 33,20 26,30 12,30" fill="#00c6ff" />
+        <text x="16" y="24" className="font-sans font-black text-[10px] fill-black text-center" textAnchor="middle">N</text>
+        <text x="38" y="26" className="font-sans font-black text-[10px] tracking-tighter fill-current">NEWTON SCHOOL</text>
+      </svg>
+    )
+  },
+  {
+    name: "Vertex Realty",
+    category: "B2B / Real Estate",
+    color: "group-hover:bg-[#ff3b30]/10 group-hover:border-[#ff3b30]",
+    svg: (
+      <svg viewBox="0 0 160 40" className="h-6 w-auto text-white group-hover:text-[#ff3b30] transition-colors fill-current" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 25 L15 10 L25 25 Z" fill="#D83C14" />
+        <path d="M20 25 L25 18 L30 25 Z" fill="white" opacity="0.8" />
+        <text x="36" y="26" className="font-headline font-black text-[10px] tracking-widest fill-current">VERTEX REALTY</text>
+      </svg>
+    )
+  },
+  {
+    name: "Mango Jungle",
+    category: "D2C Beverage",
+    color: "group-hover:bg-[#4ade80]/10 group-hover:border-[#4ade80]",
+    svg: (
+      <svg viewBox="0 0 160 40" className="h-6 w-auto text-white group-hover:text-[#4ade80] transition-colors fill-current" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="15" cy="20" r="10" fill="#ffd65b" />
+        <path d="M12 15 C15 15, 18 12, 18 10 C18 12, 22 15, 22 15 Z" fill="#4ade80" />
+        <text x="32" y="26" className="font-headline font-black text-[10px] tracking-tight fill-current">MANGO JUNGLE</text>
+      </svg>
+    )
+  },
+  {
+    name: "Brioso",
+    category: "D2C Apparel & Lifestyle",
+    color: "group-hover:bg-[#F2A7C3]/10 group-hover:border-[#F2A7C3]",
+    svg: (
+      <svg viewBox="0 0 160 40" className="h-6 w-auto text-white group-hover:text-[#F2A7C3] transition-colors fill-current" xmlns="http://www.w3.org/2000/svg">
+        <text x="10" y="27" className="font-headline font-black text-lg tracking-[0.1em] fill-current">BRIOSO</text>
+      </svg>
+    )
+  }
+];
+
 export default function AdWorkPage() {
     return (
         <>
@@ -140,8 +211,41 @@ export default function AdWorkPage() {
                         </div>
                     </header>
 
-                    {/* Interactive Asymmetric Bento Grid */}
-                    <WorkGrid />
+                    {/* Two-Column Layout: Bento Grid + Trusted Partner Logos */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-20 md:mb-32">
+                        {/* Left/Main Column: Work Grid */}
+                        <div className="lg:col-span-9">
+                            <WorkGrid />
+                        </div>
+
+                        {/* Right/Sidebar Column: Brand Logo Registry */}
+                        <div className="lg:col-span-3 border-4 border-black bg-[#0d0d0d] p-6 relative zine-shadow select-none">
+                            {/* Registration marks */}
+                            <div className="absolute top-2 left-2 text-[#D83C14] text-xs font-bold">+</div>
+                            <div className="absolute bottom-2 right-2 text-[#D83C14] text-xs font-bold">+</div>
+
+                            <span className="font-label text-primary uppercase text-xs tracking-widest block mb-3">* CLIENT_REGISTRY</span>
+                            <h2 className="font-headline text-3xl font-black uppercase tracking-tight mb-6 border-b-4 border-black pb-4 text-white">
+                                TRUSTED BY
+                            </h2>
+
+                            <div className="grid grid-cols-2 lg:grid-cols-1 gap-4">
+                                {PARTNERS.map((partner) => (
+                                    <div
+                                        key={partner.name}
+                                        className={`group border-2 border-neutral-800 bg-[#121212] p-4 flex flex-col justify-between min-h-[96px] transition-all duration-300 ${partner.color}`}
+                                    >
+                                        <div className="flex items-center justify-start flex-grow">
+                                            {partner.svg}
+                                        </div>
+                                        <span className="font-label text-[9px] uppercase tracking-widest text-neutral-500 group-hover:text-neutral-300 mt-3 block">
+                                            {partner.category}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
 
                     {/* Next Project CTA */}
                     <section className="mt-20 md:mt-32 mb-12 border-4 border-black bg-[#ffb4a2] p-6 sm:p-10 md:p-16 relative overflow-hidden group">
