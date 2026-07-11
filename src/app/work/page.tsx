@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { WorkAnimations } from "../components/WorkAnimations";
 import { WorkGrid } from "../components/WorkGrid";
 import "../page.css";
@@ -149,17 +148,13 @@ export default function AdWorkPage() {
                             {/* Cards grid */}
                             <div className="grid grid-cols-2 md:grid-cols-4 divide-y-4 md:divide-y-0 md:divide-x-4 divide-black">
                                 {/* Dessertino */}
-                                <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[160px] hover:bg-[#121212] transition-colors duration-300">
-                                    <div className="mb-4 h-12 w-full flex items-center justify-center relative">
-                                        <div className="relative h-8 w-28" style={{ mixBlendMode: 'screen' }}>
-                                            <Image
-                                                src="/logo/Dessertino-Logo.png"
-                                                alt="Dessertino"
-                                                fill
-                                                className="object-contain filter invert grayscale brightness-[1.5]"
-                                                unoptimized
-                                            />
-                                        </div>
+                                <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[200px] hover:bg-[#121212] transition-colors duration-300">
+                                    <div className="mb-6 h-20 w-full flex items-center justify-center relative">
+                                        <svg viewBox="0 0 40 40" className="h-16 w-16 text-[#e13b3f] fill-current" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="20" cy="20" r="18" />
+                                            <path d="M14 16 h12 v14 a6 6 0 0 1 -12 0 z" fill="white" />
+                                            <path d="M22 16 l3 -8" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+                                        </svg>
                                     </div>
                                     <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors duration-300">
                                         DESSERTINO
@@ -167,17 +162,14 @@ export default function AdWorkPage() {
                                 </div>
 
                                 {/* Habibs */}
-                                <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[160px] hover:bg-[#121212] transition-colors duration-300">
-                                    <div className="mb-4 h-12 w-full flex items-center justify-center relative">
-                                        <div className="relative h-6 w-24" style={{ mixBlendMode: 'screen' }}>
-                                            <Image
-                                                src="/logo/Habibs.png"
-                                                alt="Habibs"
-                                                fill
-                                                className="object-contain filter invert grayscale brightness-[1.5]"
-                                                unoptimized
-                                            />
-                                        </div>
+                                <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[200px] hover:bg-[#121212] transition-colors duration-300">
+                                    <div className="mb-6 h-20 w-full flex items-center justify-center relative">
+                                        <svg viewBox="0 0 40 40" className="h-16 w-16 text-[#D83C14] fill-current" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="15" cy="28" r="5" />
+                                            <circle cx="25" cy="28" r="5" />
+                                            <line x1="17" y1="24" x2="23" y2="8" stroke="currentColor" strokeWidth="2.5" />
+                                            <line x1="23" y1="24" x2="17" y2="8" stroke="currentColor" strokeWidth="2.5" />
+                                        </svg>
                                     </div>
                                     <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors duration-300">
                                         HABIBS
@@ -185,17 +177,12 @@ export default function AdWorkPage() {
                                 </div>
 
                                 {/* Newton School */}
-                                <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[160px] hover:bg-[#121212] transition-colors duration-300">
-                                    <div className="mb-4 h-12 w-full flex items-center justify-center relative">
-                                        <div className="relative h-6 w-28" style={{ mixBlendMode: 'screen' }}>
-                                            <Image
-                                                src="/logo/Newton-School.png"
-                                                alt="Newton School"
-                                                fill
-                                                className="object-contain filter grayscale brightness-[1.5]"
-                                                unoptimized
-                                            />
-                                        </div>
+                                <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[200px] hover:bg-[#121212] transition-colors duration-300">
+                                    <div className="mb-6 h-20 w-full flex items-center justify-center relative">
+                                        <svg viewBox="0 0 40 40" className="h-16 w-16 text-[#00F2FE]" xmlns="http://www.w3.org/2000/svg">
+                                            <polygon points="20,4 34,12 34,28 20,36 6,28 6,12" fill="none" stroke="currentColor" strokeWidth="3" />
+                                            <text x="20" y="25" fill="white" dominantBaseline="middle" textAnchor="middle" className="font-sans font-black text-lg">N</text>
+                                        </svg>
                                     </div>
                                     <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors duration-300">
                                         NEWTON SCHOOL
@@ -203,13 +190,13 @@ export default function AdWorkPage() {
                                 </div>
 
                                 {/* & Many More */}
-                                <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[160px] hover:bg-[#121212] transition-colors duration-300">
-                                    <div className="mb-4 h-12 flex items-center justify-center text-neutral-600 group-hover:text-white transition-colors">
-                                        <svg viewBox="0 0 40 40" className="h-10 w-10 fill-none stroke-current" strokeWidth="2.5" xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="20" cy="20" r="12" />
-                                            <circle cx="15" cy="20" r="1.5" fill="currentColor" />
-                                            <circle cx="20" cy="20" r="1.5" fill="currentColor" />
-                                            <circle cx="25" cy="20" r="1.5" fill="currentColor" />
+                                <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[200px] hover:bg-[#121212] transition-colors duration-300">
+                                    <div className="mb-6 h-20 w-full flex items-center justify-center relative">
+                                        <svg viewBox="0 0 40 40" className="h-16 w-16 text-neutral-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" strokeWidth="2.5" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="20" cy="20" r="14" />
+                                            <circle cx="14" cy="20" r="2" fill="currentColor" />
+                                            <circle cx="20" cy="20" r="2" fill="currentColor" />
+                                            <circle cx="26" cy="20" r="2" fill="currentColor" />
                                         </svg>
                                     </div>
                                     <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors duration-300">
