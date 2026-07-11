@@ -149,9 +149,9 @@ export default function AdWorkPage() {
                             {/* Cards grid */}
                             <div className="grid grid-cols-2 md:grid-cols-4 divide-y-4 md:divide-y-0 md:divide-x-4 divide-black">
                                 {/* Dessertino */}
-                                <div className="p-8 flex flex-col items-center justify-center text-center bg-white group min-h-[200px] transition-colors duration-300">
-                                    <div className="mb-6 h-20 w-full flex items-center justify-center relative">
-                                        <div className="relative h-12 w-40">
+                                <div className="p-6 flex flex-col items-center justify-center text-center bg-[#009ee2] group min-h-[220px] transition-colors duration-300 relative overflow-hidden">
+                                    <div className="mb-4 h-24 w-full flex items-center justify-center relative overflow-hidden">
+                                        <div className="relative h-16 w-36 scale-[1.8]">
                                             <Image
                                                 src="/logo/Dessertino-Logo.png"
                                                 alt="Dessertino"
@@ -161,15 +161,15 @@ export default function AdWorkPage() {
                                             />
                                         </div>
                                     </div>
-                                    <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-black transition-colors duration-300">
+                                    <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-white">
                                         DESSERTINO
                                     </span>
                                 </div>
 
                                 {/* Habibs */}
-                                <div className="p-8 flex flex-col items-center justify-center text-center bg-white group min-h-[200px] transition-colors duration-300">
-                                    <div className="mb-6 h-20 w-full flex items-center justify-center relative">
-                                        <div className="relative h-10 w-32">
+                                <div className="p-6 flex flex-col items-center justify-center text-center bg-white group min-h-[220px] transition-colors duration-300 relative overflow-hidden">
+                                    <div className="mb-4 h-24 w-full flex items-center justify-center relative overflow-hidden">
+                                        <div className="relative h-14 w-32 scale-[1.8]">
                                             <Image
                                                 src="/logo/Habibs.png"
                                                 alt="Habibs"
@@ -179,15 +179,15 @@ export default function AdWorkPage() {
                                             />
                                         </div>
                                     </div>
-                                    <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-black transition-colors duration-300">
+                                    <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-800">
                                         HABIBS
                                     </span>
                                 </div>
 
                                 {/* Newton School */}
-                                <div className="p-8 flex flex-col items-center justify-center text-center bg-[#0d0d0d] group min-h-[200px] hover:bg-[#121212] transition-colors duration-300">
-                                    <div className="mb-6 h-20 w-full flex items-center justify-center relative">
-                                        <div className="relative h-10 w-36">
+                                <div className="p-6 flex flex-col items-center justify-center text-center bg-[#0d0d0d] group min-h-[220px] hover:bg-[#121212] transition-colors duration-300 relative overflow-hidden">
+                                    <div className="mb-4 h-24 w-full flex items-center justify-center relative overflow-hidden">
+                                        <div className="relative h-14 w-36 scale-[1.8]">
                                             <Image
                                                 src="/logo/Newton-School.png"
                                                 alt="Newton School"
@@ -197,20 +197,22 @@ export default function AdWorkPage() {
                                             />
                                         </div>
                                     </div>
-                                    <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors duration-300">
+                                    <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-400 group-hover:text-white transition-colors duration-300">
                                         NEWTON SCHOOL
                                     </span>
                                 </div>
 
                                 {/* & Many More */}
-                                <div className="p-8 flex flex-col items-center justify-center text-center bg-[#0d0d0d] group min-h-[200px] hover:bg-[#121212] transition-colors duration-300">
-                                    <div className="mb-6 h-20 w-full flex items-center justify-center relative">
-                                        <svg viewBox="0 0 40 40" className="h-16 w-16 text-neutral-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" strokeWidth="2.5" xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="20" cy="20" r="12" fill="none" />
-                                            <circle cx="15" cy="20" r="1.5" fill="currentColor" />
-                                            <circle cx="20" cy="20" r="1.5" fill="currentColor" />
-                                            <circle cx="25" cy="20" r="1.5" fill="currentColor" />
-                                        </svg>
+                                <div className="p-6 flex flex-col items-center justify-center text-center bg-[#0d0d0d] group min-h-[220px] hover:bg-[#121212] transition-colors duration-300 relative overflow-hidden">
+                                    <div className="mb-4 h-24 w-full flex items-center justify-center relative overflow-hidden">
+                                        <div className="scale-[1.3]">
+                                            <svg viewBox="0 0 40 40" className="h-16 w-16 text-neutral-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" strokeWidth="2.5" xmlns="http://www.w3.org/2000/svg">
+                                                <circle cx="20" cy="20" r="12" fill="none" />
+                                                <circle cx="15" cy="20" r="1.5" fill="currentColor" />
+                                                <circle cx="20" cy="20" r="1.5" fill="currentColor" />
+                                                <circle cx="25" cy="20" r="1.5" fill="currentColor" />
+                                            </svg>
+                                        </div>
                                     </div>
                                     <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors duration-300">
                                         &amp; MANY MORE
