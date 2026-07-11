@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { WorkAnimations } from "../components/WorkAnimations";
 import { WorkGrid } from "../components/WorkGrid";
 import "../page.css";
@@ -8,7 +9,7 @@ import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 
 import SchemaOrg from "@/components/SchemaOrg";
-import { breadcrumbSchema, createMarketingMetadata, SITE_URL, defaultOgImage } from "@/lib/seo";
+import { breadcrumbSchema, createMarketingMetadata, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = createMarketingMetadata({
   title: 'Work That Sells — D2C Creative Portfolio',
@@ -27,13 +28,13 @@ const videoSchemas = [
   {
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    "name": "Dessertino Happiness",
-    "description": "A delightful exploration of sweetness and joy - cinematic food film by NYX Studio.",
-    "thumbnailUrl": `${SITE_URL}${defaultOgImage.url}`,
+    "name": "Dessertino Happiness Brand Film",
+    "description": "Cinematic D2C product commercial created for Dessertino by NYX Studio.",
+    "thumbnailUrl": `${SITE_URL}/og-image.jpg`,
+    "uploadDate": "2026-06-15T08:00:00Z",
     "contentUrl": `${SITE_URL}/videos/dessertino_happiness.mp4`,
-    "url": `${SITE_URL}/work`,
-    "duration": "PT19S",
-    "uploadDate": "2026-01-01",
+    "embedUrl": `${SITE_URL}/work`,
+    "duration": "PT0M24S",
     "publisher": {
       "@type": "Organization",
       "name": "NYX Studio",
@@ -46,13 +47,13 @@ const videoSchemas = [
   {
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    "name": "Mango Jungle",
-    "description": "Creative D2C product film by NYX Studio.",
-    "thumbnailUrl": `${SITE_URL}${defaultOgImage.url}`,
+    "name": "Mango Jungle Product Film",
+    "description": "Aggressive, high-hook product film for Mango Jungle beverage.",
+    "thumbnailUrl": `${SITE_URL}/og-image.jpg`,
+    "uploadDate": "2026-06-16T08:00:00Z",
     "contentUrl": `${SITE_URL}/videos/mango_jungle.mp4`,
-    "url": `${SITE_URL}/work`,
-    "duration": "PT15S",
-    "uploadDate": "2026-01-01",
+    "embedUrl": `${SITE_URL}/work`,
+    "duration": "PT0M24S",
     "publisher": {
       "@type": "Organization",
       "name": "NYX Studio",
@@ -65,13 +66,13 @@ const videoSchemas = [
   {
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    "name": "Mango Shower",
-    "description": "Art direction and creative production by NYX Studio for Dessertino.",
-    "thumbnailUrl": `${SITE_URL}${defaultOgImage.url}`,
+    "name": "Mango Shower Commercial",
+    "description": "Creative visual concept for Mango Shower Dessertino variant.",
+    "thumbnailUrl": `${SITE_URL}/og-image.jpg`,
+    "uploadDate": "2026-06-17T08:00:00Z",
     "contentUrl": `${SITE_URL}/videos/mango_shower_dessertino.mp4`,
-    "url": `${SITE_URL}/work`,
-    "duration": "PT10S",
-    "uploadDate": "2026-01-01",
+    "embedUrl": `${SITE_URL}/work`,
+    "duration": "PT0M24S",
     "publisher": {
       "@type": "Organization",
       "name": "NYX Studio",
@@ -84,13 +85,13 @@ const videoSchemas = [
   {
     "@context": "https://schema.org",
     "@type": "VideoObject",
-    "name": "Brioso Unboxing",
-    "description": "Product unboxing film - experience the reveal and product details.",
-    "thumbnailUrl": `${SITE_URL}${defaultOgImage.url}`,
+    "name": "Brioso Unboxing Experience",
+    "description": "Zine-style cinematic unboxing campaign for Brioso apparel brand.",
+    "thumbnailUrl": `${SITE_URL}/og-image.jpg`,
+    "uploadDate": "2026-06-18T08:00:00Z",
     "contentUrl": `${SITE_URL}/videos/brioso_unboxing.mp4`,
-    "url": `${SITE_URL}/work`,
-    "duration": "PT8S",
-    "uploadDate": "2026-01-01",
+    "embedUrl": `${SITE_URL}/work`,
+    "duration": "PT0M24S",
     "publisher": {
       "@type": "Organization",
       "name": "NYX Studio",
@@ -106,70 +107,20 @@ const PARTNERS = [
   {
     name: "Dessertino",
     category: "D2C Food & Beverage",
-    color: "group-hover:bg-[#d83c14]/10 group-hover:border-[#d83c14]",
-    svg: (
-      <svg viewBox="0 0 160 40" className="h-6 w-auto text-white group-hover:text-[#F97316] transition-colors fill-current" xmlns="http://www.w3.org/2000/svg">
-        <rect x="5" y="10" width="20" height="20" rx="3" fill="#D83C14" />
-        <path d="M12 15 L18 15 L15 25 Z" fill="white" />
-        <text x="35" y="26" className="font-headline font-bold text-sm tracking-tight fill-current">DESSERTINO</text>
-      </svg>
-    )
+    color: "hover:bg-[#d83c14]/10 hover:border-[#d83c14]",
+    image: "/logo/Dessertino-Logo.png"
   },
   {
     name: "Habibs",
     category: "B2C Hair & Beauty",
-    color: "group-hover:bg-[#ffd65b]/10 group-hover:border-[#ffd65b]",
-    svg: (
-      <svg viewBox="0 0 160 40" className="h-6 w-auto text-white group-hover:text-[#ffd65b] transition-colors fill-current" xmlns="http://www.w3.org/2000/svg">
-        <text x="10" y="27" className="font-serif italic font-extrabold text-lg tracking-[0.15em] fill-current">HABIBS</text>
-      </svg>
-    )
+    color: "hover:bg-[#ffd65b]/10 hover:border-[#ffd65b]",
+    image: "/logo/Habibs.png"
   },
   {
     name: "Newton School",
     category: "B2B / EdTech",
-    color: "group-hover:bg-[#00c6ff]/10 group-hover:border-[#00c6ff]",
-    svg: (
-      <svg viewBox="0 0 160 40" className="h-6 w-auto text-white group-hover:text-[#00c6ff] transition-colors fill-current" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="5,20 12,10 26,10 33,20 26,30 12,30" fill="#00c6ff" />
-        <text x="16" y="24" className="font-sans font-black text-[10px] fill-black text-center" textAnchor="middle">N</text>
-        <text x="38" y="26" className="font-sans font-black text-[10px] tracking-tighter fill-current">NEWTON SCHOOL</text>
-      </svg>
-    )
-  },
-  {
-    name: "Vertex Realty",
-    category: "B2B / Real Estate",
-    color: "group-hover:bg-[#ff3b30]/10 group-hover:border-[#ff3b30]",
-    svg: (
-      <svg viewBox="0 0 160 40" className="h-6 w-auto text-white group-hover:text-[#ff3b30] transition-colors fill-current" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 25 L15 10 L25 25 Z" fill="#D83C14" />
-        <path d="M20 25 L25 18 L30 25 Z" fill="white" opacity="0.8" />
-        <text x="36" y="26" className="font-headline font-black text-[10px] tracking-widest fill-current">VERTEX REALTY</text>
-      </svg>
-    )
-  },
-  {
-    name: "Mango Jungle",
-    category: "D2C Beverage",
-    color: "group-hover:bg-[#4ade80]/10 group-hover:border-[#4ade80]",
-    svg: (
-      <svg viewBox="0 0 160 40" className="h-6 w-auto text-white group-hover:text-[#4ade80] transition-colors fill-current" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="15" cy="20" r="10" fill="#ffd65b" />
-        <path d="M12 15 C15 15, 18 12, 18 10 C18 12, 22 15, 22 15 Z" fill="#4ade80" />
-        <text x="32" y="26" className="font-headline font-black text-[10px] tracking-tight fill-current">MANGO JUNGLE</text>
-      </svg>
-    )
-  },
-  {
-    name: "Brioso",
-    category: "D2C Apparel & Lifestyle",
-    color: "group-hover:bg-[#F2A7C3]/10 group-hover:border-[#F2A7C3]",
-    svg: (
-      <svg viewBox="0 0 160 40" className="h-6 w-auto text-white group-hover:text-[#F2A7C3] transition-colors fill-current" xmlns="http://www.w3.org/2000/svg">
-        <text x="10" y="27" className="font-headline font-black text-lg tracking-[0.1em] fill-current">BRIOSO</text>
-      </svg>
-    )
+    color: "hover:bg-[#00c6ff]/10 hover:border-[#00c6ff]",
+    image: "/logo/Newton-School.png"
   }
 ];
 
@@ -219,7 +170,7 @@ export default function AdWorkPage() {
                         </div>
 
                         {/* Right/Sidebar Column: Brand Logo Registry */}
-                        <div className="lg:col-span-3 border-4 border-black bg-[#0d0d0d] p-6 relative zine-shadow select-none">
+                        <div className="lg:col-span-3 border-4 border-black bg-[#0d0d0d] p-6 relative zine-shadow select-none w-full">
                             {/* Registration marks */}
                             <div className="absolute top-2 left-2 text-[#D83C14] text-xs font-bold">+</div>
                             <div className="absolute bottom-2 right-2 text-[#D83C14] text-xs font-bold">+</div>
@@ -233,16 +184,28 @@ export default function AdWorkPage() {
                                 {PARTNERS.map((partner) => (
                                     <div
                                         key={partner.name}
-                                        className={`group border-2 border-neutral-800 bg-[#121212] p-4 flex flex-col justify-between min-h-[96px] transition-all duration-300 ${partner.color}`}
+                                        className={`group border-2 border-neutral-800 bg-[#121212] p-4 flex flex-col justify-between min-h-[110px] transition-all duration-300 ${partner.color}`}
                                     >
-                                        <div className="flex items-center justify-start flex-grow">
-                                            {partner.svg}
+                                        <div className="flex items-center justify-start flex-grow relative h-10 w-full">
+                                            <Image
+                                                src={partner.image}
+                                                alt={partner.name}
+                                                fill
+                                                className="object-contain object-left filter brightness-0 invert opacity-60 group-hover:opacity-100 group-hover:filter-none transition-all duration-300"
+                                            />
                                         </div>
-                                        <span className="font-label text-[9px] uppercase tracking-widest text-neutral-500 group-hover:text-neutral-300 mt-3 block">
+                                        <span className="font-label text-[9px] uppercase tracking-widest text-neutral-500 group-hover:text-neutral-300 mt-4 block">
                                             {partner.category}
                                         </span>
                                     </div>
                                 ))}
+
+                                {/* "& Many More" Card */}
+                                <div className="group border-2 border-dashed border-neutral-700 bg-transparent p-4 flex flex-col justify-center items-center min-h-[110px] transition-all duration-300 hover:border-[#D83C14] hover:bg-[#D83C14]/5 text-center">
+                                    <span className="font-headline text-base font-bold text-neutral-400 group-hover:text-white uppercase tracking-wider">
+                                        &amp; Many More...
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
