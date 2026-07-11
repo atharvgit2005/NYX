@@ -103,23 +103,7 @@ const videoSchemas = [
   }
 ];
 
-const PARTNERS = [
-  {
-    name: "Dessertino",
-    image: "/logo/Dessertino-Logo.png",
-    width: "w-28 sm:w-32"
-  },
-  {
-    name: "Habibs",
-    image: "/logo/Habibs.png",
-    width: "w-24 sm:w-28"
-  },
-  {
-    name: "Newton School",
-    image: "/logo/Newton-School.png",
-    width: "w-32 sm:w-36"
-  }
-];
+
 
 export default function AdWorkPage() {
     return (
@@ -153,21 +137,50 @@ export default function AdWorkPage() {
                             <span className="block">CONCEPTS &</span>
                             <span className="text-[#D83C14] block">EARLY WORK</span>
                         </h1>
-                        <div className="mt-8 pt-6 border-t-2 border-neutral-800">
-                            <p className="font-label text-secondary uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-4">* CLIENT_REGISTRY</p>
-                            <div className="flex flex-wrap items-center gap-x-8 md:gap-x-12 gap-y-6">
-                                {PARTNERS.map((partner) => (
-                                    <div key={partner.name} className={`relative h-8 md:h-10 ${partner.width} flex items-center justify-start`}>
+                        <div className="mt-12 pt-8 border-t-2 border-neutral-800">
+                            <p className="font-label text-secondary uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-6">* TRUSTED_BY</p>
+                            <div className="flex flex-wrap items-center gap-6 md:gap-8">
+                                {/* Dessertino Card */}
+                                <div className="bg-white border-2 border-black px-5 py-2 flex items-center justify-center h-14 w-44 shadow-[4px_4px_0px_#000000] rounded-none">
+                                    <div className="relative h-10 w-full">
                                         <Image
-                                            src={partner.image}
-                                            alt={partner.name}
+                                            src="/logo/Dessertino-Logo.png"
+                                            alt="Dessertino"
                                             fill
-                                            className="object-contain object-left"
+                                            className="object-contain"
                                         />
                                     </div>
-                                ))}
-                                <div className="font-headline text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-neutral-400 whitespace-nowrap">
-                                    &amp; MANY MORE...
+                                </div>
+
+                                {/* Habibs Card */}
+                                <div className="bg-white border-2 border-black px-5 py-2 flex items-center justify-center h-14 w-44 shadow-[4px_4px_0px_#000000] rounded-none">
+                                    <div className="relative h-8 w-full">
+                                        <Image
+                                            src="/logo/Habibs.png"
+                                            alt="Habibs"
+                                            fill
+                                            className="object-contain"
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Newton School Card */}
+                                <div className="bg-white border-2 border-black px-5 py-2 flex items-center justify-center h-14 w-44 shadow-[4px_4px_0px_#000000] rounded-none overflow-hidden">
+                                    <div className="relative h-8 w-full">
+                                        <Image
+                                            src="/logo/Newton-School.png"
+                                            alt="Newton School"
+                                            fill
+                                            className="object-contain invert"
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* & Many More Card */}
+                                <div className="border-2 border-dashed border-neutral-700 px-6 py-2 flex items-center justify-center h-14 w-44 rounded-none select-none">
+                                    <span className="font-headline text-xs sm:text-sm font-black uppercase tracking-[0.15em] text-neutral-400">
+                                        &amp; MANY MORE
+                                    </span>
                                 </div>
                             </div>
                         </div>
