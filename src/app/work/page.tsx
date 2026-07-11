@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { WorkAnimations } from "../components/WorkAnimations";
 import { WorkGrid } from "../components/WorkGrid";
 import "../page.css";
@@ -149,12 +150,16 @@ export default function AdWorkPage() {
                             <div className="grid grid-cols-2 md:grid-cols-4 divide-y-4 md:divide-y-0 md:divide-x-4 divide-black">
                                 {/* Dessertino */}
                                 <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[160px] hover:bg-[#121212] transition-colors duration-300">
-                                    <div className="mb-4 h-12 flex items-center justify-center text-white/90 group-hover:text-white transition-colors">
-                                        <svg viewBox="0 0 40 40" className="h-10 w-10 fill-none stroke-current" strokeWidth="2.5" xmlns="http://www.w3.org/2000/svg">
-                                            <rect x="11" y="13" width="18" height="21" rx="2" />
-                                            <line x1="20" y1="13" x2="20" y2="34" />
-                                            <line x1="25" y1="13" x2="29" y2="5" strokeLinecap="round" />
-                                        </svg>
+                                    <div className="mb-4 h-12 w-full flex items-center justify-center relative">
+                                        <div className="relative h-8 w-28" style={{ mixBlendMode: 'screen' }}>
+                                            <Image
+                                                src="/logo/Dessertino-Logo.png"
+                                                alt="Dessertino"
+                                                fill
+                                                className="object-contain filter invert grayscale brightness-[1.5]"
+                                                unoptimized
+                                            />
+                                        </div>
                                     </div>
                                     <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors duration-300">
                                         DESSERTINO
@@ -163,14 +168,16 @@ export default function AdWorkPage() {
 
                                 {/* Habibs */}
                                 <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[160px] hover:bg-[#121212] transition-colors duration-300">
-                                    <div className="mb-4 h-12 flex items-center justify-center text-white/90 group-hover:text-white transition-colors">
-                                        <svg viewBox="0 0 40 40" className="h-10 w-10 fill-none stroke-current" strokeWidth="2.5" xmlns="http://www.w3.org/2000/svg">
-                                            {/* Stylized scissors/beauty motif */}
-                                            <circle cx="15" cy="28" r="5" />
-                                            <circle cx="25" cy="28" r="5" />
-                                            <line x1="17" y1="24" x2="23" y2="8" />
-                                            <line x1="23" y1="24" x2="17" y2="8" />
-                                        </svg>
+                                    <div className="mb-4 h-12 w-full flex items-center justify-center relative">
+                                        <div className="relative h-6 w-24" style={{ mixBlendMode: 'screen' }}>
+                                            <Image
+                                                src="/logo/Habibs.png"
+                                                alt="Habibs"
+                                                fill
+                                                className="object-contain filter invert grayscale brightness-[1.5]"
+                                                unoptimized
+                                            />
+                                        </div>
                                     </div>
                                     <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors duration-300">
                                         HABIBS
@@ -179,28 +186,34 @@ export default function AdWorkPage() {
 
                                 {/* Newton School */}
                                 <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[160px] hover:bg-[#121212] transition-colors duration-300">
-                                    <div className="mb-4 h-12 flex items-center justify-center text-white/90 group-hover:text-white transition-colors">
-                                        <svg viewBox="0 0 40 40" className="h-10 w-10 fill-none stroke-current" strokeWidth="2.5" xmlns="http://www.w3.org/2000/svg">
-                                            <polygon points="20,5 33,12 33,28 20,35 7,28 7,12" />
-                                            <text x="50%" y="56%" dominantBaseline="middle" textAnchor="middle" className="font-sans font-black text-base fill-current stroke-none">N</text>
-                                        </svg>
+                                    <div className="mb-4 h-12 w-full flex items-center justify-center relative">
+                                        <div className="relative h-6 w-28" style={{ mixBlendMode: 'screen' }}>
+                                            <Image
+                                                src="/logo/Newton-School.png"
+                                                alt="Newton School"
+                                                fill
+                                                className="object-contain filter grayscale brightness-[1.5]"
+                                                unoptimized
+                                            />
+                                        </div>
                                     </div>
                                     <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors duration-300">
                                         NEWTON SCHOOL
                                     </span>
                                 </div>
 
-                                {/* Add Brand / Many More */}
-                                <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[160px] hover:bg-[#121212] transition-colors duration-300 cursor-pointer">
+                                {/* & Many More */}
+                                <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[160px] hover:bg-[#121212] transition-colors duration-300">
                                     <div className="mb-4 h-12 flex items-center justify-center text-neutral-600 group-hover:text-white transition-colors">
                                         <svg viewBox="0 0 40 40" className="h-10 w-10 fill-none stroke-current" strokeWidth="2.5" xmlns="http://www.w3.org/2000/svg">
                                             <circle cx="20" cy="20" r="12" />
-                                            <line x1="20" y1="14" x2="20" y2="26" />
-                                            <line x1="14" y1="20" x2="26" y2="20" />
+                                            <circle cx="15" cy="20" r="1.5" fill="currentColor" />
+                                            <circle cx="20" cy="20" r="1.5" fill="currentColor" />
+                                            <circle cx="25" cy="20" r="1.5" fill="currentColor" />
                                         </svg>
                                     </div>
-                                    <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-600 group-hover:text-white transition-colors duration-300">
-                                        + ADD BRAND
+                                    <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors duration-300">
+                                        &amp; MANY MORE
                                     </span>
                                 </div>
                             </div>
