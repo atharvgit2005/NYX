@@ -106,21 +106,18 @@ const videoSchemas = [
 const PARTNERS = [
   {
     name: "Dessertino",
-    category: "D2C Food & Beverage",
-    color: "hover:bg-[#d83c14]/10 hover:border-[#d83c14]",
-    image: "/logo/Dessertino-Logo.png"
+    image: "/logo/Dessertino-Logo.png",
+    width: "w-28 sm:w-32"
   },
   {
     name: "Habibs",
-    category: "B2C Hair & Beauty",
-    color: "hover:bg-[#ffd65b]/10 hover:border-[#ffd65b]",
-    image: "/logo/Habibs.png"
+    image: "/logo/Habibs.png",
+    width: "w-24 sm:w-28"
   },
   {
     name: "Newton School",
-    category: "B2B / EdTech",
-    color: "hover:bg-[#00c6ff]/10 hover:border-[#00c6ff]",
-    image: "/logo/Newton-School.png"
+    image: "/logo/Newton-School.png",
+    width: "w-32 sm:w-36"
   }
 ];
 
@@ -156,58 +153,29 @@ export default function AdWorkPage() {
                             <span className="block">CONCEPTS &</span>
                             <span className="text-[#D83C14] block">EARLY WORK</span>
                         </h1>
-                        <div className="flex items-center gap-4 mt-6 md:mt-8">
-                            <span className="w-8 md:w-12 h-1 bg-[#F5C518] flex-shrink-0"></span>
-                            <p className="font-label text-secondary uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-base">* THE MIDNIGHT MANIFESTO VOL. 01</p>
-                        </div>
-                    </header>
-
-                    {/* Two-Column Layout: Bento Grid + Trusted Partner Logos */}
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-20 md:mb-32">
-                        {/* Left/Main Column: Work Grid */}
-                        <div className="lg:col-span-9">
-                            <WorkGrid />
-                        </div>
-
-                        {/* Right/Sidebar Column: Brand Logo Registry */}
-                        <div className="lg:col-span-3 border-4 border-black bg-[#0d0d0d] p-6 relative zine-shadow select-none w-full">
-                            {/* Registration marks */}
-                            <div className="absolute top-2 left-2 text-[#D83C14] text-xs font-bold">+</div>
-                            <div className="absolute bottom-2 right-2 text-[#D83C14] text-xs font-bold">+</div>
-
-                            <span className="font-label text-primary uppercase text-xs tracking-widest block mb-3">* CLIENT_REGISTRY</span>
-                            <h2 className="font-headline text-3xl font-black uppercase tracking-tight mb-6 border-b-4 border-black pb-4 text-white">
-                                TRUSTED BY
-                            </h2>
-
-                            <div className="grid grid-cols-2 lg:grid-cols-1 gap-4">
+                        <div className="mt-8 pt-6 border-t-2 border-neutral-800">
+                            <p className="font-label text-secondary uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-4">* CLIENT_REGISTRY</p>
+                            <div className="flex flex-wrap items-center gap-x-8 md:gap-x-12 gap-y-6">
                                 {PARTNERS.map((partner) => (
-                                    <div
-                                        key={partner.name}
-                                        className={`group border-2 border-neutral-800 bg-[#121212] p-4 flex flex-col justify-between min-h-[110px] transition-all duration-300 ${partner.color}`}
-                                    >
-                                        <div className="flex items-center justify-start flex-grow relative h-10 w-full">
-                                            <Image
-                                                src={partner.image}
-                                                alt={partner.name}
-                                                fill
-                                                className="object-contain object-left filter brightness-0 invert opacity-60 group-hover:opacity-100 group-hover:filter-none transition-all duration-300"
-                                            />
-                                        </div>
-                                        <span className="font-label text-[9px] uppercase tracking-widest text-neutral-500 group-hover:text-neutral-300 mt-4 block">
-                                            {partner.category}
-                                        </span>
+                                    <div key={partner.name} className={`relative h-8 md:h-10 ${partner.width} flex items-center justify-start`}>
+                                        <Image
+                                            src={partner.image}
+                                            alt={partner.name}
+                                            fill
+                                            className="object-contain object-left"
+                                        />
                                     </div>
                                 ))}
-
-                                {/* "& Many More" Card */}
-                                <div className="group border-2 border-dashed border-neutral-700 bg-transparent p-4 flex flex-col justify-center items-center min-h-[110px] transition-all duration-300 hover:border-[#D83C14] hover:bg-[#D83C14]/5 text-center">
-                                    <span className="font-headline text-base font-bold text-neutral-400 group-hover:text-white uppercase tracking-wider">
-                                        &amp; Many More...
-                                    </span>
+                                <div className="font-headline text-xs sm:text-sm font-black uppercase tracking-[0.2em] text-neutral-400 whitespace-nowrap">
+                                    &amp; MANY MORE...
                                 </div>
                             </div>
                         </div>
+                    </header>
+
+                    {/* Full Width Bento Grid */}
+                    <div className="mb-20 md:mb-32">
+                        <WorkGrid />
                     </div>
 
                     {/* Next Project CTA */}
