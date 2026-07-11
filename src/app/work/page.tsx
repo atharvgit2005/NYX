@@ -149,9 +149,9 @@ export default function AdWorkPage() {
                             {/* Cards grid */}
                             <div className="grid grid-cols-2 md:grid-cols-4 divide-y-4 md:divide-y-0 md:divide-x-4 divide-black">
                                 {/* Dessertino */}
-                                <div className="p-6 flex flex-col items-center justify-center text-center bg-[#009ee2] group min-h-[220px] transition-colors duration-300 relative overflow-hidden">
-                                    <div className="mb-4 h-24 w-full flex items-center justify-center relative overflow-hidden">
-                                        <div className="relative h-16 w-36 scale-[1.8]">
+                                <div className="p-6 flex flex-col items-center justify-center text-center bg-[#00a4e1] group min-h-[220px] transition-colors duration-300 relative overflow-hidden">
+                                    <div className="mb-4 h-28 w-full flex items-center justify-center relative overflow-hidden">
+                                        <div className="relative h-16 w-36 scale-[2.8]">
                                             <Image
                                                 src="/logo/Dessertino-Logo.png"
                                                 alt="Dessertino"
@@ -168,8 +168,8 @@ export default function AdWorkPage() {
 
                                 {/* Habibs */}
                                 <div className="p-6 flex flex-col items-center justify-center text-center bg-white group min-h-[220px] transition-colors duration-300 relative overflow-hidden">
-                                    <div className="mb-4 h-24 w-full flex items-center justify-center relative overflow-hidden">
-                                        <div className="relative h-14 w-32 scale-[1.8]">
+                                    <div className="mb-4 h-28 w-full flex items-center justify-center relative overflow-hidden">
+                                        <div className="relative h-14 w-32 scale-[2.8]">
                                             <Image
                                                 src="/logo/Habibs.png"
                                                 alt="Habibs"
@@ -185,9 +185,9 @@ export default function AdWorkPage() {
                                 </div>
 
                                 {/* Newton School */}
-                                <div className="p-6 flex flex-col items-center justify-center text-center bg-[#0d0d0d] group min-h-[220px] hover:bg-[#121212] transition-colors duration-300 relative overflow-hidden">
-                                    <div className="mb-4 h-24 w-full flex items-center justify-center relative overflow-hidden">
-                                        <div className="relative h-14 w-36 scale-[1.8]">
+                                <div className="p-6 flex flex-col items-center justify-center text-center bg-[#000000] group min-h-[220px] hover:bg-[#121212] transition-colors duration-300 relative overflow-hidden">
+                                    <div className="mb-4 h-28 w-full flex items-center justify-center relative overflow-hidden">
+                                        <div className="relative h-14 w-36 scale-[2.8]">
                                             <Image
                                                 src="/logo/Newton-School.png"
                                                 alt="Newton School"
@@ -204,8 +204,8 @@ export default function AdWorkPage() {
 
                                 {/* & Many More */}
                                 <div className="p-6 flex flex-col items-center justify-center text-center bg-[#0d0d0d] group min-h-[220px] hover:bg-[#121212] transition-colors duration-300 relative overflow-hidden">
-                                    <div className="mb-4 h-24 w-full flex items-center justify-center relative overflow-hidden">
-                                        <div className="scale-[1.3]">
+                                    <div className="mb-4 h-28 w-full flex items-center justify-center relative overflow-hidden">
+                                        <div className="scale-[1.4]">
                                             <svg viewBox="0 0 40 40" className="h-16 w-16 text-neutral-600 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" strokeWidth="2.5" xmlns="http://www.w3.org/2000/svg">
                                                 <circle cx="20" cy="20" r="12" fill="none" />
                                                 <circle cx="15" cy="20" r="1.5" fill="currentColor" />
