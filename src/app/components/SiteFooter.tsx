@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const SOCIAL = [
-  { href: 'https://www.instagram.com/nyx.studios.ai/', label: 'INSTAGRAM', external: true },
+  { href: 'https://www.instagram.com/nyxstudio.in/', label: 'INSTAGRAM', external: true },
   { href: 'https://www.linkedin.com/company/nyx-studio-ai/', label: 'LINKEDIN', external: true },
   { href: 'https://twitter.com/nyxstudiosai', label: 'TWITTER', external: true },
   { href: '/work', label: 'ARCHIVE', external: false },

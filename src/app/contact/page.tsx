@@ -31,7 +31,7 @@ const contactPageSchema = {
   mainEntity: {
     "@type": "Organization",
     name: "NYX Studio",
-    email: "nyx.studios.ai@gmail.com",
+    email: "official.nyxstudio@gmail.com",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Pune",
@@ -40,7 +40,7 @@ const contactPageSchema = {
       addressCountry: "IN",
     },
     sameAs: [
-      "https://www.instagram.com/nyx.studios.ai/",
+      "https://www.instagram.com/nyxstudio.in/",
       "https://www.linkedin.com/company/nyx-studio-ai/",
       "https://twitter.com/nyxstudiosai",
     ],
@@ -93,8 +93,8 @@ export default function AdContactPage() {
                             <div className="space-y-6 md:space-y-8">
                                 <div>
                                     <p className="text-xs font-headline uppercase tracking-widest text-secondary mb-2 scramble-text" data-original="* DIRECT_LINE">* DIRECT_LINE</p>
-                                    <a className="text-base sm:text-[1.15rem] md:text-3xl font-bold tracking-tighter hover:text-secondary transition-colors duration-75 block break-all" href="mailto:nyx.studios.ai@gmail.com">
-                                        nyx.studios.ai@gmail.com
+                                    <a className="text-base sm:text-[1.15rem] md:text-3xl font-bold tracking-tighter hover:text-secondary transition-colors duration-75 block break-all" href="mailto:official.nyxstudio@gmail.com">
+                                        official.nyxstudio@gmail.com
                                     </a>
                                 </div>
                                 <div>
@@ -107,7 +107,7 @@ export default function AdContactPage() {
                                 <div className="pt-6 md:pt-8 border-t-4 border-black">
                                     <p className="text-xs font-headline uppercase tracking-widest text-secondary mb-4 scramble-text" data-original="* FREQUENCY_CHANNELS">* FREQUENCY_CHANNELS</p>
                                     <div className="flex flex-col gap-2">
-                                        <a className="text-base md:text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.instagram.com/nyx.studios.ai/" target="_blank" rel="noopener noreferrer">
+                                        <a className="text-base md:text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.instagram.com/nyxstudio.in/" target="_blank" rel="noopener noreferrer">
                                             <span className="mr-3 md:mr-4 text-xs">01/</span> INSTAGRAM <span className="ml-auto opacity-0 group-hover:opacity-100">↗</span>
                                         </a>
                                         <a className="text-base md:text-xl font-bold uppercase tracking-tighter hover:text-secondary flex items-center group" href="https://www.linkedin.com/company/nyx-studio-ai/" target="_blank" rel="noopener noreferrer">

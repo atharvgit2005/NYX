@@ -189,7 +189,7 @@ export const organizationSchema = {
     "@type": "Place",
     name: "Pune, India",
   },
-  email: "nyx.studios.ai@gmail.com",
+  email: "official.nyxstudio@gmail.com",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Pune",
@@ -262,7 +262,7 @@ export const organizationSchema = {
     {
       "@type": "ContactPoint",
       contactType: "sales",
-      email: "nyx.studios.ai@gmail.com",
+      email: "official.nyxstudio@gmail.com",
       areaServed: "IN",
       availableLanguage: ["en"],
     },
@@ -270,7 +270,7 @@ export const organizationSchema = {
   // Public profiles we control. Answer engines validate the entity against
   // every URL in this list — keep it accurate (don't list dead handles).
   sameAs: [
-    "https://www.instagram.com/nyx.studios.ai/",
+    "https://www.instagram.com/nyxstudio.in/",
     "https://www.linkedin.com/company/nyx-studio-ai/",
   ],
   founder: [

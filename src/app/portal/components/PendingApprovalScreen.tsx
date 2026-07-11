@@ -38,10 +38,10 @@ export default function PendingApprovalScreen({ email, name }: Props) {
       <p className="mt-8 text-xs text-white/40 font-label uppercase tracking-wider">
         Need help? Email{' '}
         <a
-          href="mailto:nyx.studios.ai@gmail.com"
+          href="mailto:official.nyxstudio@gmail.com"
           className="text-[#D83C14] hover:underline"
         >
-          nyx.studios.ai@gmail.com
+          official.nyxstudio@gmail.com
         </a>
       </p>
     </div>
