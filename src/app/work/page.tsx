@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { WorkAnimations } from "../components/WorkAnimations";
 import { WorkGrid } from "../components/WorkGrid";
 import "../page.css";
@@ -137,49 +136,71 @@ export default function AdWorkPage() {
                             <span className="block">CONCEPTS &</span>
                             <span className="text-[#D83C14] block">EARLY WORK</span>
                         </h1>
-                        <div className="mt-12 pt-8 border-t-2 border-neutral-800">
-                            <p className="font-label text-secondary uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm mb-6">* TRUSTED_BY</p>
-                            <div className="flex flex-wrap items-center gap-6 md:gap-8">
-                                {/* Dessertino Card */}
-                                <div className="bg-white border-2 border-black px-5 py-2 flex items-center justify-center h-14 w-44 shadow-[4px_4px_0px_#000000] rounded-none">
-                                    <div className="relative h-10 w-full">
-                                        <Image
-                                            src="/logo/Dessertino-Logo.png"
-                                            alt="Dessertino"
-                                            fill
-                                            className="object-contain"
-                                        />
+                        <div className="mt-16 w-full border-4 border-black bg-[#0d0d0d] select-none shadow-[6px_6px_0px_#000000]">
+                            {/* Header row */}
+                            <div className="border-b-4 border-black px-6 py-4 bg-[#090909] flex items-center">
+                                <span className="w-2.5 h-2.5 rounded-none bg-[#D83C14] mr-3"></span>
+                                <p className="font-headline text-[10px] sm:text-xs font-black tracking-[0.2em] text-neutral-400 uppercase">
+                                    PARTNERS_&amp;_COLLABORATORS
+                                </p>
+                            </div>
+
+                            {/* Cards grid */}
+                            <div className="grid grid-cols-2 md:grid-cols-4 divide-y-4 md:divide-y-0 md:divide-x-4 divide-black">
+                                {/* Dessertino */}
+                                <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[160px] hover:bg-[#121212] transition-colors duration-300">
+                                    <div className="mb-4 h-12 flex items-center justify-center text-white/90 group-hover:text-white transition-colors">
+                                        <svg viewBox="0 0 40 40" className="h-10 w-10 fill-none stroke-current" strokeWidth="2.5" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="11" y="13" width="18" height="21" rx="2" />
+                                            <line x1="20" y1="13" x2="20" y2="34" />
+                                            <line x1="25" y1="13" x2="29" y2="5" strokeLinecap="round" />
+                                        </svg>
                                     </div>
+                                    <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors duration-300">
+                                        DESSERTINO
+                                    </span>
                                 </div>
 
-                                {/* Habibs Card */}
-                                <div className="bg-white border-2 border-black px-5 py-2 flex items-center justify-center h-14 w-44 shadow-[4px_4px_0px_#000000] rounded-none">
-                                    <div className="relative h-8 w-full">
-                                        <Image
-                                            src="/logo/Habibs.png"
-                                            alt="Habibs"
-                                            fill
-                                            className="object-contain"
-                                        />
+                                {/* Habibs */}
+                                <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[160px] hover:bg-[#121212] transition-colors duration-300">
+                                    <div className="mb-4 h-12 flex items-center justify-center text-white/90 group-hover:text-white transition-colors">
+                                        <svg viewBox="0 0 40 40" className="h-10 w-10 fill-none stroke-current" strokeWidth="2.5" xmlns="http://www.w3.org/2000/svg">
+                                            {/* Stylized scissors/beauty motif */}
+                                            <circle cx="15" cy="28" r="5" />
+                                            <circle cx="25" cy="28" r="5" />
+                                            <line x1="17" y1="24" x2="23" y2="8" />
+                                            <line x1="23" y1="24" x2="17" y2="8" />
+                                        </svg>
                                     </div>
+                                    <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors duration-300">
+                                        HABIBS
+                                    </span>
                                 </div>
 
-                                {/* Newton School Card */}
-                                <div className="bg-white border-2 border-black px-5 py-2 flex items-center justify-center h-14 w-44 shadow-[4px_4px_0px_#000000] rounded-none overflow-hidden">
-                                    <div className="relative h-8 w-full">
-                                        <Image
-                                            src="/logo/Newton-School.png"
-                                            alt="Newton School"
-                                            fill
-                                            className="object-contain invert"
-                                        />
+                                {/* Newton School */}
+                                <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[160px] hover:bg-[#121212] transition-colors duration-300">
+                                    <div className="mb-4 h-12 flex items-center justify-center text-white/90 group-hover:text-white transition-colors">
+                                        <svg viewBox="0 0 40 40" className="h-10 w-10 fill-none stroke-current" strokeWidth="2.5" xmlns="http://www.w3.org/2000/svg">
+                                            <polygon points="20,5 33,12 33,28 20,35 7,28 7,12" />
+                                            <text x="50%" y="56%" dominantBaseline="middle" textAnchor="middle" className="font-sans font-black text-base fill-current stroke-none">N</text>
+                                        </svg>
                                     </div>
+                                    <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-500 group-hover:text-white transition-colors duration-300">
+                                        NEWTON SCHOOL
+                                    </span>
                                 </div>
 
-                                {/* & Many More Card */}
-                                <div className="border-2 border-dashed border-neutral-700 px-6 py-2 flex items-center justify-center h-14 w-44 rounded-none select-none">
-                                    <span className="font-headline text-xs sm:text-sm font-black uppercase tracking-[0.15em] text-neutral-400">
-                                        &amp; MANY MORE
+                                {/* Add Brand / Many More */}
+                                <div className="p-8 flex flex-col items-center justify-center text-center bg-transparent group min-h-[160px] hover:bg-[#121212] transition-colors duration-300 cursor-pointer">
+                                    <div className="mb-4 h-12 flex items-center justify-center text-neutral-600 group-hover:text-white transition-colors">
+                                        <svg viewBox="0 0 40 40" className="h-10 w-10 fill-none stroke-current" strokeWidth="2.5" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="20" cy="20" r="12" />
+                                            <line x1="20" y1="14" x2="20" y2="26" />
+                                            <line x1="14" y1="20" x2="26" y2="20" />
+                                        </svg>
+                                    </div>
+                                    <span className="font-headline text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-neutral-600 group-hover:text-white transition-colors duration-300">
+                                        + ADD BRAND
                                     </span>
                                 </div>
                             </div>
