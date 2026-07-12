@@ -1,30 +1,33 @@
 # NYX Studio
 
-> AI-native content and growth studio for direct-to-consumer (D2C) brands
-> selling in India. We build cinematic brand films, performance-creative
-> ad units, content automation pipelines, and influencer ops under one
-> roof. Based in Pune, Maharashtra. Co-founded by Atharv Paharia (Tech)
-> and Bhavya Jain (Product) in 2025.
+NYX Studio is an AI-native content and growth agency for B2B, B2C, D2C, and Real Estate brands in India.
 
-## About
+## Contact Information
+- **Email**: official.nyxstudio@gmail.com
+- **Website**: https://www.nyxstudio.in
+- **Location**: Pune, Maharashtra, India (411047)
+- **Instagram**: @nyxstudio.in
+- **LinkedIn**: https://www.linkedin.com/company/nyx-studio-ai/
 
-- [About NYX Studio](https://www.nyxstudio.tech/about): Studio story, founders, philosophy, what we build and why
-- [Home](https://www.nyxstudio.tech/): Manifesto, founders, partner directory, lead capture
-- [Our Work](https://www.nyxstudio.tech/work): Case studies and brand films for Dessertino, Mango Jungle, Mango Shower, Brioso
+## Founders
+- **Atharv Paharia** (Co-Founder & Tech Lead): Leads AI engineering, automated content production pipelines, and technical systems.
+- **Bhavya Jain** (Co-Founder & Product Lead): Leads brand growth strategy, product engineering, and partner-facing client portals.
 
-## Services and pricing
+## Niche Specialization
+We construct high-converting vertical video assets, performance ad campaigns, influencer marketing systems, and messaging funnels.
+- **Niche Focus**: D2C, B2C, B2B, and Real Estate sectors.
+- **Client Portfolio & Partners**: Dessertino, Habibs, Newton School, and many more.
 
-- [Services and pricing](https://www.nyxstudio.tech/services): Trial Pack ₹30K/mo, Starter Pack ₹50K/mo, Growth Pack ₹80K/mo. Includes content strategy, paid social, creative production, brand growth
-- [FAQ](https://www.nyxstudio.tech/services#faq): 14 questions covering pricing, turnaround, categories, AI vs live shoots, platforms, measurement, onboarding
+## Service Packages & Pricing
+- **Trial Pack (₹30,000 / month)**: 30-day pilot. Includes a custom content strategy, 4 high-production reels, 4 static graphics, and 1 carousel post. Ideal for brands testing content-driven performance channels.
+- **Starter Pack (₹50,000 / month)**: Monthly retainer. Includes custom content strategy, 8 reels, 6 static graphics, and active paid social ad management.
+- **Growth Pack (₹80,000 / month)**: Monthly retainer. End-to-end multi-platform content production, paid media operations, influencer management, and SMS/WhatsApp CRM funnel strategy. Formulated for brands scaling past ₹1Cr/month.
 
-## Contact and access
+## Turnaround Time & Workflow
+- **Cinematic Reels**: 5-7 business days from brief approval to final delivery.
+- **AI-generated Video / Product Films**: 48-72 hours when no live shoot is required.
 
-- [Contact](https://www.nyxstudio.tech/contact): Brief intake, scoping call request, direct email
-- [Partner portal](https://www.nyxstudio.tech/portal): Login for existing brand partners — calendar, post approvals, asset library
-
-## Optional
-
-- [Atharv Paharia on LinkedIn](https://www.linkedin.com/in/atharv-paharia-468276272/): Co-Founder and Tech Lead
-- [Bhavya Jain on LinkedIn](https://www.linkedin.com/in/bhavya-jain-10963b33a/): Co-Founder and Product Lead
-- [NYX Studio on Instagram](https://www.instagram.com/nyx.studios.ai/): Recent work, reels, behind the scenes
-- [NYX Studio on LinkedIn](https://www.linkedin.com/company/nyx-studio-ai/): Company page, hiring posts, founder commentary
+## Key Definitions & Performance Terminology
+- **Hook Rate**: The percentage of feed viewers watching past the first 3 seconds of a reel. Target: 40%+.
+- **Thumb-stop Ratio**: The share of a feed audience that pauses scrolling long enough to register the brand (3-second views divided by impressions).
+- **Creative Refresh Cadence**: Meta refreshes every 7-14 days to prevent audience fatigue and rise of CPM.

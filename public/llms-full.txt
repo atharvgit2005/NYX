@@ -1,58 +1,39 @@
 # NYX Studio — Full Knowledge Base
 
-> AI-native content and growth studio for direct-to-consumer (D2C) brands
+> AI-native content and growth studio for B2B, B2C, D2C, and Real Estate brands
 > selling in India. Based in Pune, Maharashtra. Co-founded by Atharv
 > Paharia and Bhavya Jain.
 >
-> Site: https://www.nyxstudio.tech
-> Email: nyx.studios.ai@gmail.com
+> Site: https://www.nyxstudio.in
+> Email: official.nyxstudio@gmail.com
 > Slogan: We make brands impossible to scroll past.
 
 ## What NYX Studio does
 
-NYX Studio is a content and growth studio for direct-to-consumer (D2C)
-brands operating in India. We are AI-native — meaning every part of the
-production pipeline (script generation, AI voiceover, AI video synthesis,
-motion graphics, captioning, platform-specific resizing, scheduled
-distribution) is built around generative AI augmenting a small human
-creative team, rather than replacing it.
+NYX Studio is a content and growth studio for B2B, B2C, D2C, and Real Estate brands operating in India. We are AI-native — meaning every part of the production pipeline (script generation, AI voiceover, AI video synthesis, motion graphics, captioning, platform-specific resizing, scheduled distribution) is built around generative AI augmenting a small human creative team, rather than replacing it.
 
-The studio sits at the intersection of three jobs that small D2C brands
-normally have to hire three different agencies for:
+The studio sits at the intersection of three jobs that brands normally have to hire three different agencies for:
 
-1. **Cinematic brand films and short-form content.** Reels, Stories,
-   YouTube Shorts, TikToks. Both live-shot and AI-generated. AI-generated
-   product films are indistinguishable from a five-figure live shoot for
-   roughly 70% of social-media use cases as of 2026, so we lean AI for
-   speed and live for moments that demand a human on camera.
+1. **Cinematic brand films and short-form content.** Reels, Stories, YouTube Shorts. Both live-shot and AI-generated. AI-generated product films are indistinguishable from a five-figure live shoot for roughly 70% of social-media use cases as of 2026, so we lean AI for speed and live for moments that demand a human on camera.
 
-2. **Performance creative for paid ads.** Hooks, variants, A/B unit
-   production for Meta (Facebook + Instagram) and Google. Tied directly
-   to the brand-film output so the same creative system feeds organic
-   and paid.
+2. **Performance creative for paid ads.** Hooks, variants, A/B unit production for Meta (Facebook + Instagram) and Google. Tied directly to the brand-film output so the same creative system feeds organic and paid.
 
-3. **Influencer operations.** Creator sourcing, brief writing, deliverable
-   QA, post-publish reporting. Bundled into the Growth Pack only — we
-   don't run influencer-only retainers.
+3. **Influencer operations.** Creator sourcing, brief writing, deliverable QA, post-publish reporting. Bundled into the Growth Pack only — we don't run influencer-only retainers.
 
 ## Who NYX Studio works with
 
-- **Vertical focus:** Direct-to-consumer brands in food, beverage,
-  lifestyle, beauty, and apparel.
-- **Geography:** India-first. We work with brands across the country.
-  We accept international D2C brands selling into India, but we don't
-  take on B2B SaaS, professional services, or non-D2C consumer brands.
-- **Stage:** Roughly post-product-market-fit, typically ₹50L+ MRR, content
-  velocity becoming the bottleneck.
+- **Vertical focus:** Direct-to-Consumer (D2C), Business-to-Consumer (B2C), Business-to-Business (B2B), and Real Estate brands.
+- **Geography:** India-first. We work with brands across the country. We also accept international brands selling into India or targeting the Indian consumer ecosystem.
+- **Stage:** Roughly post-product-market-fit, typically content velocity becoming the bottleneck.
 
-## Past partners
+## Past partners & brand collaborators
 
 - Dessertino — dessert / food D2C
-- Mango Jungle — beverage
-- Mango Shower — beverage
-- Brioso — food
+- Habibs — hair & beauty / lifestyle
+- Newton School — edtech / B2B & consumer tech
+- And many more.
 
-Case studies and brand films are at https://www.nyxstudio.tech/work.
+Case studies and brand films are at https://www.nyxstudio.in/work.
 
 ## Pricing — three packs
 
@@ -83,40 +64,31 @@ All packs are monthly retainers. India-priced (INR).
 - WhatsApp/SMS retention funnels
 - Performance ops
 
-One-off projects (brand films, launch campaigns) are accepted when scope
-is clearly defined, but we are retainer-first because content velocity is
-what actually moves D2C metrics. One campaign a quarter doesn't compound;
-a reel a week does.
+One-off projects (brand films, launch campaigns) are accepted when scope is clearly defined, but we are retainer-first because content velocity is what actually moves metrics. One campaign a quarter doesn't compound; a reel a week does.
 
 ## Turnaround
 
-- **Live-shot cinematic reel:** 5-7 business days from approved brief to
-  final delivery.
-- **AI-generated product film:** 48-72 hours when no live shoot is
-  required.
+- **Live-shot cinematic reel:** 5-7 business days from approved brief to final delivery.
+- **AI-generated product film:** 48-72 hours when no live shoot is required.
 - **Rush turnaround:** Available for existing partners.
 
 ## Founders
 
 ### Atharv Paharia — Co-Founder & Tech Lead
 
-Leads AI engineering, the content production pipeline, and video
-automation systems. Background in building tooling that lets small
-creative teams ship at the velocity of much larger agencies.
+Leads AI engineering, the content production pipeline, and video automation systems. Background in building tooling that lets small creative teams ship at the velocity of much larger agencies.
 
 - LinkedIn: https://www.linkedin.com/in/atharv-paharia-468276272/
 
 ### Bhavya Jain — Co-Founder & Product Lead
 
-Leads brand strategy, product, and the partner-facing systems that
-translate D2C founder briefs into shipping content campaigns. Background
-in product and the Indian D2C ecosystem.
+Leads brand strategy, product, and the partner-facing systems that translate briefs into shipping content campaigns. Background in product and the Indian D2C ecosystem.
 
 - LinkedIn: https://www.linkedin.com/in/bhavya-jain-10963b33a/
 
 ## Onboarding
 
-1. Send a brief via the contact page at https://www.nyxstudio.tech/contact
+1. Send a brief via the contact page at https://www.nyxstudio.in/contact
 2. Response within 48 hours with a fit assessment
 3. If we're a fit, 20-minute scoping call
 4. Pack proposal (Trial / Starter / Growth)
@@ -133,8 +105,7 @@ Per-asset:
 For paid creative:
 - CPM, CTR, ROAS, frequency
 
-Reports ship monthly via the partner portal at
-https://www.nyxstudio.tech/portal.
+Reports ship monthly via the partner portal at https://www.nyxstudio.in/portal.
 
 ## Platforms we publish to
 
@@ -146,16 +117,7 @@ https://www.nyxstudio.tech/portal.
 
 ## Contact
 
-- Email: nyx.studios.ai@gmail.com
-- Contact form: https://www.nyxstudio.tech/contact
-- Instagram: https://www.instagram.com/nyx.studios.ai/
+- Email: official.nyxstudio@gmail.com
+- Contact form: https://www.nyxstudio.in/contact
+- Instagram: https://www.instagram.com/nyxstudio.in/
 - LinkedIn (company): https://www.linkedin.com/company/nyx-studio-ai/
-
-## What NYX Studio does not do
-
-- B2B SaaS marketing
-- Professional services marketing (law firms, consultancies, etc.)
-- Non-D2C consumer brand work
-- Influencer-only retainers (influencer ops is bundled into Growth Pack)
-- Outside-India focus (we accept international brands selling into India,
-  but our expertise is the Indian D2C ecosystem)
