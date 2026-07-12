@@ -45,6 +45,7 @@ export default async function AdminPostsPage({
     visualDirection: p.visualDirection,
     productionNotes: p.productionNotes,
     thumbnailUrl: p.thumbnailUrl,
+    instagramUrl: p.instagramUrl,
     position: p.position,
     archivedAt: p.archivedAt ? p.archivedAt.toISOString() : null,
     comments: p.comments.map((c) => ({

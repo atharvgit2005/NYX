@@ -34,6 +34,7 @@ export interface SerializedPost {
    *  are surfaced; included to keep the shape compatible with the
    *  admin edit form. */
   archivedAt: string | null
+  instagramUrl?: string | null
   comments: SerializedComment[]
   createdAt: string
   updatedAt: string

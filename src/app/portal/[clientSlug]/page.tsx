@@ -117,6 +117,7 @@ export default async function ClientPortalPage({
     productionNotes: p.productionNotes,
     thumbnailUrl: p.thumbnailUrl,
     mediaUrls: p.mediaUrls,
+    instagramUrl: p.instagramUrl,
     position: p.position,
     archivedAt: p.archivedAt ? p.archivedAt.toISOString() : null,
     comments: p.comments.map((c) => ({

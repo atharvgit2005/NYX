@@ -83,6 +83,7 @@ export async function POST(
     productionNotes: updated.productionNotes,
     thumbnailUrl: updated.thumbnailUrl,
     mediaUrls: updated.mediaUrls,
+    instagramUrl: updated.instagramUrl,
     position: updated.position,
     archivedAt: updated.archivedAt ? updated.archivedAt.toISOString() : null,
     comments: updated.comments.map((c) => ({

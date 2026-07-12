@@ -167,6 +167,7 @@ model ContentPost {
   productionNotes String?     @db.Text
   thumbnailUrl    String?
   mediaUrls       String[]    @default([])
+  instagramUrl    String?
 
   position Int
 

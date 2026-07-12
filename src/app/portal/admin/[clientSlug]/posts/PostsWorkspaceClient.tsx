@@ -35,6 +35,7 @@ export interface AdminPost {
   thumbnailUrl: string | null
   position: number
   archivedAt: string | null
+  instagramUrl?: string | null
   comments: AdminComment[]
 }
 
