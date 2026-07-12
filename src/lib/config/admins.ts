@@ -16,6 +16,9 @@ const HARDCODED_ADMIN_EMAILS: ReadonlyArray<string> = [
   'atharv@nyxstudio.tech',
   'bhavya@nyxstudio.tech',
   'official.nyxstudio@gmail.com',
+  'official.nystudio@gmail.com',
+  'pahariaatharv2005@gmail.com',
+  'jainbhavya168@gmail.com',
 ].map((e) => e.toLowerCase())
 
 function envAdminEmails(): string[] {
