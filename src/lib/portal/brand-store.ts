@@ -46,6 +46,7 @@ export interface BrandFormInput {
   confidentialityNote?: string | null
   renewalEmail?: string | null
   logoUrl?: string | null
+  featuresAccess?: Record<string, boolean> | null
 }
 
 const HEX = /^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/
@@ -183,6 +184,8 @@ export async function createBrandWithConfig(
         packBGoals: input.packBGoals ?? [],
         confidentialityNote: input.confidentialityNote ?? null,
         renewalEmail: input.renewalEmail ?? null,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        featuresAccess: input.featuresAccess as any,
       },
     })
 
@@ -261,6 +264,8 @@ export async function updateBrandWithConfig(
         packBGoals: input.packBGoals ?? undefined,
         confidentialityNote: input.confidentialityNote ?? undefined,
         renewalEmail: input.renewalEmail ?? undefined,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        featuresAccess: input.featuresAccess === undefined ? undefined : (input.featuresAccess as any),
       },
     })
 

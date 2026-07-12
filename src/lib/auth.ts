@@ -436,6 +436,9 @@ export const authOptions: AuthOptions = {
 
             if (!dbUser) return null as unknown as JWT;
 
+            // Sync role dynamically from the database
+            token.role = dbUser.role;
+
             // Session Hardening: invalidate if password changed AFTER the
             // token was issued. Compare with a 5-second slop so a stale
             // millisecond on `passwordChangedAt` (set at user creation /

@@ -80,7 +80,21 @@ export default function BrandPartnerPortalClient({
   // the toggle even while previewing.
   const viewerIsAdmin = realViewerIsAdmin && !previewAsPartner
 
-  const [view, setView] = useState<View>('calendar')
+  const enabledViewOptions = useMemo(() => {
+    return VIEW_OPTIONS.filter((opt) => {
+      if (opt.value === 'calendar') return brand.features?.calendar ?? true
+      if (opt.value === 'cards') return brand.features?.cards ?? true
+      if (opt.value === 'feed') return brand.features?.feed ?? true
+      return true
+    })
+  }, [brand.features])
+
+  const [view, setView] = useState<View>(() => {
+    if (brand.features?.calendar) return 'calendar'
+    if (brand.features?.cards) return 'cards'
+    if (brand.features?.feed) return 'feed'
+    return 'calendar'
+  })
   const [posts, setPosts] = useState<SerializedPost[]>(initialPosts)
   const [selectedPost, setSelectedPost] = useState<SerializedPost | null>(null)
 
@@ -401,7 +415,7 @@ export default function BrandPartnerPortalClient({
                 className="flex rounded-full overflow-hidden"
                 style={{ border: '1px solid #E8E4DC', background: '#FFFFFF' }}
               >
-                {VIEW_OPTIONS.map((opt) => (
+                {enabledViewOptions.map((opt) => (
                   <button
                     key={opt.value}
                     onClick={() => setView(opt.value)}
@@ -460,13 +474,17 @@ export default function BrandPartnerPortalClient({
           </div>
         </section>
 
-        <div style={{ animation: 'portalFadeIn 0.5s ease 0.3s both' }}>
-          <StatusTrackerSection brand={brand} statusCounts={statusCounts} totalPosts={activeMonthPosts.length} />
-        </div>
+        {brand.features?.tracker && (
+          <div style={{ animation: 'portalFadeIn 0.5s ease 0.3s both' }}>
+            <StatusTrackerSection brand={brand} statusCounts={statusCounts} totalPosts={activeMonthPosts.length} />
+          </div>
+        )}
 
-        <div style={{ animation: 'portalFadeIn 0.5s ease 0.35s both' }}>
-          <PackBSection brand={brand} />
-        </div>
+        {brand.features?.packB && brand.packB.title && (
+          <div style={{ animation: 'portalFadeIn 0.5s ease 0.35s both' }}>
+            <PackBSection brand={brand} />
+          </div>
+        )}
       </main>
 
       <PortalFooter brand={brand} />

@@ -60,6 +60,13 @@ export interface BrandConfig {
     email: string
     website: string
   }
+  features: {
+    calendar: boolean
+    cards: boolean
+    feed: boolean
+    tracker: boolean
+    packB: boolean
+  }
 }
 
 // ── adapter: BrandConfiguration row → BrandConfig (legacy shape) ────────
@@ -70,6 +77,15 @@ function adapt(
 ): BrandConfig {
   const start = cfg.campaignStart
   const end = cfg.campaignEnd
+
+  const rawFeatures = (cfg.featuresAccess as Record<string, boolean> | null) ?? {}
+  const features = {
+    calendar: rawFeatures.calendar ?? true,
+    cards: rawFeatures.cards ?? true,
+    feed: rawFeatures.feed ?? true,
+    tracker: rawFeatures.tracker ?? true,
+    packB: rawFeatures.packB ?? true,
+  }
 
   return {
     slug: partner.clientSlug,
@@ -115,6 +131,7 @@ function adapt(
       email: cfg.agencyContactEmail ?? 'hello@nyxstudio.in',
       website: 'https://nyxstudio.in',
     },
+    features,
   }
 }
 

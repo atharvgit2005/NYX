@@ -30,6 +30,7 @@ export interface BrandFormValues {
   campaignEnd: string // YYYY-MM-DD
   agencyContactName: string
   agencyContactEmail: string
+  featuresAccess?: Record<string, boolean> | null
 }
 
 interface Props {
@@ -71,6 +72,15 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
     campaignEnd: initial?.campaignEnd ?? '',
     agencyContactName: initial?.agencyContactName ?? 'NYX Studio',
     agencyContactEmail: initial?.agencyContactEmail ?? '',
+  })
+
+  const initialFeatures = (initial?.featuresAccess as Record<string, boolean> | null) ?? {}
+  const [features, setFeatures] = useState({
+    calendar: initialFeatures.calendar ?? true,
+    cards: initialFeatures.cards ?? true,
+    feed: initialFeatures.feed ?? true,
+    tracker: initialFeatures.tracker ?? true,
+    packB: initialFeatures.packB ?? true,
   })
   // Track whether the user has edited the slug manually so we stop
   // auto-deriving it from the brand name.
@@ -166,6 +176,7 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
         logoUrl: v.logoUrl || null,
         brandKitAssets,
         brandKitNotes: `Onboarding guidelines for ${v.brandName}. Configured via assistant.`,
+        featuresAccess: features,
       }
       const res = await fetch(url, {
         method,
@@ -387,6 +398,25 @@ export default function BrandForm({ mode, initial, lockSlug }: Props) {
             style={HEAD}
           />
         </Field>
+      </Section>
+
+      <Section title="Portal Section Access">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+          {Object.keys(features).map((key) => {
+            const label = key === 'packB' ? 'Pack B (Goals)' : key + ' view'
+            return (
+              <label key={key} className="flex items-center gap-3 cursor-pointer font-bold text-xs uppercase text-[#e4beb5] hover:text-[#e5e2e1]">
+                <input
+                  type="checkbox"
+                  checked={features[key as keyof typeof features]}
+                  onChange={(e) => setFeatures((prev) => ({ ...prev, [key]: e.target.checked }))}
+                  className="w-5 h-5 border-4 border-black bg-[#0e0e0e] text-[#D83C14] focus:ring-0 rounded-none"
+                />
+                {label}
+              </label>
+            )
+          })}
+        </div>
       </Section>
 
       <div className="flex flex-wrap items-center justify-between gap-4 pt-2">

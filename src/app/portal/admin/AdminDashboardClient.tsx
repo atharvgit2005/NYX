@@ -323,6 +323,7 @@ export default function AdminDashboardClient({
             setApproveTarget(null)
             router.refresh()
           }}
+          partners={partners}
         />
       )}
       {rejectTarget && (
@@ -1074,13 +1075,29 @@ function ApproveModal({
   target,
   onClose,
   onSuccess,
+  partners,
 }: {
   target: SerializedPending
   onClose: () => void
   onSuccess: () => void
+  partners: SerializedPartner[]
 }) {
+  const [mode, setMode] = useState<'new' | 'existing'>('new')
   const [clientName, setClientName] = useState(target.name ?? '')
   const [clientSlug, setClientSlug] = useState(suggestSlug(target.name ?? target.email.split('@')[0]))
+  
+  const [existingPartnerId, setExistingPartnerId] = useState(partners[0]?.id ?? '')
+  const [existingRole, setExistingRole] = useState<'partner' | 'viewer'>('partner')
+
+  // Feature gates state
+  const [features, setFeatures] = useState({
+    calendar: true,
+    cards: true,
+    feed: true,
+    tracker: true,
+    packB: true,
+  })
+
   const [submitting, setSubmitting] = useState(false)
 
   function onNameChange(v: string) {
@@ -1093,15 +1110,37 @@ function ApproveModal({
 
   async function submit(e: React.FormEvent) {
     e.preventDefault()
-    if (!clientName.trim() || !clientSlug.trim()) {
+    if (mode === 'new' && (!clientName.trim() || !clientSlug.trim())) {
       toast.error('Name and slug are required')
       return
     }
+    if (mode === 'existing' && !existingPartnerId) {
+      toast.error('Please select an existing brand')
+      return
+    }
+
     setSubmitting(true)
+    const payload = mode === 'new'
+      ? {
+          action: 'approve',
+          email: target.email,
+          mode,
+          clientName,
+          clientSlug,
+          featuresAccess: features,
+        }
+      : {
+          action: 'approve',
+          email: target.email,
+          mode,
+          existingPartnerId,
+          existingRole,
+        }
+
     const res = await fetch('/api/admin/portal/pending', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'approve', email: target.email, clientName, clientSlug }),
+      body: JSON.stringify(payload),
     })
     setSubmitting(false)
     if (!res.ok) {
@@ -1109,39 +1148,138 @@ function ApproveModal({
       toast.error(error)
       return
     }
-    toast.success(`${clientName} approved · /portal/${clientSlug}`)
+    toast.success(
+      mode === 'new'
+        ? `${clientName} approved · /portal/${clientSlug}`
+        : `${target.email} added to brand portal`
+    )
     onSuccess()
   }
 
   return (
     <ModalShell title="*APPROVE_PARTNER" subtitle={target.email} onClose={onClose}>
       <form onSubmit={submit} className="space-y-5">
-        <BField label="*CLIENT_NAME" hint="Display name shown in the portal and admin lists">
-          <input
-            value={clientName}
-            onChange={(e) => onNameChange(e.target.value)}
-            placeholder="Dessertino"
-            autoFocus
-            className="w-full px-4 py-3 bg-[#0e0e0e] border-4 border-black text-sm text-[#e5e2e1] outline-none focus:border-[#D83C14] transition"
-            style={HEAD}
-          />
-        </BField>
-        <BField label="*CLIENT_SLUG" hint="URL path · lowercase, hyphens only">
-          <div className="flex items-center bg-[#0e0e0e] border-4 border-black overflow-hidden focus-within:border-[#D83C14] transition">
-            <span
-              className="px-3 py-3 text-xs text-[#e4beb5] font-mono border-r-4 border-black"
-              style={BODY}
-            >
-              /portal/
-            </span>
-            <input
-              value={clientSlug}
-              onChange={(e) => setClientSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''))}
-              placeholder="dessertino"
-              className="flex-1 px-3 py-3 bg-transparent text-sm font-mono text-[#e5e2e1] outline-none"
-            />
+        
+        {/* Mode selector */}
+        <BField label="*APPROVAL_MODE">
+          <div className="flex gap-4">
+            <label className="flex items-center gap-2 cursor-pointer font-bold text-xs uppercase text-[#e5e2e1]">
+              <input
+                type="radio"
+                name="approvalMode"
+                checked={mode === 'new'}
+                onChange={() => setMode('new')}
+                className="w-4 h-4 border-4 border-black bg-[#0e0e0e] text-[#D83C14] focus:ring-0"
+              />
+              Create Brand Portal
+            </label>
+            <label className="flex items-center gap-2 cursor-pointer font-bold text-xs uppercase text-[#e5e2e1]">
+              <input
+                type="radio"
+                name="approvalMode"
+                checked={mode === 'existing'}
+                onChange={() => setMode('existing')}
+                className="w-4 h-4 border-4 border-black bg-[#0e0e0e] text-[#D83C14] focus:ring-0"
+              />
+              Add to Existing Brand
+            </label>
           </div>
         </BField>
+
+        {mode === 'new' ? (
+          <>
+            <BField label="*CLIENT_NAME" hint="Display name shown in the portal and admin lists">
+              <input
+                value={clientName}
+                onChange={(e) => onNameChange(e.target.value)}
+                placeholder="Dessertino"
+                autoFocus
+                className="w-full px-4 py-3 bg-[#0e0e0e] border-4 border-black text-sm text-[#e5e2e1] outline-none focus:border-[#D83C14] transition"
+                style={HEAD}
+              />
+            </BField>
+            <BField label="*CLIENT_SLUG" hint="URL path · lowercase, hyphens only">
+              <div className="flex items-center bg-[#0e0e0e] border-4 border-black overflow-hidden focus-within:border-[#D83C14] transition">
+                <span
+                  className="px-3 py-3 text-xs text-[#e4beb5] font-mono border-r-4 border-black"
+                  style={BODY}
+                >
+                  /portal/
+                </span>
+                <input
+                  value={clientSlug}
+                  onChange={(e) => setClientSlug(e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, ''))}
+                  placeholder="dessertino"
+                  className="flex-1 px-3 py-3 bg-transparent text-sm font-mono text-[#e5e2e1] outline-none"
+                />
+              </div>
+            </BField>
+
+            {/* Feature Access Toggles */}
+            <BField label="*PORTAL_SECTION_ACCESS" hint="Enable/disable sections inside the brand portal">
+              <div className="grid grid-cols-2 gap-3 mt-1">
+                {Object.keys(features).map((key) => {
+                  const label = key === 'packB' ? 'Pack B (Goals)' : key + ' view'
+                  return (
+                    <label key={key} className="flex items-center gap-2.5 cursor-pointer font-bold text-[11px] uppercase tracking-wider text-[#e4beb5] hover:text-[#e5e2e1]">
+                      <input
+                        type="checkbox"
+                        checked={features[key as keyof typeof features]}
+                        onChange={(e) => setFeatures((prev) => ({ ...prev, [key]: e.target.checked }))}
+                        className="w-4 h-4 border-4 border-black bg-[#0e0e0e] text-[#D83C14] focus:ring-0 rounded-none"
+                      />
+                      {label}
+                    </label>
+                  )
+                })}
+              </div>
+            </BField>
+          </>
+        ) : (
+          <>
+            <BField label="*SELECT_BRAND" hint="Select the existing brand portal to assign this user to">
+              <select
+                value={existingPartnerId}
+                onChange={(e) => setExistingPartnerId(e.target.value)}
+                className="w-full px-4 py-3 bg-[#0e0e0e] border-4 border-black text-sm text-[#e5e2e1] outline-none focus:border-[#D83C14] transition"
+                style={HEAD}
+              >
+                <option value="">-- SELECT BRAND --</option>
+                {partners.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.clientName} ({p.clientSlug})
+                  </option>
+                ))}
+              </select>
+            </BField>
+
+            <BField label="*ACCESS_ROLE" hint="Choose the user's permission level for this brand portal">
+              <div className="flex gap-4">
+                <label className="flex items-center gap-2 cursor-pointer font-bold text-xs uppercase text-[#e5e2e1]">
+                  <input
+                    type="radio"
+                    name="existingRole"
+                    checked={existingRole === 'partner'}
+                    onChange={() => setExistingRole('partner')}
+                    className="w-4 h-4 border-4 border-black bg-[#0e0e0e] text-[#D83C14] focus:ring-0"
+                  />
+                  Main Brand Partner
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer font-bold text-xs uppercase text-[#e5e2e1]">
+                  <input
+                    type="radio"
+                    name="existingRole"
+                    checked={existingRole === 'viewer'}
+                    onChange={() => setExistingRole('viewer')}
+                    className="w-4 h-4 border-4 border-black bg-[#0e0e0e] text-[#D83C14] focus:ring-0"
+                  />
+                  Viewer (Read-only guest)
+                </label>
+              </div>
+            </BField>
+          </>
+        )}
+
         <ModalActions>
           <button
             type="button"
