@@ -1,5 +1,15 @@
 {
-    "build": {
-        "env": {}
+  "build": {
+    "env": {}
+  },
+  "crons": [
+    {
+      "path": "/api/cron/keepalive",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/cron/sync-instagram",
+      "schedule": "0 1 * * *"
     }
+  ]
 }
