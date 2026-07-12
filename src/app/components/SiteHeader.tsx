@@ -32,15 +32,14 @@ export function SiteHeader({
   return (
     <header className="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-8 py-4 md:py-6 bg-[#0E0E0E] border-b-4 border-black">
       <Link href="/" className="flex items-center gap-2 md:gap-3 flex-shrink-0">
-        <div className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center relative flex-shrink-0">
+        <div className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0 relative">
           <Image
             src="/logo/NYX-Logo.png"
             alt="NYX Studio logo"
-            width={120}
-            height={40}
+            fill
             priority
             unoptimized
-            className="h-full w-full object-contain"
+            className="object-contain"
             sizes="(max-width: 768px) 32px, 40px"
           />
         </div>

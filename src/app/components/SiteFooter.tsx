@@ -18,14 +18,13 @@ export function SiteFooter() {
   return (
     <footer className="w-full flex flex-col md:flex-row justify-between items-center px-4 sm:px-6 md:px-8 py-10 md:py-12 gap-6 bg-[#0E0E0E] border-t-4 border-black relative z-10">
       <Link href="/" className="flex items-center gap-3">
-        <div className="w-8 h-8 flex items-center justify-center relative">
+        <div className="w-8 h-8 relative">
           <Image
             src="/logo/NYX-Logo.png"
             alt="NYX Studio logo"
-            width={120}
-            height={40}
+            fill
             unoptimized
-            className="h-full w-full object-contain"
+            className="object-contain"
             sizes="32px"
           />
         </div>
