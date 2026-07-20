@@ -2,15 +2,16 @@
 const https = require('https');
 
 const data = JSON.stringify({
-  host: "www.nyxstudio.tech",
+  host: "www.nyxstudio.in",
   key: "9bcc7db8-7719-4cb7-84a6-c839582cdb91",
-  keyLocation: "https://www.nyxstudio.tech/9bcc7db8-7719-4cb7-84a6-c839582cdb91.txt",
+  keyLocation: "https://www.nyxstudio.in/9bcc7db8-7719-4cb7-84a6-c839582cdb91.txt",
   urlList: [
-    "https://www.nyxstudio.tech/",
-    "https://www.nyxstudio.tech/services",
-    "https://www.nyxstudio.tech/work",
-    "https://www.nyxstudio.tech/contact",
-    "https://www.nyxstudio.tech/about"
+    "https://www.nyxstudio.in/",
+    "https://www.nyxstudio.in/about",
+    "https://www.nyxstudio.in/work",
+    "https://www.nyxstudio.in/services",
+    "https://www.nyxstudio.in/contact",
+    "https://www.nyxstudio.in/glossary"
   ]
 });
 

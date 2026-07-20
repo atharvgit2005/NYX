@@ -3,13 +3,13 @@ import Image from 'next/image';
 
 export type NavKey = 'home' | 'work' | 'services' | 'about' | 'contact' | 'portal';
 
-const NAV: Array<{ href: string; label: string; key: NavKey }> = [
+const NAV: Array<{ href: string; label: string; key: NavKey; rel?: string }> = [
   { href: '/', label: 'HOME', key: 'home' },
   { href: '/work', label: 'WORK', key: 'work' },
   { href: '/services', label: 'SERVICES', key: 'services' },
   { href: '/about', label: 'ABOUT', key: 'about' },
   { href: '/contact', label: 'CONTACT', key: 'contact' },
-  { href: '/portal', label: 'PORTAL', key: 'portal' },
+  { href: '/portal', label: 'PORTAL', key: 'portal', rel: 'nofollow' },
 ];
 
 /**
@@ -55,6 +55,7 @@ export function SiteHeader({
             <Link
               key={item.href}
               href={item.href}
+              rel={item.rel}
               aria-current={isActive ? 'page' : undefined}
               className={
                 isActive

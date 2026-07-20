@@ -24,7 +24,7 @@ export function MobileNav() {
                 <span aria-hidden="true" className="material-symbols-outlined" style={{ fontVariationSettings: pathname === '/contact' ? "'FILL' 1" : "'FILL' 0" }}>alternate_email</span>
                 <span className="font-headline font-bold text-[10px] mt-1 tracking-widest">CONTACT</span>
             </Link>
-            <Link href="/portal" aria-label="Portal" className={`flex-1 flex flex-col items-center justify-center py-2 active:bg-white/5 ${pathname.startsWith('/portal') ? 'text-[#D83C14]' : 'text-white/60 hover:text-white'}`}>
+            <Link href="/portal" rel="nofollow" aria-label="Portal" className={`flex-1 flex flex-col items-center justify-center py-2 active:bg-white/5 ${pathname.startsWith('/portal') ? 'text-[#D83C14]' : 'text-white/60 hover:text-white'}`}>
                 <span aria-hidden="true" className="material-symbols-outlined" style={{ fontVariationSettings: pathname.startsWith('/portal') ? "'FILL' 1" : "'FILL' 0" }}>dashboard</span>
                 <span className="font-headline font-bold text-[10px] mt-1 tracking-widest">PORTAL</span>
             </Link>

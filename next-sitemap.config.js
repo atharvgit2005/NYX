@@ -13,6 +13,7 @@ module.exports = {
     '/clients/*',
     '/uploads/*',
     '/icon.png',
+    '/feed.xml',
   ],
   robotsTxtOptions: {
     transformRobotsTxt: async () => {
