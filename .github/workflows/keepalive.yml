@@ -1,0 +1,24 @@
+name: Supabase Keepalive Cron
+
+on:
+  schedule:
+    # Runs every 6 hours (at 00:00, 06:00, 12:00, 18:00 UTC)
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+
+jobs:
+  ping-keepalive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Keepalive API
+        run: |
+          echo "Pinging NYX Studio Supabase Keepalive endpoint..."
+          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" https://www.nyxstudio.in/api/cron/keepalive)
+          echo "$RESPONSE"
+          STATUS=$(echo "$RESPONSE" | grep "HTTP_STATUS" | awk -F: '{print $2}')
+          if [ "$STATUS" -eq 200 ]; then
+            echo "Successfully pinged Supabase keepalive endpoint (HTTP 200)"
+          else
+            echo "Failed to ping keepalive endpoint (HTTP $STATUS)"
+            exit 1
+          fi
