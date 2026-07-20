@@ -6,6 +6,7 @@ const SOCIAL = [
   { href: 'https://www.linkedin.com/company/nyx-studio-ai/', label: 'LINKEDIN', external: true },
   { href: 'https://twitter.com/nyxstudiosai', label: 'TWITTER', external: true },
   { href: '/work', label: 'ARCHIVE', external: false },
+  { href: '/glossary', label: 'GLOSSARY', external: false },
   { href: '/contact', label: 'CONTACT', external: false },
 ];
 
