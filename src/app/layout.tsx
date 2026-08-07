@@ -42,6 +42,28 @@ export const metadata: Metadata = {
   },
   description:
     'NYX Studio builds AI-powered content systems for D2C brands in India. Cinematic reels, aggressive paid media, and influencer ops - all under one roof. Currently onboarding Q3 2026 brand partners.',
+  keywords: [
+    'NYX Studio',
+    'AI Content Agency India',
+    'D2C Brand Growth India',
+    'AI Video Production',
+    'Performance Creative Agency',
+    'Reels Production Agency',
+    'Influencer Marketing India',
+    'Pune Creative Agency',
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     type: 'website',
     siteName: 'NYX Studio',

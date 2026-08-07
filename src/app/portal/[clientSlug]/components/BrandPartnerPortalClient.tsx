@@ -296,7 +296,7 @@ export default function BrandPartnerPortalClient({
             </span>
             <span
               className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-semibold tracking-widest uppercase"
-              style={{ background: `${brand.brand.secondary}15`, color: '#0078A8' }}
+              style={{ background: `${brand.brand.secondary}15`, color: brand.brand.secondary || '#111111' }}
             >
               {activeCampaignTitle}
             </span>
@@ -304,7 +304,7 @@ export default function BrandPartnerPortalClient({
 
           <h1
             className="text-4xl md:text-6xl font-bold leading-tight"
-            style={{ fontFamily: 'var(--font-portal-display)', color: '#1A2A5E' }}
+            style={{ fontFamily: 'var(--font-portal-display)', color: brand.brand.secondary || '#111111' }}
           >
             {brand.client.name}
             <span style={{ color: brand.brand.primary }}> ×</span> {brand.agency.name}
@@ -421,7 +421,7 @@ export default function BrandPartnerPortalClient({
                     onClick={() => setView(opt.value)}
                     className="px-4 sm:px-5 py-2.5 text-sm font-medium transition-all flex items-center gap-1.5"
                     style={{
-                      background: view === opt.value ? '#1A2A5E' : 'transparent',
+                      background: view === opt.value ? (brand.brand.secondary || '#111111') : 'transparent',
                       color: view === opt.value ? '#FFFFFF' : '#6B6B6B',
                     }}
                   >

@@ -56,7 +56,7 @@ export default function ClientHero({ config }: Props) {
         {/* Main heading */}
         <h1
           className="text-4xl md:text-6xl font-bold leading-tight mb-3"
-          style={{ fontFamily: 'var(--font-playfair)', color: '#1A2A5E' }}
+          style={{ fontFamily: 'var(--font-playfair)', color: '#111111' }}
         >
           {client.name}
           <span style={{ color: brand.primary }}> ×</span> NYX Studio
@@ -66,7 +66,7 @@ export default function ClientHero({ config }: Props) {
           className="text-xl md:text-2xl mb-2"
           style={{ fontFamily: 'var(--font-playfair)', color: '#6B6B6B', fontStyle: 'italic' }}
         >
-          Content Calendar — May 2026
+          Content Calendar — {campaign.period}
         </p>
 
         {/* Period badge */}
@@ -96,7 +96,7 @@ export default function ClientHero({ config }: Props) {
             >
               <span
                 className="text-3xl font-bold"
-                style={{ fontFamily: 'var(--font-playfair)', color: '#1A2A5E' }}
+                style={{ fontFamily: 'var(--font-playfair)', color: '#111111' }}
               >
                 {stat.value}
               </span>

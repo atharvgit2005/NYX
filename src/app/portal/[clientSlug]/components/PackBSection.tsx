@@ -29,7 +29,7 @@ export default function PackBSection({ brand }: Props) {
           <div className="w-2 h-2 rounded-full" style={{ background: colors.secondary }} />
           <h2
             className="text-base font-semibold tracking-wide flex-1 text-left flex items-center gap-2"
-            style={{ color: '#1A2A5E', letterSpacing: '0.04em' }}
+            style={{ color: '#111111', letterSpacing: '0.04em' }}
           >
             <Film className="w-4 h-4" aria-hidden />
             PACK B — {packB.title.toUpperCase()}
@@ -65,7 +65,7 @@ export default function PackBSection({ brand }: Props) {
                     >
                       {i + 1}
                     </div>
-                    <p className="text-sm" style={{ color: '#1A2A5E' }}>
+                    <p className="text-sm" style={{ color: '#111111' }}>
                       {source}
                     </p>
                   </div>
@@ -82,7 +82,7 @@ export default function PackBSection({ brand }: Props) {
             >
               <p
                 className="text-xs tracking-widest uppercase mb-4"
-                style={{ color: '#0078A8' }}
+                style={{ color: colors.primary }}
               >
                 Strategic Goals
               </p>
@@ -99,7 +99,7 @@ export default function PackBSection({ brand }: Props) {
                         strokeLinejoin="round"
                       />
                     </svg>
-                    <p className="text-sm font-medium" style={{ color: '#1A2A5E' }}>
+                    <p className="text-sm font-medium" style={{ color: '#111111' }}>
                       {goal}
                     </p>
                   </div>

@@ -330,7 +330,7 @@ export default function CalendarView({
                         : isSelected
                           ? brand.brand.primary
                           : inCampaign
-                            ? '#1A2A5E'
+                            ? '#111111'
                             : '#C0BAB0',
                       border: isSelected && !isToday ? `1px solid ${brand.brand.primary}` : 'none'
                     }}
@@ -480,9 +480,9 @@ export default function CalendarView({
         className="p-5 rounded-2xl bg-white space-y-4 shadow-sm transition-all"
         style={{ border: '1px solid #E8E4DC' }}
       >
-        <div className="flex items-center gap-2 border-b border-[#FAF7F2] pb-2">
-          <ImageIcon className="w-5 h-5 text-[#1A2A5E]" style={{ color: brand.brand.primary }} />
-          <span className="text-sm font-bold uppercase tracking-wider text-[#1A2A5E]" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+        <div className="flex items-center gap-2 border-b border-[#F4F4F5] pb-2">
+          <ImageIcon className="w-5 h-5" style={{ color: brand.brand.primary }} />
+          <span className="text-sm font-bold uppercase tracking-wider text-[#111111]" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
             {"Month's Visual Direction & Focus"}
           </span>
         </div>
@@ -495,8 +495,8 @@ export default function CalendarView({
             <textarea
               value={monthlySummaryText}
               onChange={(e) => setMonthlySummaryText(e.target.value)}
-              placeholder="e.g. This month focuses on launching the summer dessert collection. We will use bright, natural lighting, warm tones, and dynamic transition reels..."
-              className="w-full min-h-[120px] p-3 border border-[#E8E4DC] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#1A2A5E] bg-[#FAF7F2] text-sm resize-y"
+              placeholder="e.g. This month focuses on launching hair transformation features. We will use clean lighting, bold red accents, and high-impact reels..."
+              className="w-full min-h-[120px] p-3 border border-[#E8E4DC] rounded-xl focus:outline-none focus:ring-1 focus:ring-[#111111] bg-[#FAFAFA] text-sm resize-y"
               style={{ fontFamily: 'var(--font-portal-body)' }}
               disabled={isLoadingSummary}
             />
@@ -523,7 +523,7 @@ export default function CalendarView({
               <p className="text-xs text-[#6B6B6B] animate-pulse">Loading visual direction notes...</p>
             ) : monthlySummaryText ? (
               <div 
-                className="text-sm leading-relaxed text-[#1A2A5E] whitespace-pre-wrap bg-[#FAF7F2] p-4 rounded-xl border border-[#E8E4DC]"
+                className="text-sm leading-relaxed text-[#111111] whitespace-pre-wrap bg-[#FAFAFA] p-4 rounded-xl border border-[#E8E4DC]"
                 style={{ fontFamily: 'var(--font-portal-body)' }}
               >
                 {monthlySummaryText}
@@ -615,7 +615,7 @@ export default function CalendarView({
         {selectedDateStr && (
           <>
             <div className="flex items-center justify-between border-b border-[#E8E4DC] pb-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#1A2A5E]" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
+              <span className="text-xs font-bold uppercase tracking-wider text-[#111111]" style={{ fontFamily: 'var(--font-space-grotesk)' }}>
                 Posts for {new Date(selectedDateStr + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', day: 'numeric', month: 'short' })}
               </span>
               <span className="text-[10px] font-semibold text-[#6B6B6B]">
@@ -660,7 +660,7 @@ export default function CalendarView({
                         
                         <p
                           className="text-sm font-bold leading-snug line-clamp-2"
-                          style={{ fontFamily: 'var(--font-portal-display)', color: '#1A2A5E' }}
+                          style={{ fontFamily: 'var(--font-portal-display)', color: '#111111' }}
                         >
                           {post.title}
                         </p>

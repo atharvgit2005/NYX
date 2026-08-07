@@ -61,7 +61,7 @@ export default function FeedView({
           {brand.client.avatarLetter}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-xs font-semibold truncate" style={{ color: '#1A2A5E' }}>
+          <p className="text-xs font-semibold truncate" style={{ color: '#111111' }}>
             {brand.client.socialHandle.replace('@', '')}
           </p>
           <p className="text-xs truncate" style={{ color: '#6B6B6B' }}>

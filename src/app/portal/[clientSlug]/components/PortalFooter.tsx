@@ -55,18 +55,18 @@ export default function PortalFooter({ brand }: Props) {
             style={{
               background: '#FAF7F2',
               border: '1px solid #E8E4DC',
-              color: '#1A2A5E',
+              color: '#111111',
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLElement
-              el.style.background = '#1A2A5E'
+              el.style.background = '#111111'
               el.style.color = '#FFFFFF'
-              el.style.borderColor = '#1A2A5E'
+              el.style.borderColor = '#111111'
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLElement
               el.style.background = '#FAF7F2'
-              el.style.color = '#1A2A5E'
+              el.style.color = '#111111'
               el.style.borderColor = '#E8E4DC'
             }}
           >

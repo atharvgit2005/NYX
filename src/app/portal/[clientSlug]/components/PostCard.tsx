@@ -115,7 +115,7 @@ export default function PostCard({ post, brand, onClick, viewerIsAdmin }: Props)
 
         <h3
           className="text-base font-bold leading-snug mb-3"
-          style={{ fontFamily: 'var(--font-portal-display)', color: '#1A2A5E' }}
+          style={{ fontFamily: 'var(--font-portal-display)', color: '#111111' }}
         >
           {post.title}
         </h3>

@@ -38,7 +38,7 @@ export default function StatusTrackerSection({
       <div className="mb-8">
         <h2
           className="text-3xl font-bold"
-          style={{ fontFamily: 'var(--font-portal-display)', color: '#1A2A5E' }}
+          style={{ fontFamily: 'var(--font-portal-display)', color: '#111111' }}
         >
           Status Tracker
         </h2>
@@ -89,7 +89,7 @@ export default function StatusTrackerSection({
                   <div className="mt-3 text-center px-1">
                     <p
                       className="text-xs font-semibold leading-tight"
-                      style={{ color: isActive ? '#1A2A5E' : '#C0BAB0' }}
+                      style={{ color: isActive ? '#111111' : '#C0BAB0' }}
                     >
                       {POST_STATUS_LABEL[stage]}
                     </p>
@@ -121,7 +121,7 @@ export default function StatusTrackerSection({
                   />
                   <p
                     className="text-sm font-medium"
-                    style={{ color: isActive ? '#1A2A5E' : '#C0BAB0' }}
+                    style={{ color: isActive ? '#111111' : '#C0BAB0' }}
                   >
                     {POST_STATUS_LABEL[stage]}
                   </p>

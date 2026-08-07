@@ -1,0 +1,148 @@
+{
+  "client": {
+    "name": "Habibs",
+    "tagline": "Hair & Beauty Unisex Salon",
+    "contact": "Habibs Management",
+    "email": "habibs@nyxstudio.in",
+    "phone": "+91 98765 43210",
+    "products": ["Hair Styling & Cuts", "Hair Coloring & Balayage", "Keratin & Smoothening", "Hair Spa & Scalp Therapy", "HydraFacial & Skincare", "Beard Grooming"],
+    "operations": "In-Salon Services + Online Appointment Booking",
+    "logoUrl": "/logo/Habibs.png"
+  },
+  "brand": {
+    "primary": "#E50914",
+    "secondary": "#111111",
+    "accent": "#000000"
+  },
+  "auth": {
+    "password": "habibs2026"
+  },
+  "campaign": {
+    "title": "Trial Pack A",
+    "period": "August 10–20, 2026",
+    "platform": "Instagram",
+    "totals": {
+      "posts": 8,
+      "reels": 4,
+      "carousels": 2,
+      "photos": 1,
+      "stories": 1
+    }
+  },
+  "posts": [
+    {
+      "id": 1,
+      "title": "Brand Intro — Transform Your Look at Habibs",
+      "date": "2026-08-10",
+      "day": "Monday",
+      "type": "Reel",
+      "status": "Idea",
+      "caption": "New haircut, fresh confidence ✨\n\nFrom trendsetting haircuts to luxury hair spas, Habibs is where style meets care. Step in for the ultimate hair and beauty transformation.\n\n📍 Walk-in or book your appointment today!\n\nTag someone who needs a salon day 👇",
+      "hashtags": ["Habibs", "HabibsSalon", "HairTransformation", "HairCare", "SalonVibes", "HairGoals", "BeautySalon", "StylistLife", "TrendingHair"],
+      "visualDirection": "Fast cuts, cinematic close-ups of precision scissors, hair washes with rich lather, blow-dry finish, client smiling in salon mirror. Rose pink + dark grey overlay. Upbeat luxury audio. 15-30s.",
+      "productionNotes": "REEL #1 — First impression matters. Shoot all hero salon services in one session. Use Habibs logo in end card."
+    },
+    {
+      "id": 2,
+      "title": "Top 5 Summer Hair Care Secrets",
+      "date": "2026-08-12",
+      "day": "Wednesday",
+      "type": "Carousel",
+      "status": "Idea",
+      "caption": "Is heat damaging your hair? ☀️\n\nSwipe through Habibs' expert tips to keep your hair shiny, hydrated, and frizz-free all season long! 💆‍♀️✨\n\n💬 Which hair care tip are you trying first?\n📍 Book your consultation at Habibs today!",
+      "hashtags": ["HairTips", "HairCareRoutine", "Habibs", "HealthyHair", "HairSpa", "FrizzFreeHair", "SalonSecret", "HairStyling"],
+      "visualDirection": "5 slides. Slide 1: Bold hook text 'Top 5 Salon Secrets for Hydrated Hair' on signature rose pink bg. Slides 2-4: One tip per slide with clean graphic layout and salon product visuals. Slide 5: Book Appointment CTA with logo.",
+      "productionNotes": "CAROUSEL — High save potential. Use clean typography and brand colors."
+    },
+    {
+      "id": 3,
+      "title": "POV: Self-Care Day at Habibs",
+      "date": "2026-08-13",
+      "day": "Thursday",
+      "type": "Reel",
+      "status": "Idea",
+      "caption": "POV: You gave yourself the pampering session you deserved 💆‍♂️✨\n\nRelaxing head massage + signature haircut + glowing facial = pure bliss.\n\nSelf-care starts at Habibs.\n\n📍 Visit your nearest Habibs salon\n🔖 Save this for your weekend plans!",
+      "hashtags": ["SelfCareDay", "POV", "SalonDay", "HabibsSalon", "PamperYourself", "HairSpaDay", "GlowUp", "SalonVibes"],
+      "visualDirection": "Handheld POV style. Walk-in shot → look around salon → greeted by stylist → soothing head massage close-up → final reveal. Relaxing aesthetic audio. 20-30s.",
+      "productionNotes": "REEL #2 — Needs salon access. Film during quiet hours for clean ambiance shots."
+    },
+    {
+      "id": 4,
+      "title": "Hero Look — Signature Balayage Transformation",
+      "date": "2026-08-14",
+      "day": "Friday",
+      "type": "Photo",
+      "status": "Idea",
+      "caption": "Sun-kissed perfection ☀️✨\n\nOur master stylists turned this look into pure art. Smooth blend, vibrant shine, zero damage.\n\nReady for your color upgrade?\n\n📍 Habibs Unisex Salon\n📞 Call/DM to reserve your slot",
+      "hashtags": ["Balayage", "HairColor", "HabibsColor", "ColorTransformation", "HairInspo", "SalonPhotography", "HairStylist", "GlowUp"],
+      "visualDirection": "Studio portrait lighting. Backlight emphasizing shine and dimension of hair texture. Dark moody background with rose accent. Shot in portrait for feed.",
+      "productionNotes": "PHOTO POST — High-resolution hair photography. This shot also feeds into Pack B (in-store mirror/TV screens). Shoot multiple angles."
+    },
+    {
+      "id": 5,
+      "title": "Weekend Hair Upgrade ✂️",
+      "date": "2026-08-16",
+      "day": "Sunday",
+      "type": "Reel",
+      "status": "Idea",
+      "caption": "Don't let bad hair ruin your weekend vibes 😎\n\nWhether it's a sharp fade, sleek blow-dry, or a beard trim — we've got you covered.\n\nWalk in looking good, walk out feeling unstoppable 🔥\n\n📍 Habibs Salon\n💬 Tag your grooming buddy!",
+      "hashtags": ["WeekendStyle", "GroomingTips", "Habibs", "MenHaircut", "SharpFade", "HairBlowdry", "SalonLife", "WeekendReady"],
+      "visualDirection": "Bright, high-energy tones. Lifestyle montage of male & female clients getting styled. Upbeat trending audio. 15-30s.",
+      "productionNotes": "REEL #3 — Lifestyle/vibe reel. Showcase unisex styling versatility."
+    },
+    {
+      "id": 6,
+      "title": "Regular Haircut vs. The Habibs Experience",
+      "date": "2026-08-17",
+      "day": "Monday",
+      "type": "Carousel",
+      "status": "Idea",
+      "caption": "A haircut isn't just a cut — it's an experience 💇‍♂️✨\n\nSwipe to see why Habibs is trusted by millions across the country →\n\n✨ Expert Hair Consultation\n✨ Premium Salon Products\n✨ Precision Styling & Finish\n\n📍 Book your visit today!",
+      "hashtags": ["HabibsExperience", "SalonVsHome", "HairProfessional", "Habibs", "StylingExpert", "QualityHaircare", "SalonComparison"],
+      "visualDirection": "4 slides comparing basic quick cuts vs full personalized consultation & scalp treatment at Habibs.",
+      "productionNotes": "CAROUSEL — Focus on value, expertise, and premium salon standards."
+    },
+    {
+      "id": 7,
+      "title": "Behind the Chair — ASMR Hair Spa & Wash 🧼",
+      "date": "2026-08-19",
+      "day": "Wednesday",
+      "type": "Reel",
+      "status": "Idea",
+      "caption": "Turn your sound ON 🎧\n\nSatisfying foam, soothing water flow, and deep conditioning treatment. Feel the stress melt away 💆‍♀️\n\nTreat your hair to a deep nourishing hair spa at Habibs.\n\n🔖 Save this for your next salon day!",
+      "hashtags": ["ASMR", "HairASMR", "Satisfying", "HairWash", "Habibs", "HairSpaASMR", "DeepConditioning", "ScalpCare"],
+      "visualDirection": "Macro close-up shots. Foam lathering → water rinsing (slow-mo) → steam massage → smooth comb glide. Crisp ASMR audio. 20-30s.",
+      "productionNotes": "REEL #4 — Satisfying/process content. Great for saves & shares. Footage also feeds into Pack B."
+    },
+    {
+      "id": 8,
+      "title": "The Ultimate Glow Up — Campaign Wrap 🚀",
+      "date": "2026-08-20",
+      "day": "Thursday",
+      "type": "Reel + Story",
+      "status": "Idea",
+      "caption": "10 days. 8 stunning transformations. Hundreds of happy clients ❤️\n\nThis is just the beginning of your hair care journey with Habibs.\n\nSpecial seasonal packages coming soon... 👀\n\n📍 Habibs Unisex Salon\n🔔 Turn on notifications so you don't miss out!",
+      "hashtags": ["Habibs", "GlowUp", "HairWrap", "SalonCommunity", "BeautyCare", "HairTransformation", "StayTuned", "HabibsStyle"],
+      "visualDirection": "Highlight reel compilation — best haircuts, colors, and spa moments. Fast-paced edits synced to music. Final frame with Habibs logo + 'Book Your Slot'. Push to Stories with poll.",
+      "productionNotes": "REEL #5 + STORY PUSH — Trial wrap post. Teases monthly retainer continuation."
+    }
+  ],
+  "packB": {
+    "title": "In-Store Salon TV & Digital Mirror Loops",
+    "description": "Hero hair transformations and ASMR spa footage repurposed for in-salon vertical display screens.",
+    "sources": [
+      "Post #2 (Summer Hair Secrets) — Treatment menu loop",
+      "Post #4 (Signature Balayage) — Glam hair portrait still",
+      "Post #7 (ASMR Hair Spa) — Relaxation video clip"
+    ],
+    "goals": ["Increase hair spa & treatment add-ons", "Enhance waiting lounge client experience"]
+  },
+  "agency": {
+    "name": "NYX Studio",
+    "tagline": "AI-Powered Content Studio",
+    "founders": ["Atharv Paharia", "Bhavya Jain"],
+    "email": "official.nyxstudio@gmail.com",
+    "phone": "+91 86192 63998",
+    "website": "https://nyxstudio.in"
+  }
+}

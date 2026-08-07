@@ -149,7 +149,7 @@ export default function AdWorkPage() {
                             {/* Cards grid */}
                             <div className="grid grid-cols-2 md:grid-cols-4 divide-y-4 md:divide-y-0 md:divide-x-4 divide-black">
                                 {/* Dessertino */}
-                                <div className="p-6 flex flex-col items-center justify-center text-center bg-[#00a4e1] group min-h-[180px] transition-colors duration-300 relative overflow-hidden">
+                                <Link href="/portal/dessertino" className="p-6 flex flex-col items-center justify-center text-center bg-[#00a4e1] group min-h-[180px] hover:opacity-90 transition-all duration-300 relative overflow-hidden">
                                     <div className="h-28 w-full flex items-center justify-center relative overflow-hidden">
                                         <div className="relative h-16 w-36 scale-[2.8]">
                                             <Image
@@ -161,10 +161,13 @@ export default function AdWorkPage() {
                                             />
                                         </div>
                                     </div>
-                                </div>
+                                    <span className="text-[10px] uppercase tracking-widest font-bold text-white/80 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        View Calendar →
+                                    </span>
+                                </Link>
 
                                 {/* Habibs */}
-                                <div className="p-6 flex flex-col items-center justify-center text-center bg-white group min-h-[180px] transition-colors duration-300 relative overflow-hidden">
+                                <Link href="/portal/habibs" className="p-6 flex flex-col items-center justify-center text-center bg-white group min-h-[180px] hover:bg-neutral-50 transition-all duration-300 relative overflow-hidden">
                                     <div className="h-28 w-full flex items-center justify-center relative overflow-hidden">
                                         <div className="relative h-14 w-32 scale-[2.8]">
                                             <Image
@@ -176,7 +179,10 @@ export default function AdWorkPage() {
                                             />
                                         </div>
                                     </div>
-                                </div>
+                                    <span className="text-[10px] uppercase tracking-widest font-bold text-black/80 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        View Calendar →
+                                    </span>
+                                </Link>
 
                                 {/* Newton School */}
                                 <div className="p-6 flex flex-col items-center justify-center text-center bg-[#000000] group min-h-[180px] hover:bg-[#121212] transition-colors duration-300 relative overflow-hidden">

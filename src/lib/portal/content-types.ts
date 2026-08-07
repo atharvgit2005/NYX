@@ -36,20 +36,19 @@ export const TYPE_COLORS: Record<
   ContentType,
   { bg: string; text: string; dot: string }
 > = {
-  REEL: { bg: '#FDE7F3', text: '#E91E8C', dot: '#E91E8C' },
-  CAROUSEL: { bg: '#E0F6FF', text: '#0078A8', dot: '#00AEEF' },
-  STATIC_POST: { bg: '#E8EBF5', text: '#1A2A5E', dot: '#1A2A5E' },
-  REEL_STORY: { bg: '#FCF0FA', text: '#C4186C', dot: '#E91E8C' },
-  STORY: { bg: '#FFF0F8', text: '#E91E8C', dot: '#E91E8C' },
+  REEL: { bg: '#FEF2F2', text: '#DC2626', dot: '#E50914' },
+  CAROUSEL: { bg: '#F4F4F5', text: '#18181B', dot: '#27272A' },
+  STATIC_POST: { bg: '#FFF1F2', text: '#E11D48', dot: '#E50914' },
+  REEL_STORY: { bg: '#FEF2F2', text: '#B91C1C', dot: '#DC2626' },
+  STORY: { bg: '#F4F4F5', text: '#09090B', dot: '#18181B' },
 }
 
 export const TYPE_GRADIENTS: Record<ContentType, string> = {
-  REEL: 'linear-gradient(135deg, #E91E8C 0%, #FF6BB5 100%)',
-  CAROUSEL: 'linear-gradient(135deg, #00AEEF 0%, #5DD6FF 100%)',
-  STATIC_POST: 'linear-gradient(135deg, #1A2A5E 0%, #3A5090 100%)',
-  REEL_STORY:
-    'linear-gradient(135deg, #E91E8C 0%, #C4186C 50%, #00AEEF 100%)',
-  STORY: 'linear-gradient(135deg, #FF6BB5 0%, #E91E8C 100%)',
+  REEL: 'linear-gradient(135deg, #E50914 0%, #B91C1C 100%)',
+  CAROUSEL: 'linear-gradient(135deg, #18181B 0%, #27272A 100%)',
+  STATIC_POST: 'linear-gradient(135deg, #991B1B 0%, #DC2626 100%)',
+  REEL_STORY: 'linear-gradient(135deg, #E50914 0%, #18181B 100%)',
+  STORY: 'linear-gradient(135deg, #27272A 0%, #09090B 100%)',
 }
 
 export const STATUS_COLORS: Record<

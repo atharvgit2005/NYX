@@ -28,6 +28,7 @@ export interface BrandConfig {
     operations: string
     socialHandle: string
     avatarLetter: string
+    logoUrl?: string
   }
   brand: {
     primary: string
@@ -99,6 +100,7 @@ function adapt(
       operations: cfg.operations ?? '',
       socialHandle: deriveSocialHandle(cfg),
       avatarLetter: (cfg.brandName || partner.clientName).charAt(0).toUpperCase(),
+      logoUrl: cfg.logoUrl ?? undefined,
     },
     brand: {
       primary: cfg.primaryColor,

@@ -64,7 +64,7 @@ function Stat({ label, value, dot }: { label: string; value: number; dot: string
       </div>
       <span
         className="text-3xl font-bold leading-none"
-        style={{ fontFamily: 'var(--font-portal-display)', color: '#1A2A5E' }}
+        style={{ fontFamily: 'var(--font-portal-display)', color: '#111111' }}
       >
         {value}
       </span>

@@ -31,6 +31,8 @@ module.exports = {
       // through, but explicit blocks (a) signal intent unambiguously,
       // (b) survive if a hosting provider flips the default later, and
       // (c) make it obvious in audits that AI training/search is opted-in.
+      //   Bravebot         — Brave Search web crawler
+      //   BraveBot         — Brave Search alternative UA
       //   GPTBot           — OpenAI training + ChatGPT search retrieval
       //   OAI-SearchBot    — ChatGPT search browsing UA
       //   ChatGPT-User     — on-demand fetch when a user asks ChatGPT to read a URL
@@ -41,6 +43,8 @@ module.exports = {
       //   CCBot            — Common Crawl, feeds most LLM training corpora
       //   Applebot-Extended — opt-in for Apple Intelligence training
       const aiAgents = [
+        'Bravebot',
+        'BraveBot',
         'GPTBot',
         'OAI-SearchBot',
         'ChatGPT-User',

@@ -21,6 +21,7 @@ type MarketingMetadataInput = {
   title: string;
   description: string;
   path: string;
+  keywords?: string[];
   openGraphTitle?: string;
   openGraphDescription?: string;
   twitterTitle?: string;
@@ -31,6 +32,7 @@ export function createMarketingMetadata({
   title,
   description,
   path,
+  keywords,
   openGraphTitle,
   openGraphDescription,
   twitterTitle,
@@ -41,6 +43,25 @@ export function createMarketingMetadata({
   return {
     title,
     description,
+    keywords: keywords ?? [
+      "NYX Studio",
+      "AI Content Agency India",
+      "D2C Brand Growth India",
+      "AI Video Production",
+      "Performance Creative Agency",
+    ],
+    robots: {
+      index: true,
+      follow: true,
+      nocache: false,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
     alternates: {
       canonical,
     },

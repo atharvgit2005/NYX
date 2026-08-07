@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { signOut } from 'next-auth/react'
 import { ArrowLeft, Eye } from 'lucide-react'
 import type { BrandConfig } from '@/lib/portal/brand-config'
@@ -39,14 +40,26 @@ export default function PortalHeader({
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3 min-w-0">
-          <div
-            className="w-9 h-9 rounded-full flex items-center justify-center text-base font-bold text-white shrink-0"
-            style={{
-              background: `linear-gradient(135deg, ${brand.brand.primary}, ${brand.brand.secondary})`,
-            }}
-          >
-            {brand.client.avatarLetter}
-          </div>
+          {brand.client.logoUrl ? (
+            <div className="w-9 h-9 rounded-full overflow-hidden relative shrink-0 border border-[#E8E4DC] bg-white flex items-center justify-center p-0.5">
+              <Image
+                src={brand.client.logoUrl}
+                alt={brand.client.name}
+                fill
+                className="object-contain"
+                unoptimized
+              />
+            </div>
+          ) : (
+            <div
+              className="w-9 h-9 rounded-full flex items-center justify-center text-base font-bold text-white shrink-0"
+              style={{
+                background: `linear-gradient(135deg, ${brand.brand.primary}, ${brand.brand.secondary})`,
+              }}
+            >
+              {brand.client.avatarLetter}
+            </div>
+          )}
           <div className="min-w-0">
             <p
               className="text-[10px] uppercase tracking-widest font-bold"

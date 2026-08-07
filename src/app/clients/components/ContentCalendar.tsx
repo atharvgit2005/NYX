@@ -51,7 +51,7 @@ export default function ContentCalendar({ config }: Props) {
         <div>
           <h2
             className="text-3xl font-bold"
-            style={{ fontFamily: 'var(--font-playfair)', color: '#1A2A5E' }}
+            style={{ fontFamily: 'var(--font-playfair)', color: '#111111' }}
           >
             Content Planner
           </h2>
@@ -59,7 +59,7 @@ export default function ContentCalendar({ config }: Props) {
             className="text-sm mt-1"
             style={{ fontFamily: 'var(--font-inter)', color: '#6B6B6B' }}
           >
-            May 2026 · {config.campaign.totals.posts} posts scheduled
+            {config.campaign.period} · {config.campaign.totals.posts} posts scheduled
           </p>
         </div>
 
@@ -75,7 +75,7 @@ export default function ContentCalendar({ config }: Props) {
               className="px-5 py-2.5 text-sm font-medium transition-all capitalize"
               style={{
                 fontFamily: 'var(--font-inter)',
-                background: view === v ? '#1A2A5E' : 'transparent',
+                background: view === v ? (config.brand.secondary || '#111111') : 'transparent',
                 color: view === v ? '#FFFFFF' : '#6B6B6B',
               }}
             >
@@ -132,7 +132,7 @@ export default function ContentCalendar({ config }: Props) {
                           style={{
                             fontFamily: 'var(--font-inter)',
                             background: isToday ? config.brand.primary : 'transparent',
-                            color: isToday ? '#FFFFFF' : isInCampaign ? '#1A2A5E' : '#C0BAB0',
+                            color: isToday ? '#FFFFFF' : isInCampaign ? '#111111' : '#C0BAB0',
                           }}
                         >
                           {day}

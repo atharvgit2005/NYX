@@ -6,6 +6,22 @@ Disallow: /portal
 Disallow: /clients/
 Disallow: /uploads/
 
+User-agent: Bravebot
+Allow: /
+Disallow: /api/
+Disallow: /portal/
+Disallow: /portal
+Disallow: /clients/
+Disallow: /uploads/
+
+User-agent: BraveBot
+Allow: /
+Disallow: /api/
+Disallow: /portal/
+Disallow: /portal
+Disallow: /clients/
+Disallow: /uploads/
+
 User-agent: GPTBot
 Allow: /
 Disallow: /api/

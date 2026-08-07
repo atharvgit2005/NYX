@@ -32,7 +32,7 @@ export default function FeedPreview({ config }: Props) {
           <div>
             <h2
               className="text-3xl font-bold"
-              style={{ fontFamily: 'var(--font-playfair)', color: '#1A2A5E' }}
+              style={{ fontFamily: 'var(--font-playfair)', color: '#111111' }}
             >
               Feed Preview
             </h2>
@@ -53,13 +53,13 @@ export default function FeedPreview({ config }: Props) {
               className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold text-white"
               style={{ background: `linear-gradient(135deg, ${config.brand.primary}, ${config.brand.secondary})` }}
             >
-              D
+              {config.client.name.charAt(0).toUpperCase()}
             </div>
             <span
               className="text-xs font-medium"
               style={{ fontFamily: 'var(--font-inter)', color: '#1A2A5E' }}
             >
-              @dessertino.pune
+              @{config.client.name.toLowerCase().replace(/[^a-z0-9]/g, '')}.official
             </span>
           </div>
         </div>
@@ -78,14 +78,14 @@ export default function FeedPreview({ config }: Props) {
               className="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold text-white shrink-0"
               style={{ background: `linear-gradient(135deg, ${config.brand.primary}, ${config.brand.secondary})` }}
             >
-              D
+              {config.client.name.charAt(0).toUpperCase()}
             </div>
             <div>
               <p className="text-xs font-semibold" style={{ fontFamily: 'var(--font-inter)', color: '#1A2A5E' }}>
-                dessertino.pune
+                {config.client.name.toLowerCase().replace(/[^a-z0-9]/g, '')}.official
               </p>
               <p className="text-xs" style={{ fontFamily: 'var(--font-inter)', color: '#6B6B6B' }}>
-                Shakes and More · Pune
+                {config.client.tagline || config.client.name}
               </p>
             </div>
           </div>

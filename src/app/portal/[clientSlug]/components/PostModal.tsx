@@ -195,7 +195,7 @@ export default function PostModal({
               <h2
                 id={titleId}
                 className="text-xl font-bold leading-snug"
-                style={{ fontFamily: 'var(--font-portal-display)', color: '#1A2A5E' }}
+                style={{ fontFamily: 'var(--font-portal-display)', color: '#111111' }}
               >
                 {post.title}
               </h2>
@@ -243,7 +243,7 @@ export default function PostModal({
               className="rounded-xl p-4 text-sm leading-relaxed whitespace-pre-line"
               style={{
                 background: '#FAF7F2',
-                color: '#1A2A5E',
+                color: '#111111',
                 border: '1px solid #E8E4DC',
               }}
             >
@@ -276,7 +276,7 @@ export default function PostModal({
             <p className="text-xs tracking-widest uppercase mb-2" style={{ color: '#6B6B6B' }}>
               Visual Direction
             </p>
-            <p className="text-sm leading-relaxed" style={{ color: '#1A2A5E' }}>
+            <p className="text-sm leading-relaxed" style={{ color: '#111111' }}>
               {post.visualDirection}
             </p>
           </div>
@@ -301,7 +301,7 @@ export default function PostModal({
                   +
                 </span>
               </summary>
-              <p className="text-sm leading-relaxed mt-3" style={{ color: '#1A2A5E' }}>
+              <p className="text-sm leading-relaxed mt-3" style={{ color: '#111111' }}>
                 {post.productionNotes}
               </p>
             </details>
@@ -344,7 +344,7 @@ export default function PostModal({
                           {formatStamp(c.createdAt)}
                         </span>
                       </div>
-                      <p className="leading-relaxed whitespace-pre-line" style={{ color: '#1A2A5E' }}>
+                      <p className="leading-relaxed whitespace-pre-line" style={{ color: '#111111' }}>
                         {c.body}
                       </p>
                       <p className="text-[11px] mt-1" style={{ color: '#6B6B6B' }}>
@@ -367,7 +367,7 @@ export default function PostModal({
                 border: `1px solid ${brand.brand.primary}30`,
               }}
             >
-              <div className="text-sm" style={{ color: '#1A2A5E' }}>
+              <div className="text-sm" style={{ color: '#111111' }}>
                 <span className="font-semibold">Awaiting your approval.</span>
                 <span style={{ color: '#6B6B6B' }}> Approve to lock for production, or request a revision.</span>
               </div>
@@ -379,7 +379,7 @@ export default function PostModal({
                   className="px-4 py-2 rounded-full text-sm font-medium transition-colors disabled:opacity-50"
                   style={{
                     background: '#FFFFFF',
-                    color: '#1A2A5E',
+                    color: '#111111',
                     border: '1px solid #E8E4DC',
                   }}
                 >
@@ -409,7 +409,7 @@ export default function PostModal({
                 border: `1px solid ${brand.brand.primary}30`,
               }}
             >
-              <p className="text-sm font-semibold mb-2" style={{ color: '#1A2A5E' }}>
+              <p className="text-sm font-semibold mb-2" style={{ color: '#111111' }}>
                 What needs to change?
               </p>
               <textarea
@@ -419,7 +419,7 @@ export default function PostModal({
                 className="w-full rounded-lg px-3 py-2 text-sm leading-relaxed"
                 style={{
                   background: '#FFFFFF',
-                  color: '#1A2A5E',
+                  color: '#111111',
                   border: '1px solid #E8E4DC',
                   outline: 'none',
                   resize: 'vertical',
@@ -438,7 +438,7 @@ export default function PostModal({
                   className="px-4 py-2 rounded-full text-sm font-medium disabled:opacity-50"
                   style={{
                     background: '#FFFFFF',
-                    color: '#1A2A5E',
+                    color: '#111111',
                     border: '1px solid #E8E4DC',
                   }}
                 >
