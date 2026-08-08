@@ -6,6 +6,7 @@ import { findApprovedClient, listAllBrandPartners } from '@/lib/config/clients-s
 import { getBrandConfig } from '@/lib/portal/brand-config'
 import { getContentPosts, getPostStatusCounts } from '@/lib/portal/content-store'
 import { isViewerOfSlug } from '@/lib/portal/viewer-store'
+import { getAccessibleBrandsForEmail } from '@/lib/portal/accessible-brands'
 import BrandPartnerPortalClient from './components/BrandPartnerPortalClient'
 import type { SerializedPost } from './components/types'
 import type { Metadata } from 'next'
@@ -35,20 +36,23 @@ export default async function ClientPortalPage({
   const viewerIsAdmin = isAdminEmail(email)
   let viewerIsViewerOnly = false
 
-  // Auth gating
+  // Auth gating: verify user has access to target brand (as owner, viewer, or admin)
   if (!viewerIsAdmin) {
-    const approved = await findApprovedClient(email)
-    if (approved) {
-      // Brand partner — can only see their own slug.
-      if (approved.clientSlug !== clientSlug) {
-        redirect(`/portal/${approved.clientSlug}`)
-      }
-    } else {
-      // Not the brand partner — check viewer access for THIS slug.
-      const allowed = await isViewerOfSlug(email, clientSlug)
-      if (!allowed) {
+    const accessibleBrands = await getAccessibleBrandsForEmail(email)
+    const targetBrand = accessibleBrands.find((b) => b.clientSlug === clientSlug)
+
+    if (!targetBrand) {
+      // No access to this slug -> redirect to select-brand if multi-brand, else /portal
+      if (accessibleBrands.length > 1) {
+        redirect('/portal/select-brand')
+      } else if (accessibleBrands.length === 1) {
+        redirect(`/portal/${accessibleBrands[0].clientSlug}`)
+      } else {
         redirect('/portal')
       }
+    }
+
+    if (targetBrand.role === 'VIEWER') {
       viewerIsViewerOnly = true
     }
   }

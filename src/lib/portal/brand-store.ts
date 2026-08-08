@@ -126,10 +126,6 @@ export async function createBrandWithConfig(
   const email = input.contactEmail.toLowerCase()
   const slug = input.clientSlug.toLowerCase()
 
-  const existingByEmail = await prisma.brandPartner.findUnique({ where: { email } })
-  if (existingByEmail) {
-    throw new BrandValidationError(`A brand already exists for ${email}`)
-  }
   const existingBySlug = await prisma.brandPartner.findUnique({
     where: { clientSlug: slug },
   })

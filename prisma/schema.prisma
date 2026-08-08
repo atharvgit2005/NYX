@@ -109,7 +109,7 @@ model Contact {
 
 model BrandPartner {
   id         String             @id @default(cuid())
-  email      String             @unique
+  email      String
   clientSlug String             @unique
   clientName String
   approvedAt DateTime           @default(now())

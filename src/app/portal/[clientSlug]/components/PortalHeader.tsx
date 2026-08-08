@@ -190,6 +190,25 @@ export default function PortalHeader({
             </Link>
           )}
 
+          <Link
+            href="/portal/select-brand"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-medium transition-colors shadow-sm"
+            style={{
+              background: '#FAF7F2',
+              color: '#1A2A5E',
+              border: '1px solid #E8E4DC',
+            }}
+            onMouseEnter={(e) => {
+              ;(e.currentTarget as HTMLElement).style.background = '#E8E4DC'
+            }}
+            onMouseLeave={(e) => {
+              ;(e.currentTarget as HTMLElement).style.background = '#FAF7F2'
+            }}
+            title="Switch between your assigned brand portals"
+          >
+            <span>Switch Brand</span>
+          </Link>
+
           <div className="hidden md:block text-right max-w-[160px]">
             {signedInAs.name && (
               <p className="text-xs font-bold leading-tight truncate" style={{ color: '#1A2A5E' }}>

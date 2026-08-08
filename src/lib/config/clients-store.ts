@@ -52,7 +52,7 @@ export async function addPendingClient(
 ): Promise<boolean> {
   const target = email.toLowerCase()
 
-  const alreadyApproved = await prisma.brandPartner.findUnique({
+  const alreadyApproved = await prisma.brandPartner.findFirst({
     where: { email: target },
     select: { id: true },
   })

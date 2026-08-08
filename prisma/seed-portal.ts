@@ -41,7 +41,7 @@ async function main() {
 
   for (const c of data.approvedClients ?? []) {
     const result = await prisma.brandPartner.upsert({
-      where: { email: c.email.toLowerCase() },
+      where: { clientSlug: c.clientSlug },
       update: {},
       create: {
         email: c.email.toLowerCase(),
