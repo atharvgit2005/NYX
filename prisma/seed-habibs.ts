@@ -127,8 +127,8 @@ async function main() {
       products: data.client.products,
       operations: data.client.operations,
       packageType: PackageType.TRIAL,
-      campaignStart: new Date('2026-08-10T00:00:00Z'),
-      campaignEnd: new Date('2026-08-20T00:00:00Z'),
+      campaignStart: new Date('2026-08-15T00:00:00Z'),
+      campaignEnd: new Date('2026-09-08T00:00:00Z'),
       platforms: [Platform.INSTAGRAM],
       agencyContactName: 'NYX Studio',
       agencyContactEmail: 'official.nyxstudio@gmail.com',
@@ -154,8 +154,8 @@ async function main() {
       products: data.client.products,
       operations: data.client.operations,
       packageType: PackageType.TRIAL,
-      campaignStart: new Date('2026-08-10T00:00:00Z'),
-      campaignEnd: new Date('2026-08-20T00:00:00Z'),
+      campaignStart: new Date('2026-08-15T00:00:00Z'),
+      campaignEnd: new Date('2026-09-08T00:00:00Z'),
       platforms: [Platform.INSTAGRAM],
       agencyContactName: 'NYX Studio',
       agencyContactEmail: 'official.nyxstudio@gmail.com',
@@ -169,34 +169,30 @@ async function main() {
     },
   })
 
-  // 3. Create posts if none exist
-  const existing = await prisma.contentPost.count({
+  // 3. Clear and re-insert 12 Grand Launch posts
+  await prisma.contentPost.deleteMany({
     where: { brandPartnerId: partner.id },
   })
 
-  if (existing === 0) {
-    let created = 0
-    for (const p of data.posts) {
-      await prisma.contentPost.create({
-        data: {
-          brandPartnerId: partner.id,
-          title: p.title,
-          scheduledDate: new Date(p.date + 'T10:00:00Z'),
-          contentType: mapType(p.type),
-          status: mapStatus(p.status),
-          caption: p.caption,
-          hashtags: p.hashtags,
-          visualDirection: p.visualDirection,
-          productionNotes: p.productionNotes,
-          position: p.id,
-        },
-      })
-      created++
-    }
-    console.log(`Seed complete: ${created} content posts inserted for Habibs.`)
-  } else {
-    console.log(`Habibs already has ${existing} content posts in database.`)
+  let created = 0
+  for (const p of data.posts) {
+    await prisma.contentPost.create({
+      data: {
+        brandPartnerId: partner.id,
+        title: p.title,
+        scheduledDate: new Date(p.date + 'T10:00:00Z'),
+        contentType: mapType(p.type),
+        status: mapStatus(p.status),
+        caption: p.caption,
+        hashtags: p.hashtags,
+        visualDirection: p.visualDirection,
+        productionNotes: p.productionNotes,
+        position: p.id,
+      },
+    })
+    created++
   }
+  console.log(`Seed complete: ${created} content posts inserted for Habibs Grand Launch calendar.`)
 }
 
 main()
