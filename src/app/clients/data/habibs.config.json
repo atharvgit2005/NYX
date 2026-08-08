@@ -29,7 +29,7 @@
   "campaign": {
     "title": "Grand Launch Content Calendar",
     "period": "August 15 – September 8, 2026",
-    "platform": "Instagram (Reels cross-post to TikTok)",
+    "platform": "Instagram",
     "totals": {
       "posts": 12,
       "reels": 7,
@@ -46,10 +46,10 @@
       "day": "Saturday",
       "type": "Reel",
       "status": "Idea",
-      "caption": "Kuch kursiyan sirf baithne ke liye nahi hoti. Kuch kursiyan itihaas ki gawah hoti hain.\n\nHabibs ki hairdressing legacy ek daur se shuru hui jab hunar hi pehchaan tha. Founder Habib Ahmed — ek family of elite barbers mein paida hue, London mein trained hue, aur India mein modern, professional salon culture lekar aaye. Unhone Bharat ke kai pramukh vyaktitvon ko style kiya — Indira Gandhi ji se lekar Dr. A. P. J. Abdul Kalam tak.\n\nTeen peedhiyon se ek hi vishwas: hairdressing sirf ek service nahi, ek craft hai. Aur aaj wahi craft aapke shehar, aapki kursi tak pahuncha hai.\n\nIss Independence Day, celebrate the craft that grew with India.\n\nDesh badla. Style badla. Hunar wahi raha.\n\nPoora Look. Ek Jagah. — Habibs\nApne sabse kareeb Habibs ke liye DM karein.",
-      "hashtags": ["Habibs", "HabibsSalon", "PooraLookEkJagah", "IndependenceDay", "HairdressingLegacy", "HairAndBeauty", "IndianSalon", "TeenPeedhiyan", "SalonExperience", "HarGharTiranga"],
-      "visualDirection": "Open on a vintage barber chair in warm, low light — archival paper textures, sepia grade. Slow push-ins on scissors, hands, classic tools. Match-cut on the chair transitions sepia heritage → full-colour modern Habibs floor with present-day stylists on real clients (woman, man, a bride). Names of leaders appear as elegant text cards + voiceover only — NO recreated faces. Close on end-card: \"Desh badla. Style badla. Hunar wahi raha. — Habibs.\"",
-      "productionNotes": "25–30s. Talent: 1 senior stylist (hero) + 3–4 clients. Props: vintage chair, classic scissors/razor set, London-certificate prop, heritage set dressing. Two setups: sepia heritage corner + bright main floor. Warm, measured Hindi VO artist. GUARDRAILS: no flag on chairs/products/disposables; Kalam & Indira in VO + text only, NO look-alike casting or AI faces; \"styled personalities including…\" framed as fact, not endorsement. Use licensed archival stills only if rights cleared — else textures/props, no real photos."
+      "caption": "Kuch kursiyan sirf baithne ke liye nahi hoti. Kuch kursiyan itihaas ki gawah hoti hain.\n\nHabibs ki hairdressing legacy ek daur se shuru hui jab hunar hi pehchaan tha. Founder Habib Ahmed — ek family of elite barbers mein paida hue, London mein trained, aur India mein modern professional salon culture lekar aaye. Unhone Bharat ke kai pramukh vyaktitvon ko style kiya — Indira Gandhi ji se lekar Dr. A. P. J. Abdul Kalam tak.\n\nTeen peedhiyon se ek hi vishwas: hairdressing sirf service nahi, ek craft hai. Aur aaj wahi craft aapke shehar, aapki kursi tak pahuncha hai.\n\nAb hum Instagram par bhi. Desh badla. Style badla. Hunar wahi raha.\nPoora Look. Ek Jagah. — Habibs",
+      "hashtags": ["Habibs", "HabibsSalon", "PooraLookEkJagah", "IndependenceDay", "HairdressingLegacy", "HairAndBeauty", "IndianSalon", "TeenPeedhiyan", "HarGharTiranga"],
+      "visualDirection": "Vintage barber chair, warm low light, sepia archival textures → match-cut to full-colour modern Habibs floor with present-day stylists on real clients. Leaders as elegant text cards + voiceover only, NO recreated faces. End card: \"Desh badla. Style badla. Hunar wahi raha. — Habibs.\"",
+      "productionNotes": "25–30s. Hybrid — IRL salon + AI heritage atmosphere. 1 senior stylist + 3–4 clients. Guardrails: no flag on chairs/products; Kalam & Indira in VO+text only, no AI faces/look-alikes."
     },
     {
       "id": 2,
@@ -58,22 +58,22 @@
       "day": "Tuesday",
       "type": "Carousel",
       "status": "Idea",
-      "caption": "Ek hunar. Teen peedhiyan. Ek hi vishwas — hairdressing sirf service nahi, ek craft hai.\n\nSwipe through the story 👉\n→ Founder Habib Ahmed: born 1940, a family of elite barbers, London-trained, and the man who brought organized, professional salon culture to India.\n→ Uske haath ne Bharat ke icons ko style kiya — Indira Gandhi ji & Dr. A. P. J. Abdul Kalam jaise naam.\n→ Agli peedhiyon ne is virasat ko aage badhaya — aaj Habibs 100s of salons tak pahunch chuka hai.\n\nAur aaj yeh legacy aapke shehar tak. Is virasat ka hissa baniye.\n\nDesh badla. Style badla. Hunar wahi raha.\nPoora Look. Ek Jagah. — Habibs",
-      "hashtags": ["Habibs", "HabibsLegacy", "TeenPeedhiyan", "HairdressingLegacy", "IndianSalon", "PooraLookEkJagah", "SalonStory", "HairAndBeauty", "CraftNotJustCut"],
-      "visualDirection": "8 slides, consistent cream + navy + maroon template, elegant serif headings.\n1 — \"The Chair That Witnessed History\" (title)\n2–3 — heritage textures, tools, sepia\n4 — Founder Habib Ahmed (typographic portrait card — no real-leader faces)\n5 — \"Styled India's icons — incl. Indira Gandhi ji & Dr. Kalam\" (type card)\n6 — Next-gen leaders (real team photos if available)\n7 — Modern salons / footprint\n8 — \"Desh badla. Style badla. Hunar wahi raha.\" + CTA",
-      "productionNotes": "Design task — no shoot if using brand photos + type. Assets: founder photo IF brand-owned & cleared; team photos; salon interiors; texture pack. GUARDRAILS: no recreated faces of Kalam/Indira/Nehru; do NOT claim the Nehru/Viceroy-House chapter for the founder (that's the grandfather generation, publicised by the rival JH brand) — keep to salonhabibs.in + documented obituaries."
+      "caption": "Ek hunar. Teen peedhiyan. Ek hi vishwas — hairdressing sirf service nahi, ek craft hai.\n\nSwipe through the story 👉\n→ Founder Habib Ahmed: born 1940, family of elite barbers, London-trained, the man who brought organized salon culture to India.\n→ Uske haath ne Bharat ke icons ko style kiya — Indira Gandhi ji & Dr. A. P. J. Abdul Kalam jaise naam.\n→ Agli peedhiyon ne is virasat ko aage badhaya — aaj Habibs 100s of salons tak.\n\nAur aaj yeh legacy aapke shehar tak. Is virasat ka hissa baniye.\nDesh badla. Style badla. Hunar wahi raha. — Habibs",
+      "hashtags": ["Habibs", "HabibsLegacy", "TeenPeedhiyan", "HairdressingLegacy", "IndianSalon", "PooraLookEkJagah", "SalonStory", "CraftNotJustCut"],
+      "visualDirection": "8 slides, cream + red/white brand palette, elegant serif. S1 title \"The Chair That Witnessed History\"; S2–3 heritage textures; S4 founder card; S5 icons named (type card); S6 next-gen team; S7 modern salons; S8 tagline + CTA.",
+      "productionNotes": "Carousel · IRL stills + design. Design + brand photos, no shoot. Founder photo only if brand-owned. No recreated faces. Keep to salonhabibs.in + documented facts."
     },
     {
       "id": 3,
-      "title": "The Habibs Cut — Signature Hair",
+      "title": "Meet the Experts Behind the Chair (Stylist Showcase)",
       "date": "2026-08-20",
       "day": "Thursday",
       "type": "Reel",
       "status": "Idea",
-      "caption": "Ek achha haircut poora look badal deta hai.\n\nPrecision cuts, blow-dry, styling — for men aur women, dono. Yeh hai the Habibs finish: sharp, clean, aur bilkul aap jaisa.\n\nBook your cut at your nearest Habibs.\nPoora Look. Ek Jagah. — Habibs",
-      "hashtags": ["Habibs", "Haircut", "HairGoals", "HairTransformation", "HairStyling", "MensGrooming", "WomensHaircut", "SalonIndia", "PooraLookEkJagah", "HairInspo"],
-      "visualDirection": "Fast, satisfying, ASMR-leaning — scissor snips, comb glides, blow-dry reveal. Bright clean salon light. Quick before→after head turns, split between one male and one female client. Trendy audio. Crisp logo end-card. Keep hygiene visible (fresh towels, sanitized tools).",
-      "productionNotes": "20–25s. 2 models (1 M, 1 F). Stylists in Habibs uniform. Gear: gimbal + macro/close lens + clip mic for snip ASMR. Props: capes, clean tools tray."
+      "caption": "Aapke look ke peeche ek trained haath hota hai — aur Habibs ke stylists yun hi nahi bante.\n\nInternational training, years of experience, aur teen peedhiyon ki craft legacy — har cut, har colour, har look ke peeche yeh expertise hai. Yeh sirf salon staff nahi, yeh artists hain.\n\nMilne aao apne shehar ke Habibs experts se.\nPoora Look. Ek Jagah. — Habibs",
+      "hashtags": ["Habibs", "MeetTheExperts", "ProfessionalStylists", "HairArtists", "TrainedStylists", "SalonExperts", "PooraLookEkJagah", "HairAndBeauty", "CraftNotJustCut"],
+      "visualDirection": "Cinematic team feature. Confident portraits of real stylists at work — mid-cut, mid-colour, focused hands. On-screen name + credential lower-thirds (\"Senior Stylist · X yrs · [certification]\"). Premium, aspirational, warm light. End card: \"The Experts of Habibs\" + logo.",
+      "productionNotes": "20–25s. IRL. Feature 3–4 real stylists (get their consent + accurate credentials — only state qualifications that are true). Gear: gimbal, key light. This doubles as internal team pride content."
     },
     {
       "id": 4,
@@ -82,22 +82,22 @@
       "day": "Saturday",
       "type": "Carousel",
       "status": "Idea",
-      "caption": "\"Habibs matlab haircut\" — ruk jao. Poori list dekho 👉\n\nHair · Colour · Treatments (keratin, smoothening, spa) · Skin & Facials · Threading, Waxing & Brows · Nails · Bridal & Groom · Makeup · Complete-Look Packages.\n\nSab ek hi jagah. Ek appointment. Ek bill.\n\nDo jagah kyun, jab ek kaafi hai?\nSave this 🔖 & DM 'POORA' for your nearest outlet.\nPoora Look. Ek Jagah. — Habibs",
-      "hashtags": ["Habibs", "PooraLookEkJagah", "SalonServices", "HairAndBeauty", "BridalMakeup", "Facial", "Nails", "HairColour", "Keratin", "BeautySalon", "DoJagahKyun"],
-      "visualDirection": "9 slides, bold navy/cream/maroon. Slide 1 = myth-bust title. Slides 2–8 = one service each: icon + a striking service photo + one-line benefit. Slide 9 = \"Poora Look. Ek Jagah.\" + CTA. Consistent template, big type, short on-slide copy.",
-      "productionNotes": "Design + stills. Need 1 clean photo per service — pull from outlet shoots or run a half-day service-photo shoot. Build an icon set. Keep on-slide captions to one line each."
+      "caption": "\"Habibs matlab haircut\" — ruk jao. Poori list dekho 👉\n\nHair · Colour & Highlights · Treatments (keratin, smoothening, hair spa) · Skin & Facials · Threading & Waxing · Nails · Bridal & Groom · Makeup · Complete-Look Packages.\n\nSab ek hi jagah. Ek appointment. Ek bill.\nDo jagah kyun, jab ek kaafi hai?\nSave this 🔖 & DM 'POORA' for your nearest outlet. — Habibs",
+      "hashtags": ["Habibs", "PooraLookEkJagah", "SalonServices", "HairAndBeauty", "BridalMakeup", "Facial", "Nails", "HairColour", "Keratin", "DoJagahKyun"],
+      "visualDirection": "9 slides, bold red/white/cream. S1 myth-bust title; S2–8 one service each (icon + real photo + one-line benefit); S9 \"Poora Look. Ek Jagah.\" + CTA.",
+      "productionNotes": "Carousel · IRL service stills + design. Design + stills. One clean photo per service from outlet shoots. Build an icon set. One line per slide."
     },
     {
       "id": 5,
-      "title": "Launch Offer — The Complete Look",
+      "title": "We're Finally on Instagram (Social Launch Welcome)",
       "date": "2026-08-24",
       "day": "Monday",
       "type": "Photo",
       "status": "Idea",
-      "caption": "Ek appointment. Ek bill. Poora look.\n\nLaunch-month special on our Complete Look package — hair + skin + beauty, one sitting. [INSERT OFFER: e.g. flat XX% off / ₹XXXX]. Limited launch-month window, at participating outlets.\n\nDM 'LOOK' or book now.\nPoora Look. Ek Jagah. — Habibs\n*T&C apply.",
-      "hashtags": ["Habibs", "LaunchOffer", "CompleteLook", "PooraLookEkJagah", "SalonOffer", "BeautyDeals", "HairAndBeauty", "IndianSalon"],
-      "visualDirection": "Single bold offer card. Navy background, cream + maroon type, one elegant \"complete look\" hero model. Offer value large and clear. Habibs logo + small T&C line. Premium, uncluttered.",
-      "productionNotes": "Design. NEEDS FROM CLIENT: exact offer (%/₹), validity dates, participating outlets, T&C. 1 hero image. Get franchise-team sign-off on the offer before scheduling."
+      "caption": "Salon mein aap humein jaante ho. Ab yahan bhi. 👋\n\nHabibs officially Instagram par hai — aapke looks, tips, transformations aur behind-the-scenes, sab ek jagah.\n\nAur jashn ke liye — humara pehla Instagram-exclusive treat: [INSERT SOCIAL-EXCLUSIVE PERK — e.g. \"screenshot this post & show at your nearest outlet for a complimentary [service/add-on] with any booking\"]. Limited period, participating outlets.\n\nFollow karo, aur poora look ke liye taiyaar ho jao.\nPoora Look. Ek Jagah. — Habibs *T&C apply.",
+      "hashtags": ["Habibs", "NowOnInstagram", "HabibsSalon", "PooraLookEkJagah", "FollowUs", "HairAndBeauty", "IndianSalon", "InstagramExclusive"],
+      "visualDirection": "Clean welcome card. Brand red/white, warm hero image (happy client / salon interior), bold \"Now on Instagram\" headline, the exclusive perk called out clearly, logo + handle prominent. Premium, uncluttered.",
+      "productionNotes": "Static Post · Design. NEEDS FROM CLIENT: the actual social-exclusive perk (not a grand-opening discount — brand already exists offline), validity, participating outlets, T&C, redemption method (screenshot/DM code). Franchise sign-off before scheduling."
     },
     {
       "id": 6,
@@ -106,10 +106,10 @@
       "day": "Wednesday",
       "type": "Reel",
       "status": "Idea",
-      "caption": "Iss Onam, tradition ko do ek naya glow. ✨\n\nKasavu ki elegance, jasmine ka gajra, aur ek soft festive look — Onam ka poora look, ek hi jagah.\n\nOnam Ashamsakal! 🌼 Get festive-ready at Habibs.\nPoora Look. Ek Jagah. — Habibs",
-      "hashtags": ["Onam", "Onam2026", "OnamAshamsakal", "Habibs", "FestiveLook", "Kasavu", "PooraLookEkJagah", "KeralaFestival", "FestiveGlow", "HairAndBeauty"],
-      "visualDirection": "Warm, elegant. Woman in authentic kasavu (off-white/gold); stylist finishing a low bun + real jasmine gajra; dewy makeup. Pookalam (flower rangoli) + brass nilavilakku lamp in frame, soft natural light. Graceful slow-motion, traditional-modern fusion audio. End card: Onam greeting + logo.",
-      "productionNotes": "20–25s. Shoot a day ahead (post ON the 26th). 1 model, authentic kasavu + fresh jasmine. Stylist + MUA. Props: pookalam (fresh flowers), nilavilakku lamp, banana-leaf accents. CULTURAL CARE: authentic & respectful (esp. Kerala/South outlets); greeting-led, not salesy."
+      "caption": "Iss Onam, tradition ko do ek naya glow. ✨\n\nKasavu ki elegance, jasmine ka gajra, aur ek soft festive look — Onam ka poora look, ek hi jagah.\nOnam Ashamsakal! 🌼 Get festive-ready at Habibs.\nPoora Look. Ek Jagah. — Habibs",
+      "hashtags": ["Onam", "Onam2026", "OnamAshamsakal", "Habibs", "FestiveLook", "Kasavu", "PooraLookEkJagah", "KeralaFestival", "FestiveGlow"],
+      "visualDirection": "Warm, elegant. Woman in authentic kasavu; stylist finishing low bun + real jasmine gajra; dewy makeup. Pookalam + brass nilavilakku in frame, soft natural light, graceful slow-mo. End card: Onam greeting + logo.",
+      "productionNotes": "20–25s. Reel · IRL. Shoot a day ahead, post ON the 26th. Authentic kasavu + fresh jasmine, pookalam, nilavilakku. Cultural care — greeting-led, not salesy (esp. South outlets)."
     },
     {
       "id": 7,
@@ -118,10 +118,10 @@
       "day": "Friday",
       "type": "Reel",
       "status": "Idea",
-      "caption": "Bhai, is baar rakhi ka gift chocolate se aage ho. 🎁\n\nEk Habibs gift card = ek poora pamper day. Hair, facial, nails — behen ka apna glow-up din.\n\nIs Rakhi, behen ko do ek Habibs day.\nGift vouchers available — DM 'RAKHI'.\nPoora Look. Ek Jagah. — Habibs",
-      "hashtags": ["RakshaBandhan", "Rakhi", "Rakhi2026", "Habibs", "GiftForSister", "RakhiGift", "PamperDay", "PooraLookEkJagah", "SiblingLove", "HairAndBeauty"],
-      "visualDirection": "Warm home → salon. Open on a rakhi thali & thread; brother surprises sister with a Habibs gift card. Cut to her being pampered — hair wash, facial glow, nails, a big smile. Feel-good sibling energy, uplifting audio. End: gift-card visual + \"Gift vouchers available\" + logo.",
-      "productionNotes": "20–25s. Shoot ahead (post ON the 28th). 2 talent (brother/sister). Props: rakhi thali, thread, Habibs gift-card prop, salon service setups. NEEDS FROM CLIENT: confirm gift vouchers exist + how to buy (link/DM/outlet)."
+      "caption": "Bhai, is baar rakhi ka gift chocolate se aage ho. 🎁\n\nEk Habibs gift card = ek poora pamper day. Hair, facial, nails — behen ka apna glow-up din.\nIs Rakhi, behen ko do ek Habibs day. Gift vouchers available — DM 'RAKHI'.\nPoora Look. Ek Jagah. — Habibs",
+      "hashtags": ["RakshaBandhan", "Rakhi", "Rakhi2026", "Habibs", "GiftForSister", "RakhiGift", "PamperDay", "PooraLookEkJagah", "SiblingLove"],
+      "visualDirection": "Warm home → salon. Rakhi thali & thread; brother surprises sister with a Habibs gift card; cut to her being pampered — hair wash, facial, nails, big smile. Feel-good, uplifting audio. End: gift-card visual + \"Gift vouchers available\" + logo.",
+      "productionNotes": "20–25s. Reel · IRL. Shoot ahead, post ON the 28th. 2 talent (brother/sister). NEEDS FROM CLIENT: confirm vouchers exist + how to buy (link/DM/outlet)."
     },
     {
       "id": 8,
@@ -130,10 +130,10 @@
       "day": "Monday",
       "type": "Reel",
       "status": "Idea",
-      "caption": "Ek look ke liye kitni jagah bhagoge?\n\nEk taraf: teen dukaanein, chaar bill, aur poora Saturday gone. Doosri taraf: Habibs — hair, skin, nails, brows, sab ek hi sitting mein, ek hi bill.\n\nDo jagah kyun, jab ek kaafi hai?\nPoora Look. Ek Jagah. — Habibs. Book now.",
-      "hashtags": ["Habibs", "DoJagahKyun", "PooraLookEkJagah", "OneStopSalon", "SalonComparison", "TimeSaving", "HairAndBeauty", "IndianSalon", "SmartBeauty"],
-      "visualDirection": "Classic split-screen. LEFT: hectic, desaturated — running between parlour/traffic/waiting, timestamps piling up, messy diegetic sound, no music. RIGHT: calm, warm — one Habibs chair, parallel services happening, single soft track, timer barely moves. Dissolve to one clean frame + line \"Do jagah kyun, jab ek kaafi hai?\"",
-      "productionNotes": "25–30s. 1 hero model (same on both sides). Left: 2–3 quick location vibes (or implied). Right: salon floor with 2–3 services staged in parallel. Gimbal + timestamp graphics in edit. This is the flagship \"engine\" — reuse the setup for future comparison reels."
+      "caption": "Ek look ke liye kitni jagah bhagoge?\n\nEk taraf: teen dukaanein, chaar bill, poora Saturday gone. Doosri taraf: Habibs — hair, skin, nails, brows, sab ek hi sitting mein, ek hi bill.\nDo jagah kyun, jab ek kaafi hai?\nPoora Look. Ek Jagah. — Habibs. Book now.",
+      "hashtags": ["Habibs", "DoJagahKyun", "PooraLookEkJagah", "OneStopSalon", "SalonComparison", "TimeSaving", "HairAndBeauty", "SmartBeauty"],
+      "visualDirection": "Split-screen. LEFT: hectic, desaturated, running between places, timestamps piling up, messy sound, no music. RIGHT: calm, warm, one Habibs chair, parallel services, single soft track, timer barely moves. Dissolve to one clean frame + line.",
+      "productionNotes": "25–30s. Hybrid — IRL + AI stylized transitions. IRL split-screen + AI for stylized transitions/timestamp motion. 1 hero model both sides. Flagship \"engine\" — reuse for future comparison reels."
     },
     {
       "id": 9,
@@ -143,33 +143,33 @@
       "type": "Carousel",
       "status": "Idea",
       "caption": "Premium sirf ek shabd nahi. Yeh har detail mein dikhta hai.\n\nSwipe 👉\n→ Trained, expert stylists — teen peedhiyon ki craft legacy.\n→ Professional, branded products.\n→ Strict hygiene & sanitized tools.\n→ Personalised consultation — aapke chehre, aapke hair ke hisaab se.\n→ Same standard, har outlet mein.\n\nExperience the standard. Book at your nearest Habibs.\nPoora Look. Ek Jagah. — Habibs",
-      "hashtags": ["Habibs", "PremiumSalon", "WhyHabibs", "Hygiene", "ProfessionalStylists", "SalonStandards", "HairAndBeauty", "PooraLookEkJagah", "TrustedSalon"],
-      "visualDirection": "6 slides, premium navy/cream + gold-maroon accents, lots of whitespace. Slide 1 = title. Slides 2–5 = one pillar each (experts / products / hygiene / consultation) with a crisp real photo + short line. Slide 6 = \"Poora Look. Ek Jagah.\" + CTA.",
-      "productionNotes": "Design + real outlet photos (product shelves, sanitized tools, stylist-with-client, consultation). Use genuine brand products in frame. Keep claims truthful — only say \"internationally trained\" where accurate."
+      "hashtags": ["Habibs", "PremiumSalon", "WhyHabibs", "Hygiene", "ProfessionalStylists", "SalonStandards", "PooraLookEkJagah", "TrustedSalon"],
+      "visualDirection": "6 slides, premium red/white + cream, lots of whitespace. S1 title; S2–5 one pillar each (experts/products/hygiene/consultation) with real photo + short line; S6 tagline + CTA.",
+      "productionNotes": "Carousel · IRL outlet stills + design. Design + real outlet photos. Genuine brand products in frame. Truthful claims only — \"internationally trained\" only where accurate."
     },
     {
       "id": 10,
-      "title": "Every Girl Before a Function",
+      "title": "First Time at Habibs / GRWM (UGC)",
       "date": "2026-09-04",
       "day": "Friday",
       "type": "Reel",
       "status": "Idea",
-      "caption": "Function kal hai. Aur abhi tak kuch bhi ready nahi. 😩\n\nHair a mess, kuch decide nahi hua, panic mode on… phir yaad aaya — Habibs hai na. Poora look, ek hi sitting mein sorted.\n\nWalk in stressed, walk out glowing.\nPoora Look. Ek Jagah. — Habibs. Book before the rush.",
-      "hashtags": ["Habibs", "RelatableBeauty", "FunctionReady", "ShaadiSeason", "GlowUp", "PooraLookEkJagah", "LastMinuteGlam", "HairAndBeauty", "IndianWeddings"],
-      "visualDirection": "Fun, fast, relatable POV humour. Messy \"before\" — bed, clothes everywhere, stress face → trending transition/audio → Habibs glow-up → confident exit. Text overlays carry the inner-monologue lines. Current trending audio.",
-      "productionNotes": "15–20s. 1 relatable female lead with strong expressions. Home-ish setup + salon. Use a current trending audio/transition (swap at post time for whatever's trending). Keep it light & shareable."
+      "caption": "\"Pehli baar Habibs try kiya… aur ab main wapas ja rahi hoon.\"\n\nReal experience, real reaction — walk-in se lekar final look tak. Koi filter nahi, bas honest baat.\nAapka Habibs experience kaisa tha? Tag us with #MyHabibsLook — hum repost karenge.\nPoora Look. Ek Jagah. — Habibs",
+      "hashtags": ["Habibs", "MyHabibsLook", "UGC", "GRWM", "SalonReview", "RealReview", "ClientDiaries", "PooraLookEkJagah", "HairAndBeauty"],
+      "visualDirection": "Raw, phone-shot, vertical, handheld — deliberately unpolished. Customer POV: selfie walk-in, quick service clips, candid mirror reveal, honest talking reaction. Natural sound; trending audio optional. No polished AI.",
+      "productionNotes": "Reel (UGC) · IRL only — raw. Source via (1) micro-influencer/real regular comped visit filming in their own style, or (2) #MyHabibsLook repost push (with permission). Brand hands-off the edit. Seed the hashtag from Day 1."
     },
     {
       "id": 11,
-      "title": "The Reveal — Before → After",
+      "title": "The Habibs Bride",
       "date": "2026-09-06",
       "day": "Sunday",
       "type": "Reel",
       "status": "Idea",
-      "caption": "Same person. Das minute pehle. Aur ab. 🤯\n\nColour + cut + styling — ek complete transformation, Habibs ki chair pe. Yeh hai the difference a real craft makes.\n\nAapka transformation kab?\nBook at Habibs. Poora Look. Ek Jagah.",
-      "hashtags": ["Habibs", "Transformation", "HairTransformation", "Makeover", "BeforeAfter", "HairColor", "GlowUp", "PooraLookEkJagah", "SalonMakeover", "HairGoals"],
-      "visualDirection": "Build tension → reveal. Start on \"before\" (flat hair, plain). Fast process cuts — colour foils, cut, blow-dry. Big spin-reveal \"after\" with a hair flip and confident smile. Dramatic-then-uplifting audio, slow-mo on the reveal. Logo end-card.",
-      "productionNotes": "20–25s. 1 model with strong transformation potential (a colour change reads best on camera). Senior stylist/colourist. Gear: gimbal, strong key light for the reveal, slow-mo-capable camera. Get a signed before/after release from the model."
+      "caption": "Shaadi ka season aa gaya. Aur har dulhan ka ek sapna — apne din pe sabse khoobsurat lagna.\n\nHabibs Bridal Package mein sab shaamil — Pre-Bridal (5 din pehle: waxing, spa mani-pedi, haircut, hair spa, glow facial, skin polishing) se lekar Wedding Day (bridal make-up, hair styling, saree draping) tak. Complete Bride Package ₹24,000+ se (Members ₹20,000+).\n\nApni bridal trial abhi book karein. DM 'BRIDE'.\nPoora Look. Ek Jagah. — Habibs",
+      "hashtags": ["Habibs", "HabibsBride", "BridalPackage", "ShaadiSeason", "BridalMakeup", "IndianBride", "DulhanLook", "PreBridal", "PooraLookEkJagah"],
+      "visualDirection": "Emotional build → reveal. Soft prep shots (mehendi, foils, facial, hair pinning) → dramatic reveal, bride turns to camera in full look. Warm golden light, traditional-modern audio, slow-mo reveal. Optional light AI backdrop/particles on reveal frame only — bride is 100% real footage. End card: package line + logo.",
+      "productionNotes": "25–30s. Reel · IRL (optional AI backdrop only). Real outfit/jewellery (boutique barter if possible), MUA + hairstylist + draping. Confirm current prices; keep the \"+\". Signed model release."
     },
     {
       "id": 12,
@@ -178,19 +178,19 @@
       "day": "Tuesday",
       "type": "Photo",
       "status": "Idea",
-      "caption": "Ek mahina. Ek waada. Poora look, ek jagah.\n\nHair, skin, beauty, bridal — sab ek chhat ke neeche. Aapke shehar mein Habibs, aapke liye taiyaar.\n\nBook now — DM, call, ya walk in. Find your nearest Habibs.\nPoora Look. Ek Jagah. — Habibs",
+      "caption": "Ek mahina. Ek waada. Poora look, ek jagah.\n\nHair, skin, beauty, bridal — sab ek chhat ke neeche. Aapke shehar mein Habibs, aapke liye taiyaar.\nBook now — DM, call, ya walk in. Find your nearest Habibs.\nPoora Look. Ek Jagah. — Habibs",
       "hashtags": ["Habibs", "PooraLookEkJagah", "BookNow", "HairAndBeauty", "IndianSalon", "SalonNearMe", "BeautySalon", "HabibsSalon"],
-      "visualDirection": "Clean, confident brand card. Hero image — happy client / elegant complete look — or an elegant flat-lay. Navy/cream/maroon. Clear CTA + contact (DM / website / phone). Logo prominent. Premium, uncluttered. Consistent with the launch visual language to close the arc.",
-      "productionNotes": "Design. NEEDS FROM CLIENT: booking channels (DM / WhatsApp / phone / website) + confirm the \"salon near me\" locator link works. 1 hero image."
+      "visualDirection": "Clean, confident brand card. Hero image (happy client / elegant complete look) or elegant flat-lay. Red/white/cream. Clear CTA + contact (DM / website / phone). Logo prominent. Consistent with launch look to close the arc.",
+      "productionNotes": "Static Post · Design. NEEDS FROM CLIENT: booking channels (DM/WhatsApp/phone/website) + confirm \"salon near me\" locator works. 1 hero image."
     }
   ],
   "packB": {
     "title": "In-Store Salon TV & Digital Mirror Loops",
     "description": "Hero hair transformations and ASMR spa footage repurposed for in-salon vertical display screens.",
     "sources": [
-      "Post #3 (The Habibs Cut) — Signature Hair cut & styling",
+      "Post #3 (Meet the Experts) — Stylist showcase & technique clips",
       "Post #8 (Do Jagah Kyun?) — Split screen salon experience",
-      "Post #11 (The Reveal) — Hair color & styling transformation"
+      "Post #11 (The Habibs Bride) — Bridal transformation"
     ],
     "goals": [
       "Increase hair spa & treatment add-ons",
