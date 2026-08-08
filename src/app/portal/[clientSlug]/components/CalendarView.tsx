@@ -19,6 +19,8 @@ import {
   BarChart2,
   ChevronDown,
   ChevronUp,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react'
 
 
@@ -295,7 +297,25 @@ export default function CalendarView({
           <div
             key={i}
             onClick={() => {
-              if (dateStr) setSelectedDateStr(dateStr)
+              if (!dateStr) return
+              if (isSelected && cellPosts.length > 0) {
+                if (viewerIsAdmin && onEditPost) {
+                  onEditPost(cellPosts[0])
+                } else {
+                  onSelectPost(cellPosts[0])
+                }
+              } else {
+                setSelectedDateStr(dateStr)
+              }
+            }}
+            onDoubleClick={() => {
+              if (dateStr && cellPosts.length > 0) {
+                if (viewerIsAdmin && onEditPost) {
+                  onEditPost(cellPosts[0])
+                } else {
+                  onSelectPost(cellPosts[0])
+                }
+              }
             }}
             className="min-h-[50px] sm:min-h-[88px] md:min-h-[104px] p-1 sm:p-2 relative transition-colors cursor-pointer select-none"
             style={{
@@ -729,6 +749,116 @@ export default function CalendarView({
                   <span className="text-sm font-medium">Add post to this day</span>
                 </button>
               )}
+
+              {/* Month Switcher Slider & Prev/Next Month controls */}
+              <div
+                className="rounded-2xl p-4 sm:p-5 bg-white space-y-3 shadow-sm mt-4"
+                style={{ border: '1px solid #E8E4DC' }}
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <button
+                    type="button"
+                    disabled={sliderIndex <= 0}
+                    onClick={() => {
+                      if (sliderIndex > 0) {
+                        const prev = allMonthsInRange[sliderIndex - 1]
+                        if (prev) onMonthChange(prev.getUTCFullYear(), prev.getUTCMonth())
+                      }
+                    }}
+                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold border transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#FAF7F2]"
+                    style={{
+                      borderColor: '#E8E4DC',
+                      color: '#111111',
+                    }}
+                    aria-label="Previous Month"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                    <span>Prev Month</span>
+                  </button>
+
+                  <div className="text-center">
+                    <p
+                      className="text-xs font-bold uppercase tracking-wider text-[#111111]"
+                      style={{ fontFamily: 'var(--font-space-grotesk)' }}
+                    >
+                      {monthNameLabel}
+                    </p>
+                    <p className="text-[10px] text-[#6B6B6B]">
+                      Month {sliderIndex + 1} of {allMonthsInRange.length}
+                    </p>
+                  </div>
+
+                  <button
+                    type="button"
+                    disabled={sliderIndex >= allMonthsInRange.length - 1}
+                    onClick={() => {
+                      if (sliderIndex < allMonthsInRange.length - 1) {
+                        const next = allMonthsInRange[sliderIndex + 1]
+                        if (next) onMonthChange(next.getUTCFullYear(), next.getUTCMonth())
+                      }
+                    }}
+                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold border transition-all disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#FAF7F2]"
+                    style={{
+                      borderColor: '#E8E4DC',
+                      color: '#111111',
+                    }}
+                    aria-label="Next Month"
+                  >
+                    <span>Next Month</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+
+                {/* Slider & Quick Month Selector Pills */}
+                {allMonthsInRange.length > 1 && (
+                  <div className="pt-2 border-t border-[#F4F4F5] space-y-2">
+                    <input
+                      type="range"
+                      min="0"
+                      max={allMonthsInRange.length - 1}
+                      value={sliderIndex}
+                      onChange={(e) => {
+                        const idx = Number(e.target.value)
+                        const targetMonth = allMonthsInRange[idx]
+                        if (targetMonth) {
+                          onMonthChange(targetMonth.getUTCFullYear(), targetMonth.getUTCMonth())
+                        }
+                      }}
+                      className="portal-slider cursor-pointer"
+                      aria-label="Switch Month Slider"
+                    />
+
+                    <div className="flex justify-between overflow-x-auto gap-2 py-1 scrollbar-thin">
+                      {allMonthsInRange.map((m, idx) => {
+                        const label = m
+                          .toLocaleDateString('en-US', {
+                            month: 'short',
+                            year: '2-digit',
+                            timeZone: 'UTC',
+                          })
+                          .toUpperCase()
+                        const active = idx === sliderIndex
+                        return (
+                          <button
+                            key={idx}
+                            onClick={() => {
+                              onMonthChange(m.getUTCFullYear(), m.getUTCMonth())
+                            }}
+                            className="text-xs font-semibold tracking-tighter uppercase whitespace-nowrap transition-all px-3 py-1.5 rounded-full border"
+                            style={{
+                              background: active ? brand.brand.primary : 'transparent',
+                              color: active ? '#FFFFFF' : '#6B6B6B',
+                              borderColor: active ? brand.brand.primary : '#E8E4DC',
+                            }}
+                          >
+                            {label}
+                          </button>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </>
         )}

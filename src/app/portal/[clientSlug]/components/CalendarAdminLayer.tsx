@@ -265,12 +265,24 @@ export default function CalendarAdminLayer({
                     )
 
                     if (dateStr) {
+                        const isSelected = selectedDateStr === dateStr
                         return (
                             <DroppableDay
                                 key={i}
                                 dayIso={dateStr}
                                 style={baseStyle}
-                                onClick={() => onSelectDate(dateStr)}
+                                onClick={() => {
+                                    if (isSelected && cellPosts.length > 0) {
+                                        onEditPost(cellPosts[0])
+                                    } else {
+                                        onSelectDate(dateStr)
+                                    }
+                                }}
+                                onDoubleClick={() => {
+                                    if (cellPosts.length > 0) {
+                                        onEditPost(cellPosts[0])
+                                    }
+                                }}
                             >
                                 {cellInner}
                             </DroppableDay>
@@ -372,18 +384,21 @@ function DroppableDay({
     style,
     children,
     onClick,
+    onDoubleClick,
 }: {
     dayIso: string
     style?: React.CSSProperties
     children: React.ReactNode
     onClick?: () => void
+    onDoubleClick?: () => void
 }) {
     const { setNodeRef, isOver } = useDroppable({ id: dayIso })
     return (
         <div
             ref={setNodeRef}
             onClick={onClick}
-            className="group min-h-[50px] sm:min-h-[88px] md:min-h-[104px] p-1 sm:p-2 relative transition-colors"
+            onDoubleClick={onDoubleClick}
+            className="group min-h-[50px] sm:min-h-[88px] md:min-h-[104px] p-1 sm:p-2 relative transition-colors cursor-pointer select-none"
             style={{
                 ...style,
                 background: isOver
