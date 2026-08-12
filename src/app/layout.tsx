@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Outfit, Barlow_Condensed, Space_Grotesk, Work_Sans } from "next/font/google";
 import "./globals.css";
 import GlobalAnimations from "@/components/GlobalAnimations";
+import ScrollSoundEffect from "@/components/ScrollSoundEffect";
 import AuthProvider from '@/components/AuthProvider'
 import { ThemeProvider } from "@/components/ThemeProvider";
 import SchemaOrg from "@/components/SchemaOrg";
@@ -143,6 +144,7 @@ export default function RootLayout({
         <AuthProvider>
           <ThemeProvider>
             <GlobalAnimations />
+            <ScrollSoundEffect />
             <div id="main-content" tabIndex={-1} className="outline-none">
               {children}
             </div>
