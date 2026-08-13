@@ -48,7 +48,7 @@ async function scrapeInstagramAPI(username: string): Promise<ScrapedPost[]> {
   const feedRes = await axios.get(feedUrl, { headers })
   const items = feedRes.data?.items || []
 
-  return items.map((node: any) => {
+  return items.map((node: Record<string, unknown>) => {
     const capObj = node.caption?.text || node.caption || ''
     const caption = typeof capObj === 'string' ? capObj : (capObj?.text || '')
     const likes = node.like_count ?? 0
@@ -108,8 +108,9 @@ async function syncBrand(slug: string, handle: string) {
   try {
     scrapedPosts = await scrapeInstagramAPI(handle)
     console.log(`Scraped ${scrapedPosts.length} posts from Instagram.`)
-  } catch (err: any) {
-    console.error(`Scraping failed: ${err.message}`)
+  } catch (err: unknown) {
+    const errorMsg = err instanceof Error ? err.message : String(err)
+    console.error(`Scraping failed: ${errorMsg}`)
     return
   }
 
