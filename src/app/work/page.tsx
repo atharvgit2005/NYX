@@ -166,23 +166,6 @@ export default function AdWorkPage() {
                                     </span>
                                 </Link>
 
-                                {/* Habibs */}
-                                <Link href="/portal/habibs" className="p-6 flex flex-col items-center justify-center text-center bg-white group min-h-[180px] hover:bg-neutral-50 transition-all duration-300 relative overflow-hidden">
-                                    <div className="h-28 w-full flex items-center justify-center relative overflow-hidden">
-                                        <div className="relative h-14 w-32 scale-[2.8]">
-                                            <Image
-                                                src="/logo/Habibs.png"
-                                                alt="Habibs"
-                                                fill
-                                                className="object-contain"
-                                                unoptimized
-                                            />
-                                        </div>
-                                    </div>
-                                    <span className="text-[10px] uppercase tracking-widest font-bold text-black/80 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        View Calendar →
-                                    </span>
-                                </Link>
 
                                 {/* Newton School */}
                                 <div className="p-6 flex flex-col items-center justify-center text-center bg-[#000000] group min-h-[180px] hover:bg-[#121212] transition-colors duration-300 relative overflow-hidden">

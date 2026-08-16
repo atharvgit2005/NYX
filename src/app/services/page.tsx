@@ -179,7 +179,7 @@ const faqSchema = {
       name: "What categories does NYX Studio specialize in?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We specialize in B2B, B2C, D2C, and Real Estate brands. Past partners include Dessertino, Habibs, Newton School, and many more.",
+        text: "We specialize in B2B, B2C, D2C, and Real Estate brands. Past partners include Dessertino, Newton School, and many more.",
       },
     },
     {
@@ -685,7 +685,7 @@ export default function AdServicesPage() {
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">What categories does NYX Studio specialize in?</dt>
-                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">We specialize in B2B, B2C, D2C, and Real Estate brands. Past partners include Dessertino, Habibs, Newton School, and many more.</dd>
+                            <dd className="faq-answer font-body text-base md:text-lg leading-relaxed text-[#e5e2e1]/80">We specialize in B2B, B2C, D2C, and Real Estate brands. Past partners include Dessertino, Newton School, and many more.</dd>
                         </div>
                         <div className="border-b-4 border-ink-black pb-6">
                             <dt className="faq-question font-headline text-xl md:text-2xl font-bold uppercase tracking-tight mb-3">Do you only work with Indian brands?</dt>

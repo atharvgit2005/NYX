@@ -6,13 +6,6 @@
       "clientName": "Dessertino",
       "approvedAt": "2026-05-05",
       "approvedBy": "atharv@nyxstudio.tech"
-    },
-    {
-      "email": "habibs@nyxstudio.in",
-      "clientSlug": "habibs",
-      "clientName": "Habibs",
-      "approvedAt": "2026-08-07",
-      "approvedBy": "atharv@nyxstudio.tech"
     }
   ],
   "pendingClients": [
